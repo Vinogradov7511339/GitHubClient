@@ -7,7 +7,6 @@
 
 import Foundation
 
-typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
 typealias DownloadHandler = (URL?, URLResponse?, Error?) -> Void
 
 protocol NetworkSessionProtocol {

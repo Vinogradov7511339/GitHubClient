@@ -151,7 +151,6 @@
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
 		AD79551726AC1516004E6973 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551626AC1516004E6973 /* SearchService.swift */; };
 		AD79551926AC4F49004E6973 /* vinogradovclient.2021-07-24.private-key.pem in Resources */ = {isa = PBXBuildFile; fileRef = AD79551826AC4F49004E6973 /* vinogradovclient.2021-07-24.private-key.pem */; };
-		AD79551B26AC9010004E6973 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551A26AC9010004E6973 /* String+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -301,7 +300,6 @@
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		AD79551626AC1516004E6973 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		AD79551826AC4F49004E6973 /* vinogradovclient.2021-07-24.private-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "vinogradovclient.2021-07-24.private-key.pem"; path = "../../../Desktop/vinogradovclient.2021-07-24.private-key.pem"; sourceTree = "<group>"; };
-		AD79551A26AC9010004E6973 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,7 +741,6 @@
 				AD20E57726ABDA7C003BB5F1 /* Dictionary+extensions.swift */,
 				AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */,
 				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
-				AD79551A26AC9010004E6973 /* String+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -960,7 +957,6 @@
 				AD20E46826A86D9C003BB5F1 /* LicenseAdapter.swift in Sources */,
 				AD20E51826A9B2FD003BB5F1 /* IssueDetailsPresenter.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
-				AD79551B26AC9010004E6973 /* String+extensions.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
 				AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,

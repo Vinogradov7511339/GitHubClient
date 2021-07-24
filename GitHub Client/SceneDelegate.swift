@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let rootController: UIViewController
         switch UserStorage.shared.loginState {
-        case .logged(_):
+        case .logged:
             rootController = TabBarController()
         case .notLogged:
             rootController = LoginViewController()

@@ -11,39 +11,36 @@ import Foundation
 class UserStorage {
     
     enum LoginState {
-        case logged(token: String)
+        case logged
         case notLogged
     }
     
     static let shared = UserStorage()
     
     var loginState: LoginState {
-        if let token = token {
-            return .logged(token: token)
+        if let _ = token {
+            return .logged
         } else {
             return .notLogged
         }
     }
     
-    var token: String? {
+    var token: TokenResponse? {
         let ud = UserDefaults.standard
-        let token = ud.string(forKey: "ACCESS_TOKEN")
-        return token
+        guard let token = ud.string(forKey: "ACCESS_TOKEN") else { return nil}
+        guard let tokenType = ud.string(forKey: "TOKEN_TYPE") else { return nil }
+        return TokenResponse(access_token: token, scope: "", token_type: tokenType)
     }
     
     func saveTokenResponse(_ response: TokenResponse) {
         let ud = UserDefaults.standard
-        ud.setValue(response.refresh_token, forKey: "REFRESH_TOKEN")
         ud.setValue(response.access_token, forKey: "ACCESS_TOKEN")
-        ud.setValue(response.expires_in, forKey: "EXPIRES_IN")
-        ud.setValue(response.refresh_token_expires_in, forKey: "REFRESH_TOKEN_EXPIRES_IN")
+        ud.setValue(response.token_type, forKey: "TOKEN_TYPE")
     }
     
     func clearStorage() {
         let ud = UserDefaults.standard
-        ud.removeObject(forKey: "REFRESH_TOKEN")
         ud.removeObject(forKey: "ACCESS_TOKEN")
-        ud.removeObject(forKey: "EXPIRES_IN")
-        ud.removeObject(forKey: "REFRESH_TOKEN_EXPIRES_IN")
+        ud.removeObject(forKey: "TOKEN_TYPE")
     }
 }
