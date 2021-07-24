@@ -19,17 +19,11 @@ enum SearchType: String {
 class SearchService: NetworkService {
     func search<T: Codable>(text: String, type: SearchType, responseType: T.Type, completion: @escaping (T?, Error?) -> Void) {
         let endpoint = Endpoint.search(type: type, text: text)
-        guard let url = url(url: endpoint.path, queryItems: endpoint.query) else {
-            return
-        }
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        for header in endpoint.headers {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
-        }
-//        request.cachePolicy = .reloadIgnoringCacheData
-        let urlRequest = request as URLRequest
-        self.request(urlRequest) { data, response, error in
-            
+        let url = URL(string: "https://api.github.com/search/issues?q=is:issue+windows+label:bug+language:python+state:open&sort=created&order=asc")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.cachePolicy = .reloadIgnoringCacheData
+        urlRequest.allHTTPHeaderFields = endpoint.headers
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return

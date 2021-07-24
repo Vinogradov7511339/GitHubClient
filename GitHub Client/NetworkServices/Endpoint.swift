@@ -24,18 +24,24 @@ enum RequestMethod: String {
     case delete = "DELETE"
 }
 
-
 extension Endpoint {
     
     var path: URL {
         switch self {
-        case .login(_):
-            return URL(string: "https://github.com/login/oauth/access_token")!
+        case .login(_): return URL(string: "https://github.com/login/oauth/access_token")!
+        case .myProfile: return URL(string: "https://api.github.com/user")!
+        case .allIssue: return URL(string: "https://api.github.com/issues")!
+        case .repositories: return URL(string: "https://api.github.com/user/repos")!
+        case .mostPopularRepositories: return URL(string: "https://api.github.com/search/repositories")!
         case .search(let type, _):
-            return URL(string: "https://github.com/search")!
-            
-        default:
-            fatalError()
+            switch type {
+            case .repositories: return URL(string: "https://github.com/search")!
+            case .issues: return URL(string: "https://github.com/search")!
+            case .organizations: return URL(string: "https://github.com/search")!
+            case .people: return URL(string: "https://github.com/search")!
+            case .pullRequests: return URL(string: "https://github.com/search")!
+            case .all: return URL(string: "https://github.com/search")!
+            }
         }
     }
     
@@ -52,25 +58,21 @@ extension Endpoint {
         case .myProfile:
             var headers: [String: String] = [:]
             headers["Authorization"] = authorizationHeader
-            
-//            if let ifModifiedSince = string(forKey: lastModifiedDateKey) {
-//                headers["If-Modified-Since"] = ifModifiedSince
-//            }
-//
-//            if let etag = string(forKey: ifNoneMatchKey) {
-//                headers["If-None-Match"] = etag
-//            }
+//            headers.merge(casheHeaders, uniquingKeysWith: { (_, last) in last })
             return headers
         case .login:
             var headers: [String: String] = [:]
             headers["Accept"] = "application/json"
             return headers
+        case .search(_, _):
+            var headers: [String: String] = [:]
+            headers["Authorization"] = authorizationHeader
+            headers["Accept"] = "application/vnd.github.v3.text-match+json"
+            return headers
         default:
             return defaultHeaders
         }
     }
-    
-    
     
     var query: [String: String] {
         switch self {
@@ -95,10 +97,19 @@ extension Endpoint {
             return query
         case .search(let type, let text):
             var query: [String: String] = [:]
-            query["q"] = "user:\(text)"
-            query["type"] = type.rawValue
+            query["q"] = "GitHub in:readme user:vinogradov7511339"
+//            query["type"] = type.rawValue
 //            query["sort"] = "stars"
             return query
+        }
+    }
+    
+    var jsonBody: Data? {
+        switch self {
+        case .login(_):
+            return query.percentEncoded()
+        default:
+            return nil
         }
     }
     
@@ -149,11 +160,22 @@ private extension Endpoint {
     }
     
     var authorizationHeader: String {
-        if let token = UserStorage.shared.token {
-            return "Bearer \(token)"
+        if let tokenResponse = UserStorage.shared.token {
+            return "token \(tokenResponse.access_token)"
         } else {
             return ""
         }
+    }
+    
+    var casheHeaders: [String: String] {
+        var headers: [String: String] = [:]
+        if let ifModifiedSince = string(forKey: lastModifiedDateKey) {
+            headers["If-Modified-Since"] = ifModifiedSince
+        }
+        if let etag = string(forKey: ifNoneMatchKey) {
+            headers["If-None-Match"] = etag
+        }
+        return headers
     }
     
     func string(forKey: String) -> String? {

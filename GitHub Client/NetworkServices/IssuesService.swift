@@ -14,19 +14,8 @@ class IssuesService: NetworkService {
     }
     
     func getAllIssues(completion: @escaping ([Issue]?, Error?) -> Void) {
-        let path = "https://api.github.com/issues"
-        guard let url = url(base: path, queryItems: Endpoint.allIssue.query) else {
-            return
-        }
-        
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        for header in Endpoint.allIssue.headers {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
-        }
-        request.cachePolicy = .reloadIgnoringCacheData
-        self.request(request as URLRequest) { [weak self] data, response, error in
-            guard let self = self else { return }
-            
+        let endpoint = Endpoint.allIssue
+        request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return

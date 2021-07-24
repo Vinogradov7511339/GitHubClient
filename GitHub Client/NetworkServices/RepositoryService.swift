@@ -25,19 +25,8 @@ class RepositoryService: NetworkService {
     }
     
     func allRepositoriesToWhichIHasAccess(completion: @escaping ([Repository]?, Error?) -> Void) {
-        let path = "https://api.github.com/user/repos"
-        guard let url = url(base: path, queryItems: Endpoint.repositories.query) else {
-            return
-        }
-        
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        for header in Endpoint.repositories.headers {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
-        }
-        request.cachePolicy = .reloadIgnoringCacheData
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self] data, response, error in
-            guard let self = self else { return }
-            
+        let endpoint = Endpoint.repositories
+        request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
@@ -48,23 +37,11 @@ class RepositoryService: NetworkService {
                 completion(nil, nil)
             }
         }
-        task.resume()
     }
     
     func mostPopularRepositories(completion: @escaping (RepositoriesResponse?, Error?) -> Void) {
-        let path = "https://api.github.com/search/repositories"
-        guard let url = url(base: path, queryItems: Endpoint.mostPopularRepositories.query) else {
-            return
-        }
-        
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        for header in Endpoint.mostPopularRepositories.headers {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
-        }
-        request.cachePolicy = .reloadIgnoringCacheData
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self] data, response, error in
-            guard let self = self else { return }
-            
+        let endpoint = Endpoint.mostPopularRepositories
+        request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
@@ -75,6 +52,5 @@ class RepositoryService: NetworkService {
                 completion(nil, nil)
             }
         }
-        task.resume()
     }
 }

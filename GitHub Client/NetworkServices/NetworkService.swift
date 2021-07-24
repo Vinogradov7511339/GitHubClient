@@ -27,17 +27,37 @@ enum APIError: Error {
     case unknown
 }
 
+typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
 
 class NetworkService: Error {
+    private let session = URLSession.shared
     
-    func request(_ request: URLRequest,completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        
-        let tast = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.check401(response: response)
-            completion(data, response, error)
-        }
-        tast.resume()
+    private func request(_ endpoint: Endpoint) -> URLRequest {
+        let urlWithParameters = url(url: endpoint.path, queryItems: endpoint.query)
+        var request = URLRequest(url: urlWithParameters!)
+        request.httpMethod = endpoint.method.rawValue
+        request.allHTTPHeaderFields = endpoint.headers
+        request.httpBody = endpoint.jsonBody
+        request.cachePolicy = .reloadIgnoringCacheData //todo remove
+        return request
     }
+    
+    func request(_ endpont: Endpoint, handler: @escaping ResponseHandler) {
+        let request = request(endpont)
+        let task = session.dataTask(with: request) { data, response, error in
+            self.check401(response: response)
+            handler(data, response, error)
+        }
+        task.resume()
+    }
+    
+//    func request(_ request: URLRequest,completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+//        let tast = URLSession.shared.dataTask(with: request) { data, response, error in
+//            self.check401(response: response)
+//            completion(data, response, error)
+//        }
+//        tast.resume()
+//    }
     
     
     func check401(response: URLResponse?) {
