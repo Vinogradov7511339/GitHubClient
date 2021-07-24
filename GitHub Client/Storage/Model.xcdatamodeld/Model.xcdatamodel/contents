@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LicenseDBModel" representedClassName="LicenseDBModel" syncable="YES" codeGenerationType="class">
+        <attribute name="html_url" optional="YES" attributeType="URI"/>
+        <attribute name="key" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="node_id" optional="YES" attributeType="String"/>
+        <attribute name="spdx_id" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+    </entity>
+    <entity name="RepositoryDBModel" representedClassName="RepositoryDBModel" syncable="YES" codeGenerationType="class">
+        <attribute name="archive_path" optional="YES" attributeType="String"/>
+        <attribute name="archived" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="assignees_path" optional="YES" attributeType="String"/>
+        <attribute name="blobs_path" optional="YES" attributeType="String"/>
+        <attribute name="branches_path" optional="YES" attributeType="String"/>
+        <attribute name="clone_url" optional="YES" attributeType="URI"/>
+        <attribute name="collaborators_path" optional="YES" attributeType="String"/>
+        <attribute name="comments_path" optional="YES" attributeType="String"/>
+        <attribute name="commits_path" optional="YES" attributeType="String"/>
+        <attribute name="compare_path" optional="YES" attributeType="String"/>
+        <attribute name="contents_path" optional="YES" attributeType="String"/>
+        <attribute name="contributors_url" optional="YES" attributeType="URI"/>
+        <attribute name="created_at" optional="YES" attributeType="String"/>
+        <attribute name="default_branch" optional="YES" attributeType="String"/>
+        <attribute name="defaultBranch" optional="YES" attributeType="String"/>
+        <attribute name="deployments_url" optional="YES" attributeType="URI"/>
+        <attribute name="descriptionStr" optional="YES" attributeType="String"/>
+        <attribute name="disabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="downloads_url" optional="YES" attributeType="URI"/>
+        <attribute name="events_url" optional="YES" attributeType="URI"/>
+        <attribute name="fork" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="forks_url" optional="YES" attributeType="URI"/>
+        <attribute name="forksCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="full_name" optional="YES" attributeType="String"/>
+        <attribute name="git_commits_path" optional="YES" attributeType="String"/>
+        <attribute name="git_refs_path" optional="YES" attributeType="String"/>
+        <attribute name="git_tags_path" optional="YES" attributeType="String"/>
+        <attribute name="git_url" optional="YES" attributeType="URI"/>
+        <attribute name="has_downloads" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="has_issues" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="has_pages" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="has_projects" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="has_wiki" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="homepage" optional="YES" attributeType="String"/>
+        <attribute name="hooks_url" optional="YES" attributeType="URI"/>
+        <attribute name="html_url" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="is_template" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="issue_comment_path" optional="YES" attributeType="String"/>
+        <attribute name="issue_events_path" optional="YES" attributeType="String"/>
+        <attribute name="issues_path" optional="YES" attributeType="String"/>
+        <attribute name="keys_path" optional="YES" attributeType="String"/>
+        <attribute name="labels_path" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="languages_url" optional="YES" attributeType="URI"/>
+        <attribute name="merges_url" optional="YES" attributeType="URI"/>
+        <attribute name="milestones_path" optional="YES" attributeType="String"/>
+        <attribute name="mirror_path" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="node_id" optional="YES" attributeType="String"/>
+        <attribute name="notifications_path" optional="YES" attributeType="String"/>
+        <attribute name="open_issues_count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pulls_path" optional="YES" attributeType="String"/>
+        <attribute name="pushed_at" optional="YES" attributeType="String"/>
+        <attribute name="releases_path" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ssh_url" optional="YES" attributeType="URI"/>
+        <attribute name="stargazers_url" optional="YES" attributeType="URI"/>
+        <attribute name="stargazersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="statuses_path" optional="YES" attributeType="String"/>
+        <attribute name="subscribers_url" optional="YES" attributeType="URI"/>
+        <attribute name="subscription_url" optional="YES" attributeType="URI"/>
+        <attribute name="svn_url" optional="YES" attributeType="URI"/>
+        <attribute name="tags_url" optional="YES" attributeType="URI"/>
+        <attribute name="teams_url" optional="YES" attributeType="URI"/>
+        <attribute name="trees_path" optional="YES" attributeType="String"/>
+        <attribute name="updated_at" optional="YES" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <attribute name="visibility" optional="YES" attributeType="String"/>
+        <attribute name="watchersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="license" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LicenseDBModel"/>
+        <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="UserDBModel"/>
+    </entity>
+    <entity name="UserDBModel" representedClassName="UserDBModel" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar_url" optional="YES" attributeType="URI"/>
+        <attribute name="bio" optional="YES" attributeType="String"/>
+        <attribute name="blog" optional="YES" attributeType="URI"/>
+        <attribute name="collaborators" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="created_at" optional="YES" attributeType="String"/>
+        <attribute name="disk_usage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="events_path" optional="YES" attributeType="String"/>
+        <attribute name="followers_count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="followers_url" optional="YES" attributeType="URI"/>
+        <attribute name="following_count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="following_url" optional="YES" attributeType="String"/>
+        <attribute name="gists_path" optional="YES" attributeType="String"/>
+        <attribute name="hireable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="html_url" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="login" attributeType="String" defaultValueString="Unknown"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="node_id" optional="YES" attributeType="String"/>
+        <attribute name="organizations_url" optional="YES" attributeType="URI"/>
+        <attribute name="owned_private_repos" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="private_gists" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="public_gists" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="public_repos" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="received_events_url" optional="YES" attributeType="URI"/>
+        <attribute name="repos_url" optional="YES" attributeType="URI"/>
+        <attribute name="site_admin" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="starred_url" optional="YES" attributeType="String"/>
+        <attribute name="subscriptions_url" optional="YES" attributeType="URI"/>
+        <attribute name="total_private_repos" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="twitter_username" optional="YES" attributeType="String"/>
+        <attribute name="two_factor_authentication" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="updated_at" optional="YES" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+    </entity>
+    <elements>
+        <element name="UserDBModel" positionX="-76.913818359375" positionY="94.51068115234375" width="128" height="613"/>
+        <element name="RepositoryDBModel" positionX="121.297119140625" positionY="66.44656372070312" width="128" height="1123"/>
+        <element name="LicenseDBModel" positionX="36" positionY="243" width="128" height="119"/>
+    </elements>
+</model>
