@@ -25,7 +25,7 @@ class RepositoryService: NetworkService {
     }
     
     func allRepositoriesToWhichIHasAccess(completion: @escaping ([Repository]?, Error?) -> Void) {
-        let endpoint = Endpoint.repositories
+        let endpoint = RepositoriesEndpoint.allMyRepositories
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)

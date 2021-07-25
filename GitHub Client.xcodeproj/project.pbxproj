@@ -19,7 +19,6 @@
 		AD20E3FE26A1514C003BB5F1 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FD26A1514C003BB5F1 /* APIOperation.swift */; };
 		AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FF26A15A83003BB5F1 /* APIRequestDispatcher.swift */; };
 		AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40126A16EAB003BB5F1 /* GitHubEndpoint.swift */; };
-		AD20E40426A171FE003BB5F1 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40326A171FE003BB5F1 /* ProfileService.swift */; };
 		AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40726A58A07003BB5F1 /* TableCellManager.swift */; };
 		AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */; };
 		AD20E40E26A59514003BB5F1 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */; };
@@ -46,13 +45,10 @@
 		AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */; };
 		AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45626A723B0003BB5F1 /* AsyncOperation.swift */; };
 		AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45A26A74279003BB5F1 /* ProfileInteractor.swift */; };
-		AD20E45D26A808BD003BB5F1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45C26A808BD003BB5F1 /* NetworkService.swift */; };
-		AD20E45F26A81A36003BB5F1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45E26A81A36003BB5F1 /* Endpoint.swift */; };
 		AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E46026A8299B003BB5F1 /* ServicesManager.swift */; };
 		AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E46326A84B4E003BB5F1 /* UserProfileAdapter.swift */; };
 		AD20E46626A8501F003BB5F1 /* RepositoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E46526A8501F003BB5F1 /* RepositoryAdapter.swift */; };
 		AD20E46826A86D9C003BB5F1 /* LicenseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E46726A86D9C003BB5F1 /* LicenseAdapter.swift */; };
-		AD20E46D26A87877003BB5F1 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E46C26A87877003BB5F1 /* RepositoryService.swift */; };
 		AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E47026A897CC003BB5F1 /* SettingsGeneralViewController.swift */; };
 		AD20E47326A89934003BB5F1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E47226A89934003BB5F1 /* SettingsViewModel.swift */; };
 		AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E47426A8A522003BB5F1 /* SettingsAppIconViewController.swift */; };
@@ -83,7 +79,6 @@
 		AD20E4F826A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E4F626A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.xib */; };
 		AD20E4FC26A95F84003BB5F1 /* RecentEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E4FA26A95F84003BB5F1 /* RecentEventsTableViewCell.swift */; };
 		AD20E4FD26A95F84003BB5F1 /* RecentEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E4FB26A95F84003BB5F1 /* RecentEventsTableViewCell.xib */; };
-		AD20E50026A96722003BB5F1 /* IssuesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E4FF26A96722003BB5F1 /* IssuesService.swift */; };
 		AD20E50226A96774003BB5F1 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E50126A96774003BB5F1 /* Issue.swift */; };
 		AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E50326A990A9003BB5F1 /* LabelModel.swift */; };
 		AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E50526A993A5003BB5F1 /* Milestone.swift */; };
@@ -121,7 +116,6 @@
 		AD20E55526AACAE3003BB5F1 /* SmallCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E55326AACAE3003BB5F1 /* SmallCollectionViewCell.xib */; };
 		AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E55626AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift */; };
 		AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E55726AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib */; };
-		AD20E55F26AAF8D9003BB5F1 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E55E26AAF8D9003BB5F1 /* TokenService.swift */; };
 		AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */; };
 		AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */; };
 		AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56426AB1324003BB5F1 /* AccountSettingsViewController.swift */; };
@@ -149,7 +143,15 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
-		AD79551726AC1516004E6973 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551626AC1516004E6973 /* SearchService.swift */; };
+		ADA7500C26AD2E9500783E71 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500026AD2E9500783E71 /* ProfileService.swift */; };
+		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
+		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
+		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
+		ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500526AD2E9500783E71 /* Endpoint.swift */; };
+		ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500726AD2E9500783E71 /* SearchService.swift */; };
+		ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500926AD2E9500783E71 /* TokenService.swift */; };
+		ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */; };
+		ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500B26AD2E9500783E71 /* IssuesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,7 +167,6 @@
 		AD20E3FD26A1514C003BB5F1 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
 		AD20E3FF26A15A83003BB5F1 /* APIRequestDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestDispatcher.swift; sourceTree = "<group>"; };
 		AD20E40126A16EAB003BB5F1 /* GitHubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubEndpoint.swift; sourceTree = "<group>"; };
-		AD20E40326A171FE003BB5F1 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		AD20E40726A58A07003BB5F1 /* TableCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellManager.swift; sourceTree = "<group>"; };
 		AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
@@ -192,13 +193,10 @@
 		AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		AD20E45626A723B0003BB5F1 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		AD20E45A26A74279003BB5F1 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
-		AD20E45C26A808BD003BB5F1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		AD20E45E26A81A36003BB5F1 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AD20E46026A8299B003BB5F1 /* ServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
 		AD20E46326A84B4E003BB5F1 /* UserProfileAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileAdapter.swift; sourceTree = "<group>"; };
 		AD20E46526A8501F003BB5F1 /* RepositoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAdapter.swift; sourceTree = "<group>"; };
 		AD20E46726A86D9C003BB5F1 /* LicenseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseAdapter.swift; sourceTree = "<group>"; };
-		AD20E46C26A87877003BB5F1 /* RepositoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		AD20E47026A897CC003BB5F1 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		AD20E47226A89934003BB5F1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		AD20E47426A8A522003BB5F1 /* SettingsAppIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppIconViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 		AD20E4F626A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesEmptyTableViewCell.xib; sourceTree = "<group>"; };
 		AD20E4FA26A95F84003BB5F1 /* RecentEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentEventsTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E4FB26A95F84003BB5F1 /* RecentEventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentEventsTableViewCell.xib; sourceTree = "<group>"; };
-		AD20E4FF26A96722003BB5F1 /* IssuesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesService.swift; sourceTree = "<group>"; };
 		AD20E50126A96774003BB5F1 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		AD20E50326A990A9003BB5F1 /* LabelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelModel.swift; sourceTree = "<group>"; };
 		AD20E50526A993A5003BB5F1 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
@@ -267,7 +264,6 @@
 		AD20E55326AACAE3003BB5F1 /* SmallCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallCollectionViewCell.xib; sourceTree = "<group>"; };
 		AD20E55626AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AD20E55726AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		AD20E55E26AAF8D9003BB5F1 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresenter.swift; sourceTree = "<group>"; };
 		AD20E56426AB1324003BB5F1 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
@@ -297,7 +293,15 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
-		AD79551626AC1516004E6973 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		ADA7500026AD2E9500783E71 /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
+		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
+		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		ADA7500526AD2E9500783E71 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		ADA7500726AD2E9500783E71 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		ADA7500926AD2E9500783E71 /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesEndpoint.swift; sourceTree = "<group>"; };
+		ADA7500B26AD2E9500783E71 /* IssuesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,20 +448,6 @@
 				AD20E46726A86D9C003BB5F1 /* LicenseAdapter.swift */,
 			);
 			path = Adapters;
-			sourceTree = "<group>";
-		};
-		AD20E46B26A8782B003BB5F1 /* NetworkServices */ = {
-			isa = PBXGroup;
-			children = (
-				AD20E45E26A81A36003BB5F1 /* Endpoint.swift */,
-				AD20E45C26A808BD003BB5F1 /* NetworkService.swift */,
-				AD20E40326A171FE003BB5F1 /* ProfileService.swift */,
-				AD20E46C26A87877003BB5F1 /* RepositoryService.swift */,
-				AD20E4FF26A96722003BB5F1 /* IssuesService.swift */,
-				AD20E55E26AAF8D9003BB5F1 /* TokenService.swift */,
-				AD79551626AC1516004E6973 /* SearchService.swift */,
-			);
-			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 		AD20E46E26A87936003BB5F1 /* Modules */ = {
@@ -734,6 +724,7 @@
 		AD20E57626ABDA41003BB5F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
 				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
 				AD20E57226AB5132003BB5F1 /* UIImage+extensions.swift */,
 				AD20E57726ABDA7C003BB5F1 /* Dictionary+extensions.swift */,
@@ -775,7 +766,7 @@
 				AD20E46226A84B37003BB5F1 /* Adapters */,
 				AD20E46E26A87936003BB5F1 /* Modules */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
-				AD20E46B26A8782B003BB5F1 /* NetworkServices */,
+				ADA74FFF26AD2E7C00783E71 /* Services */,
 				AD20E40A26A58D8C003BB5F1 /* Common */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
 				AD20E47626A8B1D9003BB5F1 /* Resources */,
@@ -796,6 +787,29 @@
 				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		ADA74FFF26AD2E7C00783E71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ADA7501826AD2F0300783E71 /* RepositoryService */,
+				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
+				ADA7500B26AD2E9500783E71 /* IssuesService.swift */,
+				ADA7500426AD2E9500783E71 /* NetworkService.swift */,
+				ADA7500026AD2E9500783E71 /* ProfileService.swift */,
+				ADA7500726AD2E9500783E71 /* SearchService.swift */,
+				ADA7500926AD2E9500783E71 /* TokenService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ADA7501826AD2F0300783E71 /* RepositoryService */ = {
+			isa = PBXGroup;
+			children = (
+				ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */,
+				ADA7500126AD2E9500783E71 /* RepositoryService.swift */,
+			);
+			path = RepositoryService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -908,21 +922,21 @@
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
+				ADA7500C26AD2E9500783E71 /* ProfileService.swift in Sources */,
+				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
-				AD20E46D26A87877003BB5F1 /* RepositoryService.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
 				AD20E4FC26A95F84003BB5F1 /* RecentEventsTableViewCell.swift in Sources */,
 				AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */,
 				AD20E54626AAAB96003BB5F1 /* ExplorePresenter.swift in Sources */,
 				AD20E44726A6B845003BB5F1 /* ReadMeTableViewCell.swift in Sources */,
 				AD20E53926AA9CC1003BB5F1 /* RepositoryDetailsConfigurator.swift in Sources */,
-				AD20E45D26A808BD003BB5F1 /* NetworkService.swift in Sources */,
 				AD20E52426A9C164003BB5F1 /* IssueDetailsConfigurator.swift in Sources */,
 				AD79550426ABF481004E6973 /* Button.swift in Sources */,
+				ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */,
 				AD20E46626A8501F003BB5F1 /* RepositoryAdapter.swift in Sources */,
 				AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */,
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
-				AD20E50026A96722003BB5F1 /* IssuesService.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
@@ -951,7 +965,10 @@
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
 				AD20E46826A86D9C003BB5F1 /* LicenseAdapter.swift in Sources */,
+				ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */,
+				ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */,
 				AD20E51826A9B2FD003BB5F1 /* IssueDetailsPresenter.swift in Sources */,
+				ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
 				AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */,
@@ -965,8 +982,8 @@
 				AD20E50D26A99DFE003BB5F1 /* IssuesPresenter.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModel.swift in Sources */,
 				AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */,
-				AD20E40426A171FE003BB5F1 /* ProfileService.swift in Sources */,
 				AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */,
+				ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */,
 				AD20E52026A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.swift in Sources */,
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
 				AD20E44B26A6BBAE003BB5F1 /* TableViewCell.swift in Sources */,
@@ -978,10 +995,10 @@
 				AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */,
 				AD79550C26AC0C14004E6973 /* NotificationsEmptyView.swift in Sources */,
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
+				ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
-				AD79551726AC1516004E6973 /* SearchService.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
 				AD20E50B26A99982003BB5F1 /* IssuesViewController.swift in Sources */,
@@ -1000,13 +1017,12 @@
 				AD20E50826A994A6003BB5F1 /* PullRequest.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
 				AD20E42D26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift in Sources */,
+				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,
 				AD20E4F026A949B8003BB5F1 /* HomeConfigurator.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* Issue.swift in Sources */,
-				AD20E45F26A81A36003BB5F1 /* Endpoint.swift in Sources */,
 				AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */,
-				AD20E55F26AAF8D9003BB5F1 /* TokenService.swift in Sources */,
 				AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

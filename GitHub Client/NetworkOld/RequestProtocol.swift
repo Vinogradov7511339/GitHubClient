@@ -6,8 +6,8 @@
 //
 import Foundation
 
-typealias RequestHeaders = [String: String]
-typealias RequestParameters = [String: Any?]
+
+
 typealias ProgressHandler = (Float) -> Void
 
 enum RequestType {
