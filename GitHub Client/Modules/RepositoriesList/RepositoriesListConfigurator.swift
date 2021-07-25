@@ -7,9 +7,15 @@
 
 import UIKit
 
+enum RepositoriesType {
+    case iHasAccessTo(repositories: [Repository])
+    case allMy(repositories: [Repository])
+    case starred(repositories: [Repository])
+}
+
 class RepositoriesListConfigurator {
-    static func createModule() -> RepositoriesListViewController {
-        let presenter = RepositoriesListPresenter()
+    static func createModule(with type: RepositoriesType) -> RepositoriesListViewController {
+        let presenter = RepositoriesListPresenter(with: type)
         let viewController = RepositoriesListViewController()
         viewController.presenter = presenter
         viewController.presenter?.output = viewController

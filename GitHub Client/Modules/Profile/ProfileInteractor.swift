@@ -13,12 +13,14 @@ protocol ProfileInteractorInput {
     func fetchMyProfile()
     func fetchMyPopularRepositories()
     func fetchStarredRepositories()
+    func fetchMyAllRepositories()
 }
 
 protocol ProfileInteractorOutput: AnyObject {
     func didReceive(profile: UserProfile)
     func didReceive(popularRepositories: [Repository])
     func didReceive(starredRepositories: [Repository])
+    func didReceive(allMyRepositories: [Repository])
     func didReceive(error: Error)
 }
 
@@ -26,7 +28,7 @@ class ProfileInteractor {
     
     weak var output: ProfileInteractorOutput?
     
-    private let profileService = ServicesManager.shared.profileService
+    private let userService = ServicesManager.shared.userService
     private let repositoryService = ServicesManager.shared.repositoryService
     private let localStorage = ServicesManager.shared.localStorage
     
@@ -36,10 +38,13 @@ class ProfileInteractor {
 
 // MARK: - ProfileInteractorInput
 extension ProfileInteractor: ProfileInteractorInput {
+    func fetchMyAllRepositories() {
+        requestAllMyRepoositries()
+    }
+    
     func fetchMyProfile() {
         requestProfile()
     }
-    
     
     func fetchMyPopularRepositories() {
         requestPopularRepositories()
@@ -53,7 +58,7 @@ extension ProfileInteractor: ProfileInteractorInput {
 // MARK: - private
 private extension ProfileInteractor {
     func requestProfile() {
-        profileService.getProfile { [weak self] userProfile, error in
+        userService.getProfile { [weak self] userProfile, error in
             if let userProfile = userProfile {
                 self?.userProfile = userProfile
                 self?.syncStorage(profile: userProfile)
@@ -62,6 +67,14 @@ private extension ProfileInteractor {
             }
             
             self?.handleError(error: error, getFromStorageFunc: self?.getLocalProfile())
+        }
+    }
+    
+    func requestAllMyRepoositries() {
+        repositoryService.allRepositoriesToWhichIHasAccess { repositories, error in
+            if let repositories = repositories {
+                self.output?.didReceive(allMyRepositories: repositories)
+            }
         }
     }
     
@@ -74,47 +87,40 @@ private extension ProfileInteractor {
                 self?.output?.didReceive(popularRepositories: repositories)
                 return
             }
-            
             self?.handleError(error: error, getFromStorageFunc: self?.getLocalPopularRepositories())
         }
     }
     
     func requestStarredRepositories() {
-        guard let urlStr = userProfile?.starred_url else { return }
-        let pattern = "\\{.*\\}"
-        let range = urlStr.range(of: pattern, options: .regularExpression)
-        let allReposUrl = urlStr.replacingCharacters(in: range!, with: "")
-        
-        guard let url = URL(string: allReposUrl) else { return }
-        repositoryService.getRepositories(url: url) { [weak self] repositories, error in
+        guard let user = userProfile else { return }
+        userService.fetchStarredRepositories(user) { [weak self] repositories, error in
             if let repositories = repositories {
                 self?.popularRepositories = repositories
                 self?.syncStorage(popularRepositories: repositories)
                 self?.output?.didReceive(starredRepositories: repositories)
                 return
             }
-            
             self?.handleError(error: error, getFromStorageFunc: self?.getLocalPopularRepositories())
         }
     }
     
     func handleError(error: Error?, getFromStorageFunc: ()?) {
-        guard let error = error else {
-            output?.didReceive(error: APIError.unknown)
-            return
-        }
-        
-        guard let httpError = error as? HTTPError else {
-            output?.didReceive(error: error)
-            return
-        }
-        
-        switch httpError {
-        case .notModified:
-            getFromStorageFunc
-        default:
-            output?.didReceive(error: error)
-        }
+//        guard let error = error else {
+//            output?.didReceive(error: APIError.unknown)
+//            return
+//        }
+//
+//        guard let httpError = error as? HTTPError else {
+//            output?.didReceive(error: error)
+//            return
+//        }
+//
+//        switch httpError {
+//        case .notModified:
+//            getFromStorageFunc
+//        default:
+//            output?.didReceive(error: error)
+//        }
     }
 }
 

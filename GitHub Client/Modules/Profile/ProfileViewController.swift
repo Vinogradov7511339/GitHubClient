@@ -89,17 +89,7 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.row {
-        case 0:
-            presenter?.openRepositories()
-        case 1:
-            presenter?.openRepository()
-//            presenter?.openStarred()
-        case 2:
-            presenter?.openOrganizations()
-        default:
-            break
-        }
+        presenter?.didSelectItem(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

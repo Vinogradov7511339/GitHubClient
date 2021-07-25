@@ -20,7 +20,6 @@ protocol EndpointProtocol {
 
 enum Endpoint {
     case login(authCode: String)
-    case myProfile
     case allIssue
     case mostPopularRepositories
     case search(type: SearchType, text: String)
@@ -39,7 +38,6 @@ extension Endpoint: EndpointProtocol {
     var path: URL {
         switch self {
         case .login(_): return URL(string: "https://github.com/login/oauth/access_token")!
-        case .myProfile: return URL(string: "https://api.github.com/user")!
         case .allIssue: return URL(string: "https://api.github.com/issues")!
         case .mostPopularRepositories: return URL(string: "https://api.github.com/search/repositories")!
         case .search(let type, _):
@@ -64,11 +62,7 @@ extension Endpoint: EndpointProtocol {
     }
     var headers: RequestHeaders {
         switch self {
-        case .myProfile:
-            var headers: [String: String] = [:]
-            headers["Authorization"] = Self.authorizationHeader
 //            headers.merge(casheHeaders, uniquingKeysWith: { (_, last) in last })
-            return headers
         case .login:
             var headers: [String: String] = [:]
             headers["Accept"] = "application/json"
@@ -85,8 +79,6 @@ extension Endpoint: EndpointProtocol {
     
     var parameters: RequestParameters {
         switch self {
-        case .myProfile:
-            return [:]
         case .allIssue:
             return ["filter" : "all"]
         case .mostPopularRepositories:
@@ -122,8 +114,8 @@ extension Endpoint: EndpointProtocol {
     
     func setlastModifiedDate(_ value: String) {
         switch self {
-        case .myProfile:
-            set(value, for: lastModifiedDateKey)
+//        case .myProfile:
+//            set(value, for: lastModifiedDateKey)
         default:
             break
         }
@@ -131,8 +123,8 @@ extension Endpoint: EndpointProtocol {
     
     func setIfNoneMatch(_ value: String) {
         switch self {
-        case .myProfile:
-            set(value, for: ifNoneMatchKey)
+//        case .myProfile:
+//            set(value, for: ifNoneMatchKey)
         default:
             break
         }
@@ -142,8 +134,8 @@ extension Endpoint: EndpointProtocol {
 extension Endpoint {
     var lastModifiedDateKey: String {
         switch self {
-        case .myProfile:
-            return "profileLastModified"
+//        case .myProfile:
+//            return "profileLastModified"
         default:
             return ""
         }
@@ -152,8 +144,8 @@ extension Endpoint {
     
     var ifNoneMatchKey: String {
         switch self {
-        case .myProfile:
-            return "profileEtag"
+//        case .myProfile:
+//            return "profileEtag"
         default:
             return ""
         }

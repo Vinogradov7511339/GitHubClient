@@ -10,6 +10,7 @@ import UIKit
 
 protocol RepositoriesListPresenterInput {
     var output: RepositoriesListPresenterOutput? { get set }
+    var type: RepositoriesType { get }
     
     func viewDidLoad()
     func refresh()
@@ -28,12 +29,26 @@ class RepositoriesListPresenter {
     
     private let repositoryService = ServicesManager.shared.repositoryService
     private var repositories: [Repository] = []
+    var type: RepositoriesType
+    
+    init(with type: RepositoriesType) {
+        self.type = type
+    }
 }
 
 // MARK: - RepositoriesListPresenterInput
 extension RepositoriesListPresenter: RepositoriesListPresenterInput {
     func viewDidLoad() {
-        fetchRepositories()
+        switch type {
+        case .allMy(let repositories):
+            self.repositories = repositories
+            let viewModels = repositories.map { DetailCellViewModel(repository: $0) }
+            output?.display(viewModels: viewModels)
+        case .iHasAccessTo(let repositories), .starred(repositories: let repositories):
+            self.repositories = repositories
+            let viewModels = repositories
+            output?.display(viewModels: viewModels)
+        }
     }
     
     func refresh() {

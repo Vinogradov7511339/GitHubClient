@@ -13,14 +13,10 @@ protocol ProfilePresenterInput {
     func viewDidLoad()
     func refresh()
     
-    func openRepository()
-    func openRepositories()
-    func openStarred()
-    func openOrganizations()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol ProfilePresenterOutput: AnyObject {
-    
     
     func display(viewModels: [[Any]])
     func showError(error: Error)
@@ -35,6 +31,7 @@ class ProfilePresenter {
 
     private var popularRepositories: [Repository] = []
     private var starredRepositories: [Repository] = []
+    private var allMyRepositories: [Repository] = []
     private var profile: UserProfile?
     
     
@@ -45,7 +42,7 @@ class ProfilePresenter {
         
         let repositories = TableCellViewModel(
             text: "Repositories",
-            detailText: "\((profile.public_repos ?? 0) + (profile.total_private_repos ?? 0))",
+            detailText: "\(allMyRepositories.count)",
             image: UIImage(systemName: "book.closed.fill"), imageTintColor: .systemPurple,
             accessoryType: .disclosureIndicator)
         let stared = TableCellViewModel(
@@ -66,11 +63,16 @@ class ProfilePresenter {
 
 // MARK: - ProfileInteractorOutput
 extension ProfilePresenter: ProfileInteractorOutput {
-    func didReceive(starredRepositories: [Repository]) {
-        self.starredRepositories = starredRepositories
+    func didReceive(allMyRepositories: [Repository]) {
+        self.allMyRepositories = allMyRepositories
         DispatchQueue.main.async {
             self.fullViewModels()
         }
+    }
+    
+    func didReceive(starredRepositories: [Repository]) {
+        self.starredRepositories = starredRepositories
+        interactor.fetchMyAllRepositories()
     }
     
     func didReceive(popularRepositories: [Repository]) {
@@ -90,21 +92,34 @@ extension ProfilePresenter: ProfileInteractorOutput {
 
 // MARK: - ProfilePresenterInput
 extension ProfilePresenter: ProfilePresenterInput {
-    func openRepositories() {
-        let viewController = MyRepositoriesViewController()
-        output?.push(to: viewController)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            viewController.viewModels = self.popularRepositories
+    func didSelectItem(at indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            openRepositories()
+        case 1:
+            openStarred()
+        case 2:
+            openOrganizations()
+        default:
+            break
         }
     }
+    func openRepositories() {
+        let viewController = RepositoriesListConfigurator.createModule(with: .iHasAccessTo(repositories: allMyRepositories))
+        output?.push(to: viewController)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            viewController.viewModels = self.popularRepositories
+//        }
+    }
     
-    func openRepository() {
-        let repository = popularRepositories.last!
+    func openRepository(repository: Repository) {
         let viewController = RepositoryDetailsConfigurator.createModule(for: repository)
         output?.push(to: viewController)
     }
     
     func openStarred() {
+        let viewController = RepositoriesListConfigurator.createModule(with: .starred(repositories: starredRepositories))
+        output?.push(to: viewController)
     }
     
     func openOrganizations() {

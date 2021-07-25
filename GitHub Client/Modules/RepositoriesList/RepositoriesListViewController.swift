@@ -9,20 +9,34 @@ import UIKit
 
 class RepositoriesListViewController: UIViewController {
     
-    var presenter: RepositoriesListPresenterInput?
+    var presenter: RepositoriesListPresenterInput!
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 62.0
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.tableFooterView = UIView()
         return tableView
     }()
     
     private let refreshControl = UIRefreshControl()
-    private let cellManager = TableCellManager.create(cellType: DetailTableViewCell.self)
+    
+    private lazy var cellManager: TableCellManager = {
+        let cellManager: TableCellManager
+        switch presenter.type {
+        case .allMy(_):
+            cellManager = TableCellManager.create(cellType: DetailTableViewCell.self)
+        case .iHasAccessTo(_):
+            cellManager = TableCellManager.create(cellType: MyRepositoryTableViewCell.self)
+        case .starred(_):
+            cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
+        }
+        return cellManager
+    }()
+    
     private var viewModels: [Any] = []
     
     override func viewDidLoad() {
@@ -36,7 +50,7 @@ class RepositoriesListViewController: UIViewController {
         cellManager.register(tableView: tableView)
         
         title = "Repositories"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         presenter?.viewDidLoad()
     }

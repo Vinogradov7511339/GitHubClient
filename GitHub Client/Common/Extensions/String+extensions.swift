@@ -14,4 +14,11 @@ extension String {
             .replacingOccurrences(of: "'", with: "&#39")
             .replacingOccurrences(of: ">", with: "&#62")
     }
+    
+    func pathWithoutParameters() -> String {
+        let pattern = "\\{.*\\}"
+        let range = self.range(of: pattern, options: .regularExpression)
+        let clearPath = self.replacingCharacters(in: range!, with: "")
+        return clearPath
+    }
 }

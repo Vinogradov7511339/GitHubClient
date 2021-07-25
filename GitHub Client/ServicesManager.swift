@@ -13,10 +13,6 @@ final class ServicesManager {
     
     private init() {}
     
-    lazy var profileService: ProfileService = {
-        return ProfileService()
-    }()
-    
     lazy var repositoryService: RepositoryService = {
         return RepositoryService()
     }()
@@ -35,5 +31,9 @@ final class ServicesManager {
     
     lazy var searchService: SearchService = {
         return SearchService()
+    }()
+    
+    lazy var userService: UserService = {
+        return UserService()
     }()
 }

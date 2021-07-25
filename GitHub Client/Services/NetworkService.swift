@@ -32,9 +32,9 @@ typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
 class NetworkService: Error {
     private let session = URLSession.shared
     
-    private func request(_ endpoint: EndpointProtocol) -> URLRequest {
-        let urlWithParameters = url(url: endpoint.path, queryItems: endpoint.parameters)
-        var request = URLRequest(url: urlWithParameters!)
+    private func request(_ endpoint: EndpointProtocol) throws -> URLRequest {
+        let urlWithParameters = try parameterized(url: endpoint.path, queryItems: endpoint.parameters)
+        var request = URLRequest(url: urlWithParameters)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.headers
         request.httpBody = endpoint.jsonBody
@@ -43,12 +43,16 @@ class NetworkService: Error {
     }
     
     func request(_ endpont: EndpointProtocol, handler: @escaping ResponseHandler) {
-        let request = request(endpont)
-        let task = session.dataTask(with: request) { data, response, error in
-            self.check401(response: response)
-            handler(data, response, error)
+        do {
+            let request = try request(endpont)
+            let task = session.dataTask(with: request) { data, response, error in
+                self.check401(response: response)
+                handler(data, response, error)
+            }
+            task.resume()
+        } catch {
+            handler(nil, nil, error)
         }
-        task.resume()
     }
     
 //    func request(_ request: URLRequest,completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
@@ -117,20 +121,25 @@ class NetworkService: Error {
         }
     }
     
-    func url(base baseURL: String, queryItems: [String: String] ) -> URL? {
+    func url(base baseURL: String?, queryItems: [String: String] ) throws -> URL {
+        guard let baseURL = baseURL else {
+            throw ApplicationError.incorrectURL
+        }
         guard var urlComponents = URLComponents(string: baseURL) else {
-            assertionFailure("url is nil")
-            return nil
+            throw ApplicationError.incorrectURL
         }
         urlComponents.queryItems = []
         for item in queryItems {
             let queryItem = URLQueryItem(name: item.key, value: item.value)
             urlComponents.queryItems?.append(queryItem)
         }
-        return urlComponents.url
+        guard let url = urlComponents.url else {
+            throw ApplicationError.incorrectURL
+        }
+        return url
     }
     
-    func url(url baseURL: URL, queryItems: [String: String]) -> URL? {
-        return url(base: baseURL.absoluteString, queryItems: queryItems)
+    func parameterized(url baseURL: URL, queryItems: [String: String]) throws -> URL {
+        return try url(base: baseURL.absoluteString, queryItems: queryItems)
     }
 }

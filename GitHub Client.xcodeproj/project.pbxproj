@@ -143,7 +143,6 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
-		ADA7500C26AD2E9500783E71 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500026AD2E9500783E71 /* ProfileService.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
@@ -152,6 +151,11 @@
 		ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500926AD2E9500783E71 /* TokenService.swift */; };
 		ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */; };
 		ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500B26AD2E9500783E71 /* IssuesService.swift */; };
+		ADA7501A26AD922600783E71 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501926AD922600783E71 /* UserService.swift */; };
+		ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501C26AD924500783E71 /* UserEndpoints.swift */; };
+		ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501E26AD931E00783E71 /* Error+extensions.swift */; };
+		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
+		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -293,7 +297,6 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
-		ADA7500026AD2E9500783E71 /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -302,6 +305,11 @@
 		ADA7500926AD2E9500783E71 /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesEndpoint.swift; sourceTree = "<group>"; };
 		ADA7500B26AD2E9500783E71 /* IssuesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesService.swift; sourceTree = "<group>"; };
+		ADA7501926AD922600783E71 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		ADA7501C26AD924500783E71 /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
+		ADA7501E26AD931E00783E71 /* Error+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extensions.swift"; sourceTree = "<group>"; };
+		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
+		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +546,7 @@
 		AD20E4EE26A9489C003BB5F1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				ADA7502026ADA7E000783E71 /* StarredRepoCell */,
 				AD20E54726AAB757003BB5F1 /* ExploreCells */,
 				AD20E41526A599C2003BB5F1 /* ProfileHeaderCell */,
 				AD20E42626A5C44E003BB5F1 /* ProfileMostPopularCell */,
@@ -724,6 +733,7 @@
 		AD20E57626ABDA41003BB5F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ADA7501E26AD931E00783E71 /* Error+extensions.swift */,
 				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
 				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
 				AD20E57226AB5132003BB5F1 /* UIImage+extensions.swift */,
@@ -793,10 +803,10 @@
 			isa = PBXGroup;
 			children = (
 				ADA7501826AD2F0300783E71 /* RepositoryService */,
+				ADA7501B26AD923000783E71 /* UserService */,
 				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
 				ADA7500B26AD2E9500783E71 /* IssuesService.swift */,
 				ADA7500426AD2E9500783E71 /* NetworkService.swift */,
-				ADA7500026AD2E9500783E71 /* ProfileService.swift */,
 				ADA7500726AD2E9500783E71 /* SearchService.swift */,
 				ADA7500926AD2E9500783E71 /* TokenService.swift */,
 			);
@@ -810,6 +820,24 @@
 				ADA7500126AD2E9500783E71 /* RepositoryService.swift */,
 			);
 			path = RepositoryService;
+			sourceTree = "<group>";
+		};
+		ADA7501B26AD923000783E71 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				ADA7501926AD922600783E71 /* UserService.swift */,
+				ADA7501C26AD924500783E71 /* UserEndpoints.swift */,
+			);
+			path = UserService;
+			sourceTree = "<group>";
+		};
+		ADA7502026ADA7E000783E71 /* StarredRepoCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */,
+				ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */,
+			);
+			path = StarredRepoCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -898,6 +926,7 @@
 				AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */,
 				AD20E4D626A8B313003BB5F1 /* AppIconPinkLight@2x-1.png in Resources */,
 				AD20E4D926A8B313003BB5F1 /* AppIconPinkLight-1.png in Resources */,
+				ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */,
 				AD20E52126A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.xib in Resources */,
 				AD20E4FD26A95F84003BB5F1 /* RecentEventsTableViewCell.xib in Resources */,
 				AD20E4DD26A8B313003BB5F1 /* AppIconPinkLight@2x-5.png in Resources */,
@@ -921,8 +950,8 @@
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
+				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
-				ADA7500C26AD2E9500783E71 /* ProfileService.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
@@ -938,6 +967,7 @@
 				AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */,
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
+				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
@@ -968,8 +998,10 @@
 				ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */,
 				ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */,
 				AD20E51826A9B2FD003BB5F1 /* IssueDetailsPresenter.swift in Sources */,
+				ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */,
 				ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
+				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
 				AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
