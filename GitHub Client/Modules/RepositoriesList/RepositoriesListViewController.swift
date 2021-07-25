@@ -14,6 +14,7 @@ class RepositoriesListViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemGroupedBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
@@ -30,7 +31,7 @@ class RepositoriesListViewController: UIViewController {
         case .allMy(_):
             cellManager = TableCellManager.create(cellType: DetailTableViewCell.self)
         case .iHasAccessTo(_):
-            cellManager = TableCellManager.create(cellType: MyRepositoryTableViewCell.self)
+            cellManager = TableCellManager.create(cellType: MyReposTableViewCell.self)
         case .starred(_):
             cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
         }
@@ -48,9 +49,7 @@ class RepositoriesListViewController: UIViewController {
         tableView.addSubview(refreshControl)
         
         cellManager.register(tableView: tableView)
-        
-        title = "Repositories"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        configureNavBar()
         
         presenter?.viewDidLoad()
     }
@@ -107,5 +106,19 @@ private extension RepositoriesListViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func configureNavBar() {
+        switch presenter.type {
+        case .allMy(_):
+            title = "Repositories"
+            navigationController?.navigationBar.prefersLargeTitles = true
+        case .iHasAccessTo(_):
+            title = "Repositories"
+            navigationController?.navigationBar.prefersLargeTitles = false
+        case .starred(_):
+            title = "Starred"
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
 }

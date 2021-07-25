@@ -1,34 +1,37 @@
 //
-//  StarredRepoTableViewCell.swift
+//  MyRepositoryTableViewCell.swift
 //  GitHub Client
 //
-//  Created by Alexander Vinogradov on 25.07.2021.
+//  Created by Alexander Vinogradov on 19.07.2021.
 //
 
 import UIKit
 
-class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
+class MyReposTableViewCell: BaseTableViewCell, NibLoadable {
     
-    @IBOutlet weak var avatarImageView: WebImageView!
-    @IBOutlet weak var ownerLoginLabel: UILabel!
     @IBOutlet weak var reposNameLabel: UILabel!
     @IBOutlet weak var reposDescriptionLabel: UILabel!
     @IBOutlet weak var isStarredImageView: UIImageView!
     @IBOutlet weak var starsCountLabel: UILabel!
-    @IBOutlet weak var languageColorImageView: WebImageView!
+    @IBOutlet weak var languageColorImageView: UIImageView!
     @IBOutlet weak var languageLabel: UILabel!
-        
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
     }
 }
 
-// MARK: - ConfigurableCell
-extension StarredRepoTableViewCell: ConfigurableCell {
+extension MyReposTableViewCell: ConfigurableCell {
     func configure(viewModel: Repository) {
-        avatarImageView.set(url: viewModel.owner?.avatar_url)
-        ownerLoginLabel.text = viewModel.owner?.login ?? ""
         reposNameLabel.text = viewModel.name ?? ""
         if let description = viewModel.description {
             reposDescriptionLabel.isHidden = false
@@ -36,8 +39,7 @@ extension StarredRepoTableViewCell: ConfigurableCell {
         } else {
             reposDescriptionLabel.isHidden = true
         }
-//        isStarredImageView todo
-        starsCountLabel.text = "\(viewModel.stargazers_count ?? 0)"
+        //        isStarredImageView todo
         if let language = viewModel.language {
             languageColorImageView.isHidden = false
             languageLabel.isHidden = false

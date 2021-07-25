@@ -33,12 +33,18 @@ class HomePresenter {
     
     private var profile: UserProfile?
     private var issues: [Issue] = []
+    private var allRepositoriesIHaveAccess: [Repository] = []
 }
 
 //MARK: - MyWorkInteractorOutput
 extension HomePresenter: HomeInteractorOutput {
     func didReceive(allIssues: [Issue]) {
         self.issues = allIssues
+        interactor.fetchAllRepositoriesIHaveAccess()
+    }
+    
+    func didReceive(allRepositoriesIHaveAccess: [Repository]) {
+        self.allRepositoriesIHaveAccess = allRepositoriesIHaveAccess
         DispatchQueue.main.async {
             self.fullViewModels()
         }
@@ -65,7 +71,7 @@ extension HomePresenter: HomePresenterInput {
             let viewController = IssuesListConfigurator.createModule(from: issues)
             output?.push(to: viewController)
         case (0, 3):
-            let viewController = RepositoriesListConfigurator.createModule(with: .iHasAccessTo(repositories: []))
+            let viewController = RepositoriesListConfigurator.createModule(with: .allMy(repositories: allRepositoriesIHaveAccess))
             output?.push(to: viewController)
         default:
             break
