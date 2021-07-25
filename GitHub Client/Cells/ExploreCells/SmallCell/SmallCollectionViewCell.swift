@@ -28,9 +28,9 @@ class SmallCollectionViewCell: BaseCollectionViewCell, NibLoadable {
 
     @IBOutlet weak var repositoryImageView: WebImageView!
     @IBOutlet weak var repositoryName: UILabel!
-    @IBOutlet weak var starImageView: UIImageView!
+//    @IBOutlet weak var starImageView: UIImageView!
     @IBOutlet weak var starCountLabel: UILabel!
-    @IBOutlet weak var languageImageView: UIImageView!
+//    @IBOutlet weak var languageImageView: UIImageView!
     @IBOutlet weak var languageLabel: UILabel!
     
     

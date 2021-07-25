@@ -55,8 +55,8 @@ extension MediumCollectionViewCell: ConfigurableCell {
         repositoryNameLabel.text = viewModel.repositoryName
         starsCountLabel.text = viewModel.starCount
         languageLabel.text = viewModel.language
-        if let languageColor = viewModel.languageColor {
-            languageImageView.tintColor = languageColor
-        }
+//        if let languageColor = viewModel.languageColor {
+//            languageImageView.tintColor = languageColor
+//        }
     }
 }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -39,60 +40,46 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cell_star" translatesAutoresizingMaskIntoConstraints="NO" id="s7g-dt-YNP">
-                                <rect key="frame" x="52" y="30.5" width="12" height="12"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="12" id="9QS-Vl-bbB"/>
-                                    <constraint firstAttribute="height" constant="12" id="fvi-nv-xwq"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd1-rR-zXB">
-                                <rect key="frame" x="63" y="27.5" width="38" height="18"/>
+                                <rect key="frame" x="63" y="28.5" width="38" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59h-ep-wRd">
-                                <rect key="frame" x="121" y="27.5" width="38" height="18"/>
+                                <rect key="frame" x="121" y="28.5" width="38" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MuJ-cb-01o">
-                                <rect key="frame" x="105" y="33" width="8" height="7"/>
-                                <color key="tintColor" systemColor="systemYellowColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cell_star" translatesAutoresizingMaskIntoConstraints="NO" id="al1-H5-LXu">
+                                <rect key="frame" x="52" y="32" width="11" height="11"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="8" id="Wa4-rh-f9J"/>
-                                    <constraint firstAttribute="height" constant="8" id="uDU-mm-piN"/>
+                                    <constraint firstAttribute="height" constant="11" id="R19-G2-R6P"/>
+                                    <constraint firstAttribute="width" constant="11" id="gjF-PD-inR"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="POv-5r-UTs">
+                                <rect key="frame" x="102" y="32.5" width="11" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="11" id="7uA-hb-rrx"/>
+                                    <constraint firstAttribute="width" constant="11" id="quj-fG-Hsb"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Pd1-rR-zXB" firstAttribute="leading" secondItem="s7g-dt-YNP" secondAttribute="trailing" constant="-1" id="0hL-20-lOy"/>
-                            <constraint firstItem="59h-ep-wRd" firstAttribute="leading" secondItem="MuJ-cb-01o" secondAttribute="trailing" constant="8" symbolic="YES" id="3a7-pz-eea"/>
-                            <constraint firstItem="s7g-dt-YNP" firstAttribute="leading" secondItem="Ln1-tf-JRt" secondAttribute="trailing" constant="8" symbolic="YES" id="H6V-bV-pb3"/>
+                            <constraint firstItem="POv-5r-UTs" firstAttribute="centerY" secondItem="al1-H5-LXu" secondAttribute="centerY" id="238-1q-o7C"/>
+                            <constraint firstItem="POv-5r-UTs" firstAttribute="leading" secondItem="Pd1-rR-zXB" secondAttribute="trailing" constant="1" id="ERJ-tw-O70"/>
                             <constraint firstItem="59h-ep-wRd" firstAttribute="centerY" secondItem="Pd1-rR-zXB" secondAttribute="centerY" id="KCW-jx-G1f"/>
-                            <constraint firstItem="MuJ-cb-01o" firstAttribute="centerY" secondItem="s7g-dt-YNP" secondAttribute="centerY" id="REi-BH-6t2"/>
+                            <constraint firstItem="Pd1-rR-zXB" firstAttribute="leading" secondItem="al1-H5-LXu" secondAttribute="trailing" id="R9Q-Ky-nbo"/>
                             <constraint firstItem="G70-TM-L9D" firstAttribute="leading" secondItem="Ln1-tf-JRt" secondAttribute="trailing" constant="8" symbolic="YES" id="bLK-ng-Rh7"/>
-                            <constraint firstItem="Pd1-rR-zXB" firstAttribute="centerY" secondItem="s7g-dt-YNP" secondAttribute="centerY" id="c6b-xs-GCk"/>
+                            <constraint firstItem="al1-H5-LXu" firstAttribute="top" secondItem="G70-TM-L9D" secondAttribute="bottom" constant="5" id="f3T-xZ-aDg"/>
                             <constraint firstItem="G70-TM-L9D" firstAttribute="top" secondItem="tQS-sB-id5" secondAttribute="top" constant="6" id="h7J-36-uew"/>
                             <constraint firstItem="Ln1-tf-JRt" firstAttribute="centerY" secondItem="tQS-sB-id5" secondAttribute="centerY" id="jDl-gl-zF8"/>
-                            <constraint firstItem="s7g-dt-YNP" firstAttribute="top" secondItem="G70-TM-L9D" secondAttribute="bottom" constant="3.5" id="x6i-qS-Akl"/>
-                            <constraint firstItem="MuJ-cb-01o" firstAttribute="leading" secondItem="Pd1-rR-zXB" secondAttribute="trailing" constant="4" id="z1a-zx-j7u"/>
+                            <constraint firstItem="59h-ep-wRd" firstAttribute="leading" secondItem="POv-5r-UTs" secondAttribute="trailing" constant="8" symbolic="YES" id="sCc-iE-2hZ"/>
+                            <constraint firstItem="al1-H5-LXu" firstAttribute="leading" secondItem="Ln1-tf-JRt" secondAttribute="trailing" constant="8" symbolic="YES" id="uid-j9-9F1"/>
+                            <constraint firstItem="Pd1-rR-zXB" firstAttribute="centerY" secondItem="al1-H5-LXu" secondAttribute="centerY" id="uzV-d5-wUz"/>
                             <constraint firstItem="Ln1-tf-JRt" firstAttribute="leading" secondItem="tQS-sB-id5" secondAttribute="leading" constant="8" id="zQ3-bS-AyO"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -119,12 +106,10 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="languageImageView" destination="MuJ-cb-01o" id="XBE-8X-TOB"/>
                 <outlet property="languageLabel" destination="59h-ep-wRd" id="wyC-FZ-TbH"/>
                 <outlet property="repositoryImageView" destination="Ln1-tf-JRt" id="oqU-zB-Pub"/>
                 <outlet property="repositoryName" destination="G70-TM-L9D" id="MHv-dd-TnP"/>
                 <outlet property="starCountLabel" destination="Pd1-rR-zXB" id="S2A-7B-3zN"/>
-                <outlet property="starImageView" destination="s7g-dt-YNP" id="A0Y-GM-fae"/>
             </connections>
             <point key="canvasLocation" x="243.47826086956525" y="84.375"/>
         </collectionViewCell>
@@ -137,12 +122,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
