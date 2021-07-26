@@ -71,7 +71,8 @@ extension HomePresenter: HomePresenterInput {
             let viewController = IssuesListConfigurator.createModule(from: issues)
             output?.push(to: viewController)
         case (0, 3):
-            let viewController = RepositoriesListConfigurator.createModule(with: .allMy(repositories: allRepositoriesIHaveAccess))
+            guard let profile = self.profile else { return }
+            let viewController = RepositoriesListConfigurator.createModule(with: .allMy(profile: profile))
             output?.push(to: viewController)
         default:
             break

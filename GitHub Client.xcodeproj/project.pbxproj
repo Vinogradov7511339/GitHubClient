@@ -133,6 +133,14 @@
 		AD3776ED269F2698000AA54C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */; };
 		AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* LoginViewController.swift */; };
 		AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F6269F270A000AA54C /* UserStorage.swift */; };
+		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
+		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
+		AD642CD826ADCC1E004FCA2D /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD726ADCC1E004FCA2D /* UsersListPresenter.swift */; };
+		AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */; };
+		AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */; };
+		AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDF26AE9C89004FCA2D /* ProfileFacade.swift */; };
+		AD642CE226AEC29C004FCA2D /* UsersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CE126AEC29C004FCA2D /* UsersListInteractor.swift */; };
+		AD642CE426AECE5D004FCA2D /* ReposListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CE326AECE5D004FCA2D /* ReposListInteractor.swift */; };
 		AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */; };
 		AD79550426ABF481004E6973 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550326ABF481004E6973 /* Button.swift */; };
 		AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */ = {isa = PBXBuildFile; fileRef = AD79550526ABFD8E004E6973 /* LanguageColors.json */; };
@@ -286,6 +294,14 @@
 		AD3776EE269F2698000AA54C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD3776F4269F26B1000AA54C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AD3776F6269F270A000AA54C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
+		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		AD642CD726ADCC1E004FCA2D /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
+		AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		AD642CDF26AE9C89004FCA2D /* ProfileFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFacade.swift; sourceTree = "<group>"; };
+		AD642CE126AEC29C004FCA2D /* UsersListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListInteractor.swift; sourceTree = "<group>"; };
+		AD642CE326AECE5D004FCA2D /* ReposListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposListInteractor.swift; sourceTree = "<group>"; };
 		AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		AD79550326ABF481004E6973 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		AD79550526ABFD8E004E6973 /* LanguageColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LanguageColors.json; sourceTree = "<group>"; };
@@ -449,8 +465,9 @@
 		AD20E46E26A87936003BB5F1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				AD79550D26AC1188004E6973 /* Search */,
 				AD20E56626AB24BA003BB5F1 /* Authorization */,
+				AD642CD226ADCB7F004FCA2D /* UsersList */,
+				AD79550D26AC1188004E6973 /* Search */,
 				AD20E54026AAA681003BB5F1 /* Notifications */,
 				AD20E53B26AAA5D9003BB5F1 /* Explore */,
 				AD20E53126AA98EE003BB5F1 /* RepositoriesList */,
@@ -533,6 +550,7 @@
 		AD20E4EE26A9489C003BB5F1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				AD642CD926ADD264004FCA2D /* UserCell */,
 				AD676ED726ADB7E4006D9C4A /* MyReposCell */,
 				ADA7502026ADA7E000783E71 /* StarredRepoCell */,
 				AD20E54726AAB757003BB5F1 /* ExploreCells */,
@@ -618,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				AD20E53626AA9926003BB5F1 /* RepositoriesListConfigurator.swift */,
+				AD642CE326AECE5D004FCA2D /* ReposListInteractor.swift */,
 				AD20E53426AA9918003BB5F1 /* RepositoriesListPresenter.swift */,
 				AD20E53226AA9908003BB5F1 /* RepositoriesListViewController.swift */,
 			);
@@ -760,8 +779,9 @@
 				AD20E3DA269F5139003BB5F1 /* TabBarController.swift */,
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
-				AD20E4EE26A9489C003BB5F1 /* Cells */,
 				AD20E46226A84B37003BB5F1 /* Adapters */,
+				AD20E4EE26A9489C003BB5F1 /* Cells */,
+				AD642CDE26AE9C72004FCA2D /* Facades */,
 				AD20E46E26A87936003BB5F1 /* Modules */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				ADA74FFF26AD2E7C00783E71 /* Services */,
@@ -774,6 +794,34 @@
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 			);
 			path = "GitHub Client";
+			sourceTree = "<group>";
+		};
+		AD642CD226ADCB7F004FCA2D /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */,
+				AD642CE126AEC29C004FCA2D /* UsersListInteractor.swift */,
+				AD642CD726ADCC1E004FCA2D /* UsersListPresenter.swift */,
+				AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
+		AD642CD926ADD264004FCA2D /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */,
+				AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		AD642CDE26AE9C72004FCA2D /* Facades */ = {
+			isa = PBXGroup;
+			children = (
+				AD642CDF26AE9C89004FCA2D /* ProfileFacade.swift */,
+			);
+			path = Facades;
 			sourceTree = "<group>";
 		};
 		AD676ED726ADB7E4006D9C4A /* MyReposCell */ = {
@@ -910,6 +958,7 @@
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
 				AD20E41B26A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib in Resources */,
 				AD20E4E126A8B313003BB5F1 /* AppIconPinkLight-3.png in Resources */,
+				AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
 				AD20E4DA26A8B313003BB5F1 /* AppIconPinkLight-2.png in Resources */,
@@ -948,9 +997,11 @@
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
 				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
+				AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
+				AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
 				AD20E4FC26A95F84003BB5F1 /* RecentEventsTableViewCell.swift in Sources */,
 				AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */,
@@ -964,6 +1015,7 @@
 				AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */,
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
+				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
 				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
@@ -973,6 +1025,8 @@
 				AD20E52F26AA9429003BB5F1 /* DetailTableViewCell.swift in Sources */,
 				AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */,
 				AD20E52826AA0038003BB5F1 /* IssuesListConfigurator.swift in Sources */,
+				AD642CD826ADCC1E004FCA2D /* UsersListPresenter.swift in Sources */,
+				AD642CE426AECE5D004FCA2D /* ReposListInteractor.swift in Sources */,
 				AD3776E1269F2697000AA54C /* AppDelegate.swift in Sources */,
 				AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */,
 				AD20E53F26AAA634003BB5F1 /* ExploreConfigurator.swift in Sources */,
@@ -1003,6 +1057,7 @@
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
 				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
+				AD642CE226AEC29C004FCA2D /* UsersListInteractor.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
@@ -1038,6 +1093,7 @@
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
+				AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				AD20E3FE26A1514C003BB5F1 /* APIOperation.swift in Sources */,

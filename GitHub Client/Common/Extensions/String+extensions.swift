@@ -21,4 +21,12 @@ extension String {
         let clearPath = self.replacingCharacters(in: range!, with: "")
         return clearPath
     }
+    
+    func maxPageCount() -> Int? {
+        guard let subString = self.split(separator: "&").last else {
+            return nil
+        }
+        let number = subString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        return Int(number)
+    }
 }

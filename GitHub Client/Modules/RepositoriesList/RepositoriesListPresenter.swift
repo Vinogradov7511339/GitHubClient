@@ -26,6 +26,7 @@ protocol RepositoriesListPresenterOutput: AnyObject {
 
 class RepositoriesListPresenter {
     weak var output: RepositoriesListPresenterOutput?
+    var interactor: ReposListInteractorInput?
     
     private let repositoryService = ServicesManager.shared.repositoryService
     private var repositories: [Repository] = []
@@ -39,20 +40,11 @@ class RepositoriesListPresenter {
 // MARK: - RepositoriesListPresenterInput
 extension RepositoriesListPresenter: RepositoriesListPresenterInput {
     func viewDidLoad() {
-        switch type {
-        case .allMy(let repositories):
-            self.repositories = repositories
-            let viewModels = repositories.map { DetailCellViewModel(repository: $0) }
-            output?.display(viewModels: viewModels)
-        case .iHasAccessTo(let repositories), .starred(repositories: let repositories):
-            self.repositories = repositories
-            let viewModels = repositories
-            output?.display(viewModels: viewModels)
-        }
+        interactor?.fetchRepos()
     }
     
     func refresh() {
-        fetchRepositories()
+        interactor?.fetchRepos()
     }
     
     func openRepository(at indexPath: IndexPath) {
@@ -62,21 +54,18 @@ extension RepositoriesListPresenter: RepositoriesListPresenterInput {
     }
 }
 
-// MARK: - private
-private extension RepositoriesListPresenter {
-    func fetchRepositories() {
-        repositoryService.allRepositoriesToWhichIHasAccess { [weak self] repositories, error in
-            if let repositories = repositories {
-                self?.repositories = repositories
-                let viewModels = repositories.map { DetailCellViewModel(repository: $0) }
-                DispatchQueue.main.async {
-                    self?.output?.display(viewModels: viewModels)
-                }
-                return
-            }
-            if let error = error {
-                print(error)
-            }
+// MARK: - ReposListInteractorOutput
+extension RepositoriesListPresenter: ReposListInteractorOutput {
+    func didReceive(repos: [Repository]) {
+        self.repositories = repos
+        switch type {
+        case .allMy(_):
+            let viewModels = repositories.map { DetailCellViewModel(repository: $0) }
+            self.output?.display(viewModels: viewModels)
+        case .iHasAccessTo(_):
+            self.output?.display(viewModels: repos)
+        case .starred(_):
+            self.output?.display(viewModels: repos)
         }
     }
 }

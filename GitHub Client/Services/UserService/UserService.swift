@@ -9,7 +9,57 @@ import Foundation
 
 class UserService: NetworkService {
     
-    func fetchStarredRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+    func fetchRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+        let endpoint = UserEndpoints.repositories(user: user)
+        request(endpoint) { data, response, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+                completion(nil, error)
+                return
+            }
+            completion(repositories, error)
+        }
+    }
+    
+    func fetchPopularRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+        let endpoint = UserEndpoints.popularRepos(user: user)
+        request(endpoint) { data, response, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+                completion(nil, error)
+                return
+            }
+            completion(repositories, error)
+        }
+    }
+    
+    func fetchStarredCountRepositories(_ user: UserProfile, completion: @escaping (Int?, Error?) -> Void) {
+        let endpoint = UserEndpoints.starredReposCount(user: user)
+        request(endpoint) { data, response, error in
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil, error)
+                return
+            }
+            guard let linkBody = response.allHeaderFields["Link"] as? String else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let count = linkBody.maxPageCount() else {
+                completion(nil, error)
+                return
+            }
+            completion(count, error)
+        }
+    }
+    
+    func fetchStarredRepos(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
         let endpoint = UserEndpoints.starred(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -74,23 +124,22 @@ class UserService: NetworkService {
         }
     }
     
-    
-    func fetchRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
-        let endpoint = UserEndpoints.repositories(user: user)
+    func fetchProfile(user: UserProfile, completion: @escaping (UserProfile?, Error?) -> Void) {
+        let endpoint = UserEndpoints.profile(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+            guard let userProfile = self.decode(of: UserProfile.self, from: data) else {
                 completion(nil, error)
                 return
             }
-            completion(repositories, error)
+            completion(userProfile, error)
         }
     }
     
-    func getProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
+    func fetchMyProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
         let endpoint = UserEndpoints.myProfile
         request(endpoint) { data, response, error in
             guard let response = response as? HTTPURLResponse else {

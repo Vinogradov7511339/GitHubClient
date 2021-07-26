@@ -9,7 +9,7 @@ import Foundation
 
 // https://docs.github.com/en/rest/reference/users
 struct UserProfile: Codable {
-    let login: String?
+    let login: String
     let id: Int
     let node_id: String?
     let avatar_url: URL?

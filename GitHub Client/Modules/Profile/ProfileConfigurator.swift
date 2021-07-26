@@ -7,15 +7,19 @@
 
 import UIKit
 
+enum ProfileType {
+    case myProfile
+    case notMyProfile(profile: UserProfile)
+}
+
 class ProfileConfigurator {
-    static func createProfileModule() -> ProfileViewController {
-        
-        let presenter = ProfilePresenter()
+    static func createProfileModule(with type: ProfileType) -> ProfileViewController {
+        let presenter = ProfilePresenter(type: type)
         let profileViewController = ProfileViewController()
         profileViewController.presenter = presenter
         profileViewController.presenter?.output = profileViewController
         
-        let interactor = ProfileInteractor()
+        let interactor = ProfileInteractor(profileType: type)
         interactor.output = presenter
         presenter.interactor = interactor
         return profileViewController

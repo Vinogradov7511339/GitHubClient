@@ -9,11 +9,18 @@ import UIKit
 
 protocol ProfilePresenterInput {
     var output: ProfilePresenterOutput? { get set }
+    var type: ProfileType { get }
     
     func viewDidLoad()
     func refresh()
     
     func didSelectItem(at indexPath: IndexPath)
+    func openFollowing()
+    func openFollowers()
+    func openLink()
+    func openSendMail()
+    
+    func share()
 }
 
 protocol ProfilePresenterOutput: AnyObject {
@@ -27,27 +34,28 @@ protocol ProfilePresenterOutput: AnyObject {
 class ProfilePresenter {
     
     weak var output: ProfilePresenterOutput?
+    
     var interactor: ProfileInteractorInput!
+    var type: ProfileType
+    
+    private var profileInfo: ProfileInfo?
+    
+    init(type: ProfileType) {
+        self.type = type
+    }
 
-    private var popularRepositories: [Repository] = []
-    private var starredRepositories: [Repository] = []
-    private var allMyRepositories: [Repository] = []
-    private var profile: UserProfile?
-    
-    
-    private func fullViewModels() {
-        guard let profile = self.profile else { return }
-        let profileViewModel = ProfileHeaderCellViewModel(profile)
-        let mostPopularViewModel = ProfileMostPopularCellViewModel(repositories: popularRepositories)
+    private func fullViewModels(with profileInfo: ProfileInfo) {
+        let profileViewModel = ProfileHeaderCellViewModel(profileInfo.userProfile)
+        let mostPopularViewModel = ProfileMostPopularCellViewModel(repositories: profileInfo.popularRepos)
         
         let repositories = TableCellViewModel(
             text: "Repositories",
-            detailText: "\(allMyRepositories.count)",
+            detailText: "\(profileInfo.userProfile.public_repos ?? 0)",
             image: UIImage(systemName: "book.closed.fill"), imageTintColor: .systemPurple,
             accessoryType: .disclosureIndicator)
         let stared = TableCellViewModel(
             text: "Starred",
-            detailText: "\(starredRepositories.count)",
+            detailText: "\(profileInfo.starredReposCount)",
             image: UIImage(systemName: "star.square"), imageTintColor: .systemYellow,
             accessoryType: .disclosureIndicator)
         let organizations = TableCellViewModel(
@@ -63,29 +71,9 @@ class ProfilePresenter {
 
 // MARK: - ProfileInteractorOutput
 extension ProfilePresenter: ProfileInteractorOutput {
-    func didReceive(allMyRepositories: [Repository]) {
-        self.allMyRepositories = allMyRepositories
-        DispatchQueue.main.async {
-            self.fullViewModels()
-        }
-    }
-    
-    func didReceive(starredRepositories: [Repository]) {
-        self.starredRepositories = starredRepositories
-        interactor.fetchMyAllRepositories()
-    }
-    
-    func didReceive(popularRepositories: [Repository]) {
-        self.popularRepositories = popularRepositories
-        interactor.fetchStarredRepositories()
-    }
-    
-    func didReceive(profile: UserProfile) {
-        self.profile = profile
-        interactor.fetchMyPopularRepositories()
-    }
-    
-    func didReceive(error: Error) {
+    func didReceive(profileInfo: ProfileInfo) {
+        self.profileInfo = profileInfo
+        fullViewModels(with: profileInfo)
     }
 }
 
@@ -104,21 +92,16 @@ extension ProfilePresenter: ProfilePresenterInput {
             break
         }
     }
-    func openRepositories() {
-        let viewController = RepositoriesListConfigurator.createModule(with: .iHasAccessTo(repositories: allMyRepositories))
-        output?.push(to: viewController)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            viewController.viewModels = self.popularRepositories
-//        }
-    }
     
-    func openRepository(repository: Repository) {
-        let viewController = RepositoryDetailsConfigurator.createModule(for: repository)
+    func openRepositories() {
+        guard let profile = profileInfo?.userProfile else { return }
+        let viewController = RepositoriesListConfigurator.createModule(with: .iHasAccessTo(profile: profile))
         output?.push(to: viewController)
     }
     
     func openStarred() {
-        let viewController = RepositoriesListConfigurator.createModule(with: .starred(repositories: starredRepositories))
+        guard let profile = profileInfo?.userProfile else { return }
+        let viewController = RepositoriesListConfigurator.createModule(with: .starred(profile: profile))
         output?.push(to: viewController)
     }
     
@@ -126,10 +109,31 @@ extension ProfilePresenter: ProfilePresenterInput {
     }
     
     func viewDidLoad() {
-        interactor.fetchMyProfile()
+        interactor.fetchProfile()
     }
     
     func refresh() {
-        interactor.fetchMyProfile()
+        interactor.fetchProfile()
+    }
+    
+    func openFollowing() {
+        guard let profile = profileInfo?.userProfile else { return }
+        let viewController = UsersListConfigurator.createModule(profile: profile, type: .following)
+        output?.push(to: viewController)
+    }
+    
+    func openFollowers() {
+        guard let profile = profileInfo?.userProfile else { return }
+        let viewController = UsersListConfigurator.createModule(profile: profile, type: .followers)
+        output?.push(to: viewController)
+    }
+    
+    func openLink() {
+    }
+    
+    func openSendMail() {
+    }
+    
+    func share() {
     }
 }

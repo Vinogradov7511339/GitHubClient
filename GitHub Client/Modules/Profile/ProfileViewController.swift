@@ -9,12 +9,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var presenter: ProfilePresenterInput?
+    var presenter: ProfilePresenterInput!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,10 +39,8 @@ class ProfileViewController: UIViewController {
         setupViews()
         activateConstraints()
         
-        let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.openSettings(_:)))
-        self.navigationItem.rightBarButtonItem  = settingsButton
+        configureNavBar()
         
-//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
@@ -58,6 +55,10 @@ class ProfileViewController: UIViewController {
     @objc func openSettings(_ sender: AnyObject) {
         let settingController = SettingsGeneralViewController()
         navigationController?.pushViewController(settingController, animated: true)
+    }
+    
+    @objc func share(_ sender: AnyObject) {
+        presenter.share()
     }
 }
 
@@ -123,9 +124,31 @@ extension ProfileViewController: UITableViewDataSource {
         
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.selectionStyle = indexPath.section == selectableSection ? .default : .none
+        if let cell = cell as? ProfileHeaderTableViewCell {
+            cell.delegate = self
+        }
         
         cell.populate(viewModel: viewModel)
         return cell
+    }
+}
+
+// MARK: - ProfileHeaderTableViewCellDelegate
+extension ProfileViewController: ProfileHeaderTableViewCellDelegate {
+    func followersButtonTouchUpInside() {
+        presenter?.openFollowers()
+    }
+    
+    func followingButtonTouchUpInside() {
+        presenter?.openFollowing()
+    }
+    
+    func linkButtonTouchUpInside() {
+        presenter?.openLink()
+    }
+    
+    func mailButtonTouchUpInside() {
+        presenter?.openSendMail()
     }
 }
 
@@ -149,5 +172,16 @@ private extension ProfileViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func configureNavBar() {
+        switch presenter.type {
+        case .myProfile:
+            let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.openSettings(_:)))
+            self.navigationItem.rightBarButtonItem  = settingsButton
+        case .notMyProfile(_):
+            let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(self.share(_:)))
+            self.navigationItem.rightBarButtonItem  = shareButton
+        }
     }
 }

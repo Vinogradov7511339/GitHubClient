@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
         let notificationsViewController = createNavController(for: NotificationsConfigurator.createModule(), title: "Notifications", image: UIImage(systemName: "bell.fill"))
         let exploreViewController = createNavController(for: ExploreConfigurator.createModule(), title: "Explore", image: UIImage(systemName: "gyroscope"))
         
-        let profileViewController = createNavController(for: ProfileConfigurator.createProfileModule(), title: "Profile", image: UIImage(systemName: "person"))
+        let profileViewController = createNavController(for: ProfileConfigurator.createProfileModule(with: .myProfile), title: "Profile", image: UIImage(systemName: "person"))
         
         viewControllers = [homeViewController, notificationsViewController, exploreViewController, profileViewController]
     }

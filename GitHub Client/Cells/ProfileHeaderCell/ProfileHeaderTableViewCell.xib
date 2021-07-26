@@ -56,9 +56,29 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Akz-8e-ZzI">
                                 <rect key="frame" x="0.0" y="91" width="296" height="30"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOR-pe-IRg">
+                                        <rect key="frame" x="136" y="3" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="bgs-YK-8vY"/>
+                                            <constraint firstAttribute="width" constant="24" id="fZ0-RU-Xw4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDK-Xt-3J9">
+                                        <rect key="frame" x="180" y="5" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HDK-Xt-3J9" secondAttribute="trailing" constant="8" id="Lmi-E2-h2V"/>
+                                    <constraint firstItem="aOR-pe-IRg" firstAttribute="centerY" secondItem="Akz-8e-ZzI" secondAttribute="centerY" id="MDv-T5-F6M"/>
+                                    <constraint firstItem="HDK-Xt-3J9" firstAttribute="leading" secondItem="aOR-pe-IRg" secondAttribute="trailing" constant="20" id="Pn3-az-OGg"/>
                                     <constraint firstAttribute="height" constant="30" id="jH3-Xp-3Pq"/>
+                                    <constraint firstItem="HDK-Xt-3J9" firstAttribute="centerY" secondItem="aOR-pe-IRg" secondAttribute="centerY" id="oxY-BD-axX"/>
+                                    <constraint firstItem="aOR-pe-IRg" firstAttribute="centerX" secondItem="Akz-8e-ZzI" secondAttribute="centerX" id="uhg-UZ-cIg"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4z-YC-EAc">
@@ -107,7 +127,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sd2-OO-n1K">
-                                        <rect key="frame" x="0.0" y="30" width="49.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="30" width="50" height="20"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ofl-30-l0j">
                                                 <rect key="frame" x="0.0" y="0.5" width="18" height="19"/>
@@ -117,19 +137,23 @@
                                                     <constraint firstAttribute="width" constant="18" id="cFk-OG-Ezt"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPj-2U-LNK">
-                                                <rect key="frame" x="20" y="1" width="29.5" height="18"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lxx-86-dMx">
+                                                <rect key="frame" x="20" y="0.0" width="30" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="Link">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="linkButtonTouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gqk-oT-1nO"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="bz2-FD-1S4"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BwH-6i-MlK">
-                                        <rect key="frame" x="0.0" y="56" width="51" height="24"/>
+                                        <rect key="frame" x="0.0" y="56" width="52" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KH5-Vs-57c">
                                                 <rect key="frame" x="0.0" y="3" width="20" height="17.5"/>
@@ -139,12 +163,16 @@
                                                     <constraint firstAttribute="height" constant="20" id="Q0D-1l-nk1"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZn-jy-8rB">
-                                                <rect key="frame" x="22" y="3" width="29" height="18"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eca-tR-SZ9">
+                                                <rect key="frame" x="22" y="0.0" width="30" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="Mail">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="mailButtonTouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sZE-n8-okb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="bfc-eN-65Z"/>
@@ -161,12 +189,16 @@
                                                     <constraint firstAttribute="height" constant="20" id="4bs-kR-jFT"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfR-HC-adk">
-                                                <rect key="frame" x="22" y="3" width="65" height="18"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J1-7z-2wl">
+                                                <rect key="frame" x="22" y="0.0" width="65" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="Followers">
+                                                    <color key="titleColor" systemColor="secondaryLabelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="followersButtonTouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="umi-ML-E8z"/>
+                                                </connections>
+                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DX0-Pe-T1w">
                                                 <rect key="frame" x="89" y="9.5" width="6" height="5"/>
                                                 <color key="tintColor" systemColor="secondaryLabelColor"/>
@@ -175,12 +207,16 @@
                                                     <constraint firstAttribute="height" constant="6" id="kXL-E1-Z6P"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3du-A2-5Ag">
-                                                <rect key="frame" x="97" y="3" width="65" height="18"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mv9-hf-3gf">
+                                                <rect key="frame" x="97" y="0.0" width="65" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="Following">
+                                                    <color key="titleColor" systemColor="secondaryLabelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="followingButtonTouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lfO-wm-we5"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="F43-CK-s8A"/>
@@ -218,16 +254,23 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="Ewz-a5-C8t" id="CS6-Vz-ASl"/>
+                <outlet property="companiAndLocationStackView" destination="p3a-pg-y51" id="vT8-9Z-trJ"/>
+                <outlet property="companyImageView" destination="qt1-4s-rrq" id="Vt0-5I-FiC"/>
                 <outlet property="companyLabel" destination="i0p-wy-bfg" id="KqO-w0-sne"/>
                 <outlet property="descriptionLabel" destination="U4z-YC-EAc" id="YXM-uR-868"/>
                 <outlet property="followButton" destination="iaO-YK-39D" id="9aI-bs-Zcc"/>
-                <outlet property="followersLabel" destination="mfR-HC-adk" id="F1K-nX-TsY"/>
-                <outlet property="followingLabel" destination="3du-A2-5Ag" id="3Sf-9O-BFh"/>
-                <outlet property="linkLabel" destination="UPj-2U-LNK" id="FDb-TM-NDD"/>
+                <outlet property="followersButton" destination="1J1-7z-2wl" id="Kel-cA-dKR"/>
+                <outlet property="followingButton" destination="Mv9-hf-3gf" id="AZY-Ez-Qek"/>
+                <outlet property="linkButton" destination="Lxx-86-dMx" id="X4z-TY-zai"/>
+                <outlet property="linkStackView" destination="sd2-OO-n1K" id="o0O-BP-Jg1"/>
                 <outlet property="locationLabel" destination="LNp-Ag-ZN8" id="bYm-0T-fID"/>
+                <outlet property="locattionImageView" destination="5fg-tb-Dq3" id="9PW-Ki-aPD"/>
                 <outlet property="loginLabel" destination="Ahe-be-xIf" id="xxf-XS-4ag"/>
-                <outlet property="mailLabel" destination="SZn-jy-8rB" id="sGT-S3-fPC"/>
+                <outlet property="mailButton" destination="eca-tR-SZ9" id="phD-yu-CGk"/>
+                <outlet property="mailStackView" destination="BwH-6i-MlK" id="EVq-7L-gpN"/>
                 <outlet property="nameLabel" destination="cZJ-5h-tQH" id="Wi9-Os-EbZ"/>
+                <outlet property="statusDescrptionLabel" destination="HDK-Xt-3J9" id="EUc-3F-NMY"/>
+                <outlet property="statusImageView" destination="aOR-pe-IRg" id="Bxb-ly-XoR"/>
                 <outlet property="statusView" destination="Akz-8e-ZzI" id="EAS-Zw-hE2"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
@@ -240,6 +283,9 @@
         <image name="mail" catalog="system" width="128" height="93"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

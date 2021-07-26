@@ -8,14 +8,18 @@
 import UIKit
 
 enum RepositoriesType {
-    case iHasAccessTo(repositories: [Repository])
-    case allMy(repositories: [Repository])
-    case starred(repositories: [Repository])
+    case iHasAccessTo(profile: UserProfile)
+    case allMy(profile: UserProfile)
+    case starred(profile: UserProfile)
 }
 
 class RepositoriesListConfigurator {
     static func createModule(with type: RepositoriesType) -> RepositoriesListViewController {
+        let interactor = ReposListInteractor(type: type)
         let presenter = RepositoriesListPresenter(with: type)
+        presenter.interactor = interactor
+        presenter.interactor?.output = presenter
+        
         let viewController = RepositoriesListViewController()
         viewController.presenter = presenter
         viewController.presenter?.output = viewController

@@ -16,7 +16,7 @@ class UserProfileAdapter {
     
     static func fromDBModel(_ user: UserDBModel) -> UserProfile {
         return UserProfile(
-            login: user.login,
+            login: user.login!,
             id: Int(user.id),
             node_id: user.node_id,
             avatar_url: user.avatar_url,

@@ -10,100 +10,47 @@ import Foundation
 protocol ProfileInteractorInput {
     var output: ProfileInteractorOutput? { get set }
     
-    func fetchMyProfile()
-    func fetchMyPopularRepositories()
-    func fetchStarredRepositories()
-    func fetchMyAllRepositories()
+    func fetchProfile()
 }
 
 protocol ProfileInteractorOutput: AnyObject {
-    func didReceive(profile: UserProfile)
-    func didReceive(popularRepositories: [Repository])
-    func didReceive(starredRepositories: [Repository])
-    func didReceive(allMyRepositories: [Repository])
-    func didReceive(error: Error)
+    func didReceive(profileInfo: ProfileInfo)
 }
 
 class ProfileInteractor {
     
     weak var output: ProfileInteractorOutput?
     
-    private let userService = ServicesManager.shared.userService
-    private let repositoryService = ServicesManager.shared.repositoryService
+    private let facade: ProfileFacade
     private let localStorage = ServicesManager.shared.localStorage
+    private let profileType: ProfileType
     
     private var userProfile: UserProfile?
-    private var popularRepositories: [Repository] = []
+    private var userRepos: [Repository] = []
+    private var userPopularRepos: [Repository] = []
+    private var userStarredRepos: [Repository] = []
+    private var userFollowers: [UserProfile] = []
+    private var userFollowing: [UserProfile] = []
+    
+    init(profileType: ProfileType) {
+        self.profileType = profileType
+        facade = ProfileFacade(type: profileType)
+    }
 }
 
 // MARK: - ProfileInteractorInput
 extension ProfileInteractor: ProfileInteractorInput {
-    func fetchMyAllRepositories() {
-        requestAllMyRepoositries()
-    }
-    
-    func fetchMyProfile() {
-        requestProfile()
-    }
-    
-    func fetchMyPopularRepositories() {
-        requestPopularRepositories()
-    }
-    
-    func fetchStarredRepositories() {
-        requestStarredRepositories()
+    func fetchProfile() {
+        facade.fetchProfile { profileInfo in
+            if let profileInfo = profileInfo {
+                self.output?.didReceive(profileInfo: profileInfo)
+            }
+        }
     }
 }
 
 // MARK: - private
 private extension ProfileInteractor {
-    func requestProfile() {
-        userService.getProfile { [weak self] userProfile, error in
-            if let userProfile = userProfile {
-                self?.userProfile = userProfile
-                self?.syncStorage(profile: userProfile)
-                self?.output?.didReceive(profile: userProfile)
-                return
-            }
-            
-            self?.handleError(error: error, getFromStorageFunc: self?.getLocalProfile())
-        }
-    }
-    
-    func requestAllMyRepoositries() {
-        repositoryService.allRepositoriesToWhichIHasAccess { repositories, error in
-            if let repositories = repositories {
-                self.output?.didReceive(allMyRepositories: repositories)
-            }
-        }
-    }
-    
-    func requestPopularRepositories() {
-        guard let url = userProfile?.repos_url else { return }
-        repositoryService.getRepositories(url: url) { [weak self] repositories, error in
-            if let repositories = repositories {
-                self?.popularRepositories = repositories
-                self?.syncStorage(popularRepositories: repositories)
-                self?.output?.didReceive(popularRepositories: repositories)
-                return
-            }
-            self?.handleError(error: error, getFromStorageFunc: self?.getLocalPopularRepositories())
-        }
-    }
-    
-    func requestStarredRepositories() {
-        guard let user = userProfile else { return }
-        userService.fetchStarredRepositories(user) { [weak self] repositories, error in
-            if let repositories = repositories {
-                self?.popularRepositories = repositories
-                self?.syncStorage(popularRepositories: repositories)
-                self?.output?.didReceive(starredRepositories: repositories)
-                return
-            }
-            self?.handleError(error: error, getFromStorageFunc: self?.getLocalPopularRepositories())
-        }
-    }
-    
     func handleError(error: Error?, getFromStorageFunc: ()?) {
 //        guard let error = error else {
 //            output?.didReceive(error: APIError.unknown)
@@ -148,36 +95,3 @@ private extension ProfileInteractor {
 //        localStorage.saveUser(user: profile)
     }
 }
-
-//class ProfileInteractor {
-//
-//    private weak var lastOperation: Operation?
-//
-//    private lazy var operationQueue: OperationQueue = {
-//        let queue = OperationQueue()
-//        queue.qualityOfService = .userInitiated
-//        return queue
-//    }()
-//
-//
-//    private let localStorage = LocalStorage()
-//}
-//
-//private extension ProfileInteractor {
-//    func fetchNeededData(for user: UserProfile) {
-//        let fetchPopularRepositories = AsyncOperation { handler in
-//            //todo
-//        }
-//        addOperation(fetchPopularRepositories)
-//    }
-//
-//
-//
-//    func addOperation(_ operation: Operation) {
-//        if let lastOperation = lastOperation {
-//            operation.addDependency(lastOperation)
-//        }
-//        lastOperation = operation
-//        operationQueue.addOperation(operation)
-//    }
-//}
