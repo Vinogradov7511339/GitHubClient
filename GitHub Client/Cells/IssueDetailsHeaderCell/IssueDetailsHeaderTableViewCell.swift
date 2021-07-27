@@ -19,7 +19,7 @@ class IssueDetailsHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var statusBadge: StatusBadgeView!
     
     
     override func awakeFromNib() {
@@ -44,6 +44,6 @@ extension IssueDetailsHeaderTableViewCell: ConfigurableCell {
         avatarImageView.set(url: viewModel.avatarUrl)
         repositoryNameLabel.text = viewModel.repositoryName
         titleLabel.text = viewModel.title
-        statusImageView.image = viewModel.stateImage
+        statusBadge.configure(status: .openIssue)
     }
 }

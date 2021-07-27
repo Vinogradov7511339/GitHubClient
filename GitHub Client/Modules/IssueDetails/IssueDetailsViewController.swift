@@ -12,13 +12,13 @@ class IssueDetailsViewController: UIViewController {
     var presenter: IssueDetailsPresenterInput?
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .systemGroupedBackground
         return tableView
     }()
     
@@ -38,8 +38,9 @@ class IssueDetailsViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
         dataViewMap.values.forEach { $0.register(tableView: tableView) }
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         presenter?.viewDidLoad()
     }
@@ -67,6 +68,16 @@ extension IssueDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //todo
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0.0 : 10.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .systemGroupedBackground
+        return view
     }
 }
 

@@ -147,7 +147,7 @@ private extension HomePresenter {
         let pullRequestsViewModel = TableCellViewModel(text: "Pull Requests", detailText: nil, image: UIImage.pullRequest, imageTintColor: .systemBlue, accessoryType: .disclosureIndicator)
         models.append(pullRequestsViewModel)
         
-        let discussionsViewModel = TableCellViewModel(text: "Discussions", detailText: nil, image: UIImage(systemName: "message"), imageTintColor: .systemPurple, accessoryType: .disclosureIndicator)
+        let discussionsViewModel = TableCellViewModel(text: "Discussions", detailText: nil, image: UIImage.discussions, imageTintColor: .systemPurple, accessoryType: .disclosureIndicator)
         models.append(discussionsViewModel)
         
         let repositoriesViewModel = TableCellViewModel(text: "Repositories", detailText: nil, image: UIImage(systemName: "book.closed.fill"), imageTintColor: .systemGray, accessoryType: .disclosureIndicator)

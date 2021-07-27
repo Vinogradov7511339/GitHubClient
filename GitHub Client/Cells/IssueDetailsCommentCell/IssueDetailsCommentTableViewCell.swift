@@ -43,8 +43,15 @@ extension IssueDetailsCommentTableViewCell: ConfigurableCell {
     func configure(viewModel: IssueCommentCellViewModel) {
         avatarImageView.set(url: viewModel.avatarUrl)
         userNameLabel.text = viewModel.userName
-        userStatusLabel.text = viewModel.userStatus
+        if viewModel.userStatus == "OWNER" {
+            configureOwnerBadge()
+        }
         messageLabel.attributedText = viewModel.message
         //images
+    }
+    
+    private func configureOwnerBadge() {
+//        userStatusLabel.textC
+        userStatusLabel.text = "Owner"
     }
 }

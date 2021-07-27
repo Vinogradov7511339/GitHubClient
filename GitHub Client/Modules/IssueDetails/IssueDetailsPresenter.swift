@@ -39,7 +39,7 @@ extension IssueDetailsPresenter: IssueDetailsPresenterInput {
     }
     
     func refresh() {
-//        fetchIssue()
+        fetchIssue()
     }
 }
 
@@ -76,8 +76,8 @@ private extension IssueDetailsPresenter {
     
     func getBody() -> IssueCommentCellViewModel {
         let avatarUrl = issue.user?.avatar_url
-        let userName = issue.user?.name ?? ""
-        let status = issue.state ?? ""
+        let userName = issue.user?.login ?? ""
+        let status = issue.author_association ?? ""
         let body = issue.body ?? ""
         
         return IssueCommentCellViewModel(

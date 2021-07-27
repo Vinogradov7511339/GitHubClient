@@ -168,6 +168,9 @@
 		ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FD26AFE0B700469BCF /* SearchController.swift */; };
 		ADC8180226B0021F00469BCF /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180126B0021F00469BCF /* Discussion.swift */; };
 		ADC8180426B002FE00469BCF /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180326B002FE00469BCF /* Reactions.swift */; };
+		ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180526B00DF200469BCF /* OrganizationService.swift */; };
+		ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */; };
+		ADC8180B26B0244300469BCF /* StatusBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180A26B0244300469BCF /* StatusBadgeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -334,6 +337,9 @@
 		ADC817FD26AFE0B700469BCF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		ADC8180126B0021F00469BCF /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		ADC8180326B002FE00469BCF /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
+		ADC8180526B00DF200469BCF /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
+		ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationEndpoints.swift; sourceTree = "<group>"; };
+		ADC8180A26B0244300469BCF /* StatusBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadgeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +405,7 @@
 				AD20E54C26AAB848003BB5F1 /* CollectionCellManager.swift */,
 				AD20E57626ABDA41003BB5F1 /* Extensions */,
 				AD79550326ABF481004E6973 /* Button.swift */,
+				ADC8180A26B0244300469BCF /* StatusBadgeView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -864,6 +871,7 @@
 			children = (
 				ADA7501826AD2F0300783E71 /* RepositoryService */,
 				ADA7501B26AD923000783E71 /* UserService */,
+				ADC8180726B00DF700469BCF /* OrganizationService */,
 				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
 				ADA7500B26AD2E9500783E71 /* IssuesService.swift */,
 				ADA7500426AD2E9500783E71 /* NetworkService.swift */,
@@ -885,8 +893,8 @@
 		ADA7501B26AD923000783E71 /* UserService */ = {
 			isa = PBXGroup;
 			children = (
-				ADA7501926AD922600783E71 /* UserService.swift */,
 				ADA7501C26AD924500783E71 /* UserEndpoints.swift */,
+				ADA7501926AD922600783E71 /* UserService.swift */,
 			);
 			path = UserService;
 			sourceTree = "<group>";
@@ -898,6 +906,15 @@
 				ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */,
 			);
 			path = StarredRepoCell;
+			sourceTree = "<group>";
+		};
+		ADC8180726B00DF700469BCF /* OrganizationService */ = {
+			isa = PBXGroup;
+			children = (
+				ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */,
+				ADC8180526B00DF200469BCF /* OrganizationService.swift */,
+			);
+			path = OrganizationService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1013,6 +1030,7 @@
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
 				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
+				ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */,
 				AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
@@ -1033,6 +1051,7 @@
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
 				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
+				ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
@@ -1124,6 +1143,7 @@
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,
+				ADC8180B26B0244300469BCF /* StatusBadgeView.swift in Sources */,
 				AD20E4F026A949B8003BB5F1 /* HomeConfigurator.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* Issue.swift in Sources */,
 				AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */,
