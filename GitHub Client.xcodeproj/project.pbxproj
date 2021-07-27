@@ -150,6 +150,11 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
+		AD8B7E5B26B03D3D00368FA8 /* MarkdownTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B7E5A26B03D3D00368FA8 /* MarkdownTokenizer.swift */; };
+		AD8B7E5E26B04C0500368FA8 /* MarkdownToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B7E5D26B04C0500368FA8 /* MarkdownToken.swift */; };
+		AD8B7E6026B0545B00368FA8 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B7E5F26B0545B00368FA8 /* MarkdownParser.swift */; };
+		AD8B7E6226B0548A00368FA8 /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B7E6126B0548A00368FA8 /* MarkdownNode.swift */; };
+		AD8B7E6426B05E7A00368FA8 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8B7E6326B05E7A00368FA8 /* MarkdownRenderer.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
@@ -320,6 +325,11 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		AD8B7E5A26B03D3D00368FA8 /* MarkdownTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTokenizer.swift; sourceTree = "<group>"; };
+		AD8B7E5D26B04C0500368FA8 /* MarkdownToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownToken.swift; sourceTree = "<group>"; };
+		AD8B7E5F26B0545B00368FA8 /* MarkdownParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
+		AD8B7E6126B0548A00368FA8 /* MarkdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
+		AD8B7E6326B05E7A00368FA8 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -408,6 +418,7 @@
 				AD20E57626ABDA41003BB5F1 /* Extensions */,
 				AD79550326ABF481004E6973 /* Button.swift */,
 				ADC8180A26B0244300469BCF /* StatusBadgeView.swift */,
+				AD8B7E5C26B03D4200368FA8 /* MarkdownParser */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -869,6 +880,18 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		AD8B7E5C26B03D4200368FA8 /* MarkdownParser */ = {
+			isa = PBXGroup;
+			children = (
+				AD8B7E5A26B03D3D00368FA8 /* MarkdownTokenizer.swift */,
+				AD8B7E5D26B04C0500368FA8 /* MarkdownToken.swift */,
+				AD8B7E5F26B0545B00368FA8 /* MarkdownParser.swift */,
+				AD8B7E6126B0548A00368FA8 /* MarkdownNode.swift */,
+				AD8B7E6326B05E7A00368FA8 /* MarkdownRenderer.swift */,
+			);
+			path = MarkdownParser;
+			sourceTree = "<group>";
+		};
 		ADA74FFF26AD2E7C00783E71 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1050,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
+				AD8B7E6426B05E7A00368FA8 /* MarkdownRenderer.swift in Sources */,
 				AD20E4F226A94A2B003BB5F1 /* HomePresenter.swift in Sources */,
 				AD20E43D26A69F91003BB5F1 /* WebImageView.swift in Sources */,
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
@@ -1040,6 +1064,7 @@
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
 				AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
+				AD8B7E6026B0545B00368FA8 /* MarkdownParser.swift in Sources */,
 				AD20E4FC26A95F84003BB5F1 /* RecentEventsTableViewCell.swift in Sources */,
 				AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */,
 				AD20E54626AAAB96003BB5F1 /* ExplorePresenter.swift in Sources */,
@@ -1075,6 +1100,8 @@
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD20E53726AA9926003BB5F1 /* RepositoriesListConfigurator.swift in Sources */,
 				ADC8180426B002FE00469BCF /* Reactions.swift in Sources */,
+				AD8B7E5B26B03D3D00368FA8 /* MarkdownTokenizer.swift in Sources */,
+				AD8B7E5E26B04C0500368FA8 /* MarkdownToken.swift in Sources */,
 				AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */,
 				AD20E41D26A5ABCB003BB5F1 /* UIView+NibLoadable.swift in Sources */,
 				AD20E54426AAA6F1003BB5F1 /* NotificationsConfigurator.swift in Sources */,
@@ -1135,6 +1162,7 @@
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
+				AD8B7E6226B0548A00368FA8 /* MarkdownNode.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
 				AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,

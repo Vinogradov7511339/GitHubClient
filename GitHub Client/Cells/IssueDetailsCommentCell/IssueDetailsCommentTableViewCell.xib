@@ -18,21 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iE3-om-O87" customClass="WebImageView" customModule="GitHub_Client" customModuleProvider="target">
-                        <rect key="frame" x="16" y="16" width="48" height="48"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="48" id="0jX-cl-7Fy"/>
-                            <constraint firstAttribute="height" constant="48" id="ixw-EV-3px"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="24"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="_clipsToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMV-3B-f7k">
-                        <rect key="frame" x="76" y="14" width="40" height="20"/>
+                        <rect key="frame" x="82" y="14" width="40" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -56,13 +43,13 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6j-Bk-Sdb">
-                        <rect key="frame" x="16" y="77" width="288" height="153"/>
+                        <rect key="frame" x="16" y="80" width="288" height="150"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A32-hs-JQ4">
-                        <rect key="frame" x="76" y="38" width="37.5" height="21.5"/>
+                        <rect key="frame" x="82" y="38" width="37.5" height="21.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj7-O4-4EG">
                                 <rect key="frame" x="4" y="4" width="29.5" height="13.5"/>
@@ -98,28 +85,41 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="plO-Fp-DPq" customClass="WebImageView" customModule="GitHub_Client" customModuleProvider="target">
+                        <rect key="frame" x="16" y="16" width="48" height="48"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="4eE-my-gZm"/>
+                            <constraint firstAttribute="width" constant="48" id="6A5-I8-K8c"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="24"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="M6j-Bk-Sdb" firstAttribute="top" secondItem="plO-Fp-DPq" secondAttribute="bottom" constant="16" id="1sD-Bm-hKR"/>
+                    <constraint firstItem="A32-hs-JQ4" firstAttribute="leading" secondItem="plO-Fp-DPq" secondAttribute="trailing" constant="18" id="2rd-gE-vnt"/>
                     <constraint firstItem="A32-hs-JQ4" firstAttribute="top" secondItem="iMV-3B-f7k" secondAttribute="bottom" constant="4" id="8L4-5U-bPi"/>
                     <constraint firstItem="M6j-Bk-Sdb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="BUh-ql-nwj"/>
                     <constraint firstItem="90V-sD-hEu" firstAttribute="top" secondItem="M6j-Bk-Sdb" secondAttribute="bottom" constant="16" id="Bao-sk-8Qg"/>
+                    <constraint firstItem="plO-Fp-DPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DF2-KB-iAe"/>
                     <constraint firstAttribute="bottom" secondItem="90V-sD-hEu" secondAttribute="bottom" constant="8" id="Fbh-nQ-gGy"/>
+                    <constraint firstItem="plO-Fp-DPq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="GWg-zK-T9g"/>
                     <constraint firstItem="M6j-Bk-Sdb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="K2B-YB-kxu"/>
                     <constraint firstItem="iMV-3B-f7k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="KuN-D1-CAJ"/>
-                    <constraint firstItem="A32-hs-JQ4" firstAttribute="leading" secondItem="iE3-om-O87" secondAttribute="trailing" constant="12" id="LBc-Ce-Dmg"/>
                     <constraint firstAttribute="trailing" secondItem="90V-sD-hEu" secondAttribute="trailing" id="M93-tf-KgE"/>
-                    <constraint firstItem="iE3-om-O87" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="MTu-GL-1Nb"/>
+                    <constraint firstItem="iMV-3B-f7k" firstAttribute="leading" secondItem="plO-Fp-DPq" secondAttribute="trailing" constant="18" id="Pgh-BB-85a"/>
                     <constraint firstAttribute="trailing" secondItem="4kO-Gw-Z0e" secondAttribute="trailing" constant="16" id="ShA-ee-ph1"/>
-                    <constraint firstItem="iMV-3B-f7k" firstAttribute="leading" secondItem="iE3-om-O87" secondAttribute="trailing" constant="12" id="ge9-K9-afT"/>
                     <constraint firstItem="90V-sD-hEu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="izP-9t-l4O"/>
                     <constraint firstItem="4kO-Gw-Z0e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="jSp-wi-2ig"/>
-                    <constraint firstItem="iE3-om-O87" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="pxO-oZ-TMo"/>
-                    <constraint firstItem="M6j-Bk-Sdb" firstAttribute="top" secondItem="iE3-om-O87" secondAttribute="bottom" constant="13" id="z5a-oa-E2n"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="avatarImageView" destination="iE3-om-O87" id="OMO-os-VTC"/>
+                <outlet property="avatarImageView" destination="plO-Fp-DPq" id="jFl-iz-Y5O"/>
                 <outlet property="messageLabel" destination="M6j-Bk-Sdb" id="2ta-84-C68"/>
                 <outlet property="reactImagesStackView" destination="90V-sD-hEu" id="b8I-xZ-OQO"/>
                 <outlet property="userNameLabel" destination="iMV-3B-f7k" id="2it-9M-ovb"/>
@@ -130,6 +130,9 @@
     </objects>
     <resources>
         <image name="dots_18_pt" width="18" height="18"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

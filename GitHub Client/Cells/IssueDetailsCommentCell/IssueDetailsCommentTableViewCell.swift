@@ -51,7 +51,6 @@ extension IssueDetailsCommentTableViewCell: ConfigurableCell {
     }
     
     private func configureOwnerBadge() {
-//        userStatusLabel.textC
         userStatusLabel.text = "Owner"
     }
 }
