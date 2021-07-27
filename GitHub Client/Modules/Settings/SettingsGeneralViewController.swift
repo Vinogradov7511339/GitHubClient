@@ -46,6 +46,8 @@ extension SettingsGeneralViewController: UITableViewDelegate {
             openLanguageSettings()
         case (2, 0):
             openAccountSetttings()
+        case (3, 0):
+            openDeveloperSettings()
         default:
             break
         }
@@ -90,6 +92,11 @@ private extension SettingsGeneralViewController {
     
     func openAccountSetttings() {
         let viewController = AccountSettingsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func openDeveloperSettings() {
+        let viewController = DeveloperSettingsViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

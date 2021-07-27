@@ -171,6 +171,7 @@
 		ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180526B00DF200469BCF /* OrganizationService.swift */; };
 		ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */; };
 		ADC8180B26B0244300469BCF /* StatusBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180A26B0244300469BCF /* StatusBadgeView.swift */; };
+		ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -340,6 +341,7 @@
 		ADC8180526B00DF200469BCF /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationEndpoints.swift; sourceTree = "<group>"; };
 		ADC8180A26B0244300469BCF /* StatusBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadgeView.swift; sourceTree = "<group>"; };
+		ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +510,7 @@
 				AD20E47426A8A522003BB5F1 /* SettingsAppIconViewController.swift */,
 				AD20E4E926A8B9A3003BB5F1 /* SettingAppearanceViewController.swift */,
 				AD20E56426AB1324003BB5F1 /* AccountSettingsViewController.swift */,
+				ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */,
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
+				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
 				AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */,
