@@ -163,6 +163,11 @@
 		ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501E26AD931E00783E71 /* Error+extensions.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
+		ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */; };
+		ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */; };
+		ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FD26AFE0B700469BCF /* SearchController.swift */; };
+		ADC8180226B0021F00469BCF /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180126B0021F00469BCF /* Discussion.swift */; };
+		ADC8180426B002FE00469BCF /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180326B002FE00469BCF /* Reactions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -324,6 +329,11 @@
 		ADA7501E26AD931E00783E71 /* Error+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extensions.swift"; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
+		ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesInteractor.swift; sourceTree = "<group>"; };
+		ADC817FD26AFE0B700469BCF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		ADC8180126B0021F00469BCF /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
+		ADC8180326B002FE00469BCF /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +369,8 @@
 				AD20E50526A993A5003BB5F1 /* Milestone.swift */,
 				AD20E50726A994A6003BB5F1 /* PullRequest.swift */,
 				AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */,
+				ADC8180126B0021F00469BCF /* Discussion.swift */,
+				ADC8180326B002FE00469BCF /* Reactions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -589,8 +601,10 @@
 			isa = PBXGroup;
 			children = (
 				AD20E52726AA0038003BB5F1 /* IssuesListConfigurator.swift */,
+				ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */,
 				AD20E50C26A99DFE003BB5F1 /* IssuesPresenter.swift */,
 				AD20E50A26A99982003BB5F1 /* IssuesViewController.swift */,
+				ADC817FD26AFE0B700469BCF /* SearchController.swift */,
 			);
 			path = IssuesList;
 			sourceTree = "<group>";
@@ -792,6 +806,7 @@
 				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
+				ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */,
 			);
 			path = "GitHub Client";
 			sourceTree = "<group>";
@@ -963,6 +978,7 @@
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
 				AD20E4DA26A8B313003BB5F1 /* AppIconPinkLight-2.png in Resources */,
 				AD20E51C26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.xib in Resources */,
+				ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */,
 				AD20E53026AA9429003BB5F1 /* DetailTableViewCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
@@ -1022,6 +1038,7 @@
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
 				AD20E44926A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift in Sources */,
 				AD20E44026A6B5E2003BB5F1 /* RepositoryDetailsViewController.swift in Sources */,
+				ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */,
 				AD20E52F26AA9429003BB5F1 /* DetailTableViewCell.swift in Sources */,
 				AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */,
 				AD20E52826AA0038003BB5F1 /* IssuesListConfigurator.swift in Sources */,
@@ -1035,6 +1052,7 @@
 				AD20E3DB269F5139003BB5F1 /* TabBarController.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD20E53726AA9926003BB5F1 /* RepositoriesListConfigurator.swift in Sources */,
+				ADC8180426B002FE00469BCF /* Reactions.swift in Sources */,
 				AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */,
 				AD20E41D26A5ABCB003BB5F1 /* UIView+NibLoadable.swift in Sources */,
 				AD20E54426AAA6F1003BB5F1 /* NotificationsConfigurator.swift in Sources */,
@@ -1054,6 +1072,7 @@
 				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
 				AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */,
+				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
 				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
@@ -1080,6 +1099,7 @@
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
 				ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
+				ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,

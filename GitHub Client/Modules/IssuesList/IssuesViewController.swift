@@ -9,7 +9,7 @@ import UIKit
 
 class IssuesViewController: UIViewController {
     
-    var presenter: IssuesPresenterInput?
+    var presenter: IssuesPresenterInput!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -17,15 +17,16 @@ class IssuesViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
-        
         return tableView
     }()
     
-    private lazy var searchView: SearchBarWithFiltersView = {
-        let view = SearchBarWithFiltersView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.searchResultsUpdater = self
-        return view
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search GitHub"
+        
+        return searchController
     }()
     
     private let refreshControl = UIRefreshControl()
@@ -42,8 +43,7 @@ class IssuesViewController: UIViewController {
         
         cellManager.register(tableView: tableView)
         
-        title = "Issues"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        configureNavBar()
         
         presenter?.viewDidLoad()
     }
@@ -51,6 +51,10 @@ class IssuesViewController: UIViewController {
     @objc func refresh(_ sender: AnyObject) {
         presenter?.refresh()
     }
+}
+
+extension IssuesViewController: UISearchBarDelegate {
+    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -101,19 +105,25 @@ extension IssuesViewController: UITableViewDataSource {
 // MARK: - setup views
 private extension IssuesViewController {
     func setupViews() {
-        view.addSubview(searchView)
         view.addSubview(tableView)
     }
 
     func activateConstraints() {
-        searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        searchView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        searchView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        searchView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-        
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: searchView.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func configureNavBar() {
+        switch presenter.type {
+        case .issue: title = "Issues"
+        case .pullRequest: title = "Pull Requests"
+        case .discussions: title = "Discussions"
+        }
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }

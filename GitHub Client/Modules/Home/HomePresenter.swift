@@ -40,7 +40,7 @@ class HomePresenter {
 extension HomePresenter: HomeInteractorOutput {
     func didReceive(allIssues: [Issue]) {
         self.issues = allIssues
-        interactor.fetchAllRepositoriesIHaveAccess()
+//        interactor.fetchAllRepositoriesIHaveAccess()
     }
     
     func didReceive(allRepositoriesIHaveAccess: [Repository]) {
@@ -58,17 +58,24 @@ extension HomePresenter: HomeInteractorOutput {
 //MARK: - MyWorkPresenterInput
 extension HomePresenter: HomePresenterInput {
     func viewDidLoad() {
-        interactor.fetchAllIssues()
+//        interactor.fetchAllIssues()
+        fullViewModels()
     }
     
     func refresh() {
-        interactor.fetchAllIssues()
+//        interactor.fetchAllIssues()
     }
     
     func didSelectItem(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            let viewController = IssuesListConfigurator.createModule(from: issues)
+            let viewController = IssuesListConfigurator.createModule(with: .issue)
+            output?.push(to: viewController)
+        case (0, 1):
+            let viewController = IssuesListConfigurator.createModule(with: .pullRequest)
+            output?.push(to: viewController)
+        case (0, 2):
+            let viewController = IssuesListConfigurator.createModule(with: .discussions)
             output?.push(to: viewController)
         case (0, 3):
             guard let profile = self.profile else { return }

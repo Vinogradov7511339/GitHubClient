@@ -77,7 +77,6 @@ extension ProfilePresenter: ProfileInteractorOutput {
     }
 }
 
-
 // MARK: - ProfilePresenterInput
 extension ProfilePresenter: ProfilePresenterInput {
     func didSelectItem(at indexPath: IndexPath) {

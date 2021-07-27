@@ -9,6 +9,7 @@ import UIKit
 
 protocol IssuesPresenterInput {
     var output: IssuesPresenterOutput? { get set }
+    var type: IssueType { get }
     
     func viewDidLoad()
     func refresh()
@@ -24,64 +25,43 @@ protocol IssuesPresenterOutput: AnyObject {
 
 class IssuesPresenter {
     weak var output: IssuesPresenterOutput?
+    var type: IssueType
+    
+    var interactor: IssuesInteractorInput?
     
     private let issuesService = ServicesManager.shared.issuesService
     private var issues: [Issue] = []
     
-    init(with issues: [Issue]) {
-        self.issues = issues
+    init(type: IssueType) {
+        self.type = type
+    }
+}
+
+// MARK: - IssuesPresenterInput
+extension IssuesPresenter: IssuesInteractorOutput {
+    func didReceive(objects: [Any]) {
+        if let issues = objects as? [Issue] {
+            self.issues = issues
+            DispatchQueue.main.async {
+                self.output?.display(viewModels: issues)
+            }
+        }
     }
 }
 
 // MARK: - IssuesPresenterInput
 extension IssuesPresenter: IssuesPresenterInput {
     func viewDidLoad() {
-        let viewModels = issues.compactMap { map($0) }
-        output?.display(viewModels: viewModels)
+        interactor?.fetchObjects()
     }
     
     func refresh() {
-        fetchAllIssues()
+        interactor?.fetchObjects()
     }
     
     func openIssue(at indexPath: IndexPath) {
         let issue = issues[indexPath.row]
         let viewController = IssueDetailsConfigurator.createModule(for: issue)
         output?.push(to: viewController)
-    }
-}
-
-// MARK: - IssuesPresenterInput
-private extension IssuesPresenter {
-    func fetchAllIssues() {
-        issuesService.getAllIssues { [weak self] issues, error in
-            if let issues = issues {
-                self?.issues = issues
-                let viewModels = issues.compactMap { self?.map($0) }
-                DispatchQueue.main.async {
-                    self?.output?.display(viewModels: viewModels)
-                }
-                return
-            }
-            if let error = error {
-                print(error)
-            }
-        }
-    }
-}
-
-// MARK: - private
-private extension IssuesPresenter {
-    func map(_ issue: Issue) -> IssueCellViewModel {
-        let repositoryName = issue.repository?.full_name ?? ""
-        let name = issue.title ?? ""
-        let date = "NaN"
-        return IssueCellViewModel(
-            image: UIImage.issue,
-            repositoryName: repositoryName,
-            name: name,
-            date: date,
-            bottomImage: nil
-        )
     }
 }

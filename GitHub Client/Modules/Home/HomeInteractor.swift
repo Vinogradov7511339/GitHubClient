@@ -10,8 +10,8 @@ import Foundation
 protocol HomeInteractorInput {
     var output: HomeInteractorOutput? { get set }
     
-    func fetchAllIssues()
-    func fetchAllRepositoriesIHaveAccess()
+//    func fetchAllIssues()
+//    func fetchAllRepositoriesIHaveAccess()
 }
 
 protocol HomeInteractorOutput: AnyObject {

@@ -26,12 +26,11 @@ class HomeViewController: UIViewController {
     }()
     
     private lazy var searchController: UISearchController = {
-        
         let searchController = UISearchController(searchResultsController: resultViewController)
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search GitHub"
-        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.isActive = true
         return searchController
     }()
     
@@ -65,7 +64,21 @@ class HomeViewController: UIViewController {
         presenter?.refresh()
     }
     
-    func handleKeyboard(notification: Notification) {
+    private func observeToNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
+    }
+    
+    private func handleKeyboard(notification: Notification) {
         guard notification.name == UIResponder.keyboardWillChangeFrameNotification else {
             view.layoutIfNeeded()
             return
@@ -80,20 +93,6 @@ class HomeViewController: UIViewController {
         
         let keyboardHeight = keyboardFrame.cgRectValue.size.height
         self.searchController.showsSearchResultsController = keyboardHeight != 0
-    }
-    
-    private func observeToNotifications() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
     }
 }
 

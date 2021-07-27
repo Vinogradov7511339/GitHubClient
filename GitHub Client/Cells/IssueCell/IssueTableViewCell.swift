@@ -7,13 +7,13 @@
 
 import UIKit
 
-struct IssueCellViewModel {
-    let image: UIImage?
-    let repositoryName: String
-    let name: String
-    let date: String
-    let bottomImage: UIImage?
-}
+//struct IssueCellViewModel {
+//    let image: UIImage?
+//    let repositoryName: String
+//    let name: String
+//    let date: String
+//    let bottomImage: UIImage?
+//}
 
 class IssueTableViewCell: BaseTableViewCell, NibLoadable {
 
@@ -37,10 +37,10 @@ class IssueTableViewCell: BaseTableViewCell, NibLoadable {
 }
 
 extension IssueTableViewCell: ConfigurableCell {
-    func configure(viewModel: IssueCellViewModel) {
-        itemImageView.image = viewModel.image
-        repositoryNameLabel.text = viewModel.repositoryName
-        nameLabel.text = viewModel.name
-        dateLabel.text = viewModel.date
+    func configure(viewModel: Issue) {
+        itemImageView.image = UIImage(named: "")
+//        repositoryNameLabel.text = viewModel.repositoryName
+//        nameLabel.text = viewModel.name
+//        dateLabel.text = viewModel.date
     }
 }
