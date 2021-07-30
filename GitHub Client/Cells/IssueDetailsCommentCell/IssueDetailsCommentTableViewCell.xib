@@ -42,12 +42,6 @@
                             <constraint firstAttribute="height" constant="30" id="gkz-Vr-zV3"/>
                         </constraints>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6j-Bk-Sdb">
-                        <rect key="frame" x="16" y="80" width="288" height="150"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A32-hs-JQ4">
                         <rect key="frame" x="82" y="38" width="37.5" height="21.5"/>
                         <subviews>
@@ -98,30 +92,33 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YYR-RC-GuL">
+                        <rect key="frame" x="16" y="89" width="288" height="137"/>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="M6j-Bk-Sdb" firstAttribute="top" secondItem="plO-Fp-DPq" secondAttribute="bottom" constant="16" id="1sD-Bm-hKR"/>
                     <constraint firstItem="A32-hs-JQ4" firstAttribute="leading" secondItem="plO-Fp-DPq" secondAttribute="trailing" constant="18" id="2rd-gE-vnt"/>
                     <constraint firstItem="A32-hs-JQ4" firstAttribute="top" secondItem="iMV-3B-f7k" secondAttribute="bottom" constant="4" id="8L4-5U-bPi"/>
-                    <constraint firstItem="M6j-Bk-Sdb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="BUh-ql-nwj"/>
-                    <constraint firstItem="90V-sD-hEu" firstAttribute="top" secondItem="M6j-Bk-Sdb" secondAttribute="bottom" constant="16" id="Bao-sk-8Qg"/>
+                    <constraint firstItem="90V-sD-hEu" firstAttribute="top" secondItem="YYR-RC-GuL" secondAttribute="bottom" constant="20" id="AS3-A6-IYA"/>
+                    <constraint firstItem="YYR-RC-GuL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="CHl-Sr-sM1"/>
                     <constraint firstItem="plO-Fp-DPq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DF2-KB-iAe"/>
                     <constraint firstAttribute="bottom" secondItem="90V-sD-hEu" secondAttribute="bottom" constant="8" id="Fbh-nQ-gGy"/>
                     <constraint firstItem="plO-Fp-DPq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="GWg-zK-T9g"/>
-                    <constraint firstItem="M6j-Bk-Sdb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="K2B-YB-kxu"/>
                     <constraint firstItem="iMV-3B-f7k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="KuN-D1-CAJ"/>
                     <constraint firstAttribute="trailing" secondItem="90V-sD-hEu" secondAttribute="trailing" id="M93-tf-KgE"/>
                     <constraint firstItem="iMV-3B-f7k" firstAttribute="leading" secondItem="plO-Fp-DPq" secondAttribute="trailing" constant="18" id="Pgh-BB-85a"/>
                     <constraint firstAttribute="trailing" secondItem="4kO-Gw-Z0e" secondAttribute="trailing" constant="16" id="ShA-ee-ph1"/>
+                    <constraint firstItem="YYR-RC-GuL" firstAttribute="top" secondItem="plO-Fp-DPq" secondAttribute="bottom" constant="25" id="VeN-pV-FPb"/>
                     <constraint firstItem="90V-sD-hEu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="izP-9t-l4O"/>
                     <constraint firstItem="4kO-Gw-Z0e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="jSp-wi-2ig"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YYR-RC-GuL" secondAttribute="trailing" id="yFz-5a-SRq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="plO-Fp-DPq" id="jFl-iz-Y5O"/>
-                <outlet property="messageLabel" destination="M6j-Bk-Sdb" id="2ta-84-C68"/>
                 <outlet property="reactImagesStackView" destination="90V-sD-hEu" id="b8I-xZ-OQO"/>
+                <outlet property="stackView" destination="YYR-RC-GuL" id="klH-Ya-NTS"/>
                 <outlet property="userNameLabel" destination="iMV-3B-f7k" id="2it-9M-ovb"/>
                 <outlet property="userStatusLabel" destination="nj7-O4-4EG" id="o1f-gD-rQT"/>
             </connections>

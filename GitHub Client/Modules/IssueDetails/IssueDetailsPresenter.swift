@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TextCompiler
 
 protocol IssueDetailsPresenterInput {
     var output: IssueDetailsPresenterOutput? { get set }
@@ -25,6 +26,7 @@ class IssueDetailsPresenter {
     weak var output: IssueDetailsPresenterOutput?
     
     private let issuesService = ServicesManager.shared.issuesService
+//    private let render = MarkdownRenderer(baseFont: UIFont.systemFont(ofSize: 18.0))
     private var issue: Issue
     
     init(_ issue: Issue) {
@@ -78,13 +80,14 @@ private extension IssueDetailsPresenter {
         let avatarUrl = issue.user?.avatar_url
         let userName = issue.user?.login ?? ""
         let status = issue.author_association ?? ""
-        let body = issue.body ?? ""
+        
+      
         
         return IssueCommentCellViewModel(
             avatarUrl: avatarUrl,
             userName: userName,
             userStatus: status,
-            message: body.parse(),
+            message: issue.body ?? "",
             reactImages: []
         )
     }

@@ -17,7 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         ApplicationPresenter.shared.window = window
         
-//        UserStorage.shared.saveToken("ghu_ytXxhEExPJoYqoFQF2SqNWJCRLsvVO1qc1nV")
+//        let controller = TestContoller()
+//        window?.rootViewController = controller
+//        window?.makeKeyAndVisible()
+//        window?.windowScene = windowScene
         
         let rootController: UIViewController
         switch UserStorage.shared.loginState {
@@ -26,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .notLogged:
             rootController = LoginViewController()
         }
-        
+
         window?.rootViewController = rootController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene

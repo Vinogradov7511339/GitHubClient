@@ -133,6 +133,7 @@
 		AD3776ED269F2698000AA54C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */; };
 		AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* LoginViewController.swift */; };
 		AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F6269F270A000AA54C /* UserStorage.swift */; };
+		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
 		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
 		AD642CD826ADCC1E004FCA2D /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD726ADCC1E004FCA2D /* UsersListPresenter.swift */; };
@@ -150,7 +151,6 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
-		AD8B7E6826B0692500368FA8 /* MarkdownParser in Frameworks */ = {isa = PBXBuildFile; productRef = AD8B7E6726B0692500368FA8 /* MarkdownParser */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
@@ -164,6 +164,9 @@
 		ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501E26AD931E00783E71 /* Error+extensions.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
+		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
+		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
+		ADB26BA526B3DE7E0043CEBB /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB26BA426B3DE7E0043CEBB /* TestController.swift */; };
 		ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */; };
 		ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */; };
 		ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FD26AFE0B700469BCF /* SearchController.swift */; };
@@ -304,6 +307,7 @@
 		AD3776EE269F2698000AA54C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD3776F4269F26B1000AA54C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AD3776F6269F270A000AA54C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
 		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		AD642CD726ADCC1E004FCA2D /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
@@ -321,7 +325,6 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
-		AD8B7E6526B068BE00368FA8 /* MarkdownParser */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MarkdownParser; path = ../MarkdownParser; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -335,6 +338,9 @@
 		ADA7501E26AD931E00783E71 /* Error+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extensions.swift"; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
+		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
+		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
+		ADB26BA426B3DE7E0043CEBB /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesInteractor.swift; sourceTree = "<group>"; };
 		ADC817FD26AFE0B700469BCF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -351,7 +357,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD8B7E6826B0692500368FA8 /* MarkdownParser in Frameworks */,
+				ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +531,7 @@
 				AD20E4E426A8B33C003BB5F1 /* AppAlternativeIcons */,
 				AD3776E9269F2698000AA54C /* Assets.xcassets */,
 				AD79550526ABFD8E004E6973 /* LanguageColors.json */,
+				ADB26BA226B3DA8E0043CEBB /* MDTest.md */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -782,7 +789,7 @@
 		AD3776D4269F2697000AA54C = {
 			isa = PBXGroup;
 			children = (
-				AD8B7E6526B068BE00368FA8 /* MarkdownParser */,
+				ADB26B9F26B28EA90043CEBB /* TextCompiler */,
 				AD3776DF269F2697000AA54C /* GitHub Client */,
 				AD3776DE269F2697000AA54C /* Products */,
 				AD8B7E6626B0692500368FA8 /* Frameworks */,
@@ -823,6 +830,8 @@
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 				ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */,
+				ADB26BA426B3DE7E0043CEBB /* TestController.swift */,
+				AD43E81126B44F2B008DF634 /* TextStorage.swift */,
 			);
 			path = "GitHub Client";
 			sourceTree = "<group>";
@@ -957,7 +966,7 @@
 			);
 			name = "GitHub Client";
 			packageProductDependencies = (
-				AD8B7E6726B0692500368FA8 /* MarkdownParser */,
+				ADB26BA026B31CFF0043CEBB /* TextCompiler */,
 			);
 			productName = "GitHub Client";
 			productReference = AD3776DD269F2697000AA54C /* GitHub Client.app */;
@@ -1025,6 +1034,7 @@
 				AD20E53026AA9429003BB5F1 /* DetailTableViewCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
+				ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */,
 				AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */,
 				AD20E55126AAC4B3003BB5F1 /* MediumCollectionViewCell.xib in Resources */,
 				AD20E4D326A8B313003BB5F1 /* AppIconPinkLight@2x-7.png in Resources */,
@@ -1126,6 +1136,7 @@
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
 				AD20E44426A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.swift in Sources */,
+				ADB26BA526B3DE7E0043CEBB /* TestController.swift in Sources */,
 				AD20E50D26A99DFE003BB5F1 /* IssuesPresenter.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModel.swift in Sources */,
 				AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */,
@@ -1150,6 +1161,7 @@
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
 				AD20E50B26A99982003BB5F1 /* IssuesViewController.swift in Sources */,
+				AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */,
 				AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */,
 				AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
@@ -1314,7 +1326,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9BJ22NY9Z;
+				DEVELOPMENT_TEAM = PAQ9ML4C7G;
 				INFOPLIST_FILE = "GitHub Client/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1333,7 +1345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9BJ22NY9Z;
+				DEVELOPMENT_TEAM = PAQ9ML4C7G;
 				INFOPLIST_FILE = "GitHub Client/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1370,9 +1382,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AD8B7E6726B0692500368FA8 /* MarkdownParser */ = {
+		ADB26BA026B31CFF0043CEBB /* TextCompiler */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = MarkdownParser;
+			productName = TextCompiler;
 		};
 /* End XCSwiftPackageProductDependency section */
 
