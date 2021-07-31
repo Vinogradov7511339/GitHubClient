@@ -72,8 +72,8 @@ private extension FilterView {
         scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16.0).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16.0).isActive = true
         stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
@@ -86,9 +86,10 @@ private extension FilterView {
         filterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         let image = UIImage(systemName: "chevron.down")?
-            .applyingSymbolConfiguration(.init(scale: .small))?
-            .withTintColor(.secondaryLabel, renderingMode: .alwaysTemplate)
+            .applyingSymbolConfiguration(.init(scale: .small))
+//            .withTintColor(.secondaryLabel, renderingMode: .alwaysTemplate)
         filterButton.setImage(image, for: .normal)
+        filterButton.tintColor = .secondaryLabel
         
         filterButton.contentEdgeInsets = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
         filterButton.semanticContentAttribute = .forceRightToLeft

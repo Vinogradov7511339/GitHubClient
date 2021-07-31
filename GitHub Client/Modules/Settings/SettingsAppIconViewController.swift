@@ -22,10 +22,11 @@ class SettingsAppIconViewController: UIViewController {
     
     private let viewModels: [TableCellViewModel] = [
         TableCellViewModel(text: "Default", detailText: nil, image: UIImage(named: "AppIcon"), imageTintColor: nil, accessoryType: .checkmark),
-        TableCellViewModel(text: "Pink Light", detailText: nil, image: UIImage(named: "AppIconPinkLight"), imageTintColor: nil, accessoryType: .checkmark)
+        TableCellViewModel(text: "Pink Light", detailText: nil, image: UIImage(named: "AppIconPinkLight"), imageTintColor: nil, accessoryType: .checkmark),
+        TableCellViewModel(text: "Octocat Gray", detailText: nil, image: UIImage(named: "octocat_gray"), imageTintColor: nil, accessoryType: .checkmark)
     ]
     
-    private let iconNames = ["AppIcon", "AppIconPinkLight"]
+    private let iconNames = ["AppIcon", "AppIconPinkLight", "octocat_gray"]
     private var selectedIconName = UIApplication.shared.alternateIconName ?? "AppIcon"
     
     private let cellManager = TableCellManager.create(cellType: TableViewCell.self)

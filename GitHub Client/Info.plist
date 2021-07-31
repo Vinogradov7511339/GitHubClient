@@ -6,6 +6,13 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>octocat_gray</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>octocat_gray</string>
+				</array>
+			</dict>
 			<key>AppIconPinkLight</key>
 			<dict>
 				<key>CFBundleIconFiles</key>

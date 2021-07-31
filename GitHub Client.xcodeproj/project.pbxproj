@@ -151,6 +151,24 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
+		ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */; };
+		ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */; };
+		ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */; };
+		ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9126B55620004AC06C /* octocat_gray.png */; };
+		ADA68BA426B55621004AC06C /* octocat_gray-5.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9226B55620004AC06C /* octocat_gray-5.png */; };
+		ADA68BA526B55621004AC06C /* octocat_gray-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9326B55620004AC06C /* octocat_gray-3.png */; };
+		ADA68BA626B55621004AC06C /* octocat_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9426B55620004AC06C /* octocat_gray@2x.png */; };
+		ADA68BA726B55621004AC06C /* octocat_gray@2x-5.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9526B55620004AC06C /* octocat_gray@2x-5.png */; };
+		ADA68BA826B55621004AC06C /* octocat_gray@3x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9626B55620004AC06C /* octocat_gray@3x-2.png */; };
+		ADA68BA926B55621004AC06C /* octocat_gray-2.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9726B55620004AC06C /* octocat_gray-2.png */; };
+		ADA68BAA26B55621004AC06C /* octocat_gray@2x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9826B55620004AC06C /* octocat_gray@2x-2.png */; };
+		ADA68BAB26B55621004AC06C /* octocat_gray-4.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9926B55620004AC06C /* octocat_gray-4.png */; };
+		ADA68BAC26B55621004AC06C /* octocat_gray@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9A26B55620004AC06C /* octocat_gray@2x-1.png */; };
+		ADA68BAD26B55621004AC06C /* octocat_gray@3x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9B26B55620004AC06C /* octocat_gray@3x-1.png */; };
+		ADA68BAE26B55621004AC06C /* octocat_gray@2x-4.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9C26B55620004AC06C /* octocat_gray@2x-4.png */; };
+		ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */; };
+		ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9E26B55620004AC06C /* octocat_gray-1.png */; };
+		ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
@@ -325,6 +343,24 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x.png"; sourceTree = "<group>"; };
+		ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x-3.png"; sourceTree = "<group>"; };
+		ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-7.png"; sourceTree = "<group>"; };
+		ADA68B9126B55620004AC06C /* octocat_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat_gray.png; sourceTree = "<group>"; };
+		ADA68B9226B55620004AC06C /* octocat_gray-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-5.png"; sourceTree = "<group>"; };
+		ADA68B9326B55620004AC06C /* octocat_gray-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-3.png"; sourceTree = "<group>"; };
+		ADA68B9426B55620004AC06C /* octocat_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x.png"; sourceTree = "<group>"; };
+		ADA68B9526B55620004AC06C /* octocat_gray@2x-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-5.png"; sourceTree = "<group>"; };
+		ADA68B9626B55620004AC06C /* octocat_gray@3x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x-2.png"; sourceTree = "<group>"; };
+		ADA68B9726B55620004AC06C /* octocat_gray-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-2.png"; sourceTree = "<group>"; };
+		ADA68B9826B55620004AC06C /* octocat_gray@2x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-2.png"; sourceTree = "<group>"; };
+		ADA68B9926B55620004AC06C /* octocat_gray-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-4.png"; sourceTree = "<group>"; };
+		ADA68B9A26B55620004AC06C /* octocat_gray@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-1.png"; sourceTree = "<group>"; };
+		ADA68B9B26B55620004AC06C /* octocat_gray@3x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x-1.png"; sourceTree = "<group>"; };
+		ADA68B9C26B55620004AC06C /* octocat_gray@2x-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-4.png"; sourceTree = "<group>"; };
+		ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-6.png"; sourceTree = "<group>"; };
+		ADA68B9E26B55620004AC06C /* octocat_gray-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-1.png"; sourceTree = "<group>"; };
+		ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-3.png"; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -564,6 +600,7 @@
 		AD20E4E426A8B33C003BB5F1 /* AppAlternativeIcons */ = {
 			isa = PBXGroup;
 			children = (
+				ADA68B8D26B555F5004AC06C /* octocat_gray */,
 				AD20E47726A8B259003BB5F1 /* AppIconPinkLight */,
 			);
 			path = AppAlternativeIcons;
@@ -898,6 +935,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ADA68B8D26B555F5004AC06C /* octocat_gray */ = {
+			isa = PBXGroup;
+			children = (
+				ADA68B9126B55620004AC06C /* octocat_gray.png */,
+				ADA68B9A26B55620004AC06C /* octocat_gray@2x-1.png */,
+				ADA68B9426B55620004AC06C /* octocat_gray@2x.png */,
+				ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */,
+				ADA68B9E26B55620004AC06C /* octocat_gray-1.png */,
+				ADA68B9826B55620004AC06C /* octocat_gray@2x-2.png */,
+				ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */,
+				ADA68B9B26B55620004AC06C /* octocat_gray@3x-1.png */,
+				ADA68B9726B55620004AC06C /* octocat_gray-2.png */,
+				ADA68B9C26B55620004AC06C /* octocat_gray@2x-4.png */,
+				ADA68B9526B55620004AC06C /* octocat_gray@2x-5.png */,
+				ADA68B9626B55620004AC06C /* octocat_gray@3x-2.png */,
+				ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */,
+				ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */,
+				ADA68B9326B55620004AC06C /* octocat_gray-3.png */,
+				ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */,
+				ADA68B9926B55620004AC06C /* octocat_gray-4.png */,
+				ADA68B9226B55620004AC06C /* octocat_gray-5.png */,
+			);
+			path = octocat_gray;
+			sourceTree = "<group>";
+		};
 		ADA74FFF26AD2E7C00783E71 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,15 +1074,21 @@
 				AD20E4D426A8B313003BB5F1 /* AppIconPinkLight@2x.png in Resources */,
 				AD20E44526A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.xib in Resources */,
 				AD20E4D726A8B313003BB5F1 /* AppIconPinkLight@2x-3.png in Resources */,
+				ADA68BAB26B55621004AC06C /* octocat_gray-4.png in Resources */,
 				AD20E4DF26A8B313003BB5F1 /* AppIconPinkLight@2x-4.png in Resources */,
+				ADA68BAD26B55621004AC06C /* octocat_gray@3x-1.png in Resources */,
+				ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */,
 				AD20E4D826A8B313003BB5F1 /* AppIconPinkLight@3x-1.png in Resources */,
 				AD20E57026AB4F39003BB5F1 /* SearchTypeTableViewCell.xib in Resources */,
 				AD20E54B26AAB78D003BB5F1 /* FeaturedCollectionViewCell.xib in Resources */,
 				AD20E4D226A8B313003BB5F1 /* AppIconPinkLight@3x-3.png in Resources */,
 				AD3776ED269F2698000AA54C /* LaunchScreen.storyboard in Resources */,
+				ADA68BA826B55621004AC06C /* octocat_gray@3x-2.png in Resources */,
 				AD20E4F826A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.xib in Resources */,
 				AD20E42E26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.xib in Resources */,
+				ADA68BAC26B55621004AC06C /* octocat_gray@2x-1.png in Resources */,
 				AD20E55526AACAE3003BB5F1 /* SmallCollectionViewCell.xib in Resources */,
+				ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */,
 				AD20E4E226A8B313003BB5F1 /* AppIconPinkLight@3x.png in Resources */,
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
 				AD20E41B26A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib in Resources */,
@@ -1028,27 +1096,39 @@
 				AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
+				ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */,
 				AD20E4DA26A8B313003BB5F1 /* AppIconPinkLight-2.png in Resources */,
+				ADA68BA726B55621004AC06C /* octocat_gray@2x-5.png in Resources */,
 				AD20E51C26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.xib in Resources */,
+				ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */,
 				ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */,
 				AD20E53026AA9429003BB5F1 /* DetailTableViewCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
+				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
+				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
+				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
 				ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */,
+				ADA68BAA26B55621004AC06C /* octocat_gray@2x-2.png in Resources */,
 				AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */,
 				AD20E55126AAC4B3003BB5F1 /* MediumCollectionViewCell.xib in Resources */,
 				AD20E4D326A8B313003BB5F1 /* AppIconPinkLight@2x-7.png in Resources */,
+				ADA68BA526B55621004AC06C /* octocat_gray-3.png in Resources */,
+				ADA68BA926B55621004AC06C /* octocat_gray-2.png in Resources */,
 				AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */,
 				AD20E4D626A8B313003BB5F1 /* AppIconPinkLight@2x-1.png in Resources */,
 				AD20E4D926A8B313003BB5F1 /* AppIconPinkLight-1.png in Resources */,
 				ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */,
 				AD20E52126A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.xib in Resources */,
 				AD20E4FD26A95F84003BB5F1 /* RecentEventsTableViewCell.xib in Resources */,
+				ADA68BA626B55621004AC06C /* octocat_gray@2x.png in Resources */,
 				AD20E4DD26A8B313003BB5F1 /* AppIconPinkLight@2x-5.png in Resources */,
 				AD20E43B26A60DBE003BB5F1 /* MyReposTableViewCell.xib in Resources */,
 				AD20E4DC26A8B313003BB5F1 /* AppIconPinkLight@3x-2.png in Resources */,
 				AD20E51126A9A81A003BB5F1 /* IssueTableViewCell.xib in Resources */,
 				AD20E4D526A8B313003BB5F1 /* AppIconPinkLight@2x-6.png in Resources */,
+				ADA68BAE26B55621004AC06C /* octocat_gray@2x-4.png in Resources */,
+				ADA68BA426B55621004AC06C /* octocat_gray-5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
