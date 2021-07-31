@@ -13,6 +13,7 @@ protocol IssuesPresenterInput {
     
     func viewDidLoad()
     func refresh()
+    func addFilter()
     
     func openIssue(at indexPath: IndexPath)
 }
@@ -21,6 +22,7 @@ protocol IssuesPresenterOutput: AnyObject {
     func display(viewModels: [Any])
     
     func push(to viewController: UIViewController)
+    func present(_ viewController: UIViewController)
 }
 
 class IssuesPresenter {
@@ -57,6 +59,11 @@ extension IssuesPresenter: IssuesPresenterInput {
     
     func refresh() {
         interactor?.fetchObjects()
+    }
+    
+    func addFilter() {
+        let viewController = CreateFilterViewController()
+        output?.present(viewController)
     }
     
     func openIssue(at indexPath: IndexPath) {

@@ -169,6 +169,10 @@
 		ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */; };
 		ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9E26B55620004AC06C /* octocat_gray-1.png */; };
 		ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */; };
+		ADA68BB326B56B9A004AC06C /* IssuesFilterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB226B56B9A004AC06C /* IssuesFilterBuilder.swift */; };
+		ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */; };
+		ADA68BB826B56F4C004AC06C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB726B56F4C004AC06C /* Filter.swift */; };
+		ADA68BBC26B570BB004AC06C /* IssuesFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
@@ -361,6 +365,10 @@
 		ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-6.png"; sourceTree = "<group>"; };
 		ADA68B9E26B55620004AC06C /* octocat_gray-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-1.png"; sourceTree = "<group>"; };
 		ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-3.png"; sourceTree = "<group>"; };
+		ADA68BB226B56B9A004AC06C /* IssuesFilterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilterBuilder.swift; sourceTree = "<group>"; };
+		ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilterViewController.swift; sourceTree = "<group>"; };
+		ADA68BB726B56F4C004AC06C /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilter.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -414,16 +422,8 @@
 		AD20E3E5269F638E003BB5F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E56926AB2F76003BB5F1 /* ErrorResponse.swift */,
-				AD20E3E3269F5F86003BB5F1 /* UserProfile.swift */,
-				AD20E42926A5CAF9003BB5F1 /* Repository.swift */,
-				AD20E50126A96774003BB5F1 /* Issue.swift */,
-				AD20E50326A990A9003BB5F1 /* LabelModel.swift */,
-				AD20E50526A993A5003BB5F1 /* Milestone.swift */,
-				AD20E50726A994A6003BB5F1 /* PullRequest.swift */,
-				AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */,
-				ADC8180126B0021F00469BCF /* Discussion.swift */,
-				ADC8180326B002FE00469BCF /* Reactions.swift */,
+				ADA68BB926B56F72004AC06C /* GithubApi */,
+				ADA68BBA26B5709E004AC06C /* Filter */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -453,7 +453,7 @@
 				AD20E57626ABDA41003BB5F1 /* Extensions */,
 				AD79550326ABF481004E6973 /* Button.swift */,
 				ADC8180A26B0244300469BCF /* StatusBadgeView.swift */,
-				AD8B7E5C26B03D4200368FA8 /* MarkdownParser */,
+				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -854,10 +854,11 @@
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
 				AD20E46226A84B37003BB5F1 /* Adapters */,
+				ADA68BB426B56B9F004AC06C /* Builders */,
 				AD20E4EE26A9489C003BB5F1 /* Cells */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
-				AD20E46E26A87936003BB5F1 /* Modules */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
+				AD20E46E26A87936003BB5F1 /* Modules */,
 				ADA74FFF26AD2E7C00783E71 /* Services */,
 				AD20E40A26A58D8C003BB5F1 /* Common */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
@@ -921,13 +922,6 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		AD8B7E5C26B03D4200368FA8 /* MarkdownParser */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MarkdownParser;
-			sourceTree = "<group>";
-		};
 		AD8B7E6626B0692500368FA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -958,6 +952,40 @@
 				ADA68B9226B55620004AC06C /* octocat_gray-5.png */,
 			);
 			path = octocat_gray;
+			sourceTree = "<group>";
+		};
+		ADA68BB426B56B9F004AC06C /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				ADA68BB226B56B9A004AC06C /* IssuesFilterBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		ADA68BB926B56F72004AC06C /* GithubApi */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E56926AB2F76003BB5F1 /* ErrorResponse.swift */,
+				AD20E3E3269F5F86003BB5F1 /* UserProfile.swift */,
+				AD20E42926A5CAF9003BB5F1 /* Repository.swift */,
+				AD20E50126A96774003BB5F1 /* Issue.swift */,
+				AD20E50326A990A9003BB5F1 /* LabelModel.swift */,
+				AD20E50526A993A5003BB5F1 /* Milestone.swift */,
+				AD20E50726A994A6003BB5F1 /* PullRequest.swift */,
+				AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */,
+				ADC8180126B0021F00469BCF /* Discussion.swift */,
+				ADC8180326B002FE00469BCF /* Reactions.swift */,
+			);
+			path = GithubApi;
+			sourceTree = "<group>";
+		};
+		ADA68BBA26B5709E004AC06C /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				ADA68BB726B56F4C004AC06C /* Filter.swift */,
+				ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		ADA74FFF26AD2E7C00783E71 /* Services */ = {
@@ -1150,6 +1178,7 @@
 				AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
+				ADA68BB326B56B9A004AC06C /* IssuesFilterBuilder.swift in Sources */,
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
 				AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
@@ -1212,6 +1241,7 @@
 				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
 				AD642CE226AEC29C004FCA2D /* UsersListInteractor.swift in Sources */,
+				ADA68BB826B56F4C004AC06C /* Filter.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
@@ -1248,8 +1278,10 @@
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
+				ADA68BBC26B570BB004AC06C /* IssuesFilter.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
+				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
 				AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
