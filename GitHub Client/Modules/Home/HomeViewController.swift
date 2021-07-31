@@ -49,15 +49,20 @@ class HomeViewController: UIViewController {
         
         setupViews()
         activateConstraints()
+        configureNavigationBar()
         
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        configureNavigationBar()
         observeToNotifications()
 
         dataViewMap.forEach { $0.value.register(tableView: tableView) }
         presenter?.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
     }
     
     @objc func refresh(_ sender: AnyObject) {

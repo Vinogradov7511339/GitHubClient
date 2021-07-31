@@ -169,13 +169,13 @@
 		ADB26BA526B3DE7E0043CEBB /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB26BA426B3DE7E0043CEBB /* TestController.swift */; };
 		ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */; };
 		ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */; };
-		ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FD26AFE0B700469BCF /* SearchController.swift */; };
 		ADC8180226B0021F00469BCF /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180126B0021F00469BCF /* Discussion.swift */; };
 		ADC8180426B002FE00469BCF /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180326B002FE00469BCF /* Reactions.swift */; };
 		ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180526B00DF200469BCF /* OrganizationService.swift */; };
 		ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */; };
 		ADC8180B26B0244300469BCF /* StatusBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180A26B0244300469BCF /* StatusBadgeView.swift */; };
 		ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */; };
+		ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5B0CC26B53A460085A344 /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -343,13 +343,13 @@
 		ADB26BA426B3DE7E0043CEBB /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesInteractor.swift; sourceTree = "<group>"; };
-		ADC817FD26AFE0B700469BCF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		ADC8180126B0021F00469BCF /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		ADC8180326B002FE00469BCF /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
 		ADC8180526B00DF200469BCF /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationEndpoints.swift; sourceTree = "<group>"; };
 		ADC8180A26B0244300469BCF /* StatusBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadgeView.swift; sourceTree = "<group>"; };
 		ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSettingsViewController.swift; sourceTree = "<group>"; };
+		ADE5B0CC26B53A460085A344 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -625,7 +625,7 @@
 				ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */,
 				AD20E50C26A99DFE003BB5F1 /* IssuesPresenter.swift */,
 				AD20E50A26A99982003BB5F1 /* IssuesViewController.swift */,
-				ADC817FD26AFE0B700469BCF /* SearchController.swift */,
+				ADE5B0CC26B53A460085A344 /* FilterView.swift */,
 			);
 			path = IssuesList;
 			sourceTree = "<group>";
@@ -1155,7 +1155,6 @@
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
 				ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
-				ADC817FE26AFE0B700469BCF /* SearchController.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
@@ -1168,6 +1167,7 @@
 				AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */,
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
+				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,

@@ -40,11 +40,12 @@ extension IssuesInteractor: IssuesInteractorInput {
 
 private extension IssuesInteractor {
     func fetchIssues() {
-        service.getAllIssues { issues, error in
-            if let issues = issues {
-                self.output?.didReceive(objects: issues)
-            }
-        }
+        output?.didReceive(objects: [])
+//        service.getAllIssues { issues, error in
+//            if let issues = issues {
+//                self.output?.didReceive(objects: issues)
+//            }
+//        }
     }
     
     func fetchPullRequests() {
