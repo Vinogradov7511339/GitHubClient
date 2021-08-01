@@ -1,16 +1,23 @@
 PODS:
+  - Networking (0.1.0)
   - SwiftLint (0.42.0)
 
 DEPENDENCIES:
+  - Networking (from `DevPods/Networking`)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
     - SwiftLint
 
+EXTERNAL SOURCES:
+  Networking:
+    :path: DevPods/Networking
+
 SPEC CHECKSUMS:
+  Networking: 4023b4bc5ddd52e4126c60133cadefca21fec56c
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
 
-PODFILE CHECKSUM: 25cff8a9e924df84894cea7189cec980594b6dc0
+PODFILE CHECKSUM: 57659796d7d313c802b3f0129951cc5bc4925a4d
 
 COCOAPODS: 1.10.1

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 enum IssuesEndpoits {
     case issues(parameters: IssuesFilters)

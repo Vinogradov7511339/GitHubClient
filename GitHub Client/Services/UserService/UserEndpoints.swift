@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 enum UserEndpoints {
     case starred(user: UserProfile)

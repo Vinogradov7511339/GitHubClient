@@ -6,7 +6,3 @@
 //
 
 import Foundation
-
-enum ApplicationError: Error {
-    case incorrectURL
-}

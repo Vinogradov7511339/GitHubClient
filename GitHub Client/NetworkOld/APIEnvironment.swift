@@ -4,6 +4,7 @@
 //
 //  Created by Alexander Vinogradov on 15.07.2021.
 //
+import Networking
 
 protocol EnvironmentProtocol {
     var headers: RequestHeaders? { get }

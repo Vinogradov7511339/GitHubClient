@@ -7,19 +7,19 @@
 
 import Foundation
 
-extension Notification.Name {
-    public enum NetworkService {
+public extension Notification.Name {
+    enum NetworkService {
         public static let CriticalError = Notification.Name(rawValue: "CriticalError")
     }
 }
 
-enum HTTPError: Error {
+public enum HTTPError: Error {
     case notModified
     case badRequest(String?)
     case serverError(String?)
 }
 
-enum APIError: Error {
+public enum APIError: Error {
     case noData
     case invalidResponse
     case notModified
@@ -27,9 +27,16 @@ enum APIError: Error {
     case unknown
 }
 
-typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
+public enum NetworkingError: Error {
+    case incorrectURL
+}
 
-class NetworkService: Error {
+public typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
+
+open class NetworkService: Error {
+    
+    public init() {}
+    
     private let session = URLSession.shared
     
     private func request(_ endpoint: EndpointProtocol) throws -> URLRequest {
@@ -42,7 +49,7 @@ class NetworkService: Error {
         return request
     }
     
-    func request(_ endpont: EndpointProtocol, handler: @escaping ResponseHandler) {
+    public func request(_ endpont: EndpointProtocol, handler: @escaping ResponseHandler) {
         do {
             let request = try request(endpont)
             let task = session.dataTask(with: request) { data, response, error in
@@ -64,16 +71,16 @@ class NetworkService: Error {
 //    }
     
     
-    func check401(response: URLResponse?) {
+    public func check401(response: URLResponse?) {
         guard let httpResponse = response as? HTTPURLResponse else { return }
         if httpResponse.statusCode == 401 {
             DispatchQueue.main.async {
-                ApplicationPresenter.shared.logout()
+//                ApplicationPresenter.shared.logout()
             }
         }
     }
     
-    func handle(data: Data?, response: HTTPURLResponse, error: Error?) -> Result<Data, Error> {
+    public func handle(data: Data?, response: HTTPURLResponse, error: Error?) -> Result<Data, Error> {
         switch response.statusCode {
         case 200...299:
             if let data = data {
@@ -92,7 +99,7 @@ class NetworkService: Error {
         }
     }
     
-    func decode<T>(of type: T.Type, from data: Data) -> T? where T: Decodable {
+    public func decode<T>(of type: T.Type, from data: Data) -> T? where T: Decodable {
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -112,22 +119,22 @@ class NetworkService: Error {
         return nil
     }
 
-    func saveCashe(for response: HTTPURLResponse, responseType: Endpoint) {
-        if let lastModified = response.allHeaderFields["Last-Modified"] as? String {
-            responseType.setlastModifiedDate(lastModified)
-        }
-        
-        if let etag = response.allHeaderFields["Etag"] as? String {
-            responseType.setIfNoneMatch(etag)
-        }
-    }
-    
-    func url(base baseURL: String?, queryItems: [String: String] ) throws -> URL {
+//    func saveCashe(for response: HTTPURLResponse, responseType: Endpoint) {
+//        if let lastModified = response.allHeaderFields["Last-Modified"] as? String {
+//            responseType.setlastModifiedDate(lastModified)
+//        }
+//
+//        if let etag = response.allHeaderFields["Etag"] as? String {
+//            responseType.setIfNoneMatch(etag)
+//        }
+//    }
+//
+    public func url(base baseURL: String?, queryItems: [String: String] ) throws -> URL {
         guard let baseURL = baseURL else {
-            throw ApplicationError.incorrectURL
+            throw NetworkingError.incorrectURL
         }
         guard var urlComponents = URLComponents(string: baseURL) else {
-            throw ApplicationError.incorrectURL
+            throw NetworkingError.incorrectURL
         }
         urlComponents.queryItems = []
         for item in queryItems {
@@ -135,12 +142,12 @@ class NetworkService: Error {
             urlComponents.queryItems?.append(queryItem)
         }
         guard let url = urlComponents.url else {
-            throw ApplicationError.incorrectURL
+            throw NetworkingError.incorrectURL
         }
         return url
     }
     
-    func parameterized(url baseURL: URL, queryItems: [String: String]) throws -> URL {
+    public func parameterized(url baseURL: URL, queryItems: [String: String]) throws -> URL {
         return try url(base: baseURL.absoluteString, queryItems: queryItems)
     }
 }

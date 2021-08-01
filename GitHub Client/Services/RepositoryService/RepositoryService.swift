@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 class RepositoryService: NetworkService {
     func getRepositories(url: URL, completion: @escaping ([Repository]?, Error?) -> Void) {

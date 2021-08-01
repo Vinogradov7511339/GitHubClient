@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 enum RepositoriesEndpoint {
     case starred(login: String, repository: String)

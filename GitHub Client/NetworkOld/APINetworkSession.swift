@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 typealias DownloadHandler = (URL?, URLResponse?, Error?) -> Void
 

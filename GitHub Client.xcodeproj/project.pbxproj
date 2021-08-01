@@ -180,7 +180,6 @@
 		ADA68BC626B5C874004AC06C /* IssuesEndpoits.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
-		ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500426AD2E9500783E71 /* NetworkService.swift */; };
 		ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500526AD2E9500783E71 /* Endpoint.swift */; };
 		ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500726AD2E9500783E71 /* SearchService.swift */; };
 		ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500926AD2E9500783E71 /* TokenService.swift */; };
@@ -383,7 +382,6 @@
 		ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesEndpoits.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
-		ADA7500426AD2E9500783E71 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		ADA7500526AD2E9500783E71 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		ADA7500726AD2E9500783E71 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		ADA7500926AD2E9500783E71 /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
@@ -1041,7 +1039,6 @@
 				ADA7501B26AD923000783E71 /* UserService */,
 				ADC8180726B00DF700469BCF /* OrganizationService */,
 				ADA68BC426B5C85F004AC06C /* IssuesService */,
-				ADA7500426AD2E9500783E71 /* NetworkService.swift */,
 				ADA7500726AD2E9500783E71 /* SearchService.swift */,
 				ADA7500926AD2E9500783E71 /* TokenService.swift */,
 				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
@@ -1106,6 +1103,7 @@
 				AD3776DA269F2697000AA54C /* Frameworks */,
 				AD3776DB269F2697000AA54C /* Resources */,
 				ADA1D81826B71257000537C8 /* ShellScript */,
+				8E369A7EACDF67CAD20F53CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1220,6 +1218,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8E369A7EACDF67CAD20F53CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		ADA1D81826B71257000537C8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1337,7 +1352,6 @@
 				AD20E51826A9B2FD003BB5F1 /* IssueDetailsPresenter.swift in Sources */,
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
 				ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */,
-				ADA7501026AD2E9500783E71 /* NetworkService.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,

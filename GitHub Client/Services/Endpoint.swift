@@ -6,17 +6,7 @@
 //
 
 import Foundation
-
-typealias RequestHeaders = [String: String]
-typealias RequestParameters = [String: String]
-
-protocol EndpointProtocol {
-    var path: URL { get }
-    var method: RequestMethod { get }
-    var headers: RequestHeaders { get }
-    var parameters: RequestParameters { get }
-    var jsonBody: Data? { get }
-}
+import Networking
 
 enum Endpoint {
     case login(authCode: String)
@@ -24,13 +14,6 @@ enum Endpoint {
     case search(type: SearchType, text: String)
 }
 
-enum RequestMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case patch = "PATCH"
-    case delete = "DELETE"
-}
 
 extension Endpoint: EndpointProtocol {
     
