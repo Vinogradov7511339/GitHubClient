@@ -18,6 +18,8 @@ protocol RepositoryPresenterOutput: AnyObject {
 
 class RepositoryPreseter {
     weak var output: RepositoryPresenterOutput?
+    var interactor: RepositoryDetailsInteractorInput!
+    var readMe: String = ""
     
     let repository: Repository
     
@@ -29,7 +31,7 @@ class RepositoryPreseter {
         var header = [headerViewModel(repository)]
         header.append(contentsOf: firstSection(repository))
         let secondBlock = secondSection(repository)
-        let readMe = readMeViewModel(repository)
+        let readMe = readMeViewModel()
         let models = [header, secondBlock, [readMe]]
         return models
     }
@@ -76,14 +78,23 @@ class RepositoryPreseter {
         return models
     }
     
-    private func readMeViewModel(_ repository: Repository) -> Any {
-        return ReadMeCellViewModel()
+    private func readMeViewModel() -> Any {
+        return ReadMeCellViewModel(mdText: readMe)
     }
-    
+}
+
+// MARK: - RepositoryDetailsInteractorOutput
+extension RepositoryPreseter: RepositoryDetailsInteractorOutput {
+    func didReceive(readMe: String) {
+        self.readMe = readMe
+        DispatchQueue.main.async {
+            self.output?.display(viewModels: self.getModels())
+        }
+    }
 }
 
 extension RepositoryPreseter: RepositoryPresenterInput {
     func viewDidLoad() {
-        output?.display(viewModels: getModels())
+        interactor.fetchReadMe()
     }
 }

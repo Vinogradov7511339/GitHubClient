@@ -24,6 +24,23 @@ class RepositoryService: NetworkService {
         task.resume()
     }
     
+    func fetchReadMe(for repository: Repository, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+        let owner = repository.owner!.login
+        let repositoryName = repository.name!
+        let endpoint = RepositoriesEndpoint.readMe(owner: owner, repository: repositoryName)
+        request(endpoint) { data, response, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+                completion(readme, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+    }
+    
     func allRepositoriesToWhichIHasAccess(completion: @escaping ([Repository]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.allMyRepositories
         request(endpoint) { data, response, error in

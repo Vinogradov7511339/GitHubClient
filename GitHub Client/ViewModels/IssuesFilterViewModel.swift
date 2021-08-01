@@ -18,9 +18,9 @@ class IssuesFilterViewModel {
     weak var listener: FilterViewModelListener?
     weak var output: FilterViewModelOutput?
     
-    private var model: IssueRequestParameters
+    private var model: IssuesFilters
     
-    init(issueParams: IssueRequestParameters) {
+    init(issueParams: IssuesFilters) {
         self.model = issueParams
     }
     
@@ -143,7 +143,7 @@ extension IssuesFilterViewModel {
     
     func title(for type: FilterType) -> String {
         switch type {
-        case .filter: return "filter: \(model.filter)"
+        case .filter: return "type: \(model.filter)"
         case .state: return "state: \(model.state)"
         case .sort: return "sort: \(model.sort)"
         case .direction: return "direction: \(model.direction)"

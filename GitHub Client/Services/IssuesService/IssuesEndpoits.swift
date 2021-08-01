@@ -7,29 +7,8 @@
 
 import Foundation
 
-
-
-struct IssueRequestParameters {
-    var filter: String
-    var state: String
-    var sort: String
-    var direction: String
-    
-    var requestParameters: RequestParameters {
-        var params: RequestParameters = [:]
-        params["filter"] = filter
-        params["state"] = state
-        params["sort"] = sort
-        params["direction"] = direction
-        return params
-    }
-//    var since: String
-//    var labels = "" todo A list of comma separated label names. Example: bug,ui,@high https://docs.github.com/en/rest/reference/issues
-}
-
-
 enum IssuesEndpoits {
-    case issues(parameters: IssueRequestParameters)
+    case issues(parameters: IssuesFilters)
 }
 
 // MARK: - EndpointProtocol

@@ -20,7 +20,7 @@ protocol IssuesPresenterInput: FilterViewModelListener {
 
 protocol IssuesPresenterOutput: AnyObject {
     func display(viewModels: [Any])
-    func display(filter: IssueRequestParameters)
+    func display(filter: IssuesFilters)
     
     func push(to viewController: UIViewController)
     func present(_ viewController: UIViewController)
@@ -39,7 +39,7 @@ class IssuesPresenter {
         self.type = type
     }
     
-    private func createFilters(from obj: IssueRequestParameters) {
+    private func createFilters(from obj: IssuesFilters) {
 //        let viewModels = FilterViewModel.create(from: obj)
         output?.display(filter: obj)
     }
@@ -47,7 +47,7 @@ class IssuesPresenter {
 
 extension IssuesPresenter: FilterViewModelListener {
     func filterDidUpdated(object: Any) {
-        if let filter = object as? IssueRequestParameters {
+        if let filter = object as? IssuesFilters {
             interactor?.updateFilter(filter: filter)
         }
     }
@@ -64,7 +64,7 @@ extension IssuesPresenter: IssuesInteractorOutput {
         }
     }
     
-    func didReceive(filter: IssueRequestParameters) {
+    func didReceive(filter: IssuesFilters) {
         createFilters(from: filter)
     }
 }

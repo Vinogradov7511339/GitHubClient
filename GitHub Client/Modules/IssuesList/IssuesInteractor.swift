@@ -11,12 +11,12 @@ protocol IssuesInteractorInput {
     var output: IssuesInteractorOutput? { get set }
     func fetchObjects()
     func fetchFilter()
-    func updateFilter(filter: IssueRequestParameters)
+    func updateFilter(filter: IssuesFilters)
 }
 
 protocol IssuesInteractorOutput: AnyObject {
     func didReceive(objects: [Any])
-    func didReceive(filter: IssueRequestParameters)
+    func didReceive(filter: IssuesFilters)
 }
 
 class IssuesInteractor {
@@ -45,7 +45,7 @@ extension IssuesInteractor: IssuesInteractorInput {
         output?.didReceive(filter: issueFilters)
     }
     
-    func updateFilter(filter: IssueRequestParameters) {
+    func updateFilter(filter: IssuesFilters) {
         self.issueFilters = filter
         print("filter updated with: \(filter), should send request")
         FilterStorage.shared.setIssueFilter(filter)

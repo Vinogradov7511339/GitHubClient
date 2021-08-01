@@ -10,8 +10,8 @@ import Foundation
 class FilterStorage {
     static let shared = FilterStorage()
     
-    func getIssuesFilter() -> IssueRequestParameters {
-        return IssueRequestParameters(
+    func getIssuesFilter() -> IssuesFilters {
+        return IssuesFilters(
             filter: "all",
             state: "all",
             sort: "created",
@@ -19,7 +19,7 @@ class FilterStorage {
         )
     }
     
-    func setIssueFilter(_ filter: IssueRequestParameters) {
+    func setIssueFilter(_ filter: IssuesFilters) {
         
     }
 }

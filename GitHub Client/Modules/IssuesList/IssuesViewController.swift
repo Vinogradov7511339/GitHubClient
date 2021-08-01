@@ -80,7 +80,7 @@ extension IssuesViewController: IssuesPresenterOutput {
         tableView.reloadData()
     }
     
-    func display(filter: IssueRequestParameters) {
+    func display(filter: IssuesFilters) {
         let viewModel = IssuesFilterViewModel(issueParams: filter)
         viewModel.output = filterView
         viewModel.listener = presenter

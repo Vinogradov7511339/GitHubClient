@@ -128,6 +128,8 @@
 		AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */; };
 		AD25E4D226B6C3D60003B1E0 /* IssuesFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D126B6C3D60003B1E0 /* IssuesFilterViewModel.swift */; };
 		AD25E4D426B6D6990003B1E0 /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D326B6D6990003B1E0 /* FilterButton.swift */; };
+		AD25E4D826B6F15E0003B1E0 /* RepositoryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D726B6F15E0003B1E0 /* RepositoryDetailsInteractor.swift */; };
+		AD25E4DA26B6F9390003B1E0 /* ReadmeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D926B6F9390003B1E0 /* ReadmeResponse.swift */; };
 		AD3776E1269F2697000AA54C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E0269F2697000AA54C /* AppDelegate.swift */; };
 		AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E2269F2697000AA54C /* SceneDelegate.swift */; };
 		AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E4269F2697000AA54C /* SearchViewController.swift */; };
@@ -173,8 +175,7 @@
 		ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */; };
 		ADA68BB326B56B9A004AC06C /* IssuesFilterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB226B56B9A004AC06C /* IssuesFilterBuilder.swift */; };
 		ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */; };
-		ADA68BB826B56F4C004AC06C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BB726B56F4C004AC06C /* Filter.swift */; };
-		ADA68BBC26B570BB004AC06C /* IssuesFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */; };
+		ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */; };
 		ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BBE26B58792004AC06C /* FilterViewModel.swift */; };
 		ADA68BC626B5C874004AC06C /* IssuesEndpoits.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
@@ -327,6 +328,8 @@
 		AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extensions.swift"; sourceTree = "<group>"; };
 		AD25E4D126B6C3D60003B1E0 /* IssuesFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilterViewModel.swift; sourceTree = "<group>"; };
 		AD25E4D326B6D6990003B1E0 /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
+		AD25E4D726B6F15E0003B1E0 /* RepositoryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsInteractor.swift; sourceTree = "<group>"; };
+		AD25E4D926B6F9390003B1E0 /* ReadmeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmeResponse.swift; sourceTree = "<group>"; };
 		AD3776DD269F2697000AA54C /* GitHub Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3776E0269F2697000AA54C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3776E2269F2697000AA54C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -374,8 +377,7 @@
 		ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-3.png"; sourceTree = "<group>"; };
 		ADA68BB226B56B9A004AC06C /* IssuesFilterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilterBuilder.swift; sourceTree = "<group>"; };
 		ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilterViewController.swift; sourceTree = "<group>"; };
-		ADA68BB726B56F4C004AC06C /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilter.swift; sourceTree = "<group>"; };
+		ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilters.swift; sourceTree = "<group>"; };
 		ADA68BBE26B58792004AC06C /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesEndpoits.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
@@ -499,22 +501,12 @@
 		AD20E43E26A6B5C5003BB5F1 /* RepositoryDetails */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E44126A6B72B003BB5F1 /* Cells */,
-				AD20E43F26A6B5E2003BB5F1 /* RepositoryDetailsViewController.swift */,
-				AD20E44826A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift */,
 				AD20E53826AA9CC1003BB5F1 /* RepositoryDetailsConfigurator.swift */,
+				AD25E4D726B6F15E0003B1E0 /* RepositoryDetailsInteractor.swift */,
+				AD20E44826A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift */,
+				AD20E43F26A6B5E2003BB5F1 /* RepositoryDetailsViewController.swift */,
 			);
 			path = RepositoryDetails;
-			sourceTree = "<group>";
-		};
-		AD20E44126A6B72B003BB5F1 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				AD20E44226A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.swift */,
-				AD20E44326A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.xib */,
-				AD20E44626A6B845003BB5F1 /* ReadMeTableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		AD20E44C26A6F289003BB5F1 /* Storage */ = {
@@ -638,7 +630,9 @@
 				AD20E42626A5C44E003BB5F1 /* ProfileMostPopularCell */,
 				AD20E4F926A95DC1003BB5F1 /* FavoritesEmptyCell */,
 				AD20E4FE26A95F8A003BB5F1 /* RecentEventsCell */,
+				AD25E4D526B6E5510003B1E0 /* ReposDetailsHeaderCell */,
 				AD20E51226A9A81F003BB5F1 /* IssueCell */,
+				AD25E4D626B6E56A0003B1E0 /* ReposReadMeCell */,
 				AD20E51D26A9B64A003BB5F1 /* IssueDetailsHeaderCell */,
 				AD20E52226A9B67F003BB5F1 /* IssueDetailsCommentCell */,
 				AD20E53A26AAA3EC003BB5F1 /* DetailCell */,
@@ -835,6 +829,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AD25E4D526B6E5510003B1E0 /* ReposDetailsHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E44226A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.swift */,
+				AD20E44326A6B749003BB5F1 /* RepositoryDetailsHeaderTableViewCell.xib */,
+			);
+			path = ReposDetailsHeaderCell;
+			sourceTree = "<group>";
+		};
+		AD25E4D626B6E56A0003B1E0 /* ReposReadMeCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E44626A6B845003BB5F1 /* ReadMeTableViewCell.swift */,
+			);
+			path = ReposReadMeCell;
+			sourceTree = "<group>";
+		};
 		AD3776D4269F2697000AA54C = {
 			isa = PBXGroup;
 			children = (
@@ -856,7 +867,6 @@
 		AD3776DF269F2697000AA54C /* GitHub Client */ = {
 			isa = PBXGroup;
 			children = (
-				ADA68BBD26B5876F004AC06C /* ViewModels */,
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
 				AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */,
@@ -869,13 +879,14 @@
 				AD20E46226A84B37003BB5F1 /* Adapters */,
 				ADA68BB426B56B9F004AC06C /* Builders */,
 				AD20E4EE26A9489C003BB5F1 /* Cells */,
+				AD20E40A26A58D8C003BB5F1 /* Common */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD20E46E26A87936003BB5F1 /* Modules */,
-				ADA74FFF26AD2E7C00783E71 /* Services */,
-				AD20E40A26A58D8C003BB5F1 /* Common */,
-				AD20E44C26A6F289003BB5F1 /* Storage */,
 				AD20E47626A8B1D9003BB5F1 /* Resources */,
+				ADA74FFF26AD2E7C00783E71 /* Services */,
+				AD20E44C26A6F289003BB5F1 /* Storage */,
+				ADA68BBD26B5876F004AC06C /* ViewModels */,
 				AD3776EE269F2698000AA54C /* Info.plist */,
 				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
@@ -988,6 +999,7 @@
 				AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */,
 				ADC8180126B0021F00469BCF /* Discussion.swift */,
 				ADC8180326B002FE00469BCF /* Reactions.swift */,
+				AD25E4D926B6F9390003B1E0 /* ReadmeResponse.swift */,
 			);
 			path = GithubApi;
 			sourceTree = "<group>";
@@ -995,8 +1007,7 @@
 		ADA68BBA26B5709E004AC06C /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				ADA68BB726B56F4C004AC06C /* Filter.swift */,
-				ADA68BBB26B570BB004AC06C /* IssuesFilter.swift */,
+				ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1025,11 +1036,11 @@
 				ADA7501826AD2F0300783E71 /* RepositoryService */,
 				ADA7501B26AD923000783E71 /* UserService */,
 				ADC8180726B00DF700469BCF /* OrganizationService */,
-				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
 				ADA68BC426B5C85F004AC06C /* IssuesService */,
 				ADA7500426AD2E9500783E71 /* NetworkService.swift */,
 				ADA7500726AD2E9500783E71 /* SearchService.swift */,
 				ADA7500926AD2E9500783E71 /* TokenService.swift */,
+				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1238,6 +1249,7 @@
 				AD20E44026A6B5E2003BB5F1 /* RepositoryDetailsViewController.swift in Sources */,
 				ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */,
 				AD20E52F26AA9429003BB5F1 /* DetailTableViewCell.swift in Sources */,
+				AD25E4DA26B6F9390003B1E0 /* ReadmeResponse.swift in Sources */,
 				AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */,
 				AD20E52826AA0038003BB5F1 /* IssuesListConfigurator.swift in Sources */,
 				AD642CD826ADCC1E004FCA2D /* UsersListPresenter.swift in Sources */,
@@ -1247,6 +1259,7 @@
 				AD20E53F26AAA634003BB5F1 /* ExploreConfigurator.swift in Sources */,
 				AD20E4F426A94A70003BB5F1 /* HomeInteractor.swift in Sources */,
 				AD20E4ED26A8C060003BB5F1 /* HomeViewController.swift in Sources */,
+				AD25E4D826B6F15E0003B1E0 /* RepositoryDetailsInteractor.swift in Sources */,
 				AD20E3DB269F5139003BB5F1 /* TabBarController.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD25E4D226B6C3D60003B1E0 /* IssuesFilterViewModel.swift in Sources */,
@@ -1277,7 +1290,6 @@
 				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
 				AD642CE226AEC29C004FCA2D /* UsersListInteractor.swift in Sources */,
-				ADA68BB826B56F4C004AC06C /* Filter.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
@@ -1314,7 +1326,7 @@
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
-				ADA68BBC26B570BB004AC06C /* IssuesFilter.swift in Sources */,
+				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
