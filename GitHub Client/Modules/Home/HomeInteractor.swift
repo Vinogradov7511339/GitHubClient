@@ -30,15 +30,15 @@ class HomeInteractor {
 // MARK: - MyWorkInteractorInput
 extension HomeInteractor: HomeInteractorInput {
     func fetchAllIssues() {
-        issueService.getAllIssues { [weak self] issues, error in
-            if let issues = issues {
-                self?.output?.didReceive(allIssues: issues)
-                return
-            }
-            if let error = error {
-                self?.output?.didReceive(error: error)
-            }
-        }
+//        issueService.getAllIssues(parameters: <#RequestParameters#>) { [weak self] issues, error in
+//            if let issues = issues {
+//                self?.output?.didReceive(allIssues: issues)
+//                return
+//            }
+//            if let error = error {
+//                self?.output?.didReceive(error: error)
+//            }
+//        }
     }
     
     func fetchAllRepositoriesIHaveAccess() {

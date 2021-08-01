@@ -11,13 +11,6 @@ class IssuesViewController: UIViewController {
     
     var presenter: IssuesPresenterInput!
     
-    private var customNavBar: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        return view
-    }()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,8 +25,13 @@ class IssuesViewController: UIViewController {
 //        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search GitHub"
-        
         return searchController
+    }()
+    
+    private lazy var filterView: FilterView = {
+        let filterView = FilterView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
+//        filterView.delegate = presenter
+        return filterView
     }()
     
     private let refreshControl = UIRefreshControl()
@@ -48,24 +46,20 @@ class IssuesViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
+        tableView.tableHeaderView = filterView
         cellManager.register(tableView: tableView)
         
         configureNavBar()
-        
         presenter?.viewDidLoad()
-        
-        let header = FilterView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
-        tableView.tableHeaderView = header
-        header.configure(with: FilterType.issueFilters)
     }
     
     @objc func refresh(_ sender: AnyObject) {
         presenter?.refresh()
     }
-}
-
-extension IssuesViewController: UISearchBarDelegate {
     
+    @objc func addFilter(_ sender: AnyObject) {
+        presenter?.addFilter()
+    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -86,8 +80,19 @@ extension IssuesViewController: IssuesPresenterOutput {
         tableView.reloadData()
     }
     
+    func display(filter: IssueRequestParameters) {
+        let viewModel = IssuesFilterViewModel(issueParams: filter)
+        viewModel.output = filterView
+        viewModel.listener = presenter
+        filterView.configure(with: viewModel)
+    }
+    
     func push(to viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
     }
 }
 
@@ -101,9 +106,6 @@ extension IssuesViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension IssuesViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }
@@ -119,18 +121,10 @@ extension IssuesViewController: UITableViewDataSource {
 // MARK: - setup views
 private extension IssuesViewController {
     func setupViews() {
-//        view.addSubview(customNavBar)
         view.addSubview(tableView)
     }
 
     func activateConstraints() {
-//        let navBarHeight: CGFloat = 30
-        
-//        customNavBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        customNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        customNavBar.topAnchor.constraint(equalTo: navigationController!.topAnchor).isActive = true
-//        customNavBar.heightAnchor.constraint(equalToConstant: navBarHeight).isActive = true
-        
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -144,7 +138,8 @@ private extension IssuesViewController {
         case .discussions: title = "Discussions"
         }
         
-//        navigationController?.navigationBar.borderWidth = 0.0
+        let addFilterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFilter(_:)))
+        self.navigationItem.rightBarButtonItem  = addFilterButton
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController

@@ -13,8 +13,8 @@ class IssuesService: NetworkService {
         //todo
     }
     
-    func getAllIssues(completion: @escaping ([Issue]?, Error?) -> Void) {
-        let endpoint = Endpoint.allIssue
+    func getAllIssues(parameters: IssueRequestParameters, completion: @escaping ([Issue]?, Error?) -> Void) {
+        let endpoint = IssuesEndpoits.issues(parameters: parameters)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)

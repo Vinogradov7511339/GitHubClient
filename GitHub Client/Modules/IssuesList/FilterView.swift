@@ -7,20 +7,6 @@
 
 import UIKit
 
-struct FilterType {
-    static let open = Filter(types: ["Open","Closed", "All"])
-    static let created = Filter(types: ["Created", "Assigned", "Mentioned"])
-    static let visability = Filter(types: ["Show all", "Public repositories only", "Private repositories only"])
-    static let organization = Filter(types: ["Organization"])
-    static let repository = Filter(types: ["Repository"])
-    static let sortBy = Filter(types: ["Newest", "Oldest"])
-    
-    static let issueFilters = [open, created, visability, organization, repository, sortBy]
-}
-struct Filter {
-    let types: [String]
-}
-
 class FilterView: UIView {
     
     private lazy var scrollView: UIScrollView = {
@@ -38,9 +24,11 @@ class FilterView: UIView {
         return stackView
     }()
     
-    func configure(with filters: [Filter]) {
-        for filter in filters {
-            createFilter(with: filter)
+    func configure(with viewModel: FilterViewModel) {
+        let buttons = viewModel.filterButtons
+        buttons.forEach {
+            stackView.addArrangedSubview($0)
+            $0.widthAnchor.constraint(equalToConstant: $0.intrinsicContentSize.width).isActive = true
         }
     }
     
@@ -60,6 +48,16 @@ class FilterView: UIView {
     }
 }
 
+extension FilterView: FilterViewModelOutput {
+    func update(button: UIButton, at index: Int) {
+        let oldButton = stackView.arrangedSubviews[index] as! UIButton
+        stackView.removeArrangedSubview(oldButton)
+        oldButton.removeFromSuperview()
+        stackView.insertArrangedSubview(button, at: index)
+        button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width).isActive = true
+    }
+}
+
 private extension FilterView {
     func setupViews() {
         addSubview(scrollView)
@@ -76,28 +74,5 @@ private extension FilterView {
         stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16.0).isActive = true
         stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-    }
-    
-    func createFilter(with filter: Filter) {
-        let filterButton = UIButton(type: .roundedRect)
-        filterButton.translatesAutoresizingMaskIntoConstraints = false
-        filterButton.setTitle(filter.types[0], for: .normal)
-        filterButton.setTitleColor(.secondaryLabel, for: .normal)
-        filterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        
-        let image = UIImage(systemName: "chevron.down")?
-            .applyingSymbolConfiguration(.init(scale: .small))
-//            .withTintColor(.secondaryLabel, renderingMode: .alwaysTemplate)
-        filterButton.setImage(image, for: .normal)
-        filterButton.tintColor = .secondaryLabel
-        
-        filterButton.contentEdgeInsets = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
-        filterButton.semanticContentAttribute = .forceRightToLeft
-        filterButton.cornerRadius = filterButton.intrinsicContentSize.height / 2.0
-        filterButton.backgroundColor = .systemBackground
-        filterButton.borderColor = .placeholderText
-        
-        stackView.addArrangedSubview(filterButton)
-        filterButton.widthAnchor.constraint(equalToConstant: filterButton.intrinsicContentSize.width).isActive = true
     }
 }
