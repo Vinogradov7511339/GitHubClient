@@ -76,4 +76,25 @@ class ApplicationPresenter {
             assert(false, "Error \(error)")
         }
     }
+    
+    @objc func openAction(_ sender: AnyObject) {
+        print("aaaa")
+    }
+    
+    func openMenu() -> UIMenu {
+        let openCommand =
+                UIKeyCommand(title: NSLocalizedString("OpenTitle", comment: ""),
+                             image: nil,
+                             action: #selector(openAction),
+                             input: "O",
+                             modifierFlags: .command,
+                             propertyList: nil)
+            let openMenu =
+                UIMenu(title: "",
+                       image: nil,
+                       identifier: UIMenu.Identifier("com.example.apple-samplecode.menus.openMenu"),
+                       options: .displayInline,
+                       children: [openCommand])
+            return openMenu
+    }
 }

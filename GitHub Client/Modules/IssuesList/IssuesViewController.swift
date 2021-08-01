@@ -28,6 +28,12 @@ class IssuesViewController: UIViewController {
         return searchController
     }()
     
+    private lazy var filterView: FilterView = {
+        let filterView = FilterView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
+//        filterView.delegate = presenter
+        return filterView
+    }()
+    
     private let refreshControl = UIRefreshControl()
     private let cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
     private var viewModels: [Any] = []
@@ -40,15 +46,11 @@ class IssuesViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
+        tableView.tableHeaderView = filterView
         cellManager.register(tableView: tableView)
         
         configureNavBar()
-        
         presenter?.viewDidLoad()
-        
-        let header = FilterView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40.0))
-        tableView.tableHeaderView = header
-        header.configure(with: TempFilter.issueFilters)
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -76,6 +78,13 @@ extension IssuesViewController: IssuesPresenterOutput {
         self.viewModels = viewModels
         refreshControl.endRefreshing()
         tableView.reloadData()
+    }
+    
+    func display(filter: IssueRequestParameters) {
+        let viewModel = IssuesFilterViewModel(issueParams: filter)
+        viewModel.output = filterView
+        viewModel.listener = presenter
+        filterView.configure(with: viewModel)
     }
     
     func push(to viewController: UIViewController) {

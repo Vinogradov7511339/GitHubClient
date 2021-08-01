@@ -20,7 +20,6 @@ protocol EndpointProtocol {
 
 enum Endpoint {
     case login(authCode: String)
-    case allIssue
     case mostPopularRepositories
     case search(type: SearchType, text: String)
 }
@@ -38,7 +37,6 @@ extension Endpoint: EndpointProtocol {
     var path: URL {
         switch self {
         case .login(_): return URL(string: "https://github.com/login/oauth/access_token")!
-        case .allIssue: return URL(string: "https://api.github.com/issues")!
         case .mostPopularRepositories: return URL(string: "https://api.github.com/search/repositories")!
         case .search(let type, _):
             switch type {
@@ -79,8 +77,6 @@ extension Endpoint: EndpointProtocol {
     
     var parameters: RequestParameters {
         switch self {
-        case .allIssue:
-            return ["filter" : "all"]
         case .mostPopularRepositories:
             var query: [String: String] = [:]
             query["q"] = "swift"
