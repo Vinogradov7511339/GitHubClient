@@ -13,7 +13,7 @@ struct DetailCellViewModel {
     let subtitle: String
     
     init(repository: Repository) {
-        avatarUrl = repository.owner?.avatar_url
+        avatarUrl = repository.owner?.avatarUrl
         title = repository.owner?.login ?? ""
         subtitle = repository.name ?? ""
     }

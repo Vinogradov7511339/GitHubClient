@@ -17,7 +17,7 @@ struct RecentEventsCellViewModel {
     
     init(issue: Issue) {
         eventImage = UIImage.issue
-        eventName = issue.repository?.full_name ?? ""
+        eventName = issue.repository?.fullName ?? ""
         eventTitle = issue.title ?? ""
         authorName = issue.user?.name ?? ""
         date = ""

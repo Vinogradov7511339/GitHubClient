@@ -24,7 +24,7 @@ struct FeaturedCellViewModel {
         repositoryName = repository.name ?? ""
         repositoryDescription = repository.description ?? ""
         isStarred = false
-        starsCount = "\(repository.stargazers_count ?? 0)"
+        starsCount = "\(repository.stargazersCount ?? 0)"
         language = repository.language ?? ""
         languageColor = UIColor.getLanguageColor(for: repository.language)
     }

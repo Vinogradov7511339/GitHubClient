@@ -22,7 +22,7 @@ class AuthorizationViewController: UIViewController {
     }()
     
     private lazy var authRequest: URLRequest = {
-        let stringUrl = "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.CLIENT_ID + "&redirect_uri=" + GithubConstants.REDIRECT_URI + "&state=" + uuid
+        let stringUrl = "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.clientId + "&redirect_uri=" + GithubConstants.redirectUrl + "&state=" + uuid
         let url = URL(string: stringUrl)!
         let request = URLRequest(url: url)
         return request
@@ -95,16 +95,6 @@ extension AuthorizationViewController: WKNavigationDelegate {
         self.requestForCallbackUl(navigationAction.request)
         decisionHandler(.allow)
     }
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-//        decisionHandler(.allow)
-//    }
-//
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
-//        let preferences = WKWebpagePreferences()
-//        preferences.allowsContentJavaScript = true
-//        decisionHandler(.allow, preferences)
-//    }
 }
 
 // MARK: - setup views

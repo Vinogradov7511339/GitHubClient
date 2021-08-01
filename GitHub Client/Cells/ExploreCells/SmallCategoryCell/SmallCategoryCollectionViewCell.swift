@@ -14,7 +14,7 @@ struct SmallCategoryCellViewModel {
     let followers: String
     
     init(profile: UserProfile) {
-        avatarUrl = profile.avatar_url
+        avatarUrl = profile.avatarUrl
         login = profile.login ?? ""
         followers = "\(profile.followers ?? 0) followers"
     }

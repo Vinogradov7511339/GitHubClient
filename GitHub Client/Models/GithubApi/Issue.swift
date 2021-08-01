@@ -9,13 +9,13 @@ import Foundation
 
 struct Issue: Codable {
     let id: Int
-    let node_id: String?
+    let nodeId: String?
     let url: URL?
-    let repository_url: URL?
-    let labels_url: String?
-    let comments_url: URL?
-    let events_url: URL?
-    let html_url: URL?
+    let repositoryUrl: URL?
+    let labelsUrl: String?
+    let commentsUrl: URL?
+    let eventsUrl: URL?
+    let htmlUrl: URL?
     let number: Int?
     let state: String?
     let title: String?
@@ -26,12 +26,12 @@ struct Issue: Codable {
     let assignees: [UserProfile?]?
     let milestone: Milestone?
     let locked: Bool?
-    let active_lock_reason: String?
+    let activeLockReason: String?
     let comments: Int?
-    let pull_request: PullRequest?
-    let closed_at: String?
-    let created_at: String?
-    let updated_at: String?
+    let pullRequest: PullRequest?
+    let closedAt: String?
+    let createdAt: String?
+    let updatedAt: String?
     let repository: Repository?
-    let author_association: String?
+    let authorAssociation: String?
 }

@@ -50,7 +50,7 @@ class FilterView: UIView {
 
 extension FilterView: FilterViewModelOutput {
     func update(button: UIButton, at index: Int) {
-        let oldButton = stackView.arrangedSubviews[index] as! UIButton
+        guard let oldButton = stackView.arrangedSubviews[index] as? UIButton else { fatalError() }
         stackView.removeArrangedSubview(oldButton)
         oldButton.removeFromSuperview()
         stackView.insertArrangedSubview(button, at: index)

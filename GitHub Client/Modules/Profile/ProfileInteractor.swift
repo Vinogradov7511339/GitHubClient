@@ -76,11 +76,11 @@ private extension ProfileInteractor {
 private extension ProfileInteractor {
     
     func getLocalProfile() {
-        localStorage.getUser {  userDBModel in
+//        localStorage.getUser {  userDBModel in
 //            let user = userDBModel.map { UserProfileAdapter.fromDBModel($0) }
 //            self.userProfile = user.first!
 //            self.output?.didReceive(profile: user.first!)
-        }
+//        }
     }
     
     func getLocalPopularRepositories() {

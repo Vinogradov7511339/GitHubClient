@@ -29,13 +29,13 @@ class UserStorage {
         let ud = UserDefaults.standard
         guard let token = ud.string(forKey: "ACCESS_TOKEN") else { return nil}
         guard let tokenType = ud.string(forKey: "TOKEN_TYPE") else { return nil }
-        return TokenResponse(access_token: token, scope: "", token_type: tokenType)
+        return TokenResponse(accessToken: token, scope: "", tokenType: tokenType)
     }
     
     func saveTokenResponse(_ response: TokenResponse) {
         let ud = UserDefaults.standard
-        ud.setValue(response.access_token, forKey: "ACCESS_TOKEN")
-        ud.setValue(response.token_type, forKey: "TOKEN_TYPE")
+        ud.setValue(response.accessToken, forKey: "ACCESS_TOKEN")
+        ud.setValue(response.tokenType, forKey: "TOKEN_TYPE")
     }
     
     func clearStorage() {

@@ -40,7 +40,6 @@
 		AD20E44926A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44826A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift */; };
 		AD20E44B26A6BBAE003BB5F1 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44A26A6BBAE003BB5F1 /* TableViewCell.swift */; };
 		AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */; };
-		AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44F26A6FC32003BB5F1 /* Model.xcdatamodeld */; };
 		AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */; };
 		AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */; };
 		AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45626A723B0003BB5F1 /* AsyncOperation.swift */; };
@@ -242,7 +241,6 @@
 		AD20E44826A6B99C003BB5F1 /* RepositoryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsPresenter.swift; sourceTree = "<group>"; };
 		AD20E44A26A6BBAE003BB5F1 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		AD20E45026A6FC32003BB5F1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		AD20E45626A723B0003BB5F1 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
@@ -517,7 +515,6 @@
 		AD20E44C26A6F289003BB5F1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E44F26A6FC32003BB5F1 /* Model.xcdatamodeld */,
 				AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */,
 				AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */,
 				AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */,
@@ -1344,7 +1341,6 @@
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
-				AD20E45126A6FC32003BB5F1 /* Model.xcdatamodeld in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
 				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
@@ -1611,19 +1607,6 @@
 			productName = TextCompiler;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		AD20E44F26A6FC32003BB5F1 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AD20E45026A6FC32003BB5F1 /* Model.xcdatamodel */,
-			);
-			currentVersion = AD20E45026A6FC32003BB5F1 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AD3776D5269F2697000AA54C /* Project object */;
 }

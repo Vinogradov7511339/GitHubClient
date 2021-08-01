@@ -17,169 +17,242 @@ struct License: Codable {
     let key: String?
     let name: String?
     let url: URL?
-    let spdx_id: String?
-    let node_id: String?
-    let html_url: URL?
+    let spdxId: String?
+    let nodeId: String?
+    let htmlUrl: URL?
 }
 
 struct RepositoriesResponse: Codable {
-    let total_count: Int
-    let incomplete_results: Bool
+    let totalCount: Int
+    let incompleteResults: Bool
     let items: [Repository]?
 }
 
 // https://docs.github.com/en/rest/reference/repos
 class Repository: Codable {
     let id: Int
-    let node_id: String?
+    let nodeId: String?
     let name: String?
-    let full_name: String?
+    let fullName: String?
     let owner: UserProfile?
 //    let isPrivate: Bool // private
-    let html_url: URL?
+    let htmlUrl: URL?
     let description: String?
     let fork: Bool?
     let url: URL?
-    let archive_url: String?
-    let assignees_url: String?
-    let blobs_url: String?
-    let branches_url: String?
-    let collaborators_url: String?
-    let comments_url: String?
-    let commits_url: String?
-    let compare_url: String?
-    let contents_url: String?
-    let contributors_url: URL?
-    let deployments_url: URL?
-    let downloads_url: URL?
-    let events_url: URL?
-    let forks_url: URL?
-    let git_commits_url: String?
-    let git_refs_url: String?
-    let git_tags_url: String?
-    let git_url: URL?
-    let issue_comment_url: String?
-    let issue_events_url: String?
-    let issues_url: String?
-    let keys_url: String?
-    let labels_url: String?
-    let languages_url: URL?
-    let merges_url: URL?
-    let milestones_url: String?
-    let notifications_url: String?
-    let pulls_url: String?
-    let releases_url: String?
-    let ssh_url: URL?
-    let stargazers_url: URL?
-    let statuses_url: String?
-    let subscribers_url: URL?
-    let subscription_url: URL?
-    let tags_url: URL?
-    let teams_url: URL?
-    let trees_url: String?
-    let clone_url: URL?
-    let mirror_url: String?
-    let hooks_url: URL?
-    let svn_url: URL?
+    let archiveUrl: String?
+    let assigneesUrl: String?
+    let blobsUrl: String?
+    let branchesUrl: String?
+    let collaboratorsUrl: String?
+    let commentsUrl: String?
+    let commitsUrl: String?
+    let compareUrl: String?
+    let contentsUrl: String?
+    let contributorsUrl: URL?
+    let deploymentsUrl: URL?
+    let downloadsUrl: URL?
+    let eventsUrl: URL?
+    let forksUrl: URL?
+    let gitCommitsrl: String?
+    let gitRefsUrl: String?
+    let gitTagsUrl: String?
+    let gitUrl: URL?
+    let issueCommentUrl: String?
+    let issueEventsUrl: String?
+    let issuesUrl: String?
+    let keysUrl: String?
+    let labelsUrl: String?
+    let languagesUrl: URL?
+    let mergesUrl: URL?
+    let milestonesUrl: String?
+    let notificationsUrl: String?
+    let pullsUrl: String?
+    let releasesUrl: String?
+    let sshUrl: URL?
+    let stargazersUrl: URL?
+    let statusesUrl: String?
+    let subscribersUrl: URL?
+    let subscriptionUrl: URL?
+    let tagsUrl: URL?
+    let teamsUrl: URL?
+    let treesUrl: String?
+    let cloneUrl: URL?
+    let mirrorUrl: String?
+    let hooksUrl: URL?
+    let svnUrl: URL?
     let homepage: String?
     let language: String?
-    let forks_count: Int?
-    let stargazers_count: Int?
-    let watchers_count: Int?
+    let forksCount: Int?
+    let stargazersCount: Int?
+    let watchersCount: Int?
     let size: Int?
-    let default_branch: String?
-    let open_issues_count: Int?
-    let is_template: Bool?
+    let defaultBranch: String?
+    let openIssuesCount: Int?
+    let isTemplate: Bool?
     let topics: [String]?
-    let has_issues: Bool?
-    let has_projects: Bool?
-    let has_wiki: Bool?
-    let has_pages: Bool?
-    let has_downloads: Bool?
+    let hasIssues: Bool?
+    let hasProjects: Bool?
+    let hasWiki: Bool?
+    let hasPages: Bool?
+    let hasDownloads: Bool?
     let archived: Bool?
     let disabled: Bool?
     let visibility: String?
-    let pushed_at: String?
-    let created_at: String?
-    let updated_at: String?
+    let pushedAt: String?
+    let createdAt: String?
+    let updatedAt: String?
     let permissions: Permissions?
-    let template_repository: Repository?
+    let templateRepository: Repository?
     let license: License?
     
-    init(id: Int, node_id: String?, name: String?, full_name: String?, owner: UserProfile?, html_url: URL?, description: String?, fork: Bool?, url: URL?, archive_url: String?, assignees_url: String?, blobs_url: String?, branches_url: String?, collaborators_url: String?, comments_url: String?, commits_url: String?, compare_url: String?, contents_url: String?, contributors_url: URL?, deployments_url: URL?, downloads_url: URL?, events_url: URL?, forks_url: URL?, git_commits_url: String?, git_refs_url: String?, git_tags_url: String?, git_url: URL?, issue_comment_url: String?, issue_events_url: String?, issues_url: String?, keys_url: String?, labels_url: String?, languages_url: URL?, merges_url: URL?, milestones_url: String?, notifications_url: String?, pulls_url: String?, releases_url: String?, ssh_url: URL?, stargazers_url: URL?, statuses_url: String?, subscribers_url: URL?, subscription_url: URL?, tags_url: URL?, teams_url: URL?, trees_url: String?, clone_url: URL?, mirror_url: String?, hooks_url: URL?, svn_url: URL?, homepage: String?, language: String?, forks_count: Int?, stargazers_count: Int?, watchers_count: Int?, size: Int?, default_branch: String?, open_issues_count: Int?, is_template: Bool?, topics: [String]?, has_issues: Bool?, has_projects: Bool?, has_wiki: Bool?, has_pages: Bool?, has_downloads: Bool?, archived: Bool?, disabled: Bool?, visibility: String?, pushed_at: String?, created_at: String?, updated_at: String?, permissions: Permissions?, template_repository: Repository?, license: License?) {
+    init(id: Int,
+         nodeId: String?,
+         name: String?,
+         fullName: String?,
+         owner: UserProfile?,
+         htmlUrl: URL?,
+         description: String?,
+         fork: Bool?,
+         url: URL?,
+         archiveUrl: String?,
+         assigneesUrl: String?,
+         blobsUrl: String?,
+         branchesUrl: String?,
+         collaboratorsUrl: String?,
+         commentsUrl: String?,
+         commitsUrl: String?,
+         compareUrl: String?,
+         contentsUrl: String?,
+         contributorsUrl: URL?,
+         deploymentsUrl: URL?,
+         downloadsUrl: URL?,
+         eventsUrl: URL?,
+         forksUrl: URL?,
+         gitCommitsrl: String?,
+         gitRefsUrl: String?,
+         gitTagsUrl: String?,
+         gitUrl: URL?,
+         issueCommentUrl: String?,
+         issueEventsUrl: String?,
+         issuesUrl: String?,
+         keysUrl: String?,
+         labelsUrl: String?,
+         languagesUrl: URL?,
+         mergesUrl: URL?,
+         milestonesUrl: String?,
+         notificationsUrl: String?,
+         pullsUrl: String?,
+         releasesUrl: String?,
+         sshUrl: URL?,
+         stargazersUrl: URL?,
+         statusesUrl: String?,
+         subscribersUrl: URL?,
+         subscriptionUrl: URL?,
+         tagsUrl: URL?,
+         teamsUrl: URL?,
+         treesUrl: String?,
+         cloneUrl: URL?,
+         mirrorUrl: String?,
+         hooksUrl: URL?,
+         svnUrl: URL?,
+         homepage: String?,
+         language: String?,
+         forksCount: Int?,
+         stargazersCount: Int?,
+         watchersCount: Int?,
+         size: Int?,
+         defaultBranch: String?,
+         openIssuesCount: Int?,
+         isTemplate: Bool?,
+         topics: [String]?,
+         hasIssues: Bool?,
+         hasProjects: Bool?,
+         hasWiki: Bool?,
+         hasPages: Bool?,
+         hasDownloads: Bool?,
+         archived: Bool?,
+         disabled: Bool?,
+         visibility: String?,
+         pushedAt: String?,
+         createdAt: String?,
+         updatedAt: String?,
+         permissions: Permissions?,
+         templateRepository: Repository?,
+         license: License?) {
         self.id = id
-        self.node_id = node_id
+        self.nodeId = nodeId
         self.name = name
-        self.full_name = full_name
+        self.fullName = fullName
         self.owner = owner
-        self.html_url = html_url
+        self.htmlUrl = htmlUrl
         self.description = description
         self.fork = fork
         self.url = url
-        self.archive_url = archive_url
-        self.assignees_url = assignees_url
-        self.blobs_url = blobs_url
-        self.branches_url = branches_url
-        self.collaborators_url = collaborators_url
-        self.comments_url = comments_url
-        self.commits_url = commits_url
-        self.compare_url = compare_url
-        self.contents_url = contents_url
-        self.contributors_url = contributors_url
-        self.deployments_url = deployments_url
-        self.downloads_url = downloads_url
-        self.events_url = events_url
-        self.forks_url = forks_url
-        self.git_commits_url = git_commits_url
-        self.git_refs_url = git_refs_url
-        self.git_tags_url = git_tags_url
-        self.git_url = git_url
-        self.issue_comment_url = issue_comment_url
-        self.issue_events_url = issue_events_url
-        self.issues_url = issues_url
-        self.keys_url = keys_url
-        self.labels_url = labels_url
-        self.languages_url = languages_url
-        self.merges_url = merges_url
-        self.milestones_url = milestones_url
-        self.notifications_url = notifications_url
-        self.pulls_url = pulls_url
-        self.releases_url = releases_url
-        self.ssh_url = ssh_url
-        self.stargazers_url = stargazers_url
-        self.statuses_url = statuses_url
-        self.subscribers_url = subscribers_url
-        self.subscription_url = subscription_url
-        self.tags_url = tags_url
-        self.teams_url = teams_url
-        self.trees_url = trees_url
-        self.clone_url = clone_url
-        self.mirror_url = mirror_url
-        self.hooks_url = hooks_url
-        self.svn_url = svn_url
+        self.archiveUrl = archiveUrl
+        self.assigneesUrl = assigneesUrl
+        self.blobsUrl = blobsUrl
+        self.branchesUrl = branchesUrl
+        self.collaboratorsUrl = collaboratorsUrl
+        self.commentsUrl = commentsUrl
+        self.commitsUrl = commitsUrl
+        self.compareUrl = compareUrl
+        self.contentsUrl = contentsUrl
+        self.contributorsUrl = contributorsUrl
+        self.deploymentsUrl = deploymentsUrl
+        self.downloadsUrl = downloadsUrl
+        self.eventsUrl = eventsUrl
+        self.forksUrl = forksUrl
+        self.gitCommitsrl = gitCommitsrl
+        self.gitRefsUrl = gitRefsUrl
+        self.gitTagsUrl = gitTagsUrl
+        self.gitUrl = gitUrl
+        self.issueCommentUrl = issueCommentUrl
+        self.issueEventsUrl = issueEventsUrl
+        self.issuesUrl = issuesUrl
+        self.keysUrl = keysUrl
+        self.labelsUrl = labelsUrl
+        self.languagesUrl = languagesUrl
+        self.mergesUrl = mergesUrl
+        self.milestonesUrl = milestonesUrl
+        self.notificationsUrl = notificationsUrl
+        self.pullsUrl = pullsUrl
+        self.releasesUrl = releasesUrl
+        self.sshUrl = sshUrl
+        self.stargazersUrl = stargazersUrl
+        self.statusesUrl = statusesUrl
+        self.subscribersUrl = subscribersUrl
+        self.subscriptionUrl = subscriptionUrl
+        self.tagsUrl = tagsUrl
+        self.teamsUrl = teamsUrl
+        self.treesUrl = treesUrl
+        self.cloneUrl = cloneUrl
+        self.mirrorUrl = mirrorUrl
+        self.hooksUrl = hooksUrl
+        self.svnUrl = svnUrl
         self.homepage = homepage
         self.language = language
-        self.forks_count = forks_count
-        self.stargazers_count = stargazers_count
-        self.watchers_count = watchers_count
+        self.forksCount = forksCount
+        self.stargazersCount = stargazersCount
+        self.watchersCount = watchersCount
         self.size = size
-        self.default_branch = default_branch
-        self.open_issues_count = open_issues_count
-        self.is_template = is_template
+        self.defaultBranch = defaultBranch
+        self.openIssuesCount = openIssuesCount
+        self.isTemplate = isTemplate
         self.topics = topics
-        self.has_issues = has_issues
-        self.has_projects = has_projects
-        self.has_wiki = has_wiki
-        self.has_pages = has_pages
-        self.has_downloads = has_downloads
+        self.hasIssues = hasIssues
+        self.hasProjects = hasProjects
+        self.hasWiki = hasWiki
+        self.hasPages = hasPages
+        self.hasDownloads = hasDownloads
         self.archived = archived
         self.disabled = disabled
         self.visibility = visibility
-        self.pushed_at = pushed_at
-        self.created_at = created_at
-        self.updated_at = updated_at
+        self.pushedAt = pushedAt
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.permissions = permissions
-        self.template_repository = template_repository
+        self.templateRepository = templateRepository
         self.license = license
     }
 }

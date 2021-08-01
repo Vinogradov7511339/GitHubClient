@@ -50,7 +50,9 @@ class CollectionNibCellManager<CellType: BaseCollectionViewCell & NibLoadable>: 
     }
     
     override func dequeueReusableCell(collectionView: UICollectionView, for indexPath: IndexPath) -> BaseCollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withType: cellType, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withType: cellType, for: indexPath) else {
+            return BaseCollectionViewCell()
+        }
         return cell
     }
 }
@@ -69,7 +71,7 @@ class CollectionTypeCellManager<CellType: BaseCollectionViewCell>: CollectionCel
     
     override func dequeueReusableCell(collectionView: UICollectionView, for indexPath: IndexPath) -> BaseCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withType: cellType, for: indexPath)
-        return cell
+        return cell ?? BaseCollectionViewCell()
     }
 }
 
@@ -82,8 +84,8 @@ extension UICollectionView {
         register(nib, forCellWithReuseIdentifier: identifier(for: cellType))
     }
     
-    func dequeueReusableCell<CellType: UICollectionViewCell>(withType type: CellType.Type, for indexPath: IndexPath) -> CellType {
-        return dequeueReusableCell(withReuseIdentifier: identifier(for: type), for: indexPath) as! CellType
+    func dequeueReusableCell<CellType: UICollectionViewCell>(withType type: CellType.Type, for indexPath: IndexPath) -> CellType? {
+        return dequeueReusableCell(withReuseIdentifier: identifier(for: type), for: indexPath) as? CellType
     }
     
     private func identifier<CellType: UICollectionViewCell>(for cellType: CellType.Type) -> String {

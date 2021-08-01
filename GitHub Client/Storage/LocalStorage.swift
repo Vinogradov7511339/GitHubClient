@@ -32,34 +32,35 @@ class LocalStorage {
         }
     }
     
-    func getUser(completion: @escaping ([UserDBModel]) -> Void) {
-        performUpdate { context in
-            let users = self.getUsers(in: context)
-            completion(users)
-        }
-    }
+//    func getUser(completion: @escaping ([UserDBModel]) -> Void) {
+//        performUpdate { context in
+//            let users = self.getUsers(in: context)
+//            completion(users)
+//        }
+//    }
 }
 
 private extension LocalStorage {
     
-    func getUsers(in context: NSManagedObjectContext) -> [UserDBModel] {
-        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
-        if let objects = try? context.fetch(fetchRequest) {
-            return objects
-        }
-        return []
-    }
-    
-    func getUser(user: UserProfile, in context: NSManagedObjectContext) -> UserDBModel? {
-        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %id", user.id)
-        
-        return try? context.fetch(fetchRequest).first
-    }
+//    func getUsers(in context: NSManagedObjectContext) -> [UserDBModel] {
+//        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
+//        if let objects = try? context.fetch(fetchRequest) {
+//            return objects
+//        }
+//        return []
+//    }
+//
+//    func getUser(user: UserProfile, in context: NSManagedObjectContext) -> UserDBModel? {
+//        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "id == %id", user.id)
+//
+//        return try? context.fetch(fetchRequest).first
+//    }
     
     func saveUser(user: UserProfile, in context: NSManagedObjectContext) {
-        let dbUser = getOrCreateUser(user, in: context)
-        UserProfileAdapter.toDBModel(dbUser, from: user)
+//        let dbUser = getOrCreateUser(user, in: context)
+//        guard let dbUser = dbUser else { fatalError() }
+//        UserProfileAdapter.toDBModel(dbUser, from: user)
 //        dbUser.id = Int64(user.id)
 //        dbUser.bio = user.bio
 //        dbUser.blog = user.blog?.absoluteString
@@ -69,24 +70,24 @@ private extension LocalStorage {
 //        dbUser.location = user.location
 //        dbUser.image = nil
         
-        context.insert(dbUser)
+//        context.insert(dbUser)
     }
     
-    func getOrCreateUser(_ user: UserProfile, in context: NSManagedObjectContext) -> UserDBModel {
-        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %id", user.id)
-        
-        if let objects = try? context.fetch(fetchRequest), let object = objects.first {
-            return object
-        }
-        return createUser(in: context)
-    }
-    
-    func createUser(in context: NSManagedObjectContext) -> UserDBModel {
-        let userEntity = CoreDataManager.shared.entityForName(entityName: "UserDBModel", context: context)
-        let object = NSManagedObject(entity: userEntity, insertInto: context) as! UserDBModel
-        return object
-    }
+//    func getOrCreateUser(_ user: UserProfile, in context: NSManagedObjectContext) -> UserDBModel? {
+//        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "id == %id", user.id)
+//        
+//        if let objects = try? context.fetch(fetchRequest), let object = objects.first {
+//            return object
+//        }
+//        return createUser(in: context)
+//    }
+//    
+//    func createUser(in context: NSManagedObjectContext) -> UserDBModel? {
+//        let userEntity = CoreDataManager.shared.entityForName(entityName: "UserDBModel", context: context)
+//        let object = NSManagedObject(entity: userEntity, insertInto: context) as? UserDBModel
+//        return object
+//    }
     
     func saveContext(_ context: NSManagedObjectContext, completion: @escaping (Error?) -> Void) {
         guard context.hasChanges else {
@@ -151,7 +152,7 @@ private extension LocalStorage {
         }
         
         switch sqlLiteError {
-        case SqlLiteErrors.SQLITE_FULL:
+        case SqlLiteErrors.sqliteFull:
             self.postDiskFullNotification()
             
         default:
@@ -181,6 +182,6 @@ private extension LocalStorage {
 // MARK: Constants
 extension LocalStorage {
     private enum SqlLiteErrors {
-        static let SQLITE_FULL = 13
+        static let sqliteFull = 13
     }
 }

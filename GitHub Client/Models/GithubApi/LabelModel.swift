@@ -9,7 +9,7 @@ import Foundation
 
 struct LabelModel: Codable {
     let id: Int
-    let node_id: String?
+    let nodeId: String?
     let url: URL?
     let name: String?
     let description: String?

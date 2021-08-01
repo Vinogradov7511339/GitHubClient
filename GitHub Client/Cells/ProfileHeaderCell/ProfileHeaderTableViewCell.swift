@@ -69,7 +69,7 @@ class ProfileHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 extension ProfileHeaderTableViewCell: ConfigurableCell {
     func configure(viewModel: ProfileHeaderCellViewModel) {
         let profile = viewModel.profile
-        avatarImageView.set(url: profile.avatar_url)
+        avatarImageView.set(url: profile.avatarUrl)
         nameLabel.text = profile.name
         loginLabel.text = profile.login
         if let bio = profile.bio {
@@ -93,7 +93,7 @@ extension ProfileHeaderTableViewCell: ConfigurableCell {
         }
         companiAndLocationStackView.isHidden = profile.company == nil && profile.location == nil
         
-        if let homePageUrl = profile.html_url {
+        if let homePageUrl = profile.htmlUrl {
             linkButton.setTitle("\(homePageUrl)", for: .normal)
             linkStackView.isHidden = false
         } else {

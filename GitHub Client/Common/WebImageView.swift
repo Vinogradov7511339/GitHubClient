@@ -9,7 +9,8 @@ import UIKit
 
 /// An object that displays a single image from internet in your interface.
 /**
- * A custom view that accepts a URL and tries to find a picture along this path in the cache, if it fails, makes a request to the network, if the object has been deleted before the answer arrives, the task cancel
+ * A custom view that accepts a URL and tries to find a picture along this path in the cache, i
+ * f it fails, makes a request to the network, if the object has been deleted before the answer arrives, the task cancel
  */
 class WebImageView: UIImageView {
     private var currentUrl: URL?

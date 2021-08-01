@@ -44,7 +44,7 @@ extension UIView {
         get { layer.shadowColor?.uiColor }
     }
     
-    @IBInspectable var _clipsToBounds: Bool {
+    @IBInspectable var innerClipsToBounds: Bool {
         set { clipsToBounds = newValue }
         get { return clipsToBounds }
     }

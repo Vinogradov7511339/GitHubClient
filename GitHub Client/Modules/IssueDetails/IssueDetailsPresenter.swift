@@ -65,8 +65,8 @@ private extension IssueDetailsPresenter {
     }
     
     func getHeader() -> IssueHeaderCellViewModel {
-        let avatarUrl = issue.user?.avatar_url
-        let repositoryName = issue.repository?.full_name ?? ""
+        let avatarUrl = issue.user?.avatarUrl
+        let repositoryName = issue.repository?.fullName ?? ""
         let title = issue.title ?? ""
         return IssueHeaderCellViewModel(
             avatarUrl: avatarUrl,
@@ -77,11 +77,9 @@ private extension IssueDetailsPresenter {
     }
     
     func getBody() -> IssueCommentCellViewModel {
-        let avatarUrl = issue.user?.avatar_url
+        let avatarUrl = issue.user?.avatarUrl
         let userName = issue.user?.login ?? ""
-        let status = issue.author_association ?? ""
-        
-      
+        let status = issue.authorAssociation ?? ""
         
         return IssueCommentCellViewModel(
             avatarUrl: avatarUrl,
@@ -91,8 +89,6 @@ private extension IssueDetailsPresenter {
             reactImages: []
         )
     }
-    
-    
 }
 
 extension String {

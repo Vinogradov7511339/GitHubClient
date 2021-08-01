@@ -27,7 +27,7 @@ class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension StarredRepoTableViewCell: ConfigurableCell {
     func configure(viewModel: Repository) {
-        avatarImageView.set(url: viewModel.owner?.avatar_url)
+        avatarImageView.set(url: viewModel.owner?.avatarUrl)
         ownerLoginLabel.text = viewModel.owner?.login ?? ""
         reposNameLabel.text = viewModel.name ?? ""
         if let description = viewModel.description {
@@ -37,7 +37,7 @@ extension StarredRepoTableViewCell: ConfigurableCell {
             reposDescriptionLabel.isHidden = true
         }
 //        isStarredImageView todo
-        starsCountLabel.text = "\(viewModel.stargazers_count ?? 0)"
+        starsCountLabel.text = "\(viewModel.stargazersCount ?? 0)"
         if let language = viewModel.language {
             languageColorImageView.isHidden = false
             languageLabel.isHidden = false

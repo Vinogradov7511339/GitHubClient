@@ -141,19 +141,44 @@ private extension HomePresenter {
     func firstSectionViewModels() -> [TableCellViewModel] {
         var models: [TableCellViewModel] = []
         
-        let issuesViewModel = TableCellViewModel(text: "Issues", detailText: nil, image: UIImage.issue, imageTintColor: .systemGreen, accessoryType: .disclosureIndicator)
+        let issuesViewModel = TableCellViewModel(
+            text: "Issues",
+            detailText: nil,
+            image: UIImage.issue,
+            imageTintColor: .systemGreen,
+            accessoryType: .disclosureIndicator)
         models.append(issuesViewModel)
         
-        let pullRequestsViewModel = TableCellViewModel(text: "Pull Requests", detailText: nil, image: UIImage.pullRequest, imageTintColor: .systemBlue, accessoryType: .disclosureIndicator)
+        let pullRequestsViewModel = TableCellViewModel(
+            text: "Pull Requests",
+            detailText: nil,
+            image: UIImage.pullRequest,
+            imageTintColor: .systemBlue,
+            accessoryType: .disclosureIndicator)
         models.append(pullRequestsViewModel)
         
-        let discussionsViewModel = TableCellViewModel(text: "Discussions", detailText: nil, image: UIImage.discussions, imageTintColor: .systemPurple, accessoryType: .disclosureIndicator)
+        let discussionsViewModel = TableCellViewModel(
+            text: "Discussions",
+            detailText: nil,
+            image: UIImage.discussions,
+            imageTintColor: .systemPurple,
+            accessoryType: .disclosureIndicator)
         models.append(discussionsViewModel)
         
-        let repositoriesViewModel = TableCellViewModel(text: "Repositories", detailText: nil, image: UIImage(systemName: "book.closed.fill"), imageTintColor: .systemGray, accessoryType: .disclosureIndicator)
+        let repositoriesViewModel = TableCellViewModel(
+            text: "Repositories",
+            detailText: nil,
+            image: UIImage(systemName: "book.closed.fill"),
+            imageTintColor: .systemGray,
+            accessoryType: .disclosureIndicator)
         models.append(repositoriesViewModel)
         
-        let organizationsViewModel = TableCellViewModel(text: "Organizations", detailText: nil, image: UIImage(systemName: "building.2.fill"), imageTintColor: .systemOrange, accessoryType: .disclosureIndicator)
+        let organizationsViewModel = TableCellViewModel(
+            text: "Organizations",
+            detailText: nil,
+            image: UIImage(systemName: "building.2.fill"),
+            imageTintColor: .systemOrange,
+            accessoryType: .disclosureIndicator)
         models.append(organizationsViewModel)
         
         return models

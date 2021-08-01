@@ -41,13 +41,7 @@ class ExplorePresenter: NSObject {
     
     weak var output: ExplorePresenterOutput?
     
-    private var dataSource: [Section] = [
-//        Section(type: .singleList, title: "Test", subtitle: "Test", data: [FeaturedCellViewModel(), FeaturedCellViewModel()]),
-//        Section(type: .doubleList, title: "Test2", subtitle: "Test2", data: [MediumCellViewModel(), MediumCellViewModel(), MediumCellViewModel(), MediumCellViewModel()]),
-//        Section(type: .tripleList, title: "Test3", subtitle: "Test3", data: [SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel()]),
-//
-//        Section(type: .categoryList, title: "Test4", subtitle: "Test4", data: [SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel(), SmallCellViewModel()]),
-    ]
+    private var dataSource: [Section] = []
     
     var dataViewMap: [String: CollectionCellManager] = [
         "\(FeaturedCellViewModel.self)" : CollectionCellManager.create(cellType: FeaturedCollectionViewCell.self),
@@ -207,12 +201,12 @@ private extension ExplorePresenter {
         var thirdSectionData: [Any] = []
         var fourthSectionData: [Any] = []
         
-        for (i, repository) in repositories.enumerated() {
-            if Double(i) < Double(repositories.count) * 0.25 {
+        for (index, repository) in repositories.enumerated() {
+            if Double(index) < Double(repositories.count) * 0.25 {
                 firstSectionData.append(FeaturedCellViewModel(repository: repository))
-            } else if Double(i) < Double(repositories.count) * 0.5 {
+            } else if Double(index) < Double(repositories.count) * 0.5 {
                 secondSectionData.append(MediumCellViewModel(repository: repository))
-            } else if Double(i) < Double(repositories.count) * 0.75 {
+            } else if Double(index) < Double(repositories.count) * 0.75 {
                 thirdSectionData.append(SmallCellViewModel(repository: repository))
             } else {
                 if let profile = repository.owner {

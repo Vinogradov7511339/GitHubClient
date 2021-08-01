@@ -23,7 +23,7 @@ class UserTableViewCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension UserTableViewCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
-        avatarImageView.set(url: viewModel.avatar_url)
+        avatarImageView.set(url: viewModel.avatarUrl)
         loginLabel.text = viewModel.login ?? ""
         if let name = viewModel.name {
             nameLabel.isHidden = false

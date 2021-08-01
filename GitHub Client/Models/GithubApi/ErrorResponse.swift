@@ -9,6 +9,12 @@ import Foundation
 
 struct ErrorResponse: Codable {
     let error: String
-    let error_description: String
-    let error_uri: URL
+    let errorDescription: String
+    let errorUrl: URL
+    
+    enum CodingKeys: String, CodingKey {
+        case error
+        case errorDescription = "error_description"
+        case errorUrl = "error_uri"
+    }
 }

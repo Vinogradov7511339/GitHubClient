@@ -43,24 +43,53 @@ class RepositoryPreseter {
     private func firstSection(_ repository: Repository) -> [Any] {
         var models: [TableCellViewModel] = []
         
-        if repository.has_issues ?? false {
-            let issuesViewModel = TableCellViewModel(text: "Issues", detailText: "\(repository.open_issues_count ?? -1)", image: UIImage.issue, imageTintColor: .systemGreen, accessoryType: .disclosureIndicator)
+        if repository.hasIssues ?? false {
+            let issuesViewModel = TableCellViewModel(
+                text: "Issues",
+                detailText: "\(repository.openIssuesCount ?? -1)",
+                image: UIImage.issue,
+                imageTintColor: .systemGreen,
+                accessoryType: .disclosureIndicator)
             models.append(issuesViewModel)
         }
         
-        let pullRequests = TableCellViewModel(text: "Pull Requests", detailText: "\(-1)", image: UIImage.pullRequest, imageTintColor: .systemBlue, accessoryType: .disclosureIndicator)
+        let pullRequests = TableCellViewModel(
+            text: "Pull Requests", detailText: "\(-1)",
+            image: UIImage.pullRequest,
+            imageTintColor: .systemBlue,
+            accessoryType: .disclosureIndicator)
         models.append(pullRequests)
         
-        let releases = TableCellViewModel(text: "Releases", detailText: "\(-1)", image: UIImage.releases, imageTintColor: .systemGray, accessoryType: .disclosureIndicator)
+        let releases = TableCellViewModel(
+            text: "Releases",
+            detailText: "\(-1)",
+            image: UIImage.releases,
+            imageTintColor: .systemGray,
+            accessoryType: .disclosureIndicator)
         models.append(releases)
         
-        let discussions = TableCellViewModel(text: "Discussions", detailText: "\(-1)", image: UIImage.discussions, imageTintColor: .systemPurple, accessoryType: .disclosureIndicator)
+        let discussions = TableCellViewModel(
+            text: "Discussions",
+            detailText: "\(-1)",
+            image: UIImage.discussions,
+            imageTintColor: .systemPurple,
+            accessoryType: .disclosureIndicator)
         models.append(discussions)
         
-        let watchers = TableCellViewModel(text: "Watchers", detailText: "\(repository.watchers_count ?? -1)", image: UIImage.watchers, imageTintColor: .systemYellow, accessoryType: .disclosureIndicator)
+        let watchers = TableCellViewModel(
+            text: "Watchers",
+            detailText: "\(repository.watchersCount ?? -1)",
+            image: UIImage.watchers,
+            imageTintColor: .systemYellow,
+            accessoryType: .disclosureIndicator)
         models.append(watchers)
         
-        let license = TableCellViewModel(text: "License", detailText: "\(repository.license?.name ?? "NaN")", image: UIImage.license, imageTintColor: .systemRed, accessoryType: .disclosureIndicator)
+        let license = TableCellViewModel(
+            text: "License",
+            detailText: "\(repository.license?.name ?? "NaN")",
+            image: UIImage.license,
+            imageTintColor: .systemRed,
+            accessoryType: .disclosureIndicator)
         models.append(license)
         
         return models
@@ -69,10 +98,20 @@ class RepositoryPreseter {
     private func secondSection(_ repository: Repository) -> [Any] {
         var models: [TableCellViewModel] = []
         
-        let code = TableCellViewModel(text: "Browse code", detailText: nil, image: nil, imageTintColor: nil, accessoryType: .disclosureIndicator)
+        let code = TableCellViewModel(
+            text: "Browse code",
+            detailText: nil,
+            image: nil,
+            imageTintColor: nil,
+            accessoryType: .disclosureIndicator)
         models.append(code)
         
-        let commits = TableCellViewModel(text: "Commits", detailText: "\(-1)", image: nil, imageTintColor: nil, accessoryType: .disclosureIndicator)
+        let commits = TableCellViewModel(
+            text: "Commits",
+            detailText: "\(-1)",
+            image: nil,
+            imageTintColor: nil,
+            accessoryType: .disclosureIndicator)
         models.append(commits)
         
         return models

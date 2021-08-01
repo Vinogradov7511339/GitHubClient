@@ -16,10 +16,10 @@ struct SmallCellViewModel {
     let language: String
     
     init(repository: Repository) {
-        repositoryImageUrl = repository.owner?.avatar_url
-        repositoryName = repository.full_name ?? ""
+        repositoryImageUrl = repository.owner?.avatarUrl
+        repositoryName = repository.fullName ?? ""
         isStarred = false
-        starCount = "\(repository.stargazers_count ?? 0)"
+        starCount = "\(repository.stargazersCount ?? 0)"
         language = repository.language ?? ""
     }
 }

@@ -87,8 +87,8 @@ extension Endpoint: EndpointProtocol {
             var query: [String: String] = [:]
             query["grant_type"] = "authorization_code"
             query["code"] = authCode
-            query["client_id"] = GithubConstants.CLIENT_ID
-            query["client_secret"] = GithubConstants.CLIENT_SECRET
+            query["client_id"] = GithubConstants.clientId
+            query["client_secret"] = GithubConstants.clientSecret
             return query
         case .search(let type, let text):
             var query: [String: String] = [:]
@@ -156,7 +156,7 @@ extension Endpoint {
     
     static var authorizationHeader: String {
         if let tokenResponse = UserStorage.shared.token {
-            return "token \(tokenResponse.access_token)"
+            return "token \(tokenResponse.accessToken)"
         } else {
             return ""
         }

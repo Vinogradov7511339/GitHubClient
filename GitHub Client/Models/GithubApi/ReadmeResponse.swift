@@ -13,23 +13,23 @@ class ReadmeResponse: Codable {
     let sha: String
     let size: Int
     let url: URL
-    let html_url: URL
-    let git_url: URL
-    let download_url: URL
+    let htmlUrl: URL
+    let gitUrl: URL
+    let downloadUrl: URL
     let type: String
     let content: String
     let encoding: String
 //    let _links
     
-    init(name: String, path: String, sha: String, size: Int, url: URL, html_url: URL, git_url: URL, download_url: URL, type: String, content: String, encoding: String) {
+    internal init(name: String, path: String, sha: String, size: Int, url: URL, htmlUrl: URL, gitUrl: URL, downloadUrl: URL, type: String, content: String, encoding: String) {
         self.name = name
         self.path = path
         self.sha = sha
         self.size = size
         self.url = url
-        self.html_url = html_url
-        self.git_url = git_url
-        self.download_url = download_url
+        self.htmlUrl = htmlUrl
+        self.gitUrl = gitUrl
+        self.downloadUrl = downloadUrl
         self.type = type
         self.content = content
         self.encoding = encoding

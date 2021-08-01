@@ -18,11 +18,11 @@ struct MediumCellViewModel {
     let languageColor: UIColor?
     
     init(repository: Repository) {
-        repositoryImageUrl = repository.owner?.avatar_url
+        repositoryImageUrl = repository.owner?.avatarUrl
         ownerName = repository.owner?.login ?? ""
         repositoryName = repository.name ?? ""
         isStarred = false
-        starCount = "\(repository.stargazers_count ?? 0)"
+        starCount = "\(repository.stargazersCount ?? 0)"
         language = repository.language ?? ""
         languageColor = UIColor.getLanguageColor(for: repository.language)
     }

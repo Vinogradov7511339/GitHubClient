@@ -6,8 +6,6 @@
 //
 import Foundation
 
-
-
 typealias ProgressHandler = (Float) -> Void
 
 enum RequestType {
@@ -20,14 +18,6 @@ enum ResponseType {
     case json
     case file
 }
-
-//enum RequestMethod: String {
-//    case get = "GET"
-//    case post = "POST"
-//    case put = "PUT"
-//    case patch = "PATCH"
-//    case delete = "DELETE"
-//}
 
 protocol RequestProtocol {
     var path: String { get }
@@ -53,7 +43,7 @@ extension RequestProtocol {
     
     private func url(with baseURL: String) -> URL? {
         guard var urlComponents = URLComponents(string: baseURL) else { return nil }
-        urlComponents.path = urlComponents.path + path
+        urlComponents.path += path
         urlComponents.queryItems = queryItems
         return urlComponents.url
     }

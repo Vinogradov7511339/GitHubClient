@@ -32,7 +32,7 @@ class ProfilePopularRepositoryCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with repository: Repository) {
-        ownerAvatarImageView.set(url: repository.owner?.avatar_url)
+        ownerAvatarImageView.set(url: repository.owner?.avatarUrl)
         ownerNameLabel.text = repository.owner!.login
         repositoryNameLabel.text = repository.name
         languageLabel.text = repository.language ?? ""

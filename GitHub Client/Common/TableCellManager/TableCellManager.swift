@@ -41,7 +41,7 @@ class NibCellManager<CellType: BaseTableViewCell & NibLoadable>: TableCellManage
     
     override func dequeueReusableCell(tableView: UITableView, for indexPath: IndexPath) -> BaseTableViewCell {
         let cell = tableView.dequeueReusableCell(withType: self.cellType, for: indexPath)
-        return cell
+        return cell ?? BaseTableViewCell()
     }
     
     override func height(for model: Any) -> CGFloat {
@@ -62,7 +62,7 @@ class TypeCellManager<CellType: BaseTableViewCell>: TableCellManager {
     
     override func dequeueReusableCell(tableView: UITableView, for indexPath: IndexPath) -> BaseTableViewCell {
         let cell = tableView.dequeueReusableCell(withType: self.cellType, for: indexPath)
-        return cell
+        return cell ?? BaseTableViewCell()
     }
     
     override func height(for model: Any) -> CGFloat {

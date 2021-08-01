@@ -50,7 +50,7 @@ class ProfilePresenter {
         
         let repositories = TableCellViewModel(
             text: "Repositories",
-            detailText: "\(profileInfo.userProfile.public_repos ?? 0)",
+            detailText: "\(profileInfo.userProfile.publicRepos ?? 0)",
             image: UIImage(systemName: "book.closed.fill"), imageTintColor: .systemPurple,
             accessoryType: .disclosureIndicator)
         let stared = TableCellViewModel(

@@ -95,6 +95,7 @@ class NetworkService: Error {
     func decode<T>(of type: T.Type, from data: Data) -> T? where T: Decodable {
         do {
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let object: T = try decoder.decode(T.self, from: data)
             return object
         } catch DecodingError.dataCorrupted(let context) {

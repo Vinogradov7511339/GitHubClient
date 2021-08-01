@@ -35,13 +35,14 @@ class CoreDataStack {
     }
     
     func saveUser(user: UserProfile) {
-        let dbUser = NSEntityDescription.insertNewObject(forEntityName: "UserDBModel", into: managedContext) as! UserDBModel
-        dbUser.login = user.login
-        try! managedContext.save()
+//        if let dbUser = NSEntityDescription.insertNewObject(forEntityName: "UserDBModel", into: managedContext) as? UserDBModel {
+//            dbUser.login = user.login
+//            try? managedContext.save()
+//        }
     }
     
     func getUser() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserDBModel")
-        let fetchUsers = try! managedContext.fetch(fetchRequest) as! [UserDBModel]
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserDBModel")
+//        let fetchUsers = try? managedContext.fetch(fetchRequest) as? [UserDBModel]
     }
 }

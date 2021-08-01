@@ -24,28 +24,28 @@ extension UserEndpoints: EndpointProtocol {
     var path: URL {
         switch self {
         case .starred(let user):
-            guard let path = user.starred_url?.pathWithoutParameters() else {
+            guard let path = user.starredUrl?.pathWithoutParameters() else {
                 fatalError()
             }
             return URL(string: path)!
         case .starredReposCount(let user):
-            guard let path = user.starred_url?.pathWithoutParameters() else {
+            guard let path = user.starredUrl?.pathWithoutParameters() else {
                 fatalError()
             }
             return URL(string: path)!
         case .following(let user):
-            guard let path = user.following_url?.pathWithoutParameters() else {
+            guard let path = user.followingUrl?.pathWithoutParameters() else {
                 fatalError()
             }
             return URL(string: path)!
         case .followers(let user):
-            return user.followers_url!
+            return user.followersUrl!
         case .subscriptions(let user):
-            return user.followers_url!
+            return user.followersUrl!
         case .organizations(let user):
-            return user.organizations_url!
+            return user.organizationsUrl!
         case .repositories(let user), .popularRepos(let user):
-            return user.repos_url!
+            return user.reposUrl!
         case .myProfile:
             return  URL(string: "https://api.github.com/user")!
         case .profile(let user):

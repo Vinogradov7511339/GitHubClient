@@ -8,7 +8,7 @@
 import Foundation
 
 struct TokenResponse: Codable {
-    let access_token: String
+    let accessToken: String
     let scope: String
-    let token_type: String
+    let tokenType: String
 }
