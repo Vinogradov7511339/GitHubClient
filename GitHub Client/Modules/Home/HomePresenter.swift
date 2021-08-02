@@ -33,7 +33,7 @@ class HomePresenter {
     
     private var profile: UserProfile?
     private var issues: [Issue] = []
-    private var allRepositoriesIHaveAccess: [Repository] = []
+    private var allRepositoriesIHaveAccess: [RepositoryResponse] = []
 }
 
 //MARK: - MyWorkInteractorOutput
@@ -43,7 +43,7 @@ extension HomePresenter: HomeInteractorOutput {
 //        interactor.fetchAllRepositoriesIHaveAccess()
     }
     
-    func didReceive(allRepositoriesIHaveAccess: [Repository]) {
+    func didReceive(allRepositoriesIHaveAccess: [RepositoryResponse]) {
         self.allRepositoriesIHaveAccess = allRepositoriesIHaveAccess
         DispatchQueue.main.async {
             self.fullViewModels()

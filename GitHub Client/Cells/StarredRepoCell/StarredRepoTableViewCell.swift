@@ -26,7 +26,7 @@ class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension StarredRepoTableViewCell: ConfigurableCell {
-    func configure(viewModel: Repository) {
+    func configure(viewModel: RepositoryResponse) {
         avatarImageView.set(url: viewModel.owner?.avatarUrl)
         ownerLoginLabel.text = viewModel.owner?.login ?? ""
         reposNameLabel.text = viewModel.name ?? ""

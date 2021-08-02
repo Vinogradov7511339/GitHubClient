@@ -10,14 +10,14 @@ import Networking
 
 class UserService: NetworkService {
     
-    func fetchRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+    func fetchRepositories(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.repositories(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+            guard let repositories = self.decode(of: [RepositoryResponse].self, from: data) else {
                 completion(nil, error)
                 return
             }
@@ -25,14 +25,14 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchPopularRepositories(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+    func fetchPopularRepositories(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.popularRepos(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+            guard let repositories = self.decode(of: [RepositoryResponse].self, from: data) else {
                 completion(nil, error)
                 return
             }
@@ -60,14 +60,14 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchStarredRepos(_ user: UserProfile, completion: @escaping ([Repository]?, Error?) -> Void) {
+    func fetchStarredRepos(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.starred(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [Repository].self, from: data) else {
+            guard let repositories = self.decode(of: [RepositoryResponse].self, from: data) else {
                 completion(nil, error)
                 return
             }

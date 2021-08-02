@@ -25,11 +25,11 @@ struct License: Codable {
 struct RepositoriesResponse: Codable {
     let totalCount: Int
     let incompleteResults: Bool
-    let items: [Repository]?
+    let items: [RepositoryResponse]?
 }
 
 // https://docs.github.com/en/rest/reference/repos
-class Repository: Codable {
+class RepositoryResponse: Codable {
     let id: Int
     let nodeId: String?
     let name: String?
@@ -103,9 +103,9 @@ class Repository: Codable {
     let createdAt: String?
     let updatedAt: String?
     let permissions: Permissions?
-    let templateRepository: Repository?
+    let templateRepository: RepositoryResponse?
     let license: License?
-    
+
     init(id: Int,
          nodeId: String?,
          name: String?,
@@ -178,7 +178,7 @@ class Repository: Codable {
          createdAt: String?,
          updatedAt: String?,
          permissions: Permissions?,
-         templateRepository: Repository?,
+         templateRepository: RepositoryResponse?,
          license: License?) {
         self.id = id
         self.nodeId = nodeId
@@ -256,4 +256,3 @@ class Repository: Codable {
         self.license = license
     }
 }
-

@@ -8,7 +8,7 @@
 import UIKit
 
 struct ProfileMostPopularCellViewModel {
-    let repositories: [Repository]
+    let repositories: [RepositoryResponse]
 }
 
 class ProfileMostPopularCell: BaseTableViewCell {
@@ -44,7 +44,7 @@ class ProfileMostPopularCell: BaseTableViewCell {
         return collectionView
     }()
 
-    private var repositories: [Repository] = []
+    private var repositories: [RepositoryResponse] = []
     private typealias Cell = ProfilePopularRepositoryCollectionViewCell
     
     override func completeInit() {

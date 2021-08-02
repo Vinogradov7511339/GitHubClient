@@ -26,9 +26,9 @@ class ProfileInteractor {
     private let profileType: ProfileType
     
     private var userProfile: UserProfile?
-    private var userRepos: [Repository] = []
-    private var userPopularRepos: [Repository] = []
-    private var userStarredRepos: [Repository] = []
+    private var userRepos: [RepositoryResponse] = []
+    private var userPopularRepos: [RepositoryResponse] = []
+    private var userStarredRepos: [RepositoryResponse] = []
     private var userFollowers: [UserProfile] = []
     private var userFollowing: [UserProfile] = []
     
@@ -91,7 +91,7 @@ private extension ProfileInteractor {
 //        localStorage.saveUser(user: profile)
     }
     
-    func syncStorage(popularRepositories: [Repository]) {
+    func syncStorage(popularRepositories: [RepositoryResponse]) {
 //        localStorage.saveUser(user: profile)
     }
 }

@@ -15,7 +15,7 @@ struct SmallCellViewModel {
     let starCount: String
     let language: String
     
-    init(repository: Repository) {
+    init(repository: RepositoryResponse) {
         repositoryImageUrl = repository.owner?.avatarUrl
         repositoryName = repository.fullName ?? ""
         isStarred = false

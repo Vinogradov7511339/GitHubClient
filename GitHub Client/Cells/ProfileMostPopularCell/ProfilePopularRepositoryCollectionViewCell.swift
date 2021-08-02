@@ -31,7 +31,7 @@ class ProfilePopularRepositoryCollectionViewCell: UICollectionViewCell {
 //        containerView.backgroundColor = .clear
     }
 
-    func configure(with repository: Repository) {
+    func configure(with repository: RepositoryResponse) {
         ownerAvatarImageView.set(url: repository.owner?.avatarUrl)
         ownerNameLabel.text = repository.owner!.login
         repositoryNameLabel.text = repository.name

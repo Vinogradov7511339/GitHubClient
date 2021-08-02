@@ -14,7 +14,7 @@ protocol ReposListInteractorInput {
 }
 
 protocol ReposListInteractorOutput: AnyObject {
-    func didReceive(repos: [Repository])
+    func didReceive(repos: [RepositoryResponse])
 }
 
 class ReposListInteractor {

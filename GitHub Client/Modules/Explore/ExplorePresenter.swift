@@ -52,7 +52,7 @@ class ExplorePresenter: NSObject {
     ]
     
     private let service = ServicesManager.shared.repositoryService
-    private var repositories: [Repository] = []
+    private var repositories: [RepositoryResponse] = []
 }
 
 // MARK: - layout
@@ -220,7 +220,7 @@ extension ExplorePresenter: ExplorePresenterInput {
 
 // MARK: - private
 private extension ExplorePresenter {
-    func mapRepositories(repositories: [Repository]) {
+    func mapRepositories(repositories: [RepositoryResponse]) {
         var firstSectionData: [Any] = []
         var secondSectionData: [Any] = []
         var thirdSectionData: [Any] = []

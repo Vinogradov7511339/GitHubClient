@@ -16,7 +16,7 @@ protocol HomeInteractorInput {
 
 protocol HomeInteractorOutput: AnyObject {
     func didReceive(allIssues: [Issue])
-    func didReceive(allRepositoriesIHaveAccess: [Repository])
+    func didReceive(allRepositoriesIHaveAccess: [RepositoryResponse])
     func didReceive(error: Error)
 }
 

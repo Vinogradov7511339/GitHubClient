@@ -8,12 +8,12 @@
 import UIKit
 
 struct RepositoryDetailsHeaderCellViewModel {
-    let repository: Repository
+    let repository: RepositoryResponse
 }
 
-class RepositoryDetailsHeaderTableViewCell: BaseTableViewCell, NibLoadable {
+class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
@@ -31,10 +31,11 @@ class RepositoryDetailsHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     }
 }
 
-extension RepositoryDetailsHeaderTableViewCell: ConfigurableCell {
+extension RepositoryHeaderTableViewCell: ConfigurableCell {
     func configure(viewModel: RepositoryDetailsHeaderCellViewModel) {
         let repository = viewModel.repository
-        ownerNameLabel.text = repository.owner?.name ?? ""
+        avatarImageView.set(url: viewModel.repository.owner?.avatarUrl)
+        ownerNameLabel.text = repository.owner?.login ?? ""
         repositoryNameLabel.text = repository.name ?? ""
 
         starsCountLabel.text = "\(repository.stargazersCount ?? 0) Stars"

@@ -29,7 +29,7 @@ class RepositoriesListPresenter {
     var interactor: ReposListInteractorInput?
     
     private let repositoryService = ServicesManager.shared.repositoryService
-    private var repositories: [Repository] = []
+    private var repositories: [RepositoryResponse] = []
     var type: RepositoriesType
     
     init(with type: RepositoriesType) {
@@ -49,14 +49,14 @@ extension RepositoriesListPresenter: RepositoriesListPresenterInput {
     
     func openRepository(at indexPath: IndexPath) {
         let repository = repositories[indexPath.row]
-        let viewController = RepositoryDetailsConfigurator.createModule(for: repository)
+        let viewController = RepositoryConfigurator.createModule(for: repository)
         output?.push(to: viewController)
     }
 }
 
 // MARK: - ReposListInteractorOutput
 extension RepositoriesListPresenter: ReposListInteractorOutput {
-    func didReceive(repos: [Repository]) {
+    func didReceive(repos: [RepositoryResponse]) {
         self.repositories = repos
         switch type {
         case .allMy(_):

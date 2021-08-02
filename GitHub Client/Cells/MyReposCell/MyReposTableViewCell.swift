@@ -31,7 +31,7 @@ class MyReposTableViewCell: BaseTableViewCell, NibLoadable {
 }
 
 extension MyReposTableViewCell: ConfigurableCell {
-    func configure(viewModel: Repository) {
+    func configure(viewModel: RepositoryResponse) {
         reposNameLabel.text = viewModel.name ?? ""
         if let description = viewModel.description {
             reposDescriptionLabel.isHidden = false

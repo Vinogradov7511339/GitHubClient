@@ -32,6 +32,6 @@ struct Issue: Codable {
     let closedAt: String?
     let createdAt: String?
     let updatedAt: String?
-    let repository: Repository?
+    let repository: RepositoryResponse?
     let authorAssociation: String?
 }

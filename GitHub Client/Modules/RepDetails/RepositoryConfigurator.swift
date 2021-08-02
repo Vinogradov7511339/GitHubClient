@@ -7,14 +7,14 @@
 
 import UIKit
 
-class RepositoryDetailsConfigurator {
-    static func createModule(for repository: Repository) -> RepositoryDetailsViewController {
-        let interactor = RepositoryDetailsInteractor(repository)
+class RepositoryConfigurator {
+    static func createModule(for repository: RepositoryResponse) -> RepositoryViewController {
+        let interactor = RepositoryInteractor(repository)
         let presenter = RepositoryPreseter(repository: repository)
         presenter.interactor = interactor
         presenter.interactor.output = presenter
         
-        let viewController = RepositoryDetailsViewController()
+        let viewController = RepositoryViewController()
         viewController.presenter = presenter
         viewController.presenter?.output = viewController
         return viewController
