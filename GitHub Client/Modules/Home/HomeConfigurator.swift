@@ -9,12 +9,11 @@ import UIKit
 
 class HomeConfigurator {
     static func createHomeModule() -> HomeViewController {
-        
         let presenter = HomePresenter()
         let viewController = HomeViewController()
         viewController.presenter = presenter
         viewController.presenter?.output = viewController
-        
+
         let interactor = HomeInteractor()
         interactor.output = presenter
         presenter.interactor = interactor

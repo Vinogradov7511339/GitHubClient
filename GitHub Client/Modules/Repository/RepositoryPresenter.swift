@@ -83,6 +83,13 @@ class RepositoryPreseter {
         let viewController = FolderConfigurator.create(from: path)
         output?.push(to: viewController)
     }
+
+//    private func openLicense() {
+//        guard let repository = repositoryInfo?.repository else { return }
+//        guard let licensePath = repository.license?.url else { return }
+//        let viewController = FileConfigurator.create(from: licensePath)
+//        output?.push(to: viewController)
+//    }
 }
 
 // MARK: - RepositoryDetailsInteractorOutput

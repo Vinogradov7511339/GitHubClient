@@ -14,17 +14,18 @@ protocol HomePresenterInput {
     func refresh()
     
     func didSelectItem(at indexPath: IndexPath)
+    func showFavorite()
     
     func header(for section: Int) -> UIView
     func heightForHeader(in section: Int) -> CGFloat
     func heightForCell(at indexPath: IndexPath) -> CGFloat
 }
 
-
 protocol HomePresenterOutput: AnyObject {
     func display(viewModels: [[Any]])
     
     func push(to viewController: UIViewController)
+    func open(viewController: UIViewController)
 }
 
 class HomePresenter {
@@ -64,6 +65,11 @@ extension HomePresenter: HomePresenterInput {
     
     func refresh() {
 //        interactor.fetchAllIssues()
+    }
+    
+    func showFavorite() {
+        let viewController = FavoritesConfigurator.create()
+        output?.open(viewController: viewController)
     }
     
     func didSelectItem(at indexPath: IndexPath) {

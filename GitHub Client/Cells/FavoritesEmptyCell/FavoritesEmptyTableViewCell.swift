@@ -7,30 +7,28 @@
 
 import UIKit
 
-struct FavoritesEmptyCellViewModel {
-    
+struct FavoritesEmptyCellViewModel {}
+
+protocol FavoritesEmptyCellDelegate: AnyObject {
+    func addFavoritesButtonTouchUpInside()
 }
 
 class FavoritesEmptyTableViewCell: BaseTableViewCell, NibLoadable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    weak var delegate: FavoritesEmptyCellDelegate?
 
     @IBAction func addFavoritesButtonTouchUpInside(_ sender: UIButton) {
+        delegate?.addFavoritesButtonTouchUpInside()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
-        configure(viewModel: viewModel)
     }
 }
 
 extension FavoritesEmptyTableViewCell: ConfigurableCell {
-    func configure(viewModel: FavoritesEmptyCellViewModel) {
-    }
+    func configure(viewModel: FavoritesEmptyCellViewModel) {}
 }

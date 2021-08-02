@@ -37,9 +37,9 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let dataViewMap: [String: TableCellManager] = [
-        "\(TableCellViewModel.self)" : TableCellManager.create(cellType: TableViewCell.self),
-        "\(FavoritesEmptyCellViewModel.self)" : TableCellManager.create(cellType: FavoritesEmptyTableViewCell.self),
-        "\(RecentEventsCellViewModel.self)" : TableCellManager.create(cellType: RecentEventsTableViewCell.self)
+        "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self),
+        "\(FavoritesEmptyCellViewModel.self)": TableCellManager.create(cellType: FavoritesEmptyTableViewCell.self),
+        "\(RecentEventsCellViewModel.self)": TableCellManager.create(cellType: RecentEventsTableViewCell.self)
     ]
     
     private var viewModels: [[Any]] = [[]]
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
         else {
             return
         }
-        
+
         let keyboardHeight = keyboardFrame.cgRectValue.size.height
         self.searchController.showsSearchResultsController = keyboardHeight != 0
     }
@@ -121,6 +121,12 @@ extension HomeViewController: HomePresenterOutput {
     func push(to viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func open(viewController: UIViewController) {
+        present(viewController, animated: true) {
+            //todo: update favorites cell
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -129,7 +135,7 @@ extension HomeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter?.didSelectItem(at: indexPath)
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return presenter?.header(for: section)
     }
@@ -152,7 +158,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModels[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModels[indexPath.section][indexPath.row]
         guard let cellManager = cellManager(for: viewModel) else {
@@ -160,7 +166,16 @@ extension HomeViewController: UITableViewDataSource {
         }
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: viewModel)
+        if let favoritesEmptyCell = cell as? FavoritesEmptyTableViewCell {
+            favoritesEmptyCell.delegate = self
+        }
         return cell
+    }
+}
+
+extension HomeViewController: FavoritesEmptyCellDelegate {
+    func addFavoritesButtonTouchUpInside() {
+        presenter?.showFavorite()
     }
 }
 
