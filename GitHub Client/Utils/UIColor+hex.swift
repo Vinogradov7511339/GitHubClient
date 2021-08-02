@@ -9,7 +9,8 @@ import UIKit
 
 extension UIColor {
     static func getLanguageColor(for language: String?) -> UIColor? {
-        guard let language = language,  let hex = ApplicationPresenter.shared.languageColorsDict[language] else {
+        guard let language = language,
+              let hex = ApplicationPresenter.shared.languageColorsDict[language] else {
             return nil
         }
         return UIColor(hex: hex, alpha: 1.0)
@@ -17,7 +18,7 @@ extension UIColor {
     
     public convenience init?(hex: String, alpha: CGFloat) {
         guard hex.hasPrefix("#") else { return nil }
-        
+    
         let start = hex.index(hex.startIndex, offsetBy: 1)
         let hexColor = String(hex[start...])
         guard hexColor.count == 6 else { return nil }

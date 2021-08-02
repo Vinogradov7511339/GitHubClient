@@ -18,7 +18,7 @@ class FavoriteRepositoryTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var detailImageView: WebImageView!
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

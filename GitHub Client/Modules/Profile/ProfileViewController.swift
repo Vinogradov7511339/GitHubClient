@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     
     private let dataViewMap: [String: TableCellManager] = [
         "\(UserProfile.self)": TableCellManager.create(cellType: ProfileHeaderTableViewCell.self),
-        "\(ProfileMostPopularCellViewModel.self)": TableCellManager.create(cellType: ProfileMostPopularCell.self),
+        "\(ProfileMostPopularCellViewModel.self)": TableCellManager.create(cellType: PinnedRepositoriesTableViewCell.self),
         "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self)
     ]
     

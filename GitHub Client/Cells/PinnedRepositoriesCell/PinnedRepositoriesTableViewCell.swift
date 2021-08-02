@@ -11,8 +11,8 @@ struct ProfileMostPopularCellViewModel {
     let repositories: [RepositoryResponse]
 }
 
-class ProfileMostPopularCell: BaseTableViewCell {
-    
+class PinnedRepositoriesTableViewCell: BaseTableViewCell {
+
     private lazy var iconImageView: UIImageView = {
         let image = UIImage(systemName: "star")
         let imageView = UIImageView(image: image)
@@ -25,7 +25,7 @@ class ProfileMostPopularCell: BaseTableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
-        label.text = "Popular"
+        label.text = "Pinned"
         return label
     }()
 
@@ -45,15 +45,15 @@ class ProfileMostPopularCell: BaseTableViewCell {
     }()
 
     private var repositories: [RepositoryResponse] = []
-    private typealias Cell = ProfilePopularRepositoryCollectionViewCell
-    
+    private typealias Cell = PinnedRepositoryCollectionViewCell
+
     override func completeInit() {
         super.completeInit()
         setupViews()
         activateConstraints()
 
-        let nib = UINib(nibName: ProfilePopularRepositoryCollectionViewCell.nibName, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: ProfilePopularRepositoryCollectionViewCell.reuseIdentifier)
+        let nib = UINib(nibName: PinnedRepositoryCollectionViewCell.nibName, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: PinnedRepositoryCollectionViewCell.reuseIdentifier)
     }
 
     override func populate(viewModel: Any) {
@@ -62,7 +62,7 @@ class ProfileMostPopularCell: BaseTableViewCell {
     }
 }
 
-extension ProfileMostPopularCell: ConfigurableCell {
+extension PinnedRepositoriesTableViewCell: ConfigurableCell {
     func configure(viewModel: ProfileMostPopularCellViewModel) {
         repositories = viewModel.repositories
         collectionView.reloadData()
@@ -70,10 +70,10 @@ extension ProfileMostPopularCell: ConfigurableCell {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ProfileMostPopularCell: UICollectionViewDelegate {}
+extension PinnedRepositoriesTableViewCell: UICollectionViewDelegate {}
 
 // MARK: - UICollectionViewDataSource
-extension ProfileMostPopularCell: UICollectionViewDataSource {
+extension PinnedRepositoriesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return repositories.count
     }
@@ -91,7 +91,7 @@ extension ProfileMostPopularCell: UICollectionViewDataSource {
 }
 
 // MARK: - setup views & constraints
-private extension ProfileMostPopularCell {
+private extension PinnedRepositoriesTableViewCell {
     func setupViews() {
         contentView.addSubview(iconImageView)
         contentView.addSubview(label)

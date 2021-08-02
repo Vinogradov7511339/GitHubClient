@@ -48,7 +48,7 @@ struct UserProfile: Codable {
     let collaborators: Int?
     let twoFactorAuthentication: Bool?
     let plan: Plan?
-    
+
 //    enum CodingKeys: String, CodingKey {
 //        case login
 //        case userId = "id"
@@ -90,13 +90,13 @@ struct UserProfile: Codable {
 //        case twoFactorAuthentication = "two_factor_authentication"
 //        case plan = "plan"
 //    }
-    
+
     struct Plan: Codable {
         let name: String?
         let space: Int?
         let privateRepos: Int?
         let collaborators: Int?
-        
+
         enum CodingKeys: String, CodingKey {
             case name
             case space

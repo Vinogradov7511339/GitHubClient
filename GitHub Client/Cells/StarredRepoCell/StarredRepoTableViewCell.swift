@@ -8,7 +8,7 @@
 import UIKit
 
 class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
-    
+
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var ownerLoginLabel: UILabel!
     @IBOutlet weak var reposNameLabel: UILabel!
@@ -17,7 +17,7 @@ class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var languageColorImageView: WebImageView!
     @IBOutlet weak var languageLabel: UILabel!
-        
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

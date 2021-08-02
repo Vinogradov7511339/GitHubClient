@@ -20,10 +20,14 @@ class DirectoryResponse: Codable {
     let type: String
     //    let _links
 
-    init(name: String, path: String,
-                  sha: String, size: Int,
-                  url: URL, htmlUrl: URL,
-                  gitUrl: URL, downloadUrl: URL, type: String) {
+    init(name: String,
+         path: String,
+         sha: String,
+         size: Int,
+         url: URL, htmlUrl: URL,
+         gitUrl: URL,
+         downloadUrl: URL,
+         type: String) {
         self.name = name
         self.path = path
         self.sha = sha

@@ -17,7 +17,7 @@ struct FeaturedCellViewModel {
     let starsCount: String
     let language: String
     let languageColor: UIColor?
-    
+
     init(repository: RepositoryResponse) {
         repositoryImageUrl = nil
         type = "FEATURED REPOSITORY"
@@ -43,11 +43,6 @@ class FeaturedCollectionViewCell: BaseCollectionViewCell, NibLoadable {
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var starButton: UIButton!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -61,11 +56,11 @@ extension FeaturedCollectionViewCell: ConfigurableCell {
         nameLabel.text = viewModel.repositoryName
         detailLabel.text = viewModel.repositoryDescription
         starImageView.tintColor = viewModel.isStarred ? .systemYellow : .systemGray
-        
+
         if let languageColor = viewModel.languageColor {
             languageImageView.tintColor = languageColor
         }
-        
+
         starsCountLabel.text = viewModel.starsCount
         languageLabel.text = viewModel.language
     }

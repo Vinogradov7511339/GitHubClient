@@ -5,15 +5,14 @@
 //  Created by Alexander Vinogradov on 20.07.2021.
 //
 
-//import Foundation
 import CoreData
 
 class CoreDataStack {
-    
+
     private lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
     }()
-    
+
     private lazy var storeContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { storeDescription, error in
@@ -24,7 +23,7 @@ class CoreDataStack {
         }
         return container
     }()
-    
+
     func saveContext() {
         guard managedContext.hasChanges else { return }
         do {
@@ -33,7 +32,7 @@ class CoreDataStack {
             print("CoreDataStack error \(error), \(error.userInfo)")
         }
     }
-    
+
     func saveUser(user: UserProfile) {
 //        if let dbUser = NSEntityDescription.insertNewObject(forEntityName: "UserDBModel", into: managedContext) as? UserDBModel {
 //            dbUser.login = user.login

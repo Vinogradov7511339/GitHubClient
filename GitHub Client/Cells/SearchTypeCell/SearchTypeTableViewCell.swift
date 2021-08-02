@@ -15,14 +15,6 @@ struct SearchTypeCellViewModel {
 
 class SearchTypeTableViewCell: BaseTableViewCell, NibLoadable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         self.configure(viewModel: viewModel)

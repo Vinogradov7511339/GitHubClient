@@ -10,43 +10,43 @@ import UIKit
 extension UIView {
     
     @IBInspectable var borderWidth: CGFloat {
-        set { layer.borderWidth = newValue }
         get { layer.borderWidth }
+        set { layer.borderWidth = newValue }
     }
-    
+
     @IBInspectable var borderColor: UIColor? {
-        set { layer.borderColor = newValue?.cgColor }
         get { layer.borderColor?.uiColor }
+        set { layer.borderColor = newValue?.cgColor }
     }
     
     @IBInspectable var cornerRadius: CGFloat {
-        set { layer.cornerRadius = newValue }
         get { layer.cornerRadius }
+        set { layer.cornerRadius = newValue }
     }
-    
+
     @IBInspectable var shadowOffset: CGSize {
-        set { layer.shadowOffset = newValue }
         get { layer.shadowOffset }
+        set { layer.shadowOffset = newValue }
     }
-    
+
     @IBInspectable var shadowOpacity: Float {
-        set { layer.shadowOpacity = newValue }
         get { layer.shadowOpacity }
+        set { layer.shadowOpacity = newValue }
     }
-    
+
     @IBInspectable var shadowRadius: CGFloat {
-        set { layer.shadowRadius = newValue }
         get { layer.shadowRadius }
+        set { layer.shadowRadius = newValue }
     }
-    
+
     @IBInspectable var shadowColor: UIColor? {
-        set { layer.shadowColor = newValue?.cgColor }
         get { layer.shadowColor?.uiColor }
+        set { layer.shadowColor = newValue?.cgColor }
     }
-    
+
     @IBInspectable var innerClipsToBounds: Bool {
-        set { clipsToBounds = newValue }
         get { return clipsToBounds }
+        set { clipsToBounds = newValue }
     }
 }
 

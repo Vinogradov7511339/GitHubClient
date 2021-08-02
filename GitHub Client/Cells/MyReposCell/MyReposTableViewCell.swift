@@ -15,7 +15,7 @@ class MyReposTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var languageColorImageView: UIImageView!
     @IBOutlet weak var languageLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -23,7 +23,7 @@ class MyReposTableViewCell: BaseTableViewCell, NibLoadable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

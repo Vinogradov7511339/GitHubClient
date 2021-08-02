@@ -8,7 +8,7 @@
 import UIKit
 
 struct MediumCellViewModel {
-    
+
     let repositoryImageUrl: URL?
     let ownerName: String
     let repositoryName: String
@@ -16,7 +16,7 @@ struct MediumCellViewModel {
     let starCount: String
     let language: String
     let languageColor: UIColor?
-    
+
     init(repository: RepositoryResponse) {
         repositoryImageUrl = repository.owner?.avatarUrl
         ownerName = repository.owner?.login ?? ""
@@ -37,7 +37,7 @@ class MediumCollectionViewCell: BaseCollectionViewCell, NibLoadable {
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var starImageView: UIImageView!
     @IBOutlet weak var languageImageView: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

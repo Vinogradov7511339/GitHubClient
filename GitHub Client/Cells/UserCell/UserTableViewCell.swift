@@ -13,7 +13,7 @@ class UserTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -24,7 +24,7 @@ class UserTableViewCell: BaseTableViewCell, NibLoadable {
 extension UserTableViewCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
         avatarImageView.set(url: viewModel.avatarUrl)
-        loginLabel.text = viewModel.login ?? ""
+        loginLabel.text = viewModel.login
         if let name = viewModel.name {
             nameLabel.isHidden = false
             nameLabel.text = name

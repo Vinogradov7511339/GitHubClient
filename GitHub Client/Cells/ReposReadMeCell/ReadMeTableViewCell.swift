@@ -84,51 +84,54 @@ private extension ReadMeTableViewCell {
                 sumText.append(attrstr)
             }
         }
+    }
+}
 
-        func createViewforCodeBlock(_ code: String) {
-            let textView = UITextView()
-            textView.translatesAutoresizingMaskIntoConstraints = false
-            textView.isEditable = false
-            textView.backgroundColor = .placeholderText
-            textView.clipsToBounds = true
-            textView.layer.cornerRadius = 8.0
-            textView.text = code
-            textView.sizeThatFits(CGSize(width: bounds.width - 32.0, height: CGFloat.greatestFiniteMagnitude))
-            let height = textView.contentSize.height
-            stackView.addArrangedSubview(textView)
-            textView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
-            textView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
-            textView.heightAnchor.constraint(equalToConstant: height + 10.0).isActive = true
-        }
+// MARK: - helpers
+private extension ReadMeTableViewCell {
+    func createViewForHeader(depth: Int, text: String) {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        let size: CGFloat = 14.0 + CGFloat((depth * 3))
+        label.font = .boldSystemFont(ofSize: size)
 
-        func createViewForHeader(depth: Int, text: String) {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = text
-            let size: CGFloat = 14.0 + CGFloat((depth * 3))
-            label.font = .boldSystemFont(ofSize: size)
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .separator
 
-            let line = UIView()
-            line.translatesAutoresizingMaskIntoConstraints = false
-            line.backgroundColor = .separator
+        stackView.addArrangedSubview(label)
+        label.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
 
-            stackView.addArrangedSubview(label)
-            label.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-            label.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        stackView.addArrangedSubview(line)
+        line.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+        line.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+    }
 
-            stackView.addArrangedSubview(line)
-            line.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-            line.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-        }
+    func createViewForText(text: NSAttributedString) {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.attributedText = text
+        stackView.addArrangedSubview(label)
+        label.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+        label.heightAnchor.constraint(equalToConstant: label.intrinsicContentSize.height).isActive = true
+    }
 
-        func createViewForText(text: NSAttributedString) {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.numberOfLines = 0
-            label.attributedText = text
-            stackView.addArrangedSubview(label)
-            label.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-            label.heightAnchor.constraint(equalToConstant: label.intrinsicContentSize.height).isActive = true
-        }
+    func createViewforCodeBlock(_ code: String) {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isEditable = false
+        textView.backgroundColor = .placeholderText
+        textView.clipsToBounds = true
+        textView.layer.cornerRadius = 8.0
+        textView.text = code
+        textView.sizeThatFits(CGSize(width: bounds.width - 32.0, height: CGFloat.greatestFiniteMagnitude))
+        let height = textView.contentSize.height
+        stackView.addArrangedSubview(textView)
+        textView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
+        textView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
+        textView.heightAnchor.constraint(equalToConstant: height + 10.0).isActive = true
     }
 }

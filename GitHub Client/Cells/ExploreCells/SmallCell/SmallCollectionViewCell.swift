@@ -8,13 +8,13 @@
 import UIKit
 
 struct SmallCellViewModel {
-    
+
     let repositoryImageUrl: URL?
     let repositoryName: String
     let isStarred: Bool
     let starCount: String
     let language: String
-    
+
     init(repository: RepositoryResponse) {
         repositoryImageUrl = repository.owner?.avatarUrl
         repositoryName = repository.fullName ?? ""
@@ -32,12 +32,6 @@ class SmallCollectionViewCell: BaseCollectionViewCell, NibLoadable {
     @IBOutlet weak var starCountLabel: UILabel!
 //    @IBOutlet weak var languageImageView: UIImageView!
     @IBOutlet weak var languageLabel: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)

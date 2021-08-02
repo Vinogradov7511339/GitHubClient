@@ -21,7 +21,12 @@ class FileResponse: Codable {
     let encoding: String
 //    let _links
     
-    internal init(name: String, path: String, sha: String, size: Int, url: URL, htmlUrl: URL, gitUrl: URL, downloadUrl: URL, type: String, content: String, encoding: String) {
+    internal init(name: String, path: String,
+                  sha: String, size: Int,
+                  url: URL, htmlUrl: URL,
+                  gitUrl: URL, downloadUrl: URL,
+                  type: String, content: String,
+                  encoding: String) {
         self.name = name
         self.path = path
         self.sha = sha

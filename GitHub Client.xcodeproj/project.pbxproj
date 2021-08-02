@@ -23,12 +23,12 @@
 		AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40726A58A07003BB5F1 /* TableCellManager.swift */; };
 		AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */; };
 		AD20E40E26A59514003BB5F1 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */; };
-		AD20E41226A5995C003BB5F1 /* ProfileMostPopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41126A5995C003BB5F1 /* ProfileMostPopularCell.swift */; };
+		AD20E41226A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */; };
 		AD20E41A26A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41826A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift */; };
 		AD20E41B26A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E41926A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib */; };
 		AD20E41D26A5ABCB003BB5F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41C26A5ABCB003BB5F1 /* UIView+NibLoadable.swift */; };
 		AD20E42A26A5CAF9003BB5F1 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E42926A5CAF9003BB5F1 /* RepositoryResponse.swift */; };
-		AD20E42D26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E42B26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift */; };
+		AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E42B26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift */; };
 		AD20E42E26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E42C26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.xib */; };
 		AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E43826A60DBE003BB5F1 /* MyReposTableViewCell.swift */; };
 		AD20E43B26A60DBE003BB5F1 /* MyReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E43926A60DBE003BB5F1 /* MyReposTableViewCell.xib */; };
@@ -206,8 +206,6 @@
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
 		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
-		ADB26BA526B3DE7E0043CEBB /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB26BA426B3DE7E0043CEBB /* TestController.swift */; };
-		ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */; };
 		ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */; };
 		ADC8180226B0021F00469BCF /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180126B0021F00469BCF /* Discussion.swift */; };
 		ADC8180426B002FE00469BCF /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180326B002FE00469BCF /* Reactions.swift */; };
@@ -237,12 +235,12 @@
 		AD20E40726A58A07003BB5F1 /* TableCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellManager.swift; sourceTree = "<group>"; };
 		AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
-		AD20E41126A5995C003BB5F1 /* ProfileMostPopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMostPopularCell.swift; sourceTree = "<group>"; };
+		AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedRepositoriesTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E41826A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E41926A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		AD20E41C26A5ABCB003BB5F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD20E42926A5CAF9003BB5F1 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
-		AD20E42B26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopularRepositoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		AD20E42B26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedRepositoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AD20E42C26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopularRepositoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		AD20E43826A60DBE003BB5F1 /* MyReposTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReposTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E43926A60DBE003BB5F1 /* MyReposTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -422,8 +420,6 @@
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
 		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
-		ADB26BA426B3DE7E0043CEBB /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
-		ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		ADC817FB26AFD96000469BCF /* IssuesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesInteractor.swift; sourceTree = "<group>"; };
 		ADC8180126B0021F00469BCF /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		ADC8180326B002FE00469BCF /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
@@ -491,14 +487,14 @@
 			path = ProfileHeaderCell;
 			sourceTree = "<group>";
 		};
-		AD20E42626A5C44E003BB5F1 /* ProfileMostPopularCell */ = {
+		AD20E42626A5C44E003BB5F1 /* PinnedRepositoriesCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E41126A5995C003BB5F1 /* ProfileMostPopularCell.swift */,
-				AD20E42B26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift */,
+				AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */,
+				AD20E42B26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift */,
 				AD20E42C26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.xib */,
 			);
-			path = ProfileMostPopularCell;
+			path = PinnedRepositoriesCell;
 			sourceTree = "<group>";
 		};
 		AD20E42F26A5DFD7003BB5F1 /* TableCellManager */ = {
@@ -641,7 +637,7 @@
 				ADA7502026ADA7E000783E71 /* StarredRepoCell */,
 				AD20E54726AAB757003BB5F1 /* ExploreCells */,
 				AD20E41526A599C2003BB5F1 /* ProfileHeaderCell */,
-				AD20E42626A5C44E003BB5F1 /* ProfileMostPopularCell */,
+				AD20E42626A5C44E003BB5F1 /* PinnedRepositoriesCell */,
 				AD8722EE26B842AE004649A4 /* FavoriteRepositoryCell */,
 				AD20E4F926A95DC1003BB5F1 /* FavoritesEmptyCell */,
 				AD20E4FE26A95F8A003BB5F1 /* RecentEventsCell */,
@@ -909,8 +905,6 @@
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
-				ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */,
-				ADB26BA426B3DE7E0043CEBB /* TestController.swift */,
 				AD43E81126B44F2B008DF634 /* TextStorage.swift */,
 			);
 			path = "GitHub Client";
@@ -1274,7 +1268,6 @@
 				ADA68BA726B55621004AC06C /* octocat_gray@2x-5.png in Resources */,
 				AD20E51C26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.xib in Resources */,
 				ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */,
-				ADC1EB8A26AEF53A00DC9AB5 /* Test.storyboard in Resources */,
 				AD20E53026AA9429003BB5F1 /* DetailTableViewCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
@@ -1463,7 +1456,6 @@
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
 				AD20E44426A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift in Sources */,
-				ADB26BA526B3DE7E0043CEBB /* TestController.swift in Sources */,
 				AD20E50D26A99DFE003BB5F1 /* IssuesPresenter.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModel.swift in Sources */,
 				AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */,
@@ -1477,7 +1469,7 @@
 				AD20E40E26A59514003BB5F1 /* UITableView+extensions.swift in Sources */,
 				AD20E53526AA9918003BB5F1 /* RepositoriesListPresenter.swift in Sources */,
 				AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */,
-				AD20E41226A5995C003BB5F1 /* ProfileMostPopularCell.swift in Sources */,
+				AD20E41226A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift in Sources */,
 				AD8722E226B81923004649A4 /* FolderConfigurator.swift in Sources */,
 				AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */,
 				AD79550C26AC0C14004E6973 /* NotificationsEmptyView.swift in Sources */,
@@ -1511,7 +1503,7 @@
 				AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequest.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
-				AD20E42D26A5DDBF003BB5F1 /* ProfilePopularRepositoryCollectionViewCell.swift in Sources */,
+				AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */,
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,

@@ -14,21 +14,20 @@ import UIKit
  */
 class WebImageView: UIImageView {
     private var currentUrl: URL?
-    
     private var dataTask: URLSessionDataTask?
-    
+
     func set(url: URL?) {
         guard let url = url else {
             self.image = nil
             return
         }
         currentUrl = url
-        
-        if let casheResponse = URLCache.shared.cachedResponse(for:  URLRequest(url: url)) {
+
+        if let casheResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
             self.image = UIImage(data: casheResponse.data)
             return
         }
-        
+
         dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
                 if let data = data, let response = response {
@@ -38,19 +37,18 @@ class WebImageView: UIImageView {
         }
         dataTask?.resume()
     }
-    
+
     private func handleLoadedImage(data: Data, response: URLResponse) {
         guard let url = response.url else { return }
         let cashedRespone = CachedURLResponse(response: response, data: data)
         URLCache.shared.storeCachedResponse(cashedRespone, for: URLRequest(url: url))
-        
+
         if url == currentUrl {
             self.image = UIImage(data: data)
         }
     }
-    
+
     deinit {
         dataTask?.cancel()
     }
-    
 }

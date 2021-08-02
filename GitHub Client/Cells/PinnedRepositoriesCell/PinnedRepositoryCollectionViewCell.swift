@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfilePopularRepositoryCollectionViewCell: UICollectionViewCell {
+class PinnedRepositoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var ownerAvatarImageView: WebImageView!

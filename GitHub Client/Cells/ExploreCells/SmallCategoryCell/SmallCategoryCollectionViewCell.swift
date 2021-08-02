@@ -12,10 +12,10 @@ struct SmallCategoryCellViewModel {
     let avatarUrl: URL?
     let login: String
     let followers: String
-    
+
     init(profile: UserProfile) {
         avatarUrl = profile.avatarUrl
-        login = profile.login ?? ""
+        login = profile.login
         followers = "\(profile.followers ?? 0) followers"
     }
 }
@@ -23,13 +23,9 @@ struct SmallCategoryCellViewModel {
 class SmallCategoryCollectionViewCell: BaseCollectionViewCell, NibLoadable {
 
     @IBOutlet weak var userAvatarImageVIew: WebImageView!
-    
+
     @IBOutlet weak var userLoginLabel: UILabel!
     @IBOutlet weak var userFollowersCountLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)

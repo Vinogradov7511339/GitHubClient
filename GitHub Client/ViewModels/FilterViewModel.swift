@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FilterViewModel {
-    
+
     var output: FilterViewModelOutput? { get set }
     var filterButtons: [UIButton] { get }
     var listener: FilterViewModelListener? { get set }

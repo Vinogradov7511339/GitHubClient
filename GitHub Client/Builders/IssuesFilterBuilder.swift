@@ -7,7 +7,7 @@
 
 import Foundation
 
-//class IssuesFilterBuilder {
+// class IssuesFilterBuilder {
 //    private(set) var sortedBy: Filter.SortType = .newest
 //    private(set) var state: IssuesFilter.IssueState = .all
 //    private(set) var type: IssuesFilter.IssueType = .all

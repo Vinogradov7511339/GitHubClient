@@ -25,13 +25,13 @@ class LocalStorage {
         queue.qualityOfService = .userInitiated
         return queue
     }()
-    
+
     func saveUser(user: UserProfile) {
         performUpdate { [self] context in
             self.saveUser(user: user, in: context)
         }
     }
-    
+
 //    func getUser(completion: @escaping ([UserDBModel]) -> Void) {
 //        performUpdate { context in
 //            let users = self.getUsers(in: context)
@@ -41,7 +41,7 @@ class LocalStorage {
 }
 
 private extension LocalStorage {
-    
+
 //    func getUsers(in context: NSManagedObjectContext) -> [UserDBModel] {
 //        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
 //        if let objects = try? context.fetch(fetchRequest) {
@@ -56,7 +56,7 @@ private extension LocalStorage {
 //
 //        return try? context.fetch(fetchRequest).first
 //    }
-    
+
     func saveUser(user: UserProfile, in context: NSManagedObjectContext) {
 //        let dbUser = getOrCreateUser(user, in: context)
 //        guard let dbUser = dbUser else { fatalError() }
@@ -69,10 +69,10 @@ private extension LocalStorage {
 //        dbUser.following = user.following_url
 //        dbUser.location = user.location
 //        dbUser.image = nil
-        
+    
 //        context.insert(dbUser)
     }
-    
+
 //    func getOrCreateUser(_ user: UserProfile, in context: NSManagedObjectContext) -> UserDBModel? {
 //        let fetchRequest: NSFetchRequest<UserDBModel> = UserDBModel.fetchRequest()
 //        fetchRequest.predicate = NSPredicate(format: "id == %id", user.id)
@@ -88,20 +88,20 @@ private extension LocalStorage {
 //        let object = NSManagedObject(entity: userEntity, insertInto: context) as? UserDBModel
 //        return object
 //    }
-    
+
     func saveContext(_ context: NSManagedObjectContext, completion: @escaping (Error?) -> Void) {
         guard context.hasChanges else {
             completion(nil)
             return
         }
-        
+
         do {
             try context.save()
         } catch {
             completion(error)
             return
         }
-        
+
         let rootContext = CoreDataManager.shared.rootObjectContext
         rootContext.performAndWait {
             do {
@@ -113,11 +113,11 @@ private extension LocalStorage {
             completion(nil)
         }
     }
-    
+
     func performUpdate(updateAction: @escaping (NSManagedObjectContext) -> Void) {
         performUpdate(updateAction: updateAction, completion: {})
     }
-    
+
     func performUpdate(updateAction: @escaping (NSManagedObjectContext) -> Void, completion: @escaping () -> Void) {
         let operation = AsyncOperation { operationCompletion in
             let context = CoreDataManager.shared.getBackgroundContext()

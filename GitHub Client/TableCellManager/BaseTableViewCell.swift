@@ -9,7 +9,7 @@ import UIKit
 
 protocol ConfigurableCell {
     associatedtype ViewModel
-    
+
     func configure(viewModel: ViewModel)
 }
 
@@ -22,25 +22,23 @@ extension ConfigurableCell {
     }
 }
 
-
 class BaseTableViewCell: UITableViewCell {
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         completeInit()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         completeInit()
     }
-    
+
     class func cellHeight(for viewModel: Any) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func completeInit() { }
-    
+
     func populate(viewModel: Any) { }
 }
-

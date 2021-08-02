@@ -20,19 +20,13 @@ class IssueDetailsHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusBadge: StatusBadgeView!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
-    @IBAction func actionButtonTouchUpInside(_ sender: UIButton) {
-    }
-    
+    @IBAction func actionButtonTouchUpInside(_ sender: UIButton) {}
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
