@@ -52,7 +52,7 @@ extension FavoritesPresenter: FavoritesPresenterInput {
         }
         let section = indexPath.section == 0 ? 1 : 0
         let toIndexPath = IndexPath(row: insertedIndex, section: section)
-        
+
         let mappedFavorites = favorites.map { map($0, isFavorite: true) }
         let mappedNotFavorites = notFavorites.map { map($0, isFavorite: false) }
         let viewModels = [mappedFavorites, mappedNotFavorites]

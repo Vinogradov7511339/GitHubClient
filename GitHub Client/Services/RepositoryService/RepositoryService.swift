@@ -118,15 +118,15 @@ extension RepositoryService {
         }
     }
     
-    func fetchCommits(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
+    func fetchCommits(for repository: RepositoryResponse, completion: @escaping ([CommitInfoResponse]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchCommits(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: FileResponse.self, from: data) {
-                completion(readme, nil)
+            if let commits = self.decode(of: [CommitInfoResponse].self, from: data) {
+                completion(commits, nil)
             } else {
                 completion(nil, nil)
             }

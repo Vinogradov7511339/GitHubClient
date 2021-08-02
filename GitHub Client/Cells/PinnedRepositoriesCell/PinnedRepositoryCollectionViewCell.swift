@@ -1,5 +1,5 @@
 //
-//  ProfilePopularRepositoryCollectionViewCell.swift
+//  PinnedRepositoryCollectionViewCell.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 19.07.2021.

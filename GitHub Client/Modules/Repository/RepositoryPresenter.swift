@@ -84,6 +84,11 @@ class RepositoryPreseter {
         output?.push(to: viewController)
     }
 
+    private func openCommits() {
+        guard let repository = repositoryInfo?.repository else { return }
+        let viewController = CommitsListConfigurator.create(repository: repository)
+        output?.push(to: viewController)
+    }
 //    private func openLicense() {
 //        guard let repository = repositoryInfo?.repository else { return }
 //        guard let licensePath = repository.license?.url else { return }
@@ -111,6 +116,8 @@ extension RepositoryPreseter: RepositoryPresenterInput {
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
             openContent()
+        case (1, 1):
+            openCommits()
         default:
             break
         }
