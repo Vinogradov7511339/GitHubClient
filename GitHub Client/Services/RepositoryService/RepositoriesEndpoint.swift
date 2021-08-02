@@ -30,6 +30,8 @@ enum RepositoriesEndpoint {
     case fetchDiscussions(repository: RepositoryResponse)
     case fetchCommits(repository: RepositoryResponse)
     case fetchBranches(repository: RepositoryResponse)
+    
+    case fetchContent(repository: RepositoryResponse)
 }
 
 extension RepositoriesEndpoint: EndpointProtocol {
@@ -87,6 +89,11 @@ extension RepositoriesEndpoint: EndpointProtocol {
             let owner = repository.owner!.login
             let repositoryName = repository.name!
             return  URL(string: "https://api.github.com/repos/\(owner)/\(repositoryName)/branches")!
+            
+        case .fetchContent(let repository):
+            let owner = repository.owner!.login
+            let repositoryName = repository.name!
+            return  URL(string: "https://api.github.com/repos/\(owner)/\(repositoryName)/contents")!
         }
     }
     

@@ -20,6 +20,7 @@ protocol RepositoryInteractorOutput: AnyObject {
 class RepositoryInteractor {
     weak var output: RepositoryInteractorOutput?
     
+    private let repositoryService = ServicesManager.shared.repositoryService
     private let repositoryFacade: RepositoryFacade
     private var repository: RepositoryResponse
     

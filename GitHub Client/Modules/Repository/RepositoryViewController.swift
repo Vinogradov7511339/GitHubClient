@@ -45,6 +45,10 @@ extension RepositoryViewController: RepositoryPresenterOutput {
         self.viewModels = viewModels
         tableView.reloadData()
     }
+    
+    func push(to viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -89,6 +93,10 @@ extension RepositoryViewController: UITableViewDataSource {
         case (2, 0): return UITableView.automaticDimension
         default: return 56.0
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectRow(at: indexPath)
     }
 }
 

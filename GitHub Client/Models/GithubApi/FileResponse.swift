@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ReadmeResponse: Codable {
+class FileResponse: Codable {
     let name: String
     let path: String
     let sha: String

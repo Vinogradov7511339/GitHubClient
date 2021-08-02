@@ -58,14 +58,14 @@ class RepositoryService: NetworkService {
 
 // MARK: - Repository info
 extension RepositoryService {
-    func fetchReadMe(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchReadMe(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchReadMe(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -73,14 +73,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchPullRequests(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -88,14 +88,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchReleases(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchReleases(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchReleases(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -103,14 +103,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchDiscussions(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -118,14 +118,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchCommits(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchCommits(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchCommits(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -133,14 +133,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchBranches(for repository: RepositoryResponse, completion: @escaping (ReadmeResponse?, Error?) -> Void) {
+    func fetchBranches(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchBranches(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: ReadmeResponse.self, from: data) {
+            if let readme = self.decode(of: FileResponse.self, from: data) {
                 completion(readme, nil)
             } else {
                 completion(nil, nil)
@@ -219,12 +219,59 @@ extension RepositoryService {
                 completion(nil, error)
                 return
             }
-            
+
             guard let count = linkBody.maxPageCount() else {
                 completion(nil, error)
                 return
             }
             completion(count, error)
         }
+    }
+    
+    func fetchContent(for repository: RepositoryResponse, completion: @escaping ([DirectoryResponse]?, Error?) -> Void) {
+        let endpoint = RepositoriesEndpoint.fetchContent(repository: repository)
+        request(endpoint) { data, response, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            if let directory = self.decode(of: [DirectoryResponse].self, from: data) {
+                completion(directory, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+    }
+    
+    func fetchContent(filePath: URL, completion: @escaping ([DirectoryResponse]?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: filePath) { [weak self] data, response, error in
+            guard let self = self else { return }
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            if let items = self.decode(of: [DirectoryResponse].self, from: data) {
+                completion(items, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchFile(filePath: URL, completion: @escaping (FileResponse?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: filePath) { [weak self] data, response, error in
+            guard let self = self else { return }
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            if let file = self.decode(of: FileResponse.self, from: data) {
+                completion(file, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+        task.resume()
     }
 }
