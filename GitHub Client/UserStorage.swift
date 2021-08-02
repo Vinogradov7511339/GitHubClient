@@ -9,38 +9,38 @@ import Foundation
 
 // todo switch to keychain
 class UserStorage {
-    
+
     enum LoginState {
         case logged
         case notLogged
     }
-    
+
     static let shared = UserStorage()
-    
+
     var loginState: LoginState {
-        if let _ = token {
+        if token != nil {
             return .logged
         } else {
             return .notLogged
         }
     }
-    
+
     var token: TokenResponse? {
-        let ud = UserDefaults.standard
-        guard let token = ud.string(forKey: "ACCESS_TOKEN") else { return nil}
-        guard let tokenType = ud.string(forKey: "TOKEN_TYPE") else { return nil }
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "ACCESS_TOKEN") else { return nil}
+        guard let tokenType = defaults.string(forKey: "TOKEN_TYPE") else { return nil }
         return TokenResponse(accessToken: token, scope: "", tokenType: tokenType)
     }
-    
+
     func saveTokenResponse(_ response: TokenResponse) {
-        let ud = UserDefaults.standard
-        ud.setValue(response.accessToken, forKey: "ACCESS_TOKEN")
-        ud.setValue(response.tokenType, forKey: "TOKEN_TYPE")
+        let defaults = UserDefaults.standard
+        defaults.setValue(response.accessToken, forKey: "ACCESS_TOKEN")
+        defaults.setValue(response.tokenType, forKey: "TOKEN_TYPE")
     }
-    
+
     func clearStorage() {
-        let ud = UserDefaults.standard
-        ud.removeObject(forKey: "ACCESS_TOKEN")
-        ud.removeObject(forKey: "TOKEN_TYPE")
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "ACCESS_TOKEN")
+        defaults.removeObject(forKey: "TOKEN_TYPE")
     }
 }

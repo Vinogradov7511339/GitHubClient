@@ -26,9 +26,9 @@ class ProfileViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let dataViewMap: [String: TableCellManager] = [
-        "\(ProfileHeaderCellViewModel.self)" : TableCellManager.create(cellType: ProfileHeaderTableViewCell.self),
-        "\(ProfileMostPopularCellViewModel.self)" : TableCellManager.create(cellType: ProfileMostPopularCell.self),
-        "\(TableCellViewModel.self)" : TableCellManager.create(cellType: TableViewCell.self)
+        "\(UserProfile.self)": TableCellManager.create(cellType: ProfileHeaderTableViewCell.self),
+        "\(ProfileMostPopularCellViewModel.self)": TableCellManager.create(cellType: ProfileMostPopularCell.self),
+        "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self)
     ]
     
     private var viewModels: [[Any]] = [[]]

@@ -454,23 +454,6 @@
 			path = NetworkOld;
 			sourceTree = "<group>";
 		};
-		AD20E40A26A58D8C003BB5F1 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				AD20E42F26A5DFD7003BB5F1 /* TableCellManager */,
-				AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */,
-				AD20E41C26A5ABCB003BB5F1 /* UIView+NibLoadable.swift */,
-				AD20E43C26A69F91003BB5F1 /* WebImageView.swift */,
-				AD20E44A26A6BBAE003BB5F1 /* TableViewCell.swift */,
-				AD20E54C26AAB848003BB5F1 /* CollectionCellManager.swift */,
-				AD20E57626ABDA41003BB5F1 /* Extensions */,
-				AD79550326ABF481004E6973 /* Button.swift */,
-				ADC8180A26B0244300469BCF /* StatusBadgeView.swift */,
-				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		AD20E41526A599C2003BB5F1 /* ProfileHeaderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,18 +798,17 @@
 			path = SearchTypeCell;
 			sourceTree = "<group>";
 		};
-		AD20E57626ABDA41003BB5F1 /* Extensions */ = {
+		AD20E57626ABDA41003BB5F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				ADA7501E26AD931E00783E71 /* Error+extensions.swift */,
 				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
 				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
-				AD20E57226AB5132003BB5F1 /* UIImage+extensions.swift */,
 				AD20E57726ABDA7C003BB5F1 /* Dictionary+extensions.swift */,
 				AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */,
 				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
 			);
-			path = Extensions;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		AD25E4D526B6E5510003B1E0 /* ReposDetailsHeaderCell */ = {
@@ -880,7 +862,6 @@
 				AD20E46226A84B37003BB5F1 /* Adapters */,
 				ADA68BB426B56B9F004AC06C /* Builders */,
 				AD20E4EE26A9489C003BB5F1 /* Cells */,
-				AD20E40A26A58D8C003BB5F1 /* Common */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD20E46E26A87936003BB5F1 /* Modules */,
@@ -888,10 +869,13 @@
 				ADA74FFF26AD2E7C00783E71 /* Services */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
 				ADA68BBD26B5876F004AC06C /* ViewModels */,
+				AD20E57626ABDA41003BB5F1 /* Utils */,
+				AD8722D026B7D846004649A4 /* UIComponents */,
 				AD3776EE269F2698000AA54C /* Info.plist */,
 				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
+				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
 				ADC1EB8926AEF53A00DC9AB5 /* Test.storyboard */,
 				ADB26BA426B3DE7E0043CEBB /* TestController.swift */,
 				AD43E81126B44F2B008DF634 /* TextStorage.swift */,
@@ -945,6 +929,30 @@
 				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		AD8722D026B7D846004649A4 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				AD8722D126B7D8D5004649A4 /* Themes */,
+				AD79550326ABF481004E6973 /* Button.swift */,
+				ADC8180A26B0244300469BCF /* StatusBadgeView.swift */,
+				AD20E40D26A59514003BB5F1 /* UITableView+extensions.swift */,
+				AD20E41C26A5ABCB003BB5F1 /* UIView+NibLoadable.swift */,
+				AD20E43C26A69F91003BB5F1 /* WebImageView.swift */,
+				AD20E44A26A6BBAE003BB5F1 /* TableViewCell.swift */,
+				AD20E54C26AAB848003BB5F1 /* CollectionCellManager.swift */,
+				AD20E42F26A5DFD7003BB5F1 /* TableCellManager */,
+			);
+			name = UIComponents;
+			sourceTree = "<group>";
+		};
+		AD8722D126B7D8D5004649A4 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E57226AB5132003BB5F1 /* UIImage+extensions.swift */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 		AD8B7E6626B0692500368FA8 /* Frameworks */ = {

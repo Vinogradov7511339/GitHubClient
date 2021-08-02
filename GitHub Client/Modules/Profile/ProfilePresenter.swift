@@ -45,7 +45,6 @@ class ProfilePresenter {
     }
 
     private func fullViewModels(with profileInfo: ProfileInfo) {
-        let profileViewModel = ProfileHeaderCellViewModel(profileInfo.userProfile)
         let mostPopularViewModel = ProfileMostPopularCellViewModel(repositories: profileInfo.popularRepos)
         
         let repositories = TableCellViewModel(
@@ -65,7 +64,7 @@ class ProfilePresenter {
             accessoryType: .disclosureIndicator)
         let items = [repositories, stared, organizations]
         
-        output?.display(viewModels: [[profileViewModel], [mostPopularViewModel], items])
+        output?.display(viewModels: [[profileInfo.userProfile], [mostPopularViewModel], items])
     }
 }
 

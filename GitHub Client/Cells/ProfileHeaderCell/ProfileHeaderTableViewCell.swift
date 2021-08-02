@@ -7,14 +7,6 @@
 
 import UIKit
 
-class ProfileHeaderCellViewModel {
-    let profile: UserProfile
-    
-    init(_ profile: UserProfile) {
-        self.profile = profile
-    }
-}
-
 protocol ProfileHeaderTableViewCellDelegate: AnyObject {
     func followersButtonTouchUpInside()
     func followingButtonTouchUpInside()
@@ -43,9 +35,9 @@ class ProfileHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var companiAndLocationStackView: UIStackView!
     @IBOutlet weak var linkStackView: UIStackView!
     @IBOutlet weak var mailStackView: UIStackView!
-    
+
     weak var delegate: ProfileHeaderTableViewCellDelegate?
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -53,7 +45,7 @@ class ProfileHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     @IBAction func followersButtonTouchUpInside(_ sender: UIButton) {
         delegate?.followersButtonTouchUpInside()
     }
-    
+
     @IBAction func followingButtonTouchUpInside(_ sender: UIButton) {
         delegate?.followingButtonTouchUpInside()
     }
@@ -67,8 +59,8 @@ class ProfileHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension ProfileHeaderTableViewCell: ConfigurableCell {
-    func configure(viewModel: ProfileHeaderCellViewModel) {
-        let profile = viewModel.profile
+    func configure(viewModel: UserProfile) {
+        let profile = viewModel
         avatarImageView.set(url: profile.avatarUrl)
         nameLabel.text = profile.name
         loginLabel.text = profile.login
@@ -78,7 +70,7 @@ extension ProfileHeaderTableViewCell: ConfigurableCell {
         } else {
             descriptionLabel.isHidden = true
         }
-        
+
         if let company = profile.company {
             companyImageView.isHidden = false
             companyLabel.text = company
@@ -92,26 +84,25 @@ extension ProfileHeaderTableViewCell: ConfigurableCell {
             locattionImageView.isHidden = true
         }
         companiAndLocationStackView.isHidden = profile.company == nil && profile.location == nil
-        
+
         if let homePageUrl = profile.htmlUrl {
             linkButton.setTitle("\(homePageUrl)", for: .normal)
             linkStackView.isHidden = false
         } else {
             linkStackView.isHidden = true
         }
-        
+
         if let mail = profile.email {
             mailButton.setTitle(mail, for: .normal)
             mailStackView.isHidden = false
         } else {
             mailStackView.isHidden = true
         }
-        
+
         followersButton.setTitle("\(profile.followers ?? 0) followers", for: .normal)
         followingButton.setTitle("\(profile.following ?? 0) following", for: .normal)
-        
+
         statusView.isHidden = true
         followButton.isHidden = true
     }
 }
-

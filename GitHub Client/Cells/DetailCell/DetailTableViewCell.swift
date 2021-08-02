@@ -11,7 +11,7 @@ struct DetailCellViewModel {
     let avatarUrl: URL?
     let title: String
     let subtitle: String
-    
+
     init(repository: Repository) {
         avatarUrl = repository.owner?.avatarUrl
         title = repository.owner?.login ?? ""
@@ -28,7 +28,7 @@ class DetailTableViewCell: BaseTableViewCell, NibLoadable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

@@ -14,7 +14,7 @@ struct RecentEventsCellViewModel {
     let authorName: String?
     let date: String
     let badgeCount: Int?
-    
+
     init(issue: Issue) {
         eventImage = UIImage.issue
         eventName = issue.repository?.fullName ?? ""
@@ -33,7 +33,7 @@ class RecentEventsTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var badgeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -41,7 +41,7 @@ class RecentEventsTableViewCell: BaseTableViewCell, NibLoadable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

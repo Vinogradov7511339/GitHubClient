@@ -20,7 +20,7 @@ class ProfileMostPopularCell: BaseTableViewCell {
         imageView.tintColor = .label
         return imageView
     }()
-    
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,13 +28,13 @@ class ProfileMostPopularCell: BaseTableViewCell {
         label.text = "Popular"
         return label
     }()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 300,height: 100)
+        layout.estimatedItemSize = CGSize(width: 300, height: 100)
         layout.minimumInteritemSpacing = 8.0
-        
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -43,25 +43,22 @@ class ProfileMostPopularCell: BaseTableViewCell {
         collectionView.dataSource = self
         return collectionView
     }()
-    
+
     private var repositories: [Repository] = []
     private typealias Cell = ProfilePopularRepositoryCollectionViewCell
     
     override func completeInit() {
         super.completeInit()
-//        backgroundColor = UIColor.systemGroupedBackground
         setupViews()
         activateConstraints()
-        
+
         let nib = UINib(nibName: ProfilePopularRepositoryCollectionViewCell.nibName, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: ProfilePopularRepositoryCollectionViewCell.reuseIdentifier)
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
-        
-        
     }
 }
 
@@ -73,18 +70,19 @@ extension ProfileMostPopularCell: ConfigurableCell {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ProfileMostPopularCell: UICollectionViewDelegate {
-    
-}
+extension ProfileMostPopularCell: UICollectionViewDelegate {}
 
 // MARK: - UICollectionViewDataSource
 extension ProfileMostPopularCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return repositories.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.reuseIdentifier, for: indexPath) as? Cell else {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: Cell.reuseIdentifier, for: indexPath) as? Cell else {
             return UICollectionViewCell(frame: .zero)
         }
         cell.configure(with: repositories[indexPath.row])
@@ -99,16 +97,16 @@ private extension ProfileMostPopularCell {
         contentView.addSubview(label)
         contentView.addSubview(collectionView)
     }
-    
-    func activateConstraints() {        
+
+    func activateConstraints() {
         iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0).isActive = true
         iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14.0).isActive = true
         iconImageView.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
         iconImageView.widthAnchor.constraint(equalToConstant: 24.0).isActive = true
-        
+
         label.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 6.0).isActive = true
         label.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor).isActive = true
-        
+
         collectionView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 8.0).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true

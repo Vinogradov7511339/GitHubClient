@@ -13,7 +13,7 @@ struct ReadMeCellViewModel {
 }
 
 class ReadMeTableViewCell: BaseTableViewCell {
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ class ReadMeTableViewCell: BaseTableViewCell {
         stackView.spacing = 5.0
         return stackView
     }()
-    
+
     override func completeInit() {
         super.completeInit()
         addSubview(stackView)
@@ -30,7 +30,7 @@ class ReadMeTableViewCell: BaseTableViewCell {
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -63,28 +63,28 @@ private extension ReadMeTableViewCell {
                 }
                 createViewForHeader(depth: depth, text: text)
             case .plainText(let text):
-                let attr: [NSMutableAttributedString.Key : Any] = [.font : UIFont.systemFont(ofSize: 14.0)]
+                let attr: [NSMutableAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14.0)]
                 let attrstr = NSAttributedString(string: text, attributes: attr)
                 sumText.append(attrstr)
             case .bold(let text):
-                let attr: [NSMutableAttributedString.Key : Any] = [.font : UIFont.boldSystemFont(ofSize: 14.0) ]
+                let attr: [NSMutableAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 14.0) ]
                 let attrstr = NSAttributedString(string: text, attributes: attr)
                 sumText.append(attrstr)
             case .italic(let text):
-                let attr: [NSMutableAttributedString.Key : Any] = [.font: UIFont.italicSystemFont(ofSize: 14.0) ]
+                let attr: [NSMutableAttributedString.Key: Any] = [.font: UIFont.italicSystemFont(ofSize: 14.0) ]
                 let attrstr = NSAttributedString(string: text, attributes: attr)
                 sumText.append(attrstr)
             case .link(let name, _):
-                let attr: [NSMutableAttributedString.Key : Any] = [.foregroundColor : UIColor.systemBlue]
+                let attr: [NSMutableAttributedString.Key: Any] = [.foregroundColor: UIColor.systemBlue]
                 let attrstr = NSAttributedString(string: name, attributes: attr)
                 sumText.append(attrstr)
             case .sigleCodeLine(let code):
-                let attr: [NSMutableAttributedString.Key : Any] = [.backgroundColor : UIColor.placeholderText]
+                let attr: [NSMutableAttributedString.Key: Any] = [.backgroundColor: UIColor.placeholderText]
                 let attrstr = NSAttributedString(string: code, attributes: attr)
                 sumText.append(attrstr)
             }
         }
-        
+
         func createViewforCodeBlock(_ code: String) {
             let textView = UITextView()
             textView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,27 +100,27 @@ private extension ReadMeTableViewCell {
             textView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
             textView.heightAnchor.constraint(equalToConstant: height + 10.0).isActive = true
         }
-        
+
         func createViewForHeader(depth: Int, text: String) {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = text
             let size: CGFloat = 14.0 + CGFloat((depth * 3))
             label.font = .boldSystemFont(ofSize: size)
-            
+
             let line = UIView()
             line.translatesAutoresizingMaskIntoConstraints = false
             line.backgroundColor = .separator
-            
+
             stackView.addArrangedSubview(label)
             label.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
             label.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-            
+
             stackView.addArrangedSubview(line)
             line.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
             line.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
         }
-        
+
         func createViewForText(text: NSAttributedString) {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false

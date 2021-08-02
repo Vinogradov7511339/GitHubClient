@@ -14,15 +14,15 @@ class ProfilePopularRepositoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
-    
+
     class var reuseIdentifier: String {
         return String(describing: self)
     }
-    
+
     class var nibName: String {
         return String(describing: self)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 //        containerView.layer.borderWidth = 0.5
@@ -30,7 +30,7 @@ class ProfilePopularRepositoryCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerRadius = 4.0
 //        containerView.backgroundColor = .clear
     }
-    
+
     func configure(with repository: Repository) {
         ownerAvatarImageView.set(url: repository.owner?.avatarUrl)
         ownerNameLabel.text = repository.owner!.login
