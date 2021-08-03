@@ -8,9 +8,13 @@
 import UIKit
 
 enum IssueType {
-    case issue
-    case pullRequest
-    case discussions
+    case issues(RepositoryResponse)
+    case pullRequests(RepositoryResponse)
+    case discussions(RepositoryResponse)
+    
+    case myIssues
+    case myPullRequests
+    case myDiscussions
 }
 
 class IssuesListConfigurator {

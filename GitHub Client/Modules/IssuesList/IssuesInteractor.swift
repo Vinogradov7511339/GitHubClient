@@ -17,13 +17,16 @@ protocol IssuesInteractorInput {
 protocol IssuesInteractorOutput: AnyObject {
     func didReceive(objects: [Any])
     func didReceive(filter: IssuesFilters)
+    func didReceive(pullRequests: [PullRequest])
+    func didReceive(discussions: [CommentResponse])
 }
 
 class IssuesInteractor {
     weak var output: IssuesInteractorOutput?
     
     private let type: IssueType
-    private let service = ServicesManager.shared.issuesService
+    private let issueService = ServicesManager.shared.issuesService
+    private let repositoryService = ServicesManager.shared.repositoryService
     private var issueFilters = FilterStorage.shared.getIssuesFilter()
     
     init(type: IssueType) {
@@ -35,9 +38,18 @@ class IssuesInteractor {
 extension IssuesInteractor: IssuesInteractorInput {
     func fetchObjects() {
         switch self.type {
-        case .issue: fetchIssues()
-        case .pullRequest: fetchPullRequests()
-        case .discussions: fetchDiscussions()
+        case .myIssues: fetchMyIssues()
+        case .myPullRequests: fetchMyPullRequests()
+        case .myDiscussions: fetchMyDiscussions()
+            
+        case .issues(let repository):
+            fetchIssues(repository: repository)
+            
+        case .pullRequests(let repository):
+            fetchPullRequests(repository: repository)
+            
+        case .discussions(let repository):
+            fetchDiscussions(repository: repository)
         }
     }
     
@@ -53,20 +65,39 @@ extension IssuesInteractor: IssuesInteractorInput {
 }
 
 private extension IssuesInteractor {
-    func fetchIssues() {
+    func fetchMyIssues() {
         output?.didReceive(objects: [])
-        service.getAllIssues(parameters: issueFilters) { issues, error in
+        issueService.getAllIssues(parameters: issueFilters) { issues, error in
             if let issues = issues {
                 self.output?.didReceive(objects: issues)
             }
         }
     }
-    
-    func fetchPullRequests() {
+
+    func fetchMyPullRequests() {
         
     }
-    
-    func fetchDiscussions() {
+
+    func fetchMyDiscussions() {
         
+    }
+
+    func fetchIssues(repository: RepositoryResponse) {
+    }
+
+    func fetchPullRequests(repository: RepositoryResponse) {
+        repositoryService.fetchPullRequests(for: repository) { pullRequests, error in
+            if let pullRequests = pullRequests {
+                self.output?.didReceive(pullRequests: pullRequests)
+            }
+        }
+    }
+    
+    func fetchDiscussions(repository: RepositoryResponse) {
+        repositoryService.fetchDiscussions(for: repository) { discussions, error in
+            if let discussions = discussions {
+                self.output?.didReceive(discussions: discussions)
+            }
+        }
     }
 }

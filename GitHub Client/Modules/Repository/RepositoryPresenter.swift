@@ -119,13 +119,25 @@ extension RepositoryPreseter: RepositoryPresenterInput {
 // MARK: - routing
 private extension RepositoryPreseter {
 
-    func openIssues() {}
+    func openIssues() {
+        guard let repository = repositoryInfo?.repository else { return }
+        let viewController = IssuesListConfigurator.createModule(with: .issues(repository))
+        output?.push(to: viewController)
+    }
 
-    func openPullRequests() {}
+    func openPullRequests() {
+        guard let repository = repositoryInfo?.repository else { return }
+        let viewController = IssuesListConfigurator.createModule(with: .pullRequests(repository))
+        output?.push(to: viewController)
+    }
 
     func openReleases() {}
-    
-    func openDiscussions() {}
+
+    func openDiscussions() {
+        guard let repository = repositoryInfo?.repository else { return }
+        let viewController = IssuesListConfigurator.createModule(with: .discussions(repository))
+        output?.push(to: viewController)
+    }
 
     func openWatchers() {}
 

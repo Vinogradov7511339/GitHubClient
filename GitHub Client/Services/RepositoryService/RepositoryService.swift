@@ -72,22 +72,22 @@ extension RepositoryService {
             }
         }
     }
-    
-    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
+
+    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping ([PullRequest]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchPullRequests(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: FileResponse.self, from: data) {
-                completion(readme, nil)
+            if let pullRequests = self.decode(of: [PullRequest].self, from: data) {
+                completion(pullRequests, nil)
             } else {
                 completion(nil, nil)
             }
         }
     }
-    
+
     func fetchReleases(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchReleases(repository: repository)
         request(endpoint) { data, response, error in
@@ -103,15 +103,15 @@ extension RepositoryService {
         }
     }
     
-    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping (FileResponse?, Error?) -> Void) {
+    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping ([CommentResponse]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchDiscussions(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let readme = self.decode(of: FileResponse.self, from: data) {
-                completion(readme, nil)
+            if let comments = self.decode(of: [CommentResponse].self, from: data) {
+                completion(comments, nil)
             } else {
                 completion(nil, nil)
             }

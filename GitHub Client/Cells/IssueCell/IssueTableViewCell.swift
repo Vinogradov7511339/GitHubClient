@@ -28,6 +28,8 @@ extension IssueTableViewCell: ConfigurableCell {
             configure(pullRequest: pullRequest)
         } else if let dicussion = viewModel as? Discussion {
             configure(discussion: dicussion)
+        } else if let comment = viewModel as? CommentResponse {
+            configure(comments: comment)
         }
     }
 
@@ -44,5 +46,10 @@ extension IssueTableViewCell: ConfigurableCell {
     private func configure(discussion: Discussion) {
         itemImageView.image = UIImage.discussions
         nameLabel.text = discussion.title ?? ""
+    }
+
+    private func configure(comments: CommentResponse) {
+        itemImageView.image = UIImage.discussions
+        nameLabel.text = comments.body
     }
 }

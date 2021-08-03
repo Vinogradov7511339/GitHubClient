@@ -75,13 +75,13 @@ extension HomePresenter: HomePresenterInput {
     func didSelectItem(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            let viewController = IssuesListConfigurator.createModule(with: .issue)
+            let viewController = IssuesListConfigurator.createModule(with: .myIssues)
             output?.push(to: viewController)
         case (0, 1):
-            let viewController = IssuesListConfigurator.createModule(with: .pullRequest)
+            let viewController = IssuesListConfigurator.createModule(with: .myPullRequests)
             output?.push(to: viewController)
         case (0, 2):
-            let viewController = IssuesListConfigurator.createModule(with: .discussions)
+            let viewController = IssuesListConfigurator.createModule(with: .myDiscussions)
             output?.push(to: viewController)
         case (0, 3):
             guard let profile = self.profile else { return }

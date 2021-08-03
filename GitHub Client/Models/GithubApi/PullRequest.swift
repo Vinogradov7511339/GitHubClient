@@ -9,8 +9,8 @@ import Foundation
 
 struct PullRequest: Codable {
     let url: URL
-    let id: Int?
-    let nodeId: String?
+    let id: Int
+    let nodeId: String
     let htmlUrl: URL?
     let diffUrl: URL?
     let patchUrl: URL?
@@ -25,7 +25,7 @@ struct PullRequest: Codable {
     let locked: Bool?
     let title: String?
     let user: UserProfile?
-    let body: Data?
+    let body: String
     let labels: [LabelModel?]?
     let milestone: Milestone?
     let activeLockReason: String?
@@ -40,5 +40,4 @@ struct PullRequest: Codable {
 //    let requested_teams: Any
 //    let head: Any
 //    let base: Any
-    
 }

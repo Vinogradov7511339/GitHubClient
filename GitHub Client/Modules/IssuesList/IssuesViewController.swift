@@ -130,12 +130,12 @@ private extension IssuesViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-    
+
     func configureNavBar() {
         switch presenter.type {
-        case .issue: title = "Issues"
-        case .pullRequest: title = "Pull Requests"
-        case .discussions: title = "Discussions"
+        case .myIssues, .issues(_): title = "Issues"
+        case .myPullRequests, .pullRequests(_): title = "Pull Requests"
+        case .myDiscussions, .discussions(_): title = "Discussions"
         }
         
         let addFilterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFilter(_:)))

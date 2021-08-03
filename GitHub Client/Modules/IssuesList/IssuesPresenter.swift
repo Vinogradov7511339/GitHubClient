@@ -67,14 +67,19 @@ extension IssuesPresenter: IssuesInteractorOutput {
     func didReceive(filter: IssuesFilters) {
         createFilters(from: filter)
     }
+    
+    func didReceive(discussions: [CommentResponse]) {
+        DispatchQueue.main.async {
+            self.output?.display(viewModels: discussions)
+        }
+    }
+    
+    func didReceive(pullRequests: [PullRequest]) {
+        DispatchQueue.main.async {
+            self.output?.display(viewModels: pullRequests)
+        }
+    }
 }
-
-//// MARK: - FilterViewDelegate
-//extension IssuesPresenter: FilterViewDelegate {
-//    func itemDidSelected(item: FilterViewModel) {
-//
-//    }
-//}
 
 // MARK: - IssuesPresenterInput
 extension IssuesPresenter: IssuesPresenterInput {
