@@ -74,27 +74,6 @@ class RepositoryPreseter {
     private func readMeViewModel(for text: String) -> Any {
         return ReadMeCellViewModel(mdText: text)
     }
-    
-    private func openContent() {
-        guard let repository = repositoryInfo?.repository else { return }
-        guard let owner = repository.owner?.login else { return }
-        guard let repositoryName = repository.name else { return }
-        guard let path = URL(string: "https://api.github.com/repos/\(owner)/\(repositoryName)/contents") else { return }
-        let viewController = FolderConfigurator.create(from: path)
-        output?.push(to: viewController)
-    }
-
-    private func openCommits() {
-        guard let repository = repositoryInfo?.repository else { return }
-        let viewController = CommitsListConfigurator.create(repository: repository)
-        output?.push(to: viewController)
-    }
-//    private func openLicense() {
-//        guard let repository = repositoryInfo?.repository else { return }
-//        guard let licensePath = repository.license?.url else { return }
-//        let viewController = FileConfigurator.create(from: licensePath)
-//        output?.push(to: viewController)
-//    }
 }
 
 // MARK: - RepositoryDetailsInteractorOutput
@@ -107,6 +86,7 @@ extension RepositoryPreseter: RepositoryInteractorOutput {
     }
 }
 
+// MARK: - RepositoryPresenterInput
 extension RepositoryPreseter: RepositoryPresenterInput {
     func viewDidLoad() {
         interactor.fetchRepositoryInfo()
@@ -114,6 +94,18 @@ extension RepositoryPreseter: RepositoryPresenterInput {
     
     func didSelectRow(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
+        case (0, 1):
+            openIssues()
+        case (0, 2):
+            openPullRequests()
+        case (0, 3):
+            openReleases()
+        case (0, 4):
+            openDiscussions()
+        case (0, 5):
+            openWatchers()
+        case (0, 6):
+            openLicense()
         case (1, 0):
             openContent()
         case (1, 1):
@@ -121,5 +113,36 @@ extension RepositoryPreseter: RepositoryPresenterInput {
         default:
             break
         }
+    }
+}
+
+// MARK: - routing
+private extension RepositoryPreseter {
+
+    func openIssues() {}
+
+    func openPullRequests() {}
+
+    func openReleases() {}
+    
+    func openDiscussions() {}
+
+    func openWatchers() {}
+
+    func openLicense() {}
+
+    func openContent() {
+        guard let repository = repositoryInfo?.repository else { return }
+        guard let owner = repository.owner?.login else { return }
+        guard let repositoryName = repository.name else { return }
+        guard let path = URL(string: "https://api.github.com/repos/\(owner)/\(repositoryName)/contents") else { return }
+        let viewController = FolderConfigurator.create(from: path)
+        output?.push(to: viewController)
+    }
+
+    func openCommits() {
+        guard let repository = repositoryInfo?.repository else { return }
+        let viewController = CommitsListConfigurator.create(repository: repository)
+        output?.push(to: viewController)
     }
 }

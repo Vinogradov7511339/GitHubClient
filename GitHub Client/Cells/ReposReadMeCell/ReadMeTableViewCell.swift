@@ -39,9 +39,9 @@ class ReadMeTableViewCell: BaseTableViewCell {
 
 extension ReadMeTableViewCell: ConfigurableCell {
     func configure(viewModel: ReadMeCellViewModel) {
-        let parser = Parser(viewModel.mdText)
-        let nodes = parser.parse()
-        fillStackView(with: nodes)
+//        let parser = Parser(viewModel.mdText)
+//        let nodes = parser.parse()
+//        fillStackView(with: nodes)
     }
 }
 

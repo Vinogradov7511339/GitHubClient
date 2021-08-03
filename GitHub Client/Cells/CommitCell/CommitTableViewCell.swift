@@ -25,7 +25,7 @@ class CommitTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var additionalMessageLabel: UILabel!
     @IBOutlet weak var authorsStackView: UIStackView!
     @IBOutlet weak var authoredByLabel: UILabel!
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

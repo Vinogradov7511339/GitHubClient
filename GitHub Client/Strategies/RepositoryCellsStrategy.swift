@@ -18,7 +18,7 @@ class RepositoryCellsStrategy {
     func viewModels() -> [Any] {
         var viewModels = defaultViewModels()
 
-        if repositoryInfo.releasesCount != 0 {
+//        if repositoryInfo.releasesCount != 0 {
             let releases = TableCellViewModel(
                 text: "Releases",
                 detailText: "\(repositoryInfo.releasesCount)",
@@ -26,9 +26,9 @@ class RepositoryCellsStrategy {
                 imageTintColor: .systemGray,
                 accessoryType: .disclosureIndicator)
             viewModels.insert(releases, at: 2)
-        }
+//        }
 
-        if repositoryInfo.discussionsCount != 0 {
+//        if repositoryInfo.discussionsCount != 0 {
             let discussions = TableCellViewModel(
                 text: "Discussions",
                 detailText: "\(repositoryInfo.discussionsCount)",
@@ -36,7 +36,7 @@ class RepositoryCellsStrategy {
                 imageTintColor: .systemPurple,
                 accessoryType: .disclosureIndicator)
             viewModels.insert(discussions, at: 3)
-        }
+//        }
 
         return viewModels
     }
