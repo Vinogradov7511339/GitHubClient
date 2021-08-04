@@ -17,18 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         ApplicationPresenter.shared.window = window
+        appCoordinator = AppFlowCoordinator(in: window!, appDIContainer: appDIContainer)
+        appCoordinator?.start()
+//        let rootController: UIViewController
+//        switch UserStorage.shared.loginState {
+//        case .logged:
+//            rootController = TabBarController()
+//        case .notLogged:
+//            rootController = LoginViewController()
+//        }
+//
+//        window?.rootViewController = rootController
         
-//        appFlowCoordinator = AppFlowCoordinator(navigation: navigationController!, appDIContainer: appDIContainer)
-        
-        let rootController: UIViewController
-        switch UserStorage.shared.loginState {
-        case .logged:
-            rootController = TabBarController()
-        case .notLogged:
-            rootController = LoginViewController()
-        }
-
-        window?.rootViewController = rootController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }

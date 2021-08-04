@@ -100,6 +100,27 @@ struct UserProfile: Codable {
             bio: bio
         )
     }
+    
+    func mapToAuthotization() -> AuthenticatedUser {
+        let defaultUser = map()
+        let detailsUser = UserDetails(
+            user: defaultUser,
+            status: "NaN",
+            location: location,
+            company: company,
+            userBlogUrl: blog,
+            userEmail: email,
+            followingCount: following!,
+            followersCount: followers!,
+            pinnedRepositories: [],
+            repositoriesCount: -1,
+            starredCount: -1,
+            organizationsCount: -1
+        )
+        return .init(userDetails: detailsUser,
+                     totalRepCount: totalPrivateRepos ?? -1,
+                     totalOwnedRepCount: ownedPrivateRepos ?? -1)
+    }
     struct Plan: Codable {
         let name: String?
         let space: Int?

@@ -54,10 +54,18 @@ class LoginViewController: UIViewController {
     
     private let webView = WKWebView()
     private let service = ServicesManager.shared.tokenService
+    private var viewModel: LoginViewModel!
+    
+    static func create(with viewModel: LoginViewModel) -> LoginViewController {
+        let viewController = LoginViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareScreen()
+        viewModel.viewDidLoad()
     }
     
     @objc func signInButtonTouchUpInside() {
@@ -73,8 +81,9 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: AuthorizationViewControllerDelegate {
     func success(tokenResponse: TokenResponse) {
-        UserStorage.shared.saveTokenResponse(tokenResponse)
-        ApplicationPresenter.shared.login()
+        
+//        UserStorage.shared.saveTokenResponse(tokenResponse)
+//        ApplicationPresenter.shared.login()
     }
     
     func failure() {

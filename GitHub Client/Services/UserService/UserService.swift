@@ -155,6 +155,28 @@ class UserService: NetworkService {
         }
     }
     
+    func fetchMyProfile(token: TokenResponse, completion: @escaping (UserProfile?, Error?) -> Void) {
+        let endpoint = UserEndpoints.myProfileWithToken(token: token)
+        request(endpoint) { data, response, error in
+            guard let response = response as? HTTPURLResponse else {
+                fatalError("should be HTTPURLResponse")
+            }
+//            self.saveCashe(for: response, responseType: .myProfile)
+            
+            let result = self.handle(data: data, response: response, error: error)
+            switch result {
+            case.success(let data):
+                if let profile = self.decode(of: UserProfile.self, from: data) {
+                    completion(profile, nil)
+                } else {
+                    completion(nil, nil)
+                }
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
     func fetchMyProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
         let endpoint = UserEndpoints.myProfile
         request(endpoint) { data, response, error in

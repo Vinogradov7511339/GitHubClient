@@ -8,6 +8,14 @@
 import Foundation
 
 final class AppDIContainer {
+    
+    func isUserLogged() -> Bool {
+        UserStorage.shared.loginState == .logged
+    }
+    
+    func makeLoginSceneDIContainer(dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
+        return LoginSceneDIContainer(dependencies: dependencies)
+    }
 
     // MARK: - DIContainers of scenes
     func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {

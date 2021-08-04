@@ -170,6 +170,13 @@
 		AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */; };
 		AD39FE5126BABD0B00F055FD /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */; };
 		AD39FE5426BABF0400F055FD /* UserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */; };
+		AD39FE5726BAD67600F055FD /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5626BAD67600F055FD /* LoginFlowCoordinator.swift */; };
+		AD39FE5926BAD6AF00F055FD /* LoginSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5826BAD6AF00F055FD /* LoginSceneDIContainer.swift */; };
+		AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5A26BAD85600F055FD /* AuthenticatedUser.swift */; };
+		AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */; };
+		AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */; };
+		AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6126BAE88600F055FD /* LoginRepository.swift */; };
+		AD39FE6426BAE99700F055FD /* LoginRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
 		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
@@ -417,6 +424,13 @@
 		AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileUseCase.swift; sourceTree = "<group>"; };
+		AD39FE5626BAD67600F055FD /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE5826BAD6AF00F055FD /* LoginSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDIContainer.swift; sourceTree = "<group>"; };
+		AD39FE5A26BAD85600F055FD /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
+		AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		AD39FE6126BAE88600F055FD /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryImpl.swift; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
 		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
@@ -611,7 +625,6 @@
 				AD8722E726B83784004649A4 /* Favorites */,
 				AD8722DC26B816DE004649A4 /* File */,
 				AD8722D926B81610004649A4 /* Folder */,
-				AD20E56626AB24BA003BB5F1 /* Authorization */,
 				AD20E53B26AAA5D9003BB5F1 /* Explore */,
 				AD20E4EB26A8C045003BB5F1 /* Home */,
 				AD20E51426A9AFE1003BB5F1 /* IssueDetails */,
@@ -876,13 +889,14 @@
 			path = FeaturedCell;
 			sourceTree = "<group>";
 		};
-		AD20E56626AB24BA003BB5F1 /* Authorization */ = {
+		AD20E56626AB24BA003BB5F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */,
 				AD3776F4269F26B1000AA54C /* LoginViewController.swift */,
 				AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */,
 			);
-			path = Authorization;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AD20E57126AB4F40003BB5F1 /* SearchTypeCell */ = {
@@ -946,8 +960,7 @@
 		AD3776DF269F2697000AA54C /* GitHub Client */ = {
 			isa = PBXGroup;
 			children = (
-				AD39FDE226B994C200F055FD /* Application2 */,
-				AD39FDB126B94F1200F055FD /* Common2 */,
+				AD39FDA426B9476B00F055FD /* Application */,
 				AD39FE2926BA725B00F055FD /* Presentation */,
 				AD39FDA526B9478A00F055FD /* Domain */,
 				AD39FE3526BA83F600F055FD /* Data */,
@@ -958,7 +971,7 @@
 				AD20E3DA269F5139003BB5F1 /* TabBarController.swift */,
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
-				AD39FDA426B9476B00F055FD /* Application */,
+				AD39FDB126B94F1200F055FD /* Common2 */,
 				AD20E46226A84B37003BB5F1 /* Adapters */,
 				ADA68BB426B56B9F004AC06C /* Builders */,
 				AD20E4EE26A9489C003BB5F1 /* Cells */,
@@ -1006,7 +1019,9 @@
 			children = (
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
+				AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */,
 				AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */,
+				AD39FDE526B9951400F055FD /* DIContainer */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1026,6 +1041,7 @@
 			children = (
 				AD39FDA226B9437800F055FD /* User.swift */,
 				AD39FDA926B947D500F055FD /* UserDetails.swift */,
+				AD39FE5A26BAD85600F055FD /* AuthenticatedUser.swift */,
 				AD39FDA726B947BB00F055FD /* Repository.swift */,
 				AD39FDAB26B947F400F055FD /* RepositoryDetails.swift */,
 			);
@@ -1038,6 +1054,7 @@
 				AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */,
 				AD39FE4426BAA6DB00F055FD /* RepUseCase.swift */,
 				AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */,
+				AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1051,21 +1068,13 @@
 			path = Common2;
 			sourceTree = "<group>";
 		};
-		AD39FDE226B994C200F055FD /* Application2 */ = {
-			isa = PBXGroup;
-			children = (
-				AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */,
-				AD39FDE526B9951400F055FD /* DIContainer */,
-			);
-			path = Application2;
-			sourceTree = "<group>";
-		};
 		AD39FDE526B9951400F055FD /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
 				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
 				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
+				AD39FE5826BAD6AF00F055FD /* LoginSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1080,6 +1089,7 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE5526BAD65D00F055FD /* LoginScene */,
 				AD39FE3B26BAA1EA00F055FD /* RepScene */,
 				AD39FE3A26BA9DFF00F055FD /* UserScene */,
 				AD39FE3826BA942800F055FD /* Observable.swift */,
@@ -1092,6 +1102,7 @@
 			children = (
 				AD39FE3226BA81F100F055FD /* StarredRepository.swift */,
 				AD39FE4826BAAB4900F055FD /* RepRepository.swift */,
+				AD39FE6126BAE88600F055FD /* LoginRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1101,6 +1112,7 @@
 			children = (
 				AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */,
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
+				AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1149,6 +1161,15 @@
 				AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */,
 			);
 			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		AD39FE5526BAD65D00F055FD /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE5626BAD67600F055FD /* LoginFlowCoordinator.swift */,
+				AD20E56626AB24BA003BB5F1 /* View */,
+			);
+			path = LoginScene;
 			sourceTree = "<group>";
 		};
 		AD642CD226ADCB7F004FCA2D /* UsersList */ = {
@@ -1635,6 +1656,7 @@
 				AD20E53926AA9CC1003BB5F1 /* RepositoryConfigurator.swift in Sources */,
 				AD20E52426A9C164003BB5F1 /* IssueDetailsConfigurator.swift in Sources */,
 				AD8722D826B810DA004649A4 /* DirectoryResponse.swift in Sources */,
+				AD39FE6426BAE99700F055FD /* LoginRepositoryImpl.swift in Sources */,
 				AD79550426ABF481004E6973 /* Button.swift in Sources */,
 				ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */,
 				AD20E46626A8501F003BB5F1 /* RepositoryAdapter.swift in Sources */,
@@ -1643,6 +1665,8 @@
 				AD39FE3F26BAA28A00F055FD /* RepFlowCoordinator.swift in Sources */,
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
+				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
+				AD39FE5726BAD67600F055FD /* LoginFlowCoordinator.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
 				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
 				AD8722E626B81A46004649A4 /* FileConfigurator.swift in Sources */,
@@ -1700,6 +1724,7 @@
 				AD39FE3726BA841100F055FD /* StarredRepositoryImpl.swift in Sources */,
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
+				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
@@ -1747,6 +1772,7 @@
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
 				AD39FE2D26BA740400F055FD /* StarredViewController.swift in Sources */,
+				AD39FE5926BAD6AF00F055FD /* LoginSceneDIContainer.swift in Sources */,
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
 				AD20E50B26A99982003BB5F1 /* IssuesViewController.swift in Sources */,
 				AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */,
@@ -1760,6 +1786,7 @@
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
+				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
 				AD39FE2426BA697600F055FD /* AppFlowCoordinator.swift in Sources */,
 				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
@@ -1782,6 +1809,7 @@
 				AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */,
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
+				AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */,
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,
 				ADC8180B26B0244300469BCF /* StatusBadgeView.swift in Sources */,
 				AD20E4F026A949B8003BB5F1 /* HomeConfigurator.swift in Sources */,

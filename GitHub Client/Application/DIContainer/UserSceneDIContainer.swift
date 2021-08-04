@@ -52,11 +52,13 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
     func makeUserProfileViewController(actions: UserProfileActions) -> UserProfileViewController {
         return UserProfileViewController.create(with: makeUserProfileViewModel(actions: actions))
     }
-    
+
     func makeUserProfileViewModel(actions: UserProfileActions) -> UserProfileViewModel {
-        return UserProfileViewModelImpl(user: dependencies.user, userProfileUseCase: makeUserProfileUseCase(), actions: actions)
+        return UserProfileViewModelImpl(user: dependencies.user,
+                                        userProfileUseCase: makeUserProfileUseCase(),
+                                        actions: actions)
     }
-    
+
     func makeUserProfileUseCase() -> UserProfileUseCase {
         return UserProfileUseCaseImpl()
     }

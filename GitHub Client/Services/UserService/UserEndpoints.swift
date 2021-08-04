@@ -19,6 +19,7 @@ enum UserEndpoints {
     case repositories(user: UserProfile)
     case popularRepos(user: UserProfile)
     case myProfile
+    case myProfileWithToken(token: TokenResponse)
     case profile(user: UserProfile)
 }
 
@@ -54,6 +55,8 @@ extension UserEndpoints: EndpointProtocol {
             return  URL(string: "https://api.github.com/user")!
         case .profile(let user):
             return URL(string: "https://api.github.com/users/\(user.login)")!
+        case .myProfileWithToken(_):
+            return  URL(string: "https://api.github.com/user")!
         }
         
     }
@@ -63,7 +66,15 @@ extension UserEndpoints: EndpointProtocol {
     }
     
     var headers: RequestHeaders {
-        return Endpoint.defaultHeaders
+        switch self {
+        case .myProfileWithToken(let token):
+            var headers: [String: String] = [:]
+            headers["Authorization"] = token.accessToken
+            headers["Accept"] = "application/vnd.github.v3+json"
+            return headers
+        default:
+            return Endpoint.defaultHeaders
+        }
     }
     
     var parameters: RequestParameters {

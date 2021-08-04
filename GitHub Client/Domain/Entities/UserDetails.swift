@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserDetail {
+struct UserDetails {
     let user: User
     let status: String?
     let location: String?
