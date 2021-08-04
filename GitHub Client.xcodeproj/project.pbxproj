@@ -159,6 +159,7 @@
 		AD39FE3126BA7A4D00F055FD /* StarredUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */; };
 		AD39FE3326BA81F100F055FD /* StarredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3226BA81F100F055FD /* StarredRepository.swift */; };
 		AD39FE3726BA841100F055FD /* StarredRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */; };
+		AD39FE3926BA942800F055FD /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3826BA942800F055FD /* Observable.swift */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
 		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
@@ -395,6 +396,7 @@
 		AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredUseCase.swift; sourceTree = "<group>"; };
 		AD39FE3226BA81F100F055FD /* StarredRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepository.swift; sourceTree = "<group>"; };
 		AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD39FE3826BA942800F055FD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
 		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
@@ -1058,6 +1060,7 @@
 				AD39FE2A26BA728300F055FD /* StarredFlowCoordinator.swift */,
 				AD39FE2E26BA748800F055FD /* StarredViewModel.swift */,
 				AD39FE2C26BA740400F055FD /* StarredViewController.swift */,
+				AD39FE3826BA942800F055FD /* Observable.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1582,6 +1585,7 @@
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
 				AD20E44926A6B99C003BB5F1 /* RepositoryPresenter.swift in Sources */,
 				AD20E44026A6B5E2003BB5F1 /* RepositoryViewController.swift in Sources */,
+				AD39FE3926BA942800F055FD /* Observable.swift in Sources */,
 				ADC817FC26AFD96000469BCF /* IssuesInteractor.swift in Sources */,
 				AD20E52F26AA9429003BB5F1 /* DetailTableViewCell.swift in Sources */,
 				AD25E4DA26B6F9390003B1E0 /* FileResponse.swift in Sources */,

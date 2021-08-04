@@ -16,7 +16,8 @@ protocol StarredViewModelInput {
 }
 
 protocol StarredViewModelOutput {
-    
+    var items: Observable<[Repository]> { get }
+    var error: Observable<String> { get }
 }
 
 typealias StarredViewModel = StarredViewModelInput & StarredViewModelOutput
@@ -25,6 +26,13 @@ final class StarredViewModelImpl: StarredViewModel {
 
     private let starredUseCase: StarredUseCase
     private let actions: StarredActions
+
+    private var currentPage = 0
+
+    // MARK: - Output
+
+    var items: Observable<[Repository]> = Observable([])
+    var error: Observable<String> = Observable("")
 
     // MARK: - Init
 
@@ -37,13 +45,25 @@ final class StarredViewModelImpl: StarredViewModel {
 // MARK: - StarredViewModelInput
 extension StarredViewModelImpl {
     func viewDidLoad() {
-        starredUseCase.fetch(page: 0) { result in
+        starredUseCase.fetch(page: currentPage) { result in
             switch result {
             case .success(let repositories):
-                print("repositories \(repositories)")
+                self.appendResults(repositories)
             case .failure(let error):
-                print("error \(error)")
+                self.handleError(error)
             }
         }
+    }
+}
+
+// MARK: - Private
+private extension StarredViewModelImpl {
+    func appendResults(_ results: [Repository]) {
+        self.items.value.append(contentsOf: results)
+    }
+    
+    func handleError(_ error: Error) {
+        let errorTempName = NSLocalizedString("TempError", comment: "")
+        self.error.value = errorTempName
     }
 }
