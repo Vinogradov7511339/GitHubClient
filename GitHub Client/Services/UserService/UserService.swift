@@ -60,6 +60,21 @@ class UserService: NetworkService {
         }
     }
     
+    func fetchStarredRepos(login: String, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
+        let endpoint = UserEndpoints.starred2(login: login)
+        request(endpoint) { data, response, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            guard let repositories = self.decode(of: [RepositoryResponse].self, from: data) else {
+                completion(nil, error)
+                return
+            }
+            completion(repositories, error)
+        }
+    }
+    
     func fetchStarredRepos(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.starred(user: user)
         request(endpoint) { data, response, error in

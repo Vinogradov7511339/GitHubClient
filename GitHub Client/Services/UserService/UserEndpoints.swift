@@ -10,6 +10,7 @@ import Networking
 
 enum UserEndpoints {
     case starred(user: UserProfile)
+    case starred2(login: String)
     case starredReposCount(user: UserProfile)
     case followers(user: UserProfile)
     case following(user: UserProfile)
@@ -29,6 +30,8 @@ extension UserEndpoints: EndpointProtocol {
                 fatalError()
             }
             return URL(string: path)!
+        case .starred2(let login):
+            return URL(string: "https://api.github.com/users/\(login)/starred")!
         case .starredReposCount(let user):
             guard let path = user.starredUrl?.pathWithoutParameters() else {
                 fatalError()

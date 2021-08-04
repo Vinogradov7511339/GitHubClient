@@ -91,6 +91,15 @@ struct UserProfile: Codable {
 //        case plan = "plan"
 //    }
 
+    func map() -> User {
+        return User(
+            userId: id,
+            avatarUrl: avatarUrl!,
+            login: login,
+            name: name,
+            bio: bio
+        )
+    }
     struct Plan: Codable {
         let name: String?
         let space: Int?

@@ -9,7 +9,8 @@ import UIKit
 
 protocol IssuesPresenterInput: FilterViewModelListener {
     var output: IssuesPresenterOutput? { get set }
-    var type: IssueType { get }
+    var title: String { get }
+    var shouldShowAddButton: Bool { get }
     
     func viewDidLoad()
     func refresh()
@@ -28,12 +29,26 @@ protocol IssuesPresenterOutput: AnyObject {
 
 class IssuesPresenter {
     weak var output: IssuesPresenterOutput?
-    var type: IssueType
+    var title: String {
+        switch type {
+        case .myIssues, .issues(_): return "Issues"
+        case .myPullRequests, .pullRequests(_): return "Pull Requests"
+        case .myDiscussions, .discussions(_): return "Discussions"
+        }
+    }
+    
+    var shouldShowAddButton: Bool {
+        switch type {
+        case .myIssues, .myPullRequests, .myDiscussions : return true
+        case .issues(_), .pullRequests(_), .discussions(_): return false
+        }
+    }
     
     var interactor: IssuesInteractorInput?
     
     private let issuesService = ServicesManager.shared.issuesService
     private var issues: [Issue] = []
+    private let type: IssueType
     
     init(type: IssueType) {
         self.type = type

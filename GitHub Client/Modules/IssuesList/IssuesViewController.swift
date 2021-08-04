@@ -132,15 +132,13 @@ private extension IssuesViewController {
     }
 
     func configureNavBar() {
-        switch presenter.type {
-        case .myIssues, .issues(_): title = "Issues"
-        case .myPullRequests, .pullRequests(_): title = "Pull Requests"
-        case .myDiscussions, .discussions(_): title = "Discussions"
+        title = presenter.title
+
+        if presenter.shouldShowAddButton {
+            let addFilterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFilter(_:)))
+            self.navigationItem.rightBarButtonItem  = addFilterButton
         }
-        
-        let addFilterButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFilter(_:)))
-        self.navigationItem.rightBarButtonItem  = addFilterButton
-        
+
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false

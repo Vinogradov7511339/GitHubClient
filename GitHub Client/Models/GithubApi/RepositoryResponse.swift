@@ -255,4 +255,15 @@ class RepositoryResponse: Codable {
         self.templateRepository = templateRepository
         self.license = license
     }
+    
+    func map() -> Repository {
+        return Repository(
+            repositoryId: id,
+            owner: owner!.map(),
+            name: name!,
+            starsCount: stargazersCount!,
+            description: description,
+            language: language
+        )
+    }
 }
