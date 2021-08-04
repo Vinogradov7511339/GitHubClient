@@ -56,7 +56,12 @@ private extension StarredViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension StarredViewController: UITableViewDelegate {}
+extension StarredViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
+    }
+}
 
 // MARK: - UITableViewDataSource
 extension StarredViewController: UITableViewDataSource {

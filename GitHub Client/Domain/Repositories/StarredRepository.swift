@@ -8,5 +8,5 @@
 import Foundation
 
 protocol StarredRepository {
-    func fetchStarred(page: Int, login: String, completion: @escaping (Result<[Repository], Error>) -> Void)
+    func fetchStarred(page: Int, user: User, completion: @escaping (Result<[Repository], Error>) -> Void)
 }

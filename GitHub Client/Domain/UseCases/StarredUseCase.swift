@@ -13,15 +13,15 @@ protocol StarredUseCase {
 
 final class StarredUseCaseImpl: StarredUseCase {
     
-    let login: String
+    let user: User
     let repository: StarredRepository
     
-    init(login: String, repository: StarredRepository) {
-        self.login = login
+    init(user: User, repository: StarredRepository) {
+        self.user = user
         self.repository = repository
     }
     
     func fetch(page: Int, completion: @escaping (Result<[Repository], Error>) -> Void) {
-        return repository.fetchStarred(page: page, login: login, completion: completion)
+        return repository.fetchStarred(page: page, user: user, completion: completion)
     }
 }

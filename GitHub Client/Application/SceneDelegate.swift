@@ -9,18 +9,16 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    let appDIContainer = AppDIContainer()
+    var appCoordinator: AppFlowCoordinator?
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         ApplicationPresenter.shared.window = window
         
-//        let controller = TestContoller()
-//        window?.rootViewController = controller
-//        window?.makeKeyAndVisible()
-//        window?.windowScene = windowScene
+//        appFlowCoordinator = AppFlowCoordinator(navigation: navigationController!, appDIContainer: appDIContainer)
         
         let rootController: UIViewController
         switch UserStorage.shared.loginState {

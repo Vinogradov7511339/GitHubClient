@@ -10,7 +10,11 @@ import Foundation
 final class AppDIContainer {
 
     // MARK: - DIContainers of scenes
-    func makeStarredSceneDIContainer(login: String) -> StarredSceneDIContainer {
-        return StarredSceneDIContainer(login: login)
+    func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
+        return UserSceneDIContainer(dependencies: dependencies)
+    }
+
+    func makeRepSceneDIContainer(dependencies: RepSceneDIContainer.Dependencies) -> RepSceneDIContainer {
+        return RepSceneDIContainer(dependencies: dependencies)
     }
 }

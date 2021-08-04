@@ -13,8 +13,8 @@ final class StarredRepositoryImpl: StarredRepository {
     
     private let service = ServicesManager.shared.userService
     
-    func fetchStarred(page: Int, login: String, completion: @escaping (Result<[Repository], Error>) -> Void) {
-        service.fetchStarredRepos(login: login) { repositories, error in
+    func fetchStarred(page: Int, user: User, completion: @escaping (Result<[Repository], Error>) -> Void) {
+        service.fetchStarredRepos(login: user.login) { repositories, error in
             if let repositories = repositories {
                 let mapped = repositories.map { $0.map() }
                 completion(.success(mapped))

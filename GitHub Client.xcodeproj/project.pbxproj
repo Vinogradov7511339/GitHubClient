@@ -152,14 +152,24 @@
 		AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDC026B9671200F055FD /* ConnectionError.swift */; };
 		AD39FE2426BA697600F055FD /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */; };
 		AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2526BA69D900F055FD /* AppDIContainer.swift */; };
-		AD39FE2826BA6AB500F055FD /* StarredSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2726BA6AB500F055FD /* StarredSceneDIContainer.swift */; };
-		AD39FE2B26BA728300F055FD /* StarredFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2A26BA728300F055FD /* StarredFlowCoordinator.swift */; };
+		AD39FE2826BA6AB500F055FD /* UserSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */; };
+		AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */; };
 		AD39FE2D26BA740400F055FD /* StarredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2C26BA740400F055FD /* StarredViewController.swift */; };
 		AD39FE2F26BA748800F055FD /* StarredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2E26BA748800F055FD /* StarredViewModel.swift */; };
 		AD39FE3126BA7A4D00F055FD /* StarredUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */; };
 		AD39FE3326BA81F100F055FD /* StarredRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3226BA81F100F055FD /* StarredRepository.swift */; };
 		AD39FE3726BA841100F055FD /* StarredRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */; };
 		AD39FE3926BA942800F055FD /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3826BA942800F055FD /* Observable.swift */; };
+		AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */; };
+		AD39FE3F26BAA28A00F055FD /* RepFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */; };
+		AD39FE4126BAA54D00F055FD /* RepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4026BAA54D00F055FD /* RepViewModel.swift */; };
+		AD39FE4326BAA55900F055FD /* RepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4226BAA55900F055FD /* RepViewController.swift */; };
+		AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4426BAA6DB00F055FD /* RepUseCase.swift */; };
+		AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */; };
+		AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4826BAAB4900F055FD /* RepRepository.swift */; };
+		AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */; };
+		AD39FE5126BABD0B00F055FD /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */; };
+		AD39FE5426BABF0400F055FD /* UserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
 		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
@@ -389,14 +399,24 @@
 		AD39FDC026B9671200F055FD /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD39FE2526BA69D900F055FD /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
-		AD39FE2726BA6AB500F055FD /* StarredSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredSceneDIContainer.swift; sourceTree = "<group>"; };
-		AD39FE2A26BA728300F055FD /* StarredFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSceneDIContainer.swift; sourceTree = "<group>"; };
+		AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD39FE2C26BA740400F055FD /* StarredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredViewController.swift; sourceTree = "<group>"; };
 		AD39FE2E26BA748800F055FD /* StarredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredViewModel.swift; sourceTree = "<group>"; };
 		AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredUseCase.swift; sourceTree = "<group>"; };
 		AD39FE3226BA81F100F055FD /* StarredRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepository.swift; sourceTree = "<group>"; };
 		AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepositoryImpl.swift; sourceTree = "<group>"; };
 		AD39FE3826BA942800F055FD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepSceneDIContainer.swift; sourceTree = "<group>"; };
+		AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE4026BAA54D00F055FD /* RepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepViewModel.swift; sourceTree = "<group>"; };
+		AD39FE4226BAA55900F055FD /* RepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepViewController.swift; sourceTree = "<group>"; };
+		AD39FE4426BAA6DB00F055FD /* RepUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepUseCase.swift; sourceTree = "<group>"; };
+		AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD39FE4826BAAB4900F055FD /* RepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepRepository.swift; sourceTree = "<group>"; };
+		AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileUseCase.swift; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
 		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
@@ -1016,6 +1036,8 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE3026BA7A4D00F055FD /* StarredUseCase.swift */,
+				AD39FE4426BAA6DB00F055FD /* RepUseCase.swift */,
+				AD39FE5326BABF0400F055FD /* UserProfileUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1042,7 +1064,8 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
-				AD39FE2726BA6AB500F055FD /* StarredSceneDIContainer.swift */,
+				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
+				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1057,9 +1080,8 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				AD39FE2A26BA728300F055FD /* StarredFlowCoordinator.swift */,
-				AD39FE2E26BA748800F055FD /* StarredViewModel.swift */,
-				AD39FE2C26BA740400F055FD /* StarredViewController.swift */,
+				AD39FE3B26BAA1EA00F055FD /* RepScene */,
+				AD39FE3A26BA9DFF00F055FD /* UserScene */,
 				AD39FE3826BA942800F055FD /* Observable.swift */,
 			);
 			path = Presentation;
@@ -1069,6 +1091,7 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE3226BA81F100F055FD /* StarredRepository.swift */,
+				AD39FE4826BAAB4900F055FD /* RepRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1077,8 +1100,55 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */,
+				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		AD39FE3A26BA9DFF00F055FD /* UserScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */,
+				AD39FE4B26BAB62300F055FD /* StarredRepositories */,
+				AD39FE5226BABD5E00F055FD /* UserProfile */,
+			);
+			path = UserScene;
+			sourceTree = "<group>";
+		};
+		AD39FE3B26BAA1EA00F055FD /* RepScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */,
+				AD39FE4A26BAB61500F055FD /* View */,
+			);
+			path = RepScene;
+			sourceTree = "<group>";
+		};
+		AD39FE4A26BAB61500F055FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE4026BAA54D00F055FD /* RepViewModel.swift */,
+				AD39FE4226BAA55900F055FD /* RepViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD39FE4B26BAB62300F055FD /* StarredRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE2E26BA748800F055FD /* StarredViewModel.swift */,
+				AD39FE2C26BA740400F055FD /* StarredViewController.swift */,
+			);
+			path = StarredRepositories;
+			sourceTree = "<group>";
+		};
+		AD39FE5226BABD5E00F055FD /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */,
+				AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		AD642CD226ADCB7F004FCA2D /* UsersList */ = {
@@ -1568,15 +1638,19 @@
 				AD79550426ABF481004E6973 /* Button.swift in Sources */,
 				ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */,
 				AD20E46626A8501F003BB5F1 /* RepositoryAdapter.swift in Sources */,
+				AD39FE5126BABD0B00F055FD /* UserProfileViewModel.swift in Sources */,
 				AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */,
+				AD39FE3F26BAA28A00F055FD /* RepFlowCoordinator.swift in Sources */,
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
 				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
 				AD8722E626B81A46004649A4 /* FileConfigurator.swift in Sources */,
+				AD39FE4326BAA55900F055FD /* RepViewController.swift in Sources */,
 				ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */,
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
 				AD25E4D426B6D6990003B1E0 /* FilterButton.swift in Sources */,
+				AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */,
 				AD39FD9A26B8734F00F055FD /* CommitsListConfigurator.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */,
@@ -1602,6 +1676,7 @@
 				AD20E4ED26A8C060003BB5F1 /* HomeViewController.swift in Sources */,
 				AD25E4D826B6F15E0003B1E0 /* RepositoryInteractor.swift in Sources */,
 				AD8722E426B819A7004649A4 /* FilePresenter.swift in Sources */,
+				AD39FE4126BAA54D00F055FD /* RepViewModel.swift in Sources */,
 				AD20E3DB269F5139003BB5F1 /* TabBarController.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD25E4D226B6C3D60003B1E0 /* IssuesFilterViewModel.swift in Sources */,
@@ -1629,6 +1704,7 @@
 				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
+				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
 				AD8722ED26B83B50004649A4 /* FavoritesConfigurator.swift in Sources */,
 				AD20E57326AB5132003BB5F1 /* UIImage+extensions.swift in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
@@ -1642,12 +1718,13 @@
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
 				AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */,
-				AD39FE2826BA6AB500F055FD /* StarredSceneDIContainer.swift in Sources */,
+				AD39FE2826BA6AB500F055FD /* UserSceneDIContainer.swift in Sources */,
 				AD20E44426A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift in Sources */,
 				AD20E50D26A99DFE003BB5F1 /* IssuesPresenter.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModel.swift in Sources */,
 				AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */,
 				AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */,
+				AD39FE5426BABF0400F055FD /* UserProfileUseCase.swift in Sources */,
 				ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */,
 				AD20E52026A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.swift in Sources */,
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
@@ -1665,7 +1742,7 @@
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
 				ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
-				AD39FE2B26BA728300F055FD /* StarredFlowCoordinator.swift in Sources */,
+				AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
@@ -1678,6 +1755,7 @@
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
 				AD8722DE26B816EB004649A4 /* FileViewController.swift in Sources */,
 				AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */,
+				AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */,
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
@@ -1688,6 +1766,7 @@
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				AD39FD9626B86B4300F055FD /* CommitsListPresenter.swift in Sources */,
+				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,
 				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
 				AD8722D626B7F716004649A4 /* RepositoryFacade.swift in Sources */,
@@ -1699,6 +1778,7 @@
 				AD20E50826A994A6003BB5F1 /* PullRequest.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
+				AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */,
 				AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */,
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,

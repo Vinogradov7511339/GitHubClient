@@ -13,6 +13,7 @@ struct StarredActions {
 
 protocol StarredViewModelInput {
     func viewDidLoad()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol StarredViewModelOutput {
@@ -53,6 +54,11 @@ extension StarredViewModelImpl {
                 self.handleError(error)
             }
         }
+    }
+    
+    func didSelectItem(at indexPath: IndexPath) {
+        let item = self.items.value[indexPath.row]
+        actions.showDetails(item)
     }
 }
 

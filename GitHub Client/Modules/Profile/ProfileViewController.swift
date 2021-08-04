@@ -79,32 +79,18 @@ extension ProfileViewController: ProfilePresenterOutput {
         refreshControl.endRefreshing()
         tableView.reloadData()
     }
-    
-    func openStarred() {
-        let appDIContainer = AppDIContainer()
-        let appFlowCoordinator = AppFlowCoordinator(navigation: navigationController!,
-                                                    appDIContainer: appDIContainer)
-        switch presenter.type {
-        case .myProfile:
-            appFlowCoordinator.start(login: "Vinogradov7511339")
-        case .notMyProfile(let profile):
-            appFlowCoordinator.start(login: profile.login)
-        }
-        
-    }
 }
 
 // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return indexPath.section == selectableSection ? indexPath : nil
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        presenter?.didSelectItem(at: indexPath)
-        openStarred()
+        presenter?.didSelectItem(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
