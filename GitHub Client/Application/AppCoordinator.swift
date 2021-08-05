@@ -28,39 +28,20 @@ final class AppCoordinator {
     }
 
     func startMainFlow() {
-        let flow = appDIContainer.makeTabCoordinator(window: window)
+        let dependencies = MainSceneCoordinatorDependencies(
+            logout: startLoginFlow,
+            sendMail: sendEmail(email:),
+            openLink: open(link:),
+            share: share(link:)
+        )
+        let flow = appDIContainer.makeTabCoordinator(window: window, dependencies: dependencies)
         flow.start()
     }
-    
+
     func startLoginFlow() {
         let dependency = LoginSceneDIContainer.Dependencies.init(userLoggedIn: startMainFlow)
         let loginDIContainer = appDIContainer.makeLoginSceneDIContainer(dependencies: dependency)
         let flow = loginDIContainer.makeLoginFlowCoordinator(in: window)
-        flow.start()
-    }
-
-    func startUserFlow(user: User) {
-        let dependency = UserSceneDIContainer.Dependencies(
-            user: user,
-            startRepFlow: startRepFlow(repository:),
-            openLink: open(link:),
-            share: share(link:),
-            sendEmail: sendEmail(email:)
-        )
-        let starredSceneDIContainer = appDIContainer.makeStarredSceneDIContainer(dependencies: dependency)
-        let flow = starredSceneDIContainer.makeStarredFlowCoordinator(navigationConroller: navigation!)
-        flow.start()
-    }
-
-    func startRepFlow(repository: Repository) {
-        let dependency = RepSceneDIContainer.Dependencies(
-            repository: repository,
-            startUserFlow: startUserFlow(user:),
-            openLink: open(link:),
-            share: share(link:)
-        )
-        let repSceneDIContainer = appDIContainer.makeRepSceneDIContainer(dependencies: dependency)
-        let flow = repSceneDIContainer.makeRepFlowCoordinator(navigationController: navigation!)
         flow.start()
     }
 

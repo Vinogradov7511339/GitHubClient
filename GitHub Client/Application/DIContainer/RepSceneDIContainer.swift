@@ -22,7 +22,7 @@ class RepSceneDIContainer {
         self.dependencies = dependencies
     }
 
-    func makeRepFlowCoordinator(navigationController: UINavigationController) -> RepFlowCoordinator {
+    func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
         return .init(navigationController: navigationController, dependencies: self)
     }
 }

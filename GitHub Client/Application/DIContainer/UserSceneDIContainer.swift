@@ -24,7 +24,7 @@ final class UserSceneDIContainer {
     }
 
     // MARK: - Flow Coordinators
-    func makeStarredFlowCoordinator(navigationConroller: UINavigationController) -> UserFlowCoordinator {
+    func makeStarredFlowCoordinator(in navigationConroller: UINavigationController) -> UserFlowCoordinator {
         return UserFlowCoordinator(navigationController: navigationConroller, dependencies: self)
     }
 }

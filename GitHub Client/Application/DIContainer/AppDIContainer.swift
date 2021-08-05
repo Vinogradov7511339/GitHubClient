@@ -10,19 +10,12 @@ import UIKit
 final class AppDIContainer {
 
     // MARK: - DIContainers of scenes
-    func makeTabCoordinator(window: UIWindow) -> TabCoordinator {
-        return TabCoordinator.init(in: window)
+    func makeTabCoordinator(window: UIWindow, dependencies: MainSceneCoordinatorDependencies) -> MainCoordinator {
+        let container = MainSceneDIContainer(dependencies: dependencies)
+        return MainCoordinator.init(in: window, mainSceneDIContainer: container)
     }
     
     func makeLoginSceneDIContainer(dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)
-    }
-
-    func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
-        return UserSceneDIContainer(dependencies: dependencies)
-    }
-
-    func makeRepSceneDIContainer(dependencies: RepSceneDIContainer.Dependencies) -> RepSceneDIContainer {
-        return RepSceneDIContainer(dependencies: dependencies)
     }
 }
