@@ -34,12 +34,12 @@ protocol ProfilePresenterOutput: AnyObject {
 class ProfilePresenter {
     
     weak var output: ProfilePresenterOutput?
-    
+
     var interactor: ProfileInteractorInput!
     var type: ProfileType
     
     private var profileInfo: ProfileInfo?
-    
+
     init(type: ProfileType) {
         self.type = type
     }
@@ -96,7 +96,7 @@ extension ProfilePresenter: ProfilePresenterInput {
         let viewController = RepositoriesListConfigurator.createModule(with: .iHasAccessTo(profile: profile))
         output?.push(to: viewController)
     }
-    
+
     func openStarred() {
         guard let profile = profileInfo?.userProfile else { return }
         let viewController = RepositoriesListConfigurator.createModule(with: .starred(profile: profile))
@@ -113,25 +113,25 @@ extension ProfilePresenter: ProfilePresenterInput {
     func refresh() {
         interactor.fetchProfile()
     }
-    
+
     func openFollowing() {
         guard let profile = profileInfo?.userProfile else { return }
         let viewController = UsersListConfigurator.createModule(profile: profile, type: .following)
         output?.push(to: viewController)
     }
-    
+
     func openFollowers() {
         guard let profile = profileInfo?.userProfile else { return }
         let viewController = UsersListConfigurator.createModule(profile: profile, type: .followers)
         output?.push(to: viewController)
     }
-    
+
     func openLink() {
     }
-    
+
     func openSendMail() {
     }
-    
+
     func share() {
     }
 }

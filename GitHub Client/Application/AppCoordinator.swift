@@ -17,7 +17,7 @@ final class AppCoordinator {
         self.window = window
         self.appDIContainer = appDIContainer
     }
-    
+
     func start() {
         switch UserStorage.shared.loginState {
         case .logged:

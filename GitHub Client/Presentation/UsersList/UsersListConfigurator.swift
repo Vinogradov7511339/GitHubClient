@@ -7,10 +7,7 @@
 
 import UIKit
 
-enum UsersListType {
-    case following
-    case followers
-}
+
 
 class UsersListConfigurator {
     static func createModule(profile: UserProfile, type: UsersListType) -> UsersListViewController {
@@ -20,8 +17,8 @@ class UsersListConfigurator {
         presenter.interactor?.output = presenter
         
         let viewController = UsersListViewController()
-        viewController.presenter = presenter
-        viewController.presenter.output = viewController
+//        viewController.presenter = presenter
+//        viewController.presenter.output = viewController
         return viewController
     }
 }

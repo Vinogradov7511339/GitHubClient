@@ -8,23 +8,31 @@
 import UIKit
 
 class UsersListViewController: UIViewController {
-    
-    var presenter: UsersListPresenter!
-    
+
+    private var viewModel: UsersListViewModel!
+
+    static func create(with viewModel: UsersListViewModel) -> UsersListViewController {
+        let viewController = UsersListViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.systemGroupedBackground
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.tableFooterView = UIView()
         return tableView
     }()
-    
+
     private let refreshControl = UIRefreshControl()
     private let cellManager = TableCellManager.create(cellType: UserTableViewCell.self)
-    private var viewModels: [Any] = []
     
+    var nextPageLoadingSpinner: UIActivityIndicatorView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -35,52 +43,86 @@ class UsersListViewController: UIViewController {
         
         cellManager.register(tableView: tableView)
         
-        switch presenter.type {
-        case .followers:
-            title = "Followers"
-        case .following:
-            title = "Following"
-        }
+        title = viewModel.screenTitle
         navigationController?.navigationBar.prefersLargeTitles = false
-        presenter.viewDidLoad()
+        viewModel.viewDidLoad()
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        presenter?.refresh()
+        viewModel.refresh()
+    }
+    
+    private func makeActivityIndicator(size: CGSize) -> UIActivityIndicatorView {
+//        let style: UIActivityIndicatorView.Style
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        activityIndicator.frame = .init(origin: .zero, size: size)
+        
+        return activityIndicator
+    }
+    
+    private func showLoader() {
+        print("loader")
     }
 }
 
-// MARK: - UsersListPresenterOutput
-extension UsersListViewController: UsersListPresenterOutput {
-    func display(viewModels: [Any]) {
-        self.viewModels = viewModels
-        refreshControl.endRefreshing()
+// MARK: - Binding
+private extension UsersListViewController {
+    func bind(to viewModel: UsersListViewModel) {
+        viewModel.items.observe(on: self) { [weak self] _ in self?.updateTableView() }
+        viewModel.loading.observe(on: self) { [weak self] in self?.updateLoading($0) }
+        viewModel.error.observe(on: self) { [weak self] in self?.showError($0)}
+    }
+    
+    func updateTableView() {
         tableView.reloadData()
     }
     
-    func push(to viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+    func updateLoading(_ loading: UsersListViewModelLoading?) {
+        switch loading {
+        case .fullScreen:
+            showLoader()
+        case .nextPage:
+            nextPageLoadingSpinner?.removeFromSuperview()
+            nextPageLoadingSpinner = makeActivityIndicator(size: .init(width: tableView.frame.width, height: 44))
+            tableView.tableFooterView = nextPageLoadingSpinner
+        case .none:
+            refreshControl.endRefreshing()
+            tableView.reloadData()
+        }
+    }
+    
+    func showError(_ error: String) {
+        guard !error.isEmpty else { return }
+        showErrorAlert()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didSelectItem(at: indexPath)
+        viewModel.didSelectItem(at: indexPath.row)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension UsersListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels.count
+        return viewModel.items.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModels[indexPath.row]
+        let viewModel = viewModel.items.value[indexPath.row]
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: viewModel)
         return cell
+    }
+}
+
+extension UsersListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
     }
 }
 

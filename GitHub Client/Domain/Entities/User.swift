@@ -6,8 +6,8 @@
 //
 import Foundation
 
-struct User {
-    let userId: Int
+struct User: Identifiable, Equatable {
+    let id: Int
     let avatarUrl: URL
     let login: String
     let name: String?

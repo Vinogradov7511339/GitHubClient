@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="49eb5830-dce2-4935-8dc0-645e24d9a82a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Data/Repositories/ItemsListRepositoryImpl.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Domain/Repositories/ItemsListRepository.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Domain/Repositories/UsersListRepository.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Domain/UseCases/ItemsListUseCase.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Domain/UseCases/UsersListUseCase.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/Alerts.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ItemsListViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ItemsListViewModel.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/ProfileDIContainer.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/SwiftUI/UsersListView.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/UsersListViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Application/AppCoordinator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Application/AppCoordinator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Application/DIContainer/MainSceneDIContainer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Application/DIContainer/MainSceneDIContainer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Button.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/CollectionCellManager.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Common/MarkdownParser/MarkdownNode.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Common/MarkdownParser/MarkdownParser.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Common/MarkdownParser/MarkdownRenderer.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Common/MarkdownParser/MarkdownToken.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Common/MarkdownParser/MarkdownTokenizer.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Data/Models/GithubApi/UserProfile.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Data/Models/GithubApi/UserProfile.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Domain/Entities/User.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Domain/Entities/User.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/CommitsList/CommitsListConfigurator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/CommitsList/CommitsListConfigurator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/CommitsList/CommitsListPresenter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/CommitsList/CommitsListPresenter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/CommitsList/CommitsListViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/CommitsList/CommitsListViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Favorites/FavoritesConfigurator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/HomeScene/Favorites/FavoritesConfigurator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Favorites/FavoritesPresenter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/HomeScene/Favorites/FavoritesPresenter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Favorites/FavoritesViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/HomeScene/Favorites/FavoritesViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/File/FileConfigurator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/File/FileConfigurator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/File/FilePresenter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/File/FilePresenter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/File/FileViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/File/FileViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Folder/FolderConfigurator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/Folder/FolderConfigurator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Folder/FolderPresenter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/Folder/FolderPresenter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Folder/FolderViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/RepScene/Folder/FolderViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Profile/ProfilePresenter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Profile/ProfilePresenter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Profile/ProfileViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Profile/ProfileViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/ProfileFlowCoordinator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/ProfileFlowCoordinator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/AccountSettingsViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/AccountSettingsViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/DeveloperSettingsViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/DeveloperSettingsViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/SettingAppearanceViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/SettingAppearanceViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/SettingsAppIconViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/SettingsAppIconViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/SettingsGeneralViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/SettingsGeneralViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/Settings/SettingsViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/Settings/SettingsViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UserScene/StarredRepositories/StarredViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/StarredRepositories/StarredViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UserScene/StarredRepositories/StarredViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/StarredRepositories/StarredViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UserScene/UserFlowCoordinator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/ProfileScene/UserScene/UserFlowCoordinator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UserScene/UserProfile/UserProfileViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UserProfile/UserProfileViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UserScene/UserProfile/UserProfileViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UserProfile/UserProfileViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/UsersListConfigurator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/UsersListConfigurator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/UsersListViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/GitHub Client/Presentation/UsersList/UIKit/UsersListViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/StatusBadgeView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/TableViewCell.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/Themes/UIImage+extensions.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/UITableView+extensions.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/UIView+NibLoadable.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitHub Client/WebImageView.swift" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1wJvVQVYBya09qQC1IWSpfuHkEM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49eb5830-dce2-4935-8dc0-645e24d9a82a" name="Default Changelist" comment="" />
+      <created>1628189528201</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628189528201</updated>
+    </task>
+    <servers />
+  </component>
+</project>

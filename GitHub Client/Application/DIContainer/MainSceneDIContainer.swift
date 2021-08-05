@@ -69,10 +69,26 @@ final class MainSceneDIContainer: NSObject {
             coordinator.start()
 
         case .profile:
-            let coordinator = ProfileFlowCoordinator(navigationController: navController)
+            let profileDependencies = ProfileDIContainer.Dependencies(
+                openUserProfile: openUserProfile(_:),
+                openRepository: openRepository(_:),
+                sendMail: dependencies.sendMail,
+                openLink: dependencies.openLink,
+                share: dependencies.share
+            )
+            let container = ProfileDIContainer(dependencies: profileDependencies)
+            let coordinator = ProfileFlowCoordinator(in: navController, with: container)
             coordinator.start()
         }
         return navController
+    }
+    
+    func openRepository(_ repository: Repository) {
+        fatalError()
+    }
+    
+    func openUserProfile(_ user: User) {
+        fatalError()
     }
 }
 

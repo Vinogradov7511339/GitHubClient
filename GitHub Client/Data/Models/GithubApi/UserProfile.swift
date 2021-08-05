@@ -93,7 +93,7 @@ struct UserProfile: Codable {
 
     func map() -> User {
         return User(
-            userId: id,
+            id: id,
             avatarUrl: avatarUrl!,
             login: login,
             name: name,
