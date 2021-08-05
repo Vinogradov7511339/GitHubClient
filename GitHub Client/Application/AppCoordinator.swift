@@ -1,5 +1,5 @@
 //
-//  AppFlowCoordinator.swift
+//  AppCoordinator.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 04.08.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AppFlowCoordinator {
+final class AppCoordinator {
 
     private let window: UIWindow
     private let appDIContainer: AppDIContainer
@@ -19,36 +19,24 @@ final class AppFlowCoordinator {
     }
     
     func start() {
-        if appDIContainer.isUserLogged() {
-//            startAppFlow()
-        } else {
+        switch UserStorage.shared.loginState {
+        case .logged:
+            startMainFlow()
+        case .notLogged:
             startLoginFlow()
         }
     }
-    
-    func startAppFlow(authenticatedUser: AuthenticatedUser) {
-        let tabBarController = TabBarController()
-        if let previousController = window.rootViewController {
-            UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft) {
-                self.window.subviews.forEach { $0.removeFromSuperview() }
-                self.window.rootViewController = tabBarController
-            } completion: { _ in
-                previousController.dismiss(animated: false, completion: {
-                    previousController.view.removeFromSuperview()
-                })
-            }
-        } else {
-            window.rootViewController = tabBarController
-        }
+
+    func startMainFlow() {
+        let flow = appDIContainer.makeTabCoordinator(window: window)
+        flow.start()
     }
     
     func startLoginFlow() {
-        let dependency = LoginSceneDIContainer.Dependencies.init(userLoggedIn: startAppFlow(authenticatedUser:))
+        let dependency = LoginSceneDIContainer.Dependencies.init(userLoggedIn: startMainFlow)
         let loginDIContainer = appDIContainer.makeLoginSceneDIContainer(dependencies: dependency)
         let flow = loginDIContainer.makeLoginFlowCoordinator(in: window)
         flow.start()
-        let loginController = LoginViewController()
-        window.rootViewController = loginController
     }
 
     func startUserFlow(user: User) {

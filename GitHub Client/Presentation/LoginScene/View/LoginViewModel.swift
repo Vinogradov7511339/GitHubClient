@@ -8,7 +8,7 @@
 import UIKit
 
 struct LoginViewModelActions {
-    let userLoggedIn: (AuthenticatedUser) -> Void
+    let userLoggedIn: () -> Void
 }
 
 protocol LoginViewModelInput {
@@ -41,21 +41,14 @@ extension LoginViewModelImpl {
     func viewDidLoad() {}
 
     func didReceive(tokenResponse: TokenResponse) {
-        loginUseCase.fetch(tokenResponse: tokenResponse) { result in
-            switch result {
-            case .success(let userInfo):
-                self.finishLoginFlow(with: userInfo)
-            case .failure(let error):
-                self.handleError(error)
-            }
-        }
+        actions.userLoggedIn()
     }
 }
 
 // MARK: - Private
 private extension LoginViewModelImpl {
-    func finishLoginFlow(with userInfo: AuthenticatedUser) {
-        actions.userLoggedIn(userInfo)
+    func finishLoginFlow() {
+        actions.userLoggedIn()
     }
 
     func handleError(_ error: Error) {

@@ -5,19 +5,19 @@
 //  Created by Alexander Vinogradov on 04.08.2021.
 //
 
-import Foundation
+import UIKit
 
 final class AppDIContainer {
-    
-    func isUserLogged() -> Bool {
-        UserStorage.shared.loginState == .logged
+
+    // MARK: - DIContainers of scenes
+    func makeTabCoordinator(window: UIWindow) -> TabCoordinator {
+        return TabCoordinator.init(in: window)
     }
     
     func makeLoginSceneDIContainer(dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)
     }
 
-    // MARK: - DIContainers of scenes
     func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
         return UserSceneDIContainer(dependencies: dependencies)
     }

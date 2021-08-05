@@ -8,5 +8,4 @@
 import Foundation
 
 protocol LoginRepository {
-    func fetchAuthenticatedUser(token: TokenResponse, completion: @escaping (Result<AuthenticatedUser, Error>) -> Void)
 }

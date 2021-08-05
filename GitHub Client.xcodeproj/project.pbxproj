@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8A88E41BA8CE9D6071778A93 /* Pods_GitHub_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */; };
 		AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3D8269F454E003BB5F1 /* Constants.swift */; };
-		AD20E3DB269F5139003BB5F1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DA269F5139003BB5F1 /* TabBarController.swift */; };
 		AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */; };
 		AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */; };
 		AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */; };
@@ -150,7 +149,6 @@
 		AD39FDAC26B947F400F055FD /* RepositoryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDAB26B947F400F055FD /* RepositoryDetails.swift */; };
 		AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDB226B94F2F00F055FD /* Cancellable.swift */; };
 		AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDC026B9671200F055FD /* ConnectionError.swift */; };
-		AD39FE2426BA697600F055FD /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */; };
 		AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2526BA69D900F055FD /* AppDIContainer.swift */; };
 		AD39FE2826BA6AB500F055FD /* UserSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */; };
 		AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */; };
@@ -176,7 +174,12 @@
 		AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */; };
 		AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */; };
 		AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6126BAE88600F055FD /* LoginRepository.swift */; };
-		AD39FE6426BAE99700F055FD /* LoginRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */; };
+		AD39FE6926BB1B3B00F055FD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */; };
+		AD39FE6D26BB21A100F055FD /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6C26BB21A100F055FD /* TabCoordinator.swift */; };
+		AD39FE7026BB248400F055FD /* HomeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */; };
+		AD39FE7326BB24A100F055FD /* NotificationsFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE7226BB24A100F055FD /* NotificationsFlowCoordinator.swift */; };
+		AD39FE7626BB24BE00F055FD /* ExploreFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE7526BB24BE00F055FD /* ExploreFlowCoordinator.swift */; };
+		AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD642CD426ADCBC9004FCA2D /* UsersListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */; };
 		AD642CD626ADCC00004FCA2D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */; };
@@ -261,7 +264,6 @@
 		859346635E008217CBC1A9AB /* Pods-GitHub Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.release.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.release.xcconfig"; sourceTree = "<group>"; };
 		9CC9D5C22AB54D2F14C37CEB /* Pods-GitHub Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.debug.xcconfig"; sourceTree = "<group>"; };
 		AD20E3D8269F454E003BB5F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		AD20E3DA269F5139003BB5F1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
 		AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -404,7 +406,6 @@
 		AD39FDAB26B947F400F055FD /* RepositoryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetails.swift; sourceTree = "<group>"; };
 		AD39FDB226B94F2F00F055FD /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		AD39FDC026B9671200F055FD /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
-		AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD39FE2526BA69D900F055FD /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSceneDIContainer.swift; sourceTree = "<group>"; };
 		AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -430,7 +431,12 @@
 		AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		AD39FE6126BAE88600F055FD /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
-		AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE6C26BB21A100F055FD /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE7226BB24A100F055FD /* NotificationsFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE7526BB24BE00F055FD /* ExploreFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFlowCoordinator.swift; sourceTree = "<group>"; };
+		AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD642CD326ADCBC9004FCA2D /* UsersListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListConfigurator.swift; sourceTree = "<group>"; };
 		AD642CD526ADCC00004FCA2D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
@@ -968,7 +974,6 @@
 				AD3776E4269F2697000AA54C /* SearchViewController.swift */,
 				AD20E3D8269F454E003BB5F1 /* Constants.swift */,
 				AD20E46026A8299B003BB5F1 /* ServicesManager.swift */,
-				AD20E3DA269F5139003BB5F1 /* TabBarController.swift */,
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
 				AD39FDB126B94F1200F055FD /* Common2 */,
@@ -1018,9 +1023,10 @@
 			isa = PBXGroup;
 			children = (
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
+				AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
-				AD39FE2326BA697600F055FD /* AppFlowCoordinator.swift */,
 				AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */,
+				AD39FE6C26BB21A100F055FD /* TabCoordinator.swift */,
 				AD39FDE526B9951400F055FD /* DIContainer */,
 			);
 			path = Application;
@@ -1089,6 +1095,10 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE7726BB24CA00F055FD /* ProfileScene */,
+				AD39FE7426BB24AB00F055FD /* ExploreScene */,
+				AD39FE7126BB248D00F055FD /* NotificationsScene */,
+				AD39FE6E26BB246B00F055FD /* HomeScene */,
 				AD39FE5526BAD65D00F055FD /* LoginScene */,
 				AD39FE3B26BAA1EA00F055FD /* RepScene */,
 				AD39FE3A26BA9DFF00F055FD /* UserScene */,
@@ -1112,7 +1122,6 @@
 			children = (
 				AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */,
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
-				AD39FE6326BAE99700F055FD /* LoginRepositoryImpl.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1170,6 +1179,38 @@
 				AD20E56626AB24BA003BB5F1 /* View */,
 			);
 			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		AD39FE6E26BB246B00F055FD /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		AD39FE7126BB248D00F055FD /* NotificationsScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE7226BB24A100F055FD /* NotificationsFlowCoordinator.swift */,
+			);
+			path = NotificationsScene;
+			sourceTree = "<group>";
+		};
+		AD39FE7426BB24AB00F055FD /* ExploreScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE7526BB24BE00F055FD /* ExploreFlowCoordinator.swift */,
+			);
+			path = ExploreScene;
+			sourceTree = "<group>";
+		};
+		AD39FE7726BB24CA00F055FD /* ProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */,
+			);
+			path = ProfileScene;
 			sourceTree = "<group>";
 		};
 		AD642CD226ADCB7F004FCA2D /* UsersList */ = {
@@ -1646,6 +1687,7 @@
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
 				ADA68BB326B56B9A004AC06C /* IssuesFilterBuilder.swift in Sources */,
 				AD20E54D26AAB848003BB5F1 /* CollectionCellManager.swift in Sources */,
+				AD39FE6926BB1B3B00F055FD /* AppCoordinator.swift in Sources */,
 				AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */,
 				AD20E53326AA9908003BB5F1 /* RepositoriesListViewController.swift in Sources */,
 				AD20E4FC26A95F84003BB5F1 /* RecentEventsTableViewCell.swift in Sources */,
@@ -1656,7 +1698,6 @@
 				AD20E53926AA9CC1003BB5F1 /* RepositoryConfigurator.swift in Sources */,
 				AD20E52426A9C164003BB5F1 /* IssueDetailsConfigurator.swift in Sources */,
 				AD8722D826B810DA004649A4 /* DirectoryResponse.swift in Sources */,
-				AD39FE6426BAE99700F055FD /* LoginRepositoryImpl.swift in Sources */,
 				AD79550426ABF481004E6973 /* Button.swift in Sources */,
 				ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */,
 				AD20E46626A8501F003BB5F1 /* RepositoryAdapter.swift in Sources */,
@@ -1688,6 +1729,8 @@
 				AD20E52F26AA9429003BB5F1 /* DetailTableViewCell.swift in Sources */,
 				AD25E4DA26B6F9390003B1E0 /* FileResponse.swift in Sources */,
 				AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */,
+				AD39FE6D26BB21A100F055FD /* TabCoordinator.swift in Sources */,
+				AD39FE7026BB248400F055FD /* HomeFlowCoordinator.swift in Sources */,
 				AD8722E026B81840004649A4 /* FolderPresenter.swift in Sources */,
 				AD20E52826AA0038003BB5F1 /* IssuesListConfigurator.swift in Sources */,
 				AD642CD826ADCC1E004FCA2D /* UsersListPresenter.swift in Sources */,
@@ -1701,7 +1744,6 @@
 				AD25E4D826B6F15E0003B1E0 /* RepositoryInteractor.swift in Sources */,
 				AD8722E426B819A7004649A4 /* FilePresenter.swift in Sources */,
 				AD39FE4126BAA54D00F055FD /* RepViewModel.swift in Sources */,
-				AD20E3DB269F5139003BB5F1 /* TabBarController.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD25E4D226B6C3D60003B1E0 /* IssuesFilterViewModel.swift in Sources */,
 				AD20E53726AA9926003BB5F1 /* RepositoriesListConfigurator.swift in Sources */,
@@ -1753,8 +1795,10 @@
 				ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */,
 				AD20E52026A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.swift in Sources */,
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
+				AD39FE7326BB24A100F055FD /* NotificationsFlowCoordinator.swift in Sources */,
 				AD20E44B26A6BBAE003BB5F1 /* TableViewCell.swift in Sources */,
 				AD20E41A26A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift in Sources */,
+				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD20E40E26A59514003BB5F1 /* UITableView+extensions.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
@@ -1788,11 +1832,11 @@
 				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
-				AD39FE2426BA697600F055FD /* AppFlowCoordinator.swift in Sources */,
 				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD20E46426A84B4E003BB5F1 /* UserProfileAdapter.swift in Sources */,
 				AD39FD9626B86B4300F055FD /* CommitsListPresenter.swift in Sources */,
+				AD39FE7626BB24BE00F055FD /* ExploreFlowCoordinator.swift in Sources */,
 				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,
 				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,

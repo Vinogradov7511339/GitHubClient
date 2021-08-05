@@ -10,7 +10,7 @@ import UIKit
 final class LoginSceneDIContainer {
     
     struct Dependencies {
-        var userLoggedIn: (AuthenticatedUser) -> Void
+        var userLoggedIn: () -> Void
     }
     
     let dependencies: Dependencies
@@ -20,13 +20,13 @@ final class LoginSceneDIContainer {
     }
 
     func makeLoginFlowCoordinator(in window: UIWindow) -> LoginFlowCoordinator {
-        return LoginFlowCoordinator(window: window, dependencies: self)
+        return LoginFlowCoordinator(in: window, dependencies: self)
     }
 }
 
 extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
-    func userLoggedIn(authenticatedUser: AuthenticatedUser) {
-        dependencies.userLoggedIn(authenticatedUser)
+    func userLoggedIn() {
+        dependencies.userLoggedIn()
     }
 
     // MARK: - Login flow
@@ -40,10 +40,6 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
 
     func makeLoginUseCase() -> LoginUseCase {
-        return LoginUseCaseImpl(repository: makeLoginRepository())
-    }
-
-    func makeLoginRepository() -> LoginRepository {
-        return LoginRepositoryImpl()
+        return LoginUseCaseImpl()
     }
 }

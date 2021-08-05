@@ -10,27 +10,37 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let appDIContainer = AppDIContainer()
-    var appCoordinator: AppFlowCoordinator?
+    var appCoordinator: AppCoordinator?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
-        ApplicationPresenter.shared.window = window
-        appCoordinator = AppFlowCoordinator(in: window!, appDIContainer: appDIContainer)
+        let navigationController: UINavigationController = .init()
+        window?.rootViewController = navigationController
+        
+        appCoordinator = AppCoordinator(in: window!, appDIContainer: appDIContainer)
         appCoordinator?.start()
-//        let rootController: UIViewController
-//        switch UserStorage.shared.loginState {
-//        case .logged:
-//            rootController = TabBarController()
-//        case .notLogged:
-//            rootController = LoginViewController()
-//        }
-//
-//        window?.rootViewController = rootController
         
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
+//        appCoordinator = AppCoordinator.init(navigationController)
+//        appCoordinator?.start()
+//        ApplicationPresenter.shared.window = window
+//        appCoordinator = AppFlowCoordinator(in: window!, appDIContainer: appDIContainer)
+//        appCoordinator?.start()
+////        let rootController: UIViewController
+////        switch UserStorage.shared.loginState {
+////        case .logged:
+////            rootController = TabBarController()
+////        case .notLogged:
+////            rootController = LoginViewController()
+////        }
+////
+////        window?.rootViewController = rootController
+//
+//        window?.makeKeyAndVisible()
+//        window?.windowScene = windowScene
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

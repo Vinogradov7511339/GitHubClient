@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: AuthorizationViewControllerDelegate {
     func success(tokenResponse: TokenResponse) {
-        
+        viewModel?.didReceive(tokenResponse: tokenResponse)
 //        UserStorage.shared.saveTokenResponse(tokenResponse)
 //        ApplicationPresenter.shared.login()
     }

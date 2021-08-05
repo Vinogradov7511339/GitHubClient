@@ -35,19 +35,6 @@ class ApplicationPresenter {
         }
     }
 
-    func login() {
-        let tabbarController = TabBarController()
-        let previousController = window.rootViewController
-        UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft) {
-            self.window.subviews.forEach { $0.removeFromSuperview() }
-            self.window.rootViewController = tabbarController
-        } completion: { _ in
-            previousController?.dismiss(animated: false, completion: {
-                previousController?.view.removeFromSuperview()
-            })
-        }
-    }
-
     private func setupObservers() {
         let center = NotificationCenter.default
         center.addObserver(self,
