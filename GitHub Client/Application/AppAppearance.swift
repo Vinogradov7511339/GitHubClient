@@ -67,6 +67,11 @@ enum Theme: Int, CaseIterable {
     func apply(to window: UIWindow?) {
         window?.tintColor = mainColor
         UINavigationBar.appearance().barStyle = barStyle
+        UITabBar.appearance().barStyle = barStyle
         UserDefaults.standard.set(rawValue, forKey: Keys.selectedTheme)
+        window?.subviews.forEach { view in
+            view.removeFromSuperview()
+            window?.addSubview(view)
+        }
     }
 }
