@@ -786,14 +786,14 @@
 			path = IssueCell;
 			sourceTree = "<group>";
 		};
-		AD20E51426A9AFE1003BB5F1 /* IssueDetails */ = {
+		AD20E51426A9AFE1003BB5F1 /* IssueScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD20E52326A9C164003BB5F1 /* IssueDetailsConfigurator.swift */,
 				AD20E51726A9B2FD003BB5F1 /* IssueDetailsPresenter.swift */,
 				AD20E51526A9B02B003BB5F1 /* IssueDetailsViewController.swift */,
 			);
-			path = IssueDetails;
+			path = IssueScene;
 			sourceTree = "<group>";
 		};
 		AD20E51D26A9B64A003BB5F1 /* IssueDetailsHeaderCell */ = {
@@ -937,6 +937,17 @@
 			path = ReposReadMeCell;
 			sourceTree = "<group>";
 		};
+		AD2AC81F26BD785200AF161C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
+				AD39FE3826BA942800F055FD /* Observable.swift */,
+				AD8722D226B7F1E5004649A4 /* Strategies */,
+				ADA68BBD26B5876F004AC06C /* ViewModels */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AD2E262D26BC785700B25772 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1071,7 +1082,6 @@
 			children = (
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
 				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
-				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1084,31 +1094,15 @@
 				AD39FE6E26BB246B00F055FD /* HomeScene */,
 				AD39FE7126BB248D00F055FD /* NotificationsScene */,
 				AD39FE7426BB24AB00F055FD /* ExploreScene */,
-				AD39FE7726BB24CA00F055FD /* ProfileScene */,
-				AD39FE4B26BAB62300F055FD /* StarredRepositories */,
-				AD642CD226ADCB7F004FCA2D /* UsersList */,
-				AD79550D26AC1188004E6973 /* Search */,
-				AD20E53126AA98EE003BB5F1 /* RepositoriesList */,
-				AD39FE5226BABD5E00F055FD /* UserProfile */,
-				AD20E4EE26A9489C003BB5F1 /* Cells */,
+				AD39FE7726BB24CA00F055FD /* MyProfileScene */,
+				ADD462E726BD776D00DD46CC /* ItemsList */,
+				AD79550D26AC1188004E6973 /* SearchScene */,
+				AD39FE5226BABD5E00F055FD /* UserProfileScene */,
 				AD8722D026B7D846004649A4 /* UIComponents */,
+				AD39FE3B26BAA1EA00F055FD /* RepositoryScene */,
+				AD20E51426A9AFE1003BB5F1 /* IssueScene */,
 				AD39FE5526BAD65D00F055FD /* LoginScene */,
-				AD39FE3B26BAA1EA00F055FD /* RepScene */,
-				ADA68BBD26B5876F004AC06C /* ViewModels */,
-				AD8722D226B7F1E5004649A4 /* Strategies */,
-				AD20E50926A9996A003BB5F1 /* IssuesList */,
-				AD20E51426A9AFE1003BB5F1 /* IssueDetails */,
-				AD39FE3826BA942800F055FD /* Observable.swift */,
-				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
-				AD3776E4269F2697000AA54C /* SearchViewController.swift */,
-				AD43E81126B44F2B008DF634 /* TextStorage.swift */,
-				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
-				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
-				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
-				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
-				AD39FE9C26BC2F6700F055FD /* Alerts.swift */,
-				AD39FE9E26BC47F100F055FD /* ItemsListViewModel.swift */,
-				AD39FEA226BC589200F055FD /* ItemsListViewController.swift */,
+				AD2AC81F26BD785200AF161C /* Utils */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1150,17 +1144,18 @@
 			path = UserScene;
 			sourceTree = "<group>";
 		};
-		AD39FE3B26BAA1EA00F055FD /* RepScene */ = {
+		AD39FE3B26BAA1EA00F055FD /* RepositoryScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */,
+				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
 				AD39FD9226B86A5D00F055FD /* CommitsList */,
 				AD8722DC26B816DE004649A4 /* File */,
 				AD8722D926B81610004649A4 /* Folder */,
 				AD20E43E26A6B5C5003BB5F1 /* Repository */,
 				AD39FE4A26BAB61500F055FD /* View */,
 			);
-			path = RepScene;
+			path = RepositoryScene;
 			sourceTree = "<group>";
 		};
 		AD39FE4A26BAB61500F055FD /* View */ = {
@@ -1181,13 +1176,13 @@
 			path = StarredRepositories;
 			sourceTree = "<group>";
 		};
-		AD39FE5226BABD5E00F055FD /* UserProfile */ = {
+		AD39FE5226BABD5E00F055FD /* UserProfileScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */,
 				AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */,
 			);
-			path = UserProfile;
+			path = UserProfileScene;
 			sourceTree = "<group>";
 		};
 		AD39FE5526BAD65D00F055FD /* LoginScene */ = {
@@ -1229,7 +1224,7 @@
 			path = ExploreScene;
 			sourceTree = "<group>";
 		};
-		AD39FE7726BB24CA00F055FD /* ProfileScene */ = {
+		AD39FE7726BB24CA00F055FD /* MyProfileScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */,
@@ -1238,7 +1233,7 @@
 				AD39FE3A26BA9DFF00F055FD /* UserScene */,
 				AD20E3DE269F5DE4003BB5F1 /* Profile */,
 			);
-			path = ProfileScene;
+			path = MyProfileScene;
 			sourceTree = "<group>";
 		};
 		AD39FE9626BC18EC00F055FD /* SwiftUI */ = {
@@ -1324,7 +1319,7 @@
 			path = MyReposCell;
 			sourceTree = "<group>";
 		};
-		AD79550D26AC1188004E6973 /* Search */ = {
+		AD79550D26AC1188004E6973 /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */,
@@ -1332,12 +1327,20 @@
 				AD79551026AC124F004E6973 /* SearchPresenter.swift */,
 				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
 			);
-			path = Search;
+			path = SearchScene;
 			sourceTree = "<group>";
 		};
 		AD8722D026B7D846004649A4 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE9C26BC2F6700F055FD /* Alerts.swift */,
+				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
+				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
+				ADA68BB526B56D4B004AC06C /* CreateFilterViewController.swift */,
+				AD43E81126B44F2B008DF634 /* TextStorage.swift */,
+				AD3776E4269F2697000AA54C /* SearchViewController.swift */,
+				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
+				AD20E4EE26A9489C003BB5F1 /* Cells */,
 				AD20E42F26A5DFD7003BB5F1 /* TableCellManager */,
 			);
 			name = UIComponents;
@@ -1520,6 +1523,19 @@
 				ADC8180526B00DF200469BCF /* OrganizationService.swift */,
 			);
 			path = OrganizationService;
+			sourceTree = "<group>";
+		};
+		ADD462E726BD776D00DD46CC /* ItemsList */ = {
+			isa = PBXGroup;
+			children = (
+				AD39FE4B26BAB62300F055FD /* StarredRepositories */,
+				AD39FE9E26BC47F100F055FD /* ItemsListViewModel.swift */,
+				AD39FEA226BC589200F055FD /* ItemsListViewController.swift */,
+				AD20E53126AA98EE003BB5F1 /* RepositoriesList */,
+				AD642CD226ADCB7F004FCA2D /* UsersList */,
+				AD20E50926A9996A003BB5F1 /* IssuesList */,
+			);
+			path = ItemsList;
 			sourceTree = "<group>";
 		};
 		B3CBF346F940A4CEEBCC7762 /* Pods */ = {

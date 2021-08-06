@@ -48,7 +48,7 @@ private extension RepViewController {
     func updateItems() {
         tableView.reloadData()
     }
-    
+
     func showError(_ error: String) {
         guard !error.isEmpty else { return }
         print("error: \(error)")

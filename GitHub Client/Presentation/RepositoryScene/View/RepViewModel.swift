@@ -55,7 +55,7 @@ extension RepViewModelImpl {
     func viewDidLoad() {
         
     }
-    
+
     func didSelectItem(at indexPath: IndexPath) {
         switch(indexPath.section, indexPath.row) {
         case (0, 1): actions.showIssues(repository)
