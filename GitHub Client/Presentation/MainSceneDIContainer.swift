@@ -26,6 +26,7 @@ final class MainSceneDIContainer: NSObject {
 
     var openRepository: ((Repository) -> Void)?
     var openUserProfile: ((User) -> Void)?
+    var openIssue: ((Issue) -> Void)?
 
     let dependencies: MainSceneCoordinatorDependencies
 
@@ -60,7 +61,14 @@ final class MainSceneDIContainer: NSObject {
 
         switch page {
         case .home:
-            let coordinator = HomeFlowCoordinator(navigationController: navController)
+            let homeDependencies = HomeDIContainer.Dependencies(
+                showOrganizations: showOrganizations,
+                showRepositories: showRepositories,
+                showRepository: openRepository,
+                showEvent: openIssue
+            )
+            let container = HomeDIContainer(dependencies: homeDependencies)
+            let coordinator = HomeFlowCoordinator(container: container, navigationController: navController)
             coordinator.start()
 
         case .notifications:
@@ -92,6 +100,18 @@ final class MainSceneDIContainer: NSObject {
     
     func openUserProfile(_ user: User) {
         openUserProfile?(user)
+    }
+
+    func openIssue(_ issue: Issue) {
+        openIssue?(issue)
+    }
+
+    func showOrganizations() {
+        fatalError()
+    }
+
+    func showRepositories() {
+        fatalError()
     }
 }
 

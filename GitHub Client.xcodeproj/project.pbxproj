@@ -268,6 +268,10 @@
 		ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180526B00DF200469BCF /* OrganizationService.swift */; };
 		ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */; };
 		ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */; };
+		ADD462E026BD63C100DD46CC /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462DF26BD63C100DD46CC /* HomeUseCase.swift */; };
+		ADD462E226BD648100DD46CC /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E126BD648100DD46CC /* HomeRepository.swift */; };
+		ADD462E426BD64AE00DD46CC /* HomeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */; };
+		ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */; };
 		ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5B0CC26B53A460085A344 /* FilterView.swift */; };
 		ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */; };
 /* End PBXBuildFile section */
@@ -538,6 +542,10 @@
 		ADC8180526B00DF200469BCF /* OrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		ADC8180826B00E1100469BCF /* OrganizationEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationEndpoints.swift; sourceTree = "<group>"; };
 		ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSettingsViewController.swift; sourceTree = "<group>"; };
+		ADD462DF26BD63C100DD46CC /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
+		ADD462E126BD648100DD46CC /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryImpl.swift; sourceTree = "<group>"; };
+		ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
 		ADE5B0CC26B53A460085A344 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStorage.swift; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1044,6 +1052,7 @@
 				AD39FE9726BC1B0200F055FD /* UsersListUseCase.swift */,
 				AD39FEA026BC4A0B00F055FD /* ItemsListUseCase.swift */,
 				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
+				ADD462DF26BD63C100DD46CC /* HomeUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1113,6 +1122,7 @@
 				AD39FE9926BC1C0A00F055FD /* UsersListRepository.swift */,
 				AD39FEA426BC670900F055FD /* ItemsListRepository.swift */,
 				AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */,
+				ADD462E126BD648100DD46CC /* HomeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1194,6 +1204,7 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */,
+				ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */,
 				AD8722E726B83784004649A4 /* Favorites */,
 				AD20E4EB26A8C045003BB5F1 /* Home */,
 			);
@@ -1253,6 +1264,7 @@
 				AD39FEA826BC68B700F055FD /* ItemsListRepositoryImpl.swift */,
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
 				AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */,
+				ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1786,6 +1798,7 @@
 				AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */,
 				AD20E53F26AAA634003BB5F1 /* ExploreConfigurator.swift in Sources */,
 				AD20E4F426A94A70003BB5F1 /* HomeInteractor.swift in Sources */,
+				ADD462E226BD648100DD46CC /* HomeRepository.swift in Sources */,
 				AD20E4ED26A8C060003BB5F1 /* HomeViewController.swift in Sources */,
 				AD25E4D826B6F15E0003B1E0 /* RepositoryInteractor.swift in Sources */,
 				AD8722E426B819A7004649A4 /* FilePresenter.swift in Sources */,
@@ -1845,6 +1858,7 @@
 				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */,
+				ADD462E426BD64AE00DD46CC /* HomeRepositoryImpl.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
 				AD20E53526AA9918003BB5F1 /* RepositoriesListPresenter.swift in Sources */,
 				AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */,
@@ -1863,6 +1877,7 @@
 				AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
+				ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */,
 				AD39FE2D26BA740400F055FD /* StarredViewController.swift in Sources */,
 				AD39FE5926BAD6AF00F055FD /* LoginSceneDIContainer.swift in Sources */,
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
@@ -1886,6 +1901,7 @@
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
 				AD39FD9626B86B4300F055FD /* CommitsListPresenter.swift in Sources */,
 				AD39FE7626BB24BE00F055FD /* ExploreFlowCoordinator.swift in Sources */,
+				ADD462E026BD63C100DD46CC /* HomeUseCase.swift in Sources */,
 				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,
 				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
