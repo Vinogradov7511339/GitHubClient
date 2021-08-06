@@ -14,17 +14,17 @@ protocol UsersListInteractorInput {
 }
 
 protocol UsersListInteractorOutput: AnyObject {
-    func didReceive(users: [UserProfile])
+    func didReceive(users: [UserResponseDTO])
 }
 
 class UsersListInteractor {
     weak var output: UsersListInteractorOutput?
     
     private let service = ServicesManager.shared.userService
-    private let profile: UserProfile
+    private let profile: UserResponseDTO
     private let type: UsersListType
     
-    init(profile: UserProfile, type: UsersListType) {
+    init(profile: UserResponseDTO, type: UsersListType) {
         self.profile = profile
         self.type = type
     }

@@ -26,7 +26,7 @@ class LocalStorage {
         return queue
     }()
 
-    func saveUser(user: UserProfile) {
+    func saveUser(user: UserResponseDTO) {
         performUpdate { [self] context in
             self.saveUser(user: user, in: context)
         }
@@ -57,7 +57,7 @@ private extension LocalStorage {
 //        return try? context.fetch(fetchRequest).first
 //    }
 
-    func saveUser(user: UserProfile, in context: NSManagedObjectContext) {
+    func saveUser(user: UserResponseDTO, in context: NSManagedObjectContext) {
 //        let dbUser = getOrCreateUser(user, in: context)
 //        guard let dbUser = dbUser else { fatalError() }
 //        UserProfileAdapter.toDBModel(dbUser, from: user)

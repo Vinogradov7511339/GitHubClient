@@ -44,7 +44,7 @@ extension ReposListInteractor: ReposListInteractorInput {
 
 // MARK: - private
 private extension ReposListInteractor {
-    func fetchStarred(_ profile: UserProfile) {
+    func fetchStarred(_ profile: UserResponseDTO) {
         service.fetchStarredRepos(profile) { [weak self] repositories, error in
             if let repositories = repositories {
                 DispatchQueue.main.async {
@@ -54,7 +54,7 @@ private extension ReposListInteractor {
         }
     }
     
-    func fetchAll(_ profile: UserProfile) {
+    func fetchAll(_ profile: UserResponseDTO) {
         service.fetchRepositories(profile) { [weak self] repositories, error in
             if let repositories = repositories {
                 DispatchQueue.main.async {

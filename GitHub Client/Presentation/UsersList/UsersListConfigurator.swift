@@ -10,7 +10,7 @@ import UIKit
 
 
 class UsersListConfigurator {
-    static func createModule(profile: UserProfile, type: UsersListType) -> UsersListViewController {
+    static func createModule(profile: UserResponseDTO, type: UsersListType) -> UsersListViewController {
         let interactor = UsersListInteractor(profile: profile, type: type)
         let presenter = UsersListPresenter(type: type)
         presenter.interactor = interactor

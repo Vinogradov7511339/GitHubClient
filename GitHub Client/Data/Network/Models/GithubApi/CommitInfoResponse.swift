@@ -14,8 +14,8 @@ class CommitInfoResponse: Codable {
     let url: URL
     let htmlUrl: URL
     let commentsUrl: URL
-    let author: UserProfile
-    let committer: UserProfile
+    let author: UserResponseDTO
+    let committer: UserResponseDTO
     let parents: [ParentCommit]
 
     init(
@@ -25,8 +25,8 @@ class CommitInfoResponse: Codable {
         url: URL,
         htmlUrl: URL,
         commentsUrl: URL,
-        author: UserProfile,
-        committer: UserProfile,
+        author: UserResponseDTO,
+        committer: UserResponseDTO,
         parents: [ParentCommit]) {
         self.sha = sha
         self.nodeId = nodeId

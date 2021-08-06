@@ -8,7 +8,7 @@
 import Foundation
 
 struct ProfileInfo {
-    let userProfile: UserProfile
+    let userProfile: UserResponseDTO
     let starredReposCount: Int
     let popularRepos: [RepositoryResponse]
 }
@@ -20,7 +20,7 @@ class ProfileFacade {
     private let group = DispatchGroup()
     
     private let type: ProfileType
-    private var profile: UserProfile?
+    private var profile: UserResponseDTO?
     private var starredReposCount = 0
     private var popularRepos: [RepositoryResponse] = []
     
@@ -63,7 +63,7 @@ private extension ProfileFacade {
         }
     }
 
-    func fetchProfile(profile: UserProfile) {
+    func fetchProfile(profile: UserResponseDTO) {
         service.fetchProfile(user: profile) { [weak self] profile, error in
             if let profile = profile {
                 self?.profile = profile
@@ -74,7 +74,7 @@ private extension ProfileFacade {
         }
     }
 
-    func fetchStarredReposCount(_ profile: UserProfile) {
+    func fetchStarredReposCount(_ profile: UserResponseDTO) {
         group.enter()
         service.fetchStarredCountRepositories(profile) { [weak self] count, error in
             if let count = count {
@@ -84,7 +84,7 @@ private extension ProfileFacade {
         }
     }
 
-    func fetchPopularRepos(_ profile: UserProfile) {
+    func fetchPopularRepos(_ profile: UserResponseDTO) {
         group.enter()
         service.fetchPopularRepositories(profile) { [weak self] repositories, error in
             if let repositories = repositories {

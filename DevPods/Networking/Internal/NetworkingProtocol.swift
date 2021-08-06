@@ -24,4 +24,3 @@ public protocol EndpointProtocol {
     var parameters: RequestParameters { get }
     var jsonBody: Data? { get }
 }
-

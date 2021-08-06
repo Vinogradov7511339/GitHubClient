@@ -22,19 +22,31 @@ final class ProfileDIContainer {
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
-    
+
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
-        ProfileConfigurator.createProfileModule(with: .myProfile)
+        .create(with: createProfileViewModel(actions))
     }
-    
+
+    func createProfileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
+        return ProfileViewModelImpl(useCase: createProfileUseCase(), actions: actions)
+    }
+
+    func createProfileUseCase() -> MyProfileUseCase {
+        return MyProfileUseCaseImpl(repository: createProfileRepository())
+    }
+
+    func createProfileRepository() -> MyProfileRepository {
+        return MyProfileRepositoryImpl()
+    }
+
     func createFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
         .create(with: createFollowersViewModel(actions: actions))
     }
-    
+
     func createFollowersViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
         .init(type: .myFollowers, useCase: createItemsListUseCase(), actions: actions)
     }
-    
+
     func createFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
         .create(with: createFollowingViewModel(actions: actions))
     }
@@ -42,15 +54,16 @@ final class ProfileDIContainer {
     func createFollowingViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
         .init(type: .myFollowing, useCase: createItemsListUseCase(), actions: actions)
     }
-    
-    func createRepositoriesViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
+
+    func createRepositoriesViewController(
+        actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
         .create(with: createRepositoriesViewModel(actions: actions))
     }
-    
+
     func createRepositoriesViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
         .init(type: .myRepositories, useCase: createItemsListUseCase(), actions: actions)
     }
-    
+
     func createStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
         .create(with: createStarredViewModel(actions: actions))
     }
@@ -62,29 +75,8 @@ final class ProfileDIContainer {
     func createItemsListUseCase() -> ItemsListUseCase {
         return ItemsListUseCaseImpl.init(repository: createItemsListRepository())
     }
-    
+
     func createItemsListRepository() -> ItemsListRepository {
         return ItemsListRepositoryImpl()
     }
 }
-
-
-//// MARK: - Starred
-//extension ProfileDIContainer {
-//    func createStarredViewController(_ actions: StarredActions) -> StarredViewController {
-//        .create(with: createStarredViewModel(actions))
-//    }
-//
-//    private func createStarredViewModel(_ actions: StarredActions) -> StarredViewModel {
-//        StarredViewModelImpl(starredUseCase: createStarredUseCase(), actions: actions)
-//    }
-//
-//    private func createStarredUseCase() -> StarredUseCase {
-//        fatalError()
-////        StarredUseCaseImpl(user: <#T##User#>, repository: createStarredRepository())
-//    }
-//
-//    private func createStarredRepository() -> StarredRepository {
-//        StarredRepositoryImpl()
-//    }
-//}

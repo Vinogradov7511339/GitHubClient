@@ -17,7 +17,7 @@ class CommentResponse: Codable {
     let position: Int?
     let line: Int?
     let commitId: String
-    let user: UserProfile
+    let user: UserResponseDTO
     let createdAt: String
     let updatedAt: String
     let authorAssociation: String
@@ -31,7 +31,7 @@ class CommentResponse: Codable {
          position: Int,
          line: Int,
          commitId: String,
-         user: UserProfile,
+         user: UserResponseDTO,
          createdAt: String,
          updatedAt: String,
          authorAssociation: String) {

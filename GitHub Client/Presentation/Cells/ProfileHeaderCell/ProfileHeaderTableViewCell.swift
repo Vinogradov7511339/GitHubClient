@@ -59,7 +59,7 @@ class ProfileHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension ProfileHeaderTableViewCell: ConfigurableCell {
-    func configure(viewModel: UserProfile) {
+    func configure(viewModel: UserResponseDTO) {
         let profile = viewModel
         avatarImageView.set(url: profile.avatarUrl)
         nameLabel.text = profile.name

@@ -24,7 +24,7 @@ struct PullRequest: Codable {
     let state: String?
     let locked: Bool?
     let title: String?
-    let user: UserProfile?
+    let user: UserResponseDTO?
     let body: String
     let labels: [LabelModel?]?
     let milestone: Milestone?
@@ -34,9 +34,9 @@ struct PullRequest: Codable {
     let closedAt: String?
     let mergedAt: String?
     let mergeCommitSha: String?
-    let assignee: UserProfile?
-    let assignees: [UserProfile?]?
-    let requestedReviewers: [UserProfile?]?
+    let assignee: UserResponseDTO?
+    let assignees: [UserResponseDTO?]?
+    let requestedReviewers: [UserResponseDTO?]?
 //    let requested_teams: Any
 //    let head: Any
 //    let base: Any

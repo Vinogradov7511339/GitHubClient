@@ -15,7 +15,7 @@ struct MainSceneCoordinatorDependencies {
 }
 
 final class MainSceneDIContainer: NSObject {
-    
+
     func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
         return UserSceneDIContainer(dependencies: dependencies)
     }
@@ -24,8 +24,11 @@ final class MainSceneDIContainer: NSObject {
         return RepSceneDIContainer(dependencies: dependencies)
     }
 
+    var openRepository: ((Repository) -> Void)?
+    var openUserProfile: ((User) -> Void)?
+
     let dependencies: MainSceneCoordinatorDependencies
-    
+
     init(dependencies: MainSceneCoordinatorDependencies) {
         self.dependencies = dependencies
     }
@@ -84,11 +87,11 @@ final class MainSceneDIContainer: NSObject {
     }
     
     func openRepository(_ repository: Repository) {
-        fatalError()
+        openRepository?(repository)
     }
     
     func openUserProfile(_ user: User) {
-        fatalError()
+        openUserProfile?(user)
     }
 }
 

@@ -12,7 +12,6 @@
 		AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */; };
 		AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */; };
 		AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */; };
-		AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3E3269F5F86003BB5F1 /* UserProfile.swift */; };
 		AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3F726A0B57F003BB5F1 /* RequestProtocol.swift */; };
 		AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3F926A0B8DB003BB5F1 /* APIEnvironment.swift */; };
 		AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FB26A0BD1D003BB5F1 /* APINetworkSession.swift */; };
@@ -24,7 +23,6 @@
 		AD20E41226A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */; };
 		AD20E41A26A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41826A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift */; };
 		AD20E41B26A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E41926A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib */; };
-		AD20E42A26A5CAF9003BB5F1 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E42926A5CAF9003BB5F1 /* RepositoryResponse.swift */; };
 		AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E42B26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift */; };
 		AD20E42E26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E42C26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.xib */; };
 		AD20E43A26A60DBE003BB5F1 /* MyReposTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E43826A60DBE003BB5F1 /* MyReposTableViewCell.swift */; };
@@ -125,6 +123,13 @@
 		AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261526BC6D6900B25772 /* TableViewCell.swift */; };
 		AD2E261826BC6D6F00B25772 /* StatusBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261726BC6D6F00B25772 /* StatusBadgeView.swift */; };
 		AD2E261C26BC6FCB00B25772 /* UIImage+tempExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261B26BC6FCB00B25772 /* UIImage+tempExtension.swift */; };
+		AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262926BC77AB00B25772 /* UserResponseDTO.swift */; };
+		AD2E262C26BC77AB00B25772 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262A26BC77AB00B25772 /* RepositoryResponse.swift */; };
+		AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262E26BD17F600B25772 /* HomeViewModel.swift */; };
+		AD2E263226BD1BF400B25772 /* GitHubEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */; };
+		AD2E263426BD3B0D00B25772 /* MyProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */; };
+		AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */; };
+		AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */; };
 		AD3776E1269F2697000AA54C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E0269F2697000AA54C /* AppDelegate.swift */; };
 		AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E2269F2697000AA54C /* SceneDelegate.swift */; };
 		AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E4269F2697000AA54C /* SearchViewController.swift */; };
@@ -253,7 +258,6 @@
 		ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500B26AD2E9500783E71 /* IssuesService.swift */; };
 		ADA7501A26AD922600783E71 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501926AD922600783E71 /* UserService.swift */; };
 		ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501C26AD924500783E71 /* UserEndpoints.swift */; };
-		ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501E26AD931E00783E71 /* Error+extensions.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
@@ -275,7 +279,6 @@
 		AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
 		AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		AD20E3E3269F5F86003BB5F1 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		AD20E3F726A0B57F003BB5F1 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		AD20E3F926A0B8DB003BB5F1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		AD20E3FB26A0BD1D003BB5F1 /* APINetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkSession.swift; sourceTree = "<group>"; };
@@ -287,7 +290,6 @@
 		AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedRepositoriesTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E41826A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E41926A5A019003BB5F1 /* ProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		AD20E42926A5CAF9003BB5F1 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		AD20E42B26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedRepositoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AD20E42C26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinnedRepositoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		AD20E43826A60DBE003BB5F1 /* MyReposTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReposTableViewCell.swift; sourceTree = "<group>"; };
@@ -388,6 +390,13 @@
 		AD2E261526BC6D6900B25772 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		AD2E261726BC6D6F00B25772 /* StatusBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBadgeView.swift; sourceTree = "<group>"; };
 		AD2E261B26BC6FCB00B25772 /* UIImage+tempExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+tempExtension.swift"; sourceTree = "<group>"; };
+		AD2E262926BC77AB00B25772 /* UserResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponseDTO.swift; sourceTree = "<group>"; };
+		AD2E262A26BC77AB00B25772 /* RepositoryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
+		AD2E262E26BD17F600B25772 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubEndpoints.swift; sourceTree = "<group>"; };
+		AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUseCase.swift; sourceTree = "<group>"; };
+		AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRepository.swift; sourceTree = "<group>"; };
+		AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRepositoryImpl.swift; sourceTree = "<group>"; };
 		AD3776DD269F2697000AA54C /* GitHub Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3776E0269F2697000AA54C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3776E2269F2697000AA54C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -519,7 +528,6 @@
 		ADA7500B26AD2E9500783E71 /* IssuesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesService.swift; sourceTree = "<group>"; };
 		ADA7501926AD922600783E71 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		ADA7501C26AD924500783E71 /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
-		ADA7501E26AD931E00783E71 /* Error+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extensions.swift"; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
@@ -624,6 +632,8 @@
 		AD20E44C26A6F289003BB5F1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
+				AD3776F6269F270A000AA54C /* UserStorage.swift */,
 				AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */,
 				AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */,
 				AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */,
@@ -698,6 +708,7 @@
 				AD20E4F326A94A70003BB5F1 /* HomeInteractor.swift */,
 				AD20E4F126A94A2B003BB5F1 /* HomePresenter.swift */,
 				AD20E4EC26A8C060003BB5F1 /* HomeViewController.swift */,
+				AD2E262E26BD17F600B25772 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -918,6 +929,25 @@
 			path = ReposReadMeCell;
 			sourceTree = "<group>";
 		};
+		AD2E262D26BC785700B25772 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E263026BD1BD600B25772 /* NewEndpoints */,
+				AD20E3E5269F638E003BB5F1 /* Models */,
+				AD642CDE26AE9C72004FCA2D /* Facades */,
+				ADA74FFF26AD2E7C00783E71 /* Services */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AD2E263026BD1BD600B25772 /* NewEndpoints */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */,
+			);
+			path = NewEndpoints;
+			sourceTree = "<group>";
+		};
 		AD3776D4269F2697000AA54C = {
 			isa = PBXGroup;
 			children = (
@@ -976,7 +1006,6 @@
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
 				AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */,
 				AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */,
-				AD39FE6C26BB21A100F055FD /* MainCoordinator.swift */,
 				AD39FDE526B9951400F055FD /* DIContainer */,
 			);
 			path = Application;
@@ -1014,6 +1043,7 @@
 				AD39FE5F26BAE16700F055FD /* LoginUseCase.swift */,
 				AD39FE9726BC1B0200F055FD /* UsersListUseCase.swift */,
 				AD39FEA026BC4A0B00F055FD /* ItemsListUseCase.swift */,
+				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1031,10 +1061,8 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
-				AD39FE8326BBDD9800F055FD /* MainSceneDIContainer.swift */,
 				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
 				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
-				AD39FE5826BAD6AF00F055FD /* LoginSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1042,6 +1070,8 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE6C26BB21A100F055FD /* MainCoordinator.swift */,
+				AD39FE8326BBDD9800F055FD /* MainSceneDIContainer.swift */,
 				AD39FE6E26BB246B00F055FD /* HomeScene */,
 				AD39FE7126BB248D00F055FD /* NotificationsScene */,
 				AD39FE7426BB24AB00F055FD /* ExploreScene */,
@@ -1082,6 +1112,7 @@
 				AD39FE6126BAE88600F055FD /* LoginRepository.swift */,
 				AD39FE9926BC1C0A00F055FD /* UsersListRepository.swift */,
 				AD39FEA426BC670900F055FD /* ItemsListRepository.swift */,
+				AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1089,18 +1120,10 @@
 		AD39FE3526BA83F600F055FD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AD2E262D26BC785700B25772 /* Network */,
 				AD39FEA726BC68A000F055FD /* Repositories */,
-				AD642CDE26AE9C72004FCA2D /* Facades */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
-				ADA74FFF26AD2E7C00783E71 /* Services */,
-				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
-				AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */,
-				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
-				AD20E46026A8299B003BB5F1 /* ServicesManager.swift */,
-				AD3776F6269F270A000AA54C /* UserStorage.swift */,
-				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
-				ADA7501E26AD931E00783E71 /* Error+extensions.swift */,
 				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
 				AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */,
 				AD20E57726ABDA7C003BB5F1 /* Dictionary+extensions.swift */,
@@ -1161,6 +1184,7 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE5626BAD67600F055FD /* LoginFlowCoordinator.swift */,
+				AD39FE5826BAD6AF00F055FD /* LoginSceneDIContainer.swift */,
 				AD20E56626AB24BA003BB5F1 /* View */,
 			);
 			path = LoginScene;
@@ -1225,7 +1249,10 @@
 		AD39FEA726BC68A000F055FD /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE3626BA841100F055FD /* StarredRepositoryImpl.swift */,
 				AD39FEA826BC68B700F055FD /* ItemsListRepositoryImpl.swift */,
+				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
+				AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1388,9 +1415,9 @@
 		ADA68BB926B56F72004AC06C /* GithubApi */ = {
 			isa = PBXGroup;
 			children = (
+				AD2E262A26BC77AB00B25772 /* RepositoryResponse.swift */,
+				AD2E262926BC77AB00B25772 /* UserResponseDTO.swift */,
 				AD20E56926AB2F76003BB5F1 /* ErrorResponse.swift */,
-				AD20E3E3269F5F86003BB5F1 /* UserProfile.swift */,
-				AD20E42926A5CAF9003BB5F1 /* RepositoryResponse.swift */,
 				AD20E50126A96774003BB5F1 /* Issue.swift */,
 				AD20E50326A990A9003BB5F1 /* LabelModel.swift */,
 				AD20E50526A993A5003BB5F1 /* Milestone.swift */,
@@ -1435,6 +1462,7 @@
 		ADA74FFF26AD2E7C00783E71 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AD20E46026A8299B003BB5F1 /* ServicesManager.swift */,
 				ADA7501826AD2F0300783E71 /* RepositoryService */,
 				ADA7501B26AD923000783E71 /* UserService */,
 				ADC8180726B00DF700469BCF /* OrganizationService */,
@@ -1683,7 +1711,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
+				AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */,
 				AD20E4F226A94A2B003BB5F1 /* HomePresenter.swift in Sources */,
+				AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */,
 				ADA68BC626B5C874004AC06C /* IssuesEndpoits.swift in Sources */,
 				AD39FEA526BC670900F055FD /* ItemsListRepository.swift in Sources */,
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
@@ -1724,6 +1754,7 @@
 				ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */,
 				AD8722E626B81A46004649A4 /* FileConfigurator.swift in Sources */,
 				AD39FE4326BAA55900F055FD /* RepViewController.swift in Sources */,
+				AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */,
 				ADC8180626B00DF200469BCF /* OrganizationService.swift in Sources */,
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
 				AD25E4D426B6D6990003B1E0 /* FilterButton.swift in Sources */,
@@ -1770,7 +1801,6 @@
 				AD20E56C26AB4090003BB5F1 /* SearchResultViewController.swift in Sources */,
 				AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */,
 				AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */,
-				AD20E42A26A5CAF9003BB5F1 /* RepositoryResponse.swift in Sources */,
 				AD8722D426B7F220004649A4 /* RepositoryCellsStrategy.swift in Sources */,
 				AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */,
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
@@ -1782,7 +1812,6 @@
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
-				ADA7501F26AD931E00783E71 /* Error+extensions.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
@@ -1791,10 +1820,10 @@
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
 				AD39FD9826B86CC000F055FD /* CommitInfoResponse.swift in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
-				AD20E3E4269F5F86003BB5F1 /* UserProfile.swift in Sources */,
 				AD39FDAC26B947F400F055FD /* RepositoryDetails.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
 				AD39FE9526BC0FFA00F055FD /* UsersListViewModel.swift in Sources */,
+				AD2E262C26BC77AB00B25772 /* RepositoryResponse.swift in Sources */,
 				AD39FD9426B86A7600F055FD /* CommitsListViewController.swift in Sources */,
 				AD642CE226AEC29C004FCA2D /* UsersListInteractor.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
@@ -1830,6 +1859,7 @@
 				AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,
+				AD2E263226BD1BF400B25772 /* GitHubEndpoints.swift in Sources */,
 				AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */,
 				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
@@ -1842,6 +1872,7 @@
 				AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */,
 				AD39FE9A26BC1C0A00F055FD /* UsersListRepository.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
+				AD2E263426BD3B0D00B25772 /* MyProfileUseCase.swift in Sources */,
 				AD8722DE26B816EB004649A4 /* FileViewController.swift in Sources */,
 				AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */,
 				AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */,
@@ -1871,6 +1902,7 @@
 				AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */,
 				AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */,
 				AD39FE8826BBF0D300F055FD /* ProfileViewModel.swift in Sources */,
+				AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */,
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */,

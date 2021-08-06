@@ -8,9 +8,9 @@
 import UIKit
 
 enum RepositoriesType {
-    case iHasAccessTo(profile: UserProfile)
-    case allMy(profile: UserProfile)
-    case starred(profile: UserProfile)
+    case iHasAccessTo(profile: UserResponseDTO)
+    case allMy(profile: UserResponseDTO)
+    case starred(profile: UserResponseDTO)
 }
 
 class RepositoriesListConfigurator {

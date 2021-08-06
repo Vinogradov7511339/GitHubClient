@@ -25,12 +25,12 @@ class ProfileInteractor {
     private let localStorage = ServicesManager.shared.localStorage
     private let profileType: ProfileType
     
-    private var userProfile: UserProfile?
+    private var userProfile: UserResponseDTO?
     private var userRepos: [RepositoryResponse] = []
     private var userPopularRepos: [RepositoryResponse] = []
     private var userStarredRepos: [RepositoryResponse] = []
-    private var userFollowers: [UserProfile] = []
-    private var userFollowing: [UserProfile] = []
+    private var userFollowers: [UserResponseDTO] = []
+    private var userFollowing: [UserResponseDTO] = []
     
     init(profileType: ProfileType) {
         self.profileType = profileType
@@ -87,7 +87,7 @@ private extension ProfileInteractor {
         //todo
     }
     
-    func syncStorage(profile: UserProfile) {
+    func syncStorage(profile: UserResponseDTO) {
 //        localStorage.saveUser(user: profile)
     }
     

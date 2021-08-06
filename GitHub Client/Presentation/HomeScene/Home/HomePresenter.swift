@@ -32,7 +32,7 @@ class HomePresenter {
     var interactor: HomeInteractorInput!
     weak var output: HomePresenterOutput?
     
-    private var profile: UserProfile?
+    private var profile: UserResponseDTO?
     private var issues: [Issue] = []
     private var allRepositoriesIHaveAccess: [RepositoryResponse] = []
 }

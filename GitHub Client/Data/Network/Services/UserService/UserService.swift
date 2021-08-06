@@ -10,7 +10,7 @@ import Networking
 
 class UserService: NetworkService {
     
-    func fetchRepositories(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
+    func fetchRepositories(_ user: UserResponseDTO, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.repositories(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -25,7 +25,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchPopularRepositories(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
+    func fetchPopularRepositories(_ user: UserResponseDTO, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.popularRepos(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -40,7 +40,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchStarredCountRepositories(_ user: UserProfile, completion: @escaping (Int?, Error?) -> Void) {
+    func fetchStarredCountRepositories(_ user: UserResponseDTO, completion: @escaping (Int?, Error?) -> Void) {
         let endpoint = UserEndpoints.starredReposCount(user: user)
         request(endpoint) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
@@ -75,7 +75,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchStarredRepos(_ user: UserProfile, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
+    func fetchStarredRepos(_ user: UserResponseDTO, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.starred(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -90,14 +90,14 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchFollowers(_ user: UserProfile, completion: @escaping ([UserProfile]?, Error?) -> Void) {
+    func fetchFollowers(_ user: UserResponseDTO, completion: @escaping ([UserResponseDTO]?, Error?) -> Void) {
         let endpoint = UserEndpoints.followers(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [UserProfile].self, from: data) else {
+            guard let repositories = self.decode(of: [UserResponseDTO].self, from: data) else {
                 completion(nil, error)
                 return
             }
@@ -105,14 +105,14 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchFollowing(_ user: UserProfile, completion: @escaping ([UserProfile]?, Error?) -> Void) {
+    func fetchFollowing(_ user: UserResponseDTO, completion: @escaping ([UserResponseDTO]?, Error?) -> Void) {
         let endpoint = UserEndpoints.following(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let repositories = self.decode(of: [UserProfile].self, from: data) else {
+            guard let repositories = self.decode(of: [UserResponseDTO].self, from: data) else {
                 completion(nil, error)
                 return
             }
@@ -120,7 +120,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchSubscriptions(_ user: UserProfile, completion: @escaping ([Any]?, Error?) -> Void) {
+    func fetchSubscriptions(_ user: UserResponseDTO, completion: @escaping ([Any]?, Error?) -> Void) {
         let endpoint = UserEndpoints.followers(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -130,7 +130,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchOrganizations(_ user: UserProfile, completion: @escaping ([Any]?, Error?) -> Void) {
+    func fetchOrganizations(_ user: UserResponseDTO, completion: @escaping ([Any]?, Error?) -> Void) {
         let endpoint = UserEndpoints.organizations(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
@@ -140,14 +140,14 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchProfile(user: UserProfile, completion: @escaping (UserProfile?, Error?) -> Void) {
+    func fetchProfile(user: UserResponseDTO, completion: @escaping (UserResponseDTO?, Error?) -> Void) {
         let endpoint = UserEndpoints.profile(user: user)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            guard let userProfile = self.decode(of: UserProfile.self, from: data) else {
+            guard let userProfile = self.decode(of: UserResponseDTO.self, from: data) else {
                 completion(nil, error)
                 return
             }
@@ -155,7 +155,7 @@ class UserService: NetworkService {
         }
     }
     
-    func fetchMyProfile(token: TokenResponse, completion: @escaping (UserProfile?, Error?) -> Void) {
+    func fetchMyProfile(token: TokenResponse, completion: @escaping (UserResponseDTO?, Error?) -> Void) {
         let endpoint = UserEndpoints.myProfileWithToken(token: token)
         request(endpoint) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
@@ -166,7 +166,7 @@ class UserService: NetworkService {
             let result = self.handle(data: data, response: response, error: error)
             switch result {
             case.success(let data):
-                if let profile = self.decode(of: UserProfile.self, from: data) {
+                if let profile = self.decode(of: UserResponseDTO.self, from: data) {
                     completion(profile, nil)
                 } else {
                     completion(nil, nil)
@@ -176,8 +176,8 @@ class UserService: NetworkService {
             }
         }
     }
-    
-    func fetchMyProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
+
+    func fetchMyProfile(completion: @escaping (UserResponseDTO?, Error?) -> Void) {
         let endpoint = UserEndpoints.myProfile
         request(endpoint) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
@@ -188,7 +188,7 @@ class UserService: NetworkService {
             let result = self.handle(data: data, response: response, error: error)
             switch result {
             case.success(let data):
-                if let profile = self.decode(of: UserProfile.self, from: data) {
+                if let profile = self.decode(of: UserResponseDTO.self, from: data) {
                     completion(profile, nil)
                 } else {
                     completion(nil, nil)

@@ -33,7 +33,7 @@ class CoreDataStack {
         }
     }
 
-    func saveUser(user: UserProfile) {
+    func saveUser(user: UserResponseDTO) {
 //        if let dbUser = NSEntityDescription.insertNewObject(forEntityName: "UserDBModel", into: managedContext) as? UserDBModel {
 //            dbUser.login = user.login
 //            try? managedContext.save()

@@ -22,7 +22,7 @@ class UserTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension UserTableViewCell: ConfigurableCell {
-    func configure(viewModel: UserProfile) {
+    func configure(viewModel: UserResponseDTO) {
         avatarImageView.set(url: viewModel.avatarUrl)
         loginLabel.text = viewModel.login
         if let name = viewModel.name {

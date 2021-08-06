@@ -27,7 +27,7 @@ class UsersListPresenter {
     var interactor: UsersListInteractorInput?
     let type: UsersListType
     
-    private var users: [UserProfile] = []
+    private var users: [UserResponseDTO] = []
     
     init(type: UsersListType) {
         self.type = type
@@ -53,7 +53,7 @@ extension UsersListPresenter: UsersListPresenterInput {
 
 // MARK: - UsersListInteractorOutput
 extension UsersListPresenter: UsersListInteractorOutput {
-    func didReceive(users: [UserProfile]) {
+    func didReceive(users: [UserResponseDTO]) {
         self.users = users
         output?.display(viewModels: users)
     }

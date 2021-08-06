@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class MainCoordinator: NSObject {
 
     private let container: MainSceneDIContainer
@@ -25,6 +24,9 @@ class MainCoordinator: NSObject {
     }
 
     func start() {
+        container.openRepository = startRepFlow(repository:)
+        container.openUserProfile = startUserFlow(user:)
+        
         if let previousController = window.rootViewController {
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft) {
                 self.window.subviews.forEach { $0.removeFromSuperview() }

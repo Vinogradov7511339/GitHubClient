@@ -8,7 +8,7 @@
 import Foundation
 
 // https://docs.github.com/en/rest/reference/users
-struct UserProfile: Codable {
+struct UserResponseDTO: Codable {
     let login: String
     let id: Int
     let nodeId: String?
@@ -100,7 +100,7 @@ struct UserProfile: Codable {
             bio: bio
         )
     }
-    
+
     func mapToAuthotization() -> AuthenticatedUser {
         let defaultUser = map()
         let detailsUser = UserDetails(

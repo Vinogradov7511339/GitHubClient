@@ -9,18 +9,18 @@ import Foundation
 import Networking
 
 enum UserEndpoints {
-    case starred(user: UserProfile)
+    case starred(user: UserResponseDTO)
     case starred2(login: String)
-    case starredReposCount(user: UserProfile)
-    case followers(user: UserProfile)
-    case following(user: UserProfile)
-    case subscriptions(user: UserProfile)
-    case organizations(user: UserProfile)
-    case repositories(user: UserProfile)
-    case popularRepos(user: UserProfile)
+    case starredReposCount(user: UserResponseDTO)
+    case followers(user: UserResponseDTO)
+    case following(user: UserResponseDTO)
+    case subscriptions(user: UserResponseDTO)
+    case organizations(user: UserResponseDTO)
+    case repositories(user: UserResponseDTO)
+    case popularRepos(user: UserResponseDTO)
     case myProfile
     case myProfileWithToken(token: TokenResponse)
-    case profile(user: UserProfile)
+    case profile(user: UserResponseDTO)
 }
 
 extension UserEndpoints: EndpointProtocol {

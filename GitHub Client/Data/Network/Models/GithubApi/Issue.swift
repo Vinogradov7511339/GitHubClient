@@ -20,10 +20,10 @@ struct Issue: Codable {
     let state: String?
     let title: String?
     let body: String?
-    let user: UserProfile?
+    let user: UserResponseDTO?
     let labels: [LabelModel?]?
-    let assignee: UserProfile?
-    let assignees: [UserProfile?]?
+    let assignee: UserResponseDTO?
+    let assignees: [UserResponseDTO?]?
     let milestone: Milestone?
     let locked: Bool?
     let activeLockReason: String?

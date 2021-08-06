@@ -18,7 +18,7 @@ struct Milestone: Codable {
     let state: String?
     let title: String?
     let description: String?
-    let creator: UserProfile?
+    let creator: UserResponseDTO?
     let openIssues: Int?
     let closedIssues: Int?
     let createdAt: String?

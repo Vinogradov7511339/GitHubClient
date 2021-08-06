@@ -37,7 +37,7 @@ class RepositoriesListViewController: UIViewController {
         }
         return cellManager
     }()
-    
+
     private var viewModels: [Any] = []
     
     override func viewDidLoad() {

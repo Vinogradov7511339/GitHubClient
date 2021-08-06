@@ -27,6 +27,7 @@
 		5DAB15A3C72D7FF08D8B4CD417A2A277 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		A788375F38C67078374269EFFB969995 /* Networking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 632686F394AB894CFC2F72060309E38C /* Networking-dummy.m */; };
 		A9506C0804C76770E297541CB899F794 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		AD2E262126BC75A500B25772 /* MyProfileEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262026BC75A500B25772 /* MyProfileEndpoint.swift */; };
 		AD8722CF26B7368B004649A4 /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */; };
 		B8F7CFE66CBDAC15AD43373E497B1725 /* Pods-GitHub Client-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A14CAF7C9A3A263A646E670B657B99CE /* Pods-GitHub Client-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF2F8ECC76C8734529E528EB08518672 /* Networking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9CE5678F5FF9E709E2C93AF58E428F5 /* Networking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,7 +71,7 @@
 		632686F394AB894CFC2F72060309E38C /* Networking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Networking-dummy.m"; sourceTree = "<group>"; };
 		6415A4407BC0BC64467433E6438906A2 /* Pods-GitHub Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GitHub Client.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = Networking/Module/NetworkService.swift; sourceTree = "<group>"; };
+		763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7B6D8024BF72EA985AFE739FE41797E8 /* Pods-GitHub Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GitHub Client-dummy.m"; sourceTree = "<group>"; };
 		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
 		7F55863290EFEAD1F87DC0EEF8B8DFB5 /* Pods-Networking_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Networking_Example.modulemap"; sourceTree = "<group>"; };
@@ -84,7 +85,8 @@
 		A14CAF7C9A3A263A646E670B657B99CE /* Pods-GitHub Client-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GitHub Client-umbrella.h"; sourceTree = "<group>"; };
 		A510A932C87156B5DFDE1C74A88A3B24 /* Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Networking.release.xcconfig; sourceTree = "<group>"; };
 		A7B3677F100CA52240BB9659EF75C191 /* Pods-Networking_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Networking_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingProtocol.swift; path = Networking/Module/NetworkingProtocol.swift; sourceTree = "<group>"; };
+		AD2E262026BC75A500B25772 /* MyProfileEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEndpoint.swift; sourceTree = "<group>"; };
+		AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
 		ADE711B1B42CD58EEE7ED4DF22A3D27E /* Pods_Networking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11F8E815863CB677C97895B36D41DDD /* Networking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Networking-Info.plist"; sourceTree = "<group>"; };
 		B9CE5678F5FF9E709E2C93AF58E428F5 /* Networking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Networking-umbrella.h"; sourceTree = "<group>"; };
@@ -145,8 +147,7 @@
 		441A0C1C863A6494D7283E0205515986 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */,
-				763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */,
+				AD2E262326BC75C300B25772 /* Internal */,
 				F53CEBA9BAC498AFCCDDEEEBAF1B8388 /* Pod */,
 				4F1CCACAA13D188886A6756741DED13D /* Support Files */,
 			);
@@ -210,6 +211,24 @@
 				D96179D43A67C5D5323B0682D32C133C /* SwiftLint */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AD2E262326BC75C300B25772 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E262426BC75DA00B25772 /* Endpoints */,
+				AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */,
+				763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		AD2E262426BC75DA00B25772 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E262026BC75A500B25772 /* MyProfileEndpoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -424,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD8722CF26B7368B004649A4 /* NetworkingProtocol.swift in Sources */,
+				AD2E262126BC75A500B25772 /* MyProfileEndpoint.swift in Sources */,
 				A788375F38C67078374269EFFB969995 /* Networking-dummy.m in Sources */,
 				562D547BA634EAF74BC2448989B10373 /* NetworkService.swift in Sources */,
 			);

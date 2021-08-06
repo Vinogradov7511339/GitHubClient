@@ -34,7 +34,7 @@ class RepositoryResponse: Codable {
     let nodeId: String?
     let name: String?
     let fullName: String?
-    let owner: UserProfile?
+    let owner: UserResponseDTO?
 //    let isPrivate: Bool // private
     let htmlUrl: URL?
     let description: String?
@@ -110,7 +110,7 @@ class RepositoryResponse: Codable {
          nodeId: String?,
          name: String?,
          fullName: String?,
-         owner: UserProfile?,
+         owner: UserResponseDTO?,
          htmlUrl: URL?,
          description: String?,
          fork: Bool?,

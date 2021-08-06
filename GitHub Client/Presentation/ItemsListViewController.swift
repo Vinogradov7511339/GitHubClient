@@ -31,7 +31,6 @@ class ItemsListViewController<Item>: UIViewController,
     }()
 
     private let refreshControl = UIRefreshControl()
-    private let cellManager = TableCellManager.create(cellType: UserTableViewCell.self)
 
     var nextPageLoadingSpinner: UIActivityIndicatorView?
 
@@ -43,7 +42,7 @@ class ItemsListViewController<Item>: UIViewController,
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        cellManager.register(tableView: tableView)
+        viewModel.cellManager.register(tableView: tableView)
 
         title = viewModel.screenTitle
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -79,9 +78,9 @@ class ItemsListViewController<Item>: UIViewController,
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModel.items.value[indexPath.row]
-        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: viewModel)
+        let item = viewModel.items.value[indexPath.row]
+        let cell = viewModel.cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+        cell.populate(viewModel: item)
         return cell
     }
 

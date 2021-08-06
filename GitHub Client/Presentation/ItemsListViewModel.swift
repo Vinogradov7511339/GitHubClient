@@ -25,6 +25,7 @@ protocol ItemsListViewModelInput {
 
 protocol ItemsListViewModelOutput {
     associatedtype Item
+    var cellManager: TableCellManager { get }
     var items: Observable<[Item]> { get }
     var loading: Observable<ItemsListViewModelLoadingState?> { get }
     var error: Observable<String> { get }
@@ -37,8 +38,10 @@ protocol ItemsListViewModelOutput {
 typealias ItemsListViewModel = ItemsListViewModelInput & ItemsListViewModelOutput
 
 final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
+
     // MARK: - Output
 
+    let cellManager: TableCellManager
     let items: Observable<[Item]> = Observable([])
     let loading: Observable<ItemsListViewModelLoadingState?> = Observable(.none)
     let error: Observable<String> = Observable("")
@@ -47,6 +50,8 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
     let emptyDataTitle = NSLocalizedString("Search results", comment: "")
     let errorTitle = NSLocalizedString("Error", comment: "")
     let searchBarPlaceholder = NSLocalizedString("Search Movies", comment: "")
+
+    // MARK: - Private
 
     private let type: ListType
     private let useCase: ItemsListUseCase
@@ -59,6 +64,13 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         self.type = type
         self.useCase = useCase
         self.actions = actions
+
+        switch type {
+        case .myFollowers, .myFollowing, .userFollowers(_), .userFollowings(_):
+            cellManager = TableCellManager.create(cellType: UserTableViewCell.self)
+        case  .myRepositories, .myStarredRepositories, .userRepositories(_), .userStarredRepositories(_):
+            cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
+        }
     }
 }
 
@@ -74,9 +86,7 @@ extension ItemsListViewModelImpl {
         }
     }
 
-    func refresh() {
-        
-    }
+    func refresh() {}
 
     func didLoadNextPage() {
         guard page < lastPage else { return }
