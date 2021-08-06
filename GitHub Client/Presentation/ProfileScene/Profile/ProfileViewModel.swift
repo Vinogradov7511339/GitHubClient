@@ -44,7 +44,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
     // MARK: - Output
     
     let cellManager: TableCellManager
-    let tableItems: Observable<[[Any]]> = Observable([[]])
+    let tableItems: Observable<[[Any]]> = Observable(ProfileViewModelImpl.items())
     
     // MARK: - Private
     
@@ -54,7 +54,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
     init(useCase: MyProfileUseCase, actions: ProfileActions) {
         self.useCase = useCase
         self.actions = actions
-        cellManager = TableCellManager.create(cellType: DetailTableViewCell.self)
+        cellManager = TableCellManager.create(cellType: TableViewCell.self)
     }
 }
 
@@ -63,44 +63,47 @@ extension ProfileViewModelImpl {
         useCase.fetch { result in
         }
     }
-    
-    func refresh() {
-        
-    }
-    
-    func share() {
-        
-    }
-    
-    func openSettings() {
-        
-    }
-    
-    func showFollowers() {
 
-    }
-    
-    func showFollowing() {
-        
-    }
-    
-    
-    func openLink() {
-        
-    }
-    
-    func sendEmail() {
-        
-    }
-    
+    func refresh() {}
+
+    func share() {}
+
+    func openSettings() {}
+
+    func showFollowers() {}
+
+    func showFollowing() {}
+
+    func openLink() {}
+
+    func sendEmail() {}
+
     func didSelectItem(at indexPath: IndexPath) {
-        
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            actions.showRepositories()
+        case (0, 1):
+            actions.showStarred()
+        case (0, 2):
+            actions.showOrganizations()
+        case (1, 0):
+            actions.showFollowing()
+        case (1, 1):
+            actions.showFollowers()
+        default:
+            break
+        }
     }
 
-    func items() -> [[DetailCellViewModel]] {
+    static func items() -> [[TableCellViewModel]] {
         return [
-            [DetailCellViewModel()]
-
+            [TableCellViewModel(text: "Repositories", detailText: "text2"),
+             TableCellViewModel(text: "Starred", detailText: "text2"),
+             TableCellViewModel(text: "Organizations", detailText: "text2")],
+            [TableCellViewModel(text: "Following", detailText: "text2"),
+             TableCellViewModel(text: "Followers", detailText: "text2"),
+             TableCellViewModel(text: "Language", detailText: "text2")],
+            [TableCellViewModel(text: "Manage Accounts", detailText: "text2")]
         ]
     }
 }

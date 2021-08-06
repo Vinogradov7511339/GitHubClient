@@ -8,9 +8,9 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
+
     private var viewModel: ProfileViewModel!
-    
+
     static func create(with viewModel: ProfileViewModel) -> ProfileViewController {
         let viewController = ProfileViewController()
         viewController.viewModel = viewModel
@@ -22,20 +22,20 @@ class ProfileViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .yellow
         return view
     }()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,12 +51,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        navigationController?.navigationBar.isHidden = true
 
         viewModel.cellManager.register(tableView: tableView)
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
-    
+
     @objc func refresh(_ sender: AnyObject) {
         viewModel.refresh()
     }
@@ -65,7 +66,7 @@ class ProfileViewController: UIViewController {
         let settingController = SettingsGeneralViewController()
         navigationController?.pushViewController(settingController, animated: true)
     }
-    
+
     @objc func share(_ sender: AnyObject) {
         viewModel.share()
     }
@@ -73,9 +74,7 @@ class ProfileViewController: UIViewController {
 
 // MARK: - Binding
 private extension ProfileViewController {
-    func bind(to viewModel: ProfileViewModel) {
-        
-    }
+    func bind(to viewModel: ProfileViewModel) {}
 }
 
 // MARK: - UITableViewDelegate
@@ -93,7 +92,13 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 1 ? 20.0 : 0.0
+        return 20.0
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        print(yOffset)
+//        headerView.constraints.filter { $0.firstAttribute == .height }.forEach { $0.constant = 300.0 - yOffset }
     }
 }
 
@@ -120,8 +125,8 @@ private extension ProfileViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubview(headerView)
         containerView.addSubview(tableView)
+        containerView.addSubview(headerView)
     }
 
     func activateConstraints() {
@@ -141,7 +146,7 @@ private extension ProfileViewController {
         headerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         headerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        headerView.heightAnchor.constraint(equalToConstant: 300.0).isActive = true
+        headerView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
 
         tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true

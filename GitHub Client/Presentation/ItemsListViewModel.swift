@@ -46,7 +46,7 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
     let loading: Observable<ItemsListViewModelLoadingState?> = Observable(.none)
     let error: Observable<String> = Observable("")
     var isEmpty: Bool { return items.value.isEmpty }
-    let screenTitle = NSLocalizedString("Movies", comment: "")
+    let screenTitle: String
     let emptyDataTitle = NSLocalizedString("Search results", comment: "")
     let errorTitle = NSLocalizedString("Error", comment: "")
     let searchBarPlaceholder = NSLocalizedString("Search Movies", comment: "")
@@ -66,9 +66,17 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         self.actions = actions
 
         switch type {
-        case .myFollowers, .myFollowing, .userFollowers(_), .userFollowings(_):
+        case .myFollowers, .userFollowers(_):
+            screenTitle = NSLocalizedString("Followers", comment: "")
             cellManager = TableCellManager.create(cellType: UserTableViewCell.self)
-        case  .myRepositories, .myStarredRepositories, .userRepositories(_), .userStarredRepositories(_):
+        case .myFollowing, .userFollowings(_):
+            screenTitle = NSLocalizedString("Followings", comment: "")
+            cellManager = TableCellManager.create(cellType: UserTableViewCell.self)
+        case  .myRepositories, .userRepositories(_):
+            screenTitle = NSLocalizedString("Repositories", comment: "")
+            cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
+        case .myStarredRepositories, .userStarredRepositories(_):
+            screenTitle = NSLocalizedString("Starred", comment: "")
             cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
         }
     }
