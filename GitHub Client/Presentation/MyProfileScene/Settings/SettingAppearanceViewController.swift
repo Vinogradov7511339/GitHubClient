@@ -18,63 +18,54 @@ class SettingAppearanceViewController: UIViewController {
         
         return tableView
     }()
-    
-    private let userStyles: [UIUserInterfaceStyle] = [.unspecified, .dark, .light]
-    private var styleNames = ["Automatic", "Dark", "Light"]
-    private var selectedStyle: UIUserInterfaceStyle = .unspecified
-    
+
     private let cellManager = TableCellManager.create(cellType: TableViewCell.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        
-        title = "App Icon"
-        selectedStyle = view.overrideUserInterfaceStyle
-        
         cellManager.register(tableView: tableView)
     }
-    
-    private func changeSelectedCell(selectedAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        if let index = userStyles.firstIndex(of: selectedStyle) {
-            tableView.cellForRow(at: IndexPath(row: index, section: indexPath.section))?.accessoryType = .none
-        }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        title = NSLocalizedString("Appearance", comment: "")
     }
 }
 
 extension SettingAppearanceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let newStyle = userStyles[indexPath.row]
-        if newStyle == selectedStyle {
-            return
-        }
-        view.window?.overrideUserInterfaceStyle = newStyle
-        changeSelectedCell(selectedAt: indexPath)
-        selectedStyle = newStyle
+        tableView.visibleCells.forEach { $0.accessoryType = .none }
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+
+        let theme = Theme(rawValue: indexPath.row)
+        theme?.apply(to: view.window)
     }
 }
 
 extension SettingAppearanceViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userStyles.count
+        return Theme.allCases.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        
-        let viewModel = TableCellViewModel(text: styleNames[indexPath.row])
-        cell.populate(viewModel: viewModel)
-        
-        let iconName = userStyles[indexPath.row]
-        if iconName == selectedStyle {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
+        guard let themeName = Theme(rawValue: indexPath.row)?.name else {
+            return UITableViewCell()
         }
+        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+        let viewModel = TableCellViewModel(text: themeName)
+        cell.populate(viewModel: viewModel)
+
+        let type: UITableViewCell.AccessoryType
+        if Theme.current.rawValue == indexPath.row {
+            type = .checkmark
+        } else {
+            type = .none
+        }
+        cell.accessoryType = type
         return cell
     }
 }
@@ -92,5 +83,3 @@ private extension SettingAppearanceViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
-
-

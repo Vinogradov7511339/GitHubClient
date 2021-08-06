@@ -45,9 +45,9 @@ final class ProfileViewModelImpl: ProfileViewModel {
     
     let cellManager: TableCellManager
     let tableItems: Observable<[[Any]]> = Observable(ProfileViewModelImpl.items())
-    
+
     // MARK: - Private
-    
+
     private let useCase: MyProfileUseCase
     private let actions: ProfileActions
     
@@ -90,6 +90,8 @@ extension ProfileViewModelImpl {
             actions.showFollowing()
         case (1, 1):
             actions.showFollowers()
+        case (2, 0):
+            actions.openSettings()
         default:
             break
         }
@@ -103,7 +105,7 @@ extension ProfileViewModelImpl {
             [TableCellViewModel(text: "Following", detailText: "text2"),
              TableCellViewModel(text: "Followers", detailText: "text2"),
              TableCellViewModel(text: "Language", detailText: "text2")],
-            [TableCellViewModel(text: "Manage Accounts", detailText: "text2")]
+            [TableCellViewModel(text: "Settings", detailText: "text2")]
         ]
     }
 }

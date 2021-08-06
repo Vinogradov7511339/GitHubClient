@@ -84,20 +84,18 @@ class ItemsListRepositoryImpl: ItemsListRepository {
     
     func fetchRepositories(endpoint: GitHubEndpoints, completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         service.request(endpoint) { data, response, error in
-            guard let httpRespoonse = response as? HTTPURLResponse else {
+            guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(GitHubAPIError()))
                 return
             }
 
-            guard let linkBody = httpRespoonse.allHeaderFields["Link"] as? String else {
-                completion(.failure(GitHubAPIError()))
-                return
+            var count = 1
+            if let linkBody = httpResponse.allHeaderFields["Link"] as? String {
+                if let newCount = linkBody.maxPageCount() {
+                    count = newCount
+                }
             }
 
-            guard let count = linkBody.maxPageCount() else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
             guard let data = data else {
                 completion(.failure(GitHubAPIError()))
                 return

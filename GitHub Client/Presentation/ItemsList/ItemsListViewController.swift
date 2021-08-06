@@ -43,10 +43,16 @@ class ItemsListViewController<Item>: UIViewController,
         tableView.addSubview(refreshControl)
 
         viewModel.cellManager.register(tableView: tableView)
+        bind(to: viewModel)
 
         title = viewModel.screenTitle
         navigationController?.navigationBar.prefersLargeTitles = false
         viewModel.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -68,6 +74,7 @@ class ItemsListViewController<Item>: UIViewController,
     // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath.row)
     }
 

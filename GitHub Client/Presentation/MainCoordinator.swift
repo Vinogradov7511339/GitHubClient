@@ -14,7 +14,11 @@ class MainCoordinator: NSObject {
     private let window: UIWindow
     
     private var currentNavigationController: UINavigationController {
-        return tabBarController.selectedViewController!.navigationController!
+        if let navigation = tabBarController.selectedViewController as? UINavigationController {
+            return navigation
+        } else {
+            fatalError()
+        }
     }
 
     init(in window: UIWindow, mainSceneDIContainer: MainSceneDIContainer) {
@@ -40,7 +44,7 @@ class MainCoordinator: NSObject {
             window.rootViewController = tabBarController
         }
     }
-    
+
     func startUserFlow(user: User) {
         let dependency = UserSceneDIContainer.Dependencies(
             user: user,

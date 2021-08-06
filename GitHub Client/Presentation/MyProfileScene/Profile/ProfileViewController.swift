@@ -51,11 +51,15 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        navigationController?.navigationBar.isHidden = true
 
         viewModel.cellManager.register(tableView: tableView)
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
 
     @objc func refresh(_ sender: AnyObject) {

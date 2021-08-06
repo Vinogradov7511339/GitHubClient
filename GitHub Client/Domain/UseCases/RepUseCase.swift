@@ -8,7 +8,6 @@
 import Foundation
 
 protocol RepUseCase {
-
 }
 
 class RepUseCaseImpl: RepUseCase {

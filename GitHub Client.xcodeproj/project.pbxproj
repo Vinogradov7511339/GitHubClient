@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A88E41BA8CE9D6071778A93 /* Pods_GitHub_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */; };
+		AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183DF726BD930600556CC4 /* AppAppearance.swift */; };
 		AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3D8269F454E003BB5F1 /* Constants.swift */; };
 		AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */; };
 		AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */; };
@@ -266,6 +267,7 @@
 /* Begin PBXFileReference section */
 		859346635E008217CBC1A9AB /* Pods-GitHub Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.release.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.release.xcconfig"; sourceTree = "<group>"; };
 		9CC9D5C22AB54D2F14C37CEB /* Pods-GitHub Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.debug.xcconfig"; sourceTree = "<group>"; };
+		AD183DF726BD930600556CC4 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		AD20E3D8269F454E003BB5F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
@@ -995,6 +997,7 @@
 			isa = PBXGroup;
 			children = (
 				AD20E47626A8B1D9003BB5F1 /* Resources */,
+				AD183DF726BD930600556CC4 /* AppAppearance.swift */,
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
 				AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */,
@@ -1053,7 +1056,6 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
-				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1094,8 +1096,8 @@
 		AD39FE3526BA83F600F055FD /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				AD2E262D26BC785700B25772 /* Network */,
 				AD39FEA726BC68A000F055FD /* Repositories */,
+				AD2E262D26BC785700B25772 /* Network */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
 				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
@@ -1104,14 +1106,6 @@
 				AD20E3D8269F454E003BB5F1 /* Constants.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		AD39FE3A26BA9DFF00F055FD /* UserScene */ = {
-			isa = PBXGroup;
-			children = (
-				AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */,
-			);
-			path = UserScene;
 			sourceTree = "<group>";
 		};
 		AD39FE3B26BAA1EA00F055FD /* RepositoryScene */ = {
@@ -1140,6 +1134,8 @@
 		AD39FE5226BABD5E00F055FD /* UserProfileScene */ = {
 			isa = PBXGroup;
 			children = (
+				AD39FE2A26BA728300F055FD /* UserFlowCoordinator.swift */,
+				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
 				AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */,
 				AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */,
 			);
@@ -1191,7 +1187,6 @@
 				AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */,
 				AD39FE9226BC04E200F055FD /* ProfileDIContainer.swift */,
 				AD20E46F26A8979F003BB5F1 /* Settings */,
-				AD39FE3A26BA9DFF00F055FD /* UserScene */,
 				AD20E3DE269F5DE4003BB5F1 /* Profile */,
 			);
 			path = MyProfileScene;
@@ -1668,6 +1663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
+				AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */,
 				AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */,
 				AD20E4F226A94A2B003BB5F1 /* HomePresenter.swift in Sources */,
 				AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */,

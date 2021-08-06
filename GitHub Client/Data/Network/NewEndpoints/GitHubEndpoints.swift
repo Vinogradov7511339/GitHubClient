@@ -62,6 +62,7 @@ extension GitHubEndpoints: EndpointProtocol {
              .userStarredRepositories(let page, _):
             var parametes: RequestParameters = [:]
             parametes["page"] = "\(page)"
+//            parametes["per_page"] = "\(1)"
             return parametes
         }
     }

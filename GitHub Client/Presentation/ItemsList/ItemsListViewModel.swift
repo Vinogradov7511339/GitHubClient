@@ -57,7 +57,7 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
     private let useCase: ItemsListUseCase
     private let actions: ItemsListActions<Item>
 
-    private var page = 0
+    private var page = 1
     private var lastPage = 1
 
     init(type: ListType, useCase: ItemsListUseCase, actions: ItemsListActions<Item>) {
@@ -117,7 +117,15 @@ extension ItemsListViewModelImpl {
 private extension ItemsListViewModelImpl {
     func handleResponse(_ response: ItemsListResponseModel) {
         loading.value = .none
-
+        lastPage = response.lastPage
+        let newItems: [Item]
+        switch response.items {
+        case .repositories(let repositories):
+            newItems = repositories as? [Item] ?? []
+        case .users(let users):
+            newItems = users as? [Item] ?? []
+        }
+        self.items.value.append(contentsOf: newItems)
     }
     func handleError(_ error: Error) {
     }

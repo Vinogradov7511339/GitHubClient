@@ -40,7 +40,7 @@ final class MainSceneDIContainer: NSObject {
         controller.setViewControllers(getControllers(), animated: true)
         controller.selectedIndex = TabBarPage.home.pageOrderNumber()
         controller.tabBar.isTranslucent = false
-        UITabBar.appearance().barTintColor = .systemBackground
+//        UITabBar.appearance().barTintColor = .systemBackground
         return controller
     }
 
@@ -93,11 +93,11 @@ final class MainSceneDIContainer: NSObject {
         }
         return navController
     }
-    
+
     func openRepository(_ repository: Repository) {
         openRepository?(repository)
     }
-    
+
     func openUserProfile(_ user: User) {
         openUserProfile?(user)
     }
