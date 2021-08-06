@@ -115,15 +115,15 @@ extension ProfilePresenter: ProfilePresenterInput {
     }
 
     func openFollowing() {
-        guard let profile = profileInfo?.userProfile else { return }
-        let viewController = UsersListConfigurator.createModule(profile: profile, type: .following)
-        output?.push(to: viewController)
+//        guard let profile = profileInfo?.userProfile else { return }
+//        let viewController = UsersListConfigurator.createModule(profile: profile, type: .following)
+//        output?.push(to: viewController)
     }
 
     func openFollowers() {
-        guard let profile = profileInfo?.userProfile else { return }
-        let viewController = UsersListConfigurator.createModule(profile: profile, type: .followers)
-        output?.push(to: viewController)
+//        guard let profile = profileInfo?.userProfile else { return }
+//        let viewController = UsersListConfigurator.createModule(profile: profile, type: .followers)
+//        output?.push(to: viewController)
     }
 
     func openLink() {

@@ -65,20 +65,22 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
 
     // MARK: - Starred flow
 
-    func makeStarredViewController(actions: StarredActions) -> StarredViewController {
-        return StarredViewController.create(
-            with: makeStarredViewModel(actions: actions))
+    func makeStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
+        return ItemsListViewController.create(with: makeStarredViewModel(actions: actions))
     }
 
-    func makeStarredViewModel(actions: StarredActions) -> StarredViewModel {
-        return StarredViewModelImpl(starredUseCase: makeStarredUseCase(), actions: actions)
+    func makeStarredViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
+        return ItemsListViewModelImpl(
+            type: .userStarredRepositories(dependencies.user),
+            useCase: makeStarredUseCase(),
+            actions: actions)
     }
 
-    func makeStarredUseCase() -> StarredUseCase {
-        return StarredUseCaseImpl(user: dependencies.user, repository: makeStarredRepository())
+    func makeStarredUseCase() -> ItemsListUseCase {
+        return ItemsListUseCaseImpl(repository: makeStarredRepository())
     }
 
-    func makeStarredRepository() -> StarredRepository {
-        return StarredRepositoryImpl()
+    func makeStarredRepository() -> ItemsListRepository {
+        return ItemsListRepositoryImpl()
     }
 }

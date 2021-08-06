@@ -9,7 +9,7 @@ import UIKit
 
 protocol UserFlowCoordinatorDependencies {
     func makeUserProfileViewController(actions: UserProfileActions) -> UserProfileViewController
-    func makeStarredViewController(actions: StarredActions) -> StarredViewController
+    func makeStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
     func startRepFlow(_ repository: Repository)
     func sendMail(email: String)
     func openLink(url: URL)
@@ -52,7 +52,7 @@ extension UserFlowCoordinator {
     func showRepositories(_ user: User) {}
 
     func showStarred(_ user: User) {
-        let actions = StarredActions(showDetails: dependencies.startRepFlow(_:))
+        let actions = ItemsListActions(showDetails: dependencies.startRepFlow(_:))
         let viewController = dependencies.makeStarredViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

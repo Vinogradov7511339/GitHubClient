@@ -93,7 +93,7 @@ class ItemsListViewController<Item>: UIViewController,
 
 // MARK: - Binding
 private extension ItemsListViewController {
-    func bind(to viewModel: UsersListViewModel) {
+    func bind(to viewModel: ItemsListViewModelImpl<Item>) {
         viewModel.items.observe(on: self) { [weak self] _ in self?.updateTableView() }
         viewModel.loading.observe(on: self) { [weak self] in self?.updateLoading($0) }
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0)}
@@ -103,7 +103,7 @@ private extension ItemsListViewController {
         tableView.reloadData()
     }
 
-    func updateLoading(_ loading: UsersListViewModelLoading?) {
+    func updateLoading(_ loading: ItemsListViewModelLoadingState?) {
         switch loading {
         case .fullScreen:
             showLoader()
