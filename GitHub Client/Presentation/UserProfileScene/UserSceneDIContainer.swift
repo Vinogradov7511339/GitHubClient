@@ -10,6 +10,8 @@ import UIKit
 final class UserSceneDIContainer {
 
     struct Dependencies {
+        let apiDataTransferService: DataTransferService
+
         let user: User
         var startRepFlow: (Repository) -> Void
         var openLink: (URL) -> Void
@@ -81,6 +83,6 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
     }
 
     func makeStarredRepository() -> ItemsListRepository {
-        return ItemsListRepositoryImpl()
+        return ItemsListRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 }

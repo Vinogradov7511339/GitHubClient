@@ -24,7 +24,7 @@ extension MyProfileRepositoryImpl: MyProfileRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                completion(.success(response.mapToAuthotization()))
+                completion(.success(response.model.mapToAuthotization()))
                 print(response)
             case .failure(let error):
                 completion(.failure(error))

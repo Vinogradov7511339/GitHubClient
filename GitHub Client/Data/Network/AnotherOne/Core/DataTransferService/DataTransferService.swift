@@ -13,7 +13,7 @@ protocol DataTransferService {
     @discardableResult
     func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
-        completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T
+        completion: @escaping CompletionHandler<(model :T, httpResponse :HTTPURLResponse?)>) -> NetworkCancellable? where E.Response == T
 
     @discardableResult
     func request<E: ResponseRequestable>(
@@ -40,13 +40,18 @@ extension DataTransferServiceImpl: DataTransferService {
 
     func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
-        completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T {
+        completion: @escaping CompletionHandler<(model: T, httpResponse :HTTPURLResponse?)>) -> NetworkCancellable? where E.Response == T {
 
         return self.networkService.request(endpoint: endpoint) { result in
             switch result {
-            case .success(let data):
-                let result: Result<T, DataTransferError> = self.decode(data: data, decoder: endpoint.responseDecoder)
-                DispatchQueue.main.async { return completion(result) }
+            case .success(let response):
+                let result: Result<T, DataTransferError> = self.decode(data: response.data, decoder: endpoint.responseDecoder)
+                switch result {
+                case .success(let model):
+                    DispatchQueue.main.async { return completion(.success((model, response.httpResponse))) }
+                case .failure(let error):
+                    DispatchQueue.main.async { return completion(.failure(error)) }
+                }
             case .failure(let error):
                 self.errorLogger.log(error: error)
                 let error = self.resolve(networkError: error)

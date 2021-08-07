@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkService {
-    typealias CompletionHandler = (Result<Data?, NetworkError>) -> Void
+    typealias CompletionHandler = (Result<(data: Data?, httpResponse: HTTPURLResponse?), NetworkError>) -> Void
 
     func request(endpoint: Requestable, completion: @escaping CompletionHandler) -> NetworkCancellable?
 }
@@ -43,7 +43,7 @@ final class NetworkServiceImpl {
                 completion(.failure(error))
             } else {
                 self.logger.log(responseData: data, response: response)
-                completion(.success(data))
+                completion(.success((data, response as? HTTPURLResponse)))
             }
         }
 

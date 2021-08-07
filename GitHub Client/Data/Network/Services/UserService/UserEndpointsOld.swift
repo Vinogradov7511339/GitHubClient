@@ -1,5 +1,5 @@
 //
-//  UserEndpoints.swift
+//  UserEndpointsOld.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 25.07.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-enum UserEndpoints {
+enum UserEndpointsOld {
     case starred(user: UserResponseDTO)
     case starred2(login: String)
     case starredReposCount(user: UserResponseDTO)
@@ -23,7 +23,7 @@ enum UserEndpoints {
     case profile(user: UserResponseDTO)
 }
 
-extension UserEndpoints: EndpointProtocol {
+extension UserEndpointsOld: EndpointProtocol {
     var path: URL {
         switch self {
         case .starred(let user):

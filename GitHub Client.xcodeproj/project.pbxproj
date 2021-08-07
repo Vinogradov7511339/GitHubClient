@@ -15,12 +15,6 @@
 		AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */; };
 		AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */; };
 		AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */; };
-		AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3F726A0B57F003BB5F1 /* RequestProtocol.swift */; };
-		AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3F926A0B8DB003BB5F1 /* APIEnvironment.swift */; };
-		AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FB26A0BD1D003BB5F1 /* APINetworkSession.swift */; };
-		AD20E3FE26A1514C003BB5F1 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FD26A1514C003BB5F1 /* APIOperation.swift */; };
-		AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3FF26A15A83003BB5F1 /* APIRequestDispatcher.swift */; };
-		AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40126A16EAB003BB5F1 /* GitHubEndpoint.swift */; };
 		AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40726A58A07003BB5F1 /* TableCellManager.swift */; };
 		AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */; };
 		AD20E41226A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */; };
@@ -129,7 +123,6 @@
 		AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262926BC77AB00B25772 /* UserResponseDTO.swift */; };
 		AD2E262C26BC77AB00B25772 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262A26BC77AB00B25772 /* RepositoryResponse.swift */; };
 		AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E262E26BD17F600B25772 /* HomeViewModel.swift */; };
-		AD2E263226BD1BF400B25772 /* GitHubEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */; };
 		AD2E263426BD3B0D00B25772 /* MyProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */; };
 		AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */; };
 		AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */; };
@@ -217,6 +210,7 @@
 		AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096126BEFD56004644D2 /* NetworkCancellable.swift */; };
 		AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096426BEFDCD004644D2 /* Functions.swift */; };
 		AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096626BEFE0C004644D2 /* Requestable.swift */; };
+		AD6B096C26BF04DE004644D2 /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */; };
 		AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */; };
 		AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */ = {isa = PBXBuildFile; fileRef = AD79550526ABFD8E004E6973 /* LanguageColors.json */; };
 		AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550726ABFFF7004E6973 /* UIColor+hex.swift */; };
@@ -269,7 +263,7 @@
 		ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */; };
 		ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500B26AD2E9500783E71 /* IssuesService.swift */; };
 		ADA7501A26AD922600783E71 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501926AD922600783E71 /* UserService.swift */; };
-		ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501C26AD924500783E71 /* UserEndpoints.swift */; };
+		ADA7501D26AD924500783E71 /* UserEndpointsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
@@ -298,12 +292,6 @@
 		AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
 		AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		AD20E3F726A0B57F003BB5F1 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
-		AD20E3F926A0B8DB003BB5F1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
-		AD20E3FB26A0BD1D003BB5F1 /* APINetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkSession.swift; sourceTree = "<group>"; };
-		AD20E3FD26A1514C003BB5F1 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
-		AD20E3FF26A15A83003BB5F1 /* APIRequestDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestDispatcher.swift; sourceTree = "<group>"; };
-		AD20E40126A16EAB003BB5F1 /* GitHubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubEndpoint.swift; sourceTree = "<group>"; };
 		AD20E40726A58A07003BB5F1 /* TableCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellManager.swift; sourceTree = "<group>"; };
 		AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E41126A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedRepositoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -412,7 +400,6 @@
 		AD2E262926BC77AB00B25772 /* UserResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponseDTO.swift; sourceTree = "<group>"; };
 		AD2E262A26BC77AB00B25772 /* RepositoryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		AD2E262E26BD17F600B25772 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubEndpoints.swift; sourceTree = "<group>"; };
 		AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUseCase.swift; sourceTree = "<group>"; };
 		AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRepository.swift; sourceTree = "<group>"; };
 		AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -503,6 +490,7 @@
 		AD6B096126BEFD56004644D2 /* NetworkCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCancellable.swift; sourceTree = "<group>"; };
 		AD6B096426BEFDCD004644D2 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AD6B096626BEFE0C004644D2 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
 		AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		AD79550526ABFD8E004E6973 /* LanguageColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LanguageColors.json; sourceTree = "<group>"; };
 		AD79550726ABFFF7004E6973 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
@@ -555,7 +543,7 @@
 		ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesEndpoint.swift; sourceTree = "<group>"; };
 		ADA7500B26AD2E9500783E71 /* IssuesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesService.swift; sourceTree = "<group>"; };
 		ADA7501926AD922600783E71 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		ADA7501C26AD924500783E71 /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
+		ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpointsOld.swift; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
@@ -609,19 +597,6 @@
 				ADA68BBA26B5709E004AC06C /* Filter */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		AD20E3F626A0B539003BB5F1 /* NetworkOld */ = {
-			isa = PBXGroup;
-			children = (
-				AD20E3F726A0B57F003BB5F1 /* RequestProtocol.swift */,
-				AD20E3F926A0B8DB003BB5F1 /* APIEnvironment.swift */,
-				AD20E3FB26A0BD1D003BB5F1 /* APINetworkSession.swift */,
-				AD20E3FD26A1514C003BB5F1 /* APIOperation.swift */,
-				AD20E3FF26A15A83003BB5F1 /* APIRequestDispatcher.swift */,
-				AD20E40126A16EAB003BB5F1 /* GitHubEndpoint.swift */,
-			);
-			path = NetworkOld;
 			sourceTree = "<group>";
 		};
 		AD20E41526A599C2003BB5F1 /* ProfileHeaderCell */ = {
@@ -979,20 +954,11 @@
 			isa = PBXGroup;
 			children = (
 				AD6B093826BED6FD004644D2 /* AnotherOne */,
-				AD2E263026BD1BD600B25772 /* NewEndpoints */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
 				ADA74FFF26AD2E7C00783E71 /* Services */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		AD2E263026BD1BD600B25772 /* NewEndpoints */ = {
-			isa = PBXGroup;
-			children = (
-				AD2E263126BD1BF400B25772 /* GitHubEndpoints.swift */,
-			);
-			path = NewEndpoints;
 			sourceTree = "<group>";
 		};
 		AD3776D4269F2697000AA54C = {
@@ -1152,7 +1118,6 @@
 				AD39FEA726BC68A000F055FD /* Repositories */,
 				AD2E262D26BC785700B25772 /* Network */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
-				AD20E3F626A0B539003BB5F1 /* NetworkOld */,
 				ADA7500226AD2E9500783E71 /* String+extensions.swift */,
 				AD20E57926ABDAB1003BB5F1 /* CharacterSet+extensions.swift */,
 				AD20E57726ABDA7C003BB5F1 /* Dictionary+extensions.swift */,
@@ -1376,6 +1341,7 @@
 			isa = PBXGroup;
 			children = (
 				AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */,
+				AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -1571,7 +1537,7 @@
 		ADA7501B26AD923000783E71 /* UserService */ = {
 			isa = PBXGroup;
 			children = (
-				ADA7501C26AD924500783E71 /* UserEndpoints.swift */,
+				ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */,
 				ADA7501926AD922600783E71 /* UserService.swift */,
 			);
 			path = UserService;
@@ -1817,7 +1783,6 @@
 				AD39FEA526BC670900F055FD /* ItemsListRepository.swift in Sources */,
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
-				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
 				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
 				AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */,
@@ -1912,7 +1877,7 @@
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
-				ADA7501D26AD924500783E71 /* UserEndpoints.swift in Sources */,
+				ADA7501D26AD924500783E71 /* UserEndpointsOld.swift in Sources */,
 				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
 				AD8722ED26B83B50004649A4 /* FavoritesConfigurator.swift in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
@@ -1937,6 +1902,7 @@
 				AD20E52026A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.swift in Sources */,
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
 				AD39FE7326BB24A100F055FD /* NotificationsFlowCoordinator.swift in Sources */,
+				AD6B096C26BF04DE004644D2 /* UserEndpoints.swift in Sources */,
 				AD20E41A26A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift in Sources */,
 				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
 				AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */,
@@ -1958,9 +1924,7 @@
 				AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,
-				AD2E263226BD1BF400B25772 /* GitHubEndpoints.swift in Sources */,
 				AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */,
-				AD20E3F826A0B57F003BB5F1 /* RequestProtocol.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
 				ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */,
 				AD39FE5926BAD6AF00F055FD /* LoginSceneDIContainer.swift in Sources */,
@@ -1971,7 +1935,6 @@
 				AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */,
 				AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */,
 				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
-				AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
 				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
@@ -1982,7 +1945,6 @@
 				AD20E46126A8299B003BB5F1 /* ServicesManager.swift in Sources */,
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
-				AD20E40226A16EAB003BB5F1 /* GitHubEndpoint.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
 				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
@@ -1999,7 +1961,6 @@
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
-				AD20E3FE26A1514C003BB5F1 /* APIOperation.swift in Sources */,
 				AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequest.swift in Sources */,
 				AD39FE9F26BC47F100F055FD /* ItemsListViewModel.swift in Sources */,
@@ -2020,7 +1981,6 @@
 				AD20E4F026A949B8003BB5F1 /* HomeConfigurator.swift in Sources */,
 				AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* Issue.swift in Sources */,
-				AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */,
 				AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */,
 				AD8722EB26B83A48004649A4 /* FavoritesPresenter.swift in Sources */,
 				AD6B094826BEF394004644D2 /* DataTransferErrorLogger.swift in Sources */,

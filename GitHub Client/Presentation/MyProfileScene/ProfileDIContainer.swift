@@ -83,6 +83,6 @@ final class ProfileDIContainer {
     }
 
     func createItemsListRepository() -> ItemsListRepository {
-        return ItemsListRepositoryImpl()
+        return ItemsListRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 }

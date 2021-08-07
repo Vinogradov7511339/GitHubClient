@@ -13,23 +13,42 @@ struct MyProfileEndpoinds {
                         headerParamaters: EndpointOld.defaultHeaders)
     }
 
-    static func getMyFollowers() -> Endpoint<UserResponseDTO> {
-        return Endpoint(path: "followers",
-                        headerParamaters: EndpointOld.defaultHeaders)
+    static func getMyFollowers(page: Int) -> Endpoint<[UserResponseDTO]> {
+        return Endpoint(path: "user/followers",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: ["page": page])
     }
 
-    static func getMyFollowing() -> Endpoint<UserResponseDTO> {
-        return Endpoint(path: "following",
-                        headerParamaters: EndpointOld.defaultHeaders)
+    static func getMyFollowing(page: Int) -> Endpoint<[UserResponseDTO]> {
+        return Endpoint(path: "user/following",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: ["page": page])
     }
 
-    static func getMyRepositories() -> Endpoint<UserResponseDTO> {
-        return Endpoint(path: "repos",
-                        headerParamaters: EndpointOld.defaultHeaders)
+    static func getMyRepositories(page: Int) -> Endpoint<[RepositoryResponse]> {
+        return Endpoint(path: "user/repos",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: ["page": page])
     }
 
-    static func getMyStarredRepositories() -> Endpoint<UserResponseDTO> {
-        return Endpoint(path: "starred",
-                        headerParamaters: EndpointOld.defaultHeaders)
+    static func getMyStarredRepositories(page: Int) -> Endpoint<[RepositoryResponse]> {
+        return Endpoint(path: "user/starred",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: ["page": page])
+    }
+
+    static var defaultHeaders: [String: String] {
+        var headers: [String: String] = [:]
+        headers["Authorization"] = authorizationHeader
+        headers["Accept"] = "application/vnd.github.v3+json"
+        return headers
+    }
+
+    static var authorizationHeader: String {
+        if let tokenResponse = UserStorage.shared.token {
+            return "token \(tokenResponse.accessToken)"
+        } else {
+            return ""
+        }
     }
 }

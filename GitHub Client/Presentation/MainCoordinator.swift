@@ -47,6 +47,7 @@ class MainCoordinator: NSObject {
 
     func startUserFlow(user: User) {
         let dependency = UserSceneDIContainer.Dependencies(
+            apiDataTransferService: container.dependencies.apiDataTransferService,
             user: user,
             startRepFlow: startRepFlow(repository:),
             openLink: container.dependencies.openLink,

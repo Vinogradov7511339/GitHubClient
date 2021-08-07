@@ -6,107 +6,95 @@
 //
 
 import Foundation
-import Networking
 
-struct GitHubAPIError: Error {}
+class ItemsListRepositoryImpl {
+    private let dataTransferService: DataTransferService
 
-class ItemsListRepositoryImpl: ItemsListRepository {
+    init(dataTransferService: DataTransferService) {
+        self.dataTransferService = dataTransferService
+    }
+}
 
-    private let service = NetworkServiceOld()
-
+// MARK: - ItemsListRepository
+extension ItemsListRepositoryImpl: ItemsListRepository {
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        let endpoint: GitHubEndpoints
         switch requestModel.listType {
         case .myFollowers:
-            endpoint = .myFollowers(page: requestModel.page)
+            let endpoint = MyProfileEndpoinds.getMyFollowers(page: requestModel.page)
             fetchUsers(endpoint: endpoint, completion: completion)
 
         case .myFollowing:
-            endpoint = .myFollowing(page: requestModel.page)
+            let endpoint = MyProfileEndpoinds.getMyFollowing(page: requestModel.page)
             fetchUsers(endpoint: endpoint, completion: completion)
 
         case .myRepositories:
-            endpoint = .myRepositories(page: requestModel.page)
+            let endpoint = MyProfileEndpoinds.getMyRepositories(page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
 
         case .myStarredRepositories:
-            endpoint = .myStarredRepositories(page: requestModel.page)
+            let endpoint = MyProfileEndpoinds.getMyStarredRepositories(page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
 
         case .userFollowers(let user):
-            endpoint = .userFollowers(page: requestModel.page, user: user)
+            let endpoint = UserEndpoints.getFollowers(login: user.login, page: requestModel.page)
             fetchUsers(endpoint: endpoint, completion: completion)
 
         case .userFollowings(let user):
-            endpoint = .userFollowings(page: requestModel.page, user: user)
+            let endpoint = UserEndpoints.getFollowing(login: user.login, page: requestModel.page)
             fetchUsers(endpoint: endpoint, completion: completion)
 
         case .userRepositories(let user):
-            endpoint = .userRepositories(page: requestModel.page, user: user)
+            let endpoint = UserEndpoints.getRepositories(login: user.login, page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
 
         case .userStarredRepositories(let user):
-            endpoint = .userStarredRepositories(page: requestModel.page, user: user)
+            let endpoint = UserEndpoints.getStarredRepositories(login: user.login, page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
         }
     }
+}
 
-    func fetchUsers(endpoint: GitHubEndpoints, completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        service.request(endpoint) { data, response, error in
-            guard let httpRespoonse = response as? HTTPURLResponse else {
-                completion(.failure(GitHubAPIError()))
-                return
+private extension ItemsListRepositoryImpl {
+    func fetchUsers(endpoint: Endpoint<[UserResponseDTO]>,
+                    completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let lastPage = self.tryTakeLastPage(response.httpResponse)
+                let model = ItemsListResponseModel(
+                    items: .users(response.model.map { $0.map() }),
+                    lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
             }
-
-            guard let linkBody = httpRespoonse.allHeaderFields["Link"] as? String else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-
-            guard let count = linkBody.maxPageCount() else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            guard let data = data else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            guard let models = self.service.decode(of: [UserResponseDTO].self, from: data) else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            let mapped = models.map { $0.map() }
-            let responseModel = ItemsListResponseModel(items: .users(mapped), lastPage: count)
-            completion(.success(responseModel))
         }
     }
-    
-    func fetchRepositories(endpoint: GitHubEndpoints, completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        service.request(endpoint) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
 
-            var count = 1
-            if let linkBody = httpResponse.allHeaderFields["Link"] as? String {
-                if let newCount = linkBody.maxPageCount() {
-                    count = newCount
-                }
+    func fetchRepositories(endpoint: Endpoint<[RepositoryResponse]>,
+                           completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let lastPage = self.tryTakeLastPage(response.httpResponse)
+                let model = ItemsListResponseModel(
+                    items: .repositories(response.model.map { $0.map() }),
+                    lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
             }
-
-            guard let data = data else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            guard let models = self.service.decode(of: [RepositoryResponse].self, from: data) else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            let mapped = models.map { $0.map() }
-            let responseModel = ItemsListResponseModel(items: .repositories(mapped), lastPage: count)
-            completion(.success(responseModel))
         }
+    }
+
+    func tryTakeLastPage(_ response: HTTPURLResponse?) -> Int {
+        var count = 1
+        if let linkBody = response?.allHeaderFields["Link"] as? String {
+            if let newCount = linkBody.maxPageCount() {
+                count = newCount
+            }
+        }
+        return count
     }
 }

@@ -19,6 +19,18 @@ enum ListType {
     case userStarredRepositories(User)
 }
 
+enum GitHubEndpoints {
+    case myFollowers(page: Int)
+    case myFollowing(page: Int)
+    case myRepositories(page: Int)
+    case myStarredRepositories(page: Int)
+
+    case userFollowers(page: Int, user: User)
+    case userFollowings(page: Int, user: User)
+    case userRepositories(page: Int, user: User)
+    case userStarredRepositories(page: Int, user: User)
+}
+
 enum ListEntitiesType {
     case repositories([Repository])
     case users([User])

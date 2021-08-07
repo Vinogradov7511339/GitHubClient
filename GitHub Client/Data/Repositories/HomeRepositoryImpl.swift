@@ -8,6 +8,5 @@
 import Foundation
 
 final class HomeRepositoryImpl: HomeRepository {
-    func fetchRecent(completion: @escaping (Result<[Issue], Error>) -> Void) {
-    }
+    func fetchRecent(completion: @escaping (Result<[Issue], Error>) -> Void) {}
 }
