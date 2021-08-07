@@ -7,22 +7,27 @@
 
 import Foundation
 
-class MyProfileRepositoryImpl: MyProfileRepository {
+final class MyProfileRepositoryImpl {
+    private let dataTransferService: DataTransferService
+    private let localStorage: ProfileLocalStorage
 
-    private let service = ServicesManager.shared.userService
+    init(dataTransferService: DataTransferService, localStorage: ProfileLocalStorage) {
+        self.dataTransferService = dataTransferService
+        self.localStorage = localStorage
+    }
+}
 
+// MARK: - MyProfileRepository
+extension MyProfileRepositoryImpl: MyProfileRepository {
     func fetch(completion: @escaping (Result<AuthenticatedUser, Error>) -> Void) {
-        service.fetchMyProfile { response, error in
-            if let error = error {
+        let endpoint = MyProfileEndpoinds.getMyProfile()
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.mapToAuthotization()))
+                print(response)
+            case .failure(let error):
                 completion(.failure(error))
-                return
-            }
-            guard let mappedUser = response?.mapToAuthotization() else {
-                completion(.failure(GitHubAPIError()))
-                return
-            }
-            DispatchQueue.main.async {
-                completion(.success(mappedUser))
             }
         }
     }

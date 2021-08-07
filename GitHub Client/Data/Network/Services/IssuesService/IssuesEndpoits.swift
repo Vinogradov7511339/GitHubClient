@@ -30,7 +30,7 @@ extension IssuesEndpoits: EndpointProtocol {
     var headers: RequestHeaders {
         switch self {
         default:
-            return Endpoint.defaultHeaders
+            return EndpointOld.defaultHeaders
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  Endpoint.swift
+//  EndpointOld.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 21.07.2021.
@@ -8,14 +8,13 @@
 import Foundation
 import Networking
 
-enum Endpoint {
+enum EndpointOld {
     case login(authCode: String)
     case mostPopularRepositories
     case search(type: SearchType, text: String)
 }
 
-
-extension Endpoint: EndpointProtocol {
+extension EndpointOld: EndpointProtocol {
     
     var path: URL {
         switch self {
@@ -110,7 +109,7 @@ extension Endpoint: EndpointProtocol {
     }
 }
 
-extension Endpoint {
+extension EndpointOld {
     var lastModifiedDateKey: String {
         switch self {
 //        case .myProfile:

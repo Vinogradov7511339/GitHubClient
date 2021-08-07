@@ -17,9 +17,9 @@ enum SearchType: String {
     case all = "all" // todo change
 }
 
-class SearchService: NetworkService {
+class SearchService: NetworkServiceOld {
     func search<T: Codable>(text: String, type: SearchType, responseType: T.Type, completion: @escaping (T?, Error?) -> Void) {
-        let endpoint = Endpoint.search(type: type, text: text)
+        let endpoint = EndpointOld.search(type: type, text: text)
         let url = URL(string: "https://api.github.com/search/issues?q=is:issue+windows+label:bug+language:python+state:open&sort=created&order=asc")!
         var urlRequest = URLRequest(url: url)
         urlRequest.cachePolicy = .reloadIgnoringCacheData

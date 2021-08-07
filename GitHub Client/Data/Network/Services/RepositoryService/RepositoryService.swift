@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-class RepositoryService: NetworkService {
+class RepositoryService: NetworkServiceOld {
     func getRepositories(url: URL, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self else { return }
@@ -41,7 +41,7 @@ class RepositoryService: NetworkService {
     }
     
     func mostPopularRepositories(completion: @escaping (RepositoriesResponse?, Error?) -> Void) {
-        let endpoint = Endpoint.mostPopularRepositories
+        let endpoint = EndpointOld.mostPopularRepositories
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)

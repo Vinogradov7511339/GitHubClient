@@ -195,6 +195,28 @@
 		AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */; };
 		AD642CE026AE9C89004FCA2D /* ProfileFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDF26AE9C89004FCA2D /* ProfileFacade.swift */; };
 		AD642CE426AECE5D004FCA2D /* ReposListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CE326AECE5D004FCA2D /* ReposListInteractor.swift */; };
+		AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093626BECB43004644D2 /* Endpoint.swift */; };
+		AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */; };
+		AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093C26BEDA2B004644D2 /* ProfileLocalStorage.swift */; };
+		AD6B093F26BEDA82004644D2 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093E26BEDA82004644D2 /* DataTransferService.swift */; };
+		AD6B094126BEE75B004644D2 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094026BEE75B004644D2 /* AppConfiguration.swift */; };
+		AD6B094326BEF267004644D2 /* NetworkErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094226BEF267004644D2 /* NetworkErrorLogger.swift */; };
+		AD6B094626BEF374004644D2 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094526BEF374004644D2 /* Decoder.swift */; };
+		AD6B094826BEF394004644D2 /* DataTransferErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094726BEF394004644D2 /* DataTransferErrorLogger.swift */; };
+		AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094926BEF6F0004644D2 /* NetworkConfigurable.swift */; };
+		AD6B094C26BEF76D004644D2 /* Typealiases+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094B26BEF76D004644D2 /* Typealiases+Enums.swift */; };
+		AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094D26BEF82F004644D2 /* Encodable+toDictionary.swift */; };
+		AD6B095026BEF877004644D2 /* Dictionary+queryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B094F26BEF877004644D2 /* Dictionary+queryString.swift */; };
+		AD6B095326BEF8F5004644D2 /* RequestGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095226BEF8F5004644D2 /* RequestGenerationError.swift */; };
+		AD6B095526BEF964004644D2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095426BEF964004644D2 /* NetworkError.swift */; };
+		AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095626BEF981004644D2 /* DataTransferError.swift */; };
+		AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095926BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift */; };
+		AD6B095C26BEFBEC004644D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095B26BEFBEC004644D2 /* NetworkService.swift */; };
+		AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095D26BEFC81004644D2 /* DataTransferErrorResolver.swift */; };
+		AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B095F26BEFCE9004644D2 /* NetworkSessionManager.swift */; };
+		AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096126BEFD56004644D2 /* NetworkCancellable.swift */; };
+		AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096426BEFDCD004644D2 /* Functions.swift */; };
+		AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096626BEFE0C004644D2 /* Requestable.swift */; };
 		AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */; };
 		AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */ = {isa = PBXBuildFile; fileRef = AD79550526ABFD8E004E6973 /* LanguageColors.json */; };
 		AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550726ABFFF7004E6973 /* UIColor+hex.swift */; };
@@ -241,7 +263,7 @@
 		ADA68BC626B5C874004AC06C /* IssuesEndpoits.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */; };
 		ADA7500D26AD2E9500783E71 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500126AD2E9500783E71 /* RepositoryService.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
-		ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500526AD2E9500783E71 /* Endpoint.swift */; };
+		ADA7501126AD2E9500783E71 /* EndpointOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500526AD2E9500783E71 /* EndpointOld.swift */; };
 		ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500726AD2E9500783E71 /* SearchService.swift */; };
 		ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500926AD2E9500783E71 /* TokenService.swift */; };
 		ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */; };
@@ -459,6 +481,28 @@
 		AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		AD642CDF26AE9C89004FCA2D /* ProfileFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFacade.swift; sourceTree = "<group>"; };
 		AD642CE326AECE5D004FCA2D /* ReposListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposListInteractor.swift; sourceTree = "<group>"; };
+		AD6B093626BECB43004644D2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEndpoinds.swift; sourceTree = "<group>"; };
+		AD6B093C26BEDA2B004644D2 /* ProfileLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocalStorage.swift; sourceTree = "<group>"; };
+		AD6B093E26BEDA82004644D2 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		AD6B094026BEE75B004644D2 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		AD6B094226BEF267004644D2 /* NetworkErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorLogger.swift; sourceTree = "<group>"; };
+		AD6B094526BEF374004644D2 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		AD6B094726BEF394004644D2 /* DataTransferErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferErrorLogger.swift; sourceTree = "<group>"; };
+		AD6B094926BEF6F0004644D2 /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
+		AD6B094B26BEF76D004644D2 /* Typealiases+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Typealiases+Enums.swift"; sourceTree = "<group>"; };
+		AD6B094D26BEF82F004644D2 /* Encodable+toDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+toDictionary.swift"; sourceTree = "<group>"; };
+		AD6B094F26BEF877004644D2 /* Dictionary+queryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+queryString.swift"; sourceTree = "<group>"; };
+		AD6B095226BEF8F5004644D2 /* RequestGenerationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGenerationError.swift; sourceTree = "<group>"; };
+		AD6B095426BEF964004644D2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		AD6B095626BEF981004644D2 /* DataTransferError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferError.swift; sourceTree = "<group>"; };
+		AD6B095926BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionTask+NetworkCancellable.swift"; sourceTree = "<group>"; };
+		AD6B095B26BEFBEC004644D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AD6B095D26BEFC81004644D2 /* DataTransferErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferErrorResolver.swift; sourceTree = "<group>"; };
+		AD6B095F26BEFCE9004644D2 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		AD6B096126BEFD56004644D2 /* NetworkCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCancellable.swift; sourceTree = "<group>"; };
+		AD6B096426BEFDCD004644D2 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		AD6B096626BEFE0C004644D2 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		AD79550526ABFD8E004E6973 /* LanguageColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LanguageColors.json; sourceTree = "<group>"; };
 		AD79550726ABFFF7004E6973 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
@@ -505,7 +549,7 @@
 		ADA68BC526B5C874004AC06C /* IssuesEndpoits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesEndpoits.swift; sourceTree = "<group>"; };
 		ADA7500126AD2E9500783E71 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
-		ADA7500526AD2E9500783E71 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		ADA7500526AD2E9500783E71 /* EndpointOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointOld.swift; sourceTree = "<group>"; };
 		ADA7500726AD2E9500783E71 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		ADA7500926AD2E9500783E71 /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesEndpoint.swift; sourceTree = "<group>"; };
@@ -622,6 +666,7 @@
 		AD20E44C26A6F289003BB5F1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				AD6B093B26BEDA16004644D2 /* NewStorage */,
 				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
 				AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */,
@@ -933,6 +978,7 @@
 		AD2E262D26BC785700B25772 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AD6B093826BED6FD004644D2 /* AnotherOne */,
 				AD2E263026BD1BD600B25772 /* NewEndpoints */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
@@ -1004,6 +1050,7 @@
 			children = (
 				AD20E47626A8B1D9003BB5F1 /* Resources */,
 				AD183DF726BD930600556CC4 /* AppAppearance.swift */,
+				AD6B094026BEE75B004644D2 /* AppConfiguration.swift */,
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
 				AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */,
@@ -1251,6 +1298,97 @@
 			path = MyReposCell;
 			sourceTree = "<group>";
 		};
+		AD6B093826BED6FD004644D2 /* AnotherOne */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B096826BEFEB8004644D2 /* Core */,
+				AD6B096926BEFED2004644D2 /* Endpoints */,
+				AD6B095126BEF8CC004644D2 /* Extensions */,
+				AD6B096326BEFD7A004644D2 /* Protocols */,
+				AD6B096426BEFDCD004644D2 /* Functions.swift */,
+				AD6B094526BEF374004644D2 /* Decoder.swift */,
+				AD6B094B26BEF76D004644D2 /* Typealiases+Enums.swift */,
+			);
+			path = AnotherOne;
+			sourceTree = "<group>";
+		};
+		AD6B093B26BEDA16004644D2 /* NewStorage */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B093C26BEDA2B004644D2 /* ProfileLocalStorage.swift */,
+			);
+			path = NewStorage;
+			sourceTree = "<group>";
+		};
+		AD6B094426BEF2AE004644D2 /* Loggers */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B094226BEF267004644D2 /* NetworkErrorLogger.swift */,
+				AD6B094726BEF394004644D2 /* DataTransferErrorLogger.swift */,
+			);
+			path = Loggers;
+			sourceTree = "<group>";
+		};
+		AD6B095126BEF8CC004644D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B094D26BEF82F004644D2 /* Encodable+toDictionary.swift */,
+				AD6B094F26BEF877004644D2 /* Dictionary+queryString.swift */,
+				AD6B095926BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD6B095826BEF99F004644D2 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B095226BEF8F5004644D2 /* RequestGenerationError.swift */,
+				AD6B095426BEF964004644D2 /* NetworkError.swift */,
+				AD6B095626BEF981004644D2 /* DataTransferError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		AD6B096326BEFD7A004644D2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B096126BEFD56004644D2 /* NetworkCancellable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		AD6B096826BEFEB8004644D2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B096A26BEFF0C004644D2 /* DataTransferService */,
+				AD6B095826BEF99F004644D2 /* Errors */,
+				AD6B094426BEF2AE004644D2 /* Loggers */,
+				AD6B095B26BEFBEC004644D2 /* NetworkService.swift */,
+				AD6B095F26BEFCE9004644D2 /* NetworkSessionManager.swift */,
+				AD6B093626BECB43004644D2 /* Endpoint.swift */,
+				AD6B096626BEFE0C004644D2 /* Requestable.swift */,
+				AD6B094926BEF6F0004644D2 /* NetworkConfigurable.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AD6B096926BEFED2004644D2 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		AD6B096A26BEFF0C004644D2 /* DataTransferService */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B093E26BEDA82004644D2 /* DataTransferService.swift */,
+				AD6B095D26BEFC81004644D2 /* DataTransferErrorResolver.swift */,
+			);
+			path = DataTransferService;
+			sourceTree = "<group>";
+		};
 		AD79550D26AC1188004E6973 /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,7 +1554,7 @@
 				ADA68BC426B5C85F004AC06C /* IssuesService */,
 				ADA7500726AD2E9500783E71 /* SearchService.swift */,
 				ADA7500926AD2E9500783E71 /* TokenService.swift */,
-				ADA7500526AD2E9500783E71 /* Endpoint.swift */,
+				ADA7500526AD2E9500783E71 /* EndpointOld.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1675,10 +1813,12 @@
 				AD20E4F226A94A2B003BB5F1 /* HomePresenter.swift in Sources */,
 				AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */,
 				ADA68BC626B5C874004AC06C /* IssuesEndpoits.swift in Sources */,
+				AD6B095326BEF8F5004644D2 /* RequestGenerationError.swift in Sources */,
 				AD39FEA526BC670900F055FD /* ItemsListRepository.swift in Sources */,
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD20E3FA26A0B8DB003BB5F1 /* APIEnvironment.swift in Sources */,
+				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
 				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
 				AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */,
 				ADC8180926B00E1100469BCF /* OrganizationEndpoints.swift in Sources */,
@@ -1705,6 +1845,7 @@
 				AD3776E5269F2697000AA54C /* SearchViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* NotificationsViewController.swift in Sources */,
 				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
+				AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */,
 				AD39FE5726BAD67600F055FD /* LoginFlowCoordinator.swift in Sources */,
 				AD39FEA326BC589200F055FD /* ItemsListViewController.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
@@ -1743,6 +1884,7 @@
 				ADD462E226BD648100DD46CC /* HomeRepository.swift in Sources */,
 				AD20E4ED26A8C060003BB5F1 /* HomeViewController.swift in Sources */,
 				AD25E4D826B6F15E0003B1E0 /* RepositoryInteractor.swift in Sources */,
+				AD6B095526BEF964004644D2 /* NetworkError.swift in Sources */,
 				AD8722E426B819A7004649A4 /* FilePresenter.swift in Sources */,
 				AD39FE4126BAA54D00F055FD /* RepViewModel.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
@@ -1761,9 +1903,11 @@
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
 				ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */,
-				ADA7501126AD2E9500783E71 /* Endpoint.swift in Sources */,
+				ADA7501126AD2E9500783E71 /* EndpointOld.swift in Sources */,
 				AD20E51826A9B2FD003BB5F1 /* IssueDetailsPresenter.swift in Sources */,
+				AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */,
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
+				AD6B093F26BEDA82004644D2 /* DataTransferService.swift in Sources */,
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
@@ -1795,10 +1939,12 @@
 				AD39FE7326BB24A100F055FD /* NotificationsFlowCoordinator.swift in Sources */,
 				AD20E41A26A5A019003BB5F1 /* ProfileHeaderTableViewCell.swift in Sources */,
 				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
+				AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */,
 				ADD462E426BD64AE00DD46CC /* HomeRepositoryImpl.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
+				AD6B094326BEF267004644D2 /* NetworkErrorLogger.swift in Sources */,
 				AD20E53526AA9918003BB5F1 /* RepositoriesListPresenter.swift in Sources */,
 				AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */,
 				AD20E41226A5995C003BB5F1 /* PinnedRepositoriesTableViewCell.swift in Sources */,
@@ -1809,6 +1955,7 @@
 				ADA7501726AD2E9500783E71 /* IssuesService.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
 				AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */,
+				AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */,
 				AD20E3E2269F5E3B003BB5F1 /* ProfilePresenter.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,
 				AD2E263226BD1BF400B25772 /* GitHubEndpoints.swift in Sources */,
@@ -1819,10 +1966,15 @@
 				AD39FE5926BAD6AF00F055FD /* LoginSceneDIContainer.swift in Sources */,
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
 				AD20E50B26A99982003BB5F1 /* IssuesViewController.swift in Sources */,
+				AD6B095026BEF877004644D2 /* Dictionary+queryString.swift in Sources */,
 				AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */,
 				AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */,
+				AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */,
+				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
 				AD20E40026A15A83003BB5F1 /* APIRequestDispatcher.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
+				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
+				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
 				AD2E263426BD3B0D00B25772 /* MyProfileUseCase.swift in Sources */,
 				AD8722DE26B816EB004649A4 /* FileViewController.swift in Sources */,
 				AD20E45B26A74279003BB5F1 /* ProfileInteractor.swift in Sources */,
@@ -1843,7 +1995,9 @@
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
 				AD183DFA26BE8E7C00556CC4 /* MyProfileHeaderView.swift in Sources */,
 				AD8722D626B7F716004649A4 /* RepositoryFacade.swift in Sources */,
+				AD6B094C26BEF76D004644D2 /* Typealiases+Enums.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
+				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				AD20E3FE26A1514C003BB5F1 /* APIOperation.swift in Sources */,
 				AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */,
@@ -1851,19 +2005,25 @@
 				AD39FE9F26BC47F100F055FD /* ItemsListViewModel.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
+				AD6B094126BEE75B004644D2 /* AppConfiguration.swift in Sources */,
+				AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */,
 				AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */,
 				AD20E42D26A5DDBF003BB5F1 /* PinnedRepositoryCollectionViewCell.swift in Sources */,
 				AD39FE8826BBF0D300F055FD /* ProfileViewModel.swift in Sources */,
 				AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */,
+				AD6B094626BEF374004644D2 /* Decoder.swift in Sources */,
 				ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
+				AD6B095C26BEFBEC004644D2 /* NetworkService.swift in Sources */,
 				AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */,
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,
 				AD20E4F026A949B8003BB5F1 /* HomeConfigurator.swift in Sources */,
+				AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* Issue.swift in Sources */,
 				AD20E3FC26A0BD1D003BB5F1 /* APINetworkSession.swift in Sources */,
 				AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */,
 				AD8722EB26B83A48004649A4 /* FavoritesPresenter.swift in Sources */,
+				AD6B094826BEF394004644D2 /* DataTransferErrorLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2001,6 +2161,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CC9D5C22AB54D2F14C37CEB /* Pods-GitHub Client.debug.xcconfig */;
 			buildSettings = {
+				API_BASE_URL = "https://api.github.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -2022,6 +2183,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 859346635E008217CBC1A9AB /* Pods-GitHub Client.release.xcconfig */;
 			buildSettings = {
+				API_BASE_URL = "https://api.github.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;

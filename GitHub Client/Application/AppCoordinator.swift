@@ -29,6 +29,7 @@ final class AppCoordinator {
 
     func startMainFlow() {
         let dependencies = MainSceneCoordinatorDependencies(
+            apiDataTransferService: appDIContainer.apiDataTransferService,
             logout: startLoginFlow,
             sendMail: sendEmail(email:),
             openLink: open(link:),

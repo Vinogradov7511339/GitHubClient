@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-class IssuesService: NetworkService {
+class IssuesService: NetworkServiceOld {
     
     func fetchIssue(url: URL, completion: @escaping (Issue?, Error?) -> Void) {
         //todo

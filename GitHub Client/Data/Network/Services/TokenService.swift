@@ -9,10 +9,10 @@ import Foundation
 import Networking
 
 
-class TokenService: NetworkService {
+class TokenService: NetworkServiceOld {
     
     func fetchToken(authCode: String, completion: @escaping (TokenResponse?, Error?) -> Void) {
-        let endpoint = Endpoint.login(authCode: authCode)
+        let endpoint = EndpointOld.login(authCode: authCode)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)

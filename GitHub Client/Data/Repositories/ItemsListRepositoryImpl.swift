@@ -12,7 +12,7 @@ struct GitHubAPIError: Error {}
 
 class ItemsListRepositoryImpl: ItemsListRepository {
 
-    private let service = NetworkService()
+    private let service = NetworkServiceOld()
 
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {

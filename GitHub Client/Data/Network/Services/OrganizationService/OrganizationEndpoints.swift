@@ -23,7 +23,7 @@ extension OrganizationEndpoints: EndpointProtocol {
     }
     
     var headers: RequestHeaders {
-        return Endpoint.defaultHeaders
+        return EndpointOld.defaultHeaders
     }
     
     var parameters: RequestParameters {

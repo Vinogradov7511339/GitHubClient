@@ -72,7 +72,7 @@ extension UserEndpoints: EndpointProtocol {
             headers["Accept"] = "application/vnd.github.v3+json"
             return headers
         default:
-            return Endpoint.defaultHeaders
+            return EndpointOld.defaultHeaders
         }
     }
     

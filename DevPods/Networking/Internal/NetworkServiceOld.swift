@@ -33,7 +33,7 @@ public enum NetworkingError: Error {
 
 public typealias ResponseHandler = (Data?, URLResponse?, Error?) -> Void
 
-open class NetworkService: Error {
+open class NetworkServiceOld: Error {
     
     public init() {}
     

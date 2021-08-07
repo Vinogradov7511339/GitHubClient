@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-class UserService: NetworkService {
+class UserService: NetworkServiceOld {
     
     func fetchRepositories(_ user: UserResponseDTO, completion: @escaping ([RepositoryResponse]?, Error?) -> Void) {
         let endpoint = UserEndpoints.repositories(user: user)

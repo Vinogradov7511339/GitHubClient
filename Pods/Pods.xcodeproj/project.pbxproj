@@ -23,7 +23,7 @@
 		2DF86CED30B6F76CB3CC20C4005CA9D0 /* Pods-GitHub Client-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6D8024BF72EA985AFE739FE41797E8 /* Pods-GitHub Client-dummy.m */; };
 		3A78B381539E480279E4C7BA9B1F6848 /* Pods-Networking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8BFF738F2EEFBFBB92BE1C43ED5F6 /* Pods-Networking_Example-dummy.m */; };
 		53A539223B3F9B88A1842C0F91D80840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		562D547BA634EAF74BC2448989B10373 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */; };
+		562D547BA634EAF74BC2448989B10373 /* NetworkServiceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763526DAF20EA61B3B5462F05F9F7B89 /* NetworkServiceOld.swift */; };
 		5DAB15A3C72D7FF08D8B4CD417A2A277 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		A788375F38C67078374269EFFB969995 /* Networking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 632686F394AB894CFC2F72060309E38C /* Networking-dummy.m */; };
 		A9506C0804C76770E297541CB899F794 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -71,7 +71,7 @@
 		632686F394AB894CFC2F72060309E38C /* Networking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Networking-dummy.m"; sourceTree = "<group>"; };
 		6415A4407BC0BC64467433E6438906A2 /* Pods-GitHub Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GitHub Client.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		763526DAF20EA61B3B5462F05F9F7B89 /* NetworkServiceOld.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkServiceOld.swift; sourceTree = "<group>"; };
 		7B6D8024BF72EA985AFE739FE41797E8 /* Pods-GitHub Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GitHub Client-dummy.m"; sourceTree = "<group>"; };
 		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
 		7F55863290EFEAD1F87DC0EEF8B8DFB5 /* Pods-Networking_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Networking_Example.modulemap"; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 			children = (
 				AD2E262426BC75DA00B25772 /* Endpoints */,
 				AD8722CE26B7368B004649A4 /* NetworkingProtocol.swift */,
-				763526DAF20EA61B3B5462F05F9F7B89 /* NetworkService.swift */,
+				763526DAF20EA61B3B5462F05F9F7B89 /* NetworkServiceOld.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 				AD8722CF26B7368B004649A4 /* NetworkingProtocol.swift in Sources */,
 				AD2E262126BC75A500B25772 /* MyProfileEndpoint.swift in Sources */,
 				A788375F38C67078374269EFFB969995 /* Networking-dummy.m in Sources */,
-				562D547BA634EAF74BC2448989B10373 /* NetworkService.swift in Sources */,
+				562D547BA634EAF74BC2448989B10373 /* NetworkServiceOld.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

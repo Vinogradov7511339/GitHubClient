@@ -10,6 +10,8 @@ import UIKit
 final class ProfileDIContainer {
     
     struct Dependencies {
+        let apiDataTransferService: DataTransferService
+
         var openUserProfile: (User) -> Void
         var openRepository: (Repository) -> Void
         var sendMail: (String) -> Void
@@ -18,6 +20,9 @@ final class ProfileDIContainer {
     }
 
     let dependencies: Dependencies
+
+    // MARK: - Persistent Storage
+    lazy var profileStorage = ProfileLocalStorageImpl()
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -36,7 +41,8 @@ final class ProfileDIContainer {
     }
 
     func createProfileRepository() -> MyProfileRepository {
-        return MyProfileRepositoryImpl()
+        return MyProfileRepositoryImpl(dataTransferService: dependencies.apiDataTransferService,
+                                       localStorage: profileStorage)
     }
 
     func createFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {

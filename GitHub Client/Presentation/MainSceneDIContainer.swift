@@ -8,6 +8,8 @@
 import UIKit
 
 struct MainSceneCoordinatorDependencies {
+    let apiDataTransferService: DataTransferService
+
     let logout: () -> Void
     let sendMail: (String) -> Void
     let openLink: (URL) -> Void
@@ -81,6 +83,7 @@ final class MainSceneDIContainer: NSObject {
 
         case .profile:
             let profileDependencies = ProfileDIContainer.Dependencies(
+                apiDataTransferService: dependencies.apiDataTransferService,
                 openUserProfile: openUserProfile(_:),
                 openRepository: openRepository(_:),
                 sendMail: dependencies.sendMail,
