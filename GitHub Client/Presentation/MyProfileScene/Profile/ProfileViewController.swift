@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
     }
 
     private lazy var headerView: MyProfileHeaderView = {
-        let view = MyProfileHeaderView()
+        let view = MyProfileHeaderView.instanceFromNib()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -160,7 +160,7 @@ private extension ProfileViewController {
     func activateConstraints() {
         headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: 220)
         headerViewHeight?.isActive = true
 

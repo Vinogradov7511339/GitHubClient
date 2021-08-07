@@ -9,64 +9,53 @@ import UIKit
 
 final class MyProfileHeaderView: UIView {
 
-    private lazy var avatarImageView: WebImageView = {
-        let imageView = WebImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    @IBOutlet weak var avatarImageView: WebImageView!
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var starredCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCount: UILabel!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
 
-    private lazy var loginLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
-        return label
-    }()
-
-    private var imageViewHeightConstraint: NSLayoutConstraint!
-    private var imageViewCenterXConstraint: NSLayoutConstraint!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        completeInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        completeInit()
-    }
-
-    private func completeInit() {
-        backgroundColor = .systemBackground
-        setupViews()
-        activateConstraints()
-    }
+    @IBOutlet weak var nameLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint!
 
     func setProfile(_ user: User) {
         avatarImageView.set(url: user.avatarUrl)
         loginLabel.text = user.login
+        if let name = user.name {
+            nameLabel.text = name
+            nameLabel.isHidden = false
+        } else {
+            nameLabel.isHidden = true
+        }
     }
 
     func updateHeight(_ percent: CGFloat) {
-        let newHeight = max(24.0, 64.0 * percent)
+        let newHeight = max(32.0, 64.0 * percent)
         imageViewHeightConstraint.constant = newHeight
+        imageViewWidthConstraint.constant = newHeight
+        imageViewTopConstraint.constant = max(8.0, (24.0 * percent))
+
+        stackViewHeightConstraint.constant = 60 * percent
+        nameLabelTopConstraint.constant = max(4.0, (90 * percent))
+        stackView.alpha = percent
+
+        let centerX = (1.0 - percent) * (bounds.width / 2.0 - imageViewWidthConstraint.constant)
+        imageViewCenterXConstraint.constant = -centerX
     }
-}
 
-private extension MyProfileHeaderView {
-    func setupViews() {
-        addSubview(avatarImageView)
-        addSubview(loginLabel)
-    }
-
-    func activateConstraints() {
-        imageViewCenterXConstraint = avatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor)
-        imageViewCenterXConstraint.isActive = true
-        avatarImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor).isActive = true
-        imageViewHeightConstraint = avatarImageView.widthAnchor.constraint(equalToConstant: 64.0)
-        imageViewHeightConstraint.isActive = true
-
-        loginLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor).isActive = true
-        loginLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    class func instanceFromNib() -> MyProfileHeaderView {
+        if let view = Bundle.main.loadNibNamed("MyProfileHeaderView",
+                                               owner: self,
+                                               options: nil)?[0] as? MyProfileHeaderView {
+            return view
+        } else {
+            fatalError()
+        }
     }
 }
