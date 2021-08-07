@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A88E41BA8CE9D6071778A93 /* Pods_GitHub_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */; };
 		AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183DF726BD930600556CC4 /* AppAppearance.swift */; };
+		AD183DFA26BE8E7C00556CC4 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183DF926BE8E7C00556CC4 /* MyProfileHeaderView.swift */; };
 		AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3D8269F454E003BB5F1 /* Constants.swift */; };
 		AD20E3DD269F5498003BB5F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */; };
 		AD20E3E0269F5E00003BB5F1 /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */; };
@@ -268,6 +269,7 @@
 		859346635E008217CBC1A9AB /* Pods-GitHub Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.release.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.release.xcconfig"; sourceTree = "<group>"; };
 		9CC9D5C22AB54D2F14C37CEB /* Pods-GitHub Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.debug.xcconfig"; sourceTree = "<group>"; };
 		AD183DF726BD930600556CC4 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
+		AD183DF926BE8E7C00556CC4 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
 		AD20E3D8269F454E003BB5F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD20E3DF269F5E00003BB5F1 /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				AD20E45A26A74279003BB5F1 /* ProfileInteractor.swift */,
 				AD20E3E1269F5E3B003BB5F1 /* ProfilePresenter.swift */,
 				AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */,
+				AD183DF926BE8E7C00556CC4 /* MyProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1834,6 +1837,7 @@
 				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,
 				ADA68BB626B56D4B004AC06C /* CreateFilterViewController.swift in Sources */,
 				AD20E51026A9A81A003BB5F1 /* IssueTableViewCell.swift in Sources */,
+				AD183DFA26BE8E7C00556CC4 /* MyProfileHeaderView.swift in Sources */,
 				AD8722D626B7F716004649A4 /* RepositoryFacade.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,

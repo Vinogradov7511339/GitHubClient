@@ -58,13 +58,12 @@ extension UserEndpoints: EndpointProtocol {
         case .myProfileWithToken(_):
             return  URL(string: "https://api.github.com/user")!
         }
-        
     }
     
     var method: RequestMethod {
         return .get
     }
-    
+
     var headers: RequestHeaders {
         switch self {
         case .myProfileWithToken(let token):
@@ -91,7 +90,7 @@ extension UserEndpoints: EndpointProtocol {
             return [:]
         }
     }
-    
+
     var jsonBody: Data? {
         return nil
     }

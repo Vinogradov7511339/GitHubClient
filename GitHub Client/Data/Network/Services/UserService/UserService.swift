@@ -154,7 +154,7 @@ class UserService: NetworkService {
             completion(userProfile, error)
         }
     }
-    
+
     func fetchMyProfile(token: TokenResponse, completion: @escaping (UserResponseDTO?, Error?) -> Void) {
         let endpoint = UserEndpoints.myProfileWithToken(token: token)
         request(endpoint) { data, response, error in
@@ -162,7 +162,7 @@ class UserService: NetworkService {
                 fatalError("should be HTTPURLResponse")
             }
 //            self.saveCashe(for: response, responseType: .myProfile)
-            
+
             let result = self.handle(data: data, response: response, error: error)
             switch result {
             case.success(let data):
@@ -184,7 +184,7 @@ class UserService: NetworkService {
                 fatalError("should be HTTPURLResponse")
             }
 //            self.saveCashe(for: response, responseType: .myProfile)
-            
+
             let result = self.handle(data: data, response: response, error: error)
             switch result {
             case.success(let data):

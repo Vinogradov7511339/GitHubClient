@@ -17,28 +17,17 @@ class ProfileViewController: UIViewController {
         return viewController
     }
 
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-
-    private lazy var containerView: UIView = {
-        let view = UIView()
+    private lazy var headerView: MyProfileHeaderView = {
+        let view = MyProfileHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private lazy var headerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
         return view
     }()
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+//        tableView.automaticallyAdjustsScrollIndicatorInsets = false
+//        tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,12 +36,18 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
 
+    let maxHeaderHeight: CGFloat = 220.0
+    let minHeaderHeight: CGFloat = 70.0
+    var previousScrollOffset: CGFloat = 0
+    var headerViewHeight: NSLayoutConstraint?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
 
         viewModel.cellManager.register(tableView: tableView)
+
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
@@ -78,7 +73,14 @@ class ProfileViewController: UIViewController {
 
 // MARK: - Binding
 private extension ProfileViewController {
-    func bind(to viewModel: ProfileViewModel) {}
+    func bind(to viewModel: ProfileViewModel) {
+        viewModel.user.observe(on: self) { [weak self] in self?.update(user: $0)}
+    }
+
+    func update(user: User?) {
+        guard let user = user else { return }
+        headerView.setProfile(user)
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -100,9 +102,33 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        print(yOffset)
-//        headerView.constraints.filter { $0.firstAttribute == .height }.forEach { $0.constant = 300.0 - yOffset }
+        guard let headerViewHeight = headerViewHeight else { return }
+        let scrollDiff = (scrollView.contentOffset.y - previousScrollOffset)
+        let isScrollingDown = scrollDiff > 0
+        let isScrollingUp = scrollDiff < 0
+//        if canAnimateHeader(scrollView) {
+            var newHeight = headerViewHeight.constant
+            if isScrollingDown {
+                newHeight = max(minHeaderHeight, headerViewHeight.constant - abs(scrollDiff))
+            } else if isScrollingUp {
+                newHeight = min(maxHeaderHeight, headerViewHeight.constant + abs(scrollDiff))
+            }
+            if newHeight != headerViewHeight.constant {
+                headerViewHeight.constant = newHeight
+                let percent = (newHeight - minHeaderHeight) / (maxHeaderHeight - minHeaderHeight)
+                headerView.updateHeight(percent)
+                setScrollPosition()
+                previousScrollOffset = scrollView.contentOffset.y
+            }
+//        }
+    }
+
+    func canAnimateHeader (_ scrollView: UIScrollView) -> Bool {
+        let scrollViewMaxHeight = scrollView.frame.height + self.headerViewHeight!.constant - minHeaderHeight
+        return scrollView.contentSize.height > scrollViewMaxHeight
+    }
+    func setScrollPosition() {
+        self.tableView.contentOffset = CGPoint(x: 0, y: 0)
     }
 }
 
@@ -127,34 +153,20 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: - setup views
 private extension ProfileViewController {
     func setupViews() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(containerView)
-        containerView.addSubview(tableView)
-        containerView.addSubview(headerView)
+        view.addSubview(tableView)
+        view.addSubview(headerView)
     }
 
     func activateConstraints() {
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: 220)
+        headerViewHeight?.isActive = true
 
-        containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        containerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-
-        headerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        headerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        headerView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-
-        tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }

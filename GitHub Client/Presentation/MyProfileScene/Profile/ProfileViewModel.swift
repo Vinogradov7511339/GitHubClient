@@ -35,6 +35,7 @@ protocol ProfileViewModelInput {
 protocol ProfileViewModelOutput {
     var cellManager: TableCellManager { get }
     var tableItems: Observable<[[Any]]> { get }
+    var user: Observable<User?> { get }
 }
 
 typealias ProfileViewModel = ProfileViewModelInput & ProfileViewModelOutput
@@ -42,15 +43,16 @@ typealias ProfileViewModel = ProfileViewModelInput & ProfileViewModelOutput
 final class ProfileViewModelImpl: ProfileViewModel {
 
     // MARK: - Output
-    
+
     let cellManager: TableCellManager
     let tableItems: Observable<[[Any]]> = Observable(ProfileViewModelImpl.items())
+    var user: Observable<User?> = Observable(nil)
 
     // MARK: - Private
 
     private let useCase: MyProfileUseCase
     private let actions: ProfileActions
-    
+
     init(useCase: MyProfileUseCase, actions: ProfileActions) {
         self.useCase = useCase
         self.actions = actions
@@ -60,11 +62,12 @@ final class ProfileViewModelImpl: ProfileViewModel {
 
 extension ProfileViewModelImpl {
     func viewDidLoad() {
-        useCase.fetch { result in
-        }
+        fetch()
     }
 
-    func refresh() {}
+    func refresh() {
+        fetch()
+    }
 
     func share() {}
 
@@ -107,5 +110,22 @@ extension ProfileViewModelImpl {
              TableCellViewModel(text: "Language", detailText: "text2")],
             [TableCellViewModel(text: "Settings", detailText: "text2")]
         ]
+    }
+}
+
+private extension ProfileViewModelImpl {
+    func fetch() {
+        useCase.fetch { result in
+            switch result {
+            case .success(let user):
+                self.user.value = user.userDetails.user
+            case .failure(let error):
+                self.handle(error: error)
+            }
+        }
+    }
+
+    func handle(error: Error) {
+
     }
 }
