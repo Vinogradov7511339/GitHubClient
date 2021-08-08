@@ -24,6 +24,7 @@ final class ProfileDIContainer {
     // MARK: - Persistent Storage
     private let profileStorage: ProfileLocalStorage
     private let profileFactory: MyProfileFactory
+    private let itemsListFactory: ItemsListFactory
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -31,6 +32,7 @@ final class ProfileDIContainer {
         self.profileFactory = MyProfileFactoryImpl(
             dataTransferService: dependencies.apiDataTransferService,
             storage: profileStorage)
+        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
@@ -38,43 +40,19 @@ final class ProfileDIContainer {
     }
 
     func createFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        .create(with: createFollowersViewModel(actions: actions))
-    }
-
-    func createFollowersViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
-        .init(type: .myFollowers, useCase: createItemsListUseCase(), actions: actions)
+        itemsListFactory.makeMyFollowersViewController(actions: actions)
     }
 
     func createFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        .create(with: createFollowingViewModel(actions: actions))
-    }
-
-    func createFollowingViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
-        .init(type: .myFollowing, useCase: createItemsListUseCase(), actions: actions)
+        itemsListFactory.makeMyFollowingViewController(actions: actions)
     }
 
     func createRepositoriesViewController(
         actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        .create(with: createRepositoriesViewModel(actions: actions))
-    }
-
-    func createRepositoriesViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        .init(type: .myRepositories, useCase: createItemsListUseCase(), actions: actions)
+        itemsListFactory.createMyRepositoriesViewController(actions: actions)
     }
 
     func createStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        .create(with: createStarredViewModel(actions: actions))
-    }
-
-    func createStarredViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        .init(type: .myStarredRepositories, useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createItemsListUseCase() -> ItemsListUseCase {
-        return ItemsListUseCaseImpl.init(repository: createItemsListRepository())
-    }
-
-    func createItemsListRepository() -> ItemsListRepository {
-        return ItemsListRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
+        itemsListFactory.createMyStarredViewController(actions: actions)
     }
 }

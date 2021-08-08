@@ -47,7 +47,7 @@ class IssuesPresenter {
     var interactor: IssuesInteractorInput?
     
     private let issuesService = ServicesManager.shared.issuesService
-    private var issues: [Issue] = []
+    private var issues: [IssueResponseDTO] = []
     private let type: IssueType
     
     init(type: IssueType) {
@@ -71,7 +71,7 @@ extension IssuesPresenter: FilterViewModelListener {
 // MARK: - IssuesPresenterInput
 extension IssuesPresenter: IssuesInteractorOutput {
     func didReceive(objects: [Any]) {
-        if let issues = objects as? [Issue] {
+        if let issues = objects as? [IssueResponseDTO] {
             self.issues = issues
             DispatchQueue.main.async {
                 self.output?.display(viewModels: issues)
@@ -89,7 +89,7 @@ extension IssuesPresenter: IssuesInteractorOutput {
         }
     }
     
-    func didReceive(pullRequests: [PullRequest]) {
+    func didReceive(pullRequests: [PullRequestResponseDTO]) {
         DispatchQueue.main.async {
             self.output?.display(viewModels: pullRequests)
         }

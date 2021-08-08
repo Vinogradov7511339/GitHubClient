@@ -27,9 +27,9 @@ class IssueDetailsPresenter {
     
     private let issuesService = ServicesManager.shared.issuesService
 //    private let render = MarkdownRenderer(baseFont: UIFont.systemFont(ofSize: 18.0))
-    private var issue: Issue
+    private var issue: IssueResponseDTO
     
-    init(_ issue: Issue) {
+    init(_ issue: IssueResponseDTO) {
         self.issue = issue
     }
 }

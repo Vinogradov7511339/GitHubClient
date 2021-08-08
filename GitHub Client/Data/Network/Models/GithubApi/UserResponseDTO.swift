@@ -1,5 +1,5 @@
 //
-//  UserProfile.swift
+//  UserResponseDTO.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 14.07.2021.

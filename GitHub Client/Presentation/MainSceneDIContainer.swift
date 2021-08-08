@@ -66,9 +66,11 @@ final class MainSceneDIContainer: NSObject {
             let homeDependencies = HomeDIContainer.Dependencies(
                 apiDataTransferService: dependencies.apiDataTransferService,
                 showOrganizations: showOrganizations,
+                openIssue: openIssue,
+                openPullRequest: openPullRequest(_:),
                 showRepositories: showRepositories,
                 showRepository: openRepository,
-                showEvent: openIssue
+                showEvent: showEvent(_:)
             )
             let container = HomeDIContainer(dependencies: homeDependencies)
             let coordinator = HomeFlowCoordinator(container: container, navigationController: navController)
@@ -111,6 +113,14 @@ final class MainSceneDIContainer: NSObject {
 
     func openIssue(_ issue: Issue) {
         openIssue?(issue)
+    }
+
+    func openPullRequest(_ pullRequest: PullRequest) {
+        fatalError()
+    }
+
+    func showEvent(_ event: Event) {
+        fatalError()
     }
 
     func showOrganizations() {

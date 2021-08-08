@@ -37,6 +37,24 @@ struct MyProfileEndpoinds {
                         queryParametersEncodable: ["page": page])
     }
 
+    static func getMyIssues(page: Int) -> Endpoint<[IssueResponseDTO]> {
+        var params: QueryType = [:]
+        params["page"] = "\(page)"
+        params["filter"] = "all"
+        return Endpoint(path: "issues",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: params)
+    }
+
+    static func getMyPullRequests(page: Int) -> Endpoint<[PullRequestResponseDTO]> {
+        var params: QueryType = [:]
+        params["page"] = "\(page)"
+        params["state"] = "all"
+        return Endpoint(path: "pulls",
+                        headerParamaters: EndpointOld.defaultHeaders,
+                        queryParametersEncodable: params)
+    }
+
 //    static func recentEvents(page: Int) -> Endpoint<[]>
 
     static var defaultHeaders: [String: String] {

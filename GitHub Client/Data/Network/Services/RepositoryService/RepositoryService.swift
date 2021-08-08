@@ -73,14 +73,14 @@ extension RepositoryService {
         }
     }
 
-    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping ([PullRequest]?, Error?) -> Void) {
+    func fetchPullRequests(for repository: RepositoryResponse, completion: @escaping ([PullRequestResponseDTO]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchPullRequests(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let pullRequests = self.decode(of: [PullRequest].self, from: data) {
+            if let pullRequests = self.decode(of: [PullRequestResponseDTO].self, from: data) {
                 completion(pullRequests, nil)
             } else {
                 completion(nil, nil)

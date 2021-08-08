@@ -31,10 +31,10 @@ private extension HomeSceneFactoryImpl {
     }
 
     func createHomeUseCase() -> HomeUseCase {
-        HomeUseCaseImpl(repository: createHomeRepository())
+        HomeUseCaseImpl(repository: createHomeRepository(), favoritesStorage: storage)
     }
 
     func createHomeRepository() -> HomeRepository {
-        HomeRepositoryImpl(dataTransferService: dataTransferService, favoritesStorage: storage)
+        HomeRepositoryImpl(dataTransferService: dataTransferService)
     }
 }

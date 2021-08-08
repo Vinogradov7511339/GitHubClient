@@ -78,6 +78,12 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         case .myStarredRepositories, .userStarredRepositories(_):
             screenTitle = NSLocalizedString("Starred", comment: "")
             cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
+        case .myIssues:
+            screenTitle = NSLocalizedString("Issues", comment: "")
+            cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
+        case .myPullRequests:
+            screenTitle = NSLocalizedString("Pull Requests", comment: "")
+            cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
         }
     }
 }
@@ -124,6 +130,10 @@ private extension ItemsListViewModelImpl {
             newItems = repositories as? [Item] ?? []
         case .users(let users):
             newItems = users as? [Item] ?? []
+        case .issues(let issues):
+            newItems = issues as? [Item] ?? []
+        case .pullRequests(let pulls):
+            newItems = pulls as? [Item] ?? []
         }
         self.items.value.append(contentsOf: newItems)
     }

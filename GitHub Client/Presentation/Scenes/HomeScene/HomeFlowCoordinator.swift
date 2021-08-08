@@ -35,8 +35,18 @@ extension HomeFlowCoordinator {
               showRecentEvent: container.dependencies.showEvent)
     }
 
-    func showMyIssues() {}
-    func showMyPullRequests() {}
+    func showMyIssues() {
+        let actions = ItemsListActions(showDetails: container.dependencies.openIssue)
+        let controller = container.createIssuesViewController(actions: actions)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
+    func showMyPullRequests() {
+        let actions = ItemsListActions(showDetails: container.dependencies.openPullRequest)
+        let controller = container.createPullRequestsViewController(actions: actions)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     func showMyDiscussions() {}
     func showFavorites() {}
 }

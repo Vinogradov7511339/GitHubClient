@@ -17,7 +17,7 @@ protocol IssuesInteractorInput {
 protocol IssuesInteractorOutput: AnyObject {
     func didReceive(objects: [Any])
     func didReceive(filter: IssuesFilters)
-    func didReceive(pullRequests: [PullRequest])
+    func didReceive(pullRequests: [PullRequestResponseDTO])
     func didReceive(discussions: [CommentResponse])
 }
 

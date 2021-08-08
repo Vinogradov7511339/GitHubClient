@@ -35,12 +35,12 @@ extension IssueTableViewCell: ConfigurableCell {
 
     private func configure(issue: Issue) {
         itemImageView.image = UIImage.issue
-        nameLabel.text = issue.title ?? ""
+        nameLabel.text = issue.title
     }
 
     private func configure(pullRequest: PullRequest) {
         itemImageView.image = UIImage.pullRequest
-        nameLabel.text = pullRequest.title ?? ""
+        nameLabel.text = pullRequest.title
     }
 
     private func configure(discussion: Discussion) {

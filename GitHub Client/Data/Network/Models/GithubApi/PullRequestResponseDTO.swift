@@ -1,5 +1,5 @@
 //
-//  PullRequest.swift
+//  PullRequestResponseDTO.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 22.07.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PullRequest: Codable {
+struct PullRequestResponseDTO: Codable {
     let url: URL
     let id: Int
     let nodeId: String
@@ -20,10 +20,10 @@ struct PullRequest: Codable {
     let reviewCommentUrl: String?
     let commentsUrl: URL?
     let statusesUrl: URL?
-    let number: Int?
-    let state: String?
+    let number: Int
+    let state: String
     let locked: Bool?
-    let title: String?
+    let title: String
     let user: UserResponseDTO?
     let body: String
     let labels: [LabelModel?]?
@@ -40,4 +40,22 @@ struct PullRequest: Codable {
 //    let requested_teams: Any
 //    let head: Any
 //    let base: Any
+
+    func toDomain() -> PullRequest? {
+        guard let user = user else {
+            return nil
+        }
+        guard let assignee = assignee else {
+            return nil
+        }
+        return PullRequest.init(
+            id: id,
+            number: number,
+            state: state,
+            title: title,
+            user: user.map(),
+            body: body,
+            assignedTo: assignee.map()
+        )
+    }
 }

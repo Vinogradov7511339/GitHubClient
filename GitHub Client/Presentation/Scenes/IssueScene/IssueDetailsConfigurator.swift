@@ -8,7 +8,7 @@
 import UIKit
 
 class IssueDetailsConfigurator {
-    static func createModule(for issue: Issue) -> IssueDetailsViewController {
+    static func createModule(for issue: IssueResponseDTO) -> IssueDetailsViewController {
         let presenter = IssueDetailsPresenter(issue)
         let viewController = IssueDetailsViewController()
         viewController.presenter = presenter

@@ -12,6 +12,8 @@ enum ListType {
     case myFollowing
     case myRepositories
     case myStarredRepositories
+    case myIssues
+    case myPullRequests
 
     case userFollowers(User)
     case userFollowings(User)
@@ -34,6 +36,8 @@ enum GitHubEndpoints {
 enum ListEntitiesType {
     case repositories([Repository])
     case users([User])
+    case issues([Issue])
+    case pullRequests([PullRequest])
 }
 
 struct ItemsListRequestModel {

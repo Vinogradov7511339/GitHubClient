@@ -15,7 +15,7 @@ struct RecentEventsCellViewModel {
     let date: String
     let badgeCount: Int?
 
-    init(issue: Issue) {
+    init(issue: IssueResponseDTO) {
         eventImage = UIImage.issue
         eventName = issue.repository?.fullName ?? ""
         eventTitle = issue.title ?? ""

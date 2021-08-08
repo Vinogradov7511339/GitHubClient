@@ -1,5 +1,5 @@
 //
-//  Issue.swift
+//  IssueResponseDTO.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 22.07.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Issue: Codable {
+struct IssueResponseDTO: Codable {
     let id: Int
     let nodeId: String?
     let url: URL?
@@ -28,10 +28,24 @@ struct Issue: Codable {
     let locked: Bool?
     let activeLockReason: String?
     let comments: Int?
-    let pullRequest: PullRequest?
+    let pullRequest: PullRequestResponseDTO?
     let closedAt: String?
     let createdAt: String?
     let updatedAt: String?
     let repository: RepositoryResponse?
     let authorAssociation: String?
+
+    func toDomain() -> Issue? {
+        guard let user = user?.map() else {
+            return nil
+        }
+        return Issue(
+            id: id,
+            number: number ?? -14,
+            state: state ?? "NaN",
+            title: title ?? "NaN",
+            body: body ?? "NaN",
+            user: user
+        )
+    }
 }

@@ -7,9 +7,15 @@
 
 import Foundation
 
-protocol MyFavoritesStorage {}
+protocol MyFavoritesStorage {
+    func fetchFavorites(completion: @escaping (Result<[Repository], Error>) -> Void)
+}
 
 final class MyFavoritesStorageImpl {}
 
 // MARK: - MyFavoritesStorage
-extension MyFavoritesStorageImpl: MyFavoritesStorage {}
+extension MyFavoritesStorageImpl: MyFavoritesStorage {
+    func fetchFavorites (completion: @escaping (Result<[Repository], Error>) -> Void) {
+        completion(.success([]))
+    }
+}
