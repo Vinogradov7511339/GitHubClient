@@ -37,6 +37,8 @@ struct MyProfileEndpoinds {
                         queryParametersEncodable: ["page": page])
     }
 
+//    static func recentEvents(page: Int) -> Endpoint<[]>
+
     static var defaultHeaders: [String: String] {
         var headers: [String: String] = [:]
         headers["Authorization"] = authorizationHeader

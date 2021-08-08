@@ -64,6 +64,7 @@ final class MainSceneDIContainer: NSObject {
         switch page {
         case .home:
             let homeDependencies = HomeDIContainer.Dependencies(
+                apiDataTransferService: dependencies.apiDataTransferService,
                 showOrganizations: showOrganizations,
                 showRepositories: showRepositories,
                 showRepository: openRepository,
@@ -73,8 +74,10 @@ final class MainSceneDIContainer: NSObject {
             let coordinator = HomeFlowCoordinator(container: container, navigationController: navController)
             coordinator.start()
 
-        case .notifications:
-            let coordinator = NotificationsFlowCoordinator(navigationController: navController)
+        case .events:
+            let dependencies = EventsSceneDIContainer.Dependencies(apiDataTransferService: dependencies.apiDataTransferService)
+            let container = EventsSceneDIContainer(dependencies: dependencies)
+            let coordinator = EventsFlowCoordinator(navigationController: navController, container: container)
             coordinator.start()
 
         case .explore:
@@ -120,14 +123,14 @@ final class MainSceneDIContainer: NSObject {
 
 enum TabBarPage: CaseIterable {
     case home
-    case notifications
+    case events
     case explore
     case profile
 
     init?(index: Int) {
         switch index {
         case 0: self = .home
-        case 1: self = .notifications
+        case 1: self = .events
         case 2: self = .explore
         case 3: self = .profile
         default: return nil
@@ -138,8 +141,8 @@ enum TabBarPage: CaseIterable {
         switch self {
         case .home:
             return NSLocalizedString("Home", comment: "")
-        case .notifications:
-            return NSLocalizedString("Notifications", comment: "")
+        case .events:
+            return NSLocalizedString("Events", comment: "")
         case .explore:
             return NSLocalizedString("Explore", comment: "")
         case .profile:
@@ -151,7 +154,7 @@ enum TabBarPage: CaseIterable {
         switch self {
         case .home:
             return UIImage(systemName: "house")
-        case .notifications:
+        case .events:
             return UIImage(systemName: "bell.fill")
         case .explore:
             return UIImage(systemName: "gyroscope")
@@ -164,7 +167,7 @@ enum TabBarPage: CaseIterable {
         // todo save last selected page
         switch self {
         case .home: return 0
-        case .notifications: return 1
+        case .events: return 1
         case .explore: return 2
         case .profile: return 3
         }

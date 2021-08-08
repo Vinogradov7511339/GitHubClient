@@ -48,7 +48,7 @@ final class ProfileDIContainer {
     func createFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
         .create(with: createFollowingViewModel(actions: actions))
     }
-    
+
     func createFollowingViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
         .init(type: .myFollowing, useCase: createItemsListUseCase(), actions: actions)
     }

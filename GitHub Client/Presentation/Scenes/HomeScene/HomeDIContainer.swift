@@ -9,6 +9,8 @@ import UIKit
 
 final class HomeDIContainer {
     struct Dependencies {
+        let apiDataTransferService: DataTransferService
+
         var showOrganizations: () -> Void
         var showRepositories: () -> Void
         var showRepository: (Repository) -> Void
@@ -16,24 +18,15 @@ final class HomeDIContainer {
     }
 
     let dependencies: Dependencies
+    private let homeSceneFactory: HomeSceneFactory
+    private let myFavoritesStorage = MyFavoritesStorageImpl()
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+        self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: dependencies.apiDataTransferService, storage: myFavoritesStorage)
     }
 
     func createHomeViewController(actions: HomeActions) -> HomeViewController {
-        .create(with: createHomeViewModel(actions: actions))
-    }
-
-    func createHomeViewModel(actions: HomeActions) -> HomeViewModel {
-        return HomeViewModelImpl(useCase: createHomeUseCase(), actions: actions)
-    }
-
-    func createHomeUseCase() -> HomeUseCase {
-        return HomeUseCaseImpl(repository: createHomeRepository())
-    }
-
-    func createHomeRepository() -> HomeRepository {
-        return HomeRepositoryImpl()
+        homeSceneFactory.makeHomeViewController(actions)
     }
 }

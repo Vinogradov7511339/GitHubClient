@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         configureNavigationBar()
     }
-    
+
     @objc func refresh(_ sender: AnyObject) {
         viewModel.refresh()
     }

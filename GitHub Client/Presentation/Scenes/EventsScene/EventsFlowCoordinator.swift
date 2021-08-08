@@ -7,16 +7,19 @@
 
 import UIKit
 
-class NotificationsFlowCoordinator {
+class EventsFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
+    private let container: EventsSceneDIContainer
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, container: EventsSceneDIContainer) {
         self.navigationController = navigationController
+        self.container = container
     }
     
     func start() {
-        let viewController = NotificationsConfigurator.createModule()
+        let actions = EventsActions()
+        let viewController = container.makeEventsViewController(actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

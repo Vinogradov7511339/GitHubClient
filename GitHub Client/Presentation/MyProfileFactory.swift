@@ -5,8 +5,6 @@
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
 
-import Foundation
-
 protocol MyProfileFactory {
     func makeMyProfileViewController(_ actions: ProfileActions) -> ProfileViewController
 }

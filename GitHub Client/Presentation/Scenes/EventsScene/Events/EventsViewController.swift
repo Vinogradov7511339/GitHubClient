@@ -7,7 +7,15 @@
 
 import UIKit
 
-class NotificationsViewController: UIViewController {
+class EventsViewController: UIViewController {
+
+    private var viewModel: EventsViewModel!
+
+    static func create(with viewModel: EventsViewModel) -> EventsViewController {
+        let viewController = EventsViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -26,14 +34,14 @@ class NotificationsViewController: UIViewController {
         setupViews()
         activateConstraints()
         
-        title = "Inbox"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Events"
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         tableView.isHidden = true
     }
 }
 
-private extension NotificationsViewController {
+private extension EventsViewController {
     func setupViews() {
         view.addSubview(emptyView)
         view.addSubview(tableView)
