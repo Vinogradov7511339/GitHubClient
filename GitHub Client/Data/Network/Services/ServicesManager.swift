@@ -17,10 +17,6 @@ final class ServicesManager {
         return RepositoryService()
     }()
     
-    lazy var issuesService: IssuesService = {
-        return IssuesService()
-    }()
-    
     lazy var localStorage: LocalStorage = {
         return LocalStorage()
     }()
