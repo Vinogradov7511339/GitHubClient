@@ -60,6 +60,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
     }
 }
 
+// MARK: - Output
 extension ProfileViewModelImpl {
     func viewDidLoad() {
         fetch()

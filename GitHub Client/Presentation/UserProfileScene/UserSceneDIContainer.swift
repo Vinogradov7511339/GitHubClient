@@ -62,7 +62,11 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
     }
 
     func makeUserProfileUseCase() -> UserProfileUseCase {
-        return UserProfileUseCaseImpl()
+        return UserProfileUseCaseImpl(repository: makeUserRepository())
+    }
+
+    func makeUserRepository() -> UserProfileRepository {
+        return UserProfileRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 
     // MARK: - Starred flow

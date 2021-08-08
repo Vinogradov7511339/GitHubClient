@@ -101,6 +101,23 @@ struct UserResponseDTO: Codable {
         )
     }
 
+    func mapToDetails() -> UserDetails {
+        return UserDetails(
+            user: self.map(),
+            status: "ToDo",
+            location: location,
+            company: company,
+            userBlogUrl: blog,
+            userEmail: email,
+            followingCount: -1,
+            followersCount: -1,
+            pinnedRepositories: [],
+            repositoriesCount: -1,
+            starredCount: -1,
+            organizationsCount: -1
+        )
+    }
+
     func mapToAuthotization() -> AuthenticatedUser {
         let defaultUser = map()
         let detailsUser = UserDetails(

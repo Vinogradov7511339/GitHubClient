@@ -8,9 +8,20 @@
 import Foundation
 
 protocol UserProfileUseCase {
-
+    func fetch(user: User, completion: @escaping (Result<UserDetails, Error>) -> Void)
 }
 
-class UserProfileUseCaseImpl: UserProfileUseCase {
+final class UserProfileUseCaseImpl {
+    let repository: UserProfileRepository
 
+    init(repository: UserProfileRepository) {
+        self.repository = repository
+    }
+}
+
+// MARK: - UserProfileUseCase
+extension UserProfileUseCaseImpl: UserProfileUseCase {
+    func fetch(user: User, completion: @escaping (Result<UserDetails, Error>) -> Void) {
+        repository.fetch(user: user, completion: completion)
+    }
 }

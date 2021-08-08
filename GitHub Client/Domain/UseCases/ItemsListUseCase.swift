@@ -58,7 +58,7 @@ final class ItemsListUseCaseImpl: ItemsListUseCase {
     init(repository: ItemsListRepository) {
         self.repository = repository
     }
-    
+
     func fetch(request: ItemsListRequestModel, completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         repository.fetch(requestModel: request, completion: completion)
     }

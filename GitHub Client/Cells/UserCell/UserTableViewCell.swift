@@ -8,7 +8,7 @@
 import UIKit
 
 class UserTableViewCell: BaseTableViewCell, NibLoadable {
-    
+
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
@@ -22,7 +22,7 @@ class UserTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension UserTableViewCell: ConfigurableCell {
-    func configure(viewModel: UserResponseDTO) {
+    func configure(viewModel: User) {
         avatarImageView.set(url: viewModel.avatarUrl)
         loginLabel.text = viewModel.login
         if let name = viewModel.name {

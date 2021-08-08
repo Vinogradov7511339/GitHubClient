@@ -211,6 +211,8 @@
 		AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096426BEFDCD004644D2 /* Functions.swift */; };
 		AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096626BEFE0C004644D2 /* Requestable.swift */; };
 		AD6B096C26BF04DE004644D2 /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */; };
+		AD6B096E26BFB231004644D2 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096D26BFB231004644D2 /* UserProfileRepository.swift */; };
+		AD6B097026BFB2AF004644D2 /* UserProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B096F26BFB2AF004644D2 /* UserProfileRepositoryImpl.swift */; };
 		AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */; };
 		AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */ = {isa = PBXBuildFile; fileRef = AD79550526ABFD8E004E6973 /* LanguageColors.json */; };
 		AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550726ABFFF7004E6973 /* UIColor+hex.swift */; };
@@ -491,6 +493,8 @@
 		AD6B096426BEFDCD004644D2 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AD6B096626BEFE0C004644D2 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
+		AD6B096D26BFB231004644D2 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
+		AD6B096F26BFB2AF004644D2 /* UserProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepositoryImpl.swift; sourceTree = "<group>"; };
 		AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		AD79550526ABFD8E004E6973 /* LanguageColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LanguageColors.json; sourceTree = "<group>"; };
 		AD79550726ABFFF7004E6973 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
@@ -1108,6 +1112,7 @@
 				AD39FEA426BC670900F055FD /* ItemsListRepository.swift */,
 				AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */,
 				ADD462E126BD648100DD46CC /* HomeRepository.swift */,
+				AD6B096D26BFB231004644D2 /* UserProfileRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1217,6 +1222,7 @@
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
 				AD2E263726BD3C4C00B25772 /* MyProfileRepositoryImpl.swift */,
 				ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */,
+				AD6B096F26BFB2AF004644D2 /* UserProfileRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1827,6 +1833,7 @@
 				AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
 				AD8722DB26B8162B004649A4 /* FolderViewController.swift in Sources */,
+				AD6B097026BFB2AF004644D2 /* UserProfileRepositoryImpl.swift in Sources */,
 				AD2E261C26BC6FCB00B25772 /* UIImage+tempExtension.swift in Sources */,
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
 				AD20E44926A6B99C003BB5F1 /* RepositoryPresenter.swift in Sources */,
@@ -1935,6 +1942,7 @@
 				AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */,
 				AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */,
 				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
+				AD6B096E26BFB231004644D2 /* UserProfileRepository.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
 				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
