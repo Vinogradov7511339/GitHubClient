@@ -8,5 +8,6 @@
 import Foundation
 
 protocol EventsRepository {
-    func fetchEvents(requestModel: EventsRequestModel, completion: @escaping (Result<EventsResponseModel, Error>) -> Void)
+    func fetchEvents(requestModel: EventsRequestModel,
+                     completion: @escaping (Result<EventsResponseModel, Error>) -> Void)
 }

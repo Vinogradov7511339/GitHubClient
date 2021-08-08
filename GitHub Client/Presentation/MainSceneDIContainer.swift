@@ -75,7 +75,8 @@ final class MainSceneDIContainer: NSObject {
             coordinator.start()
 
         case .events:
-            let dependencies = EventsSceneDIContainer.Dependencies(apiDataTransferService: dependencies.apiDataTransferService)
+            let dependencies = EventsSceneDIContainer.Dependencies(
+                apiDataTransferService: dependencies.apiDataTransferService)
             let container = EventsSceneDIContainer(dependencies: dependencies)
             let coordinator = EventsFlowCoordinator(navigationController: navController, container: container)
             coordinator.start()
