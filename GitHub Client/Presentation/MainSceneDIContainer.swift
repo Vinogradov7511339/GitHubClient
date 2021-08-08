@@ -146,7 +146,7 @@ enum TabBarPage: CaseIterable {
             return NSLocalizedString("Profile", comment: "")
         }
     }
-    
+
     func pageImage() -> UIImage? {
         switch self {
         case .home:

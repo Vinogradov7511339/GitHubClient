@@ -22,27 +22,19 @@ final class ProfileDIContainer {
     let dependencies: Dependencies
 
     // MARK: - Persistent Storage
-    lazy var profileStorage = ProfileLocalStorageImpl()
+    private let profileStorage: ProfileLocalStorage
+    private let profileFactory: MyProfileFactory
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+        self.profileStorage = ProfileLocalStorageImpl()
+        self.profileFactory = MyProfileFactoryImpl(
+            dataTransferService: dependencies.apiDataTransferService,
+            storage: profileStorage)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
-        .create(with: createProfileViewModel(actions))
-    }
-
-    func createProfileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
-        return ProfileViewModelImpl(useCase: createProfileUseCase(), actions: actions)
-    }
-
-    func createProfileUseCase() -> MyProfileUseCase {
-        return MyProfileUseCaseImpl(repository: createProfileRepository())
-    }
-
-    func createProfileRepository() -> MyProfileRepository {
-        return MyProfileRepositoryImpl(dataTransferService: dependencies.apiDataTransferService,
-                                       localStorage: profileStorage)
+        profileFactory.makeMyProfileViewController(actions)
     }
 
     func createFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
