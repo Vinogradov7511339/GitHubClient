@@ -162,6 +162,8 @@
 		AD39FEA526BC670900F055FD /* ItemsListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FEA426BC670900F055FD /* ItemsListRepository.swift */; };
 		AD39FEA926BC68B700F055FD /* ItemsListRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FEA826BC68B700F055FD /* ItemsListRepositoryImpl.swift */; };
 		AD3F070F26C2E63A00BC494E /* GitHub_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */; };
+		AD3F071826C2FA6D00BC494E /* BaseDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */; };
+		AD3F071926C2FA6D00BC494E /* BaseDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */; };
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
@@ -453,6 +455,8 @@
 		AD3F070C26C2E63A00BC494E /* GitHub ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitHub ClientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub_ClientTests.swift; sourceTree = "<group>"; };
 		AD3F071026C2E63A00BC494E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseDetailsCell.swift; path = Presentation/BaseDetailsCell.swift; sourceTree = "<group>"; };
+		AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BaseDetailsCell.xib; path = Presentation/BaseDetailsCell.xib; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellManager.swift; sourceTree = "<group>"; };
@@ -1416,6 +1420,8 @@
 				AD25E4D326B6D6990003B1E0 /* FilterButton.swift */,
 				AD20E4EE26A9489C003BB5F1 /* Cells */,
 				AD20E42F26A5DFD7003BB5F1 /* TableCellManager */,
+				AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */,
+				AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */,
 			);
 			name = UIComponents;
 			path = ..;
@@ -1687,6 +1693,7 @@
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
 				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
+				AD3F071926C2FA6D00BC494E /* BaseDetailsCell.xib in Resources */,
 				ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */,
 				ADA68BAA26B55621004AC06C /* octocat_gray@2x-2.png in Resources */,
 				AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */,
@@ -1906,6 +1913,7 @@
 				AD39FE5426BABF0400F055FD /* UserProfileUseCase.swift in Sources */,
 				AD20E52026A9B67A003BB5F1 /* IssueDetailsCommentTableViewCell.swift in Sources */,
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
+				AD3F071826C2FA6D00BC494E /* BaseDetailsCell.swift in Sources */,
 				AD6B097826BFF129004644D2 /* HomeSceneFactory.swift in Sources */,
 				AD39FE7326BB24A100F055FD /* EventsFlowCoordinator.swift in Sources */,
 				AD6B096C26BF04DE004644D2 /* UserEndpoints.swift in Sources */,

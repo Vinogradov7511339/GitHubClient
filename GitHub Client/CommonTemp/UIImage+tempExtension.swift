@@ -9,26 +9,72 @@ import UIKit
 
 extension UIImage {
      static var issue: UIImage? {
-         return UIImage(systemName: "smallcircle.fill.circle")
+        UIImage(systemName: "smallcircle.fill.circle")
      }
 
      static var pullRequest: UIImage? {
-         return UIImage(named: "icon_cell_git_pull_request")
+        UIImage(named: "icon_cell_git_pull_request")
      }
 
      static var releases: UIImage? {
-         return UIImage(systemName: "tag")
+        UIImage(systemName: "tag")
      }
 
      static var discussions: UIImage? {
-         return UIImage(systemName: "message")
+        UIImage(systemName: "message")
      }
 
      static var watchers: UIImage? {
-         return UIImage(named: "icon_cell_theme")
+        UIImage(named: "icon_cell_theme")
      }
 
      static var license: UIImage? {
-         return UIImage(systemName: "scalemass")
+        UIImage(systemName: "scalemass")
      }
  }
+
+extension UIColor {
+    static var issue: UIColor { .systemGreen }
+    static var pullRequest: UIColor { .systemBlue }
+    static var discussions: UIColor { .systemPurple }
+    static var repositories: UIColor { .systemGray }
+    static var organizations: UIColor { .systemOrange }
+
+    static var releases: UIColor { .systemGray }
+    static var watchers: UIColor { .systemYellow }
+    static var license: UIColor { .systemRed }
+}
+
+extension String {
+    static var issue: String {
+        NSLocalizedString("Issues", comment: "")
+    }
+
+    static var pullRequest: String {
+        NSLocalizedString("Pull Requests", comment: "")
+    }
+
+    static var discussions: String {
+        NSLocalizedString("Discussions", comment: "")
+    }
+
+    static var repositories: String {
+        NSLocalizedString("Repositories", comment: "")
+    }
+
+    static var organizations: String {
+        NSLocalizedString("Organizations", comment: "")
+    }
+
+    static var releases: String {
+        NSLocalizedString("Releases", comment: "")
+    }
+
+    static var watchers: String {
+        NSLocalizedString("Watchers", comment: "")
+    }
+
+    static var license: String {
+        NSLocalizedString("License", comment: "")
+    }
+}

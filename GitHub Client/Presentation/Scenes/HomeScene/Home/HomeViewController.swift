@@ -47,12 +47,6 @@ class HomeViewController: UIViewController {
     }()
     
     private let refreshControl = UIRefreshControl()
-    
-//    private let dataViewMap: [String: TableCellManager] = [
-//        "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self),
-//        "\(FavoritesEmptyCellViewModel.self)": TableCellManager.create(cellType: FavoritesEmptyTableViewCell.self),
-//        "\(RecentEventsCellViewModel.self)": TableCellManager.create(cellType: RecentEventsTableViewCell.self)
-//    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()

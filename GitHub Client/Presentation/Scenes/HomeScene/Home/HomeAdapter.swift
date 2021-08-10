@@ -15,17 +15,20 @@ enum HomeMenuItems: Int, CaseIterable {
     case repositories
     case organizations
 
-    var viewModel: TableCellViewModel {
+    var viewModel: BaseDetailsCellViewModel {
         switch self {
-        default:
-            return TableCellViewModel(text: "haha")
+        case .issues: return .issue
+        case .pullRequests: return .pullRequests
+        case .discussions: return .discussions
+        case .repositories: return .repositories
+        case .organizations: return .organizations
         }
     }
 }
 
 protocol HomeAdapter {
     var favorites: [Repository] { get set }
-    
+
     func register(tableView: UITableView)
     func numberOfSections() -> Int
     func numberOfRows(in section: Int) -> Int
@@ -107,7 +110,8 @@ private extension HomeAdapterImpl {
 // MARK: - Constants
 private extension HomeAdapterImpl {
     static let dataViewMap: [String: TableCellManager] = [
-        "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self),
-        "\(FavoriteRepositoryCellViewModel.self)": TableCellManager.create(cellType: FavoriteRepositoryTableViewCell.self),
+        "\(BaseDetailsCellViewModel.self)": TableCellManager.create(cellType: BaseDetailsCell.self),
+        "\(FavoriteRepositoryCellViewModel.self)":
+            TableCellManager.create(cellType: FavoriteRepositoryTableViewCell.self)
     ]
 }
