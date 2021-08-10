@@ -26,6 +26,7 @@ struct Event: Identifiable, Equatable {
         case watchEvent = "WatchEvent"
     }
 
+    // swiftlint:disable identifier_name
     let id: Int
     let eventType: Types
     let actor: User

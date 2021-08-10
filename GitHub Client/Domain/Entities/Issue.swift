@@ -8,6 +8,7 @@
 import Foundation
 
 struct Issue: Identifiable, Equatable {
+//     swiftlint:disable identifier_name
     let id: Int
     let number: Int
     let commentsURL: URL
