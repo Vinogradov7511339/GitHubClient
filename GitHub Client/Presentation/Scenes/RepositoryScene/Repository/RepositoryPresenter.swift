@@ -41,7 +41,8 @@ class RepositoryPreseter {
     }
     
     private func headerViewModel(_ repository: RepositoryResponse) -> Any {
-        return RepositoryDetailsHeaderCellViewModel(repository: repository)
+        fatalError()
+//        return RepositoryDetailsHeaderCellViewModel(repository: repository)
     }
     
     private func firstSection(_ repositoryInfo: RepositoryInfo) -> [Any] {

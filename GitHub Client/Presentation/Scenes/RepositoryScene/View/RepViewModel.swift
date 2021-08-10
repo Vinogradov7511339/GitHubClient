@@ -27,26 +27,29 @@ protocol RepViewModelInput {
 }
 
 protocol RepViewModelOutput {
-    var items: Observable<[[Any]]> { get }
+
+    var repository: Observable<Repository> { get }
+    var adapter: ExtendedRepositoryAdapter { get }
 }
 
 typealias RepViewModel = RepViewModelInput & RepViewModelOutput
 
 final class RepViewModelImpl: RepViewModel {
     
-    private let repository: Repository
+    let repository: Observable<Repository>
     private let repUseCase: RepUseCase
     private let actions: RepActions
 
     // MARK: - OUTPUT
-    var items: Observable<[[Any]]> = Observable([[]])
+    let adapter: ExtendedRepositoryAdapter
 
     // MARK: - Init
 
     init(repository: Repository, repUseCase: RepUseCase, actions: RepActions) {
-        self.repository = repository
+        self.repository = Observable(repository)
         self.repUseCase = repUseCase
         self.actions = actions
+        adapter = ExtendedRepositoryAdapterImpl(repository: repository)
     }
 }
 
@@ -58,12 +61,12 @@ extension RepViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         switch(indexPath.section, indexPath.row) {
-        case (0, 1): actions.showIssues(repository)
-        case (0, 2): actions.showPullRequests(repository)
-        case (0, 3): actions.showReleases(repository)
-        case (0, 4): actions.showWatchers(repository)
-        case (1, 0): actions.showCode(repository)
-        case (1, 1): actions.showCommits(repository)
+        case (0, 1): actions.showIssues(repository.value)
+        case (0, 2): actions.showPullRequests(repository.value)
+        case (0, 3): actions.showReleases(repository.value)
+        case (0, 4): actions.showWatchers(repository.value)
+        case (1, 0): actions.showCode(repository.value)
+        case (1, 1): actions.showCommits(repository.value)
         default: break
         }
     }

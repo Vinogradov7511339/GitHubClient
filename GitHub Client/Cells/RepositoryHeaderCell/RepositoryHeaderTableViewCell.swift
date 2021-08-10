@@ -8,7 +8,7 @@
 import UIKit
 
 struct RepositoryDetailsHeaderCellViewModel {
-    let repository: RepositoryResponse
+    let repository: Repository
 }
 
 class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
@@ -34,12 +34,12 @@ class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 extension RepositoryHeaderTableViewCell: ConfigurableCell {
     func configure(viewModel: RepositoryDetailsHeaderCellViewModel) {
         let repository = viewModel.repository
-        avatarImageView.set(url: viewModel.repository.owner?.avatarUrl)
-        ownerNameLabel.text = repository.owner?.login ?? ""
-        repositoryNameLabel.text = repository.name ?? ""
+        avatarImageView.set(url: viewModel.repository.owner.avatarUrl)
+        ownerNameLabel.text = repository.owner.login
+        repositoryNameLabel.text = repository.name
 
-        starsCountLabel.text = "\(repository.stargazersCount ?? 0) Stars"
-        forksCountLabel.text = "\(repository.forksCount ?? 0) Forks"
+//        starsCountLabel.text = "\(repository.stargazersCount ?? 0) Stars"
+//        forksCountLabel.text = "\(repository.forksCount ?? 0) Forks"
 
         if let description = repository.description, !description.isEmpty {
             aboutLabel.isHidden = false
@@ -48,11 +48,11 @@ extension RepositoryHeaderTableViewCell: ConfigurableCell {
             aboutLabel.isHidden = true
         }
 
-        if let url = repository.url {
-            linkLabel.text = url.absoluteString
-            linkStackView.isHidden = false
-        } else {
-            linkStackView.isHidden = true
-        }
+//        if let url = repository.url {
+//            linkLabel.text = url.absoluteString
+//            linkStackView.isHidden = false
+//        } else {
+//            linkStackView.isHidden = true
+//        }
     }
 }

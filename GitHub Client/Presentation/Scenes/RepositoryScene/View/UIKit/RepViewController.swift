@@ -10,28 +10,28 @@ import UIKit
 final class RepViewController: UIViewController {
     
     private var viewModel: RepViewModel!
-    private let cellManager = TableCellManager.create(cellType: StarredRepoTableViewCell.self)
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        return tableView
-    }()
-    
     static func create(with viewModel: RepViewModel) -> RepViewController {
         let viewController = RepViewController()
         viewController.viewModel = viewModel
         return viewController
     }
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
 
-        cellManager.register(tableView: tableView)
+        viewModel.adapter.register(tableView: tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -61,19 +61,31 @@ extension RepViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .systemGroupedBackground
+        return view
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension RepViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.adapter.numberOfSections()
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.items.value.count
+        viewModel.adapter.numberOfRows(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModel.items.value[indexPath.row]
-        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: viewModel)
-        return cell
+        viewModel.adapter.cellForRow(in: tableView, at: indexPath)
     }
 }
 
