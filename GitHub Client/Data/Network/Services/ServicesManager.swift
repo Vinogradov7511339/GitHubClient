@@ -28,8 +28,4 @@ final class ServicesManager {
     lazy var searchService: SearchService = {
         return SearchService()
     }()
-    
-    lazy var userService: UserService = {
-        return UserService()
-    }()
 }

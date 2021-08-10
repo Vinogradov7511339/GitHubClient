@@ -268,8 +268,6 @@
 		ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500726AD2E9500783E71 /* SearchService.swift */; };
 		ADA7501526AD2E9500783E71 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500926AD2E9500783E71 /* TokenService.swift */; };
 		ADA7501626AD2E9500783E71 /* RepositoriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */; };
-		ADA7501A26AD922600783E71 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501926AD922600783E71 /* UserService.swift */; };
-		ADA7501D26AD924500783E71 /* UserEndpointsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
@@ -551,8 +549,6 @@
 		ADA7500726AD2E9500783E71 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		ADA7500926AD2E9500783E71 /* TokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		ADA7500A26AD2E9500783E71 /* RepositoriesEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesEndpoint.swift; sourceTree = "<group>"; };
-		ADA7501926AD922600783E71 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpointsOld.swift; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
@@ -1511,7 +1507,6 @@
 			children = (
 				AD20E46026A8299B003BB5F1 /* ServicesManager.swift */,
 				ADA7501826AD2F0300783E71 /* RepositoryService */,
-				ADA7501B26AD923000783E71 /* UserService */,
 				ADA7500726AD2E9500783E71 /* SearchService.swift */,
 				ADA7500926AD2E9500783E71 /* TokenService.swift */,
 				ADA7500526AD2E9500783E71 /* EndpointOld.swift */,
@@ -1526,15 +1521,6 @@
 				ADA7500126AD2E9500783E71 /* RepositoryService.swift */,
 			);
 			path = RepositoryService;
-			sourceTree = "<group>";
-		};
-		ADA7501B26AD923000783E71 /* UserService */ = {
-			isa = PBXGroup;
-			children = (
-				ADA7501C26AD924500783E71 /* UserEndpointsOld.swift */,
-				ADA7501926AD922600783E71 /* UserService.swift */,
-			);
-			path = UserService;
 			sourceTree = "<group>";
 		};
 		ADA7502026ADA7E000783E71 /* StarredRepoCell */ = {
@@ -1770,7 +1756,6 @@
 				AD6B098226BFFF2F004644D2 /* EventsUseCase.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
-				ADA7501A26AD922600783E71 /* UserService.swift in Sources */,
 				AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */,
 				ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */,
 				AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */,
@@ -1858,7 +1843,6 @@
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
-				ADA7501D26AD924500783E71 /* UserEndpointsOld.swift in Sources */,
 				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
 				AD8722ED26B83B50004649A4 /* FavoritesConfigurator.swift in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
