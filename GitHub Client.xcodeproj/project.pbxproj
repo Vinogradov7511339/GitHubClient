@@ -120,7 +120,7 @@
 		AD39FD9A26B8734F00F055FD /* CommitsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9926B8734F00F055FD /* CommitsListConfigurator.swift */; };
 		AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9C26B874FB00F055FD /* CommitTableViewCell.swift */; };
 		AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD39FD9D26B874FB00F055FD /* CommitTableViewCell.xib */; };
-		AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA026B91E8100F055FD /* CommentResponse.swift */; };
+		AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA026B91E8100F055FD /* CommentResponseDTO.swift */; };
 		AD39FDA326B9437800F055FD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA226B9437800F055FD /* User.swift */; };
 		AD39FDA826B947BB00F055FD /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA726B947BB00F055FD /* Repository.swift */; };
 		AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA926B947D500F055FD /* UserDetails.swift */; };
@@ -214,6 +214,12 @@
 		AD6B099B26C04105004644D2 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B099A26C04105004644D2 /* IssueViewModel.swift */; };
 		AD6B099D26C049C4004644D2 /* IssueTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B099C26C049C4004644D2 /* IssueTableViewAdapter.swift */; };
 		AD6B09A326C0527C004644D2 /* ExtendedRepositoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09A226C0527C004644D2 /* ExtendedRepositoryAdapter.swift */; };
+		AD6B09A526C274C6004644D2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09A426C274C6004644D2 /* Comment.swift */; };
+		AD6B09A726C2767D004644D2 /* IssueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09A626C2767D004644D2 /* IssueUseCase.swift */; };
+		AD6B09A926C27769004644D2 /* IssueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09A826C27769004644D2 /* IssueRepository.swift */; };
+		AD6B09AB26C277A7004644D2 /* IssueRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09AA26C277A7004644D2 /* IssueRepositoryImpl.swift */; };
+		AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09AC26C27D55004644D2 /* IssueEndpoints.swift */; };
+		AD6B09AF26C281BF004644D2 /* IssueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B09AE26C281BF004644D2 /* IssueFactory.swift */; };
 		AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */; };
 		AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */ = {isa = PBXBuildFile; fileRef = AD79550526ABFD8E004E6973 /* LanguageColors.json */; };
 		AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550726ABFFF7004E6973 /* UIColor+hex.swift */; };
@@ -222,7 +228,6 @@
 		AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */; };
 		AD79551126AC124F004E6973 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551026AC124F004E6973 /* SearchPresenter.swift */; };
 		AD79551326AC12F9004E6973 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79551226AC12F9004E6973 /* SearchInteractor.swift */; };
-		AD8722D426B7F220004649A4 /* RepositoryCellsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722D326B7F220004649A4 /* RepositoryCellsStrategy.swift */; };
 		AD8722D626B7F716004649A4 /* RepositoryFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722D526B7F716004649A4 /* RepositoryFacade.swift */; };
 		AD8722D826B810DA004649A4 /* DirectoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722D726B810DA004649A4 /* DirectoryResponse.swift */; };
 		AD8722DB26B8162B004649A4 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722DA26B8162B004649A4 /* FolderViewController.swift */; };
@@ -397,7 +402,7 @@
 		AD39FD9926B8734F00F055FD /* CommitsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsListConfigurator.swift; sourceTree = "<group>"; };
 		AD39FD9C26B874FB00F055FD /* CommitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell.swift; sourceTree = "<group>"; };
 		AD39FD9D26B874FB00F055FD /* CommitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitTableViewCell.xib; sourceTree = "<group>"; };
-		AD39FDA026B91E8100F055FD /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		AD39FDA026B91E8100F055FD /* CommentResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponseDTO.swift; sourceTree = "<group>"; };
 		AD39FDA226B9437800F055FD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AD39FDA726B947BB00F055FD /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		AD39FDA926B947D500F055FD /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
@@ -492,6 +497,12 @@
 		AD6B099A26C04105004644D2 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		AD6B099C26C049C4004644D2 /* IssueTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewAdapter.swift; sourceTree = "<group>"; };
 		AD6B09A226C0527C004644D2 /* ExtendedRepositoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedRepositoryAdapter.swift; sourceTree = "<group>"; };
+		AD6B09A426C274C6004644D2 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		AD6B09A626C2767D004644D2 /* IssueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueUseCase.swift; sourceTree = "<group>"; };
+		AD6B09A826C27769004644D2 /* IssueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRepository.swift; sourceTree = "<group>"; };
+		AD6B09AA26C277A7004644D2 /* IssueRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD6B09AC26C27D55004644D2 /* IssueEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueEndpoints.swift; sourceTree = "<group>"; };
+		AD6B09AE26C281BF004644D2 /* IssueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFactory.swift; sourceTree = "<group>"; };
 		AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		AD79550526ABFD8E004E6973 /* LanguageColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LanguageColors.json; sourceTree = "<group>"; };
 		AD79550726ABFFF7004E6973 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
@@ -500,7 +511,6 @@
 		AD79550E26AC11D4004E6973 /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		AD79551026AC124F004E6973 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		AD79551226AC12F9004E6973 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
-		AD8722D326B7F220004649A4 /* RepositoryCellsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCellsStrategy.swift; sourceTree = "<group>"; };
 		AD8722D526B7F716004649A4 /* RepositoryFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFacade.swift; sourceTree = "<group>"; };
 		AD8722D726B810DA004649A4 /* DirectoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryResponse.swift; sourceTree = "<group>"; };
 		AD8722DA26B8162B004649A4 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
@@ -747,7 +757,7 @@
 			isa = PBXGroup;
 			children = (
 				AD6B099A26C04105004644D2 /* IssueViewModel.swift */,
-				AD6B099E26C049E8004644D2 /* UIKit */,
+				AD6B099E26C049E8004644D2 /* View */,
 			);
 			path = IssueScene;
 			sourceTree = "<group>";
@@ -779,17 +789,17 @@
 			path = DetailCell;
 			sourceTree = "<group>";
 		};
-		AD20E53B26AAA5D9003BB5F1 /* Explore */ = {
+		AD20E53B26AAA5D9003BB5F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				AD20E53E26AAA634003BB5F1 /* ExploreConfigurator.swift */,
 				AD20E54526AAAB96003BB5F1 /* ExplorePresenter.swift */,
 				AD20E53C26AAA5F1003BB5F1 /* ExploreViewController.swift */,
 			);
-			path = Explore;
+			path = View;
 			sourceTree = "<group>";
 		};
-		AD20E54026AAA681003BB5F1 /* Events */ = {
+		AD20E54026AAA681003BB5F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				AD6B097B26BFF992004644D2 /* EventsViewModel.swift */,
@@ -798,7 +808,7 @@
 				AD6B098D26C01207004644D2 /* BaseEventTableViewCell.swift */,
 				AD6B098E26C01207004644D2 /* BaseEventTableViewCell.xib */,
 			);
-			path = Events;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AD20E54726AAB757003BB5F1 /* ExploreCells */ = {
@@ -889,7 +899,6 @@
 			children = (
 				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
 				AD39FE3826BA942800F055FD /* Observable.swift */,
-				AD8722D226B7F1E5004649A4 /* Strategies */,
 				ADA68BBD26B5876F004AC06C /* ViewModels */,
 			);
 			path = Utils;
@@ -898,6 +907,7 @@
 		AD2E262D26BC785700B25772 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AD6B096926BEFED2004644D2 /* Endpoints */,
 				AD6B093826BED6FD004644D2 /* AnotherOne */,
 				AD20E3E5269F638E003BB5F1 /* Models */,
 				AD642CDE26AE9C72004FCA2D /* Facades */,
@@ -993,6 +1003,7 @@
 				AD6B099126C014F7004644D2 /* Event.swift */,
 				AD6B099326C0226E004644D2 /* Issue.swift */,
 				AD6B099826C035D5004644D2 /* PullRequest.swift */,
+				AD6B09A426C274C6004644D2 /* Comment.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1007,6 +1018,7 @@
 				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
 				ADD462DF26BD63C100DD46CC /* HomeUseCase.swift */,
 				AD6B098126BFFF2F004644D2 /* EventsUseCase.swift */,
+				AD6B09A626C2767D004644D2 /* IssueUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1051,6 +1063,7 @@
 				ADD462E126BD648100DD46CC /* HomeRepository.swift */,
 				AD6B096D26BFB231004644D2 /* UserProfileRepository.swift */,
 				AD6B098526C0010F004644D2 /* EventsRepository.swift */,
+				AD6B09A826C27769004644D2 /* IssueRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1117,8 +1130,8 @@
 			children = (
 				AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */,
 				ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */,
-				AD8722E726B83784004649A4 /* Favorites */,
 				AD20E4EB26A8C045003BB5F1 /* Home */,
+				AD8722E726B83784004649A4 /* Favorites */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -1128,7 +1141,7 @@
 			children = (
 				AD39FE7226BB24A100F055FD /* EventsFlowCoordinator.swift */,
 				AD6B097D26BFFADC004644D2 /* EventsSceneDIContainer.swift */,
-				AD20E54026AAA681003BB5F1 /* Events */,
+				AD20E54026AAA681003BB5F1 /* View */,
 			);
 			path = EventsScene;
 			sourceTree = "<group>";
@@ -1137,7 +1150,7 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE7526BB24BE00F055FD /* ExploreFlowCoordinator.swift */,
-				AD20E53B26AAA5D9003BB5F1 /* Explore */,
+				AD20E53B26AAA5D9003BB5F1 /* View */,
 			);
 			path = ExploreScene;
 			sourceTree = "<group>";
@@ -1162,6 +1175,7 @@
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
 				AD6B096F26BFB2AF004644D2 /* UserProfileRepositoryImpl.swift */,
 				AD6B098726C00159004644D2 /* EventsRepositoryImpl.swift */,
+				AD6B09AA26C277A7004644D2 /* IssueRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1212,7 +1226,6 @@
 			isa = PBXGroup;
 			children = (
 				AD6B096826BEFEB8004644D2 /* Core */,
-				AD6B096926BEFED2004644D2 /* Endpoints */,
 				AD6B095126BEF8CC004644D2 /* Extensions */,
 				AD6B096326BEFD7A004644D2 /* Protocols */,
 				AD6B096426BEFDCD004644D2 /* Functions.swift */,
@@ -1289,6 +1302,7 @@
 				AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */,
 				AD6B096B26BF04DE004644D2 /* UserEndpoints.swift */,
 				AD6B098B26C009DD004644D2 /* EventEndpoints.swift */,
+				AD6B09AC26C27D55004644D2 /* IssueEndpoints.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -1309,12 +1323,12 @@
 				AD39FE7126BB248D00F055FD /* EventsScene */,
 				AD39FE7426BB24AB00F055FD /* ExploreScene */,
 				AD39FE7726BB24CA00F055FD /* MyProfileScene */,
+				AD39FE5226BABD5E00F055FD /* UserProfileScene */,
 				AD39FE5526BAD65D00F055FD /* LoginScene */,
 				AD20E51426A9AFE1003BB5F1 /* IssueScene */,
 				AD39FE3B26BAA1EA00F055FD /* RepositoryScene */,
 				ADD462E726BD776D00DD46CC /* ItemsList */,
 				AD79550D26AC1188004E6973 /* SearchScene */,
-				AD39FE5226BABD5E00F055FD /* UserProfileScene */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1326,17 +1340,18 @@
 				AD6B097726BFF129004644D2 /* HomeSceneFactory.swift */,
 				AD6B097F26BFFE1E004644D2 /* EventsSceneFactory.swift */,
 				AD6B099526C028B3004644D2 /* ItemsListFactory.swift */,
+				AD6B09AE26C281BF004644D2 /* IssueFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
 		};
-		AD6B099E26C049E8004644D2 /* UIKit */ = {
+		AD6B099E26C049E8004644D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				AD6B099C26C049C4004644D2 /* IssueTableViewAdapter.swift */,
 				AD20E51526A9B02B003BB5F1 /* IssueDetailsViewController.swift */,
 			);
-			path = UIKit;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AD6B09A126C05056004644D2 /* UIKit */ = {
@@ -1377,14 +1392,6 @@
 			);
 			name = UIComponents;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		AD8722D226B7F1E5004649A4 /* Strategies */ = {
-			isa = PBXGroup;
-			children = (
-				AD8722D326B7F220004649A4 /* RepositoryCellsStrategy.swift */,
-			);
-			path = Strategies;
 			sourceTree = "<group>";
 		};
 		AD8722D926B81610004649A4 /* Folder */ = {
@@ -1475,7 +1482,7 @@
 				AD25E4D926B6F9390003B1E0 /* FileResponse.swift */,
 				AD8722D726B810DA004649A4 /* DirectoryResponse.swift */,
 				AD39FD9726B86CC000F055FD /* CommitInfoResponse.swift */,
-				AD39FDA026B91E8100F055FD /* CommentResponse.swift */,
+				AD39FDA026B91E8100F055FD /* CommentResponseDTO.swift */,
 				AD6B098326BFFF52004644D2 /* EventResponseDTO.swift */,
 				AD6B098926C00891004644D2 /* OrganzationResponseDTO.swift */,
 			);
@@ -1788,6 +1795,8 @@
 				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
 				AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */,
 				AD39FE5726BAD67600F055FD /* LoginFlowCoordinator.swift in Sources */,
+				AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */,
+				AD6B09A726C2767D004644D2 /* IssueUseCase.swift in Sources */,
 				AD6B099226C014F7004644D2 /* Event.swift in Sources */,
 				AD39FEA326BC589200F055FD /* ItemsListViewController.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,
@@ -1835,8 +1844,8 @@
 				AD20E56C26AB4090003BB5F1 /* SearchResultViewController.swift in Sources */,
 				AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */,
 				AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */,
-				AD8722D426B7F220004649A4 /* RepositoryCellsStrategy.swift in Sources */,
 				AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */,
+				AD6B09AF26C281BF004644D2 /* IssueFactory.swift in Sources */,
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
 				ADA7501326AD2E9500783E71 /* SearchService.swift in Sources */,
@@ -1847,7 +1856,7 @@
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
 				AD6B097626BFECFD004644D2 /* MyProfileFactory.swift in Sources */,
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
-				AD39FDA126B91E8100F055FD /* CommentResponse.swift in Sources */,
+				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				ADA7501D26AD924500783E71 /* UserEndpointsOld.swift in Sources */,
 				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
@@ -1911,6 +1920,7 @@
 				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
 				AD6B096E26BFB231004644D2 /* UserProfileRepository.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
+				AD6B09A926C27769004644D2 /* IssueRepository.swift in Sources */,
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
 				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
 				AD2E263426BD3B0D00B25772 /* MyProfileUseCase.swift in Sources */,
@@ -1936,6 +1946,7 @@
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* MyFavoritesStorage.swift in Sources */,
+				AD6B09AB26C277A7004644D2 /* IssueRepositoryImpl.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				AD79550F26AC11D4004E6973 /* SearchConfigurator.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
@@ -1956,6 +1967,7 @@
 				AD20E51B26A9B5FE003BB5F1 /* IssueDetailsHeaderTableViewCell.swift in Sources */,
 				AD6B098626C0010F004644D2 /* EventsRepository.swift in Sources */,
 				AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */,
+				AD6B09A526C274C6004644D2 /* Comment.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* IssueResponseDTO.swift in Sources */,
 				AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */,
 				AD8722EB26B83A48004649A4 /* FavoritesPresenter.swift in Sources */,

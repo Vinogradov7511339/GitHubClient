@@ -103,14 +103,14 @@ extension RepositoryService {
         }
     }
     
-    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping ([CommentResponse]?, Error?) -> Void) {
+    func fetchDiscussions(for repository: RepositoryResponse, completion: @escaping ([CommentResponseDTO]?, Error?) -> Void) {
         let endpoint = RepositoriesEndpoint.fetchDiscussions(repository: repository)
         request(endpoint) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            if let comments = self.decode(of: [CommentResponse].self, from: data) {
+            if let comments = self.decode(of: [CommentResponseDTO].self, from: data) {
                 completion(comments, nil)
             } else {
                 completion(nil, nil)

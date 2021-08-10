@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommentResponse: Codable {
+class CommentResponseDTO: Codable {
     let htmlUrl: URL
     let url: URL
     let id: Int
@@ -16,7 +16,7 @@ class CommentResponse: Codable {
     let path: String?
     let position: Int?
     let line: Int?
-    let commitId: String
+    let commitId: String?
     let user: UserResponseDTO
     let createdAt: String
     let updatedAt: String
@@ -48,5 +48,13 @@ class CommentResponse: Codable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.authorAssociation = authorAssociation
+    }
+
+    func toDomain() -> Comment {
+        .init(
+            id: id,
+            body: body,
+            user: user.map()
+        )
     }
 }

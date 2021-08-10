@@ -32,8 +32,11 @@ final class MainSceneDIContainer: NSObject {
 
     let dependencies: MainSceneCoordinatorDependencies
 
+    private let issueFactory: IssueFactory
+
     init(dependencies: MainSceneCoordinatorDependencies) {
         self.dependencies = dependencies
+        self.issueFactory = IssueFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 
     func makeTabController() -> UITabBarController {
@@ -44,6 +47,10 @@ final class MainSceneDIContainer: NSObject {
         controller.tabBar.isTranslucent = false
 //        UITabBar.appearance().barTintColor = .systemBackground
         return controller
+    }
+
+    func makeIssueController(issue: Issue, actions: IssueActions) -> IssueDetailsViewController {
+        issueFactory.makeIssueViewController(issue: issue, actions: actions)
     }
 
     private func getControllers() -> [UIViewController] {

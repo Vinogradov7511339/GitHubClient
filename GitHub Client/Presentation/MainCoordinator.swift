@@ -12,7 +12,7 @@ class MainCoordinator: NSObject {
     private let container: MainSceneDIContainer
     private let tabBarController: UITabBarController
     private let window: UIWindow
-    
+
     private var currentNavigationController: UINavigationController {
         if let navigation = tabBarController.selectedViewController as? UINavigationController {
             return navigation
@@ -30,6 +30,7 @@ class MainCoordinator: NSObject {
     func start() {
         container.openRepository = startRepFlow(repository:)
         container.openUserProfile = startUserFlow(user:)
+        container.openIssue = startIssueFlow(issue:)
         
         if let previousController = window.rootViewController {
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft) {
@@ -69,5 +70,11 @@ class MainCoordinator: NSObject {
         let repSceneDIContainer = container.makeRepSceneDIContainer(dependencies: dependency)
         let flow = repSceneDIContainer.makeRepFlowCoordinator(in: currentNavigationController)
         flow.start()
+    }
+
+    func startIssueFlow(issue: Issue) {
+        let actions = IssueActions()
+        let viewController = container.makeIssueController(issue: issue, actions: actions)
+        currentNavigationController.pushViewController(viewController, animated: true)
     }
 }

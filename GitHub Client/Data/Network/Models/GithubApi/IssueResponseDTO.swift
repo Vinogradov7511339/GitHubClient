@@ -13,10 +13,10 @@ struct IssueResponseDTO: Codable {
     let url: URL?
     let repositoryUrl: URL?
     let labelsUrl: String?
-    let commentsUrl: URL?
+    let commentsUrl: URL
     let eventsUrl: URL?
     let htmlUrl: URL?
-    let number: Int?
+    let number: Int
     let state: String?
     let title: String?
     let body: String?
@@ -41,7 +41,8 @@ struct IssueResponseDTO: Codable {
         }
         return Issue(
             id: id,
-            number: number ?? -14,
+            number: number,
+            commentsURL: commentsUrl,
             state: state ?? "NaN",
             title: title ?? "NaN",
             body: body ?? "NaN",
