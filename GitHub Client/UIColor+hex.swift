@@ -18,11 +18,11 @@ extension UIColor {
     
     public convenience init?(hex: String, alpha: CGFloat) {
         guard hex.hasPrefix("#") else { return nil }
-    
+
         let start = hex.index(hex.startIndex, offsetBy: 1)
         let hexColor = String(hex[start...])
         guard hexColor.count == 6 else { return nil }
-        
+
         let red, green, blue: CGFloat
         let scanner = Scanner(string: hexColor)
         var hexNumber: UInt64 = 0

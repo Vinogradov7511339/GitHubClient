@@ -8,7 +8,5 @@
 import UIKit
 
 extension UIViewController {
-    func showErrorAlert() {
-        
-    }
+    func showErrorAlert() {}
 }

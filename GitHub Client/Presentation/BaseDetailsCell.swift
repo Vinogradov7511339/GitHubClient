@@ -25,11 +25,15 @@ struct BaseDetailsCellViewModel {
     }
 
     static var repositories: BaseDetailsCellViewModel {
-        .init(color: .repositories, image: .discussions, title: .repositories)
+        .init(color: .repositories, image: .repositories, title: .repositories)
     }
 
     static var organizations: BaseDetailsCellViewModel {
-        .init(color: .organizations, image: .discussions, title: .organizations)
+        .init(color: .organizations, image: .organizations, title: .organizations)
+    }
+
+    static var starred: BaseDetailsCellViewModel {
+        .init(color: .starred, image: .starred, title: .starred)
     }
 }
 

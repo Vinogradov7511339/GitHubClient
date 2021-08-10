@@ -132,16 +132,13 @@ extension ProfileViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.tableItems.value.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableItems.value[section].count
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableItem = viewModel.tableItems.value[indexPath.section][indexPath.row]
+        let tableItem = viewModel.tableItems.value[indexPath.row]
         let cell = viewModel.cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: tableItem)
         return cell

@@ -8,30 +8,42 @@
 import UIKit
 
 extension UIImage {
-     static var issue: UIImage? {
-        UIImage(systemName: "smallcircle.fill.circle")
-     }
+    static var issue: UIImage? {
+        .init(systemName: "smallcircle.fill.circle")
+    }
 
-     static var pullRequest: UIImage? {
-        UIImage(named: "icon_cell_git_pull_request")
-     }
+    static var pullRequest: UIImage? {
+        .init(named: "icon_cell_git_pull_request")
+    }
 
-     static var releases: UIImage? {
-        UIImage(systemName: "tag")
-     }
+    static var releases: UIImage? {
+        .init(systemName: "tag")
+    }
 
-     static var discussions: UIImage? {
-        UIImage(systemName: "message")
-     }
+    static var repositories: UIImage? {
+        .init(systemName: "book.closed")
+    }
 
-     static var watchers: UIImage? {
-        UIImage(named: "icon_cell_theme")
-     }
+    static var discussions: UIImage? {
+        .init(systemName: "message")
+    }
 
-     static var license: UIImage? {
-        UIImage(systemName: "scalemass")
-     }
- }
+    static var organizations: UIImage? {
+        .init(systemName: "building.2")
+    }
+
+    static var watchers: UIImage? {
+        .init(named: "icon_cell_theme")
+    }
+
+    static var license: UIImage? {
+        .init(systemName: "scalemass")
+    }
+
+    static var starred: UIImage? {
+        .init(systemName: "star")
+    }
+}
 
 extension UIColor {
     static var issue: UIColor { .systemGreen }
@@ -43,6 +55,7 @@ extension UIColor {
     static var releases: UIColor { .systemGray }
     static var watchers: UIColor { .systemYellow }
     static var license: UIColor { .systemRed }
+    static var starred: UIColor { .systemYellow }
 }
 
 extension String {
@@ -76,5 +89,9 @@ extension String {
 
     static var license: String {
         NSLocalizedString("License", comment: "")
+    }
+
+    static var starred: String {
+        NSLocalizedString("Starred", comment: "")
     }
 }

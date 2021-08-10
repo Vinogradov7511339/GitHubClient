@@ -34,7 +34,7 @@ protocol ProfileViewModelInput {
 
 protocol ProfileViewModelOutput {
     var cellManager: TableCellManager { get }
-    var tableItems: Observable<[[Any]]> { get }
+    var tableItems: Observable<[Any]> { get }
     var user: Observable<User?> { get }
 }
 
@@ -45,7 +45,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
     // MARK: - Output
 
     let cellManager: TableCellManager
-    let tableItems: Observable<[[Any]]> = Observable(ProfileViewModelImpl.items())
+    let tableItems: Observable<[Any]> = Observable(ProfileViewModelImpl.items())
     var user: Observable<User?> = Observable(nil)
 
     // MARK: - Private
@@ -56,7 +56,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
     init(useCase: MyProfileUseCase, actions: ProfileActions) {
         self.useCase = useCase
         self.actions = actions
-        cellManager = TableCellManager.create(cellType: TableViewCell.self)
+        cellManager = TableCellManager.create(cellType: BaseDetailsCell.self)
     }
 }
 
@@ -101,16 +101,8 @@ extension ProfileViewModelImpl {
         }
     }
 
-    static func items() -> [[TableCellViewModel]] {
-        return [
-            [TableCellViewModel(text: "Repositories", detailText: "text2"),
-             TableCellViewModel(text: "Starred", detailText: "text2"),
-             TableCellViewModel(text: "Organizations", detailText: "text2")],
-            [TableCellViewModel(text: "Following", detailText: "text2"),
-             TableCellViewModel(text: "Followers", detailText: "text2"),
-             TableCellViewModel(text: "Language", detailText: "text2")],
-            [TableCellViewModel(text: "Settings", detailText: "text2")]
-        ]
+    static func items() -> [BaseDetailsCellViewModel] {
+        return [.repositories, .starred, .organizations]
     }
 }
 
