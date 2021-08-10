@@ -21,8 +21,7 @@ protocol CommitsListPresenterOutput: AnyObject {
 
 class CommitsListPresenter {
     var output: CommitsListPresenterOutput?
-    
-    private let service = ServicesManager.shared.repositoryService
+
     private let repository: RepositoryResponse
     
     init(_ repository: RepositoryResponse) {
@@ -43,14 +42,6 @@ extension CommitsListPresenter: CommitsListPresenterInput {
 // MARK: - private
 private extension CommitsListPresenter {
     func fetchCommits() {
-        service.fetchCommits(for: repository) { commits, error in
-            if let commits = commits {
-                DispatchQueue.main.async {
-                    let viewModels = commits.map { self.map($0) }
-                    self.output?.display(viewModels: viewModels)
-                }
-            }
-        }
     }
     
     func map(_ commit: CommitInfoResponse) -> CommitCellViewModel {

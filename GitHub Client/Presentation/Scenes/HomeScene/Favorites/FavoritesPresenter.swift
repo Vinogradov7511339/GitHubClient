@@ -21,8 +21,7 @@ protocol FavoritesPresenterOutput: AnyObject {
 
 class FavoritesPresenter {
     var output: FavoritesPresenterOutput?
-    
-    private let service = ServicesManager.shared.repositoryService
+
     private let storage = FavoritesStorage.shared
     
     var favorites: [RepositoryResponse] = []
@@ -64,13 +63,6 @@ extension FavoritesPresenter: FavoritesPresenterInput {
 // MARK: - private
 private extension FavoritesPresenter {
     func fetchRepositories() {
-        service.allRepositoriesToWhichIHasAccess { repositories, error in
-            if let repositories = repositories {
-                DispatchQueue.main.async {
-                    self.filterRepositories(repositories)
-                }
-            }
-        }
     }
     
     func map(_ repository: RepositoryResponse, isFavorite: Bool) -> FavoriteRepositoryCellViewModel {

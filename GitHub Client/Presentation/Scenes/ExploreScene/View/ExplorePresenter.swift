@@ -51,7 +51,6 @@ class ExplorePresenter: NSObject {
             CollectionCellManager.create(cellType: SmallCategoryCollectionViewCell.self)
     ]
     
-    private let service = ServicesManager.shared.repositoryService
     private var repositories: [RepositoryResponse] = []
 }
 
@@ -204,17 +203,6 @@ extension ExplorePresenter: UICollectionViewDataSource {
 // MARK: - ExplorePresenterInput
 extension ExplorePresenter: ExplorePresenterInput {
     func viewDidLoad() {
-        service.mostPopularRepositories { [weak self] result, error in
-            if let repositories = result?.items {
-                self?.repositories = repositories
-                DispatchQueue.main.async {
-                    self?.mapRepositories(repositories: repositories)
-                }
-            }
-            if let error = error {
-                print("error \(error)")
-            }
-        }
     }
 }
 

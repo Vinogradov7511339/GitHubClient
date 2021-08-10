@@ -13,7 +13,7 @@ struct LoginViewModelActions {
 
 protocol LoginViewModelInput {
     func viewDidLoad()
-    func didReceive(tokenResponse: TokenResponse)
+    func fetchToken(authCode: String)
 }
 
 protocol LoginViewModelOutput {
@@ -40,8 +40,15 @@ class LoginViewModelImpl: LoginViewModel {
 extension LoginViewModelImpl {
     func viewDidLoad() {}
 
-    func didReceive(tokenResponse: TokenResponse) {
-        actions.userLoggedIn()
+    func fetchToken(authCode: String) {
+        loginUseCase.fetchToken(authCode: authCode) { result in
+            switch result {
+            case .success(_):
+                self.finishLoginFlow()
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
     }
 }
 

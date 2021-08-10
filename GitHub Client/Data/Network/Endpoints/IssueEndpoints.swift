@@ -11,7 +11,6 @@ struct IssueEndpoints {
     static func getComments(model: IssueRequestModel) -> Endpoint<[CommentResponseDTO]> {
         return Endpoint(path: model.issue.commentsURL.absoluteString,
                         isFullPath: true,
-                        headerParamaters: EndpointOld.defaultHeaders,
                         queryParametersEncodable: ["page": model.page])
     }
 }

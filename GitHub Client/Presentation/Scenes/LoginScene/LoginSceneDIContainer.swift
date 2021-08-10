@@ -10,13 +10,16 @@ import UIKit
 final class LoginSceneDIContainer {
     
     struct Dependencies {
+        let dataTransferService: DataTransferService
         var userLoggedIn: () -> Void
     }
     
     let dependencies: Dependencies
+    private let loginFactory: LoginFactory
     
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+        self.loginFactory = LoginFactoryImpl(dataTransferService: dependencies.dataTransferService)
     }
 
     func makeLoginFlowCoordinator(in window: UIWindow) -> LoginFlowCoordinator {
@@ -32,14 +35,6 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     // MARK: - Login flow
 
     func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController {
-        return LoginViewController.create(with: makeLoginViewModel(actions: actions))
-    }
-    
-    func makeLoginViewModel(actions: LoginViewModelActions) -> LoginViewModel {
-        return LoginViewModelImpl(loginUseCase: makeLoginUseCase(), actions: actions)
-    }
-
-    func makeLoginUseCase() -> LoginUseCase {
-        return LoginUseCaseImpl()
+        loginFactory.makeLoginViewController(actions: actions)
     }
 }

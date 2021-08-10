@@ -29,7 +29,7 @@ class Endpoint<R>: ResponseRequestable {
     init(path: String,
          isFullPath: Bool = false,
          method: HTTPMethodType = .get,
-         headerParamaters: QueryType = [:],
+         headerParamaters: QueryType = defaultHeaders,
          queryParametersEncodable: Encodable? = nil,
          queryParameters: BodyType = [:],
          bodyParamatersEncodable: Encodable? = nil,
@@ -46,5 +46,20 @@ class Endpoint<R>: ResponseRequestable {
         self.bodyParamaters = bodyParamaters
         self.bodyEncoding = bodyEncoding
         self.responseDecoder = responseDecoder
+    }
+
+    static var defaultHeaders: [String: String] {
+        var headers: [String: String] = [:]
+        headers["Authorization"] = authorizationHeader
+        headers["Accept"] = "application/vnd.github.v3+json"
+        return headers
+    }
+
+    static var authorizationHeader: String {
+        if let tokenResponse = UserStorage.shared.token {
+            return "token \(tokenResponse.accessToken)"
+        } else {
+            return ""
+        }
     }
 }

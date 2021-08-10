@@ -40,7 +40,9 @@ final class AppCoordinator {
     }
 
     func startLoginFlow() {
-        let dependency = LoginSceneDIContainer.Dependencies.init(userLoggedIn: startMainFlow)
+        let dependency = LoginSceneDIContainer.Dependencies.init(
+            dataTransferService: appDIContainer.apiDataTransferService,
+            userLoggedIn: startMainFlow)
         let loginDIContainer = appDIContainer.makeLoginSceneDIContainer(dependencies: dependency)
         let flow = loginDIContainer.makeLoginFlowCoordinator(in: window)
         flow.start()

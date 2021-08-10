@@ -26,13 +26,14 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var resultViewController: SearchResultViewController = {
-        let resultController = SearchConfigurator.createModule()
-        return resultController
-    }()
+//    private lazy var resultViewController: SearchResultViewController = {
+////        fatalError()
+////        let resultController = SearchConfigurator.createModule()
+////        return resultController
+//    }()
     
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: resultViewController)
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search GitHub"
@@ -111,7 +112,7 @@ extension HomeViewController: UISearchResultsUpdating {
         if !searchController.isActive {
             return
         }
-        resultViewController.text = searchController.searchBar.text ?? ""
+//        resultViewController.text = searchController.searchBar.text ?? ""
     }
 }
 
@@ -140,7 +141,7 @@ extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         viewModel.tableItems.value.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.tableItems.value[section].count
     }

@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 protocol AuthorizationViewControllerDelegate: AnyObject {
-    func success(tokenResponse: TokenResponse)
+    func fetchToken(authCode: String)
     func failure()
 }
 
@@ -31,7 +31,6 @@ class AuthorizationViewController: UIViewController {
     weak var delegate: AuthorizationViewControllerDelegate?
     
     private let uuid = UIDevice.current.identifierForVendor!.uuidString
-    private let tokenService = ServicesManager.shared.tokenService
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,20 +71,7 @@ class AuthorizationViewController: UIViewController {
             print("no code")
             return
         }
-        fetchToken(code)
-    }
-    
-    private func fetchToken(_ code: String) {
-        tokenService.fetchToken(authCode: code) { response, error in
-            if let response = response {
-                UserStorage.shared.saveTokenResponse(response)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true) {
-                        self.delegate?.success(tokenResponse: response)
-                    }
-                }
-            }
-        }
+        delegate?.fetchToken(authCode: code)
     }
 }
 

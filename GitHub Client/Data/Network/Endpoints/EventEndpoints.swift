@@ -10,7 +10,6 @@ import Foundation
 struct EventEndpoints {
     static func getMyEvents(page: Int) -> Endpoint<[EventResponseDTO]> {
         return Endpoint(path: "events",
-                        headerParamaters: EndpointOld.defaultHeaders,
                         queryParametersEncodable: ["page": page])
     }
 }

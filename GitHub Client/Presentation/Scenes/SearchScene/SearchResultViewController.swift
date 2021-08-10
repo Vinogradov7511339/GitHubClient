@@ -32,7 +32,7 @@ class SearchResultViewController: UIViewController {
         return view
     }()
     
-    var presenter: SearchPresenterInput?
+//    var presenter: SearchPresenterInput?
     var text: String = "" {
         didSet {
             if !text.isEmpty {
@@ -84,15 +84,11 @@ class SearchResultViewController: UIViewController {
     }
 }
 
-// MARK: - SearchPresenterOutput
-extension SearchResultViewController: SearchPresenterOutput {
-    
-}
 
 // MARK: - UITableViewDelegate
 extension SearchResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didSelectItem(at: indexPath)
+//        presenter?.didSelectItem(at: indexPath)
     }
 }
 

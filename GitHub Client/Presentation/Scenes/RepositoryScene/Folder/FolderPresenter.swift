@@ -21,8 +21,7 @@ protocol FolderPresenterOutput: AnyObject {
 
 class FolderPresenter {
     var output: FolderPresenterOutput?
-    
-    private let service = ServicesManager.shared.repositoryService
+
     private let filePath: URL
     private var items: [DirectoryResponse] = []
     
@@ -50,15 +49,6 @@ extension FolderPresenter: FolderPresenterInput {
 // MARK: - private
 private extension FolderPresenter {
     func fetchContent() {
-        service.fetchContent(filePath: filePath) { items, error in
-            if let items = items {
-                self.items = items
-                let mappedItems = items.map { self.map($0) }
-                DispatchQueue.main.async {
-                    self.output?.display(viewModels: mappedItems)
-                }
-            }
-        }
     }
     
     func openFolder(filePath: URL) {

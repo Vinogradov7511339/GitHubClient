@@ -19,8 +19,7 @@ protocol FilePresenterOutput: AnyObject {
 
 class FilePresenter {
     var output: FilePresenterOutput?
-    
-    private let service = ServicesManager.shared.repositoryService
+
     private let filePath: URL
     
     init(_ filePath: URL) {
@@ -38,13 +37,5 @@ extension FilePresenter: FilePresenterInput {
 // MARK: - private
 private extension FilePresenter {
     func fetchContent() {
-        service.fetchFile(filePath: filePath) { file, error in
-            if let file = file {
-                let decoded = file.content.fromBase64()
-                DispatchQueue.main.async {
-                    self.output?.display(text: decoded ?? "NaN")
-                }
-            }
-        }
     }
 }

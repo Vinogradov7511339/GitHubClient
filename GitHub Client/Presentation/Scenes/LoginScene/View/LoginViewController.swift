@@ -53,7 +53,6 @@ class LoginViewController: UIViewController {
     }()
     
     private let webView = WKWebView()
-    private let service = ServicesManager.shared.tokenService
     private var viewModel: LoginViewModel!
     
     static func create(with viewModel: LoginViewModel) -> LoginViewController {
@@ -80,10 +79,8 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: AuthorizationViewControllerDelegate {
-    func success(tokenResponse: TokenResponse) {
-        viewModel?.didReceive(tokenResponse: tokenResponse)
-//        UserStorage.shared.saveTokenResponse(tokenResponse)
-//        ApplicationPresenter.shared.login()
+    func fetchToken(authCode: String) {
+        viewModel.fetchToken(authCode: authCode)
     }
     
     func failure() {
