@@ -10,9 +10,9 @@ protocol HomeSceneFactory {
 
 final class HomeSceneFactoryImpl {
     private let dataTransferService: DataTransferService
-    private let storage: MyFavoritesStorage
+    private let storage: FavoritesStorage
 
-    init(dataTransferService: DataTransferService, storage: MyFavoritesStorage) {
+    init(dataTransferService: DataTransferService, storage: FavoritesStorage) {
         self.dataTransferService = dataTransferService
         self.storage = storage
     }

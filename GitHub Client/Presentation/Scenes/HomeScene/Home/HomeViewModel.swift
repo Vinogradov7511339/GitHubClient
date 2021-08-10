@@ -19,14 +19,13 @@ struct HomeActions {
 }
 
 protocol HomeViewModelInput {
-    func viewDidLoad()
+    func viewWillAppear()
     func refresh()
     func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol HomeViewModelOutput {
-    var cellManager: TableCellManager { get }
-    var tableItems: Observable<[[Any]]> { get }
+    var favorites: Observable<[Repository]> { get }
 }
 
 typealias HomeViewModel = HomeViewModelInput & HomeViewModelOutput
@@ -35,44 +34,42 @@ final class HomeViewModelImpl: HomeViewModel {
 
     // MARK: - Output
 
-    let cellManager: TableCellManager
-    let tableItems: Observable<[[Any]]> = Observable(HomeViewModelImpl.items())
+    var favorites: Observable<[Repository]> = Observable([])
 
     // MARK: - Private
 
     private let useCase: HomeUseCase
     private let actions: HomeActions
-    private var favorites: [Repository] = []
-    private var recent: [IssueResponseDTO] = []
 
     init(useCase: HomeUseCase, actions: HomeActions) {
         self.useCase = useCase
         self.actions = actions
-        cellManager = TableCellManager.create(cellType: TableViewCell.self)
     }
 
-    static func items() -> [[TableCellViewModel]] {
+    static func items() -> [TableCellViewModel] {
         return [
-            [
-                TableCellViewModel(text: "Issues", detailText: "text2"),
-                TableCellViewModel(text: "Pull Requests", detailText: "text2"),
-                TableCellViewModel(text: "Discussions", detailText: "text2"),
-                TableCellViewModel(text: "Repositories", detailText: "text2"),
-                TableCellViewModel(text: "Organizations", detailText: "text2")
-            ]
+            TableCellViewModel(text: "Issues", detailText: "text2"),
+            TableCellViewModel(text: "Pull Requests", detailText: "text2"),
+            TableCellViewModel(text: "Discussions", detailText: "text2"),
+            TableCellViewModel(text: "Repositories", detailText: "text2"),
+            TableCellViewModel(text: "Organizations", detailText: "text2")
         ]
     }
 }
 
 extension HomeViewModelImpl {
-    func viewDidLoad() {
-        useCase.fetchRecent { result in
+    func viewWillAppear() {
+        useCase.fetchFavorites { result in
+            switch result {
+            case .success(let favorites):
+                self.favorites.value = favorites
+            case .failure(let error):
+                self.handle(error)
+            }
         }
     }
-    func refresh() {
-        useCase.fetchRecent { result in
-        }
-    }
+
+    func refresh() {}
 
     func didSelectItem(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
@@ -89,7 +86,7 @@ extension HomeViewModelImpl {
         case (0, 5):
             actions.showRepositories()
         case (1, _):
-            let repository = favorites[indexPath.row]
+            let repository = favorites.value[indexPath.row]
             actions.showRepository(repository)
         case (2, _):
             break
@@ -99,4 +96,9 @@ extension HomeViewModelImpl {
             break
         }
     }
+}
+
+// MARK: - Private
+private extension HomeViewModelImpl {
+    func handle(_ error: Error) {}
 }

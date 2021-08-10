@@ -21,8 +21,6 @@ protocol FavoritesPresenterOutput: AnyObject {
 
 class FavoritesPresenter {
     var output: FavoritesPresenterOutput?
-
-    private let storage = FavoritesStorage.shared
     
     var favorites: [RepositoryResponse] = []
     var notFavorites: [RepositoryResponse] = []
@@ -39,12 +37,12 @@ extension FavoritesPresenter: FavoritesPresenterInput {
         let isRemoving = indexPath.section == 0
         let insertedIndex: Int
         if isRemoving {
-            storage.remove(favorites[indexPath.row])
+//            storage.remove(favorites[indexPath.row])
             let removed = favorites.remove(at: indexPath.row)
             notFavorites.insert(removed, at: 0)
             insertedIndex = 0
         } else {
-            storage.add(notFavorites[indexPath.row])
+//            storage.add(notFavorites[indexPath.row])
             let added = notFavorites.remove(at: indexPath.row)
             favorites.append(added)
             insertedIndex = favorites.count - 1
@@ -66,13 +64,14 @@ private extension FavoritesPresenter {
     }
     
     func map(_ repository: RepositoryResponse, isFavorite: Bool) -> FavoriteRepositoryCellViewModel {
+        fatalError()
         let imageName = isFavorite ? "xmark.circle.fill" : "plus.circle"
         let tintColor: UIColor = isFavorite ? .systemGray : .link
         let image = UIImage(systemName: imageName)?.withTintColor(tintColor, renderingMode: .alwaysOriginal)
-        return FavoriteRepositoryCellViewModel(
-            image: image,
-            repository: repository
-        )
+//        return FavoriteRepositoryCellViewModel(
+//            image: image,
+//            repository: repository
+//        )
     }
     
     func filterRepositories(_ repositories: [RepositoryResponse]) {
@@ -80,29 +79,15 @@ private extension FavoritesPresenter {
         notFavorites = []
 
         for repository in repositories {
-            if storage.contains(repository) {
+//            if storage.contains(repository) {
                 favorites.append(repository)
-            } else {
+//            } else {
                 notFavorites.append(repository)
-            }
+//            }
         }
 
         let mappedFavorites = favorites.map { map($0, isFavorite: true) }
         let mappedNotFavorites = notFavorites.map { map($0, isFavorite: false) }
         self.output?.display(viewModels: [mappedFavorites, mappedNotFavorites])
-    }
-}
-
-class FavoritesStorage {
-
-    static let shared = FavoritesStorage()
-
-    func contains(_ repository: RepositoryResponse) -> Bool {
-        return repository.id == 285244403
-    }
-
-    func remove(_ repository: RepositoryResponse) {}
-
-    func add(_ repository: RepositoryResponse) {
     }
 }

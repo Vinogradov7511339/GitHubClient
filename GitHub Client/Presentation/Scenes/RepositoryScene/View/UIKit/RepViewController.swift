@@ -85,7 +85,18 @@ extension RepViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        viewModel.adapter.cellForRow(in: tableView, at: indexPath)
+        let cell = viewModel.adapter.cellForRow(in: tableView, at: indexPath)
+        if let header = cell as? RepositoryHeaderTableViewCell {
+            header.delegate = self
+        }
+        return cell
+    }
+}
+
+// MARK: - RepositoryHeaderTableViewCellDelegate
+extension RepViewController: RepositoryHeaderTableViewCellDelegate {
+    func favoritesButtonTouchUpInside() {
+        viewModel.addToFavorites()
     }
 }
 

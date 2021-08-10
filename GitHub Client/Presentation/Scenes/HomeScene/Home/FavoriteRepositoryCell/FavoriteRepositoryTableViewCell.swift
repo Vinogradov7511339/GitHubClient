@@ -8,8 +8,7 @@
 import UIKit
 
 struct FavoriteRepositoryCellViewModel {
-    let image: UIImage?
-    let repository: RepositoryResponse
+    let repository: Repository
 }
 
 class FavoriteRepositoryTableViewCell: BaseTableViewCell, NibLoadable {
@@ -28,9 +27,8 @@ class FavoriteRepositoryTableViewCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension FavoriteRepositoryTableViewCell: ConfigurableCell {
     func configure(viewModel: FavoriteRepositoryCellViewModel) {
-        avatarImageView.set(url: viewModel.repository.owner?.avatarUrl)
-        ownerNameLabel.text = viewModel.repository.owner?.login ?? ""
-        repositoryNameLabel.text = viewModel.repository.name ?? ""
-        detailImageView.image = viewModel.image
+        avatarImageView.set(url: viewModel.repository.owner.avatarUrl)
+        ownerNameLabel.text = viewModel.repository.owner.login
+        repositoryNameLabel.text = viewModel.repository.name
     }
 }

@@ -11,6 +11,11 @@ class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModel!
 
+    private lazy var adapter: HomeAdapter = {
+        let adapter = HomeAdapterImpl()
+        return adapter
+    }()
+
     static func create(with viewModel: HomeViewModel) -> HomeViewController {
         let viewController = HomeViewController()
         viewController.viewModel = viewModel
@@ -48,32 +53,79 @@ class HomeViewController: UIViewController {
 //        "\(FavoritesEmptyCellViewModel.self)": TableCellManager.create(cellType: FavoritesEmptyTableViewCell.self),
 //        "\(RecentEventsCellViewModel.self)": TableCellManager.create(cellType: RecentEventsTableViewCell.self)
 //    ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupViews()
         activateConstraints()
         configureNavigationBar()
 
-        viewModel.cellManager.register(tableView: tableView)
+        adapter.register(tableView: tableView)
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        bind(to: viewModel)
 
         observeToNotifications()
-
-        viewModel.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+        viewModel.viewWillAppear()
     }
 
     @objc func refresh(_ sender: AnyObject) {
         viewModel.refresh()
     }
+}
 
+// MARK: - Binding
+private extension HomeViewController {
+    func bind(to viewModel: HomeViewModel) {
+        viewModel.favorites.observe(on: self) { [weak self] in self?.updateItems($0) }
+    }
+
+    func updateItems(_ favorites: [Repository]) {
+        adapter.favorites = favorites
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if !searchController.isActive {
+            return
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension HomeViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        adapter.numberOfSections()
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        adapter.numberOfRows(in: section)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        adapter.cellForRow(in: tableView, at: indexPath)
+    }
+}
+
+// MARK: - Keyobard Notifications
+private extension HomeViewController {
     private func observeToNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(
@@ -87,13 +139,13 @@ class HomeViewController: UIViewController {
             self.handleKeyboard(notification: notification)
         }
     }
-    
+
     private func handleKeyboard(notification: Notification) {
         guard notification.name == UIResponder.keyboardWillChangeFrameNotification else {
             view.layoutIfNeeded()
             return
         }
-        
+
         guard
             let info = notification.userInfo,
             let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
@@ -103,54 +155,6 @@ class HomeViewController: UIViewController {
 
         let keyboardHeight = keyboardFrame.cgRectValue.size.height
         self.searchController.showsSearchResultsController = keyboardHeight != 0
-    }
-}
-
-// MARK: - UISearchResultsUpdating
-extension HomeViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        if !searchController.isActive {
-            return
-        }
-//        resultViewController.text = searchController.searchBar.text ?? ""
-    }
-}
-
-// MARK: - UITableViewDelegate
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.didSelectItem(at: indexPath)
-    }
-
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return presenter?.header(for: section)
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return presenter?.heightForHeader(in: section) ?? 0.0
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return presenter?.heightForCell(at: indexPath) ?? 0.0
-//    }
-}
-
-// MARK: - UITableViewDataSource
-extension HomeViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.tableItems.value.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.tableItems.value[section].count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.tableItems.value[indexPath.section][indexPath.row]
-        let cell = viewModel.cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: item)
-        return cell
     }
 }
 

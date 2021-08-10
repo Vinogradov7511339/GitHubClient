@@ -11,6 +11,10 @@ struct RepositoryDetailsHeaderCellViewModel {
     let repository: Repository
 }
 
+protocol RepositoryHeaderTableViewCellDelegate: AnyObject {
+    func favoritesButtonTouchUpInside()
+}
+
 class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var avatarImageView: WebImageView!
@@ -25,9 +29,15 @@ class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var starButton: UIButton!
     @IBOutlet weak var watchButton: UIButton!
 
+    weak var delegate: RepositoryHeaderTableViewCellDelegate?
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
+    }
+
+    @IBAction func favoritesButtonTouchUpInside(_ sender: UIButton) {
+        delegate?.favoritesButtonTouchUpInside()
     }
 }
 

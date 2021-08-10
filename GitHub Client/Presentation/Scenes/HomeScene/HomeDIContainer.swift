@@ -9,6 +9,7 @@ import UIKit
 
 final class HomeDIContainer {
     struct Dependencies {
+        let favoritesStorage: FavoritesStorage
         let apiDataTransferService: DataTransferService
 
         var showOrganizations: () -> Void
@@ -22,11 +23,10 @@ final class HomeDIContainer {
     let dependencies: Dependencies
     private let homeSceneFactory: HomeSceneFactory
     private let itemsListFactory: ItemsListFactory
-    private let myFavoritesStorage = MyFavoritesStorageImpl()
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
-        self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: dependencies.apiDataTransferService, storage: myFavoritesStorage)
+        self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: dependencies.apiDataTransferService, storage: dependencies.favoritesStorage)
         self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
     }
 

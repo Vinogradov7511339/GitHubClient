@@ -9,6 +9,7 @@ import UIKit
 
 struct MainSceneCoordinatorDependencies {
     let apiDataTransferService: DataTransferService
+    let favoritesStorage: FavoritesStorage
 
     let logout: () -> Void
     let sendMail: (String) -> Void
@@ -71,6 +72,7 @@ final class MainSceneDIContainer: NSObject {
         switch page {
         case .home:
             let homeDependencies = HomeDIContainer.Dependencies(
+                favoritesStorage: dependencies.favoritesStorage,
                 apiDataTransferService: dependencies.apiDataTransferService,
                 showOrganizations: showOrganizations,
                 openIssue: openIssue,

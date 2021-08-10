@@ -24,10 +24,10 @@ struct RepActions {
 protocol RepViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func addToFavorites()
 }
 
 protocol RepViewModelOutput {
-
     var repository: Observable<Repository> { get }
     var adapter: ExtendedRepositoryAdapter { get }
 }
@@ -70,4 +70,14 @@ extension RepViewModelImpl {
         default: break
         }
     }
+
+    func addToFavorites() {
+        repUseCase.addFavorite(repository: repository.value) { error in
+//            self.handle(error)
+        }
+    }
+}
+
+private extension RepViewModelImpl {
+    func handle(_ error: Error) {}
 }

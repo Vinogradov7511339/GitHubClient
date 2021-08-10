@@ -10,6 +10,7 @@ import UIKit
 class RepSceneDIContainer {
 
     struct Dependencies {
+        let favoritesStorage: FavoritesStorage
         let repository: Repository
         var startUserFlow: (User) -> Void
         var openLink: (URL) -> Void
@@ -17,9 +18,12 @@ class RepSceneDIContainer {
     }
 
     private let dependencies: Dependencies
+    private let factory: ExtendedRepositoryFactory
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+        factory = ExtendedRepositoryFactoryImpl(repository: dependencies.repository,
+                                                favoriteStorage: dependencies.favoritesStorage)
     }
 
     func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
@@ -43,18 +47,6 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
     // MARK: - Rep flow
 
     func makeRepViewController(actions: RepActions) -> RepViewController {
-        return RepViewController.create(with: makeRepViewModel(actions: actions))
-    }
-
-    func makeRepViewModel(actions: RepActions) -> RepViewModel {
-        return RepViewModelImpl(repository: dependencies.repository, repUseCase: makeRepUseCase(), actions: actions)
-    }
-
-    func makeRepUseCase() -> RepUseCase {
-        return RepUseCaseImpl()
-    }
-
-    func makeRepRepository() -> RepRepository {
-        return RepRepositoryImpl()
+        factory.makeExtendedRepositoryViewController(actions: actions)
     }
 }

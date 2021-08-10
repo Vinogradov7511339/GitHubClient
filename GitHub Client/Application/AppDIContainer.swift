@@ -17,6 +17,11 @@ final class AppDIContainer {
         return DataTransferServiceImpl(with: networkService)
     }()
 
+    lazy var favoritesStorage: FavoritesStorage = {
+        let favoritesStorage = FavoritesStorageImpl()
+        return favoritesStorage
+    }()
+
     // MARK: - DIContainers of scenes
     func makeTabCoordinator(window: UIWindow, dependencies: MainSceneCoordinatorDependencies) -> MainCoordinator {
         let container = MainSceneDIContainer(dependencies: dependencies)
