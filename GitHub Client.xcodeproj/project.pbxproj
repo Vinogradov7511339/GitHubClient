@@ -161,6 +161,7 @@
 		AD39FEA326BC589200F055FD /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FEA226BC589200F055FD /* ItemsListViewController.swift */; };
 		AD39FEA526BC670900F055FD /* ItemsListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FEA426BC670900F055FD /* ItemsListRepository.swift */; };
 		AD39FEA926BC68B700F055FD /* ItemsListRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FEA826BC68B700F055FD /* ItemsListRepositoryImpl.swift */; };
+		AD3F070F26C2E63A00BC494E /* GitHub_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */; };
 		AD43E81226B44F2B008DF634 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43E81126B44F2B008DF634 /* TextStorage.swift */; };
 		AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */; };
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
@@ -280,6 +281,16 @@
 		ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5B0CC26B53A460085A344 /* FilterView.swift */; };
 		ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD3F071126C2E63A00BC494E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD3776D5269F2697000AA54C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD3776DC269F2697000AA54C;
+			remoteInfo = "GitHub Client";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		859346635E008217CBC1A9AB /* Pods-GitHub Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Client.release.xcconfig"; path = "Target Support Files/Pods-GitHub Client/Pods-GitHub Client.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +450,9 @@
 		AD39FEA226BC589200F055FD /* ItemsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
 		AD39FEA426BC670900F055FD /* ItemsListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListRepository.swift; sourceTree = "<group>"; };
 		AD39FEA826BC68B700F055FD /* ItemsListRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD3F070C26C2E63A00BC494E /* GitHub ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitHub ClientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub_ClientTests.swift; sourceTree = "<group>"; };
+		AD3F071026C2E63A00BC494E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD43E81126B44F2B008DF634 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
 		AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellManager.swift; sourceTree = "<group>"; };
@@ -568,6 +582,13 @@
 			files = (
 				ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */,
 				8A88E41BA8CE9D6071778A93 /* Pods_GitHub_Client.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD3F070926C2E63A00BC494E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +933,7 @@
 			children = (
 				ADB26B9F26B28EA90043CEBB /* TextCompiler */,
 				AD3776DF269F2697000AA54C /* GitHub Client */,
+				AD3F070D26C2E63A00BC494E /* GitHub ClientTests */,
 				AD3776DE269F2697000AA54C /* Products */,
 				AD8B7E6626B0692500368FA8 /* Frameworks */,
 				B3CBF346F940A4CEEBCC7762 /* Pods */,
@@ -922,6 +944,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3776DD269F2697000AA54C /* GitHub Client.app */,
+				AD3F070C26C2E63A00BC494E /* GitHub ClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1162,6 +1185,15 @@
 				AD6B09B226C29960004644D2 /* LoginRepositoryImpl.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AD3F070D26C2E63A00BC494E /* GitHub ClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */,
+				AD3F071026C2E63A00BC494E /* Info.plist */,
+			);
+			path = "GitHub ClientTests";
 			sourceTree = "<group>";
 		};
 		AD5591EB26BC6A6B0055C3F1 /* CommonTemp */ = {
@@ -1556,6 +1588,24 @@
 			productReference = AD3776DD269F2697000AA54C /* GitHub Client.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AD3F070B26C2E63A00BC494E /* GitHub ClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD3F071326C2E63A00BC494E /* Build configuration list for PBXNativeTarget "GitHub ClientTests" */;
+			buildPhases = (
+				AD3F070826C2E63A00BC494E /* Sources */,
+				AD3F070926C2E63A00BC494E /* Frameworks */,
+				AD3F070A26C2E63A00BC494E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD3F071226C2E63A00BC494E /* PBXTargetDependency */,
+			);
+			name = "GitHub ClientTests";
+			productName = "GitHub ClientTests";
+			productReference = AD3F070C26C2E63A00BC494E /* GitHub ClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1567,6 +1617,10 @@
 				TargetAttributes = {
 					AD3776DC269F2697000AA54C = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					AD3F070B26C2E63A00BC494E = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = AD3776DC269F2697000AA54C;
 					};
 				};
 			};
@@ -1584,6 +1638,7 @@
 			projectRoot = "";
 			targets = (
 				AD3776DC269F2697000AA54C /* GitHub Client */,
+				AD3F070B26C2E63A00BC494E /* GitHub ClientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1654,6 +1709,13 @@
 				AD20E4D526A8B313003BB5F1 /* AppIconPinkLight@2x-6.png in Resources */,
 				ADA68BAE26B55621004AC06C /* octocat_gray@2x-4.png in Resources */,
 				ADA68BA426B55621004AC06C /* octocat_gray-5.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD3F070A26C2E63A00BC494E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1935,7 +1997,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD3F070826C2E63A00BC494E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD3F070F26C2E63A00BC494E /* GitHub_ClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD3F071226C2E63A00BC494E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD3776DC269F2697000AA54C /* GitHub Client */;
+			targetProxy = AD3F071126C2E63A00BC494E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */ = {
@@ -2109,6 +2187,48 @@
 			};
 			name = Release;
 		};
+		AD3F071426C2E63A00BC494E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PAQ9ML4C7G;
+				INFOPLIST_FILE = "GitHub ClientTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "massacr.inc.GitHub-ClientTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHub Client.app/GitHub Client";
+			};
+			name = Debug;
+		};
+		AD3F071526C2E63A00BC494E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PAQ9ML4C7G;
+				INFOPLIST_FILE = "GitHub ClientTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "massacr.inc.GitHub-ClientTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHub Client.app/GitHub Client";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2126,6 +2246,15 @@
 			buildConfigurations = (
 				AD3776F2269F2699000AA54C /* Debug */,
 				AD3776F3269F2699000AA54C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD3F071326C2E63A00BC494E /* Build configuration list for PBXNativeTarget "GitHub ClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD3F071426C2E63A00BC494E /* Debug */,
+				AD3F071526C2E63A00BC494E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

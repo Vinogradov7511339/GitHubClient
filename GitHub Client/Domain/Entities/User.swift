@@ -7,7 +7,6 @@
 import Foundation
 
 struct User: Identifiable, Equatable {
-    // swiftlint:disable identifier_name
     let id: Int
     let avatarUrl: URL
     let login: String
