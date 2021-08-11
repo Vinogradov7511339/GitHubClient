@@ -103,10 +103,7 @@
 		AD3776ED269F2698000AA54C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */; };
 		AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* LoginViewController.swift */; };
 		AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F6269F270A000AA54C /* UserStorage.swift */; };
-		AD39FD9426B86A7600F055FD /* CommitsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9326B86A7600F055FD /* CommitsListViewController.swift */; };
-		AD39FD9626B86B4300F055FD /* CommitsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9526B86B4300F055FD /* CommitsListPresenter.swift */; };
 		AD39FD9826B86CC000F055FD /* CommitInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9726B86CC000F055FD /* CommitInfoResponse.swift */; };
-		AD39FD9A26B8734F00F055FD /* CommitsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9926B8734F00F055FD /* CommitsListConfigurator.swift */; };
 		AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FD9C26B874FB00F055FD /* CommitTableViewCell.swift */; };
 		AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD39FD9D26B874FB00F055FD /* CommitTableViewCell.xib */; };
 		AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39FDA026B91E8100F055FD /* CommentResponseDTO.swift */; };
@@ -233,7 +230,6 @@
 		AD8722E626B81A46004649A4 /* FileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722E526B81A46004649A4 /* FileConfigurator.swift */; };
 		AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722E826B83796004649A4 /* FavoritesViewController.swift */; };
 		AD8722EB26B83A48004649A4 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722EA26B83A48004649A4 /* FavoritesPresenter.swift */; };
-		AD8722ED26B83B50004649A4 /* FavoritesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722EC26B83B50004649A4 /* FavoritesConfigurator.swift */; };
 		AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */; };
 		AD8722F226B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */; };
 		ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */; };
@@ -265,6 +261,9 @@
 		ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */; };
 		ADBC1AD326C3F70E000F9B88 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* Commit.swift */; };
 		ADBC1AD526C3F763000F9B88 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD426C3F763000F9B88 /* Release.swift */; };
+		ADBC1AD726C434F2000F9B88 /* FavoritesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD626C434F2000F9B88 /* FavoritesFactory.swift */; };
+		ADBC1AD926C43582000F9B88 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD826C43582000F9B88 /* FavoritesViewModel.swift */; };
+		ADBC1ADB26C43D30000F9B88 /* FavoritesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ADA26C43D30000F9B88 /* FavoritesUseCase.swift */; };
 		ADC8180226B0021F00469BCF /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180126B0021F00469BCF /* Discussion.swift */; };
 		ADC8180426B002FE00469BCF /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180326B002FE00469BCF /* Reactions.swift */; };
 		ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */; };
@@ -386,10 +385,7 @@
 		AD3776EE269F2698000AA54C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD3776F4269F26B1000AA54C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AD3776F6269F270A000AA54C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
-		AD39FD9326B86A7600F055FD /* CommitsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsListViewController.swift; sourceTree = "<group>"; };
-		AD39FD9526B86B4300F055FD /* CommitsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsListPresenter.swift; sourceTree = "<group>"; };
 		AD39FD9726B86CC000F055FD /* CommitInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoResponse.swift; sourceTree = "<group>"; };
-		AD39FD9926B8734F00F055FD /* CommitsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsListConfigurator.swift; sourceTree = "<group>"; };
 		AD39FD9C26B874FB00F055FD /* CommitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell.swift; sourceTree = "<group>"; };
 		AD39FD9D26B874FB00F055FD /* CommitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitTableViewCell.xib; sourceTree = "<group>"; };
 		AD39FDA026B91E8100F055FD /* CommentResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponseDTO.swift; sourceTree = "<group>"; };
@@ -519,7 +515,6 @@
 		AD8722E526B81A46004649A4 /* FileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileConfigurator.swift; sourceTree = "<group>"; };
 		AD8722E826B83796004649A4 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD8722EA26B83A48004649A4 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
-		AD8722EC26B83B50004649A4 /* FavoritesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesConfigurator.swift; sourceTree = "<group>"; };
 		AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteRepositoryTableViewCell.xib; sourceTree = "<group>"; };
 		ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x.png"; sourceTree = "<group>"; };
@@ -551,6 +546,9 @@
 		ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseResponseDTO.swift; sourceTree = "<group>"; };
 		ADBC1AD226C3F70E000F9B88 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		ADBC1AD426C3F763000F9B88 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
+		ADBC1AD626C434F2000F9B88 /* FavoritesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesFactory.swift; sourceTree = "<group>"; };
+		ADBC1AD826C43582000F9B88 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		ADBC1ADA26C43D30000F9B88 /* FavoritesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesUseCase.swift; sourceTree = "<group>"; };
 		ADC8180126B0021F00469BCF /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		ADC8180326B002FE00469BCF /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
 		ADC8180C26B033B700469BCF /* DeveloperSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSettingsViewController.swift; sourceTree = "<group>"; };
@@ -687,6 +685,7 @@
 				AD2E262E26BD17F600B25772 /* HomeViewModel.swift */,
 				AD20E4EC26A8C060003BB5F1 /* HomeViewController.swift */,
 				AD6B09C426C2C07D004644D2 /* HomeAdapter.swift */,
+				AD8722E726B83784004649A4 /* Favorites */,
 				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				ADBC1ACC26C3D778000F9B88 /* Cells */,
 			);
@@ -903,16 +902,6 @@
 			path = "GitHub Client";
 			sourceTree = "<group>";
 		};
-		AD39FD9226B86A5D00F055FD /* CommitsList */ = {
-			isa = PBXGroup;
-			children = (
-				AD39FD9926B8734F00F055FD /* CommitsListConfigurator.swift */,
-				AD39FD9526B86B4300F055FD /* CommitsListPresenter.swift */,
-				AD39FD9326B86A7600F055FD /* CommitsListViewController.swift */,
-			);
-			path = CommitsList;
-			sourceTree = "<group>";
-		};
 		AD39FD9B26B874DF00F055FD /* CommitCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -977,6 +966,7 @@
 				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
 				AD6B098126BFFF2F004644D2 /* EventsUseCase.swift */,
 				AD6B09A626C2767D004644D2 /* IssueUseCase.swift */,
+				ADBC1ADA26C43D30000F9B88 /* FavoritesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1037,7 +1027,6 @@
 			children = (
 				AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */,
 				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
-				AD39FD9226B86A5D00F055FD /* CommitsList */,
 				AD8722DC26B816DE004649A4 /* File */,
 				AD8722D926B81610004649A4 /* Folder */,
 				AD39FE4A26BAB61500F055FD /* View */,
@@ -1082,7 +1071,6 @@
 				AD39FE6F26BB248400F055FD /* HomeFlowCoordinator.swift */,
 				ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */,
 				AD20E4EB26A8C045003BB5F1 /* Home */,
-				AD8722E726B83784004649A4 /* Favorites */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -1273,6 +1261,7 @@
 				AD6B09AE26C281BF004644D2 /* IssueFactory.swift */,
 				AD6B09B426C29BC0004644D2 /* LoginFactory.swift */,
 				AD6B09C626C2D31A004644D2 /* ExtendedRepositoryFactory.swift */,
+				ADBC1AD626C434F2000F9B88 /* FavoritesFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -1374,9 +1363,10 @@
 		AD8722E726B83784004649A4 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				AD8722EC26B83B50004649A4 /* FavoritesConfigurator.swift */,
 				AD8722EA26B83A48004649A4 /* FavoritesPresenter.swift */,
 				AD8722E826B83796004649A4 /* FavoritesViewController.swift */,
+				ADBC1AD826C43582000F9B88 /* FavoritesViewModel.swift */,
+				AD8722EE26B842AE004649A4 /* FavoriteRepositoryCell */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -1478,7 +1468,6 @@
 			children = (
 				AD20E57126AB4F40003BB5F1 /* SearchTypeCell */,
 				AD20E4F926A95DC1003BB5F1 /* FavoritesEmptyCell */,
-				AD8722EE26B842AE004649A4 /* FavoriteRepositoryCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1747,6 +1736,7 @@
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
 				AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */,
 				ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */,
+				ADBC1AD926C43582000F9B88 /* FavoritesViewModel.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
 				AD39FE8426BBDD9800F055FD /* MainSceneDIContainer.swift in Sources */,
 				AD39FE6926BB1B3B00F055FD /* AppCoordinator.swift in Sources */,
@@ -1779,7 +1769,6 @@
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
 				AD25E4D426B6D6990003B1E0 /* FilterButton.swift in Sources */,
 				AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */,
-				AD39FD9A26B8734F00F055FD /* CommitsListConfigurator.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,
@@ -1823,6 +1812,7 @@
 				AD6B09AF26C281BF004644D2 /* IssueFactory.swift in Sources */,
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
 				AD6B09B526C29BC0004644D2 /* LoginFactory.swift in Sources */,
+				ADBC1ADB26C43D30000F9B88 /* FavoritesUseCase.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
 				AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */,
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
@@ -1833,7 +1823,6 @@
 				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
 				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
-				AD8722ED26B83B50004649A4 /* FavoritesConfigurator.swift in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
 				AD39FD9826B86CC000F055FD /* CommitInfoResponse.swift in Sources */,
 				AD20E47126A897CC003BB5F1 /* SettingsGeneralViewController.swift in Sources */,
@@ -1841,7 +1830,6 @@
 				AD39FDAC26B947F400F055FD /* RepositoryDetails.swift in Sources */,
 				AD20E52A26AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift in Sources */,
 				AD2E262C26BC77AB00B25772 /* RepositoryResponseDTO.swift in Sources */,
-				AD39FD9426B86A7600F055FD /* CommitsListViewController.swift in Sources */,
 				AD6B09BF26C2A774004644D2 /* FavoriteDBEntity+Mapping.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelModel.swift in Sources */,
@@ -1878,6 +1866,7 @@
 				AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,
 				AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */,
+				ADBC1AD726C434F2000F9B88 /* FavoritesFactory.swift in Sources */,
 				AD20E51626A9B02B003BB5F1 /* IssueDetailsViewController.swift in Sources */,
 				AD6B099D26C049C4004644D2 /* IssueTableViewAdapter.swift in Sources */,
 				ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */,
@@ -1903,7 +1892,6 @@
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
 				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
-				AD39FD9626B86B4300F055FD /* CommitsListPresenter.swift in Sources */,
 				AD39FE7626BB24BE00F055FD /* ExploreFlowCoordinator.swift in Sources */,
 				ADD462E026BD63C100DD46CC /* HomeUseCase.swift in Sources */,
 				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,

@@ -8,7 +8,13 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-    var presenter: FavoritesPresenterInput!
+    var viewModel: FavoritesViewModel!
+
+    static func create(with viewModel: FavoritesViewModel) -> FavoritesViewController {
+        let viewController = FavoritesViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -31,7 +37,7 @@ class FavoritesViewController: UIViewController {
     }()
     
     private let cellManager = TableCellManager.create(cellType: FavoriteRepositoryTableViewCell.self)
-    private var viewModels: [[Any]] = [[]]
+    private var models: [[Any]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,26 +45,32 @@ class FavoritesViewController: UIViewController {
         activateConstraints()
         cellManager.register(tableView: tableView)
         configureNavigationBar()
-        presenter.viewDidLoad()
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
     }
-    
+
     @objc func doneTarget(_ sender: AnyObject) {
-        
+        dismiss(animated: true, completion: nil)
     }
 }
 
-// MARK: - FavoritesPresenterOutput
-extension FavoritesViewController: FavoritesPresenterOutput {
-    func display(viewModels: [[Any]]) {
-        self.viewModels = viewModels
+// MARK: - Binding
+private extension FavoritesViewController {
+    func bind(to viewModel: FavoritesViewModel) {
+        viewModel.models.observe(on: self) { [weak self] models in self?.update(models) }
+        viewModel.updates.observe(on: self) { [weak self] items in self?.updateTableView(items: items) }
+    }
+
+    func update(_ models: [[Any]]) {
+        self.models = models
         tableView.reloadData()
     }
-    
-    func updateTableView(deletedObjects: [IndexPath], insertedObjects: [IndexPath], viewModels: [[Any]]) {
-        self.viewModels = viewModels
+
+    func updateTableView(items: FavoritesViewModelOutput.UpdatedItems) {
+        self.models = items.viewModels
         tableView.beginUpdates()
-        tableView.deleteRows(at: deletedObjects, with: .fade)
-        tableView.insertRows(at: insertedObjects, with: .fade)
+        tableView.deleteRows(at: items.deletedObjects, with: .fade)
+        tableView.insertRows(at: items.insertedObjects, with: .fade)
         tableView.endUpdates()
     }
 }
@@ -75,7 +87,7 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 62.0
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 56.0 : 32.0
     }
@@ -85,7 +97,7 @@ extension FavoritesViewController: UITableViewDelegate {
         view.backgroundColor = .systemGroupedBackground
         return view
     }
-    
+
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -94,14 +106,14 @@ extension FavoritesViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModels.count
+        return models.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels[section].count
+        return models[section].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModels[indexPath.section][indexPath.row]
+        let viewModel = models[indexPath.section][indexPath.row]
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: viewModel)
         return cell
@@ -109,7 +121,7 @@ extension FavoritesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.didSelectRow(at: indexPath)
+        viewModel.didSelectRow(at: indexPath)
     }
 }
 

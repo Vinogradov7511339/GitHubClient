@@ -74,7 +74,9 @@ class HomeViewController: UIViewController {
         viewModel.refresh()
     }
 
-    @objc func showFavorites(_ sender: AnyObject) {}
+    @objc func showFavorites(_ sender: AnyObject) {
+        viewModel.showFavorites()
+    }
 }
 
 // MARK: - Binding

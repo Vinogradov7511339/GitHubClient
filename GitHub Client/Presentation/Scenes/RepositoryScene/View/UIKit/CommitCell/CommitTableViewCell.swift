@@ -93,7 +93,7 @@ extension CommitTableViewCell: ConfigurableCell {
 //            //todo
 //        }
     }
-    
+
     private func updateStatusIcon(isVerified: Bool) {
         let statusImageName = isVerified ? "checkmark" : "xmark"
         let templateColor: UIColor = isVerified ? .systemGreen : .systemRed

@@ -258,7 +258,7 @@ class RepositoryResponseDTO: Codable {
         self.license = license
     }
 
-    func map() -> Repository {
+    func toDomain() -> Repository {
         return Repository(
             repositoryId: id,
             owner: owner!.toDomain(),

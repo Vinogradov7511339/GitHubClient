@@ -26,38 +26,7 @@ class StarredRepoTableViewCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension StarredRepoTableViewCell: ConfigurableCell {
-    func configure(viewModel: Any) {
-        if let old = viewModel as? RepositoryResponseDTO {
-            configure(old: old)
-        } else if let new = viewModel as? Repository {
-            configure(new: new)
-        }
-    }
-    
-    func configure(old viewModel: RepositoryResponseDTO) {
-        avatarImageView.set(url: viewModel.owner?.avatarUrl)
-        ownerLoginLabel.text = viewModel.owner?.login ?? ""
-        reposNameLabel.text = viewModel.name ?? ""
-        if let description = viewModel.description {
-            reposDescriptionLabel.isHidden = false
-            reposDescriptionLabel.text = description
-        } else {
-            reposDescriptionLabel.isHidden = true
-        }
-//        isStarredImageView todo
-        starsCountLabel.text = "\(viewModel.stargazersCount ?? 0)"
-        if let language = viewModel.language {
-            languageColorImageView.isHidden = false
-            languageLabel.isHidden = false
-            languageColorImageView.tintColor = UIColor.getLanguageColor(for: language)
-            languageLabel.text = language
-        } else {
-            languageColorImageView.isHidden = true
-            languageLabel.isHidden = true
-        }
-    }
-    
-    func configure(new viewModel: Repository) {
+    func configure(viewModel: Repository) {
         avatarImageView.set(url: viewModel.owner.avatarUrl)
         ownerLoginLabel.text = viewModel.owner.login
         reposNameLabel.text = viewModel.name

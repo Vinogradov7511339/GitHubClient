@@ -9,4 +9,5 @@ import Foundation
 
 protocol HomeRepository {
     func fetchRecent(completion: @escaping(Result<[IssueResponseDTO], Error>) -> Void)
+    func fetchRepositories(completion: @escaping (Result<[Repository], Error>) -> Void)
 }

@@ -48,5 +48,9 @@ extension HomeFlowCoordinator {
     }
 
     func showMyDiscussions() {}
-    func showFavorites() {}
+
+    func showFavorites() {
+        let viewController = container.createFavoritesViewController()
+        navigationController?.present(viewController, animated: true, completion: nil)
+    }
 }

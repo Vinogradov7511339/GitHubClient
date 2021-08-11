@@ -20,11 +20,13 @@ final class HomeDIContainer {
     let actions: Actions
     private let homeSceneFactory: HomeSceneFactory
     private let itemsListFactory: ItemsListFactory
+    private let favoritesFactory: FavoritesFactory
 
     init(parentContainer: MainSceneDIContainer, actions: Actions) {
         self.actions = actions
         self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: parentContainer.apiDataTransferService, storage: parentContainer.favoritesStorage)
         self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        self.favoritesFactory = FavoritesFactoryImpl(apiDataTransferService: parentContainer.apiDataTransferService, favoritesStorage: parentContainer.favoritesStorage)
     }
 
     func createHomeViewController(actions: HomeActions) -> HomeViewController {
@@ -37,5 +39,9 @@ final class HomeDIContainer {
 
     func createPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
         itemsListFactory.createMyPullRequestsViewController(actions: actions)
+    }
+
+    func createFavoritesViewController() -> FavoritesViewController {
+        favoritesFactory.makeFavoritesViewController()
     }
 }

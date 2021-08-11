@@ -21,6 +21,7 @@ struct HomeActions {
 protocol HomeViewModelInput {
     func viewWillAppear()
     func refresh()
+    func showFavorites()
     func didSelectItem(at indexPath: IndexPath)
 }
 
@@ -95,6 +96,10 @@ extension HomeViewModelImpl {
         default:
             break
         }
+    }
+
+    func showFavorites() {
+        actions.showFavorites()
     }
 }
 

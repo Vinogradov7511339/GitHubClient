@@ -8,6 +8,7 @@
 import UIKit
 
 struct FavoriteRepositoryCellViewModel {
+    let image: UIImage?
     let repository: Repository
 }
 
@@ -27,9 +28,7 @@ class FavoriteRepositoryTableViewCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension FavoriteRepositoryTableViewCell: ConfigurableCell {
     func configure(viewModel: FavoriteRepositoryCellViewModel) {
-        let isFavorite = AppDIContainer.shared.favoritesStorage.contains(viewModel.repository.repositoryId)
-        let imageName = isFavorite ? "xmark.circle.fill" : "plus.circle"
-        detailImageView.image = UIImage(systemName: imageName)
+        detailImageView.image = viewModel.image
         avatarImageView.set(url: viewModel.repository.owner.avatarUrl)
         ownerNameLabel.text = viewModel.repository.owner.login
         repositoryNameLabel.text = viewModel.repository.name

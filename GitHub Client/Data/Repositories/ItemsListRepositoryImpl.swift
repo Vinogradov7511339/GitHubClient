@@ -111,7 +111,7 @@ private extension ItemsListRepositoryImpl {
             case .success(let response):
                 let lastPage = self.tryTakeLastPage(response.httpResponse)
                 let model = ItemsListResponseModel(
-                    items: .repositories(response.model.map { $0.map() }),
+                    items: .repositories(response.model.map { $0.toDomain() }),
                     lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):

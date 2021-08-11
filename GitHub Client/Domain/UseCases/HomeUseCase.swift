@@ -11,6 +11,7 @@ protocol HomeUseCase {
     func addFavorite(repository: Repository, completion: @escaping (Error?) -> Void)
     func removeFavorite(by repositoryId: Int, completion: @escaping (Error?) -> Void)
     func fetchFavorites(completion: @escaping(Result<[Repository], Error>) -> Void)
+    func fetchRepositories(completion: @escaping (Result<[Repository], Error>) -> Void)
     func fetchRecent(completion: @escaping(Result<[IssueResponseDTO], Error>) -> Void)
 }
 
@@ -27,6 +28,10 @@ final class HomeUseCaseImpl {
 
 // MARK: - HomeUseCase
 extension HomeUseCaseImpl: HomeUseCase {
+    func fetchRepositories(completion: @escaping (Result<[Repository], Error>) -> Void) {
+        repository.fetchRepositories(completion: completion)
+    }
+
     func fetchFavorites(completion: @escaping (Result<[Repository], Error>) -> Void) {
         favoritesStorage.fetchFavorites(completion: completion)
     }
