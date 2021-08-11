@@ -22,9 +22,9 @@ protocol CommitsListPresenterOutput: AnyObject {
 class CommitsListPresenter {
     var output: CommitsListPresenterOutput?
 
-    private let repository: RepositoryResponse
+    private let repository: RepositoryResponseDTO
     
-    init(_ repository: RepositoryResponse) {
+    init(_ repository: RepositoryResponseDTO) {
         self.repository = repository
     }
 }

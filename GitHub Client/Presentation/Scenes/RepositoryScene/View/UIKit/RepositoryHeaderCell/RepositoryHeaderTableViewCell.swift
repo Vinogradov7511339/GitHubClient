@@ -48,7 +48,7 @@ extension RepositoryHeaderTableViewCell: ConfigurableCell {
         ownerNameLabel.text = repository.owner.login
         repositoryNameLabel.text = repository.name
 
-//        starsCountLabel.text = "\(repository.stargazersCount ?? 0) Stars"
+        starsCountLabel.text = "\(repository.starsCount) Stars"
 //        forksCountLabel.text = "\(repository.forksCount ?? 0) Forks"
 
         if let description = repository.description, !description.isEmpty {

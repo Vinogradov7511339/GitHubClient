@@ -59,6 +59,28 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
         case .userStarredRepositories(let user):
             let endpoint = UserEndpoints.getStarredRepositories(login: user.login, page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
+
+        case .stargazers(let repository):
+            let endpoint = RepositoryEndpoits.getStargazers(page: requestModel.page, repository: repository)
+            fetchUsers(endpoint: endpoint, completion: completion)
+
+        case .forks(let repository):
+            let endpoint = RepositoryEndpoits.getForks(page: requestModel.page, repository: repository)
+            fetchRepositories(endpoint: endpoint, completion: completion)
+
+        case .issues(let repository):
+            let endpoint = RepositoryEndpoits.getIssues(page: requestModel.page, repository: repository)
+            fetchIssues(endpoint: endpoint, completion: completion)
+
+        case .pullRequests(let repository):
+            let endpoint = RepositoryEndpoits.getPullRequests(page: requestModel.page, repository: repository)
+            fetchPullRequests(endpoint: endpoint, completion: completion)
+
+        case .releases(let repository):
+            let endpoint = RepositoryEndpoits.getReleases(page: requestModel.page, repository: repository)
+
+        case .commits(let repository):
+            let endpoint = RepositoryEndpoits.getStargazers(page: requestModel.page, repository: repository)
         }
     }
 }
@@ -71,7 +93,7 @@ private extension ItemsListRepositoryImpl {
             case .success(let response):
                 let lastPage = self.tryTakeLastPage(response.httpResponse)
                 let model = ItemsListResponseModel(
-                    items: .users(response.model.map { $0.map() }),
+                    items: .users(response.model.map { $0.toDomain() }),
                     lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):
@@ -80,7 +102,7 @@ private extension ItemsListRepositoryImpl {
         }
     }
 
-    func fetchRepositories(endpoint: Endpoint<[RepositoryResponse]>,
+    func fetchRepositories(endpoint: Endpoint<[RepositoryResponseDTO]>,
                            completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         dataTransferService.request(with: endpoint) { result in
             switch result {
@@ -114,19 +136,18 @@ private extension ItemsListRepositoryImpl {
 
     func fetchPullRequests(endpoint: Endpoint<[PullRequestResponseDTO]>,
                      completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        completion(.success(.init(items: .pullRequests([]), lastPage: 1)))
-//        dataTransferService.request(with: endpoint) { result in
-//            switch result {
-//            case .success(let response):
-//                let lastPage = self.tryTakeLastPage(response.httpResponse)
-//                let model = ItemsListResponseModel(
-//                    items: .pullRequests(response.model.compactMap { $0.toDomain() }),
-//                    lastPage: lastPage)
-//                completion(.success(model))
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let lastPage = self.tryTakeLastPage(response.httpResponse)
+                let model = ItemsListResponseModel(
+                    items: .pullRequests(response.model.compactMap { $0.toDomain() }),
+                    lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func tryTakeLastPage(_ response: HTTPURLResponse?) -> Int {

@@ -18,7 +18,7 @@ struct FeaturedCellViewModel {
     let language: String
     let languageColor: UIColor?
 
-    init(repository: RepositoryResponse) {
+    init(repository: RepositoryResponseDTO) {
         repositoryImageUrl = nil
         type = "FEATURED REPOSITORY"
         repositoryName = repository.name ?? ""

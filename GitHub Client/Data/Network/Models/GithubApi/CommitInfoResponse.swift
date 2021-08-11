@@ -38,6 +38,13 @@ class CommitInfoResponse: Codable {
         self.committer = committer
         self.parents = parents
     }
+
+    func toDomain() -> Commit {
+        .init(sha: sha,
+              message: commit.message,
+              author: author.toDomain(),
+              commentsCount: commit.commentCount)
+    }
 }
 
 class ParentCommit: Codable {

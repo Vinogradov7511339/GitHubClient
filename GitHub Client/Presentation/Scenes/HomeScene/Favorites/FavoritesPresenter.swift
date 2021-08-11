@@ -22,8 +22,8 @@ protocol FavoritesPresenterOutput: AnyObject {
 class FavoritesPresenter {
     var output: FavoritesPresenterOutput?
     
-    var favorites: [RepositoryResponse] = []
-    var notFavorites: [RepositoryResponse] = []
+    var favorites: [RepositoryResponseDTO] = []
+    var notFavorites: [RepositoryResponseDTO] = []
 }
 
 
@@ -63,7 +63,7 @@ private extension FavoritesPresenter {
     func fetchRepositories() {
     }
     
-    func map(_ repository: RepositoryResponse, isFavorite: Bool) -> FavoriteRepositoryCellViewModel {
+    func map(_ repository: RepositoryResponseDTO, isFavorite: Bool) -> FavoriteRepositoryCellViewModel {
         fatalError()
         let imageName = isFavorite ? "xmark.circle.fill" : "plus.circle"
         let tintColor: UIColor = isFavorite ? .systemGray : .link
@@ -74,7 +74,7 @@ private extension FavoritesPresenter {
 //        )
     }
     
-    func filterRepositories(_ repositories: [RepositoryResponse]) {
+    func filterRepositories(_ repositories: [RepositoryResponseDTO]) {
         favorites = []
         notFavorites = []
 

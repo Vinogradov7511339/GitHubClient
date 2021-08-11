@@ -54,7 +54,7 @@ class CommentResponseDTO: Codable {
         .init(
             id: id,
             body: body,
-            user: user.map()
+            user: user.toDomain()
         )
     }
 }

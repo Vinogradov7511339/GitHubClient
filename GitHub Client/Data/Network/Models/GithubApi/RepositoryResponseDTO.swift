@@ -25,17 +25,17 @@ struct License: Codable {
 struct RepositoriesResponse: Codable {
     let totalCount: Int
     let incompleteResults: Bool
-    let items: [RepositoryResponse]?
+    let items: [RepositoryResponseDTO]?
 }
 
 // https://docs.github.com/en/rest/reference/repos
-class RepositoryResponse: Codable {
+class RepositoryResponseDTO: Codable {
     let id: Int
     let nodeId: String?
     let name: String?
     let fullName: String?
     let owner: UserResponseDTO?
-//    let isPrivate: Bool // private
+    let `private`: Bool // private
     let htmlUrl: URL?
     let description: String?
     let fork: Bool?
@@ -103,7 +103,7 @@ class RepositoryResponse: Codable {
     let createdAt: String?
     let updatedAt: String?
     let permissions: Permissions?
-    let templateRepository: RepositoryResponse?
+    let templateRepository: RepositoryResponseDTO?
     let license: License?
 
     init(id: Int,
@@ -111,6 +111,7 @@ class RepositoryResponse: Codable {
          name: String?,
          fullName: String?,
          owner: UserResponseDTO?,
+         isPrivate: Bool,
          htmlUrl: URL?,
          description: String?,
          fork: Bool?,
@@ -178,13 +179,14 @@ class RepositoryResponse: Codable {
          createdAt: String?,
          updatedAt: String?,
          permissions: Permissions?,
-         templateRepository: RepositoryResponse?,
+         templateRepository: RepositoryResponseDTO?,
          license: License?) {
         self.id = id
         self.nodeId = nodeId
         self.name = name
         self.fullName = fullName
         self.owner = owner
+        self.private = isPrivate
         self.htmlUrl = htmlUrl
         self.description = description
         self.fork = fork
@@ -255,11 +257,11 @@ class RepositoryResponse: Codable {
         self.templateRepository = templateRepository
         self.license = license
     }
-    
+
     func map() -> Repository {
         return Repository(
             repositoryId: id,
-            owner: owner!.map(),
+            owner: owner!.toDomain(),
             name: name!,
             starsCount: stargazersCount!,
             description: description,

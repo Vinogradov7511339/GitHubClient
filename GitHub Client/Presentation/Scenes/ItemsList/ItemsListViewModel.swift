@@ -84,6 +84,9 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         case .myPullRequests:
             screenTitle = NSLocalizedString("Pull Requests", comment: "")
             cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
+        default:
+            screenTitle = NSLocalizedString("ToDo", comment: "")
+            cellManager = TableCellManager.create(cellType: BaseDetailsCell.self)
         }
     }
 }
@@ -134,6 +137,10 @@ private extension ItemsListViewModelImpl {
             newItems = issues as? [Item] ?? []
         case .pullRequests(let pulls):
             newItems = pulls as? [Item] ?? []
+        case .releases(let releases):
+            newItems = releases as? [Item] ?? []
+        case .commits(let commits):
+            newItems = commits as? [Item] ?? []
         }
         self.items.value.append(contentsOf: newItems)
     }

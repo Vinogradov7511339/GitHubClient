@@ -47,7 +47,10 @@ extension RepFlowCoordinator {
             share: dependencies.share(url:)
         )
     }
-    func showStargazers(_ repository: Repository) {}
+    func showStargazers(_ repository: Repository) {
+
+    }
+    
     func showForks(_ repository: Repository) {}
     func showIssues(_ repository: Repository) {}
     func showPullRequests(_ repository: Repository) {}

@@ -53,9 +53,9 @@ struct PullRequestResponseDTO: Codable {
             number: number,
             state: state,
             title: title,
-            user: user.map(),
+            user: user.toDomain(),
             body: body,
-            assignedTo: assignee.map()
+            assignedTo: assignee.toDomain()
         )
     }
 }

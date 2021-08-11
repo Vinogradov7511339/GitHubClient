@@ -32,11 +32,11 @@ struct IssueResponseDTO: Codable {
     let closedAt: String?
     let createdAt: String?
     let updatedAt: String?
-    let repository: RepositoryResponse?
+    let repository: RepositoryResponseDTO?
     let authorAssociation: String?
 
     func toDomain() -> Issue? {
-        guard let user = user?.map() else {
+        guard let user = user?.toDomain() else {
             return nil
         }
         return Issue(

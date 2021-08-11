@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
         viewController.viewModel = viewModel
         return viewController
     }
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,17 +30,18 @@ class HomeViewController: UIViewController {
         tableView.dataSource = adapter
         return tableView
     }()
-    
+
     private lazy var resultViewController: SearchResultViewController = {
         let resultController = SearchResultViewController()
         return resultController
     }()
-    
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: resultViewController)
         searchController.searchResultsUpdater = resultViewController
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = NSLocalizedString("Search GitHub", comment: "")
+        searchController.hidesNavigationBarDuringPresentation = true
         searchController.isActive = true
         return searchController
     }()

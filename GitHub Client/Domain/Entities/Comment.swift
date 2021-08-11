@@ -6,7 +6,6 @@
 //
 
 struct Comment: Identifiable, Equatable {
-    // swiftlint:disable identifier_name
     let id: Int
     let body: String
     let user: User

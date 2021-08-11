@@ -13,7 +13,7 @@ struct EventResponseDTO: Codable {
     let type: String
     let `public`: Bool
 //    let payload: Any?
-    let repo: RepositoryResponse?
+    let repo: RepositoryResponseDTO?
     let actor: UserResponseDTO?
     let org: OrganzationResponseDTO?
     let createdAt: String
@@ -25,7 +25,7 @@ struct EventResponseDTO: Codable {
         guard let eventType = Event.Types(rawValue: type) else {
             return nil
         }
-        guard let user = actor?.map() else {
+        guard let user = actor?.toDomain() else {
             return nil
         }
         return Event(id: intId, eventType: eventType, actor: user)

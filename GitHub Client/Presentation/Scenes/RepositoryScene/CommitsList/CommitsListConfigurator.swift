@@ -8,7 +8,7 @@
 import UIKit
 
 class CommitsListConfigurator {
-    static func create(repository: RepositoryResponse) -> CommitsListViewController {
+    static func create(repository: RepositoryResponseDTO) -> CommitsListViewController {
         let presenter = CommitsListPresenter(repository)
         let viewController = CommitsListViewController()
         viewController.presenter = presenter

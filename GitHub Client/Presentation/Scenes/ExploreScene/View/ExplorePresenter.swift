@@ -51,7 +51,7 @@ class ExplorePresenter: NSObject {
             CollectionCellManager.create(cellType: SmallCategoryCollectionViewCell.self)
     ]
     
-    private var repositories: [RepositoryResponse] = []
+    private var repositories: [RepositoryResponseDTO] = []
 }
 
 // MARK: - layout
@@ -208,7 +208,7 @@ extension ExplorePresenter: ExplorePresenterInput {
 
 // MARK: - private
 private extension ExplorePresenter {
-    func mapRepositories(repositories: [RepositoryResponse]) {
+    func mapRepositories(repositories: [RepositoryResponseDTO]) {
         var firstSectionData: [Any] = []
         var secondSectionData: [Any] = []
         var thirdSectionData: [Any] = []

@@ -17,7 +17,7 @@ struct MediumCellViewModel {
     let language: String
     let languageColor: UIColor?
 
-    init(repository: RepositoryResponse) {
+    init(repository: RepositoryResponseDTO) {
         repositoryImageUrl = repository.owner?.avatarUrl
         ownerName = repository.owner?.login ?? ""
         repositoryName = repository.name ?? ""

@@ -22,12 +22,12 @@ struct UserEndpoints {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func getRepositories(login: String, page: Int) -> Endpoint<[RepositoryResponse]> {
+    static func getRepositories(login: String, page: Int) -> Endpoint<[RepositoryResponseDTO]> {
         return Endpoint(path: "users/\(login)/repos",
                         queryParametersEncodable: ["page": page])
     }
 
-    static func getStarredRepositories(login: String, page: Int) -> Endpoint<[RepositoryResponse]> {
+    static func getStarredRepositories(login: String, page: Int) -> Endpoint<[RepositoryResponseDTO]> {
         return Endpoint(path: "users/\(login)/starred",
                         queryParametersEncodable: ["page": page])
     }

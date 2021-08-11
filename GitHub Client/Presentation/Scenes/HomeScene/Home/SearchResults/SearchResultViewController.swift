@@ -45,7 +45,7 @@ class SearchResultViewController: UIViewController {
     private var recentSearches: [String] = []
     private lazy var searchingViewModels: [SearchTypeCellViewModel] = models()
     private let cellManager = TableCellManager.create(cellType: SearchTypeTableViewCell.self)
-    
+
     private var state: State = .empty {
         didSet {
             stateDidChanged()
@@ -55,7 +55,7 @@ class SearchResultViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        
+
         cellManager.register(tableView: tableView)
     }
 
