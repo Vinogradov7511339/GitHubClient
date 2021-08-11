@@ -8,10 +8,7 @@
 import UIKit
 
 final class HomeDIContainer {
-    struct Dependencies {
-        let favoritesStorage: FavoritesStorage
-        let apiDataTransferService: DataTransferService
-
+    struct Actions {
         var showOrganizations: () -> Void
         var openIssue: (Issue) -> Void
         var openPullRequest: (PullRequest) -> Void
@@ -20,14 +17,14 @@ final class HomeDIContainer {
         var showEvent: (Event) -> Void
     }
 
-    let dependencies: Dependencies
+    let actions: Actions
     private let homeSceneFactory: HomeSceneFactory
     private let itemsListFactory: ItemsListFactory
 
-    init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-        self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: dependencies.apiDataTransferService, storage: dependencies.favoritesStorage)
-        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
+    init(parentContainer: MainSceneDIContainer, actions: Actions) {
+        self.actions = actions
+        self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: parentContainer.apiDataTransferService, storage: parentContainer.favoritesStorage)
+        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createHomeViewController(actions: HomeActions) -> HomeViewController {

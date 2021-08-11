@@ -8,7 +8,7 @@
 import UIKit
 
 class TableCellManager {
-    
+
     func register(tableView: UITableView) { }
 
     func dequeueReusableCell(tableView: UITableView, for indexPath: IndexPath) -> BaseTableViewCell {
@@ -19,11 +19,13 @@ class TableCellManager {
         return UITableView.automaticDimension
     }
 
-    static func create<CellType: BaseTableViewCell & NibLoadable>(cellType: CellType.Type) -> TableCellManager {
+    static func create<CellType: BaseTableViewCell & NibLoadable>(
+        cellType: CellType.Type) -> TableCellManager {
         return NibCellManager<CellType>(cellType: cellType)
     }
 
-    static func create<CellType: BaseTableViewCell>(cellType: CellType.Type) -> TableCellManager {
+    static func create<CellType: BaseTableViewCell>(
+        cellType: CellType.Type) -> TableCellManager {
         return TypeCellManager<CellType>(cellType: cellType)
     }
 }

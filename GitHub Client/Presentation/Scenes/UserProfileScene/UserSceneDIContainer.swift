@@ -10,8 +10,6 @@ import UIKit
 final class UserSceneDIContainer {
 
     struct Dependencies {
-        let apiDataTransferService: DataTransferService
-
         let user: User
         var startRepFlow: (Repository) -> Void
         var openLink: (URL) -> Void
@@ -19,9 +17,11 @@ final class UserSceneDIContainer {
         var sendEmail: (String) -> Void
     }
 
+    let parentContainer: MainSceneDIContainer
     private let dependencies: Dependencies
 
-    init(dependencies: Dependencies) {
+    init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
+        self.parentContainer = parentContainer
         self.dependencies = dependencies
     }
 
@@ -66,7 +66,8 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
     }
 
     func makeUserRepository() -> UserProfileRepository {
-        return UserProfileRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
+        return UserProfileRepositoryImpl(
+            dataTransferService: parentContainer.apiDataTransferService)
     }
 
     // MARK: - Starred flow
@@ -87,6 +88,7 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
     }
 
     func makeStarredRepository() -> ItemsListRepository {
-        return ItemsListRepositoryImpl(dataTransferService: dependencies.apiDataTransferService)
+        return ItemsListRepositoryImpl(
+            dataTransferService: parentContainer.apiDataTransferService)
     }
 }

@@ -7,61 +7,74 @@
 
 import UIKit
 
-struct MainSceneCoordinatorDependencies {
-    let apiDataTransferService: DataTransferService
-    let favoritesStorage: FavoritesStorage
-
-    let logout: () -> Void
-    let sendMail: (String) -> Void
-    let openLink: (URL) -> Void
-    let share: (URL) -> Void
-}
-
 final class MainSceneDIContainer: NSObject {
 
-    func makeStarredSceneDIContainer(dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
-        return UserSceneDIContainer(dependencies: dependencies)
+    struct Dependencies {
+        let logout: () -> Void
+        let sendMail: (String) -> Void
+        let openLink: (URL) -> Void
+        let share: (URL) -> Void
     }
 
-    func makeRepSceneDIContainer(dependencies: RepSceneDIContainer.Dependencies) -> RepSceneDIContainer {
+    func makeStarredSceneDIContainer(
+        dependencies: UserSceneDIContainer.Dependencies) -> UserSceneDIContainer {
+        return UserSceneDIContainer(parentContainer: self, dependencies: dependencies)
+    }
+
+    func makeRepSceneDIContainer(
+        dependencies: RepSceneDIContainer.Dependencies) -> RepSceneDIContainer {
         return RepSceneDIContainer(dependencies: dependencies)
     }
 
-    var openRepository: ((Repository) -> Void)?
-    var openUserProfile: ((User) -> Void)?
-    var openIssue: ((Issue) -> Void)?
+    var apiDataTransferService: DataTransferService {
+        parentContainer.apiDataTransferService
+    }
 
-    let dependencies: MainSceneCoordinatorDependencies
+    var favoritesStorage: FavoritesStorage {
+        parentContainer.favoritesStorage
+    }
 
+    private let parentContainer: AppDIContainer
+    let dependencies: Dependencies
     private let issueFactory: IssueFactory
 
-    init(dependencies: MainSceneCoordinatorDependencies) {
+    init(appDIContainer: AppDIContainer, dependencies: Dependencies) {
+        self.parentContainer = appDIContainer
         self.dependencies = dependencies
-        self.issueFactory = IssueFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
+        self.issueFactory = IssueFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeTabController() -> UITabBarController {
         let controller = UITabBarController()
         controller.delegate = self
-        controller.setViewControllers(getControllers(), animated: true)
-        controller.selectedIndex = TabBarPage.home.pageOrderNumber()
         controller.tabBar.isTranslucent = false
-//        UITabBar.appearance().barTintColor = .systemBackground
         return controller
+    }
+
+    func configureTabController(controller: UITabBarController, homeDependencies: HomeDIContainer.Actions,
+                                profileDependencies: ProfileDIContainer.Actions) {
+        let controllers = getControllers(homeDependencies: homeDependencies,
+                                         profileDependencies: profileDependencies)
+        controller.setViewControllers(controllers, animated: true)
+        controller.selectedIndex = TabBarPage.home.pageOrderNumber()
     }
 
     func makeIssueController(issue: Issue, actions: IssueActions) -> IssueDetailsViewController {
         issueFactory.makeIssueViewController(issue: issue, actions: actions)
     }
 
-    private func getControllers() -> [UIViewController] {
+    private func getControllers(homeDependencies: HomeDIContainer.Actions,
+                                profileDependencies: ProfileDIContainer.Actions) -> [UIViewController] {
         let pages: [TabBarPage] = TabBarPage.allCases
             .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
-        let controllers: [UINavigationController] = pages.map({ getTabController($0) })
+        let controllers: [UINavigationController] = pages
+            .map({ getTabController($0, homeDependencies: homeDependencies,
+                                    profileDependencies: profileDependencies) })
         return controllers
     }
 
-    private func getTabController(_ page: TabBarPage) -> UINavigationController {
+    private func getTabController(_ page: TabBarPage, homeDependencies: HomeDIContainer.Actions,
+                                  profileDependencies: ProfileDIContainer.Actions) -> UINavigationController {
         let navController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: false)
 
@@ -71,23 +84,13 @@ final class MainSceneDIContainer: NSObject {
 
         switch page {
         case .home:
-            let homeDependencies = HomeDIContainer.Dependencies(
-                favoritesStorage: dependencies.favoritesStorage,
-                apiDataTransferService: dependencies.apiDataTransferService,
-                showOrganizations: showOrganizations,
-                openIssue: openIssue,
-                openPullRequest: openPullRequest(_:),
-                showRepositories: showRepositories,
-                showRepository: openRepository,
-                showEvent: showEvent(_:)
-            )
-            let container = HomeDIContainer(dependencies: homeDependencies)
+            let container = makeHomeContainer(homeActions: homeDependencies)
             let coordinator = HomeFlowCoordinator(container: container, navigationController: navController)
             coordinator.start()
 
         case .events:
             let dependencies = EventsSceneDIContainer.Dependencies(
-                apiDataTransferService: dependencies.apiDataTransferService)
+                apiDataTransferService: parentContainer.apiDataTransferService)
             let container = EventsSceneDIContainer(dependencies: dependencies)
             let coordinator = EventsFlowCoordinator(navigationController: navController, container: container)
             coordinator.start()
@@ -97,47 +100,19 @@ final class MainSceneDIContainer: NSObject {
             coordinator.start()
 
         case .profile:
-            let profileDependencies = ProfileDIContainer.Dependencies(
-                apiDataTransferService: dependencies.apiDataTransferService,
-                openUserProfile: openUserProfile(_:),
-                openRepository: openRepository(_:),
-                sendMail: dependencies.sendMail,
-                openLink: dependencies.openLink,
-                share: dependencies.share
-            )
-            let container = ProfileDIContainer(dependencies: profileDependencies)
+            let container = makeProfileContainer(profileActions: profileDependencies)
             let coordinator = ProfileFlowCoordinator(in: navController, with: container)
             coordinator.start()
         }
         return navController
     }
 
-    func openRepository(_ repository: Repository) {
-        openRepository?(repository)
+    private func makeHomeContainer(homeActions: HomeDIContainer.Actions) -> HomeDIContainer {
+        return HomeDIContainer(parentContainer: self, actions: homeActions)
     }
 
-    func openUserProfile(_ user: User) {
-        openUserProfile?(user)
-    }
-
-    func openIssue(_ issue: Issue) {
-        openIssue?(issue)
-    }
-
-    func openPullRequest(_ pullRequest: PullRequest) {
-        fatalError()
-    }
-
-    func showEvent(_ event: Event) {
-        fatalError()
-    }
-
-    func showOrganizations() {
-        fatalError()
-    }
-
-    func showRepositories() {
-        fatalError()
+    private func makeProfileContainer(profileActions: ProfileDIContainer.Actions) -> ProfileDIContainer {
+        return ProfileDIContainer(parentContainer: self, actions: profileActions)
     }
 }
 

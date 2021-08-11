@@ -15,7 +15,7 @@ extension UIColor {
         }
         return UIColor(hex: hex, alpha: 1.0)
     }
-    
+
     public convenience init?(hex: String, alpha: CGFloat) {
         guard hex.hasPrefix("#") else { return nil }
 

@@ -29,13 +29,13 @@ extension ProfileFlowCoordinator {
             openSettings: openSettings,
             showFollowers: showFollowers,
             showFollowing: showFollowing,
-            showRepository: container.dependencies.openRepository,
+            showRepository: container.actions.openRepository,
             showRepositories: showRepositories,
             showStarred: showStarred,
             showOrganizations: showOrganizations,
-            sendEmail: container.dependencies.sendMail,
-            openLink: container.dependencies.openLink,
-            share: container.dependencies.share
+            sendEmail: container.actions.sendMail,
+            openLink: container.actions.openLink,
+            share: container.actions.share
         )
     }
 
@@ -45,25 +45,25 @@ extension ProfileFlowCoordinator {
     }
 
     func showFollowers() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openUserProfile)
+        let actions = ItemsListActions(showDetails: container.actions.openUserProfile)
         let viewController = container.createFollowersViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showFollowing() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openUserProfile)
+        let actions = ItemsListActions(showDetails: container.actions.openUserProfile)
         let viewController = container.createFollowingViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showRepositories() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openRepository)
+        let actions = ItemsListActions(showDetails: container.actions.openRepository)
         let viewController = container.createRepositoriesViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showStarred() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openRepository)
+        let actions = ItemsListActions(showDetails: container.actions.openRepository)
         let viewController = container.createStarredViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

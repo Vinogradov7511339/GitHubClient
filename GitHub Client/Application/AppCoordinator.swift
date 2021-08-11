@@ -28,9 +28,7 @@ final class AppCoordinator {
     }
 
     func startMainFlow() {
-        let dependencies = MainSceneCoordinatorDependencies(
-            apiDataTransferService: appDIContainer.apiDataTransferService,
-            favoritesStorage: appDIContainer.favoritesStorage,
+        let dependencies = MainSceneDIContainer.Dependencies(
             logout: startLoginFlow,
             sendMail: sendEmail(email:),
             openLink: open(link:),

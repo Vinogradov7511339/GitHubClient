@@ -9,7 +9,7 @@ import Foundation
 
 class FilterStorage {
     static let shared = FilterStorage()
-    
+
     func getIssuesFilter() -> IssuesFilters {
         return IssuesFilters(
             filter: "all",
@@ -18,8 +18,6 @@ class FilterStorage {
             direction: "desc"
         )
     }
-    
-    func setIssueFilter(_ filter: IssuesFilters) {
-        
-    }
+
+    func setIssueFilter(_ filter: IssuesFilters) {}
 }

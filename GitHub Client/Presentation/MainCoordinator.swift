@@ -24,13 +24,13 @@ class MainCoordinator: NSObject {
     init(in window: UIWindow, mainSceneDIContainer: MainSceneDIContainer) {
         self.window = window
         self.container = mainSceneDIContainer
-        self.tabBarController = container.makeTabController()
+        tabBarController = container.makeTabController()
     }
 
     func start() {
-        container.openRepository = startRepFlow(repository:)
-        container.openUserProfile = startUserFlow(user:)
-        container.openIssue = startIssueFlow(issue:)
+        container.configureTabController(controller: tabBarController,
+                                         homeDependencies: homeDependencies(),
+                                         profileDependencies: profileDependencies())
         
         if let previousController = window.rootViewController {
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft) {
@@ -48,7 +48,6 @@ class MainCoordinator: NSObject {
 
     func startUserFlow(user: User) {
         let dependency = UserSceneDIContainer.Dependencies(
-            apiDataTransferService: container.dependencies.apiDataTransferService,
             user: user,
             startRepFlow: startRepFlow(repository:),
             openLink: container.dependencies.openLink,
@@ -62,7 +61,7 @@ class MainCoordinator: NSObject {
 
     func startRepFlow(repository: Repository) {
         let dependency = RepSceneDIContainer.Dependencies(
-            favoritesStorage: container.dependencies.favoritesStorage,
+            favoritesStorage: container.favoritesStorage,
             repository: repository,
             startUserFlow: startUserFlow(user:),
             openLink: container.dependencies.openLink,
@@ -77,5 +76,31 @@ class MainCoordinator: NSObject {
         let actions = IssueActions()
         let viewController = container.makeIssueController(issue: issue, actions: actions)
         currentNavigationController.pushViewController(viewController, animated: true)
+    }
+
+    func startPullRequestFlow(pullRequest: PullRequest) {}
+
+    func showMyOrganizationsList() {}
+    func showMyRepositories() {}
+
+    func startEventFlow(event: Event) {}
+
+    func homeDependencies() -> HomeDIContainer.Actions {
+        .init(
+            showOrganizations: showMyOrganizationsList,
+            openIssue: startIssueFlow(issue:),
+            openPullRequest: startPullRequestFlow(pullRequest:),
+            showRepositories: showMyRepositories,
+            showRepository: startRepFlow(repository:),
+            showEvent: startEventFlow(event:))
+    }
+
+    func profileDependencies() -> ProfileDIContainer.Actions {
+        .init(
+            openUserProfile: startUserFlow(user:),
+            openRepository: startRepFlow(repository:),
+            sendMail: container.dependencies.sendMail,
+            openLink: container.dependencies.openLink,
+            share: container.dependencies.share)
     }
 }

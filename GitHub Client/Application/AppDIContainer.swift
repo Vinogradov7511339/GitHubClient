@@ -27,12 +27,14 @@ final class AppDIContainer {
     }()
 
     // MARK: - DIContainers of scenes
-    func makeTabCoordinator(window: UIWindow, dependencies: MainSceneCoordinatorDependencies) -> MainCoordinator {
-        let container = MainSceneDIContainer(dependencies: dependencies)
+    func makeTabCoordinator(window: UIWindow,
+                            dependencies: MainSceneDIContainer.Dependencies) -> MainCoordinator {
+        let container = MainSceneDIContainer(appDIContainer: self, dependencies: dependencies)
         return MainCoordinator.init(in: window, mainSceneDIContainer: container)
     }
     
-    func makeLoginSceneDIContainer(dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
+    func makeLoginSceneDIContainer(
+        dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)
     }
 }

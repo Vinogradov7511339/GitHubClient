@@ -28,21 +28,21 @@ extension HomeFlowCoordinator {
         .init(showIssues: showMyIssues,
               showPullRequests: showMyPullRequests,
               showDiscussions: showMyDiscussions,
-              showOrganizations: container.dependencies.showOrganizations,
+              showOrganizations: container.actions.showOrganizations,
               showFavorites: showFavorites,
-              showRepositories: container.dependencies.showRepositories,
-              showRepository: container.dependencies.showRepository,
-              showRecentEvent: container.dependencies.showEvent)
+              showRepositories: container.actions.showRepositories,
+              showRepository: container.actions.showRepository,
+              showRecentEvent: container.actions.showEvent)
     }
 
     func showMyIssues() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openIssue)
+        let actions = ItemsListActions(showDetails: container.actions.openIssue)
         let controller = container.createIssuesViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 
     func showMyPullRequests() {
-        let actions = ItemsListActions(showDetails: container.dependencies.openPullRequest)
+        let actions = ItemsListActions(showDetails: container.actions.openPullRequest)
         let controller = container.createPullRequestsViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }

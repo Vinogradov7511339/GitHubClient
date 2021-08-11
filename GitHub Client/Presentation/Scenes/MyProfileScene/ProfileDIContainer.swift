@@ -9,9 +9,7 @@ import UIKit
 
 final class ProfileDIContainer {
     
-    struct Dependencies {
-        let apiDataTransferService: DataTransferService
-
+    struct Actions {
         var openUserProfile: (User) -> Void
         var openRepository: (Repository) -> Void
         var sendMail: (String) -> Void
@@ -19,20 +17,19 @@ final class ProfileDIContainer {
         var share: (URL) -> Void
     }
 
-    let dependencies: Dependencies
+    let actions: Actions
 
     // MARK: - Persistent Storage
     private let profileStorage: ProfileLocalStorage
     private let profileFactory: MyProfileFactory
     private let itemsListFactory: ItemsListFactory
 
-    init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    init(parentContainer: MainSceneDIContainer, actions: Actions) {
+        self.actions = actions
         self.profileStorage = ProfileLocalStorageImpl()
-        self.profileFactory = MyProfileFactoryImpl(
-            dataTransferService: dependencies.apiDataTransferService,
+        self.profileFactory = MyProfileFactoryImpl(dataTransferService: parentContainer.apiDataTransferService,
             storage: profileStorage)
-        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: dependencies.apiDataTransferService)
+        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
