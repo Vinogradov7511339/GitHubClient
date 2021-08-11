@@ -84,6 +84,9 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         case .myPullRequests:
             screenTitle = NSLocalizedString("Pull Requests", comment: "")
             cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
+        case .commits(_):
+            screenTitle = NSLocalizedString("Commits", comment: "")
+            cellManager = TableCellManager.create(cellType: CommitTableViewCell.self)
         default:
             screenTitle = NSLocalizedString("ToDo", comment: "")
             cellManager = TableCellManager.create(cellType: BaseDetailsCell.self)

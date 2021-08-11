@@ -33,7 +33,7 @@ struct RepositoryEndpoits {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func getCommits(page: Int, repository: Repository) -> Endpoint<[CommitResponse]> {
+    static func getCommits(page: Int, repository: Repository) -> Endpoint<[CommitInfoResponse]> {
         return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/commits",
                         queryParametersEncodable: ["page": page])
     }

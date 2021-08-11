@@ -7,6 +7,32 @@
 
 import UIKit
 
+
+//    func map(_ commit: CommitInfoResponse) -> CommitCellViewModel {
+//        let components = commit.commit.message.components(separatedBy: "\n\n")
+//        let message: String
+//        let additionMessage: String?
+//        if components.count > 1 {
+//            message = components[0]
+//            additionMessage = components[1]
+//        } else if !components.isEmpty {
+//            message = components[0]
+//            additionMessage = nil
+//        } else {
+//            message = ""
+//            additionMessage = nil
+//        }
+//
+//        return CommitCellViewModel(
+//            authorsAvatars: [commit.author.avatarUrl], //todo
+//            message: message,
+//            additionalMessage: additionMessage,
+//            authoredBy: NSAttributedString(string: "NaN"),
+//            isVerified: commit.commit.verification.verified,
+//            date: "NaN"
+//        )
+//    }
+
 struct CommitCellViewModel {
     let authorsAvatars: [URL?]
     let message: String
@@ -14,6 +40,15 @@ struct CommitCellViewModel {
     let authoredBy: NSAttributedString
     let isVerified: Bool?
     let date: String
+
+    init(_ commit: Commit) {
+        authorsAvatars = [commit.author.avatarUrl]
+        message = commit.message
+        additionalMessage = nil
+        authoredBy = NSAttributedString(string: "Todo")
+        isVerified = false
+        date = "ToDo"
+    }
 }
 
 class CommitTableViewCell: BaseTableViewCell, NibLoadable {
@@ -33,29 +68,30 @@ class CommitTableViewCell: BaseTableViewCell, NibLoadable {
 }
 
 extension CommitTableViewCell: ConfigurableCell {
-    func configure(viewModel: CommitCellViewModel) {
+    func configure(viewModel: Commit) {
         messageLabel.text = viewModel.message
-        dateLabel.text = viewModel.date
-
-        if let isVerified = viewModel.isVerified {
-            statusImageView.isHidden = false
-            updateStatusIcon(isVerified: isVerified)
-        } else {
-            statusImageView.isHidden = true
-        }
-
-        if let additionalMessage = viewModel.additionalMessage {
-            additionalMessageLabel.isHidden = false
-            additionalMessageLabel.text = additionalMessage
-        } else {
-            additionalMessageLabel.isHidden = true
-        }
-
-        if viewModel.authorsAvatars.count == 1 {
-            authorAvatarImageView.set(url: viewModel.authorsAvatars[0])
-        } else {
-            //todo
-        }
+//        messageLabel.text = viewModel.message
+//        dateLabel.text = viewModel.date
+//
+//        if let isVerified = viewModel.isVerified {
+//            statusImageView.isHidden = false
+//            updateStatusIcon(isVerified: isVerified)
+//        } else {
+//            statusImageView.isHidden = true
+//        }
+//
+//        if let additionalMessage = viewModel.additionalMessage {
+//            additionalMessageLabel.isHidden = false
+//            additionalMessageLabel.text = additionalMessage
+//        } else {
+//            additionalMessageLabel.isHidden = true
+//        }
+//
+//        if viewModel.authorsAvatars.count == 1 {
+//            authorAvatarImageView.set(url: viewModel.authorsAvatars[0])
+//        } else {
+//            //todo
+//        }
     }
     
     private func updateStatusIcon(isVerified: Bool) {

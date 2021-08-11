@@ -23,7 +23,7 @@ final class MainSceneDIContainer: NSObject {
 
     func makeRepSceneDIContainer(
         dependencies: RepSceneDIContainer.Dependencies) -> RepSceneDIContainer {
-        return RepSceneDIContainer(dependencies: dependencies)
+        return RepSceneDIContainer(parentContainer: self, dependencies: dependencies)
     }
 
     var apiDataTransferService: DataTransferService {

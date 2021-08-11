@@ -61,9 +61,9 @@ class MainCoordinator: NSObject {
 
     func startRepFlow(repository: Repository) {
         let dependency = RepSceneDIContainer.Dependencies(
-            favoritesStorage: container.favoritesStorage,
             repository: repository,
             startUserFlow: startUserFlow(user:),
+            startRepFlow: startRepFlow(repository:),
             openLink: container.dependencies.openLink,
             share: container.dependencies.share
         )

@@ -44,28 +44,4 @@ private extension CommitsListPresenter {
     func fetchCommits() {
     }
 
-    func map(_ commit: CommitInfoResponse) -> CommitCellViewModel {
-        let components = commit.commit.message.components(separatedBy: "\n\n")
-        let message: String
-        let additionMessage: String?
-        if components.count > 1 {
-            message = components[0]
-            additionMessage = components[1]
-        } else if !components.isEmpty {
-            message = components[0]
-            additionMessage = nil
-        } else {
-            message = ""
-            additionMessage = nil
-        }
-
-        return CommitCellViewModel(
-            authorsAvatars: [commit.author.avatarUrl], //todo
-            message: message,
-            additionalMessage: additionMessage,
-            authoredBy: NSAttributedString(string: "NaN"),
-            isVerified: commit.commit.verification.verified,
-            date: "NaN"
-        )
-    }
 }
