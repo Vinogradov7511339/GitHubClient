@@ -30,9 +30,14 @@ final class ExtendedRepositoryAdapterImpl {
 
     private let repository: Repository
     private let dataViewMap: [String: TableCellManager] = [
-        "\(RepositoryDetailsHeaderCellViewModel.self)": TableCellManager.create(cellType: RepositoryHeaderTableViewCell.self),
-        "\(TableCellViewModel.self)": TableCellManager.create(cellType: TableViewCell.self),
-        "\(ReadMeCellViewModel.self)": TableCellManager.create(cellType: ReadMeTableViewCell.self),
+        "\(RepositoryDetailsHeaderCellViewModel.self)":
+            TableCellManager.create(cellType: RepositoryHeaderTableViewCell.self),
+        "\(TableCellViewModel.self)":
+            TableCellManager.create(cellType: TableViewCell.self),
+        "\(BaseDetailsCellViewModel.self)":
+            TableCellManager.create(cellType: BaseDetailsCell.self),
+        "\(ReadMeCellViewModel.self)":
+            TableCellManager.create(cellType: ReadMeTableViewCell.self)
     ]
 
     init(repository: Repository) {
@@ -109,18 +114,18 @@ private extension ExtendedRepositoryAdapterImpl {
         }
     }
 
-    func viewModel(for itemType: ItemTypes) -> TableCellViewModel {
+    func viewModel(for itemType: ItemTypes) -> BaseDetailsCellViewModel {
         switch itemType {
         case .issues:
-            return TableCellViewModel(text: "Issues")
+            return .issue
         case .pullRequests:
-            return TableCellViewModel(text: "Pull Requests")
+            return .pullRequests
         case .releases:
-            return TableCellViewModel(text: "Releases")
+            return .releases
         case .watchers:
-            return TableCellViewModel(text: "Watchers")
+            return .watchers
         case .license:
-            return TableCellViewModel(text: "License")
+            return .license
         }
     }
 

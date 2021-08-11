@@ -31,8 +31,7 @@ class SearchResultViewController: UIViewController {
         view.backgroundColor = .green
         return view
     }()
-    
-//    var presenter: SearchPresenterInput?
+
     var text: String = "" {
         didSet {
             if !text.isEmpty {
@@ -71,7 +70,7 @@ class SearchResultViewController: UIViewController {
         }
         tableView.reloadData()
     }
-    
+
     private func models() -> [SearchTypeCellViewModel] {
         return [
             SearchTypeCellViewModel(image: UIImage.issue, baseText: "Repositories with "),
@@ -84,6 +83,15 @@ class SearchResultViewController: UIViewController {
     }
 }
 
+// MARK: - UISearchResultsUpdating
+extension SearchResultViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if !searchController.isActive {
+            return
+        }
+        text = searchController.searchBar.searchTextField.text ?? ""
+    }
+}
 
 // MARK: - UITableViewDelegate
 extension SearchResultViewController: UITableViewDelegate {
@@ -100,7 +108,7 @@ extension SearchResultViewController: UITableViewDataSource {
         case .typing(_): return searchingViewModels.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch state {
         case .typing(let text):
@@ -127,7 +135,7 @@ private extension SearchResultViewController {
         emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true

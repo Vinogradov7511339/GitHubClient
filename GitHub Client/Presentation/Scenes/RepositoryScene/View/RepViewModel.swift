@@ -35,7 +35,7 @@ protocol RepViewModelOutput {
 typealias RepViewModel = RepViewModelInput & RepViewModelOutput
 
 final class RepViewModelImpl: RepViewModel {
-    
+
     let repository: Observable<Repository>
     private let repUseCase: RepUseCase
     private let actions: RepActions
@@ -55,9 +55,7 @@ final class RepViewModelImpl: RepViewModel {
 
 // MARK: - RepViewModelInput
 extension RepViewModelImpl {
-    func viewDidLoad() {
-        
-    }
+    func viewDidLoad() {}
 
     func didSelectItem(at indexPath: IndexPath) {
         switch(indexPath.section, indexPath.row) {
@@ -73,11 +71,11 @@ extension RepViewModelImpl {
 
     func addToFavorites() {
         repUseCase.addFavorite(repository: repository.value) { error in
-//            self.handle(error)
+            self.handle(error)
         }
     }
 }
 
 private extension RepViewModelImpl {
-    func handle(_ error: Error) {}
+    func handle(_ error: Error?) {}
 }

@@ -9,6 +9,10 @@ import UIKit
 
 final class AppDIContainer {
 
+    static let shared = AppDIContainer()
+
+    private init() {}
+
     lazy var appConfiguration = AppConfiguration()
 
     lazy var apiDataTransferService: DataTransferService = {

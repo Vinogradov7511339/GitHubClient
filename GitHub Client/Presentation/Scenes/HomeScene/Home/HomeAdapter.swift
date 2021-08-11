@@ -26,16 +26,13 @@ enum HomeMenuItems: Int, CaseIterable {
     }
 }
 
-protocol HomeAdapter {
+protocol HomeAdapter: UITableViewDataSource {
     var favorites: [Repository] { get set }
 
     func register(tableView: UITableView)
-    func numberOfSections() -> Int
-    func numberOfRows(in section: Int) -> Int
-    func cellForRow(in tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
 }
 
-final class HomeAdapterImpl {
+final class HomeAdapterImpl: NSObject {
 
     enum SectionType: Int, CaseIterable {
         case menu, favorites
@@ -56,11 +53,10 @@ extension HomeAdapterImpl: HomeAdapter {
         }
     }
 
-    func numberOfSections() -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         SectionType.allCases.count
     }
-
-    func numberOfRows(in section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else {
             return 0
         }
@@ -72,7 +68,7 @@ extension HomeAdapterImpl: HomeAdapter {
         }
     }
 
-    func cellForRow(in tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel(for: indexPath) else {
             assert(false, "viewModel is empty at \(indexPath)")
             return UITableViewCell()

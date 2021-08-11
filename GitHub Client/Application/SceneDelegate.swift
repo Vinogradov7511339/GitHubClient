@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    let appDIContainer = AppDIContainer()
+    let appDIContainer = AppDIContainer.shared
     var appCoordinator: AppCoordinator?
     var window: UIWindow?
 

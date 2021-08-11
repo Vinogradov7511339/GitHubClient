@@ -35,6 +35,18 @@ struct BaseDetailsCellViewModel {
     static var starred: BaseDetailsCellViewModel {
         .init(color: .starred, image: .starred, title: .starred)
     }
+
+    static var releases: BaseDetailsCellViewModel {
+        .init(color: .releases, image: .releases, title: .releases)
+    }
+
+    static var watchers: BaseDetailsCellViewModel {
+        .init(color: .watchers, image: .watchers, title: .watchers)
+    }
+
+    static var license: BaseDetailsCellViewModel {
+        .init(color: .license, image: .license, title: .license)
+    }
 }
 
 class BaseDetailsCell: BaseTableViewCell, NibLoadable {

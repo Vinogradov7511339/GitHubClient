@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 protocol FavoritesStorage {
+    func contains(_ repositoryId: Int) -> Bool
     func fetchFavorites(completion: @escaping (Result<[Repository], Error>) -> Void)
     func addFavorite(repository: Repository, completion: @escaping (Error?) -> Void)
     func removeFavorite(by repositoryId: Int, completion: @escaping (Error?) -> Void)
@@ -17,6 +18,7 @@ protocol FavoritesStorage {
 final class FavoritesStorageImpl {
 
     private let coreDataStorage: CoreDataStorage
+    private var favorites: Set<Int> = []
 
     init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
         self.coreDataStorage = coreDataStorage
@@ -30,6 +32,7 @@ extension FavoritesStorageImpl: FavoritesStorage {
             do {
                 let request: NSFetchRequest = FavoriteCDEntity.fetchRequest()
                 let result = try context.fetch(request).compactMap { $0.toDomain() }
+                self.favorites = Set(result.map { $0.repositoryId })
                 completion(.success(result))
             } catch {
                 completion(.failure(error))
@@ -63,6 +66,10 @@ extension FavoritesStorageImpl: FavoritesStorage {
                 completion(error)
             }
         }
+    }
+
+    func contains(_ repositoryId: Int) -> Bool {
+        favorites.contains(repositoryId)
     }
 }
 

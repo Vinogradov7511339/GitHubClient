@@ -676,11 +676,12 @@
 		AD20E4EB26A8C045003BB5F1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				AD20E57126AB4F40003BB5F1 /* SearchTypeCell */,
+				AD20E4F926A95DC1003BB5F1 /* FavoritesEmptyCell */,
 				AD8722EE26B842AE004649A4 /* FavoriteRepositoryCell */,
 				AD2E262E26BD17F600B25772 /* HomeViewModel.swift */,
-				AD20E4F926A95DC1003BB5F1 /* FavoritesEmptyCell */,
+				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
 				AD20E4EC26A8C060003BB5F1 /* HomeViewController.swift */,
-				AD20E57126AB4F40003BB5F1 /* SearchTypeCell */,
 				AD6B09C426C2C07D004644D2 /* HomeAdapter.swift */,
 			);
 			path = Home;
@@ -1249,7 +1250,6 @@
 				AD20E51426A9AFE1003BB5F1 /* IssueScene */,
 				AD39FE3B26BAA1EA00F055FD /* RepositoryScene */,
 				ADD462E726BD776D00DD46CC /* ItemsList */,
-				AD79550D26AC1188004E6973 /* SearchScene */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1322,14 +1322,6 @@
 				AD6B09C026C2A7C0004644D2 /* UserCDEntity+Mapping.swift */,
 			);
 			path = FavoritesCDStorage;
-			sourceTree = "<group>";
-		};
-		AD79550D26AC1188004E6973 /* SearchScene */ = {
-			isa = PBXGroup;
-			children = (
-				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
-			);
-			path = SearchScene;
 			sourceTree = "<group>";
 		};
 		AD8722D026B7D846004649A4 /* UIComponents */ = {

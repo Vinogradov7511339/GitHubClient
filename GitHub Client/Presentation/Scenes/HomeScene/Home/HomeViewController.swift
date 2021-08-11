@@ -27,26 +27,26 @@ class HomeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = adapter
         return tableView
     }()
     
-//    private lazy var resultViewController: SearchResultViewController = {
-////        fatalError()
-////        let resultController = SearchConfigurator.createModule()
-////        return resultController
-//    }()
+    private lazy var resultViewController: SearchResultViewController = {
+        let resultController = SearchResultViewController()
+        return resultController
+    }()
     
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        let searchController = UISearchController(searchResultsController: resultViewController)
+        searchController.searchResultsUpdater = resultViewController
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search GitHub"
+        searchController.searchBar.placeholder = NSLocalizedString("Search GitHub", comment: "")
         searchController.isActive = true
         return searchController
     }()
-    
+
     private let refreshControl = UIRefreshControl()
+    private var notificationObjects: [NSObjectProtocol] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +72,8 @@ class HomeViewController: UIViewController {
     @objc func refresh(_ sender: AnyObject) {
         viewModel.refresh()
     }
+
+    @objc func showFavorites(_ sender: AnyObject) {}
 }
 
 // MARK: - Binding
@@ -86,35 +88,52 @@ private extension HomeViewController {
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension HomeViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        if !searchController.isActive {
-            return
-        }
-    }
-}
-
 // MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return section == 0 ? firstHeader() : secondHeader()
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        50.0
+    }
 }
 
-// MARK: - UITableViewDataSource
-extension HomeViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        adapter.numberOfSections()
+// MARK: - Header views
+private extension HomeViewController {
+    func firstHeader() -> UIView {
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50.0)
+        let view = UIView(frame: frame)
+        view.backgroundColor = .systemGroupedBackground
+        let labelFrame = CGRect(x: 0, y: 10, width: view.bounds.width, height: 40)
+        let label = UILabel(frame: labelFrame)
+        label.font = .boldSystemFont(ofSize: 21.0)
+        label.text = "My Work"
+        view.addSubview(label)
+        return view
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        adapter.numberOfRows(in: section)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        adapter.cellForRow(in: tableView, at: indexPath)
+    func secondHeader() -> UIView {
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50.0)
+        let view = UIView(frame: frame)
+        view.backgroundColor = .systemGroupedBackground
+        let labelFrame = CGRect(x: 0, y: 10, width: view.bounds.width, height: 40)
+        let label = UILabel(frame: labelFrame)
+        label.font = .boldSystemFont(ofSize: 21.0)
+        label.text = "Favorites"
+        view.addSubview(label)
+        let buttonFrame = CGRect(x: view.bounds.width - 100, y: 0.0, width: 100.0, height: 50.0)
+        let button = UIButton.init(frame: buttonFrame)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitle("Edit", for: .normal)
+        button.addTarget(self, action:  #selector(self.showFavorites(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        return view
     }
 }
 
@@ -122,12 +141,12 @@ extension HomeViewController: UITableViewDataSource {
 private extension HomeViewController {
     private func observeToNotifications() {
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(
+        _ = notificationCenter.addObserver(
             forName: UIResponder.keyboardWillChangeFrameNotification,
             object: nil, queue: .main) { (notification) in
             self.handleKeyboard(notification: notification)
         }
-        notificationCenter.addObserver(
+        _ = notificationCenter.addObserver(
             forName: UIResponder.keyboardWillHideNotification,
             object: nil, queue: .main) { (notification) in
             self.handleKeyboard(notification: notification)
@@ -140,9 +159,8 @@ private extension HomeViewController {
             return
         }
 
-        guard
-            let info = notification.userInfo,
-            let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        guard let info = notification.userInfo,
+              let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {
             return
         }
