@@ -67,12 +67,10 @@ struct UserResponseDTO: Codable {
             company: company,
             userBlogUrl: blog,
             userEmail: email,
-            followingCount: -1,
-            followersCount: -1,
-            pinnedRepositories: [],
-            repositoriesCount: -1,
-            starredCount: -1,
-            organizationsCount: -1
+            followingCount: following ?? 0,
+            followersCount: followers ?? 0,
+            gistsCount: publicGists ?? 0,
+            repositoriesCount: publicRepos ?? 0
         )
     }
 
@@ -85,12 +83,10 @@ struct UserResponseDTO: Codable {
             company: company,
             userBlogUrl: blog,
             userEmail: email,
-            followingCount: following!,
-            followersCount: followers!,
-            pinnedRepositories: [],
-            repositoriesCount: -1,
-            starredCount: -1,
-            organizationsCount: -1
+            followingCount: following ?? 0,
+            followersCount: followers ?? 0,
+            gistsCount: (publicGists ?? 0) + (privateGists ?? 0),
+            repositoriesCount: (publicRepos ?? 0) + (totalPrivateRepos ?? 0)
         )
         return .init(userDetails: detailsUser,
                      totalRepCount: totalPrivateRepos ?? -1,

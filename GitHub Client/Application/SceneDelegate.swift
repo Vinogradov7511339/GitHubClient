@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
-        Theme.current.apply(to: window)
+//        Theme.current.apply(to: window)
 
         let navigationController: UINavigationController = .init()
         window?.rootViewController = navigationController

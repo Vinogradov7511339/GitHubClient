@@ -10,16 +10,17 @@ import UIKit
 class UserProfileViewController: UIViewController {
     
     private var viewModel: UserProfileViewModel!
-    
+
     static func create(with viewModel: UserProfileViewModel) -> UserProfileViewController {
         let viewController = UserProfileViewController()
         viewController.viewModel = viewModel
         return viewController
     }
 
-    private lazy var headerView: MyProfileHeaderView = {
-        let view = MyProfileHeaderView.instanceFromNib()
+    private lazy var headerView: ProfileCardView = {
+        let view = ProfileCardView.instanceFromNib()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         return view
     }()
 
@@ -27,6 +28,7 @@ class UserProfileViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemGroupedBackground
@@ -34,7 +36,6 @@ class UserProfileViewController: UIViewController {
         return tableView
     }()
 
-    let maxHeaderHeight: CGFloat = 220.0
     let minHeaderHeight: CGFloat = 70.0
     var previousScrollOffset: CGFloat = 0
     var headerViewHeight: NSLayoutConstraint?
@@ -43,8 +44,9 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        view.backgroundColor = .systemBackground
 
-        viewModel.cellManager.register(tableView: tableView)
+        viewModel.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -52,7 +54,12 @@ class UserProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
 
     @objc func share(_ sender: AnyObject) {
@@ -63,12 +70,17 @@ class UserProfileViewController: UIViewController {
 // MARK: - Binding
 private extension UserProfileViewController {
     func bind(to viewModel: UserProfileViewModel) {
-        viewModel.userDetails.observe(on: self) { [weak self] in self?.update(user: $0)}
+        viewModel.tableItems.observe(on: self) { [weak self] _ in self?.reload() }
+        viewModel.userDetails.observe(on: self) { [weak self] in self?.update(user: $0) }
+    }
+
+    func reload() {
+        tableView.reloadData()
     }
 
     func update(user: UserDetails?) {
         guard let user = user else { return }
-        headerView.setProfile(user.user)
+        headerView.setProfile(user)
     }
 }
 
@@ -87,11 +99,12 @@ extension UserProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20.0
+        return 1
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let headerViewHeight = headerViewHeight else { return }
+        let maxHeaderHeight = ProfileCardView.Const.maxHeight
         let scrollDiff = (scrollView.contentOffset.y - previousScrollOffset)
         let isScrollingDown = scrollDiff > 0
         let isScrollingUp = scrollDiff < 0
@@ -133,9 +146,36 @@ extension UserProfileViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableItem = viewModel.tableItems.value[indexPath.section][indexPath.row]
-        let cell = viewModel.cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+        let cell = viewModel.cellManager(for: indexPath).dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: tableItem)
         return cell
+    }
+}
+
+// MARK: - ProfileCardViewDelegate
+extension UserProfileViewController: ProfileCardViewDelegate {
+    func backButtonTouchUpInside() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    func repositoriesButtonTouchUpInside() {
+        viewModel.showRepositories()
+    }
+
+    func followersButtonTouchUpInside() {
+        viewModel.showFollowers()
+    }
+
+    func followingsButtonTouchUpInside() {
+        viewModel.showFollowing()
+    }
+
+    func linkButtonTouchUpInside(link: URL) {
+        viewModel.openLink(link)
+    }
+
+    func emailButtonTouchUpInside(email: String) {
+        viewModel.sendEmail(email)
     }
 }
 
@@ -150,7 +190,7 @@ private extension UserProfileViewController {
         headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: 220)
+        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: ProfileCardView.Const.maxHeight)
         headerViewHeight?.isActive = true
 
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

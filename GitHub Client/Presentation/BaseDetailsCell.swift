@@ -47,6 +47,10 @@ struct BaseDetailsCellViewModel {
     static var license: BaseDetailsCellViewModel {
         .init(color: .license, image: .license, title: .license)
     }
+
+    static var following: BaseDetailsCellViewModel {
+        .init(color: .license, image: .license, title: "Following Temp")
+    }
 }
 
 class BaseDetailsCell: BaseTableViewCell, NibLoadable {

@@ -92,7 +92,7 @@ private extension HomeAdapterImpl {
         case .menu:
             return HomeMenuItems(rawValue: indexPath.row)?.viewModel
         case .favorites:
-            return FavoriteRepositoryCellViewModel(image: nil, repository: favorites[indexPath.row])
+            return FavoriteRepositoryCellViewModel(image: UIImage(systemName: "chevron.forward"), repository: favorites[indexPath.row])
         }
     }
 

@@ -35,21 +35,28 @@ final class UserFlowCoordinator {
 
 extension UserFlowCoordinator {
     func actions() -> UserProfileActions {
-        .init(showFollowers: showFollowers(_:),
+        .init(showRepositories: showRepositories(_:),
+              showFollowers: showFollowers(_:),
               showFollowing: showFollowing(_:),
-              showRepository: dependencies.startRepFlow(_:),
-              showRepositories: showRepositories(_:),
-              showStarred: showStarred(_:),
-              showOrganizations: showOrganizations(_:),
               sendEmail: dependencies.sendMail(email:),
               openLink: dependencies.openLink(url:),
-              share: dependencies.share(url:)
+              share: dependencies.share(url:),
+              showRecentEvents: showRecentEvents(_:),
+              showStarred: showStarred(_:),
+              showGists: showGists(_:),
+              showSubscriptions: showSubscriptions(_:),
+              showOrganizations: showOrganizations(_:),
+              showEvents: showEvents(_:)
         )
     }
     
     func showFollowers(_ user: User) {}
     func showFollowing(_ user: User) {}
     func showRepositories(_ user: User) {}
+    func showRecentEvents(_ user: User) {}
+    func showGists(_ user: User) {}
+    func showSubscriptions(_ user: User) {}
+    func showEvents(_ user: User) {}
 
     func showStarred(_ user: User) {
         let actions = ItemsListActions(showDetails: dependencies.startRepFlow(_:))

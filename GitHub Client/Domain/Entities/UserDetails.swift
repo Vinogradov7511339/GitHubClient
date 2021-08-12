@@ -16,8 +16,6 @@ struct UserDetails {
     let userEmail: String?
     let followingCount: Int
     let followersCount: Int
-    let pinnedRepositories: [Repository]
+    let gistsCount: Int
     let repositoriesCount: Int
-    let starredCount: Int
-    let organizationsCount: Int
 }

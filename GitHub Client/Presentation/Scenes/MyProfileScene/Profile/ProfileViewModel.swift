@@ -90,6 +90,8 @@ extension ProfileViewModelImpl {
             actions.showStarred()
         case (0, 2):
             actions.showOrganizations()
+        case (0, 3):
+            actions.showFollowing()
         case (1, 0):
             actions.showFollowing()
         case (1, 1):
@@ -102,7 +104,7 @@ extension ProfileViewModelImpl {
     }
 
     static func items() -> [BaseDetailsCellViewModel] {
-        return [.repositories, .starred, .organizations]
+        return [.repositories, .starred, .organizations, .following]
     }
 }
 
