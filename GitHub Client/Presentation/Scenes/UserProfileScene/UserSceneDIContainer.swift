@@ -15,6 +15,17 @@ final class UserSceneDIContainer {
         var openLink: (URL) -> Void
         var share: (URL) -> Void
         var sendEmail: (String) -> Void
+
+        let showRecentEvents: (User) -> Void
+        let showStarred: (User) -> Void
+        let showGists: (User) -> Void
+        let showSubscriptions: (User) -> Void
+        let showOrganizations: (User) -> Void
+        let showEvents: (User) -> Void
+
+        let showRepositories: (User) -> Void
+        let showFollowers: (User) -> Void
+        let showFollowing: (User) -> Void
     }
 
     let parentContainer: MainSceneDIContainer
@@ -33,6 +44,38 @@ final class UserSceneDIContainer {
 
 // MARK: - StarredFlowCoordinatorDependencies
 extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
+    func showFollowers(_ user: User) {
+        dependencies.showFollowers(user)
+    }
+
+    func showFollowing(_ user: User) {
+        dependencies.showFollowing(user)
+    }
+
+    func showRepositories(_ user: User) {
+        dependencies.showRepositories(user)
+    }
+
+    func showRecentEvents(_ user: User) {
+        dependencies.showRecentEvents(user)
+    }
+
+    func showGists(_ user: User) {
+        dependencies.showGists(user)
+    }
+
+    func showSubscriptions(_ user: User) {
+        dependencies.showSubscriptions(user)
+    }
+
+    func showEvents(_ user: User) {
+        dependencies.showEvents(user)
+    }
+
+    func showOrganizations(_ user: User) {
+        dependencies.showOrganizations(user)
+    }
+
     func sendMail(email: String) {
         dependencies.sendEmail(email)
     }

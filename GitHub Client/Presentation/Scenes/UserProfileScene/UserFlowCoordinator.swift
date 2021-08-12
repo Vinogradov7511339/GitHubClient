@@ -11,6 +11,16 @@ protocol UserFlowCoordinatorDependencies {
     func makeUserProfileViewController(actions: UserProfileActions) -> UserProfileViewController
     func makeStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
     func startRepFlow(_ repository: Repository)
+
+    func showFollowers(_ user: User)
+    func showFollowing(_ user: User)
+    func showRepositories(_ user: User)
+    func showRecentEvents(_ user: User)
+    func showGists(_ user: User)
+    func showSubscriptions(_ user: User)
+    func showEvents(_ user: User)
+    func showOrganizations(_ user: User)
+
     func sendMail(email: String)
     func openLink(url: URL)
     func share(url: URL)
@@ -57,12 +67,11 @@ extension UserFlowCoordinator {
     func showGists(_ user: User) {}
     func showSubscriptions(_ user: User) {}
     func showEvents(_ user: User) {}
+    func showOrganizations(_ user: User) {}
 
     func showStarred(_ user: User) {
         let actions = ItemsListActions(showDetails: dependencies.startRepFlow(_:))
         let viewController = dependencies.makeStarredViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
-
-    func showOrganizations(_ user: User) {}
 }
