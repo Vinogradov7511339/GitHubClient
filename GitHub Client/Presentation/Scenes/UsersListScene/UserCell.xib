@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UserCell" customModule="GitHub_Client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axh-Rl-fYB">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iub-zs-edo" customClass="WebImageView" customModule="GitHub_Client" customModuleProvider="target">
+                                <rect key="frame" x="28" y="16" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="Cue-iP-XRA"/>
+                                    <constraint firstAttribute="height" constant="64" id="fE1-lB-hyr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68X-dp-tMF">
+                                <rect key="frame" x="39.5" y="93" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Iub-zs-edo" firstAttribute="top" secondItem="axh-Rl-fYB" secondAttribute="top" constant="16" id="7Rt-yQ-wP0"/>
+                            <constraint firstItem="Iub-zs-edo" firstAttribute="centerX" secondItem="axh-Rl-fYB" secondAttribute="centerX" id="J8f-fN-l7m"/>
+                            <constraint firstItem="68X-dp-tMF" firstAttribute="top" secondItem="Iub-zs-edo" secondAttribute="bottom" constant="13" id="Wch-ug-pLR"/>
+                            <constraint firstItem="68X-dp-tMF" firstAttribute="centerX" secondItem="Iub-zs-edo" secondAttribute="centerX" id="ZoB-DR-qe2"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="axh-Rl-fYB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="X7H-hf-WVr"/>
+                <constraint firstItem="axh-Rl-fYB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cDs-dZ-EF7"/>
+                <constraint firstAttribute="bottom" secondItem="axh-Rl-fYB" secondAttribute="bottom" id="wFp-3R-ViZ"/>
+                <constraint firstAttribute="trailing" secondItem="axh-Rl-fYB" secondAttribute="trailing" id="xIe-sh-PUz"/>
+            </constraints>
+            <connections>
+                <outlet property="avatarImageView" destination="Iub-zs-edo" id="s8U-zW-bb7"/>
+                <outlet property="loginLabel" destination="68X-dp-tMF" id="NRd-l4-PGy"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

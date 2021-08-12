@@ -23,6 +23,7 @@ final class ProfileDIContainer {
     private let profileStorage: ProfileLocalStorage
     private let profileFactory: MyProfileFactory
     private let itemsListFactory: ItemsListFactory
+    private let usersListFactory: UsersListFactory
 
     init(parentContainer: MainSceneDIContainer, actions: Actions) {
         self.actions = actions
@@ -30,18 +31,19 @@ final class ProfileDIContainer {
         self.profileFactory = MyProfileFactoryImpl(dataTransferService: parentContainer.apiDataTransferService,
             storage: profileStorage)
         self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        self.usersListFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
         profileFactory.makeMyProfileViewController(actions)
     }
 
-    func createFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        itemsListFactory.makeMyFollowersViewController(actions: actions)
+    func createFollowersViewController(actions: UsersListActions) -> UsersListViewController {
+        usersListFactory.makeMyFollowersViewController(actions: actions)
     }
 
-    func createFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        itemsListFactory.makeMyFollowingViewController(actions: actions)
+    func createFollowingViewController(actions: UsersListActions) -> UsersListViewController {
+        usersListFactory.makeMyFollowingViewController(actions: actions)
     }
 
     func createRepositoriesViewController(

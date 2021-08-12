@@ -29,7 +29,7 @@ struct UserResponseDTO: Codable {
     let siteAdmin: Bool?
     let name: String?
     let company: String?
-    let blog: URL?
+    let blog: String?
     let location: String?
     let email: String?
     let hireable: Bool?
@@ -65,7 +65,7 @@ struct UserResponseDTO: Codable {
             status: "ToDo",
             location: location,
             company: company,
-            userBlogUrl: blog,
+            userBlogUrl: URL(string: blog ?? ""),
             userEmail: email,
             followingCount: following ?? 0,
             followersCount: followers ?? 0,
@@ -81,7 +81,7 @@ struct UserResponseDTO: Codable {
             status: "NaN",
             location: location,
             company: company,
-            userBlogUrl: blog,
+            userBlogUrl: URL(string: blog ?? ""),
             userEmail: email,
             followingCount: following ?? 0,
             followersCount: followers ?? 0,

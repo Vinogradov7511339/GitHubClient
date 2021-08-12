@@ -73,10 +73,17 @@ final class ProfileCardView: UIView {
 
     func setProfile(_ user: UserDetails) {
         self.user = user
+        loginLabel.text = user.user.login
         avatarImageView.set(url: user.user.avatarUrl)
         followersCountLabel.text = "\(user.followersCount)"
         followingCountLabel.text = "\(user.followingCount)"
         repositoriesCountLabel.text = "\(user.repositoriesCount)"
+        if let name = user.user.name {
+            nameLabel.isHidden = false
+            nameLabel.text = name
+        } else {
+            nameLabel.isHidden = true
+        }
         if let company = user.company {
             companyButton.isHidden = false
             companyButton.setTitle(company, for: .normal)
@@ -87,7 +94,7 @@ final class ProfileCardView: UIView {
             locationButton.isHidden = false
             locationButton.setTitle(location, for: .normal)
         } else {
-            locationButton.isHidden = false
+            locationButton.isHidden = true
         }
         if let link = user.userBlogUrl {
             linkButton.isHidden = false

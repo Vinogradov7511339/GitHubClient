@@ -14,43 +14,44 @@ protocol ExplorePresenterOutput: AnyObject {
 
 protocol ExplorePresenterInput {
     var output: ExplorePresenterOutput? { get set }
-    
+
     var layout: UICollectionViewLayout { get }
     var dataViewMap: [String: CollectionCellManager] { get }
-    
+
     func viewDidLoad()
 }
 
 class ExplorePresenter: NSObject {
-    
+
     enum SectionType: Int, CaseIterable {
         case singleList     // Featured
         case doubleList     // This weeks favorites
         case tripleList     // Learn something
         case categoryList   // Top Categories
     }
-    
+
     struct Section {
         let type: SectionType
         let data: [Any]
     }
-    
+
     var layout: UICollectionViewLayout {
         return create()
     }
-    
+
     weak var output: ExplorePresenterOutput?
-    
+
     private var dataSource: [Section] = []
-    
+
     var dataViewMap: [String: CollectionCellManager] = [
-        "\(FeaturedCellViewModel.self)": CollectionCellManager.create(cellType: FeaturedCollectionViewCell.self),
+        "\(FeaturedCellViewModel.self)":
+            CollectionCellManager.create(cellType: FeaturedCollectionViewCell.self),
         "\(MediumCellViewModel.self)": CollectionCellManager.create(cellType: MediumCollectionViewCell.self),
         "\(SmallCellViewModel.self)": CollectionCellManager.create(cellType: SmallCollectionViewCell.self),
         "\(SmallCategoryCellViewModel.self)":
             CollectionCellManager.create(cellType: SmallCategoryCollectionViewCell.self)
     ]
-    
+
     private var repositories: [RepositoryResponseDTO] = []
 }
 
@@ -65,20 +66,20 @@ private extension ExplorePresenter {
             case .categoryList: return self.createCategoryListSection(for: self.numberOfItems(in: section))
             }
         }
-        
+
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         configuration.interSectionSpacing = 20.0
         layout.configuration = configuration
-        
+
         return layout
     }
-    
+
     func createSingleListSection() -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
-        
+
         let item = NSCollectionLayoutItem(layoutSize: size)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
 
@@ -91,38 +92,38 @@ private extension ExplorePresenter {
         
         return section
     }
-    
+
     func createDoubleListSection() -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(0.5)
         )
-        
+
         let item = NSCollectionLayoutItem(layoutSize: size)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
-        
+
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95),
             heightDimension: .estimated(180.0)
         )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
         group.interItemSpacing = .fixed(8.0)
-        
+
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
-        
+
         let header = createHeader()
         section.boundarySupplementaryItems = [header]
-        
+
         return section
     }
-    
+
     func createTripleListSection() -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(0.33)
         )
-        
+
         let item = NSCollectionLayoutItem(layoutSize: size)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
 
@@ -130,7 +131,7 @@ private extension ExplorePresenter {
             widthDimension: .fractionalWidth(0.95),
             heightDimension: .estimated(165.0)
         )
-        
+
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
         group.interItemSpacing = .fixed(8.0)
 
@@ -139,16 +140,16 @@ private extension ExplorePresenter {
         
         let header = createHeader()
         section.boundarySupplementaryItems = [header]
-        
+
         return section
     }
-    
+
     func createCategoryListSection(for itemsCount: Int) -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(CGFloat(1 / itemsCount))
         )
-        
+
         let item = NSCollectionLayoutItem(layoutSize: size)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 5)
 
@@ -156,12 +157,12 @@ private extension ExplorePresenter {
             widthDimension: .fractionalWidth(0.95),
             heightDimension: .estimated(CGFloat( Double(itemsCount) * 40.0))
         )
-        
+
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: itemsCount)
         group.interItemSpacing = .fixed(8.0)
         
         let section = NSCollectionLayoutSection(group: group)
-        
+
         let header = createHeader()
         section.boundarySupplementaryItems = [header]
         return section
