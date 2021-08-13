@@ -13,6 +13,8 @@ protocol UsersListFactory {
 
     func createFollowersViewController(for user: User, actions: UsersListActions) -> UsersListViewController
     func createFollowingViewController(for user: User, actions: UsersListActions) -> UsersListViewController
+
+    func createStargazersViewController(for repository: Repository, actions: UsersListActions) -> UsersListViewController
 }
 
 final class UsersListFactoryImpl {
@@ -41,6 +43,10 @@ extension UsersListFactoryImpl: UsersListFactory {
     func createFollowingViewController(for user: User, actions: UsersListActions) -> UsersListViewController {
         .create(with: createFollowingViewModel(for: user, actions: actions))
     }
+
+    func createStargazersViewController(for repository: Repository, actions: UsersListActions) -> UsersListViewController {
+        .create(with: createStargazersViewModel(for: repository, actions: actions))
+    }
 }
 
 private extension UsersListFactoryImpl {
@@ -58,6 +64,10 @@ private extension UsersListFactoryImpl {
 
     func createFollowingViewModel(for user: User, actions: UsersListActions) -> UsersListViewModel {
         UsersListViewModelImpl.init(useCase: createUsersListUseCase(), type: .userFollowings(user), actions: actions)
+    }
+
+    func createStargazersViewModel(for repository: Repository, actions: UsersListActions) -> UsersListViewModel {
+        UsersListViewModelImpl.init(useCase: createUsersListUseCase(), type: .stargazers(repository), actions: actions)
     }
 
     func createUsersListUseCase() -> UsersListUseCase {

@@ -9,8 +9,8 @@ import UIKit
 
 protocol RepFlowCoordinatorDependencies {
     func makeRepViewController(actions: RepActions) -> RepViewController
-    func makeStargazersViewController(for repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User>
-    func makeForksViewController(for repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
+    func makeStargazersViewController(for repository: Repository, actions: UsersListActions) -> UsersListViewController
+    func makeForksViewController(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewController
     func makeIssuesViewController(for repository: Repository, actions: IssuesActions) -> IssuesViewController
     func makePullRequestsViewController(for repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
     func makeReleasesViewController(for repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
@@ -56,13 +56,13 @@ extension RepFlowCoordinator {
     }
 
     func showStargazers(_ repository: Repository) {
-        let actions = ItemsListActions(showDetails: dependencies.startUserFlow(with:))
+        let actions = UsersListActions(showUser: dependencies.startUserFlow(with:))
         let viewController = dependencies.makeStargazersViewController(for: repository, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showForks(_ repository: Repository) {
-        let actions = ItemsListActions(showDetails: dependencies.startRepFlow(with:))
+        let actions = RepositoriesActions(showRepository: dependencies.startRepFlow(with:))
         let viewController = dependencies.makeForksViewController(for: repository, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

@@ -31,6 +31,9 @@ extension RepositoriesRepositoryImpl: RepositoriesRepository {
         case .userStarred(let user):
             let endpoint = UserEndpoints.getStarredRepositories(login: user.login, page: requestModel.page)
             fetch(endpoint: endpoint, completion: completion)
+        case .forks(let repository):
+            let endpoint = RepositoryEndpoits.getForks(page: requestModel.page, repository: repository)
+            fetch(endpoint: endpoint, completion: completion)
         }
     }
 }

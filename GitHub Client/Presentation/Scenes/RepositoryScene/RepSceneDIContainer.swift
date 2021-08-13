@@ -21,6 +21,8 @@ class RepSceneDIContainer {
     private let factory: ExtendedRepositoryFactory
     private let itemsListFactory: ItemsListFactory
     private let issuesFactory: IssuesFactory
+    private let usersFactory: UsersListFactory
+    private let repositoriesFactory: RepositoriesFactory
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -28,6 +30,8 @@ class RepSceneDIContainer {
                                                 favoriteStorage: parentContainer.favoritesStorage)
         itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         issuesFactory = IssuesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        usersFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
@@ -58,12 +62,12 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
         factory.makeExtendedRepositoryViewController(actions: actions)
     }
 
-    func makeStargazersViewController(for repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        itemsListFactory.makeStargazersViewController(repository: repository, actions: actions)
+    func makeStargazersViewController(for repository: Repository, actions: UsersListActions) -> UsersListViewController {
+        usersFactory.createStargazersViewController(for: repository, actions: actions)
     }
 
-    func makeForksViewController(for repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        itemsListFactory.makeForksViewController(repository: repository, actions: actions)
+    func makeForksViewController(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.createForksViewController(for: repository, actions: actions)
     }
 
     func makeIssuesViewController(for repository: Repository, actions: IssuesActions) -> IssuesViewController {

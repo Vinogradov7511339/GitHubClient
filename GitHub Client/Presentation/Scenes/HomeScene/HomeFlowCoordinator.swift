@@ -26,7 +26,6 @@ class HomeFlowCoordinator {
 extension HomeFlowCoordinator {
     func actions() -> HomeActions {
         .init(showIssues: showMyIssues,
-              showPullRequests: showMyPullRequests,
               showDiscussions: showMyDiscussions,
               showOrganizations: container.actions.showOrganizations,
               showFavorites: showFavorites,
@@ -38,12 +37,6 @@ extension HomeFlowCoordinator {
     func showMyIssues() {
         let actions = IssuesActions(showIssue: container.actions.openIssue)
         let controller = container.createIssuesViewController(actions: actions)
-        navigationController?.pushViewController(controller, animated: true)
-    }
-
-    func showMyPullRequests() {
-        let actions = ItemsListActions(showDetails: container.actions.openPullRequest)
-        let controller = container.createPullRequestsViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 

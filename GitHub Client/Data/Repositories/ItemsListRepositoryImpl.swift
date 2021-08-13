@@ -20,18 +20,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         switch requestModel.listType {
-        case .myPullRequests:
-            let endpoint = MyProfileEndpoinds.getMyPullRequests(page: requestModel.page)
-            fetchPullRequests(endpoint: endpoint, completion: completion)
-
-        case .stargazers(let repository):
-            let endpoint = RepositoryEndpoits.getStargazers(page: requestModel.page, repository: repository)
-            fetchUsers(endpoint: endpoint, completion: completion)
-
-        case .forks(let repository):
-            let endpoint = RepositoryEndpoits.getForks(page: requestModel.page, repository: repository)
-            fetchRepositories(endpoint: endpoint, completion: completion)
-
         case .pullRequests(let repository):
             let endpoint = RepositoryEndpoits.getPullRequests(page: requestModel.page, repository: repository)
             fetchPullRequests(endpoint: endpoint, completion: completion)
@@ -48,54 +36,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
 }
 
 private extension ItemsListRepositoryImpl {
-    func fetchUsers(endpoint: Endpoint<[UserResponseDTO]>,
-                    completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        dataTransferService.request(with: endpoint) { result in
-            switch result {
-            case .success(let response):
-                let lastPage = self.tryTakeLastPage(response.httpResponse)
-                let model = ItemsListResponseModel(
-                    items: .users(response.model.map { $0.toDomain() }),
-                    lastPage: lastPage)
-                completion(.success(model))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func fetchRepositories(endpoint: Endpoint<[RepositoryResponseDTO]>,
-                           completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        dataTransferService.request(with: endpoint) { result in
-            switch result {
-            case .success(let response):
-                let lastPage = self.tryTakeLastPage(response.httpResponse)
-                let model = ItemsListResponseModel(
-                    items: .repositories(response.model.map { $0.toDomain() }),
-                    lastPage: lastPage)
-                completion(.success(model))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func fetchIssues(endpoint: Endpoint<[IssueResponseDTO]>,
-                     completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
-        dataTransferService.request(with: endpoint) { result in
-            switch result {
-            case .success(let response):
-                let lastPage = self.tryTakeLastPage(response.httpResponse)
-                let model = ItemsListResponseModel(
-                    items: .issues(response.model.compactMap { $0.toDomain() }),
-                    lastPage: lastPage)
-                completion(.success(model))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
     func fetchPullRequests(endpoint: Endpoint<[PullRequestResponseDTO]>,
                            completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         dataTransferService.request(with: endpoint) { result in

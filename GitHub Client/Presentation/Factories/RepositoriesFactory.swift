@@ -13,6 +13,8 @@ protocol RepositoriesFactory {
 
     func createRepositoriesViewController(for user: User, actions: RepositoriesActions) -> RepositoriesViewController
     func createStarrredViewController(for user: User, actions: RepositoriesActions) -> RepositoriesViewController
+
+    func createForksViewController(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewController
 }
 
 final class RepositoriesFactoryImpl {
@@ -41,6 +43,10 @@ extension RepositoriesFactoryImpl: RepositoriesFactory {
     func createStarrredViewController(for user: User, actions: RepositoriesActions) -> RepositoriesViewController {
         .create(with: createStarredViewModel(for: user, actions: actions))
     }
+
+    func createForksViewController(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewController {
+        .create(with: createForksViewModel(for: repository, actions: actions))
+    }
 }
 
 private extension RepositoriesFactoryImpl {
@@ -58,6 +64,10 @@ private extension RepositoriesFactoryImpl {
 
     func createStarredViewModel(for user: User, actions: RepositoriesActions) -> RepositoriesViewModel {
         RepositoriesViewModelImpl.init(useCase: createRepositoriesUseCase(), type: .userStarred(user), actions: actions)
+    }
+
+    func createForksViewModel(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewModel {
+        RepositoriesViewModelImpl.init(useCase: createRepositoriesUseCase(), type: .forks(repository), actions: actions)
     }
 
     func createRepositoriesUseCase() -> RepositoriesUseCase {

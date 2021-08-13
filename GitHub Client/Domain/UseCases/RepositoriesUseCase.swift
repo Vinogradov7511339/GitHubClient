@@ -13,6 +13,8 @@ enum RepositoriesType {
 
     case userRepositories(User)
     case userStarred(User)
+
+    case forks(Repository)
 }
 
 struct RepositoriesRequestModel {

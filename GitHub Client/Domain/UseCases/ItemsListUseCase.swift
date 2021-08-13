@@ -8,26 +8,12 @@
 import Foundation
 
 enum ListType {
-    case myPullRequests
-    case stargazers(Repository)
-    case forks(Repository)
     case pullRequests(Repository)
     case releases(Repository)
     case commits(Repository)
 }
 
-enum GitHubEndpoints {
-    case myRepositories(page: Int)
-    case myStarredRepositories(page: Int)
-
-    case userRepositories(page: Int, user: User)
-    case userStarredRepositories(page: Int, user: User)
-}
-
 enum ListEntitiesType {
-    case repositories([Repository])
-    case users([User])
-    case issues([Issue])
     case pullRequests([PullRequest])
     case releases([Release])
     case commits([Commit])

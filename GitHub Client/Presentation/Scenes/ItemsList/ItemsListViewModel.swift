@@ -66,9 +66,6 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         self.actions = actions
 
         switch type {
-        case .myPullRequests:
-            screenTitle = NSLocalizedString("Pull Requests", comment: "")
-            cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
         case .commits(_):
             screenTitle = NSLocalizedString("Commits", comment: "")
             cellManager = TableCellManager.create(cellType: CommitTableViewCell.self)
@@ -117,12 +114,6 @@ private extension ItemsListViewModelImpl {
         lastPage = response.lastPage
         let newItems: [Item]
         switch response.items {
-        case .repositories(let repositories):
-            newItems = repositories as? [Item] ?? []
-        case .users(let users):
-            newItems = users as? [Item] ?? []
-        case .issues(let issues):
-            newItems = issues as? [Item] ?? []
         case .pullRequests(let pulls):
             newItems = pulls as? [Item] ?? []
         case .releases(let releases):

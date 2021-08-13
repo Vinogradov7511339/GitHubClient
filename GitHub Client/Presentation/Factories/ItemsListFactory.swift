@@ -6,10 +6,6 @@
 //
 
 protocol ItemsListFactory {
-    func createMyPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
-
-    func makeStargazersViewController(repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User>
-    func makeForksViewController(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
     func makePullRequestsViewController(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
     func makeReleasesViewController(repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
     func makeCommitsViewController(repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit>
@@ -25,18 +21,6 @@ final class ItemsListFactoryImpl {
 
 // MARK: - ItemsListFactory
 extension ItemsListFactoryImpl: ItemsListFactory {
-    func createMyPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
-        .create(with: createMyPullRequestsViewModel(actions: actions))
-    }
-
-    func makeStargazersViewController(repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        .create(with: createStargazersViewModel(repository: repository, actions: actions))
-    }
-
-    func makeForksViewController(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        .create(with: createForksViewModel(repository: repository, actions: actions))
-    }
-
     func makePullRequestsViewController(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
         .create(with: createPullRequestsViewModel(repository: repository, actions: actions))
     }
@@ -51,19 +35,6 @@ extension ItemsListFactoryImpl: ItemsListFactory {
 }
 
 private extension ItemsListFactoryImpl {
-
-    func createMyPullRequestsViewModel(actions: ItemsListActions<PullRequest>) -> ItemsListViewModelImpl<PullRequest> {
-        .init(type: .myPullRequests, useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createStargazersViewModel(repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
-        .init(type: .stargazers(repository), useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createForksViewModel(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        .init(type: .forks(repository), useCase: createItemsListUseCase(), actions: actions)
-    }
-
     func createPullRequestsViewModel(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewModelImpl<PullRequest> {
         .init(type: .pullRequests(repository), useCase: createItemsListUseCase(), actions: actions)
     }

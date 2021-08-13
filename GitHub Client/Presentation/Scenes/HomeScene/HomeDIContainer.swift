@@ -39,10 +39,6 @@ final class HomeDIContainer {
         issuesFactory.makeMyIssuesViewController(actions: actions)
     }
 
-    func createPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
-        itemsListFactory.createMyPullRequestsViewController(actions: actions)
-    }
-
     func createFavoritesViewController() -> FavoritesViewController {
         favoritesFactory.makeFavoritesViewController()
     }

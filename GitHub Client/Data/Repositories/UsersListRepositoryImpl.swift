@@ -31,6 +31,9 @@ extension UsersListRepositoryImpl: UsersListRepository {
         case .userFollowings(let user):
             let endpoint = UserEndpoints.getFollowing(login: user.login, page: requestModel.page)
             fetch(endpoint: endpoint, completion: completion)
+        case .stargazers(let repository):
+            let endpoint = RepositoryEndpoits.getStargazers(page: requestModel.page, repository: repository)
+            fetch(endpoint: endpoint, completion: completion)
         }
     }
 }

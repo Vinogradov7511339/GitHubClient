@@ -9,7 +9,6 @@ import UIKit
 
 struct HomeActions {
     let showIssues: () -> Void
-    let showPullRequests: () -> Void
     let showDiscussions: () -> Void
     let showOrganizations: () -> Void
     let showFavorites: () -> Void
@@ -50,7 +49,6 @@ final class HomeViewModelImpl: HomeViewModel {
     static func items() -> [TableCellViewModel] {
         return [
             TableCellViewModel(text: "Issues", detailText: "text2"),
-            TableCellViewModel(text: "Pull Requests", detailText: "text2"),
             TableCellViewModel(text: "Discussions", detailText: "text2"),
             TableCellViewModel(text: "Repositories", detailText: "text2"),
             TableCellViewModel(text: "Organizations", detailText: "text2")
@@ -77,14 +75,12 @@ extension HomeViewModelImpl {
         case (0, 0):
             actions.showIssues()
         case (0, 1):
-            actions.showPullRequests()
-        case (0, 2):
             actions.showDiscussions()
-        case (0, 3):
+        case (0, 2):
             actions.showRepositories()
-        case (0, 4):
+        case (0, 3):
             actions.showOrganizations()
-        case (0, 5):
+        case (0, 4):
             actions.showRepositories()
         case (1, _):
             let repository = favorites.value[indexPath.row]

@@ -13,6 +13,8 @@ enum UsersListType {
 
     case userFollowers(User)
     case userFollowings(User)
+
+    case stargazers(Repository)
 }
 
 struct UsersListRequestModel {
