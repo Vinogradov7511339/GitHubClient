@@ -18,7 +18,6 @@ extension FavoriteCDEntity {
         language = repository.language
     }
 
-
     func toDomain() -> Repository? {
         guard let name = name else {
             return nil
@@ -31,6 +30,8 @@ extension FavoriteCDEntity {
             owner: owner,
             name: name,
             starsCount: Int(starsCount),
+            forksCount: -1,
+            openIssuesCount: -1,
             description: detailText,
             language: language
         )

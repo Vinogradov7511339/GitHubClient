@@ -117,7 +117,12 @@ class MainCoordinator: NSObject {
     func startPullRequestFlow(pullRequest: PullRequest) {}
 
     func showMyOrganizationsList() {}
-    func showMyRepositories() {}
+
+    func showMyRepositories() {
+        let actions = RepositoriesActions(showRepository: startRepFlow(repository:))
+        let viewController = container.makeMyRepositoriesViewController(actions: actions)
+        currentNavigationController.pushViewController(viewController, animated: true)
+    }
 
     func startEventFlow(event: Event) {}
 

@@ -26,6 +26,10 @@ final class MainSceneDIContainer: NSObject {
         return RepSceneDIContainer(parentContainer: self, dependencies: dependencies)
     }
 
+    func makeMyRepositoriesViewController(actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.makeMyRepositoriesViewController(actions: actions)
+    }
+
     var apiDataTransferService: DataTransferService {
         parentContainer.apiDataTransferService
     }
@@ -37,11 +41,13 @@ final class MainSceneDIContainer: NSObject {
     private let parentContainer: AppDIContainer
     let dependencies: Dependencies
     private let issueFactory: IssueFactory
+    private let repositoriesFactory: RepositoriesFactory
 
     init(appDIContainer: AppDIContainer, dependencies: Dependencies) {
         self.parentContainer = appDIContainer
         self.dependencies = dependencies
         self.issueFactory = IssueFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeTabController() -> UITabBarController {

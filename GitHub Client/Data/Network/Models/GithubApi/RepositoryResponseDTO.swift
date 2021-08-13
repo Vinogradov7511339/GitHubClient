@@ -263,7 +263,9 @@ class RepositoryResponseDTO: Codable {
             repositoryId: id,
             owner: owner!.toDomain(),
             name: name!,
-            starsCount: stargazersCount!,
+            starsCount: stargazersCount ?? 0,
+            forksCount: forksCount ?? 0,
+            openIssuesCount: openIssuesCount ?? 0,
             description: description,
             language: language
         )

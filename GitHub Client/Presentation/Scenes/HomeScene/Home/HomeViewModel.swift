@@ -74,14 +74,12 @@ extension HomeViewModelImpl {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             actions.showIssues()
-        case (0, 1):
-            actions.showDiscussions()
         case (0, 2):
-            actions.showRepositories()
+            actions.showDiscussions()
         case (0, 3):
-            actions.showOrganizations()
-        case (0, 4):
             actions.showRepositories()
+        case (0, 4):
+            actions.showOrganizations()
         case (1, _):
             let repository = favorites.value[indexPath.row]
             actions.showRepository(repository)

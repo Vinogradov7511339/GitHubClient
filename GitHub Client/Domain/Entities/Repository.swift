@@ -10,6 +10,8 @@ struct Repository {
     let owner: User
     let name: String
     let starsCount: Int
+    let forksCount: Int
+    let openIssuesCount: Int
     let description: String?
     let language: String?
 }
