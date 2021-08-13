@@ -25,6 +25,10 @@ protocol RepViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
     func addToFavorites()
+    func showCommits()
+    func showPullRequests()
+    func showEvents()
+    func showIssues()
 }
 
 protocol RepViewModelOutput {
@@ -73,6 +77,20 @@ extension RepViewModelImpl {
         repUseCase.addFavorite(repository: repository.value) { error in
             self.handle(error)
         }
+    }
+
+    func showCommits() {
+        actions.showCommits(repository.value)
+    }
+
+    func showPullRequests() {
+        actions.showPullRequests(repository.value)
+    }
+
+    func showEvents() {}
+
+    func showIssues() {
+        actions.showIssues(repository.value)
     }
 }
 

@@ -27,7 +27,7 @@ final class MainSceneDIContainer: NSObject {
     }
 
     func makeMyRepositoriesViewController(actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.makeMyRepositoriesViewController(actions: actions)
+        repositoriesFactory.makeMyStarredViewController(actions: actions)
     }
 
     var apiDataTransferService: DataTransferService {

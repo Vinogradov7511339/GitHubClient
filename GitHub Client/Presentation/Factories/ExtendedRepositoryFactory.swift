@@ -6,7 +6,7 @@
 //
 
 protocol ExtendedRepositoryFactory {
-    func makeExtendedRepositoryViewController(actions: RepActions) -> RepViewController
+    func makeExtendedRepositoryViewController(actions: RepActions) -> RepositoryDetailsVC
 }
 
 final class ExtendedRepositoryFactoryImpl {
@@ -24,7 +24,7 @@ final class ExtendedRepositoryFactoryImpl {
 
 // MARK: - ExtendedRepositoryFactory
 extension ExtendedRepositoryFactoryImpl: ExtendedRepositoryFactory {
-    func makeExtendedRepositoryViewController(actions: RepActions) -> RepViewController {
+    func makeExtendedRepositoryViewController(actions: RepActions) -> RepositoryDetailsVC {
         .create(with: makeRepViewModel(actions: actions))
     }
 }

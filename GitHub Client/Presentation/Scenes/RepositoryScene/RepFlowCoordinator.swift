@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RepFlowCoordinatorDependencies {
-    func makeRepViewController(actions: RepActions) -> RepViewController
+    func makeRepViewController(actions: RepActions) -> RepositoryDetailsVC
     func makeStargazersViewController(for repository: Repository, actions: UsersListActions) -> UsersListViewController
     func makeForksViewController(for repository: Repository, actions: RepositoriesActions) -> RepositoriesViewController
     func makeIssuesViewController(for repository: Repository, actions: IssuesActions) -> IssuesViewController

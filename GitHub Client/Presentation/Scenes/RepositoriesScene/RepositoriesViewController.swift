@@ -48,7 +48,7 @@ final class RepositoriesViewController: UIViewController {
     private lazy var layout: TempLayout = {
         let layout = TempLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
         return layout
     }()
 
