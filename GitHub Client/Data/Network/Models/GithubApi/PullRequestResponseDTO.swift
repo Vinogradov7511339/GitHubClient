@@ -9,8 +9,8 @@ import Foundation
 
 struct PullRequestResponseDTO: Codable {
     let url: URL
-    let id: Int
-    let nodeId: String
+    let id: Int?
+    let nodeId: String?
     let htmlUrl: URL?
     let diffUrl: URL?
     let patchUrl: URL?
@@ -42,6 +42,9 @@ struct PullRequestResponseDTO: Codable {
 //    let base: Any
 
     func toDomain() -> PullRequest? {
+        guard let id = id else {
+            return nil
+        }
         guard let user = user else {
             return nil
         }

@@ -28,12 +28,19 @@ struct IssueResponseDTO: Codable {
     let locked: Bool?
     let activeLockReason: String?
     let comments: Int?
-    let pullRequest: PullRequestResponseDTO?
+    let pullRequest: IssuePullRequestResponseDTO?
     let closedAt: String?
     let createdAt: String?
     let updatedAt: String?
     let repository: RepositoryResponseDTO?
     let authorAssociation: String?
+
+    struct IssuePullRequestResponseDTO: Codable {
+        let url: URL
+        let htmlUrl: URL
+        let diffUrl: URL
+        let patchUrl: URL
+    }
 
     func toDomain() -> Issue? {
         guard let user = user?.toDomain() else {
