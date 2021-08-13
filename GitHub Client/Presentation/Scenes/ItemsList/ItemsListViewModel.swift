@@ -66,9 +66,6 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         self.actions = actions
 
         switch type {
-        case .myIssues:
-            screenTitle = NSLocalizedString("Issues", comment: "")
-            cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)
         case .myPullRequests:
             screenTitle = NSLocalizedString("Pull Requests", comment: "")
             cellManager = TableCellManager.create(cellType: IssueTableViewCell.self)

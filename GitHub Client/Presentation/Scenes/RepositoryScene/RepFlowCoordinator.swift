@@ -11,7 +11,7 @@ protocol RepFlowCoordinatorDependencies {
     func makeRepViewController(actions: RepActions) -> RepViewController
     func makeStargazersViewController(for repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User>
     func makeForksViewController(for repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
-    func makeIssuesViewController(for repository: Repository, actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue>
+    func makeIssuesViewController(for repository: Repository, actions: IssuesActions) -> IssuesViewController
     func makePullRequestsViewController(for repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
     func makeReleasesViewController(for repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
     func makeCommitsViewController(for repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit>
@@ -68,7 +68,7 @@ extension RepFlowCoordinator {
     }
 
     func showIssues(_ repository: Repository) {
-        let actions = ItemsListActions(showDetails: startIssueFlow(_:))
+        let actions = IssuesActions(showIssue: startIssueFlow(_:))
         let viewController = dependencies.makeIssuesViewController(for: repository, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

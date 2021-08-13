@@ -13,4 +13,6 @@ struct IssueEndpoints {
                         isFullPath: true,
                         queryParametersEncodable: ["page": model.page])
     }
+
+    
 }

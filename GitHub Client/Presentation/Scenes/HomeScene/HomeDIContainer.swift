@@ -21,20 +21,22 @@ final class HomeDIContainer {
     private let homeSceneFactory: HomeSceneFactory
     private let itemsListFactory: ItemsListFactory
     private let favoritesFactory: FavoritesFactory
+    private let issuesFactory: IssuesFactory
 
     init(parentContainer: MainSceneDIContainer, actions: Actions) {
         self.actions = actions
         self.homeSceneFactory = HomeSceneFactoryImpl(dataTransferService: parentContainer.apiDataTransferService, storage: parentContainer.favoritesStorage)
         self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         self.favoritesFactory = FavoritesFactoryImpl(apiDataTransferService: parentContainer.apiDataTransferService, favoritesStorage: parentContainer.favoritesStorage)
+        self.issuesFactory = IssuesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createHomeViewController(actions: HomeActions) -> HomeViewController {
         homeSceneFactory.makeHomeViewController(actions)
     }
 
-    func createIssuesViewController(actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue> {
-        itemsListFactory.createMyIssuesViewController(actions: actions)
+    func createIssuesViewController(actions: IssuesActions) -> IssuesViewController {
+        issuesFactory.makeMyIssuesViewController(actions: actions)
     }
 
     func createPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {

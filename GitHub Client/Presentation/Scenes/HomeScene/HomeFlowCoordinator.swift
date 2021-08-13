@@ -36,7 +36,7 @@ extension HomeFlowCoordinator {
     }
 
     func showMyIssues() {
-        let actions = ItemsListActions(showDetails: container.actions.openIssue)
+        let actions = IssuesActions(showIssue: container.actions.openIssue)
         let controller = container.createIssuesViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }

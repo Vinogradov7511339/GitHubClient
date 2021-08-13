@@ -20,10 +20,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         switch requestModel.listType {
-        case .myIssues:
-            let endpoint = MyProfileEndpoinds.getMyIssues(page: requestModel.page)
-            fetchIssues(endpoint: endpoint, completion: completion)
-
         case .myPullRequests:
             let endpoint = MyProfileEndpoinds.getMyPullRequests(page: requestModel.page)
             fetchPullRequests(endpoint: endpoint, completion: completion)
@@ -35,10 +31,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
         case .forks(let repository):
             let endpoint = RepositoryEndpoits.getForks(page: requestModel.page, repository: repository)
             fetchRepositories(endpoint: endpoint, completion: completion)
-
-        case .issues(let repository):
-            let endpoint = RepositoryEndpoits.getIssues(page: requestModel.page, repository: repository)
-            fetchIssues(endpoint: endpoint, completion: completion)
 
         case .pullRequests(let repository):
             let endpoint = RepositoryEndpoits.getPullRequests(page: requestModel.page, repository: repository)

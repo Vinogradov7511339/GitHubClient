@@ -6,6 +6,8 @@
 //
 
 protocol IssueRepository {
+    func fetchIssues(requestModel: IssuesRequestModel,
+                     completion: @escaping (Result<IssuesResponseModel, Error>) -> Void)
     func fetchComments(requestModel: IssueRequestModel,
                        completion: @escaping (Result<IssueResponseModel, Error>) -> Void)
 }

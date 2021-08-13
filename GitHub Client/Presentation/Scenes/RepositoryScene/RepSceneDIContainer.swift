@@ -20,12 +20,14 @@ class RepSceneDIContainer {
     private let dependencies: Dependencies
     private let factory: ExtendedRepositoryFactory
     private let itemsListFactory: ItemsListFactory
+    private let issuesFactory: IssuesFactory
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.dependencies = dependencies
         factory = ExtendedRepositoryFactoryImpl(repository: dependencies.repository,
                                                 favoriteStorage: parentContainer.favoritesStorage)
-        itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService )
+        itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        issuesFactory = IssuesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
@@ -64,8 +66,8 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
         itemsListFactory.makeForksViewController(repository: repository, actions: actions)
     }
 
-    func makeIssuesViewController(for repository: Repository, actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue> {
-        itemsListFactory.makeIssuesViewController(repository: repository, actions: actions)
+    func makeIssuesViewController(for repository: Repository, actions: IssuesActions) -> IssuesViewController {
+        issuesFactory.makeIssuesViewController(repository: repository, actions: actions)
     }
 
     func makePullRequestsViewController(for repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {

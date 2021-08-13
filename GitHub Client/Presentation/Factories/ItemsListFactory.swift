@@ -6,12 +6,10 @@
 //
 
 protocol ItemsListFactory {
-    func createMyIssuesViewController(actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue>
     func createMyPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
 
     func makeStargazersViewController(repository: Repository, actions: ItemsListActions<User>) -> ItemsListViewController<User>
     func makeForksViewController(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
-    func makeIssuesViewController(repository: Repository, actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue>
     func makePullRequestsViewController(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
     func makeReleasesViewController(repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
     func makeCommitsViewController(repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit>
@@ -27,10 +25,6 @@ final class ItemsListFactoryImpl {
 
 // MARK: - ItemsListFactory
 extension ItemsListFactoryImpl: ItemsListFactory {
-    func createMyIssuesViewController(actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue> {
-        .create(with: createMyIssuesViewModel(actions: actions))
-    }
-
     func createMyPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
         .create(with: createMyPullRequestsViewModel(actions: actions))
     }
@@ -41,10 +35,6 @@ extension ItemsListFactoryImpl: ItemsListFactory {
 
     func makeForksViewController(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
         .create(with: createForksViewModel(repository: repository, actions: actions))
-    }
-
-    func makeIssuesViewController(repository: Repository, actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue> {
-        .create(with: createIssuesViewModel(repository: repository, actions: actions))
     }
 
     func makePullRequestsViewController(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest> {
@@ -61,9 +51,6 @@ extension ItemsListFactoryImpl: ItemsListFactory {
 }
 
 private extension ItemsListFactoryImpl {
-    func createMyIssuesViewModel(actions: ItemsListActions<Issue>) -> ItemsListViewModelImpl<Issue> {
-        .init(type: .myIssues, useCase: createItemsListUseCase(), actions: actions)
-    }
 
     func createMyPullRequestsViewModel(actions: ItemsListActions<PullRequest>) -> ItemsListViewModelImpl<PullRequest> {
         .init(type: .myPullRequests, useCase: createItemsListUseCase(), actions: actions)
@@ -75,10 +62,6 @@ private extension ItemsListFactoryImpl {
 
     func createForksViewModel(repository: Repository, actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
         .init(type: .forks(repository), useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createIssuesViewModel(repository: Repository, actions: ItemsListActions<Issue>) -> ItemsListViewModelImpl<Issue> {
-        .init(type: .issues(repository), useCase: createItemsListUseCase(), actions: actions)
     }
 
     func createPullRequestsViewModel(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewModelImpl<PullRequest> {
