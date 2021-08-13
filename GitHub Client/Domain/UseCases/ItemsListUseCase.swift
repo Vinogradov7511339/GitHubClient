@@ -10,13 +10,11 @@ import Foundation
 enum ListType {
     case pullRequests(Repository)
     case releases(Repository)
-    case commits(Repository)
 }
 
 enum ListEntitiesType {
     case pullRequests([PullRequest])
     case releases([Release])
-    case commits([Commit])
 }
 
 struct ItemsListRequestModel {

@@ -23,15 +23,18 @@ class RepSceneDIContainer {
     private let issuesFactory: IssuesFactory
     private let usersFactory: UsersListFactory
     private let repositoriesFactory: RepositoriesFactory
+    private let commitsFactory: CommitsFactory
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.dependencies = dependencies
         factory = ExtendedRepositoryFactoryImpl(repository: dependencies.repository,
-                                                favoriteStorage: parentContainer.favoritesStorage)
+                                                favoriteStorage: parentContainer.favoritesStorage,
+                                                dataTransferService: parentContainer.apiDataTransferService)
         itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         issuesFactory = IssuesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         usersFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        commitsFactory = CommitsFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
@@ -82,7 +85,7 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
         itemsListFactory.makeReleasesViewController(repository: repository, actions: actions)
     }
 
-    func makeCommitsViewController(for repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit> {
-        itemsListFactory.makeCommitsViewController(repository: repository, actions: actions)
+    func makeCommitsViewController(for repository: Repository, actions: CommitsActions) -> CommitsViewController {
+        commitsFactory.makeCommitsViewController(repository: repository, actions: actions)
     }
 }

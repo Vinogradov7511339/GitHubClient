@@ -66,9 +66,6 @@ final class ItemsListViewModelImpl<Item>: ItemsListViewModel {
         self.actions = actions
 
         switch type {
-        case .commits(_):
-            screenTitle = NSLocalizedString("Commits", comment: "")
-            cellManager = TableCellManager.create(cellType: CommitTableViewCell.self)
         default:
             screenTitle = NSLocalizedString("ToDo", comment: "")
             cellManager = TableCellManager.create(cellType: BaseDetailsCell.self)
@@ -118,8 +115,6 @@ private extension ItemsListViewModelImpl {
             newItems = pulls as? [Item] ?? []
         case .releases(let releases):
             newItems = releases as? [Item] ?? []
-        case .commits(let commits):
-            newItems = commits as? [Item] ?? []
         }
         self.items.value.append(contentsOf: newItems)
     }

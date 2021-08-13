@@ -13,10 +13,12 @@ final class ExtendedRepositoryFactoryImpl {
 
     private let repository: Repository
     private let favoriteStorage: FavoritesStorage
+    private let dataTransferService: DataTransferService
 
-    init(repository: Repository, favoriteStorage: FavoritesStorage) {
+    init(repository: Repository, favoriteStorage: FavoritesStorage, dataTransferService: DataTransferService) {
         self.repository = repository
         self.favoriteStorage = favoriteStorage
+        self.dataTransferService = dataTransferService
     }
 }
 
@@ -38,6 +40,6 @@ private extension ExtendedRepositoryFactoryImpl {
     }
 
     func makeRepRepository() -> RepRepository {
-        return RepRepositoryImpl()
+        return RepRepositoryImpl(dataTransferService: dataTransferService)
     }
 }

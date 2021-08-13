@@ -60,4 +60,3 @@ extension IssuesViewModelImpl {
         actions.showIssue(issues.value[indexPath.row])
     }
 }
-

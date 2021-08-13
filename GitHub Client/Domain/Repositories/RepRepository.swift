@@ -8,4 +8,5 @@
 import Foundation
 
 protocol RepRepository {
+    func fetchCommits(request: CommitsRequestModel, completion: @escaping (Result<CommitsResponseModel, Error>) -> Void)
 }

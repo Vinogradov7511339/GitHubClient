@@ -8,7 +8,6 @@
 protocol ItemsListFactory {
     func makePullRequestsViewController(repository: Repository, actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
     func makeReleasesViewController(repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
-    func makeCommitsViewController(repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit>
 }
 
 final class ItemsListFactoryImpl {
@@ -28,10 +27,6 @@ extension ItemsListFactoryImpl: ItemsListFactory {
     func makeReleasesViewController(repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release> {
         .create(with: createReleasesViewModel(repository: repository, actions: actions))
     }
-
-    func makeCommitsViewController(repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewController<Commit> {
-        .create(with: createCommitsViewModel(repository: repository, actions: actions))
-    }
 }
 
 private extension ItemsListFactoryImpl {
@@ -41,10 +36,6 @@ private extension ItemsListFactoryImpl {
 
     func createReleasesViewModel(repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewModelImpl<Release> {
         .init(type: .releases(repository), useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createCommitsViewModel(repository: Repository, actions: ItemsListActions<Commit>) -> ItemsListViewModelImpl<Commit> {
-        .init(type: .commits(repository), useCase: createItemsListUseCase(), actions: actions)
     }
 
     func createItemsListUseCase() -> ItemsListUseCase {
