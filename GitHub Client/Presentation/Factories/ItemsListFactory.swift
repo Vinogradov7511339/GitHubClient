@@ -6,9 +6,6 @@
 //
 
 protocol ItemsListFactory {
-    func makeMyFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User>
-    func makeMyFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User>
-
     func createMyRepositoriesViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
     func createMyStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
 
@@ -33,14 +30,6 @@ final class ItemsListFactoryImpl {
 
 // MARK: - ItemsListFactory
 extension ItemsListFactoryImpl: ItemsListFactory {
-    func makeMyFollowersViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        .create(with: createFollowersViewModel(actions: actions))
-    }
-
-    func makeMyFollowingViewController(actions: ItemsListActions<User>) -> ItemsListViewController<User> {
-        .create(with: createFollowingViewModel(actions: actions))
-    }
-
     func createMyRepositoriesViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
         .create(with: createRepositoriesViewModel(actions: actions))
     }
@@ -83,16 +72,8 @@ extension ItemsListFactoryImpl: ItemsListFactory {
 }
 
 private extension ItemsListFactoryImpl {
-    func createFollowingViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
-        .init(type: .myFollowing, useCase: createItemsListUseCase(), actions: actions)
-    }
-
     func createRepositoriesViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
         .init(type: .myRepositories, useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createFollowersViewModel(actions: ItemsListActions<User>) -> ItemsListViewModelImpl<User> {
-        .init(type: .myFollowers, useCase: createItemsListUseCase(), actions: actions)
     }
 
     func createStarredViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {

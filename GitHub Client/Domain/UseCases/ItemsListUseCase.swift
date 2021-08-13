@@ -8,15 +8,11 @@
 import Foundation
 
 enum ListType {
-    case myFollowers
-    case myFollowing
     case myRepositories
     case myStarredRepositories
     case myIssues
     case myPullRequests
 
-    case userFollowers(User)
-    case userFollowings(User)
     case userRepositories(User)
     case userStarredRepositories(User)
 
@@ -29,13 +25,9 @@ enum ListType {
 }
 
 enum GitHubEndpoints {
-    case myFollowers(page: Int)
-    case myFollowing(page: Int)
     case myRepositories(page: Int)
     case myStarredRepositories(page: Int)
 
-    case userFollowers(page: Int, user: User)
-    case userFollowings(page: Int, user: User)
     case userRepositories(page: Int, user: User)
     case userStarredRepositories(page: Int, user: User)
 }

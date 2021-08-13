@@ -20,14 +20,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         switch requestModel.listType {
-        case .myFollowers:
-            let endpoint = MyProfileEndpoinds.getMyFollowers(page: requestModel.page)
-            fetchUsers(endpoint: endpoint, completion: completion)
-
-        case .myFollowing:
-            let endpoint = MyProfileEndpoinds.getMyFollowing(page: requestModel.page)
-            fetchUsers(endpoint: endpoint, completion: completion)
-
         case .myRepositories:
             let endpoint = MyProfileEndpoinds.getMyRepositories(page: requestModel.page)
             fetchRepositories(endpoint: endpoint, completion: completion)
@@ -43,14 +35,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
         case .myPullRequests:
             let endpoint = MyProfileEndpoinds.getMyPullRequests(page: requestModel.page)
             fetchPullRequests(endpoint: endpoint, completion: completion)
-
-        case .userFollowers(let user):
-            let endpoint = UserEndpoints.getFollowers(login: user.login, page: requestModel.page)
-            fetchUsers(endpoint: endpoint, completion: completion)
-
-        case .userFollowings(let user):
-            let endpoint = UserEndpoints.getFollowing(login: user.login, page: requestModel.page)
-            fetchUsers(endpoint: endpoint, completion: completion)
 
         case .userRepositories(let user):
             let endpoint = UserEndpoints.getRepositories(login: user.login, page: requestModel.page)
