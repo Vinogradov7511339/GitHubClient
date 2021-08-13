@@ -16,4 +16,5 @@ struct Issue: Identifiable, Equatable {
     let title: String
     let body: String
     let user: User
+    let commentsCount: Int
 }

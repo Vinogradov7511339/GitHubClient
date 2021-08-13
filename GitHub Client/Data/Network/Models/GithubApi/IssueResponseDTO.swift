@@ -53,7 +53,8 @@ struct IssueResponseDTO: Codable {
             state: state ?? "NaN",
             title: title ?? "NaN",
             body: body ?? "NaN",
-            user: user
+            user: user,
+            commentsCount: comments ?? 0
         )
     }
 }
