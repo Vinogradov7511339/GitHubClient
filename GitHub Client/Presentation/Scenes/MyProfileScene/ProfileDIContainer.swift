@@ -22,16 +22,16 @@ final class ProfileDIContainer {
     // MARK: - Persistent Storage
     private let profileStorage: ProfileLocalStorage
     private let profileFactory: MyProfileFactory
-    private let itemsListFactory: ItemsListFactory
     private let usersListFactory: UsersListFactory
+    private let repositoriesFactory: RepositoriesFactory
 
     init(parentContainer: MainSceneDIContainer, actions: Actions) {
         self.actions = actions
         self.profileStorage = ProfileLocalStorageImpl()
         self.profileFactory = MyProfileFactoryImpl(dataTransferService: parentContainer.apiDataTransferService,
             storage: profileStorage)
-        self.itemsListFactory = ItemsListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
         self.usersListFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
@@ -47,11 +47,11 @@ final class ProfileDIContainer {
     }
 
     func createRepositoriesViewController(
-        actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        itemsListFactory.createMyRepositoriesViewController(actions: actions)
+        actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.makeMyRepositoriesViewController(actions: actions)
     }
 
-    func createStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        itemsListFactory.createMyStarredViewController(actions: actions)
+    func createStarredViewController(actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.makeMyStarredViewController(actions: actions)
     }
 }

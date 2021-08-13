@@ -8,13 +8,8 @@
 import Foundation
 
 enum ListType {
-    case myRepositories
-    case myStarredRepositories
     case myIssues
     case myPullRequests
-
-    case userRepositories(User)
-    case userStarredRepositories(User)
 
     case stargazers(Repository)
     case forks(Repository)

@@ -20,14 +20,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
     func fetch(requestModel: ItemsListRequestModel,
                completion: @escaping (Result<ItemsListResponseModel, Error>) -> Void) {
         switch requestModel.listType {
-        case .myRepositories:
-            let endpoint = MyProfileEndpoinds.getMyRepositories(page: requestModel.page)
-            fetchRepositories(endpoint: endpoint, completion: completion)
-
-        case .myStarredRepositories:
-            let endpoint = MyProfileEndpoinds.getMyStarredRepositories(page: requestModel.page)
-            fetchRepositories(endpoint: endpoint, completion: completion)
-
         case .myIssues:
             let endpoint = MyProfileEndpoinds.getMyIssues(page: requestModel.page)
             fetchIssues(endpoint: endpoint, completion: completion)
@@ -35,14 +27,6 @@ extension ItemsListRepositoryImpl: ItemsListRepository {
         case .myPullRequests:
             let endpoint = MyProfileEndpoinds.getMyPullRequests(page: requestModel.page)
             fetchPullRequests(endpoint: endpoint, completion: completion)
-
-        case .userRepositories(let user):
-            let endpoint = UserEndpoints.getRepositories(login: user.login, page: requestModel.page)
-            fetchRepositories(endpoint: endpoint, completion: completion)
-
-        case .userStarredRepositories(let user):
-            let endpoint = UserEndpoints.getStarredRepositories(login: user.login, page: requestModel.page)
-            fetchRepositories(endpoint: endpoint, completion: completion)
 
         case .stargazers(let repository):
             let endpoint = RepositoryEndpoits.getStargazers(page: requestModel.page, repository: repository)

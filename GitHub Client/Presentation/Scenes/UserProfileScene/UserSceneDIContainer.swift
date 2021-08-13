@@ -30,10 +30,12 @@ final class UserSceneDIContainer {
 
     let parentContainer: MainSceneDIContainer
     private let dependencies: Dependencies
+    private let repositoriesFactory: RepositoriesFactory
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.parentContainer = parentContainer
         self.dependencies = dependencies
+        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     // MARK: - Flow Coordinators
@@ -115,23 +117,7 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
 
     // MARK: - Starred flow
 
-    func makeStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        return ItemsListViewController.create(with: makeStarredViewModel(actions: actions))
-    }
-
-    func makeStarredViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        return ItemsListViewModelImpl(
-            type: .userStarredRepositories(dependencies.user),
-            useCase: makeStarredUseCase(),
-            actions: actions)
-    }
-
-    func makeStarredUseCase() -> ItemsListUseCase {
-        return ItemsListUseCaseImpl(repository: makeStarredRepository())
-    }
-
-    func makeStarredRepository() -> ItemsListRepository {
-        return ItemsListRepositoryImpl(
-            dataTransferService: parentContainer.apiDataTransferService)
+    func makeStarredViewController(user: User, actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.createStarrredViewController(for: user, actions: actions)
     }
 }

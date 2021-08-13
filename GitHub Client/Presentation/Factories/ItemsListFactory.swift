@@ -6,9 +6,6 @@
 //
 
 protocol ItemsListFactory {
-    func createMyRepositoriesViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
-    func createMyStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository>
-
     func createMyIssuesViewController(actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue>
     func createMyPullRequestsViewController(actions: ItemsListActions<PullRequest>) -> ItemsListViewController<PullRequest>
 
@@ -30,14 +27,6 @@ final class ItemsListFactoryImpl {
 
 // MARK: - ItemsListFactory
 extension ItemsListFactoryImpl: ItemsListFactory {
-    func createMyRepositoriesViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        .create(with: createRepositoriesViewModel(actions: actions))
-    }
-
-    func createMyStarredViewController(actions: ItemsListActions<Repository>) -> ItemsListViewController<Repository> {
-        .create(with: createStarredViewModel(actions: actions))
-    }
-
     func createMyIssuesViewController(actions: ItemsListActions<Issue>) -> ItemsListViewController<Issue> {
         .create(with: createMyIssuesViewModel(actions: actions))
     }
@@ -72,14 +61,6 @@ extension ItemsListFactoryImpl: ItemsListFactory {
 }
 
 private extension ItemsListFactoryImpl {
-    func createRepositoriesViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        .init(type: .myRepositories, useCase: createItemsListUseCase(), actions: actions)
-    }
-
-    func createStarredViewModel(actions: ItemsListActions<Repository>) -> ItemsListViewModelImpl<Repository> {
-        .init(type: .myStarredRepositories, useCase: createItemsListUseCase(), actions: actions)
-    }
-
     func createMyIssuesViewModel(actions: ItemsListActions<Issue>) -> ItemsListViewModelImpl<Issue> {
         .init(type: .myIssues, useCase: createItemsListUseCase(), actions: actions)
     }
