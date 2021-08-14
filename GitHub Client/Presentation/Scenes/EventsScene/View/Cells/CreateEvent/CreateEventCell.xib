@@ -78,7 +78,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvw-KL-HHa">
-                                <rect key="frame" x="16" y="119.5" width="41.5" height="21.5"/>
+                                <rect key="frame" x="16" y="119.5" width="288" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -93,6 +93,7 @@
                             <constraint firstItem="LO1-HL-tv9" firstAttribute="top" secondItem="O8l-Kk-nhO" secondAttribute="top" constant="10" id="8jx-tZ-7D8"/>
                             <constraint firstItem="VmK-Se-POG" firstAttribute="centerY" secondItem="bBa-Ld-gcd" secondAttribute="centerY" id="9RD-hl-9Wd"/>
                             <constraint firstItem="UK5-zT-Jiy" firstAttribute="leading" secondItem="O8l-Kk-nhO" secondAttribute="leading" constant="16" id="CCD-TQ-9bN"/>
+                            <constraint firstAttribute="trailing" secondItem="wvw-KL-HHa" secondAttribute="trailing" constant="16" id="L0D-PR-xMe"/>
                             <constraint firstItem="VmK-Se-POG" firstAttribute="leading" secondItem="bBa-Ld-gcd" secondAttribute="trailing" constant="2" id="O8s-Lc-1uc"/>
                             <constraint firstItem="AC5-nY-aX2" firstAttribute="centerY" secondItem="UK5-zT-Jiy" secondAttribute="centerY" id="OFR-rJ-D0z"/>
                             <constraint firstItem="bim-6w-qD1" firstAttribute="leading" secondItem="O8l-Kk-nhO" secondAttribute="leading" constant="16" id="OPY-gY-vS1"/>
@@ -106,6 +107,7 @@
                             <constraint firstItem="AC5-nY-aX2" firstAttribute="leading" secondItem="UK5-zT-Jiy" secondAttribute="trailing" constant="11" id="kY2-JK-h0h"/>
                             <constraint firstItem="LO1-HL-tv9" firstAttribute="leading" secondItem="bim-6w-qD1" secondAttribute="trailing" constant="8" symbolic="YES" id="s8M-g6-JPB"/>
                             <constraint firstAttribute="trailing" secondItem="sN7-Jj-Xu6" secondAttribute="trailing" constant="16" id="sNy-ak-IPV"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AC5-nY-aX2" secondAttribute="trailing" constant="16" id="tuh-G4-amV"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

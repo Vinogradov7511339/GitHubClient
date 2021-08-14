@@ -26,6 +26,7 @@ class PushEventCell: BaseCollectionViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension PushEventCell: ConfigurableCell {
     func configure(viewModel: Event) {
+        commitsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         userAvatarImageView.set(url: viewModel.actor.avatarUrl)
         userLoginLabel.text = viewModel.actor.login
         repositoryNameLabel.text = viewModel.repository.name
@@ -38,10 +39,13 @@ extension PushEventCell: ConfigurableCell {
                 let stackView = UIStackView()
                 stackView.axis = .horizontal
                 stackView.distribution = .equalCentering
+                stackView.alignment = .top
                 let shaLabel = UILabel()
                 shaLabel.textColor = .link
-                shaLabel.text = commit.sha
+                let sha = commit.sha.prefix(7)
+                shaLabel.text = String(sha)
                 let commentLabel = UILabel()
+                commentLabel.numberOfLines = 3
                 commentLabel.textColor = .secondaryLabel
                 commentLabel.text = commit.message
                 stackView.addArrangedSubview(shaLabel)
