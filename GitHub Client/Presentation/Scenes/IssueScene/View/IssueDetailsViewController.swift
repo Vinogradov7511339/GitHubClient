@@ -8,6 +8,32 @@
 import UIKit
 
 class IssueDetailsViewController: UIViewController {
+
+    class TempLayout: UICollectionViewFlowLayout {
+
+        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+            let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
+            layoutAttributesObjects?.forEach({ layoutAttributes in
+                if layoutAttributes.representedElementCategory == .cell {
+                    if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
+                        layoutAttributes.frame = newFrame
+                    }
+                }
+            })
+            return layoutAttributesObjects
+        }
+
+        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+            guard let collectionView = collectionView else { fatalError() }
+            guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
+                return nil
+            }
+
+            layoutAttributes.frame.origin.x = sectionInset.left
+            layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
+            return layoutAttributes
+        }
+    }
     
     private var viewModel: IssueViewModel!
 
@@ -21,101 +47,60 @@ class IssueDetailsViewController: UIViewController {
         viewController.viewModel = viewModel
         return viewController
     }
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.delegate = self
-        tableView.dataSource = adapter
-        tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .systemGroupedBackground
-        return tableView
+
+    private lazy var layout: TempLayout = {
+        let layout = TempLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
+        return layout
     }()
-    
-    private let refreshControl = UIRefreshControl()
-//    private let dataViewMap: [String: TableCellManager] = [
-//        "\(IssueHeaderCellViewModel.self)" : TableCellManager.create(cellType: IssueDetailsHeaderTableViewCell.self),
-//        "\(IssueCommentCellViewModel.self)" : TableCellManager.create(cellType: IssueDetailsCommentTableViewCell.self),
-//    ]
-    
+
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.delegate = self
+        collectionView.dataSource = adapter
+        return collectionView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-//        dataViewMap.values.forEach { $0.register(tableView: tableView) }
-
+        adapter.register(collectionView: collectionView)
+        bind(to: viewModel)
         navigationController?.navigationBar.prefersLargeTitles = false
 
         viewModel.viewDidLoad()
     }
+}
 
-    @objc func refresh(_ sender: AnyObject) {
-        viewModel.refresh()
+// MARK: - Binding
+private extension IssueDetailsViewController {
+    func bind(to viewModel: IssueViewModel) {
+        viewModel.comments.observe(on: self) { [weak self] in self?.update($0) }
+    }
+
+    func update(_ comments: [Comment]) {
+        adapter.update(comments)
+        collectionView.reloadData()
     }
 }
 
-// MARK: - UITableViewDelegate
-extension IssueDetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0.0 : 10.0
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .systemGroupedBackground
-        return view
-    }
-}
-
-//// MARK: - UITableViewDataSource
-//extension IssueDetailsViewController: UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        viewModel.items.value.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.items.value[section].count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let viewModel = viewModel.items.value[indexPath.section][indexPath.row]
-//        guard let cellManager = cellManager(for: viewModel) else {
-//            assert(false, "unknown viewModel \(viewModel) at \(indexPath)")
-//            return UITableViewCell()
-//        }
-//        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-//        cell.populate(viewModel: viewModel)
-//        return cell
-//    }
-//}
-
-//// MARK: - private
-//private extension IssueDetailsViewController {
-//    func cellManager(for viewModel: Any) -> TableCellManager? {
-//        let key = "\(type(of: viewModel))"
-//        let cellManager = dataViewMap[key]
-//        return cellManager
-//    }
-//}
+// MARK: - UICollectionViewDelegate
+extension IssueDetailsViewController: UICollectionViewDelegate {}
 
 // MARK: - setup views
 private extension IssueDetailsViewController {
     func setupViews() {
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
     }
 
     func activateConstraints() {
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
