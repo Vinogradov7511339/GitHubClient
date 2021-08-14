@@ -11,6 +11,7 @@ struct EventsActions {}
 
 protocol EventsViewModelInput {
     func viewDidLoad()
+    func apply(filters: [EventFilterType])
 }
 
 protocol EventsViewModelOutput {
@@ -42,6 +43,10 @@ final class EventsViewModelImpl: EventsViewModel {
 extension EventsViewModelImpl {
     func viewDidLoad() {
         fetch()
+    }
+
+    func apply(filters: [EventFilterType]) {
+//        events.value = events.value.filter { $0.eventType == .pushEvent }
     }
 }
 

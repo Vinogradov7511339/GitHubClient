@@ -836,8 +836,8 @@
 			children = (
 				AD6B097B26BFF992004644D2 /* EventsViewModel.swift */,
 				ADDD511F26C7DEC700F74240 /* EventsAdapter.swift */,
-				AD93003826C82D3A002D7362 /* EventFilter */,
 				AD20E54126AAA698003BB5F1 /* EventsViewController.swift */,
+				AD93003826C82D3A002D7362 /* EventFilter */,
 				ADDD511E26C7DE4400F74240 /* Cells */,
 			);
 			path = View;

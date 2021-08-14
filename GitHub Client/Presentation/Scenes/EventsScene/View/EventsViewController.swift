@@ -24,7 +24,7 @@ class EventsViewController: UIViewController {
         }
 
         override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-            guard let collectionView = collectionView else { fatalError() }
+            guard let collectionView = collectionView else { return nil }
             guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
                 return nil
             }
@@ -80,6 +80,7 @@ class EventsViewController: UIViewController {
 
     @objc func filterTapped() {
         let viewController = EventsFilterViewController()
+        viewController.delegate = self
         viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: true, completion: nil)
     }
@@ -94,6 +95,12 @@ private extension EventsViewController {
     func updateItems(_ events: [Event]) {
         adapter.update(events)
         collectionView.reloadData()
+    }
+}
+
+extension EventsViewController: EventsFilterDelegate {
+    func applyFilters(types: [EventFilterType]) {
+        viewModel.apply(filters: types)
     }
 }
 
