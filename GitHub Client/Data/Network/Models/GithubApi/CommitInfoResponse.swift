@@ -43,6 +43,7 @@ class CommitInfoResponse: Codable {
         .init(sha: sha,
               message: commit.message,
               author: author.toDomain(),
+              commiter: committer.toDomain(),
               commentsCount: commit.commentCount)
     }
 }

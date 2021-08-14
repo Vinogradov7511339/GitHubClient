@@ -9,5 +9,6 @@ struct Commit {
     let sha: String
     let message: String
     let author: User
+    let commiter: User
     let commentsCount: Int
 }

@@ -11,16 +11,27 @@ final class CommitsViewController: UIViewController {
 
     class TempLayout: UICollectionViewFlowLayout {
 
-        override func prepare() {
-            super.prepare()
-            guard let collectionView = collectionView else { return }
+        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+            let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
+            layoutAttributesObjects?.forEach({ layoutAttributes in
+                if layoutAttributes.representedElementCategory == .cell {
+                    if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
+                        layoutAttributes.frame = newFrame
+                    }
+                }
+            })
+            return layoutAttributesObjects
+        }
 
-            let availableWidth = collectionView.bounds.inset(by: collectionView.layoutMargins).width
-            let cellWidth = availableWidth
+        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+            guard let collectionView = collectionView else { fatalError() }
+            guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
+                return nil
+            }
 
-            self.itemSize = CGSize(width: cellWidth, height: cellWidth * 1.5)
-            self.sectionInset = UIEdgeInsets(top: 0, left: 16.0, bottom: 0, right: 16.0)
-            self.sectionInsetReference = .fromSafeArea
+            layoutAttributes.frame.origin.x = sectionInset.left
+            layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
+            return layoutAttributes
         }
     }
 
@@ -37,8 +48,14 @@ final class CommitsViewController: UIViewController {
     private var viewModel: CommitsViewModel!
     private let cellManager = CollectionCellManager.create(cellType: CommitCell.self)
 
-    private lazy var collectionView: UICollectionView = {
+    private lazy var layout: TempLayout = {
         let layout = TempLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
+        return layout
+    }()
+
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
