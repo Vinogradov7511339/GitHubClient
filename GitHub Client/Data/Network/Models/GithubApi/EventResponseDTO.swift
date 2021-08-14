@@ -13,7 +13,7 @@ struct EventResponseDTO: Codable {
     let type: String
     let `public`: Bool
     let payload: EventPayloadResponseDTO?
-    let repo: EventRepositoryReesponseDTO?
+    let repo: EventRepositoryReesponseDTO
     let actor: EventUserResponseDTO
     let org: OrganzationResponseDTO?
     let createdAt: String
@@ -35,6 +35,10 @@ struct EventResponseDTO: Codable {
         let id: Int
         let name: String
         let url: URL
+
+        func toDomain() -> EventRepository {
+            .init(id: id, name: name, url: url)
+        }
     }
 
     struct EventPayloadResponseDTO: Codable {
@@ -91,6 +95,7 @@ struct EventResponseDTO: Codable {
 
         return Event(id: intId,
                      actor: actor.toDomain(),
+                     repository: repo.toDomain(),
                      eventType: eventType,
                      eventPayload: payloadType)
     }
@@ -109,7 +114,7 @@ struct EventResponseDTO: Codable {
         case .pullRequestEvent: return nil
         case .pullRequestReviewEvent: return nil
         case .pullRequestReviewCommentEvent: return pullRequestReviewCommentEvent()
-        case .pushEvent: return nil
+        case .pushEvent: return pushEvent()
         case .releaseEvent: return nil
         case .sponsorshipEvent: return nil
         case .watchEvent: return watchEvent()
@@ -125,7 +130,15 @@ struct EventResponseDTO: Codable {
         guard let commits = payload?.commits else {
             return nil
         }
-        let pushEvent = PushEvent(commits: commits.map { $0.toDomain() })
+        guard let branch = payload?.ref?.split(separator: "/").last else { return nil }
+        let pushEvent = PushEvent(branch: String(branch), commits: commits.map { $0.toDomain() })
+        return Event.PayloadType.pushEvent(pushEvent)
+    }
+
+    private func pushEvent() -> Event.PayloadType? {
+        guard let commits = payload?.commits else { return nil }
+        guard let branch = payload?.ref?.split(separator: "/").last else { return nil }
+        let pushEvent = PushEvent(branch: String(branch), commits: commits.map { $0.toDomain() })
         return Event.PayloadType.pushEvent(pushEvent)
     }
 

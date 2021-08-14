@@ -9,7 +9,52 @@ import UIKit
 
 class EventsViewController: UIViewController {
 
+    class TempLayout: UICollectionViewFlowLayout {
+
+        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+            let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
+            layoutAttributesObjects?.forEach({ layoutAttributes in
+                if layoutAttributes.representedElementCategory == .cell {
+                    if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
+                        layoutAttributes.frame = newFrame
+                    }
+                }
+            })
+            return layoutAttributesObjects
+        }
+
+        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+            guard let collectionView = collectionView else { fatalError() }
+            guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
+                return nil
+            }
+
+            layoutAttributes.frame.origin.x = sectionInset.left
+            layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
+            return layoutAttributes
+        }
+    }
+
     private var viewModel: EventsViewModel!
+    private lazy var adapter: EventsAdapter = {
+        EventsAdapterImpl()
+    }()
+
+    private lazy var layout: TempLayout = {
+        let layout = TempLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
+        return layout
+    }()
+
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.delegate = self
+        collectionView.dataSource = adapter
+        return collectionView
+    }()
 
     static func create(with viewModel: EventsViewModel) -> EventsViewController {
         let viewController = EventsViewController()
@@ -17,30 +62,15 @@ class EventsViewController: UIViewController {
         return viewController
     }
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemGroupedBackground
-        tableView.delegate = self
-        tableView.dataSource = self
-        return tableView
-    }()
-
-    private lazy var emptyView: NotificationsEmptyView = {
-        let view = NotificationsEmptyView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        
+
         title = "Events"
         navigationController?.navigationBar.prefersLargeTitles = false
 
-        viewModel.cellManager.register(tableView: tableView)
+        adapter.register(collectionView: collectionView)
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
@@ -49,48 +79,29 @@ class EventsViewController: UIViewController {
 // MARK: - Binding
 private extension EventsViewController {
     func bind(to viewModel: EventsViewModel) {
-        viewModel.events.observe(on: self) { [weak self] _ in self?.updateItems() }
+        viewModel.events.observe(on: self) { [weak self] in self?.updateItems($0) }
     }
 
-    func updateItems() {
-        tableView.reloadData()
+    func updateItems(_ events: [Event]) {
+        adapter.update(events)
+        collectionView.reloadData()
     }
 }
 
-// MARK: - UITableViewDelegate
-extension EventsViewController: UITableViewDelegate {
+// MARK: - UICollectionViewDelegate
+extension EventsViewController: UICollectionViewDelegate {
 
-}
-
-// MARK: - UITableViewDataSource
-extension EventsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.events.value.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.events.value[indexPath.row]
-        let cell = viewModel.cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: item)
-        return cell
-    }
 }
 
 private extension EventsViewController {
     func setupViews() {
-        view.addSubview(emptyView)
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
     }
 
     func activateConstraints() {
-        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
 }

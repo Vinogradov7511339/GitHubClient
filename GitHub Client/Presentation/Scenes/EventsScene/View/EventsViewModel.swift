@@ -14,8 +14,7 @@ protocol EventsViewModelInput {
 }
 
 protocol EventsViewModelOutput {
-    var cellManager: TableCellManager { get }
-    var events: Observable<[BaseEventCellViewModel]> { get }
+    var events: Observable<[Event]> { get }
 }
 
 typealias EventsViewModel = EventsViewModelInput & EventsViewModelOutput
@@ -23,8 +22,7 @@ typealias EventsViewModel = EventsViewModelInput & EventsViewModelOutput
 final class EventsViewModelImpl: EventsViewModel {
 
     // MARK: - Output
-    var events: Observable<[BaseEventCellViewModel]> = Observable([])
-    let cellManager: TableCellManager
+    var events: Observable<[Event]> = Observable([])
 
     // MARK: - Private
 
@@ -37,7 +35,6 @@ final class EventsViewModelImpl: EventsViewModel {
     init(useCase: EventsUseCase, actions: EventsActions) {
         self.useCase = useCase
         self.actions = actions
-        cellManager = TableCellManager.create(cellType: BaseEventTableViewCell.self)
     }
 }
 
@@ -54,16 +51,12 @@ private extension EventsViewModelImpl {
         useCase.fetchEvents(requestModel: model) { result in
             switch result {
             case .success(let model):
-                let newItems = model.events
-                let viewModels = newItems.map { BaseEventCellViewModel(eventType: $0.eventType.rawValue) }
-                self.events.value.append(contentsOf: viewModels)
+                self.events.value.append(contentsOf: model.events)
             case .failure(let error):
                 self.handle(error: error)
             }
         }
     }
 
-    func handle(error: Error) {
-
-    }
+    func handle(error: Error) {}
 }

@@ -5,9 +5,18 @@
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
 
+import Foundation
+
+struct EventRepository {
+    let id: Int
+    let name: String
+    let url: URL
+}
+
 struct Event: Identifiable {
     let id: Int
     let actor: User
+    let repository: EventRepository
     let eventType: Types
     let eventPayload: PayloadType
 }
@@ -15,6 +24,7 @@ struct Event: Identifiable {
 struct WatchEvent {}
 
 struct PushEvent {
+    let branch: String
     let commits: [Commit]
 }
 
