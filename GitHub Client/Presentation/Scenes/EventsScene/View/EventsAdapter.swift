@@ -17,7 +17,8 @@ final class EventsAdapterImpl: NSObject {
     private let cellManagesMap: [Event.Types: CollectionCellManager] = [
         Event.Types.createEvent: CollectionCellManager.create(cellType: CreateEventCell.self),
         Event.Types.pushEvent: CollectionCellManager.create(cellType: PushEventCell.self),
-        Event.Types.watchEvent: CollectionCellManager.create(cellType: WatchEventCell.self)
+        Event.Types.watchEvent: CollectionCellManager.create(cellType: WatchEventCell.self),
+        Event.Types.issueCommentEvent: CollectionCellManager.create(cellType: IssueCommentEventCell.self)
     ]
 }
 

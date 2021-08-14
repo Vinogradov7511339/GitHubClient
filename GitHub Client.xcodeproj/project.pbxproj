@@ -287,6 +287,8 @@
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
+		ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA8986F26C811C200095B16 /* IssueCommentEventCell.swift */; };
+		ADA8987226C811C200095B16 /* IssueCommentEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA8987026C811C200095B16 /* IssueCommentEventCell.xib */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
 		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
 		ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */; };
@@ -305,7 +307,6 @@
 		ADD462E226BD648100DD46CC /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E126BD648100DD46CC /* HomeRepository.swift */; };
 		ADD462E426BD64AE00DD46CC /* HomeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */; };
 		ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */; };
-		ADDD511A26C7C58200F74240 /* EventPayloadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDD511926C7C58200F74240 /* EventPayloadResponseDTO.swift */; };
 		ADDD511C26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */; };
 		ADDD512026C7DEC700F74240 /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDD511F26C7DEC700F74240 /* EventsAdapter.swift */; };
 		ADDD512326C7EC8D00F74240 /* WatchEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDD512126C7EC8D00F74240 /* WatchEventCell.swift */; };
@@ -615,6 +616,8 @@
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
+		ADA8986F26C811C200095B16 /* IssueCommentEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentEventCell.swift; sourceTree = "<group>"; };
+		ADA8987026C811C200095B16 /* IssueCommentEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueCommentEventCell.xib; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
 		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
 		ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEndpoints.swift; sourceTree = "<group>"; };
@@ -633,7 +636,6 @@
 		ADD462E126BD648100DD46CC /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		ADD462E326BD64AE00DD46CC /* HomeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryImpl.swift; sourceTree = "<group>"; };
 		ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
-		ADDD511926C7C58200F74240 /* EventPayloadResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPayloadResponseDTO.swift; sourceTree = "<group>"; };
 		ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestReviewResponseDTO.swift; sourceTree = "<group>"; };
 		ADDD511F26C7DEC700F74240 /* EventsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAdapter.swift; sourceTree = "<group>"; };
 		ADDD512126C7EC8D00F74240 /* WatchEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchEventCell.swift; sourceTree = "<group>"; };
@@ -1625,7 +1627,6 @@
 				AD6B098326BFFF52004644D2 /* EventResponseDTO.swift */,
 				AD6B098926C00891004644D2 /* OrganzationResponseDTO.swift */,
 				ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */,
-				ADDD511926C7C58200F74240 /* EventPayloadResponseDTO.swift */,
 				ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */,
 			);
 			path = GithubApi;
@@ -1655,6 +1656,15 @@
 				ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */,
 			);
 			path = StarredRepoCell;
+			sourceTree = "<group>";
+		};
+		ADA8987326C811C700095B16 /* IssueCommentEventCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADA8986F26C811C200095B16 /* IssueCommentEventCell.swift */,
+				ADA8987026C811C200095B16 /* IssueCommentEventCell.xib */,
+			);
+			path = IssueCommentEventCell;
 			sourceTree = "<group>";
 		};
 		ADBC1ACC26C3D778000F9B88 /* Cells */ = {
@@ -1702,6 +1712,7 @@
 				ADDD512526C7EC9200F74240 /* WatchEventCell */,
 				ADDD512A26C7ED2400F74240 /* PushEvent */,
 				ADDD512F26C7ED9B00F74240 /* CreateEvent */,
+				ADA8987326C811C700095B16 /* IssueCommentEventCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1863,6 +1874,7 @@
 				ADA68BA726B55621004AC06C /* octocat_gray@2x-5.png in Resources */,
 				ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */,
 				AD6E418626C65D7600CEF3B0 /* IssueCell.xib in Resources */,
+				ADA8987226C811C200095B16 /* IssueCommentEventCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
@@ -2156,7 +2168,6 @@
 				AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */,
 				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
 				AD6B096E26BFB231004644D2 /* UserProfileRepository.swift in Sources */,
-				ADDD511A26C7C58200F74240 /* EventPayloadResponseDTO.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* ExploreViewController.swift in Sources */,
 				AD6B09A926C27769004644D2 /* IssueRepository.swift in Sources */,
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
@@ -2183,6 +2194,7 @@
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
 				ADA1694726C63D200040B635 /* RepositoriesUseCase.swift in Sources */,
 				AD6B09AB26C277A7004644D2 /* IssueRepositoryImpl.swift in Sources */,
+				ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
 				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,

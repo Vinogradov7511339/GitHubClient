@@ -107,7 +107,7 @@ struct EventResponseDTO: Codable {
         case .deleteEvent: return nil
         case .forkEvent: return nil
         case .gollumEvent: return nil
-        case .issueCommentEvent: return nil
+        case .issueCommentEvent: return issueCommentEvent()
         case .issuesEvent: return nil
         case .memberEvent: return nil
         case .publicEvent: return nil
@@ -124,6 +124,15 @@ struct EventResponseDTO: Codable {
     private func watchEvent() -> Event.PayloadType? {
         let watchEvent = WatchEvent()
         return Event.PayloadType.watchEvent(watchEvent)
+    }
+
+    private func issueCommentEvent() -> Event.PayloadType? {
+        guard let issue = payload?.issue?.toDomain() else { return nil }
+        guard let comment = payload?.comment?.toDomain() else {
+            return nil
+        }
+        let issueCommentEvent = IssueCommentEvent(issue: issue, comment: comment)
+        return Event.PayloadType.issueCommentEvent(issueCommentEvent)
     }
 
     private func pullRequestReviewCommentEvent() -> Event.PayloadType? {
