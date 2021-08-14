@@ -242,6 +242,8 @@
 		AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722E826B83796004649A4 /* FavoritesViewController.swift */; };
 		AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */; };
 		AD8722F226B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */; };
+		AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003626C8262D002D7362 /* EventsFilterViewController.swift */; };
+		AD93003A26C82D47002D7362 /* EventFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003926C82D47002D7362 /* EventFilterView.swift */; };
 		AD9F81A126C7A01D00C320E6 /* IssueHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F819F26C7A01D00C320E6 /* IssueHeaderCell.swift */; };
 		AD9F81A226C7A01D00C320E6 /* IssueHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9F81A026C7A01D00C320E6 /* IssueHeaderCell.xib */; };
 		AD9F81A526C7A0B200C320E6 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F81A326C7A0B200C320E6 /* CommentCell.swift */; };
@@ -571,6 +573,8 @@
 		AD8722E826B83796004649A4 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteRepositoryTableViewCell.xib; sourceTree = "<group>"; };
+		AD93003626C8262D002D7362 /* EventsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFilterViewController.swift; sourceTree = "<group>"; };
+		AD93003926C82D47002D7362 /* EventFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterView.swift; sourceTree = "<group>"; };
 		AD9F819F26C7A01D00C320E6 /* IssueHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueHeaderCell.swift; sourceTree = "<group>"; };
 		AD9F81A026C7A01D00C320E6 /* IssueHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueHeaderCell.xib; sourceTree = "<group>"; };
 		AD9F81A326C7A0B200C320E6 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -832,6 +836,7 @@
 			children = (
 				AD6B097B26BFF992004644D2 /* EventsViewModel.swift */,
 				ADDD511F26C7DEC700F74240 /* EventsAdapter.swift */,
+				AD93003826C82D3A002D7362 /* EventFilter */,
 				AD20E54126AAA698003BB5F1 /* EventsViewController.swift */,
 				ADDD511E26C7DE4400F74240 /* Cells */,
 			);
@@ -1533,6 +1538,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD93003826C82D3A002D7362 /* EventFilter */ = {
+			isa = PBXGroup;
+			children = (
+				AD93003626C8262D002D7362 /* EventsFilterViewController.swift */,
+				AD93003926C82D47002D7362 /* EventFilterView.swift */,
+			);
+			path = EventFilter;
+			sourceTree = "<group>";
+		};
 		ADA1692A26C568490040B635 /* ProfileMenuCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1982,6 +1996,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD93003A26C82D47002D7362 /* EventFilterView.swift in Sources */,
 				AD6B09BB26C2A23D004644D2 /* CoreDataStorage.swift in Sources */,
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
 				AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */,
@@ -2039,6 +2054,7 @@
 				AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */,
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
 				AD25E4D426B6D6990003B1E0 /* FilterButton.swift in Sources */,
+				AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */,
 				AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */,

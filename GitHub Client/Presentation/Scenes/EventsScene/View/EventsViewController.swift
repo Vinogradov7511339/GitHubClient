@@ -69,10 +69,19 @@ class EventsViewController: UIViewController {
 
         title = "Events"
         navigationController?.navigationBar.prefersLargeTitles = false
+        let image = UIImage(named: "filter_24pt")
+        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(filterTapped))
+        navigationItem.rightBarButtonItem = button
 
         adapter.register(collectionView: collectionView)
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+
+    @objc func filterTapped() {
+        let viewController = EventsFilterViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: true, completion: nil)
     }
 }
 
