@@ -104,7 +104,7 @@ private extension RepFlowCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func startCommitsFlow(_ commit: Commit) {}
+    func startCommitsFlow(_ commit: ExtendedCommit) {}
     func startReleaseFlow(_ release: Release) {}
     func startPullRequestFlow(_ pullRequest: PullRequest) {}
 }

@@ -5,8 +5,26 @@
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
 
-struct Event: Identifiable, Equatable {
+struct Event: Identifiable {
+    let id: Int
+    let actor: User
+    let eventType: Types
+    let eventPayload: PayloadType
+}
 
+struct WatchEvent {}
+
+struct PushEvent {
+    let commits: [Commit]
+}
+
+struct CreateEvent {
+    let repositoryName: String
+    let branch: String
+    let description: String?
+}
+
+extension Event {
     enum Types: String {
         case commitCommentEvent = "CommitCommentEvent"
         case createEvent = "CreateEvent"
@@ -26,8 +44,9 @@ struct Event: Identifiable, Equatable {
         case watchEvent = "WatchEvent"
     }
 
-    // swiftlint:disable identifier_name
-    let id: Int
-    let eventType: Types
-    let actor: User
+    enum PayloadType {
+        case watchEvent(WatchEvent)
+        case pushEvent(PushEvent)
+        case createEvent(CreateEvent)
+    }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 struct CommitsActions {
-    let showCommit: (Commit) -> Void
+    let showCommit: (ExtendedCommit) -> Void
 }
 
 protocol CommitsViewModelInput {
@@ -17,7 +17,7 @@ protocol CommitsViewModelInput {
 }
 
 protocol CommitsViewModelOutput {
-    var commits: Observable<[Commit]> { get }
+    var commits: Observable<[ExtendedCommit]> { get }
 }
 
 typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
@@ -25,7 +25,7 @@ typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
 final class CommitsViewModelImpl: CommitsViewModel {
 
     // MARK: - Output
-    var commits: Observable<[Commit]> = Observable([])
+    var commits: Observable<[ExtendedCommit]> = Observable([])
 
     // MARK: - Private
     private let useCase: CommitsUseCase

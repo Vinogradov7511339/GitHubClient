@@ -80,7 +80,7 @@ private extension CommitsViewController {
         viewModel.commits.observe(on: self) { [weak self] in self?.updateItems($0)}
     }
 
-    func updateItems(_ commits: [Commit]) {
+    func updateItems(_ commits: [ExtendedCommit]) {
         adapter.update(commits)
         collectionView.reloadData()
     }

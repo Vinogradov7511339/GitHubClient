@@ -39,7 +39,7 @@ class CommitInfoResponse: Codable {
         self.parents = parents
     }
 
-    func toDomain() -> Commit {
+    func toDomain() -> ExtendedCommit {
         .init(sha: sha,
               message: commit.message,
               author: author.toDomain(),

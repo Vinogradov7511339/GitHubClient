@@ -13,7 +13,7 @@ struct CommitsRequestModel {
 }
 
 struct CommitsResponseModel {
-    let items: [Commit]
+    let items: [ExtendedCommit]
     let lastPage: Int
 }
 

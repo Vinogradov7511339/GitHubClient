@@ -20,12 +20,12 @@ struct PullRequestResponseDTO: Codable {
     let reviewCommentUrl: String?
     let commentsUrl: URL?
     let statusesUrl: URL?
-    let number: Int
+    let number: Int?
     let state: String
     let locked: Bool?
     let title: String
     let user: UserResponseDTO?
-    let body: String
+    let body: String?
     let labels: [LabelModel?]?
     let milestone: Milestone?
     let activeLockReason: String?
@@ -53,7 +53,7 @@ struct PullRequestResponseDTO: Codable {
         }
         return PullRequest.init(
             id: id,
-            number: number,
+            number: number ?? -1,
             state: state,
             title: title,
             user: user.toDomain(),

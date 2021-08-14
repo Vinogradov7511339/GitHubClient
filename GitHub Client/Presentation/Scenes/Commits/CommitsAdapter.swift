@@ -8,19 +8,19 @@
 import UIKit
 
 protocol CommitsAdapter: UICollectionViewDataSource {
-    func update(_ commits: [Commit])
+    func update(_ commits: [ExtendedCommit])
 }
 
 final class CommitsAdapterImpl: NSObject {
 
-    private var commits: [Commit] = []
+    private var commits: [ExtendedCommit] = []
     private let cellManager: CollectionCellManager
 
     init(cellManager: CollectionCellManager) {
         self.cellManager = cellManager
     }
 
-    func update(_ commits: [Commit]) {
+    func update(_ commits: [ExtendedCommit]) {
         self.commits = commits
     }
 }

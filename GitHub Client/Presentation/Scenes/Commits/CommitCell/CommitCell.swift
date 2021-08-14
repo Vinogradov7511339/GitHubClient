@@ -27,7 +27,7 @@ class CommitCell: BaseCollectionViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension CommitCell: ConfigurableCell {
-    func configure(viewModel: Commit) {
+    func configure(viewModel: ExtendedCommit) {
         authorAvatarImageView.set(url: viewModel.author.avatarUrl)
         authorLoginLabel.text = viewModel.author.login
         commiterLoginLabel.text = viewModel.commiter.login
