@@ -9,32 +9,6 @@ import UIKit
 
 final class RepositoriesViewController: UIViewController {
 
-    class TempLayout: UICollectionViewFlowLayout {
-
-        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-            let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
-            layoutAttributesObjects?.forEach({ layoutAttributes in
-                if layoutAttributes.representedElementCategory == .cell {
-                    if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
-                        layoutAttributes.frame = newFrame
-                    }
-                }
-            })
-            return layoutAttributesObjects
-        }
-
-        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-            guard let collectionView = collectionView else { fatalError() }
-            guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
-                return nil
-            }
-
-            layoutAttributes.frame.origin.x = sectionInset.left
-            layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
-            return layoutAttributes
-        }
-    }
-
     static func create(with viewModel: RepositoriesViewModel) -> RepositoriesViewController {
         let viewController = RepositoriesViewController()
         viewController.viewModel = viewModel
@@ -45,18 +19,12 @@ final class RepositoriesViewController: UIViewController {
         RepositoriesAdapterImpl(cellManager: cellManager)
     }()
 
-    private lazy var layout: TempLayout = {
-        let layout = TempLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
-        return layout
-    }()
-
     private var viewModel: RepositoriesViewModel!
-    private let cellManager = CollectionCellManager.create(cellType: RepositoryCell.self)
+    private let cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
 
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let layoutFactory = CompositionalLayoutFactory()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutFactory.layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.delegate = self
@@ -92,6 +60,12 @@ extension RepositoriesViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
     }
+}
+
+extension RepositoriesViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return .zero
+//    }
 }
 
 // MARK: - Setup Views
