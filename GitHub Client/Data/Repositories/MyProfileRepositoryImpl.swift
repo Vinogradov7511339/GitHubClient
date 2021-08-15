@@ -31,4 +31,16 @@ extension MyProfileRepositoryImpl: MyProfileRepository {
             }
         }
     }
+
+    func fetchEvents(request: UserEventsRequestModel, completion: @escaping (Result<[Event], Error>) -> Void) {
+        let endpoint = UserEndpoints.receivedEvents(login: request.user.login, page: request.page)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.model.compactMap { $0.toDomain() }))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

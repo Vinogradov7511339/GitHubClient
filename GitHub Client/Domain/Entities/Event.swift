@@ -19,6 +19,7 @@ struct Event: Identifiable {
     let repository: EventRepository
     let eventType: Types
     let eventPayload: PayloadType
+    let createdAt: Date
 }
 
 struct WatchEvent {}

@@ -47,6 +47,4 @@ struct MyProfileEndpoinds {
         return Endpoint(path: "pulls",
                         queryParametersEncodable: params)
     }
-
-//    static func recentEvents(page: Int) -> Endpoint<[]>
 }

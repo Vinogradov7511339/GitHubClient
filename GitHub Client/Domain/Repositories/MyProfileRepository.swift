@@ -7,4 +7,5 @@
 
 protocol MyProfileRepository {
     func fetch(completion: @escaping (Result<AuthenticatedUser, Error>) -> Void)
+    func fetchEvents(request: UserEventsRequestModel, completion: @escaping (Result<[Event], Error>) -> Void)
 }

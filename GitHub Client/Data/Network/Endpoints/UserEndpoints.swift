@@ -31,4 +31,12 @@ struct UserEndpoints {
         return Endpoint(path: "users/\(login)/starred",
                         queryParametersEncodable: ["page": page])
     }
+
+    static func receivedEvents(login: String, page: Int) -> Endpoint<[EventResponseDTO]> {
+        return Endpoint(path: "users/\(login)/received_events")
+    }
+
+    static func events(login: String, page: Int) -> Endpoint<[EventResponseDTO]> {
+        return Endpoint(path: "users/\(login)/events/public")
+    }
 }

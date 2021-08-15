@@ -92,12 +92,15 @@ struct EventResponseDTO: Codable {
         guard let payloadType = eventPayload(type: eventType) else {
             return nil
         }
-
+        guard let date = createdAt.toDate() else {
+            return nil
+        }
         return Event(id: intId,
                      actor: actor.toDomain(),
                      repository: repo.toDomain(),
                      eventType: eventType,
-                     eventPayload: payloadType)
+                     eventPayload: payloadType,
+                     createdAt: date)
     }
 
     private func eventPayload(type: Event.Types) -> Event.PayloadType? {

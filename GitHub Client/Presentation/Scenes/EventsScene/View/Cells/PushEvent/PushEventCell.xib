@@ -20,11 +20,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbw-1I-AZj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Bm-K3a" customClass="WebImageView" customModule="GitHub_Client" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Bm-K3a" customClass="WebImageView" customModule="GitHub_Client" customModuleProvider="target">
                                 <rect key="frame" x="16" y="12" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="308-gN-EJy"/>
-                                    <constraint firstAttribute="height" constant="24" id="MA8-pd-mqk"/>
+                                    <constraint firstAttribute="height" constant="24" id="Ozj-uM-pqh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

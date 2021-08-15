@@ -29,13 +29,16 @@ protocol ProfileViewModelInput {
     func showFollowing()
     func openLink()
     func sendEmail()
+    func openRepositories()
+    func openStarred()
     func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol ProfileViewModelOutput {
     var cellManager: TableCellManager { get }
     var tableItems: Observable<[Any]> { get }
-    var user: Observable<User?> { get }
+    var user: Observable<UserDetails?> { get }
+    var events: Observable<[Event]> { get }
 }
 
 typealias ProfileViewModel = ProfileViewModelInput & ProfileViewModelOutput
@@ -46,7 +49,8 @@ final class ProfileViewModelImpl: ProfileViewModel {
 
     let cellManager: TableCellManager
     let tableItems: Observable<[Any]> = Observable(ProfileViewModelImpl.items())
-    var user: Observable<User?> = Observable(nil)
+    var user: Observable<UserDetails?> = Observable(nil)
+    var events: Observable<[Event]> = Observable([])
 
     // MARK: - Private
 
@@ -74,13 +78,25 @@ extension ProfileViewModelImpl {
 
     func openSettings() {}
 
-    func showFollowers() {}
+    func showFollowers() {
+        actions.showFollowers()
+    }
 
-    func showFollowing() {}
+    func showFollowing() {
+        actions.showFollowing()
+    }
 
     func openLink() {}
 
     func sendEmail() {}
+
+    func openRepositories() {
+        actions.showRepositories()
+    }
+
+    func openStarred() {
+        actions.showStarred()
+    }
 
     func didSelectItem(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
@@ -113,7 +129,20 @@ private extension ProfileViewModelImpl {
         useCase.fetch { result in
             switch result {
             case .success(let user):
-                self.user.value = user.userDetails.user
+                self.user.value = user.userDetails
+                self.fetch(user: user.userDetails.user)
+            case .failure(let error):
+                self.handle(error: error)
+            }
+        }
+    }
+
+    func fetch(user: User) {
+        let request = UserEventsRequestModel(user: user, page: 1)
+        useCase.fetchEvents(request: request) { result in
+            switch result {
+            case .success(let events):
+                self.events.value = events
             case .failure(let error):
                 self.handle(error: error)
             }

@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController {
 // MARK: - Binding
 private extension ProfileViewController {
     func bind(to viewModel: ProfileViewModel) {
-        viewModel.user.observe(on: self) { [weak self] in self?.update(user: $0)}
+        viewModel.user.observe(on: self) { [weak self] in self?.update(user: $0?.user)}
     }
 
     func update(user: User?) {

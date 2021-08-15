@@ -34,7 +34,7 @@ final class ProfileDIContainer {
         self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
-    func createProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
+    func createProfileViewController(_ actions: ProfileActions) -> UIViewController {
         profileFactory.makeMyProfileViewController(actions)
     }
 

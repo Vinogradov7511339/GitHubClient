@@ -26,8 +26,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AC5-nY-aX2">
-                                <rect key="frame" x="75.5" y="72" width="45" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AC5-nY-aX2">
+                                <rect key="frame" x="75.5" y="72" width="228.5" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UK5-zT-Jiy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Create" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UK5-zT-Jiy">
                                 <rect key="frame" x="16" y="73" width="48.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -107,7 +107,7 @@
                             <constraint firstItem="AC5-nY-aX2" firstAttribute="leading" secondItem="UK5-zT-Jiy" secondAttribute="trailing" constant="11" id="kY2-JK-h0h"/>
                             <constraint firstItem="LO1-HL-tv9" firstAttribute="leading" secondItem="bim-6w-qD1" secondAttribute="trailing" constant="8" symbolic="YES" id="s8M-g6-JPB"/>
                             <constraint firstAttribute="trailing" secondItem="sN7-Jj-Xu6" secondAttribute="trailing" constant="16" id="sNy-ak-IPV"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AC5-nY-aX2" secondAttribute="trailing" constant="16" id="tuh-G4-amV"/>
+                            <constraint firstAttribute="trailing" secondItem="AC5-nY-aX2" secondAttribute="trailing" constant="16" id="tuh-G4-amV"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

@@ -244,6 +244,10 @@
 		AD8722F226B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */; };
 		AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003626C8262D002D7362 /* EventsFilterViewController.swift */; };
 		AD93003A26C82D47002D7362 /* EventFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003926C82D47002D7362 /* EventFilterView.swift */; };
+		AD93003C26C85576002D7362 /* ProfileViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003B26C85576002D7362 /* ProfileViewControllerV2.swift */; };
+		AD93004726C94B35002D7362 /* ProfileEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93004626C94B35002D7362 /* ProfileEventView.swift */; };
+		AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93004826C94F9D002D7362 /* String+ISO8601.swift */; };
+		AD93004B26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93004A26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift */; };
 		AD9F81A126C7A01D00C320E6 /* IssueHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F819F26C7A01D00C320E6 /* IssueHeaderCell.swift */; };
 		AD9F81A226C7A01D00C320E6 /* IssueHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9F81A026C7A01D00C320E6 /* IssueHeaderCell.xib */; };
 		AD9F81A526C7A0B200C320E6 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F81A326C7A0B200C320E6 /* CommentCell.swift */; };
@@ -575,6 +579,10 @@
 		AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteRepositoryTableViewCell.xib; sourceTree = "<group>"; };
 		AD93003626C8262D002D7362 /* EventsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFilterViewController.swift; sourceTree = "<group>"; };
 		AD93003926C82D47002D7362 /* EventFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterView.swift; sourceTree = "<group>"; };
+		AD93003B26C85576002D7362 /* ProfileViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerV2.swift; sourceTree = "<group>"; };
+		AD93004626C94B35002D7362 /* ProfileEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEventView.swift; sourceTree = "<group>"; };
+		AD93004826C94F9D002D7362 /* String+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ISO8601.swift"; sourceTree = "<group>"; };
+		AD93004A26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RelativeDateTimeFormatter.swift"; sourceTree = "<group>"; };
 		AD9F819F26C7A01D00C320E6 /* IssueHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueHeaderCell.swift; sourceTree = "<group>"; };
 		AD9F81A026C7A01D00C320E6 /* IssueHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueHeaderCell.xib; sourceTree = "<group>"; };
 		AD9F81A326C7A0B200C320E6 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -677,9 +685,9 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE8726BBF0D300F055FD /* ProfileViewModel.swift */,
-				AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */,
-				AD183DF926BE8E7C00556CC4 /* MyProfileHeaderView.swift */,
-				AD183DFB26BEA60700556CC4 /* MyProfileHeaderView.xib */,
+				AD93003B26C85576002D7362 /* ProfileViewControllerV2.swift */,
+				AD93004526C93370002D7362 /* old */,
+				AD93004626C94B35002D7362 /* ProfileEventView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -932,6 +940,7 @@
 				AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */,
 				AD39FE3826BA942800F055FD /* Observable.swift */,
 				ADA68BBD26B5876F004AC06C /* ViewModels */,
+				AD93004A26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1297,6 +1306,7 @@
 				AD6B094D26BEF82F004644D2 /* Encodable+toDictionary.swift */,
 				AD6B094F26BEF877004644D2 /* Dictionary+queryString.swift */,
 				AD6B095926BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift */,
+				AD93004826C94F9D002D7362 /* String+ISO8601.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1545,6 +1555,16 @@
 				AD93003926C82D47002D7362 /* EventFilterView.swift */,
 			);
 			path = EventFilter;
+			sourceTree = "<group>";
+		};
+		AD93004526C93370002D7362 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E3DC269F5498003BB5F1 /* ProfileViewController.swift */,
+				AD183DF926BE8E7C00556CC4 /* MyProfileHeaderView.swift */,
+				AD183DFB26BEA60700556CC4 /* MyProfileHeaderView.xib */,
+			);
+			path = old;
 			sourceTree = "<group>";
 		};
 		ADA1692A26C568490040B635 /* ProfileMenuCell */ = {
@@ -2050,6 +2070,7 @@
 				AD39A57D26C664F100309481 /* IssuesFactory.swift in Sources */,
 				AD8722E626B81A46004649A4 /* FileConfigurator.swift in Sources */,
 				AD6E417A26C658CD00CEF3B0 /* IssuesViewController.swift in Sources */,
+				AD93004B26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift in Sources */,
 				AD39FE4326BAA55900F055FD /* RepViewController.swift in Sources */,
 				AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */,
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
@@ -2075,6 +2096,7 @@
 				AD39A59126C6C1CC00309481 /* RepositoryDetailsVC.swift in Sources */,
 				AD6E417C26C6590000CEF3B0 /* IssuesAdapter.swift in Sources */,
 				AD39FE6D26BB21A100F055FD /* MainCoordinator.swift in Sources */,
+				AD93003C26C85576002D7362 /* ProfileViewControllerV2.swift in Sources */,
 				AD39FE7026BB248400F055FD /* HomeFlowCoordinator.swift in Sources */,
 				AD8722E026B81840004649A4 /* FolderPresenter.swift in Sources */,
 				AD39FE9D26BC2F6700F055FD /* Alerts.swift in Sources */,
@@ -2098,6 +2120,7 @@
 				AD39FEA126BC4A0B00F055FD /* ItemsListUseCase.swift in Sources */,
 				AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */,
 				AD6B099426C0226E004644D2 /* Issue.swift in Sources */,
+				AD93004726C94B35002D7362 /* ProfileEventView.swift in Sources */,
 				AD20E56C26AB4090003BB5F1 /* SearchResultViewController.swift in Sources */,
 				AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */,
 				ADA1694926C63DE50040B635 /* RepositoriesRepository.swift in Sources */,
@@ -2216,6 +2239,7 @@
 				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,
 				AD39FE9F26BC47F100F055FD /* ItemsListViewModel.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
+				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
 				AD6B094126BEE75B004644D2 /* AppConfiguration.swift in Sources */,
 				AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */,

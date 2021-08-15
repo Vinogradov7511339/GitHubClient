@@ -5,8 +5,10 @@
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
 
+import UIKit
+
 protocol MyProfileFactory {
-    func makeMyProfileViewController(_ actions: ProfileActions) -> ProfileViewController
+    func makeMyProfileViewController(_ actions: ProfileActions) -> UIViewController
 }
 
 final class MyProfileFactoryImpl {
@@ -22,8 +24,8 @@ final class MyProfileFactoryImpl {
 
 // MARK: - MyProfileFactory
 extension MyProfileFactoryImpl: MyProfileFactory {
-    func makeMyProfileViewController(_ actions: ProfileActions) -> ProfileViewController {
-        .create(with: createProfileViewModel(actions))
+    func makeMyProfileViewController(_ actions: ProfileActions) -> UIViewController {
+        ProfileViewControllerV2.create(with: createProfileViewModel(actions))
     }
 }
 
