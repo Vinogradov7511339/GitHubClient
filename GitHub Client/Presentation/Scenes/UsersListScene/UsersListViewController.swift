@@ -9,29 +9,6 @@ import UIKit
 
 final class UsersListViewController: UIViewController {
 
-    class TempLayout: UICollectionViewFlowLayout {
-
-        override func prepare() {
-            super.prepare()
-            guard let collectionView = collectionView else { return }
-
-            let availableWidth = collectionView.bounds.inset(by: collectionView.layoutMargins).width
-            let maxNumColumns = Int(availableWidth / 120.0)
-            let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
-
-            self.itemSize = CGSize(width: cellWidth, height: cellWidth * 1.5)
-
-            let totalCellWidth = cellWidth * CGFloat(maxNumColumns)
-            let totalSpacingWidth = 16.0 * CGFloat(maxNumColumns - 1)
-
-            let leftInset = (availableWidth - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-            let rightInset = leftInset
-
-            self.sectionInset = UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-            self.sectionInsetReference = .fromSafeArea
-        }
-    }
-
     static func create(with viewModel: UsersListViewModel) -> UsersListViewController {
         let viewController = UsersListViewController()
         viewController.viewModel = viewModel
@@ -46,9 +23,8 @@ final class UsersListViewController: UIViewController {
     private let cellManager = CollectionCellManager.create(cellType: UserCell.self)
 
     private lazy var collectionView: UICollectionView = {
-//        let layout = adapter.layout
-        let layout = TempLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let factory = CompositionalLayoutFactory()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: factory.layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.delegate = self
