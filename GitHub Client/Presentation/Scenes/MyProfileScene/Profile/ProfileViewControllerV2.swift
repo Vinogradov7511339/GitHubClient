@@ -189,7 +189,7 @@ private extension ProfileViewControllerV2 {
         addUserInfoItem(name: "repositories", count: user.repositoriesCount, selector: #selector(openRepositories))
         addUserInfoItem(name: "followers", count: user.followersCount, selector: #selector(openFollowers))
         addUserInfoItem(name: "following", count: user.followingCount, selector: #selector(openFollowing))
-        addUserInfoItem(name: "starred", count: user.followingCount, selector: #selector(openStarred))
+        addUserInfoItem(name: "starred", count: -1, selector: #selector(openStarred))
     }
 
     func addUserInfoItem(name: String, count: Int, selector: Selector) {

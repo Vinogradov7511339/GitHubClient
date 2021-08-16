@@ -8,7 +8,6 @@
 import Foundation
 
 struct Issue: Identifiable, Equatable {
-//     swiftlint:disable identifier_name
     let id: Int
     let number: Int
     let commentsURL: URL
@@ -17,4 +16,5 @@ struct Issue: Identifiable, Equatable {
     let body: String
     let user: User
     let commentsCount: Int
+    let openedAt: Date
 }

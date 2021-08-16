@@ -46,6 +46,9 @@ struct IssueResponseDTO: Codable {
         guard let user = user?.toDomain() else {
             return nil
         }
+        guard let createdAt = createdAt?.toDate() else {
+            return nil
+        }
         return Issue(
             id: id,
             number: number,
@@ -54,7 +57,8 @@ struct IssueResponseDTO: Codable {
             title: title ?? "NaN",
             body: body ?? "NaN",
             user: user,
-            commentsCount: comments ?? 0
+            commentsCount: comments ?? 0,
+            openedAt: createdAt
         )
     }
 }

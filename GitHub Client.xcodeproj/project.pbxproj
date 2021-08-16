@@ -162,6 +162,9 @@
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
 		AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */; };
 		AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */; };
+		AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5526C96FF700432E13 /* HomeVC.swift */; };
+		AD65FA5926CA93AD00432E13 /* IssueItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5726CA93AD00432E13 /* IssueItemCell.swift */; };
+		AD65FA5A26CA93AD00432E13 /* IssueItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD65FA5826CA93AD00432E13 /* IssueItemCell.xib */; };
 		AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093626BECB43004644D2 /* Endpoint.swift */; };
 		AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */; };
 		AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093C26BEDA2B004644D2 /* ProfileLocalStorage.swift */; };
@@ -498,6 +501,9 @@
 		AD5591F226BC6A890055C3F1 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		AD65FA5526C96FF700432E13 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		AD65FA5726CA93AD00432E13 /* IssueItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueItemCell.swift; sourceTree = "<group>"; };
+		AD65FA5826CA93AD00432E13 /* IssueItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueItemCell.xib; sourceTree = "<group>"; };
 		AD6B093626BECB43004644D2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		AD6B093926BED725004644D2 /* MyProfileEndpoinds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEndpoinds.swift; sourceTree = "<group>"; };
 		AD6B093C26BEDA2B004644D2 /* ProfileLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocalStorage.swift; sourceTree = "<group>"; };
@@ -790,6 +796,7 @@
 				AD8722E726B83784004649A4 /* Favorites */,
 				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				ADBC1ACC26C3D778000F9B88 /* Cells */,
+				AD65FA5526C96FF700432E13 /* HomeVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1482,6 +1489,8 @@
 			children = (
 				AD6E418326C65D7600CEF3B0 /* IssueCell.swift */,
 				AD6E418426C65D7600CEF3B0 /* IssueCell.xib */,
+				AD65FA5726CA93AD00432E13 /* IssueItemCell.swift */,
+				AD65FA5826CA93AD00432E13 /* IssueItemCell.xib */,
 			);
 			path = IssueCell;
 			sourceTree = "<group>";
@@ -1930,6 +1939,7 @@
 				ADA68BA926B55621004AC06C /* octocat_gray-2.png in Resources */,
 				AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */,
 				AD20E4D626A8B313003BB5F1 /* AppIconPinkLight@2x-1.png in Resources */,
+				AD65FA5A26CA93AD00432E13 /* IssueItemCell.xib in Resources */,
 				AD20E4D926A8B313003BB5F1 /* AppIconPinkLight-1.png in Resources */,
 				AD8722F226B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib in Resources */,
 				ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */,
@@ -2140,6 +2150,7 @@
 				ADA68BBF26B58792004AC06C /* FilterViewModel.swift in Sources */,
 				AD6B093F26BEDA82004644D2 /* DataTransferService.swift in Sources */,
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
+				AD65FA5926CA93AD00432E13 /* IssueItemCell.swift in Sources */,
 				AD6B097626BFECFD004644D2 /* MyProfileFactory.swift in Sources */,
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
@@ -2220,6 +2231,7 @@
 				AD8722DE26B816EB004649A4 /* FileViewController.swift in Sources */,
 				AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */,
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
+				AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADE5B0CD26B53A460085A344 /* FilterView.swift in Sources */,
