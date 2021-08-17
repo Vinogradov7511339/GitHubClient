@@ -41,6 +41,7 @@ extension PushEventCell: ConfigurableCell {
             if hasHidden {
                 let button = UIButton()
                 button.setTitle("Show more", for: .normal)
+                button.setTitleColor(.link, for: .normal)
                 commitsStackView.addArrangedSubview(button)
             }
         default:

@@ -14,15 +14,22 @@ class EventsViewController: UIViewController {
         EventsAdapterImpl()
     }()
 
-    private let layoutFactory = CompositionalLayoutFactory()
-
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutFactory.layout)
+        let layoutFactory = CompositionalLayoutFactory()
+        let layout = layoutFactory.layout
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.delegate = self
         collectionView.dataSource = adapter
+        collectionView.refreshControl = refreshControl
         return collectionView
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
     }()
 
     static func create(with viewModel: EventsViewModel) -> EventsViewController {
@@ -53,6 +60,10 @@ class EventsViewController: UIViewController {
         viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: true, completion: nil)
     }
+
+    @objc func refresh() {
+        viewModel.refresh()
+    }
 }
 
 // MARK: - Binding
@@ -63,6 +74,7 @@ private extension EventsViewController {
 
     func updateItems(_ events: [Event]) {
         adapter.update(events)
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
 }

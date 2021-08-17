@@ -4,8 +4,11 @@
 //
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
+
+import UIKit
+
 protocol HomeSceneFactory {
-    func makeHomeViewController(_ actions: HomeActions) -> HomeViewController
+    func makeHomeViewController(_ actions: HomeActions) -> UIViewController
 }
 
 final class HomeSceneFactoryImpl {
@@ -20,8 +23,8 @@ final class HomeSceneFactoryImpl {
 
 // MAK: - HomeSceneFactory
 extension HomeSceneFactoryImpl: HomeSceneFactory {
-    func makeHomeViewController(_ actions: HomeActions) -> HomeViewController {
-        .create(with: createHomeViewModel(actions: actions))
+    func makeHomeViewController(_ actions: HomeActions) -> UIViewController {
+        HomeVC.create(with: createHomeViewModel(actions: actions))
     }
 }
 

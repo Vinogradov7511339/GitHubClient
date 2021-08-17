@@ -31,7 +31,7 @@ final class HomeDIContainer {
         self.issuesFactory = IssuesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
-    func createHomeViewController(actions: HomeActions) -> HomeViewController {
+    func createHomeViewController(actions: HomeActions) -> UIViewController {
         homeSceneFactory.makeHomeViewController(actions)
     }
 

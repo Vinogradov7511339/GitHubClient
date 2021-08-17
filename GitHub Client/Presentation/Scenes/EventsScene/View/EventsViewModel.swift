@@ -12,6 +12,7 @@ struct EventsActions {}
 protocol EventsViewModelInput {
     func viewDidLoad()
     func apply(filters: [EventFilterType])
+    func refresh()
 }
 
 protocol EventsViewModelOutput {
@@ -48,6 +49,10 @@ extension EventsViewModelImpl {
     func apply(filters: [EventFilterType]) {
 //        events.value = events.value.filter { $0.eventType == .pushEvent }
     }
+
+    func refresh() {
+        fetch()
+    }
 }
 
 private extension EventsViewModelImpl {
@@ -56,7 +61,7 @@ private extension EventsViewModelImpl {
         useCase.fetchEvents(requestModel: model) { result in
             switch result {
             case .success(let model):
-                self.events.value.append(contentsOf: model.events)
+                self.events.value = model.events
             case .failure(let error):
                 self.handle(error: error)
             }
