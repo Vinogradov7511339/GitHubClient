@@ -18,15 +18,22 @@ struct RepositoryCodeCellViewModel {
 
 class RepositoryCodeCell: BaseTableViewCell, NibLoadable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var titleLabel: UILabel!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func populate(viewModel: Any) {
+        super.populate(viewModel: viewModel)
+        configure(viewModel: viewModel)
     }
-    
+}
+
+// MARK: - ConfigurableCell
+extension RepositoryCodeCell: ConfigurableCell {
+    func configure(viewModel: RepositoryCodeCellViewModel) {
+        switch viewModel.type {
+        case .code:
+            titleLabel.text = NSLocalizedString("Browse code", comment: "")
+        case .commits:
+            titleLabel.text = NSLocalizedString("Commits", comment: "")
+        }
+    }
 }

@@ -57,7 +57,8 @@ private extension RepositoryDetailsVC {
         viewModel.repository.observe(on: self) { [weak self] in self?.update($0) }
     }
 
-    func update(_ repository: Repository) {
+    func update(_ repository: RepositoryDetails?) {
+        guard let repository = repository?.repository else { return }
         header.update(repository)
     }
 }

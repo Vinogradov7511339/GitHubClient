@@ -7,6 +7,7 @@
 
 import UIKit
 import TextCompiler
+import WebKit
 
 struct ReadMeCellViewModel {
     let mdText: String
@@ -39,6 +40,10 @@ class ReadMeTableViewCell: BaseTableViewCell {
 
 extension ReadMeTableViewCell: ConfigurableCell {
     func configure(viewModel: ReadMeCellViewModel) {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = viewModel.mdText
+        stackView.addSubview(label)
 //        let parser = Parser(viewModel.mdText)
 //        let nodes = parser.parse()
 //        fillStackView(with: nodes)

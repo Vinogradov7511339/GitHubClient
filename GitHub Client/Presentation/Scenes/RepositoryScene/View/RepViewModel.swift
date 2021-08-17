@@ -32,7 +32,7 @@ protocol RepViewModelInput {
 }
 
 protocol RepViewModelOutput {
-    var repository: Observable<Repository> { get }
+    var repository: Observable<RepositoryDetails?> { get }
     var adapter: ExtendedRepositoryAdapter { get }
 }
 
@@ -40,9 +40,10 @@ typealias RepViewModel = RepViewModelInput & RepViewModelOutput
 
 final class RepViewModelImpl: RepViewModel {
 
-    let repository: Observable<Repository>
+    let repository: Observable<RepositoryDetails?> = Observable(nil)
     private let repUseCase: RepUseCase
     private let actions: RepActions
+    private let rep: Repository
 
     // MARK: - OUTPUT
     let adapter: ExtendedRepositoryAdapter
@@ -50,7 +51,8 @@ final class RepViewModelImpl: RepViewModel {
     // MARK: - Init
 
     init(repository: Repository, repUseCase: RepUseCase, actions: RepActions) {
-        self.repository = Observable(repository)
+//        self.repository = Observable(repository)
+        self.rep = repository
         self.repUseCase = repUseCase
         self.actions = actions
         adapter = ExtendedRepositoryAdapterImpl(repository: repository)
@@ -59,38 +61,48 @@ final class RepViewModelImpl: RepViewModel {
 
 // MARK: - RepViewModelInput
 extension RepViewModelImpl {
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        repUseCase.fetch(repository: rep) { result in
+            switch result {
+            case .success(let text):
+                let repository = RepositoryDetails(repository: self.rep, mdText: text)
+                self.repository.value = repository
+            case .failure(let error):
+                self.handle(error)
+            }
+        }
+    }
 
     func didSelectItem(at indexPath: IndexPath) {
-        switch(indexPath.section, indexPath.row) {
-        case (1, 1): actions.showIssues(repository.value)
-        case (1, 2): actions.showPullRequests(repository.value)
-        case (1, 3): actions.showReleases(repository.value)
-        case (1, 4): actions.showWatchers(repository.value)
-        case (2, 0): actions.showCode(repository.value)
-        case (2, 1): actions.showCommits(repository.value)
-        default: break
-        }
+//        switch(indexPath.section, indexPath.row) {
+//        case (1, 1): actions.showIssues(repository.value)
+//        case (1, 2): actions.showPullRequests(repository.value)
+//        case (1, 3): actions.showReleases(repository.value)
+//        case (1, 4): actions.showWatchers(repository.value)
+//        case (2, 0): actions.showCode(repository.value)
+//        case (2, 1): actions.showCommits(repository.value)
+//        default: break
+//        }
     }
 
     func addToFavorites() {
-        repUseCase.addFavorite(repository: repository.value) { error in
-            self.handle(error)
-        }
+//        repUseCase.addFavorite(repository: repository.value) { error in
+//            self.handle(error)
+//        }
     }
 
     func showCommits() {
-        actions.showCommits(repository.value)
+//        actions.showCommits(repository.value)
     }
 
     func showPullRequests() {
-        actions.showPullRequests(repository.value)
+//        actions.showPullRequests(repository.value)
     }
 
     func showEvents() {}
 
     func showIssues() {
-        actions.showIssues(repository.value)
+//        actions.showIssues(repository.value)
     }
 }
 

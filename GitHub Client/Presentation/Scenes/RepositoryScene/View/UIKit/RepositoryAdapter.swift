@@ -9,7 +9,7 @@ import UIKit
 
 protocol RepositoryAdapter: UITableViewDataSource {
     func register(_ tableView: UITableView)
-    func update(_ repository: Repository)
+    func update(_ repository: RepositoryDetails)
 }
 
 final class RepositoryAdapterImpl: NSObject {
@@ -28,7 +28,7 @@ final class RepositoryAdapterImpl: NSObject {
         .readMe: TableCellManager.create(cellType: ReadMeTableViewCell.self)
     ]
 
-    private var repository: Repository?
+    private var repository: RepositoryDetails?
 }
 
 // MARK: - RepositoryAdapter
@@ -37,7 +37,7 @@ extension RepositoryAdapterImpl: RepositoryAdapter {
         cellManages.values.forEach { $0.register(tableView: tableView) }
     }
 
-    func update(_ repository: Repository) {
+    func update(_ repository: RepositoryDetails) {
         self.repository = repository
     }
 
@@ -67,6 +67,7 @@ extension RepositoryAdapterImpl: RepositoryAdapter {
 
 private extension RepositoryAdapterImpl {
     func numberOfRows(in section: Int) -> Int {
+        guard let repository = repository else { return 0 }
         guard let type = SectionTypes(rawValue: section) else { return 0 }
         switch type {
         case .header: return 1
@@ -79,7 +80,7 @@ private extension RepositoryAdapterImpl {
     func infoSections() -> Int {
         guard let repository = repository else { return 0 }
         var itemsCount = 0
-        if repository.hasIssues {
+        if repository.repository.hasIssues {
             itemsCount += 1
         }
         itemsCount += 1 // pull requests
@@ -93,10 +94,10 @@ private extension RepositoryAdapterImpl {
         guard let type = SectionTypes(rawValue: indexPath.section) else { return nil }
         switch type {
         case .header:
-            return RepositoryDetailsHeaderCellViewModel(repository: repository)
+            return RepositoryDetailsHeaderCellViewModel(repository: repository.repository)
         case .info:
             if let type = RepositoryInfoCellViewModel.CellType(rawValue: indexPath.row) {
-                return RepositoryInfoCellViewModel(type: type, repository: repository)
+                return RepositoryInfoCellViewModel(type: type, repository: repository.repository)
             } else {
                 return nil
             }
@@ -107,7 +108,7 @@ private extension RepositoryAdapterImpl {
                 return nil
             }
         case .readMe:
-            return ReadMeCellViewModel(mdText: "")
+            return ReadMeCellViewModel(mdText: repository.mdText)
         }
     }
 }

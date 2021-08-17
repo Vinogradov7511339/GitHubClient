@@ -22,12 +22,13 @@ final class RepViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = adapter
         return tableView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -46,7 +47,8 @@ private extension RepViewController {
         viewModel.repository.observe(on: self) { [weak self] in self?.updateItems($0) }
     }
     
-    func updateItems(_ repository: Repository) {
+    func updateItems(_ repository: RepositoryDetails?) {
+        guard let repository = repository else { return }
         adapter.update(repository)
         tableView.reloadData()
     }

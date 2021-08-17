@@ -21,15 +21,35 @@ struct RepositoryInfoCellViewModel {
 
 class RepositoryInfoCell: BaseTableViewCell, NibLoadable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func populate(viewModel: Any) {
+        super.populate(viewModel: viewModel)
+        configure(viewModel: viewModel)
     }
-    
+}
+
+// MARK: - ConfigurableCell
+extension RepositoryInfoCell: ConfigurableCell {
+    func configure(viewModel: RepositoryInfoCellViewModel) {
+        switch viewModel.type {
+        case .issues:
+            iconImageView.image = .issue
+            iconImageView.tintColor = .issue
+            titleLabel.text = .issue
+        case .pullRequests:
+            iconImageView.image = .pullRequest
+            iconImageView.tintColor = .pullRequest
+            titleLabel.text = .pullRequest
+        case .releases:
+            iconImageView.image = .releases
+            iconImageView.tintColor = .releases
+            titleLabel.text = .releases
+        case .license:
+            iconImageView.image = .license
+            iconImageView.tintColor = .license
+            titleLabel.text = .license
+        }
+    }
 }

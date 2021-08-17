@@ -10,14 +10,17 @@ import Foundation
 protocol RepUseCase {
     func addFavorite(repository: Repository, completion: @escaping (Error?) -> Void)
     func removeFavorite(by repositoryId: Int, completion: @escaping (Error?) -> Void)
+    func fetch(repository: Repository, completion: @escaping (Result<String, Error>) -> Void)
 }
 
 class RepUseCaseImpl {
 
     let favoritesStorage: FavoritesStorage
+    let repositoryStorage: RepRepository
 
-    init(favoritesStorage: FavoritesStorage) {
+    init(favoritesStorage: FavoritesStorage, repositoryStorage: RepRepository) {
         self.favoritesStorage = favoritesStorage
+        self.repositoryStorage = repositoryStorage
     }
 }
 
@@ -29,5 +32,9 @@ extension RepUseCaseImpl: RepUseCase {
 
     func removeFavorite(by repositoryId: Int, completion: @escaping (Error?) -> Void) {
         favoritesStorage.removeFavorite(by: repositoryId, completion: completion)
+    }
+
+    func fetch(repository: Repository, completion: @escaping (Result<String, Error>) -> Void) {
+        repositoryStorage.fetchReadMe(repository: repository, completion: completion)
     }
 }

@@ -37,4 +37,8 @@ struct RepositoryEndpoits {
         return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/commits",
                         queryParametersEncodable: ["page": page])
     }
+
+    static func getReadMe(repository: Repository) -> Endpoint<FileResponse> {
+        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/contents/README.md")
+    }
 }

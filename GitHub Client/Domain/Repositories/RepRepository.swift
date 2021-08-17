@@ -9,4 +9,5 @@ import Foundation
 
 protocol RepRepository {
     func fetchCommits(request: CommitsRequestModel, completion: @escaping (Result<CommitsResponseModel, Error>) -> Void)
+    func fetchReadMe(repository: Repository, completion: @escaping (Result<String, Error>) -> Void)
 }

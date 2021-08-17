@@ -38,7 +38,7 @@ private extension ExtendedRepositoryFactoryImpl {
     }
 
     func makeRepUseCase() -> RepUseCase {
-        return RepUseCaseImpl(favoritesStorage: favoriteStorage)
+        return RepUseCaseImpl(favoritesStorage: favoriteStorage, repositoryStorage: makeRepRepository())
     }
 
     func makeRepRepository() -> RepRepository {
