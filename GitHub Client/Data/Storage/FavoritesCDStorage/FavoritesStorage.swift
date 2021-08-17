@@ -10,7 +10,7 @@ import CoreData
 
 protocol FavoritesStorage {
     func contains(_ repositoryId: Int) -> Bool
-    func fetchFavorites(completion: @escaping (Result<[Repository], Error>) -> Void)
+    func fetchWidgets(completion: @escaping (Result<[HomeWidget], Error>) -> Void)
     func addFavorite(repository: Repository, completion: @escaping (Error?) -> Void)
     func removeFavorite(by repositoryId: Int, completion: @escaping (Error?) -> Void)
 }
@@ -27,17 +27,19 @@ final class FavoritesStorageImpl {
 
 // MARK: - MyFavoritesStorage
 extension FavoritesStorageImpl: FavoritesStorage {
-    func fetchFavorites (completion: @escaping (Result<[Repository], Error>) -> Void) {
-        coreDataStorage.performBackgroundTask { context in
-            do {
-                let request: NSFetchRequest = FavoriteCDEntity.fetchRequest()
-                let result = try context.fetch(request).compactMap { $0.toDomain() }
-                self.favorites = Set(result.map { $0.repositoryId })
-                completion(.success(result))
-            } catch {
-                completion(.failure(error))
-            }
-        }
+    func fetchWidgets (completion: @escaping (Result<[HomeWidget], Error>) -> Void) {
+        let stubWidgets: [HomeWidget] = [.issues]
+        completion(.success(stubWidgets))
+//        coreDataStorage.performBackgroundTask { context in
+//            do {
+//                let request: NSFetchRequest = FavoriteCDEntity.fetchRequest()
+//                let result = try context.fetch(request).compactMap { $0.toDomain() }
+//                self.favorites = Set(result.map { $0.repositoryId })
+//                completion(.success(result))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
     }
 
     func addFavorite(repository: Repository, completion: @escaping (Error?) -> Void) {

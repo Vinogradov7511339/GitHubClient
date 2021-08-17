@@ -18,7 +18,7 @@ struct HomeActions {
 }
 
 protocol HomeViewModelInput {
-    func viewWillAppear()
+    func viewDidLoad()
     func refresh()
     func showFavorites()
     func didSelectItem(at indexPath: IndexPath)
@@ -26,6 +26,7 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput {
     var favorites: Observable<[Repository]> { get }
+    var widgets: Observable<[HomeWidget]> { get }
 }
 
 typealias HomeViewModel = HomeViewModelInput & HomeViewModelOutput
@@ -35,6 +36,7 @@ final class HomeViewModelImpl: HomeViewModel {
     // MARK: - Output
 
     var favorites: Observable<[Repository]> = Observable([])
+    var widgets: Observable<[HomeWidget]> = Observable([])
 
     // MARK: - Private
 
@@ -45,23 +47,14 @@ final class HomeViewModelImpl: HomeViewModel {
         self.useCase = useCase
         self.actions = actions
     }
-
-    static func items() -> [TableCellViewModel] {
-        return [
-            TableCellViewModel(text: "Issues", detailText: "text2"),
-            TableCellViewModel(text: "Discussions", detailText: "text2"),
-            TableCellViewModel(text: "Repositories", detailText: "text2"),
-            TableCellViewModel(text: "Organizations", detailText: "text2")
-        ]
-    }
 }
 
 extension HomeViewModelImpl {
-    func viewWillAppear() {
-        useCase.fetchFavorites { result in
+    func viewDidLoad() {
+        useCase.fetchWidgets { result in
             switch result {
-            case .success(let favorites):
-                self.favorites.value = favorites
+            case .success(let widgets):
+                self.widgets.value = widgets
             case .failure(let error):
                 self.handle(error)
             }
@@ -71,25 +64,8 @@ extension HomeViewModelImpl {
     func refresh() {}
 
     func didSelectItem(at indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            actions.showIssues()
-        case (0, 2):
-            actions.showDiscussions()
-        case (0, 3):
-            actions.showRepositories()
-        case (0, 4):
-            actions.showOrganizations()
-        case (1, _):
-            let repository = favorites.value[indexPath.row]
-            actions.showRepository(repository)
-        case (2, _):
-            break
-//            let issue = recent[indexPath.row]
-//            actions.showRecentEvent(issue)
-        default:
-            break
-        }
+        let widget = widgets.value[indexPath.row]
+        openWidget(widget)
     }
 
     func showFavorites() {
@@ -100,4 +76,11 @@ extension HomeViewModelImpl {
 // MARK: - Private
 private extension HomeViewModelImpl {
     func handle(_ error: Error) {}
+
+    func openWidget(_ widget: HomeWidget) {
+        switch widget {
+        case .issues:
+            actions.showIssues()
+        }
+    }
 }

@@ -7,18 +7,25 @@
 
 import UIKit
 
-import UIKit
-
 class HomeFlowLayout {
-    lazy var layout: UICollectionViewCompositionalLayout = {
-        UICollectionViewCompositionalLayout(section: section)
-    }()
 
-    private lazy var section: NSCollectionLayoutSection = {
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-        section.interGroupSpacing = 16.0
-        return section
+    enum SectionType: Int, CaseIterable {
+        case widgets
+    }
+
+    lazy var layout: UICollectionViewCompositionalLayout = {
+        let layout = UICollectionViewCompositionalLayout { section, _ in
+            let type = SectionType(rawValue: section) ?? .widgets
+            switch type {
+            case .widgets: return self.widgetsSection
+            }
+        }
+
+        let configuration = UICollectionViewCompositionalLayoutConfiguration()
+        configuration.interSectionSpacing = 20.0
+        layout.configuration = configuration
+
+        return layout
     }()
 
     private lazy var group: NSCollectionLayoutGroup = {
@@ -32,8 +39,29 @@ class HomeFlowLayout {
     private lazy var size: NSCollectionLayoutSize = {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(300)
+            heightDimension: NSCollectionLayoutDimension.estimated(75)
         )
         return size
     }()
+}
+
+// MARK: - Widgets
+private extension HomeFlowLayout {
+    var widgetsSection: NSCollectionLayoutSection {
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+        section.interGroupSpacing = 16.0
+        section.boundarySupplementaryItems = [widgetsHeader]
+        return section
+    }
+
+    var widgetsHeader: NSCollectionLayoutBoundarySupplementaryItem {
+        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: widgetsHeaderSize,
+                                                    elementKind: HomeVC.sectionHeaderElementKind,
+                                                    alignment: .top)
+    }
+
+    var widgetsHeaderSize: NSCollectionLayoutSize {
+        NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95), heightDimension: .estimated(40.0))
+    }
 }
