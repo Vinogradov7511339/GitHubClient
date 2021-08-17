@@ -40,6 +40,8 @@ struct IssueCommentEvent {
     let comment: Comment
 }
 
+struct ForkEvent {}
+
 extension Event {
     enum Types: String {
         case commitCommentEvent = "CommitCommentEvent"
@@ -65,5 +67,6 @@ extension Event {
         case pushEvent(PushEvent)
         case createEvent(CreateEvent)
         case issueCommentEvent(IssueCommentEvent)
+        case forkEvent(ForkEvent)
     }
 }

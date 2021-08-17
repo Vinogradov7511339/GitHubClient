@@ -76,4 +76,3 @@ private extension IssuesViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
-

@@ -30,7 +30,7 @@ class CompositionalLayoutFactory {
     private lazy var size: NSCollectionLayoutSize = {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(44)
+            heightDimension: NSCollectionLayoutDimension.estimated(300)
         )
         return size
     }()

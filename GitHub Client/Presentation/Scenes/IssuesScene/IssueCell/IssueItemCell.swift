@@ -15,7 +15,6 @@ class IssueItemCell: BaseCollectionViewCell, NibLoadable {
     @IBOutlet weak var issueStateLabel: UILabel!
     @IBOutlet weak var commentsCountLabel: UILabel!
 
-
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -33,8 +32,8 @@ extension IssueItemCell: ConfigurableCell {
     }
 
     func attributedText(issue: Issue) -> NSAttributedString {
-        let number = NSAttributedString(string: "#\(issue.number)")
-        let openedByStr = NSLocalizedString("opened by", comment: "")
+        let number = NSAttributedString(string: "#\(issue.number) ")
+        let openedByStr = NSLocalizedString("opened by ", comment: "")
         let openedBy = NSAttributedString(string: openedByStr, attributes: [.foregroundColor: UIColor.secondaryLabel])
         let author = NSAttributedString(string: issue.user.login)
 
