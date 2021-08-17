@@ -33,7 +33,8 @@ extension FavoriteCDEntity {
             forksCount: -1,
             openIssuesCount: -1,
             description: detailText,
-            language: language
+            language: language,
+            hasIssues: false
         )
     }
 }

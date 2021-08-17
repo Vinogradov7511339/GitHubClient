@@ -14,4 +14,5 @@ struct Repository {
     let openIssuesCount: Int
     let description: String?
     let language: String?
+    let hasIssues: Bool
 }

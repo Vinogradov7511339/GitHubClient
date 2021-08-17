@@ -267,7 +267,8 @@ class RepositoryResponseDTO: Codable {
             forksCount: forksCount ?? 0,
             openIssuesCount: openIssuesCount ?? 0,
             description: description,
-            language: language
+            language: language,
+            hasIssues: hasIssues ?? false
         )
     }
 }

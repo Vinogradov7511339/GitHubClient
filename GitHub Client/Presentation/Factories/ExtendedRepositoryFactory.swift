@@ -5,8 +5,10 @@
 //  Created by Alexander Vinogradov on 10.08.2021.
 //
 
+import UIKit
+
 protocol ExtendedRepositoryFactory {
-    func makeExtendedRepositoryViewController(actions: RepActions) -> RepositoryDetailsVC
+    func makeExtendedRepositoryViewController(actions: RepActions) -> UIViewController
 }
 
 final class ExtendedRepositoryFactoryImpl {
@@ -24,8 +26,8 @@ final class ExtendedRepositoryFactoryImpl {
 
 // MARK: - ExtendedRepositoryFactory
 extension ExtendedRepositoryFactoryImpl: ExtendedRepositoryFactory {
-    func makeExtendedRepositoryViewController(actions: RepActions) -> RepositoryDetailsVC {
-        .create(with: makeRepViewModel(actions: actions))
+    func makeExtendedRepositoryViewController(actions: RepActions) -> UIViewController {
+        RepViewController.create(with: makeRepViewModel(actions: actions))
     }
 }
 

@@ -17,12 +17,14 @@ final class RepViewController: UIViewController {
         return viewController
     }
 
+    private let adapter: RepositoryAdapter = RepositoryAdapterImpl()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = adapter
         return tableView
     }()
     
@@ -31,7 +33,7 @@ final class RepViewController: UIViewController {
         setupViews()
         activateConstraints()
 
-        viewModel.adapter.register(tableView: tableView)
+        adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -41,17 +43,12 @@ final class RepViewController: UIViewController {
 // MARK: - Bind
 private extension RepViewController {
     func bind(to viewModel: RepViewModel) {
-//        viewModel.items.observe(on: self) { [weak self] _ in self?.updateItems() }
-//        viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+        viewModel.repository.observe(on: self) { [weak self] in self?.updateItems($0) }
     }
     
-    func updateItems() {
+    func updateItems(_ repository: Repository) {
+        adapter.update(repository)
         tableView.reloadData()
-    }
-
-    func showError(_ error: String) {
-        guard !error.isEmpty else { return }
-        print("error: \(error)")
     }
 }
 
@@ -70,26 +67,6 @@ extension RepViewController: UITableViewDelegate {
         let view = UIView()
         view.backgroundColor = .systemGroupedBackground
         return view
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension RepViewController: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.adapter.numberOfSections()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.adapter.numberOfRows(in: section)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = viewModel.adapter.cellForRow(in: tableView, at: indexPath)
-        if let header = cell as? RepositoryHeaderTableViewCell {
-            header.delegate = self
-        }
-        return cell
     }
 }
 

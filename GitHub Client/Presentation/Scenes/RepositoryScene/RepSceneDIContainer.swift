@@ -63,7 +63,7 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
 
     // MARK: - Rep flow
 
-    func makeRepViewController(actions: RepActions) -> RepositoryDetailsVC {
+    func makeRepViewController(actions: RepActions) -> UIViewController {
         factory.makeExtendedRepositoryViewController(actions: actions)
     }
 

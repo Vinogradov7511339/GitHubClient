@@ -67,7 +67,6 @@ class MainCoordinator: NSObject {
         flow.start()
     }
 
-
     func showFollowers(_ user: User) {
     }
 
