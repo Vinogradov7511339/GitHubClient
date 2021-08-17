@@ -9,4 +9,5 @@ import Foundation
 
 enum HomeWidget {
     case issues
+    case starredRepositories
 }

@@ -50,7 +50,7 @@ private extension HomeFlowLayout {
     var widgetsSection: NSCollectionLayoutSection {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-        section.interGroupSpacing = 16.0
+        section.interGroupSpacing = 4.0
         section.boundarySupplementaryItems = [widgetsHeader]
         return section
     }

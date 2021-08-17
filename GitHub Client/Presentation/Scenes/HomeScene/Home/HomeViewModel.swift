@@ -13,6 +13,7 @@ struct HomeActions {
     let showOrganizations: () -> Void
     let showFavorites: () -> Void
     let showRepositories: () -> Void
+    let showStarred: () -> Void
     let showRepository: (Repository) -> Void
     let showRecentEvent: (Event) -> Void
 }
@@ -81,6 +82,8 @@ private extension HomeViewModelImpl {
         switch widget {
         case .issues:
             actions.showIssues()
+        case .starredRepositories:
+            actions.showRepositories()
         }
     }
 }

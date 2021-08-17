@@ -95,6 +95,12 @@ class MainCoordinator: NSObject {
     func showStarred(_ user: User) {
     }
 
+    func showMyStarred() {
+        let actions = RepositoriesActions(showRepository: startRepFlow)
+        let viewController = container.createStarredViewController(actions: actions)
+        currentNavigationController.pushViewController(viewController, animated: true)
+    }
+
     func startRepFlow(repository: Repository) {
         let dependency = RepSceneDIContainer.Dependencies(
             repository: repository,
@@ -133,6 +139,7 @@ class MainCoordinator: NSObject {
             openPullRequest: startPullRequestFlow(pullRequest:),
             showRepositories: showMyRepositories,
             showRepository: startRepFlow(repository:),
+            showStarred: showMyStarred,
             showEvent: startEventFlow(event:))
     }
 

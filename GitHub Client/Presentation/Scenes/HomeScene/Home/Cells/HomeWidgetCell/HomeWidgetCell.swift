@@ -24,8 +24,12 @@ extension HomeWidgetCell: ConfigurableCell {
         switch viewModel {
         case .issues:
             iconImageView.image = UIImage.issue
-            iconImageView.tintColor = .systemGreen
+            iconImageView.tintColor = .issue
             nameLabel.text = String.issue
+        case .starredRepositories:
+            iconImageView.image = UIImage.starred
+            iconImageView.tintColor = .starred
+            nameLabel.text = String.starred
         }
     }
 }

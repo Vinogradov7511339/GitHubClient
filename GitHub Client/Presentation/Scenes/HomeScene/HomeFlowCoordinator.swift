@@ -30,6 +30,7 @@ extension HomeFlowCoordinator {
               showOrganizations: container.actions.showOrganizations,
               showFavorites: showFavorites,
               showRepositories: container.actions.showRepositories,
+              showStarred: container.actions.showStarred,
               showRepository: container.actions.showRepository,
               showRecentEvent: container.actions.showEvent)
     }

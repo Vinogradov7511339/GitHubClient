@@ -30,6 +30,10 @@ final class MainSceneDIContainer: NSObject {
         repositoriesFactory.makeMyStarredViewController(actions: actions)
     }
 
+    func createStarredViewController(actions: RepositoriesActions) -> RepositoriesViewController {
+        repositoriesFactory.makeMyStarredViewController(actions: actions)
+    }
+
     var apiDataTransferService: DataTransferService {
         parentContainer.apiDataTransferService
     }

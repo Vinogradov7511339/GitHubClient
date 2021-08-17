@@ -28,7 +28,7 @@ final class FavoritesStorageImpl {
 // MARK: - MyFavoritesStorage
 extension FavoritesStorageImpl: FavoritesStorage {
     func fetchWidgets (completion: @escaping (Result<[HomeWidget], Error>) -> Void) {
-        let stubWidgets: [HomeWidget] = [.issues]
+        let stubWidgets: [HomeWidget] = [.issues, .starredRepositories]
         completion(.success(stubWidgets))
 //        coreDataStorage.performBackgroundTask { context in
 //            do {

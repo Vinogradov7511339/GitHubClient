@@ -14,6 +14,7 @@ final class HomeDIContainer {
         var openPullRequest: (PullRequest) -> Void
         var showRepositories: () -> Void
         var showRepository: (Repository) -> Void
+        var showStarred: () -> Void
         var showEvent: (Event) -> Void
     }
 
