@@ -22,7 +22,7 @@ class AuthorizationViewController: UIViewController {
     }()
     
     private lazy var authRequest: URLRequest = {
-        let stringUrl = "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.clientId + "&redirect_uri=" + GithubConstants.redirectUrl + "&state=" + uuid
+        let stringUrl = "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.clientId + "&scope=" + GithubConstants.permissionsScope + "&redirect_uri=" + GithubConstants.redirectUrl + "&state=" + uuid
         let url = URL(string: stringUrl)!
         let request = URLRequest(url: url)
         return request
@@ -31,7 +31,7 @@ class AuthorizationViewController: UIViewController {
     weak var delegate: AuthorizationViewControllerDelegate?
     
     private let uuid = UIDevice.current.identifierForVendor!.uuidString
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -48,22 +48,22 @@ class AuthorizationViewController: UIViewController {
     @objc func refreshAction() {
         self.webView.reload()
     }
-    
+
     private func configureNavigationBar() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelAction))
         navigationItem.leftBarButtonItem = cancelButton
-        
+
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshAction))
         navigationItem.rightBarButtonItem = refreshButton
     }
-    
+
     private func requestForCallbackUl(_ request: URLRequest) {
         let stringUrl = request.url?.absoluteString ?? ""
         guard let components = URLComponents(string: stringUrl) else {
             print("no components")
             return
         }
-        guard let parameter = components.queryItems?.first(where: { $0.name == "code"} ) else {
+        guard let parameter = components.queryItems?.first(where: { $0.name == "code" }) else {
             print("no code")
             return
         }
@@ -88,7 +88,7 @@ private extension AuthorizationViewController {
     func setupViews() {
         view.addSubview(webView)
     }
-    
+
     func activateConstraints() {
         webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

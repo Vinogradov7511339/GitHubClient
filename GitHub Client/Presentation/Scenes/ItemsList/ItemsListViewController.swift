@@ -125,8 +125,6 @@ private extension ItemsListViewController {
     }
 
     func showError(_ error: String) {
-        guard !error.isEmpty else { return }
-        showErrorAlert()
     }
 }
 

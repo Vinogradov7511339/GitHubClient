@@ -7,16 +7,19 @@
 
 import UIKit
 
-class ExploreFlowCoordinator {
+class NotificationsFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
+    private let container: NotificationsDIContainer
     
-    init(navigationController: UINavigationController) {
+    init(container: NotificationsDIContainer, navigationController: UINavigationController) {
+        self.container = container
         self.navigationController = navigationController
     }
     
     func start() {
-        let viewController = ExploreConfigurator.createModule()
+        let actions = NotificationsActions()
+        let viewController = container.makeNotificationsViewController(actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -106,7 +106,11 @@ final class MainSceneDIContainer: NSObject {
             coordinator.start()
 
         case .explore:
-            let coordinator = ExploreFlowCoordinator(navigationController: navController)
+            let dependencies = NotificationsDIContainer.Dependencies(
+                apiDataTransferService: parentContainer.apiDataTransferService)
+            let container = NotificationsDIContainer(dependencies: dependencies)
+            let coordinator = NotificationsFlowCoordinator(container: container,
+                                                           navigationController: navController)
             coordinator.start()
 
         case .profile:
@@ -147,9 +151,9 @@ enum TabBarPage: CaseIterable {
         case .home:
             return NSLocalizedString("Home", comment: "")
         case .events:
-            return NSLocalizedString("Events", comment: "")
-        case .explore:
             return NSLocalizedString("Explore", comment: "")
+        case .explore:
+            return NSLocalizedString("Notifications", comment: "")
         case .profile:
             return NSLocalizedString("Profile", comment: "")
         }
@@ -158,13 +162,13 @@ enum TabBarPage: CaseIterable {
     func pageImage() -> UIImage? {
         switch self {
         case .home:
-            return UIImage(systemName: "house")
+            return .home
         case .events:
-            return UIImage(systemName: "bell.fill")
+            return .explore
         case .explore:
-            return UIImage(systemName: "gyroscope")
+            return .notifications
         case .profile:
-            return UIImage(systemName: "person")
+            return .profile
         }
     }
 

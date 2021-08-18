@@ -47,4 +47,8 @@ struct MyProfileEndpoinds {
         return Endpoint(path: "pulls",
                         queryParametersEncodable: params)
     }
+
+    static func getInstallations() -> Endpoint<PermissionsResponseDTO> {
+        return Endpoint(path: "user/installations")
+    }
 }
