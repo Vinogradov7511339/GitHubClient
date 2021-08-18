@@ -67,7 +67,7 @@ extension RepositoryAdapterImpl: RepositoryAdapter {
 
 private extension RepositoryAdapterImpl {
     func numberOfRows(in section: Int) -> Int {
-        guard let repository = repository else { return 0 }
+        guard let _ = repository else { return 0 }
         guard let type = SectionTypes(rawValue: section) else { return 0 }
         switch type {
         case .header: return 1

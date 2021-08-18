@@ -5,6 +5,8 @@
 //  Created by Alexander Vinogradov on 03.08.2021.
 //
 
+import Foundation
+
 struct Repository {
     let repositoryId: Int
     let owner: User
@@ -15,4 +17,5 @@ struct Repository {
     let description: String?
     let language: String?
     let hasIssues: Bool
+    let contentPath: URL
 }

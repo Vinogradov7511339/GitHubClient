@@ -47,7 +47,7 @@ private extension RepositoriesRepositoryImpl {
             case .success(let response):
                 let lastPage = self.tryTakeLastPage(response.httpResponse)
                 let model = RepositoriesResponseModel(
-                    items: response.model.map { $0.toDomain() },
+                    items: response.model.compactMap { $0.toDomain() },
                     lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):

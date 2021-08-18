@@ -16,6 +16,8 @@ protocol RepFlowCoordinatorDependencies {
     func makeReleasesViewController(for repository: Repository, actions: ItemsListActions<Release>) -> ItemsListViewController<Release>
     func makeCommitsViewController(for repository: Repository, actions: CommitsActions) -> CommitsViewController
     func makeIssueViewController(for issue: Issue, actions: IssueActions) -> IssueDetailsViewController
+    func makeContentViewCoontroller(path: URL, actions: FolderActions) -> UIViewController
+    func makeFileViewController(path: URL, actions: FileActions) -> UIViewController
     func startUserFlow(with user: User)
     func startRepFlow(with repository: Repository)
     func openLink(url: URL)
@@ -61,7 +63,7 @@ extension RepFlowCoordinator {
         let viewController = dependencies.makeStargazersViewController(for: repository, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     func showForks(_ repository: Repository) {
         let actions = RepositoriesActions(showRepository: dependencies.startRepFlow(with:))
         let viewController = dependencies.makeForksViewController(for: repository, actions: actions)
@@ -87,7 +89,18 @@ extension RepFlowCoordinator {
     }
 
     func showWatchers(_ repository: Repository) {}
-    func showCode(_ repository: Repository) {}
+
+    func showCode(_ path: URL) {
+        let actions = FolderActions(openFolder: showCode(_:), openFile: openFile(_:))
+        let viewController = dependencies.makeContentViewCoontroller(path: path, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openFile(_ filePath: URL) {
+        let actions = FileActions()
+        let viewController = dependencies.makeFileViewController(path: filePath, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
     func showCommits(_ repository: Repository) {
         let actions = CommitsActions(showCommit: startCommitsFlow(_:))

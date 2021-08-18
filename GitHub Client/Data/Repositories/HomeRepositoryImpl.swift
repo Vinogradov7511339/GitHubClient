@@ -27,7 +27,7 @@ extension HomeRepositoryImpl: HomeRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                completion(.success(response.model.map { $0.toDomain() }))
+                completion(.success(response.model.compactMap { $0.toDomain() }))
             case .failure(let error):
                 completion(.failure(error))
             }

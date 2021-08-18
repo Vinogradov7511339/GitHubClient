@@ -1,5 +1,5 @@
 //
-//  ReadmeResponse.swift
+//  FileResponseModelDTO.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 01.08.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileResponse: Codable {
+class FileResponseModelDTO: Codable {
     let name: String
     let path: String
     let sha: String
@@ -18,7 +18,7 @@ class FileResponse: Codable {
     let downloadUrl: URL
     let type: String
     let content: String
-    let encoding: String
+    let encoding: String?
 //    let _links
     
     internal init(name: String, path: String,
@@ -26,7 +26,7 @@ class FileResponse: Codable {
                   url: URL, htmlUrl: URL,
                   gitUrl: URL, downloadUrl: URL,
                   type: String, content: String,
-                  encoding: String) {
+                  encoding: String?) {
         self.name = name
         self.path = path
         self.sha = sha
@@ -38,5 +38,19 @@ class FileResponse: Codable {
         self.type = type
         self.content = content
         self.encoding = encoding
+    }
+
+    func toDomain() -> File {
+        var content: String
+        if let encoding = encoding, encoding == "base64" {
+            content = self.content.fromBase64() ?? "Parse error"
+        } else {
+            content = self.content
+        }
+        return .init(name: name,
+                     path: path,
+                     url: url,
+                     content: content,
+                     size: size)
     }
 }

@@ -38,7 +38,15 @@ struct RepositoryEndpoits {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func getReadMe(repository: Repository) -> Endpoint<FileResponse> {
+    static func getContents(path: URL) -> Endpoint<[DirectoryResponseModelDTO]> {
+        return Endpoint(path: path.absoluteString, isFullPath: true)
+    }
+
+    static func getFile(path: URL) -> Endpoint<FileResponseModelDTO> {
+        return Endpoint(path: path.absoluteString, isFullPath: true)
+    }
+
+    static func getReadMe(repository: Repository) -> Endpoint<FileResponseModelDTO> {
         return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/contents/README.md")
     }
 }

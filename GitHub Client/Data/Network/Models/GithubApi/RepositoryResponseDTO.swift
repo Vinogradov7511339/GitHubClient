@@ -258,7 +258,11 @@ class RepositoryResponseDTO: Codable {
         self.license = license
     }
 
-    func toDomain() -> Repository {
+    func toDomain() -> Repository? {
+        let newPath = contentsUrl?.replacingOccurrences(of: "/{+path}", with: "") ?? ""
+        guard let path = URL(string: newPath) else {
+            return nil
+        }
         return Repository(
             repositoryId: id,
             owner: owner!.toDomain(),
@@ -268,7 +272,8 @@ class RepositoryResponseDTO: Codable {
             openIssuesCount: openIssuesCount ?? 0,
             description: description,
             language: language,
-            hasIssues: hasIssues ?? false
+            hasIssues: hasIssues ?? false,
+            contentPath: path
         )
     }
 }

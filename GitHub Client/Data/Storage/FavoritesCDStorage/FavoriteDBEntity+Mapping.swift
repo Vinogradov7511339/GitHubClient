@@ -19,22 +19,24 @@ extension FavoriteCDEntity {
     }
 
     func toDomain() -> Repository? {
-        guard let name = name else {
-            return nil
-        }
-        guard let owner = self.owner?.toDomain() else {
-            return nil
-        }
-        return .init(
-            repositoryId: Int(repositoryId),
-            owner: owner,
-            name: name,
-            starsCount: Int(starsCount),
-            forksCount: -1,
-            openIssuesCount: -1,
-            description: detailText,
-            language: language,
-            hasIssues: false
-        )
+        fatalError()
+//        guard let name = name else {
+//            return nil
+//        }
+//        guard let owner = self.owner?.toDomain() else {
+//            return nil
+//        }
+//        return .init(
+//            repositoryId: Int(repositoryId),
+//            owner: owner,
+//            name: name,
+//            starsCount: Int(starsCount),
+//            forksCount: -1,
+//            openIssuesCount: -1,
+//            description: detailText,
+//            language: language,
+//            hasIssues: false,
+//            contentPath: <#URL#>
+//        )
     }
 }

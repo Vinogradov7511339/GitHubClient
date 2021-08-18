@@ -8,7 +8,14 @@
 import UIKit
 
 class FileViewController: UIViewController {
-    var presenter: FilePresenterInput!
+
+    static func create(with viewModel: FileViewModel) -> FileViewController {
+        let viewController = FileViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
+    private var viewModel: FileViewModel!
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -19,18 +26,24 @@ class FileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setupViews()
         activateConstraints()
-        presenter.viewDidLoad()
+
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
     }
 }
 
-// MARK: - FilePresenterOutput
-extension FileViewController: FilePresenterOutput {
-    func display(text: String) {
-        label.text = text
+// MARK: - Binding
+extension FileViewController {
+    func bind(to viewModel: FileViewModel) {
+        viewModel.content.observe(on: self) { [weak self] in self?.update($0) }
     }
 
+    func update(_ content: String) {
+        label.text = content
+    }
 }
 
 // MARK: - setup views

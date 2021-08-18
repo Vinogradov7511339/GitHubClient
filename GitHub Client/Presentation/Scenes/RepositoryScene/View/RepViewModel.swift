@@ -15,7 +15,7 @@ struct RepActions {
     let showPullRequests: (Repository) -> Void
     let showReleases: (Repository) -> Void
     let showWatchers: (Repository) -> Void
-    let showCode: (Repository) -> Void
+    let showCode: (URL) -> Void
     let showCommits: (Repository) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
@@ -33,20 +33,20 @@ protocol RepViewModelInput {
 
 protocol RepViewModelOutput {
     var repository: Observable<RepositoryDetails?> { get }
-    var adapter: ExtendedRepositoryAdapter { get }
 }
 
 typealias RepViewModel = RepViewModelInput & RepViewModelOutput
 
 final class RepViewModelImpl: RepViewModel {
 
-    let repository: Observable<RepositoryDetails?> = Observable(nil)
+
     private let repUseCase: RepUseCase
     private let actions: RepActions
     private let rep: Repository
 
     // MARK: - OUTPUT
-    let adapter: ExtendedRepositoryAdapter
+
+    let repository: Observable<RepositoryDetails?> = Observable(nil)
 
     // MARK: - Init
 
@@ -55,7 +55,6 @@ final class RepViewModelImpl: RepViewModel {
         self.rep = repository
         self.repUseCase = repUseCase
         self.actions = actions
-        adapter = ExtendedRepositoryAdapterImpl(repository: repository)
     }
 }
 
@@ -74,15 +73,15 @@ extension RepViewModelImpl {
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-//        switch(indexPath.section, indexPath.row) {
-//        case (1, 1): actions.showIssues(repository.value)
-//        case (1, 2): actions.showPullRequests(repository.value)
+        switch(indexPath.section, indexPath.row) {
+        case (1, 1): actions.showIssues(rep)
+        case (1, 2): actions.showPullRequests(rep)
 //        case (1, 3): actions.showReleases(repository.value)
 //        case (1, 4): actions.showWatchers(repository.value)
-//        case (2, 0): actions.showCode(repository.value)
-//        case (2, 1): actions.showCommits(repository.value)
-//        default: break
-//        }
+        case (2, 0): actions.showCode(rep.contentPath)
+        case (2, 1): actions.showCommits(rep)
+        default: break
+        }
     }
 
     func addToFavorites() {

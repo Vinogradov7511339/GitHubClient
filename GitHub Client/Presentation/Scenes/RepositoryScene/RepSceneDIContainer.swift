@@ -94,4 +94,12 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
     func makeCommitsViewController(for repository: Repository, actions: CommitsActions) -> CommitsViewController {
         commitsFactory.makeCommitsViewController(repository: repository, actions: actions)
     }
+
+    func makeContentViewCoontroller(path: URL, actions: FolderActions) -> UIViewController {
+        factory.makeContentViewCntroller(actions: actions, path: path)
+    }
+
+    func makeFileViewController(path: URL, actions: FileActions) -> UIViewController {
+        factory.makeFileVIewController(actions: actions, path: path)
+    }
 }

@@ -8,7 +8,14 @@
 import UIKit
 
 class FolderViewController: UIViewController {
-    var presenter: FolderPresenterInput!
+
+    static func create(with viewModel: FolderViewModel) -> FolderViewController {
+        let viewController = FolderViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
+    private var viewModel: FolderViewModel!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -21,34 +28,34 @@ class FolderViewController: UIViewController {
         return tableView
     }()
     
-    private let cellManager = TableCellManager.create(cellType: TableViewCell.self)
-    private var viewModels: [Any] = []
-    
+    private let cellManager = TableCellManager.create(cellType: FolderCell.self)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
         cellManager.register(tableView: tableView)
-        presenter.viewDidLoad()
+
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
     }
 }
 
-// MARK: - FolderPresenterOutput
-extension FolderViewController: FolderPresenterOutput {
-    func display(viewModels: [Any]) {
-        self.viewModels = viewModels
-        tableView.reloadData()
+// MARK: - Binding
+private extension FolderViewController {
+    func bind(to viewModel: FolderViewModel) {
+        viewModel.items.observe(on: self) { [weak self] _ in self?.update() }
     }
-    
-    func push(to viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+
+    func update() {
+        tableView.reloadData()
     }
 }
 
 extension FolderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.didSelectItem(at: indexPath)
+        viewModel.didSelectItem(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,11 +65,11 @@ extension FolderViewController: UITableViewDelegate {
 
 extension FolderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels.count
+        return viewModel.items.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModels[indexPath.row]
+        let viewModel = viewModel.items.value[indexPath.row]
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: viewModel)
         return cell

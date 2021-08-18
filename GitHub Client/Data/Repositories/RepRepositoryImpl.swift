@@ -46,6 +46,32 @@ extension RepRepositoryImpl: RepRepository {
         }
     }
 
+    func fetchContent(path: URL, completion: @escaping (Result<[FolderItem], Error>) -> Void) {
+        let endpoint = RepositoryEndpoits.getContents(path: path)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                let items = model.model.map { $0.toDomain() }
+                completion(.success(items))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchFile(path: URL, completion: @escaping (Result<File, Error>) -> Void) {
+        let endpoint = RepositoryEndpoits.getFile(path: path)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                let file = model.model.toDomain()
+                completion(.success(file))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func tryTakeLastPage(_ response: HTTPURLResponse?) -> Int {
         var count = 1
         if let linkBody = response?.allHeaderFields["Link"] as? String {

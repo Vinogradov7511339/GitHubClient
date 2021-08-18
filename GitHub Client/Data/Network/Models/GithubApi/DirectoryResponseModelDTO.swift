@@ -1,5 +1,5 @@
 //
-//  DirectoryResponse.swift
+//  DirectoryResponseModelDTO.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 02.08.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DirectoryResponse: Codable {
+class DirectoryResponseModelDTO: Codable {
 
     let name: String
     let path: String
@@ -37,5 +37,18 @@ class DirectoryResponse: Codable {
         self.gitUrl = gitUrl
         self.downloadUrl = downloadUrl
         self.type = type
+    }
+
+    func toDomain() -> FolderItem {
+        let type: ContentType
+        if self.type == "dir" {
+            type = .folder
+        } else {
+            type = .file
+        }
+        return .init(name: name,
+              path: path,
+              url: url,
+              type: type)
     }
 }
