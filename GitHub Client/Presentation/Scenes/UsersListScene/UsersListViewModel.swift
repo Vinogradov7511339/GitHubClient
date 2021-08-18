@@ -28,12 +28,12 @@ final class UsersListViewModelImpl: UsersListViewModel {
     var users: Observable<[User]> = Observable([])
 
     // MARK: - Private
-    private let useCase: UsersListUseCase
+    private let useCase: UsersUseCase
     private let type: UsersListType
     private let actions: UsersListActions
     private var lastPage: Int?
 
-    init(useCase: UsersListUseCase, type: UsersListType, actions: UsersListActions) {
+    init(useCase: UsersUseCase, type: UsersListType, actions: UsersListActions) {
         self.useCase = useCase
         self.type = type
         self.actions = actions
@@ -44,7 +44,7 @@ final class UsersListViewModelImpl: UsersListViewModel {
 extension UsersListViewModelImpl {
     func viewDidLoad() {
         let page = 1
-        let request = UsersListRequestModel(page: page, listType: type)
+        let request = UsersRequestModel(page: page, listType: type)
         useCase.fetchUsers(request: request) { result in
             switch result {
             case .success(let model):

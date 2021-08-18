@@ -16,7 +16,7 @@ extension NibLoadable where Self: UIView {
     static var nibName: String {
         return String(describing: self)
     }
-    
+
     static var nib: UINib {
         return UINib(nibName: nibName, bundle: nil)
     }

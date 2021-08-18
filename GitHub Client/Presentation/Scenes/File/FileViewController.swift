@@ -23,7 +23,7 @@ class FileViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground

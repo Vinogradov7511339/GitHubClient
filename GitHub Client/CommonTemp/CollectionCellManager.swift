@@ -24,7 +24,8 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
 class CollectionCellManager {
     func register(collectionView: UICollectionView) {}
-    func dequeueReusableCell(collectionView: UICollectionView, for indexPath: IndexPath) -> BaseCollectionViewCell {
+    func dequeueReusableCell(collectionView: UICollectionView,
+                             for indexPath: IndexPath) -> BaseCollectionViewCell {
         fatalError("should be overriden in descendant")
     }
 

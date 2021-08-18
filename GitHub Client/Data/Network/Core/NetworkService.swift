@@ -8,7 +8,9 @@
 import Foundation
 
 protocol NetworkService {
-    typealias CompletionHandler = (Result<(data: Data?, httpResponse: HTTPURLResponse?), NetworkError>) -> Void
+    typealias ResponseType = (data: Data?, httpResponse: HTTPURLResponse?)
+    typealias ResultType = Result<ResponseType, NetworkError>
+    typealias CompletionHandler = (ResultType) -> Void
 
     func request(endpoint: Requestable, completion: @escaping CompletionHandler) -> NetworkCancellable?
 }

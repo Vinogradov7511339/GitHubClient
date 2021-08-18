@@ -70,11 +70,11 @@ private extension UsersListFactoryImpl {
         UsersListViewModelImpl.init(useCase: createUsersListUseCase(), type: .stargazers(repository), actions: actions)
     }
 
-    func createUsersListUseCase() -> UsersListUseCase {
-        return UsersListUseCaseImpl(repository: createUsersListRepository())
+    func createUsersListUseCase() -> UsersUseCase {
+        return UsersUseCaseImpl(repository: createUsersListRepository())
     }
 
-    func createUsersListRepository() -> UsersListRepository {
+    func createUsersListRepository() -> UsersRepository {
         return UsersListRepositoryImpl(dataTransferService: dataTransferService)
     }
 }

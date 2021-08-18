@@ -16,8 +16,8 @@ class UsersListRepositoryImpl {
 }
 
 // MARK: - UsersListRepository
-extension UsersListRepositoryImpl: UsersListRepository {
-    func fetch(requestModel: UsersListRequestModel, completion: @escaping (Result<UsersListResponseModel, Error>) -> Void) {
+extension UsersListRepositoryImpl: UsersRepository {
+    func fetch(requestModel: UsersRequestModel, completion: @escaping (Result<UsersResponseModel, Error>) -> Void) {
         switch requestModel.listType {
         case .myFollowers:
             let endpoint = MyProfileEndpoinds.getMyFollowers(page: requestModel.page)
@@ -41,12 +41,12 @@ extension UsersListRepositoryImpl: UsersListRepository {
 // MARK: - Private
 private extension UsersListRepositoryImpl {
     func fetch(endpoint: Endpoint<[UserResponseDTO]>,
-                    completion: @escaping (Result<UsersListResponseModel, Error>) -> Void) {
+                    completion: @escaping (Result<UsersResponseModel, Error>) -> Void) {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
                 let lastPage = self.tryTakeLastPage(response.httpResponse)
-                let model = UsersListResponseModel(
+                let model = UsersResponseModel(
                     items: response.model.map { $0.toDomain() },
                     lastPage: lastPage)
                 completion(.success(model))

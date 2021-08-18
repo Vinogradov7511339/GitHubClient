@@ -32,7 +32,7 @@ final class AppDIContainer {
         let container = MainSceneDIContainer(appDIContainer: self, dependencies: dependencies)
         return MainCoordinator.init(in: window, mainSceneDIContainer: container)
     }
-    
+
     func makeLoginSceneDIContainer(
         dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)

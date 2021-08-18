@@ -16,7 +16,8 @@ extension UITableView {
         register(nib, forCellReuseIdentifier: identifier(for: cellType))
     }
 
-    func dequeueReusableCell<CellType: UITableViewCell>(withType type: CellType.Type, for indexPath: IndexPath) -> CellType? {
+    func dequeueReusableCell<CellType: UITableViewCell>(withType type: CellType.Type,
+                                                        for indexPath: IndexPath) -> CellType? {
         return dequeueReusableCell(withIdentifier: identifier(for: type), for: indexPath) as? CellType
     }
 

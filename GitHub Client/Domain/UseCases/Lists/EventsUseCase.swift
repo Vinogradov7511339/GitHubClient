@@ -7,18 +7,10 @@
 
 import Foundation
 
-struct EventsRequestModel {
-    let page: Int
-}
-
-struct EventsResponseModel {
-    let events: [Event]
-    let lastPage: Int
-}
-
 protocol EventsUseCase {
-    func fetchEvents(requestModel: EventsRequestModel,
-                     completion: @escaping (Result<EventsResponseModel, Error>) -> Void)
+    typealias EventsHandler = (Result<EventsResponseModel, Error>) -> Void
+
+    func fetchEvents(requestModel: EventsRequestModel, completion: @escaping EventsHandler)
 }
 
 final class EventsUseCaseImpl {
@@ -32,8 +24,7 @@ final class EventsUseCaseImpl {
 
 // MARK: - EventsUseCase
 extension EventsUseCaseImpl: EventsUseCase {
-    func fetchEvents(requestModel: EventsRequestModel,
-                     completion: @escaping (Result<EventsResponseModel, Error>) -> Void) {
+    func fetchEvents(requestModel: EventsRequestModel, completion: @escaping EventsHandler) {
         repository.fetchEvents(requestModel: requestModel, completion: completion)
     }
 }
