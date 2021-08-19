@@ -47,7 +47,7 @@ class ExploreViewController: UIViewController {
         adapter.register(collectionView: collectionView)
 
         title = NSLocalizedString("Notifications", comment: "")
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -65,6 +65,7 @@ extension ExploreViewController {
     }
 
     func update(_ notifications: [EventNotification]) {
+        refreshControl.endRefreshing()
         adapter.update(notifications)
         collectionView.reloadData()
     }

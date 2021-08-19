@@ -55,4 +55,3 @@ extension NotificationsAdapterImpl {
 //        return cell ?? UICollectionViewCell(frame: .zero)
     }
 }
-

@@ -25,7 +25,7 @@ final class MyProfileFactoryImpl {
 // MARK: - MyProfileFactory
 extension MyProfileFactoryImpl: MyProfileFactory {
     func makeMyProfileViewController(_ actions: ProfileActions) -> UIViewController {
-        ProfileViewControllerV2.create(with: createProfileViewModel(actions))
+        ProfileViewController.create(with: createProfileViewModel(actions))
     }
 }
 

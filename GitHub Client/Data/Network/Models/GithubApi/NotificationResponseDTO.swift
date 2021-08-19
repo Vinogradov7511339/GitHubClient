@@ -17,7 +17,7 @@ struct NotificationResponseDTO: Codable {
     let subscriptionUrl: URL
     let subject: NotificationsSubjectResponseDTO
     let repository: RepositoryResponseDTO
-// Issue/PullRequest/Discussion,  has repository
+
     func toDomain() -> EventNotification? {
         guard let type = EventNotification.SubjectType(rawValue: subject.type) else {
             assert(false, "no type")
@@ -31,7 +31,13 @@ struct NotificationResponseDTO: Codable {
             assert(false, "can not convert repository")
             return nil
         }
-        return .init(title: subject.title,
+        guard let title = url.absoluteString.split(separator: "/").last else {
+            assert(false, "not a number")
+            return nil
+        }
+        let fullTitle = "\(repository.owner.login) / \(repository.name) #\(title)"
+        return .init(title: fullTitle,
+                     body: subject.title,
                      type: type,
                      createdAt: createdAt,
                      repository: repository)

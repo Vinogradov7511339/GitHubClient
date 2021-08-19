@@ -31,8 +31,8 @@ extension NotificationCell: ConfigurableCell {
         case .pullRequest: image = .pullRequest
         }
         itemImageView.image = image
-        titleLabel.text = viewModel.repository.name
+        titleLabel.text = viewModel.title
         createdAtLabel.text = viewModel.createdAt.timeAgoDisplay()
-        bodyLabel.text = viewModel.title
+        bodyLabel.text = viewModel.body
     }
 }

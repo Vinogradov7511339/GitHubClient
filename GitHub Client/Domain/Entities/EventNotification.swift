@@ -17,6 +17,7 @@ struct EventNotification {
     }
 
     let title: String
+    let body: String
     let type: SubjectType
     let createdAt: Date
     let repository: Repository
