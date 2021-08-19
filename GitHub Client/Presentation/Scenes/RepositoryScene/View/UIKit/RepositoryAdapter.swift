@@ -75,7 +75,7 @@ private extension RepositoryAdapterImpl {
         switch type {
         case .header: return 1
         case .info: return infoSections()
-        case .code: return 2
+        case .code: return 1
         case .readMe: return 1
         }
     }
@@ -83,12 +83,14 @@ private extension RepositoryAdapterImpl {
     func infoSections() -> Int {
         guard let repository = repository else { return 0 }
         var itemsCount = 0
+        itemsCount += 1 // code
         if repository.repository.hasIssues {
             itemsCount += 1
         }
         itemsCount += 1 // pull requests
         itemsCount += 1 // releases
         itemsCount += 1 // license
+        itemsCount += 1 // /repos/{owner}/{repo}/subscribers
         return itemsCount
     }
 

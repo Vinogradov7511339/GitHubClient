@@ -23,6 +23,7 @@ final class ProfileViewController: UIViewController {
         tableView.backgroundColor = .systemGroupedBackground
         tableView.tableFooterView = UIView()
         tableView.dataSource = adapter
+        tableView.delegate = self
         return tableView
     }()
 
@@ -36,10 +37,15 @@ final class ProfileViewController: UIViewController {
         setupViews()
         activateConstraints()
 
+        configureNavBar()
         adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+
+    @objc func openSettings() {
+        viewModel.openSettings()
     }
 }
 
@@ -58,6 +64,13 @@ private extension ProfileViewController {
     }
 }
 
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
+    }
+}
+
 private extension ProfileViewController {
     func setupViews() {
         view.addSubview(tableView)
@@ -68,5 +81,10 @@ private extension ProfileViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    }
+
+    func configureNavBar() {
+        let settings = UIBarButtonItem(image: .settings, style: .plain, target: self, action: #selector(openSettings))
+        navigationItem.setRightBarButton(settings, animated: false)
     }
 }

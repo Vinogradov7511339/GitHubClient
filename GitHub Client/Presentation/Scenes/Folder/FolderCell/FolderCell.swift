@@ -22,17 +22,17 @@ class FolderCell: BaseTableViewCell, NibLoadable {
 extension FolderCell: ConfigurableCell {
     func configure(viewModel: FolderItem) {
         itemTitleLabel.text = viewModel.name
-        let imageName: String
+        let image: UIImage?
         let imageColor: UIColor
         switch viewModel.type {
         case .folder:
-            imageName = "folder"
-            imageColor = .link
+            image = .folder
+            imageColor = .systemBlue
         case .file:
-            imageName = "doc"
-            imageColor = .secondaryLabel
+            image = .file
+            imageColor = .lightGray
         }
-        itemImageView.image = UIImage(systemName: imageName)
+        itemImageView.image = image
         itemImageView.tintColor = imageColor
     }
 }

@@ -8,10 +8,11 @@
 import UIKit
 
 struct ProfileItemCellViewModel {
-    enum ItemType {
+    enum ItemType: CaseIterable {
         case repositories
         case starred
         case organizations
+        case subscriptions
     }
 
     let type: ItemType
@@ -41,6 +42,9 @@ extension ProfileItemCell: ConfigurableCell {
         case .organizations:
             itemImageView.image = .organizations
             itemNameLabel.text = .organizations
+        case .subscriptions:
+            itemImageView.image = .starred
+            itemNameLabel.text = "Subscriptions"
         }
     }
 }

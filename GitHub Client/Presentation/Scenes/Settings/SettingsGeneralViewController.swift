@@ -22,7 +22,7 @@ class SettingsGeneralViewController: UIViewController {
     let viewModel = SettingsViewModel()
     
     private let cellManager = TableCellManager.create(cellType: TableViewCell.self)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -46,6 +46,8 @@ extension SettingsGeneralViewController: UITableViewDelegate {
             openLanguageSettings()
         case (2, 0):
             openAccountSetttings()
+        case (2, 1):
+            openCodeOptions()
         case (3, 0):
             openDeveloperSettings()
         default:
@@ -59,11 +61,11 @@ extension SettingsGeneralViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.items.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.items[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel.items[indexPath.section][indexPath.row]
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
@@ -78,12 +80,12 @@ private extension SettingsGeneralViewController {
         let viewController = SettingAppearanceViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     func openChangeAppIconViewController() {
         let viewController = SettingsAppIconViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     func openLanguageSettings() {
         if let settingUrl = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(settingUrl)
@@ -94,9 +96,14 @@ private extension SettingsGeneralViewController {
         let viewController = AccountSettingsViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     func openDeveloperSettings() {
         let viewController = DeveloperSettingsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openCodeOptions() {
+        let viewController = CodeOptionsViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

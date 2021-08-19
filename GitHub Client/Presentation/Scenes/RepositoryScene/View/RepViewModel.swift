@@ -74,12 +74,12 @@ extension RepViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         switch(indexPath.section, indexPath.row) {
+        case (1, 0): actions.showCode(rep.contentPath)
         case (1, 1): actions.showIssues(rep)
         case (1, 2): actions.showPullRequests(rep)
 //        case (1, 3): actions.showReleases(repository.value)
 //        case (1, 4): actions.showWatchers(repository.value)
-        case (2, 0): actions.showCode(rep.contentPath)
-        case (2, 1): actions.showCommits(rep)
+        case (2, 0): actions.showCommits(rep)
         default: break
         }
     }

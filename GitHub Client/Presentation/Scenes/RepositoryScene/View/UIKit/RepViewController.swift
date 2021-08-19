@@ -46,7 +46,7 @@ private extension RepViewController {
     func bind(to viewModel: RepViewModel) {
         viewModel.repository.observe(on: self) { [weak self] in self?.updateItems($0) }
     }
-    
+
     func updateItems(_ repository: RepositoryDetails?) {
         guard let repository = repository else { return }
         adapter.update(repository)

@@ -16,6 +16,12 @@ class FileViewController: UIViewController {
     }
 
     private var viewModel: FileViewModel!
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -26,36 +32,63 @@ class FileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setupViews()
         activateConstraints()
+
+        view.backgroundColor = .systemBackground
+        configureNavBar()
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
+
+    @objc func openCodeSettings() {
+        let viewController = CodeOptionsViewController()
+        let nav = UINavigationController(rootViewController: viewController)
+        present(nav, animated: true, completion: nil)
+    }
+
+    @objc func openMenu() {}
 }
 
 // MARK: - Binding
 extension FileViewController {
     func bind(to viewModel: FileViewModel) {
-        viewModel.content.observe(on: self) { [weak self] in self?.update($0) }
+        viewModel.file.observe(on: self) { [weak self] in self?.update($0) }
     }
 
-    func update(_ content: String) {
-        label.text = content
+    func update(_ file: File?) {
+        guard let file = file else { return }
+        title = file.name
+//        navigationItem.prompt = file.path
+        label.text = file.content
     }
 }
 
 // MARK: - setup views
 private extension FileViewController {
     func setupViews() {
-        view.addSubview(label)
+        view.addSubview(scrollView)
+        scrollView.addSubview(label)
     }
 
     func activateConstraints() {
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        label.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    }
+
+    func configureNavBar() {
+        let menuButton = UIBarButtonItem(image: .menu,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(openMenu))
+        navigationItem.setRightBarButton(menuButton, animated: true)
     }
 }

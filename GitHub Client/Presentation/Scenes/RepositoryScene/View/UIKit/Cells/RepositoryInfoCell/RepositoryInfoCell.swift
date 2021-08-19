@@ -9,10 +9,12 @@ import UIKit
 
 struct RepositoryInfoCellViewModel {
     enum CellType: Int {
+        case sources
         case issues
         case pullRequests
         case releases
         case license
+        case subscribers
     }
 
     let type: CellType
@@ -34,6 +36,10 @@ class RepositoryInfoCell: BaseTableViewCell, NibLoadable {
 extension RepositoryInfoCell: ConfigurableCell {
     func configure(viewModel: RepositoryInfoCellViewModel) {
         switch viewModel.type {
+        case .sources:
+            iconImageView.image = .sources
+            iconImageView.tintColor = .issue
+            titleLabel.text = "Sources"
         case .issues:
             iconImageView.image = .issue
             iconImageView.tintColor = .issue
@@ -50,6 +56,10 @@ extension RepositoryInfoCell: ConfigurableCell {
             iconImageView.image = .license
             iconImageView.tintColor = .license
             titleLabel.text = .license
+        case .subscribers:
+            iconImageView.image = .releases
+            iconImageView.tintColor = .releases
+            titleLabel.text = "Subscribers"
         }
     }
 }

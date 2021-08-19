@@ -76,7 +76,9 @@ extension ProfileViewModelImpl {
 
     func share() {}
 
-    func openSettings() {}
+    func openSettings() {
+        actions.openSettings()
+    }
 
     func showFollowers() {
         actions.showFollowers()
@@ -100,20 +102,15 @@ extension ProfileViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            actions.showRepositories()
-        case (0, 1):
-            actions.showStarred()
-        case (0, 2):
-            actions.showOrganizations()
-        case (0, 3):
-            actions.showFollowing()
         case (1, 0):
-            actions.showFollowing()
+            actions.showRepositories()
         case (1, 1):
-            actions.showFollowers()
-        case (2, 0):
-            actions.openSettings()
+            actions.showStarred()
+        case (1, 2):
+            actions.showOrganizations()
+        case (1, 3):
+            //show subscriptions
+            break
         default:
             break
         }

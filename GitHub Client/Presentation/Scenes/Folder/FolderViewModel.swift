@@ -18,6 +18,7 @@ protocol FolderViewModelInput {
 }
 
 protocol FolderViewModelOutput {
+    var title: Observable<String> { get }
     var items: Observable<[FolderItem]> { get }
 }
 
@@ -27,6 +28,7 @@ final class FolderViewModelImpl {
 
     // MARK: - INPUT
 
+    var title: Observable<String> = Observable("")
     var items: Observable<[FolderItem]> = Observable([])
 
     // MARK: - Private

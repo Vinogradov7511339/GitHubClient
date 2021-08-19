@@ -45,10 +45,15 @@ class FolderViewController: UIViewController {
 private extension FolderViewController {
     func bind(to viewModel: FolderViewModel) {
         viewModel.items.observe(on: self) { [weak self] _ in self?.update() }
+        viewModel.title.observe(on: self) { [weak self] in self?.update(title: $0) }
     }
 
     func update() {
         tableView.reloadData()
+    }
+
+    func update(title: String) {
+        self.title = title
     }
 }
 

@@ -38,6 +38,9 @@ class SettingsViewModel {
         let manageAccountsCell = TableCellViewModel(text: "Manage Accounts")
         thirdSectionItems.append(manageAccountsCell)
 
+        let codeOptionsCell = TableCellViewModel(text: "Code Options")
+        thirdSectionItems.append(codeOptionsCell)
+
         var fourthSectionItems: [Any] = []
 
         let developerCell = TableCellViewModel(text: "Developer")

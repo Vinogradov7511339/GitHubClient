@@ -71,7 +71,7 @@ private extension ProfileAdapterImpl {
         }
         switch type {
         case .header: return 1
-        case .info: return 3
+        case .info: return ProfileItemCellViewModel.ItemType.allCases.count
         }
     }
 
@@ -92,6 +92,8 @@ private extension ProfileAdapterImpl {
                 return ProfileItemCellViewModel.init(type: .starred)
             case 2:
                 return ProfileItemCellViewModel.init(type: .organizations)
+            case 3:
+                return ProfileItemCellViewModel.init(type: .subscriptions)
             default:
                 return nil
             }
