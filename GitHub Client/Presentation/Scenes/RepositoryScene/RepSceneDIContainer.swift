@@ -109,6 +109,10 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
         return viewController
     }
 
+    func makeBranchesViewController(repository: Repository, actions: BranchesActions) -> UIViewController {
+        factory.makeBranchesViewController(actions: actions, repository: repository)
+    }
+
     func copy(text: String) {
         dependencies.copy(text)
     }

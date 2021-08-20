@@ -45,11 +45,11 @@ struct BaseDetailsCellViewModel {
     }
 
     static var license: BaseDetailsCellViewModel {
-        .init(color: .license, image: .license, title: .license)
+        .init(color: .license, image: UIImage.Repository.license, title: .license)
     }
 
     static var following: BaseDetailsCellViewModel {
-        .init(color: .license, image: .license, title: "Following Temp")
+        .init(color: .license, image: UIImage.Repository.license, title: "Following Temp")
     }
 }
 

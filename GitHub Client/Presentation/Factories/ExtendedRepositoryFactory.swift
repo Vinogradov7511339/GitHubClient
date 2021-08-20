@@ -11,6 +11,7 @@ protocol ExtendedRepositoryFactory {
     func makeExtendedRepositoryViewController(actions: RepActions) -> UIViewController
     func makeContentViewCntroller(actions: FolderActions, path: URL) -> UIViewController
     func makeFileVIewController(actions: FileActions, path: URL) -> UIViewController
+    func makeBranchesViewController(actions: BranchesActions, repository: Repository) -> UIViewController
 }
 
 final class ExtendedRepositoryFactoryImpl {
@@ -39,6 +40,10 @@ extension ExtendedRepositoryFactoryImpl: ExtendedRepositoryFactory {
     func makeFileVIewController(actions: FileActions, path: URL) -> UIViewController {
         FileViewController.create(with: makeFileViewModel(actions: actions, path: path))
     }
+
+    func makeBranchesViewController(actions: BranchesActions, repository: Repository) -> UIViewController {
+        BranchesViewController.create(with: makeBranchesViewModel(actions: actions, repository: repository))
+    }
 }
 
 // MARK: - Private
@@ -55,11 +60,21 @@ private extension ExtendedRepositoryFactoryImpl {
         FileViewModelImpl(actions: actions, filePath: path, useCase: makeRepUseCase())
     }
 
+    func makeBranchesViewModel(actions: BranchesActions, repository: Repository) -> BranchesViewModel {
+        BranchesViewModelImpl(actions: actions, repUserCase: makeRepUseCase(), repository: repository)
+    }
+
     func makeRepUseCase() -> RepUseCase {
-        return RepUseCaseImpl(favoritesStorage: favoriteStorage, repositoryStorage: makeRepRepository())
+        return RepUseCaseImpl(favoritesStorage: favoriteStorage,
+                              repositoryStorage: makeRepRepository(),
+                              repositoryFacade: makeRepositoryFacade())
     }
 
     func makeRepRepository() -> RepRepository {
         return RepRepositoryImpl(dataTransferService: dataTransferService)
+    }
+
+    func makeRepositoryFacade() -> RepositoryFacade {
+        RepositoryFacadeImpl(repRepository: makeRepRepository())
     }
 }

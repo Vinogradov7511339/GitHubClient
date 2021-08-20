@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RepositoryInfoCell" customModule="GitHub_Client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_button_unstar" translatesAutoresizingMaskIntoConstraints="NO" id="rXF-FG-T29">
+                        <rect key="frame" x="16" y="6" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="1Kq-Kj-UUf"/>
+                            <constraint firstAttribute="height" constant="32" id="fxy-sC-gq0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fh2-VI-g0X">
+                        <rect key="frame" x="56" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jTF-Z2-fHI">
+                        <rect key="frame" x="288" y="16" width="16" height="12.5"/>
+                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="kzQ-9D-2lE"/>
+                            <constraint firstAttribute="height" constant="16" id="y0C-Ap-RNc"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eU-Kh-tzc">
+                        <rect key="frame" x="280" y="22" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5eU-Kh-tzc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="64y-7p-H51"/>
+                    <constraint firstItem="rXF-FG-T29" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="95M-oc-mlr"/>
+                    <constraint firstItem="fh2-VI-g0X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PqM-N9-tI3"/>
+                    <constraint firstItem="jTF-Z2-fHI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="V6C-Fv-zqd"/>
+                    <constraint firstAttribute="trailing" secondItem="jTF-Z2-fHI" secondAttribute="trailing" constant="16" id="Zbo-gJ-0qD"/>
+                    <constraint firstItem="fh2-VI-g0X" firstAttribute="leading" secondItem="rXF-FG-T29" secondAttribute="trailing" constant="8" id="dTA-ek-uFr"/>
+                    <constraint firstItem="rXF-FG-T29" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jda-lc-Mpo"/>
+                    <constraint firstItem="jTF-Z2-fHI" firstAttribute="leading" secondItem="5eU-Kh-tzc" secondAttribute="trailing" constant="8" symbolic="YES" id="zAn-84-Lfd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="detailsLabel" destination="5eU-Kh-tzc" id="dy9-UZ-4mL"/>
+                <outlet property="iconImageView" destination="rXF-FG-T29" id="0vh-GT-9Uo"/>
+                <outlet property="titleLabel" destination="fh2-VI-g0X" id="j8l-FP-gW4"/>
+            </connections>
+            <point key="canvasLocation" x="37.681159420289859" y="72.991071428571431"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="icon_button_unstar" width="20" height="19"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icon_cell_badge_branch.png",
+      "filename" : "icon_cell_badge_fork.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icon_cell_badge_branch@2x.png",
+      "filename" : "icon_cell_badge_fork@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icon_cell_badge_branch@3x.png",
+      "filename" : "icon_cell_badge_fork@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

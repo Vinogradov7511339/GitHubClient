@@ -19,6 +19,7 @@ protocol RepFlowCoordinatorDependencies {
     func makeContentViewCoontroller(path: URL, actions: FolderActions) -> UIViewController
     func makeFileViewController(path: URL, actions: FileActions) -> UIViewController
     func makeCodeOptionsViwController() -> UIViewController
+    func makeBranchesViewController(repository: Repository, actions: BranchesActions) -> UIViewController
     func startUserFlow(with user: User)
     func startRepFlow(with repository: Repository)
     func openLink(url: URL)
@@ -46,6 +47,7 @@ final class RepFlowCoordinator {
 extension RepFlowCoordinator {
     func actions() -> RepActions {
         .init(
+            showBranches: showBranches(_:),
             showStargazers: showStargazers(_:),
             showForks: showForks(_:),
             showOwner: dependencies.startUserFlow(with:),
@@ -59,6 +61,15 @@ extension RepFlowCoordinator {
             share: dependencies.share(url:)
         )
     }
+
+    func showBranches(_ repository: Repository) {
+        let actions = BranchesActions(select: didSelectBranch(_:))
+        let viewController = dependencies.makeBranchesViewController(repository: repository, actions: actions)
+        let nav = UINavigationController(rootViewController: viewController)
+        navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
+    }
+
+    func didSelectBranch(_ branch: Branch) {}
 
     func showStargazers(_ repository: Repository) {
         let actions = UsersListActions(showUser: dependencies.startUserFlow(with:))

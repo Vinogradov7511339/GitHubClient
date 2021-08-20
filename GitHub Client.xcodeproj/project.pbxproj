@@ -259,6 +259,13 @@
 		ADA3C84926CF8AB8009F9130 /* UIImage+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C84826CF8AB8009F9130 /* UIImage+Profile.swift */; };
 		ADA3C84B26CF96A8009F9130 /* UIImage+RepListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C84A26CF96A8009F9130 /* UIImage+RepListItem.swift */; };
 		ADA3C84D26CF9E9A009F9130 /* Int+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C84C26CF9E9A009F9130 /* Int+Formatter.swift */; };
+		ADA3C84F26CFC588009F9130 /* RepositoryFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C84E26CFC588009F9130 /* RepositoryFacade.swift */; };
+		ADA3C85126CFD1F7009F9130 /* BranchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C85026CFD1F7009F9130 /* BranchesViewController.swift */; };
+		ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C85326CFD22A009F9130 /* BranchesViewModel.swift */; };
+		ADA3C85726CFD47C009F9130 /* BranchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C85526CFD47C009F9130 /* BranchCell.swift */; };
+		ADA3C85826CFD47C009F9130 /* BranchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA3C85626CFD47C009F9130 /* BranchCell.xib */; };
+		ADA3C85B26CFD531009F9130 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C85A26CFD531009F9130 /* Branch.swift */; };
+		ADA3C85D26CFD7BE009F9130 /* BranchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C85C26CFD7BE009F9130 /* BranchResponseDTO.swift */; };
 		ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */; };
 		ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */; };
 		ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */; };
@@ -317,8 +324,6 @@
 		ADC5380826CC03EC009B7A7E /* RepositoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5380726CC03EC009B7A7E /* RepositoryAdapter.swift */; };
 		ADC5380B26CC09E2009B7A7E /* RepositoryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5380926CC09E2009B7A7E /* RepositoryInfoCell.swift */; };
 		ADC5380C26CC09E2009B7A7E /* RepositoryInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC5380A26CC09E2009B7A7E /* RepositoryInfoCell.xib */; };
-		ADC5381026CC0AC5009B7A7E /* RepositoryCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5380E26CC0AC5009B7A7E /* RepositoryCodeCell.swift */; };
-		ADC5381126CC0AC5009B7A7E /* RepositoryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC5380F26CC0AC5009B7A7E /* RepositoryCodeCell.xib */; };
 		ADC538AB26CC3BB3009B7A7E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538AA26CC3BB3009B7A7E /* Folder.swift */; };
 		ADC538AE26CCE23D009B7A7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538AC26CCE23D009B7A7E /* FolderCell.swift */; };
 		ADC538AF26CCE23D009B7A7E /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC538AD26CCE23D009B7A7E /* FolderCell.xib */; };
@@ -634,6 +639,13 @@
 		ADA3C84826CF8AB8009F9130 /* UIImage+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Profile.swift"; sourceTree = "<group>"; };
 		ADA3C84A26CF96A8009F9130 /* UIImage+RepListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RepListItem.swift"; sourceTree = "<group>"; };
 		ADA3C84C26CF9E9A009F9130 /* Int+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatter.swift"; sourceTree = "<group>"; };
+		ADA3C84E26CFC588009F9130 /* RepositoryFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFacade.swift; sourceTree = "<group>"; };
+		ADA3C85026CFD1F7009F9130 /* BranchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesViewController.swift; sourceTree = "<group>"; };
+		ADA3C85326CFD22A009F9130 /* BranchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesViewModel.swift; sourceTree = "<group>"; };
+		ADA3C85526CFD47C009F9130 /* BranchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCell.swift; sourceTree = "<group>"; };
+		ADA3C85626CFD47C009F9130 /* BranchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BranchCell.xib; sourceTree = "<group>"; };
+		ADA3C85A26CFD531009F9130 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		ADA3C85C26CFD7BE009F9130 /* BranchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchResponseDTO.swift; sourceTree = "<group>"; };
 		ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x.png"; sourceTree = "<group>"; };
 		ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x-3.png"; sourceTree = "<group>"; };
 		ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-7.png"; sourceTree = "<group>"; };
@@ -692,8 +704,6 @@
 		ADC5380726CC03EC009B7A7E /* RepositoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAdapter.swift; sourceTree = "<group>"; };
 		ADC5380926CC09E2009B7A7E /* RepositoryInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInfoCell.swift; sourceTree = "<group>"; };
 		ADC5380A26CC09E2009B7A7E /* RepositoryInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryInfoCell.xib; sourceTree = "<group>"; };
-		ADC5380E26CC0AC5009B7A7E /* RepositoryCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCodeCell.swift; sourceTree = "<group>"; };
-		ADC5380F26CC0AC5009B7A7E /* RepositoryCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCodeCell.xib; sourceTree = "<group>"; };
 		ADC538AA26CC3BB3009B7A7E /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		ADC538AC26CCE23D009B7A7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		ADC538AD26CCE23D009B7A7E /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
@@ -1161,6 +1171,7 @@
 				ADC5380526CBF650009B7A7E /* HomeWidget.swift */,
 				ADC538AA26CC3BB3009B7A7E /* Folder.swift */,
 				ADC538DD26CD2FC7009B7A7E /* EventNotification.swift */,
+				ADA3C85A26CFD531009F9130 /* Branch.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1178,6 +1189,7 @@
 				AD6B09A626C2767D004644D2 /* IssueUseCase.swift */,
 				ADBC1ADA26C43D30000F9B88 /* FavoritesUseCase.swift */,
 				ADC538DB26CD2B23009B7A7E /* NotificationsUseCase.swift */,
+				ADA3C84E26CFC588009F9130 /* RepositoryFacade.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1243,18 +1255,19 @@
 			children = (
 				AD39FE3E26BAA28A00F055FD /* RepFlowCoordinator.swift */,
 				AD39FE3C26BAA20A00F055FD /* RepSceneDIContainer.swift */,
-				AD39FE4A26BAB61500F055FD /* View */,
+				AD39FE4A26BAB61500F055FD /* RepositoryDetails */,
+				ADA3C85226CFD1FB009F9130 /* BranchesList */,
 			);
 			path = RepositoryScene;
 			sourceTree = "<group>";
 		};
-		AD39FE4A26BAB61500F055FD /* View */ = {
+		AD39FE4A26BAB61500F055FD /* RepositoryDetails */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE4026BAA54D00F055FD /* RepViewModel.swift */,
 				AD6B09A126C05056004644D2 /* UIKit */,
 			);
-			path = View;
+			path = RepositoryDetails;
 			sourceTree = "<group>";
 		};
 		AD39FE5226BABD5E00F055FD /* UserProfileScene */ = {
@@ -1671,6 +1684,25 @@
 			path = RepositoriesCell;
 			sourceTree = "<group>";
 		};
+		ADA3C85226CFD1FB009F9130 /* BranchesList */ = {
+			isa = PBXGroup;
+			children = (
+				ADA3C85026CFD1F7009F9130 /* BranchesViewController.swift */,
+				ADA3C85326CFD22A009F9130 /* BranchesViewModel.swift */,
+				ADA3C85926CFD482009F9130 /* BranchCell */,
+			);
+			path = BranchesList;
+			sourceTree = "<group>";
+		};
+		ADA3C85926CFD482009F9130 /* BranchCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADA3C85526CFD47C009F9130 /* BranchCell.swift */,
+				ADA3C85626CFD47C009F9130 /* BranchCell.xib */,
+			);
+			path = BranchCell;
+			sourceTree = "<group>";
+		};
 		ADA68B8D26B555F5004AC06C /* octocat_gray */ = {
 			isa = PBXGroup;
 			children = (
@@ -1719,6 +1751,7 @@
 				ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */,
 				ADC538E926CD3746009B7A7E /* NotificationResponseDTO.swift */,
 				ADD8D25726CD659C00F6C17B /* PermissionsResponseDTO.swift */,
+				ADA3C85C26CFD7BE009F9130 /* BranchResponseDTO.swift */,
 			);
 			path = GithubApi;
 			sourceTree = "<group>";
@@ -1840,22 +1873,12 @@
 			path = RepositoryInfoCell;
 			sourceTree = "<group>";
 		};
-		ADC5381226CC0ACA009B7A7E /* RepositoryCodeCell */ = {
-			isa = PBXGroup;
-			children = (
-				ADC5380E26CC0AC5009B7A7E /* RepositoryCodeCell.swift */,
-				ADC5380F26CC0AC5009B7A7E /* RepositoryCodeCell.xib */,
-			);
-			path = RepositoryCodeCell;
-			sourceTree = "<group>";
-		};
 		ADC538A626CC3620009B7A7E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FD9B26B874DF00F055FD /* CommitCell */,
 				AD25E4D526B6E5510003B1E0 /* RepositoryHeaderCell */,
 				ADC5380D26CC09EA009B7A7E /* RepositoryInfoCell */,
-				ADC5381226CC0ACA009B7A7E /* RepositoryCodeCell */,
 				AD25E4D626B6E56A0003B1E0 /* ReposReadMeCell */,
 			);
 			path = Cells;
@@ -2082,7 +2105,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADC5381126CC0AC5009B7A7E /* RepositoryCodeCell.xib in Resources */,
 				AD20E4D426A8B313003BB5F1 /* AppIconPinkLight@2x.png in Resources */,
 				AD508E7F26C51E690091132A /* MenuItemCell.xib in Resources */,
 				ADDD512426C7EC8D00F74240 /* WatchEventCell.xib in Resources */,
@@ -2105,6 +2127,7 @@
 				AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */,
 				ADA68BAC26B55621004AC06C /* octocat_gray@2x-1.png in Resources */,
 				AD20E55526AACAE3003BB5F1 /* SmallCollectionViewCell.xib in Resources */,
+				ADA3C85826CFD47C009F9130 /* BranchCell.xib in Resources */,
 				ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */,
 				AD20E4E226A8B313003BB5F1 /* AppIconPinkLight@3x.png in Resources */,
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
@@ -2255,6 +2278,7 @@
 				AD6B09B326C29960004644D2 /* LoginRepositoryImpl.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
 				ADDD512826C7ECE800F74240 /* PushEventCell.swift in Sources */,
+				ADA3C85D26CFD7BE009F9130 /* BranchResponseDTO.swift in Sources */,
 				ADC538C626CD1D46009B7A7E /* RepositoriesType.swift in Sources */,
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
 				ADA7494B26CE5BCB00C8D475 /* ProfileItemCell.swift in Sources */,
@@ -2293,6 +2317,7 @@
 				AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */,
 				AD6B09A726C2767D004644D2 /* IssueUseCase.swift in Sources */,
 				ADDD512026C7DEC700F74240 /* EventsAdapter.swift in Sources */,
+				ADA3C85126CFD1F7009F9130 /* BranchesViewController.swift in Sources */,
 				ADA1692C26C568810040B635 /* CellWithCollection.swift in Sources */,
 				AD6B099226C014F7004644D2 /* Event.swift in Sources */,
 				ADC538C226CD1C71009B7A7E /* IssuesResponseModel.swift in Sources */,
@@ -2321,6 +2346,7 @@
 				AD9F81A126C7A01D00C320E6 /* IssueHeaderCell.swift in Sources */,
 				AD2E261C26BC6FCB00B25772 /* UIImage+tempExtension.swift in Sources */,
 				ADC538C826CD1D73009B7A7E /* RepositoriesRequestModel.swift in Sources */,
+				ADA3C84F26CFC588009F9130 /* RepositoryFacade.swift in Sources */,
 				AD39A57F26C6796900309481 /* CommitsViewController.swift in Sources */,
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
 				ADC5380626CBF650009B7A7E /* HomeWidget.swift in Sources */,
@@ -2350,6 +2376,7 @@
 				ADC538BE26CD1BAD009B7A7E /* CommitsResponseModel.swift in Sources */,
 				ADC538EA26CD3746009B7A7E /* NotificationResponseDTO.swift in Sources */,
 				ADC8180426B002FE00469BCF /* Reactions.swift in Sources */,
+				ADA3C85B26CFD531009F9130 /* Branch.swift in Sources */,
 				AD39A58426C679F000309481 /* CommitsViewModel.swift in Sources */,
 				AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */,
 				AD39FEA126BC4A0B00F055FD /* ItemsListUseCase.swift in Sources */,
@@ -2367,7 +2394,6 @@
 				AD6B09B526C29BC0004644D2 /* LoginFactory.swift in Sources */,
 				ADBC1ADB26C43D30000F9B88 /* FavoritesUseCase.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
-				ADC5381026CC0AC5009B7A7E /* RepositoryCodeCell.swift in Sources */,
 				AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */,
 				AD6B093F26BEDA82004644D2 /* DataTransferService.swift in Sources */,
 				AD39FDAA26B947D500F055FD /* UserDetails.swift in Sources */,
@@ -2480,6 +2506,7 @@
 				AD6B09AB26C277A7004644D2 /* IssueRepositoryImpl.swift in Sources */,
 				ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
+				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
 				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,
 				AD39FE9F26BC47F100F055FD /* ItemsListViewModel.swift in Sources */,
@@ -2498,6 +2525,7 @@
 				ADC538CE26CD1E17009B7A7E /* UsersRequestModel.swift in Sources */,
 				AD6B095C26BEFBEC004644D2 /* NetworkService.swift in Sources */,
 				AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */,
+				ADA3C85726CFD47C009F9130 /* BranchCell.swift in Sources */,
 				AD6B098626C0010F004644D2 /* EventsRepository.swift in Sources */,
 				AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */,
 				AD6B09A526C274C6004644D2 /* Comment.swift in Sources */,

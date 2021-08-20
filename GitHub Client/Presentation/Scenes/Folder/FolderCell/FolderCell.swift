@@ -26,10 +26,10 @@ extension FolderCell: ConfigurableCell {
         let imageColor: UIColor
         switch viewModel.type {
         case .folder:
-            image = .folder
+            image = UIImage.Repository.folderBlue
             imageColor = .systemBlue
         case .file:
-            image = .file
+            image = UIImage.Repository.file
             imageColor = .lightGray
         }
         itemImageView.image = image

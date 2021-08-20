@@ -49,4 +49,12 @@ struct RepositoryEndpoits {
     static func getReadMe(repository: Repository) -> Endpoint<FileResponseModelDTO> {
         return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/contents/README.md")
     }
+
+    static func getRepository(repository: Repository) -> Endpoint<RepositoryResponseDTO> {
+        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)")
+    }
+
+    static func getBranches(repository: Repository) -> Endpoint<[BranchResponseDTO]> {
+        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/branches")
+    }
 }

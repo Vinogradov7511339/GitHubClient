@@ -17,6 +17,22 @@ final class RepRepositoryImpl {
 
 // MARK: - RepRepository
 extension RepRepositoryImpl: RepRepository {
+    func fetchRepository(repository: Repository, completion: @escaping (Result<Repository, Error>) -> Void) {
+        let endpoint = RepositoryEndpoits.getRepository(repository: repository)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                if let repository = response.model.toDomain() {
+                    completion(.success(repository))
+                } else {
+                    completion(.failure(NetworkError.cancelled)) // todo add error
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func fetchCommits(request: CommitsRequestModel, completion: @escaping (Result<CommitsResponseModel, Error>) -> Void) {
         let endpoint = RepositoryEndpoits.getCommits(page: request.page, repository: request.repository)
         dataTransferService.request(with: endpoint) { result in
@@ -66,6 +82,18 @@ extension RepRepositoryImpl: RepRepository {
             case .success(let model):
                 let file = model.model.toDomain()
                 completion(.success(file))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchBranches(repository: Repository, completion: @escaping (Result<[Branch], Error>) -> Void) {
+        let endpoint = RepositoryEndpoits.getBranches(repository: repository)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.model.map { $0.toDomain() }))
             case .failure(let error):
                 completion(.failure(error))
             }

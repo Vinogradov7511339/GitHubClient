@@ -27,10 +27,6 @@ extension UIImage {
     static var watchers: UIImage? {
         .init(named: "icon_cell_theme")
     }
-
-    static var license: UIImage? {
-        .init(systemName: "scalemass")
-    }
 }
 
 extension UIColor {
