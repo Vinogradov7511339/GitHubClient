@@ -14,6 +14,7 @@ struct Repository {
     let starsCount: Int
     let forksCount: Int
     let openIssuesCount: Int
+    let watchersCount: Int
     let description: String?
     let language: String?
     let hasIssues: Bool

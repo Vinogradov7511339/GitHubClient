@@ -18,6 +18,7 @@ protocol RepositoriesViewModelInput {
 
 protocol RepositoriesViewModelOutput {
     var repositories: Observable<[Repository]> { get }
+    var title: Observable<String> { get }
 }
 
 typealias RepositoriesViewModel = RepositoriesViewModelInput & RepositoriesViewModelOutput
@@ -26,6 +27,7 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
 
     // MARK: - Output
     var repositories: Observable<[Repository]> = Observable([])
+    var title: Observable<String>
 
     // MARK: - Private
     private let useCase: RepositoriesUseCase
@@ -37,6 +39,16 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
         self.useCase = useCase
         self.type = type
         self.actions = actions
+        self.title = Observable("")
+
+        switch type {
+        case .myRepositories, .userRepositories(_):
+            title.value = NSLocalizedString("Repositories", comment: "")
+        case .myStarred, .userStarred(_):
+            title.value = NSLocalizedString("Starred", comment: "")
+        case .forks(_):
+            title.value = NSLocalizedString("Forks", comment: "")
+        }
     }
 }
 

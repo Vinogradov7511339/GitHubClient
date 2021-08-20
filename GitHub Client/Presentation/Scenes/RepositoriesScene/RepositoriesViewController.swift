@@ -45,7 +45,12 @@ final class RepositoriesViewController: UIViewController {
 // MARK: - Binding
 private extension RepositoriesViewController {
     func bind(to viewModel: RepositoriesViewModel) {
+        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
         viewModel.repositories.observe(on: self) { [weak self] in self?.updateItems($0)}
+    }
+
+    func updateTitle(_ title: String) {
+        self.title = title
     }
 
     func updateItems(_ repositories: [Repository]) {
