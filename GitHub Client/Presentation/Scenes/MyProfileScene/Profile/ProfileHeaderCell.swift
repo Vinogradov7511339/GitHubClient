@@ -74,5 +74,9 @@ extension ProfileHeaderCell: ConfigurableCell {
     func configureFollowButton() {
         let title = NSLocalizedString("Follow", comment: "")
         followButton.setTitle(title, for: .normal)
+        followButton.setTitleColor(.secondaryLabel, for: .normal)
+        followButton.cornerRadius = 8.0
+        followButton.borderColor = .secondaryLabel
+        followButton.borderWidth = 1.0
     }
 }

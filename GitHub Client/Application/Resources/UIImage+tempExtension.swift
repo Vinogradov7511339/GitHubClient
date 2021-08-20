@@ -20,16 +20,8 @@ extension UIImage {
         .init(systemName: "tag")
     }
 
-    static var repositories: UIImage? {
-        .init(systemName: "book.closed")
-    }
-
     static var discussions: UIImage? {
         .init(systemName: "message")
-    }
-
-    static var organizations: UIImage? {
-        .init(systemName: "building.2")
     }
 
     static var watchers: UIImage? {
@@ -38,10 +30,6 @@ extension UIImage {
 
     static var license: UIImage? {
         .init(systemName: "scalemass")
-    }
-
-    static var starred: UIImage? {
-        .init(systemName: "star")
     }
 }
 

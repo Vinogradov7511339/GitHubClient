@@ -256,6 +256,7 @@
 		ADA1694926C63DE50040B635 /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1694826C63DE50040B635 /* RepositoriesRepository.swift */; };
 		ADA1694B26C63E2C0040B635 /* RepositoriesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1694A26C63E2C0040B635 /* RepositoriesRepositoryImpl.swift */; };
 		ADA1694D26C63FEA0040B635 /* RepositoriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1694C26C63FEA0040B635 /* RepositoriesFactory.swift */; };
+		ADA3C84926CF8AB8009F9130 /* UIImage+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3C84826CF8AB8009F9130 /* UIImage+Profile.swift */; };
 		ADA68BA026B55621004AC06C /* octocat_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */; };
 		ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */; };
 		ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */; };
@@ -628,6 +629,7 @@
 		ADA1694826C63DE50040B635 /* RepositoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
 		ADA1694A26C63E2C0040B635 /* RepositoriesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesRepositoryImpl.swift; sourceTree = "<group>"; };
 		ADA1694C26C63FEA0040B635 /* RepositoriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesFactory.swift; sourceTree = "<group>"; };
+		ADA3C84826CF8AB8009F9130 /* UIImage+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Profile.swift"; sourceTree = "<group>"; };
 		ADA68B8E26B55620004AC06C /* octocat_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x.png"; sourceTree = "<group>"; };
 		ADA68B8F26B55620004AC06C /* octocat_gray@3x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@3x-3.png"; sourceTree = "<group>"; };
 		ADA68B9026B55620004AC06C /* octocat_gray@2x-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-7.png"; sourceTree = "<group>"; };
@@ -821,6 +823,8 @@
 				ADC538D726CD27B5009B7A7E /* UIImage+TabBar.swift */,
 				ADA7494E26CE62D800C8D475 /* UIImage+NavBar.swift */,
 				ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */,
+				ADA3C84826CF8AB8009F9130 /* UIImage+Profile.swift */,
+				AD2E261B26BC6FCB00B25772 /* UIImage+tempExtension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1555,7 +1559,6 @@
 				AD2E261326BC6D5F00B25772 /* UITableView+extensions.swift */,
 				AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */,
 				AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */,
-				AD2E261B26BC6FCB00B25772 /* UIImage+tempExtension.swift */,
 				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
 				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
@@ -2421,6 +2424,7 @@
 				ADA1693926C58AC70040B635 /* UsersListRepositoryImpl.swift in Sources */,
 				ADA1694526C63C610040B635 /* RepositoriesViewModel.swift in Sources */,
 				AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */,
+				ADA3C84926CF8AB8009F9130 /* UIImage+Profile.swift in Sources */,
 				AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */,
 				ADC537FB26CBD738009B7A7E /* HomeFlowLayout.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,

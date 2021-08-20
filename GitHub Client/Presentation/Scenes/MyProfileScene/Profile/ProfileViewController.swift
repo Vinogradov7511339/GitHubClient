@@ -69,6 +69,10 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        indexPath.section == 0 ? UITableView.automaticDimension : 56.0
+    }
 }
 
 private extension ProfileViewController {

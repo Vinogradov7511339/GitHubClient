@@ -43,7 +43,7 @@ extension ProfileItemCell: ConfigurableCell {
             itemImageView.image = .organizations
             itemNameLabel.text = .organizations
         case .subscriptions:
-            itemImageView.image = .starred
+            itemImageView.image = .subscribers
             itemNameLabel.text = "Subscriptions"
         }
     }
