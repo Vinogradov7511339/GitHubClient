@@ -27,17 +27,34 @@ class FolderViewController: UIViewController {
         tableView.tableFooterView = UIView()
         return tableView
     }()
-    
+
     private let cellManager = TableCellManager.create(cellType: FolderCell.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        configureNavBar()
         cellManager.register(tableView: tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+
+    @objc func openMenu() {
+        let alert = UIAlertController(title: "Folder menu", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Copy Folder Path", style: .default, handler: { _ in
+            self.viewModel.copyFolderPath()
+        }))
+        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { _ in
+            self.viewModel.share()
+        }))
+        alert.addAction(UIAlertAction(title: "Folders Settings", style: .default, handler: { _ in
+            self.viewModel.openFolderSettings()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -72,7 +89,7 @@ extension FolderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.items.value.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel.items.value[indexPath.row]
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
@@ -92,5 +109,13 @@ private extension FolderViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+
+    func configureNavBar() {
+        let menuButton = UIBarButtonItem(image: .menu,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(openMenu))
+        navigationItem.setRightBarButton(menuButton, animated: true)
     }
 }

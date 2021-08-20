@@ -93,7 +93,11 @@ extension RepFlowCoordinator {
     func showWatchers(_ repository: Repository) {}
 
     func showCode(_ path: URL) {
-        let actions = FolderActions(openFolder: showCode(_:), openFile: openFile(_:))
+        let actions = FolderActions(openFolder: showCode(_:),
+                                    openFile: openFile(_:),
+                                    openFolderSettings: openFoldersSettings,
+                                    share: dependencies.share(url:),
+                                    copy: dependencies.copy(text:))
         let viewController = dependencies.makeContentViewCoontroller(path: path, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -130,4 +134,6 @@ private extension RepFlowCoordinator {
         let nav = UINavigationController(rootViewController: viewController)
         navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
     }
+
+    func openFoldersSettings() {}
 }

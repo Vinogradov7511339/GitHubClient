@@ -10,11 +10,17 @@ import UIKit
 struct FolderActions {
     var openFolder: (URL) -> Void
     var openFile: (URL) -> Void
+    var openFolderSettings: () -> Void
+    var share: (URL) -> Void
+    var copy: (String) -> Void
 }
 
 protocol FolderViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func openFolderSettings()
+    func share()
+    func copyFolderPath()
 }
 
 protocol FolderViewModelOutput {
@@ -59,6 +65,16 @@ extension FolderViewModelImpl: FolderViewModel {
             actions.openFile(item.url)
         }
     }
+
+    func openFolderSettings() {
+        actions.openFolderSettings()
+    }
+
+    func share() {
+        actions.share(path)
+    }
+
+    func copyFolderPath() {}
 }
 
 // MARK: - private

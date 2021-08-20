@@ -42,12 +42,6 @@ class FileViewController: UIViewController {
         viewModel.viewDidLoad()
     }
 
-    @objc func openCodeSettings() {
-        let viewController = CodeOptionsViewController()
-        let nav = UINavigationController(rootViewController: viewController)
-        present(nav, animated: true, completion: nil)
-    }
-
     @objc func openMenu() {
         let alert = UIAlertController(title: "Code menu", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Copy File Path", style: .default, handler: { _ in
