@@ -91,7 +91,7 @@ private extension SettingsGeneralViewController {
             UIApplication.shared.open(settingUrl)
         }
     }
-    
+
     func openAccountSetttings() {
         let viewController = AccountSettingsViewController()
         navigationController?.pushViewController(viewController, animated: true)

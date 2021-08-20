@@ -7,14 +7,22 @@
 
 import UIKit
 
-struct FileActions {}
+struct FileActions {
+    let openCodeOptions: () -> Void
+    let copy: (String) -> Void
+    let share: (URL) -> Void
+}
 
 protocol FileViewModelInput {
     func viewDidLoad()
+    func copyFilePath()
+    func share()
+    func openCodeOptions()
 }
 
 protocol FileViewModelOutput {
     var file: Observable<File?> { get }
+    var settings: CodeOptions { get }
 }
 
 typealias FileViewModel = FileViewModelInput & FileViewModelOutput
@@ -24,6 +32,7 @@ final class FileViewModelImpl: FileViewModel {
     // MARK: - Output
 
     var file: Observable<File?> = Observable(nil)
+    var settings: CodeOptions
 
     // MARK: - Private
 
@@ -35,6 +44,7 @@ final class FileViewModelImpl: FileViewModel {
         self.actions = actions
         self.filePath = filePath
         self.useCase = useCase
+        self.settings = SettingsStorageImpl.shared.codeOptions
     }
 }
 
@@ -42,6 +52,22 @@ final class FileViewModelImpl: FileViewModel {
 extension FileViewModelImpl {
     func viewDidLoad() {
         fetchContent()
+    }
+
+    func copyFilePath() {
+        guard let file = file.value?.path else {
+            assert(false, "no file path")
+            return
+        }
+        actions.copy(file)
+    }
+
+    func share() {
+        actions.share(filePath)
+    }
+
+    func openCodeOptions() {
+        actions.openCodeOptions()
     }
 }
 

@@ -8,14 +8,28 @@
 import UIKit
 
 class CodeOptionCellViewModel {
-    let optionName: String
-    let switchState: Bool
-    let switchHandler: (Bool) -> Void
 
-    internal init(optionName: String, switchState: Bool, switchHandler: @escaping (Bool) -> Void) {
-        self.optionName = optionName
-        self.switchState = switchState
-        self.switchHandler = switchHandler
+    enum SettingsType {
+        case showLineNumbers(CodeOptions)
+        case forceDarkMode(CodeOptions)
+        case lineWrapping(CodeOptions)
+    }
+
+    let optionName: String
+    let switchState: Observable<Bool>
+
+    init(type: SettingsType) {
+        switch type {
+        case .showLineNumbers(let settings):
+            optionName = "Show Line Numbers"
+            switchState = settings.showLineNumbers
+        case .forceDarkMode(let settings):
+            optionName = "Force Dark Mode"
+            switchState = settings.forceDarkMode
+        case .lineWrapping(let settings):
+            optionName = "Line Wrapping"
+            switchState = settings.lineWrapping
+        }
     }
 }
 
@@ -27,7 +41,7 @@ class CodeOptionCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var optionSwitch: UISwitch!
 
     @IBAction func optonSwitchValueChanged(_ sender: UISwitch) {
-        viewModel?.switchHandler(sender.isOn)
+        viewModel?.switchState.value = sender.isOn
     }
 
     override func populate(viewModel: Any) {
@@ -39,7 +53,7 @@ class CodeOptionCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension CodeOptionCell: ConfigurableCell {
     func configure(viewModel: CodeOptionCellViewModel) {
-        optionSwitch.isOn = viewModel.switchState
+        optionSwitch.isOn = viewModel.switchState.value
         optionNameLabel.text = viewModel.optionName
         self.viewModel = viewModel
     }

@@ -288,6 +288,7 @@
 		ADA7495826CE9A3400C8D475 /* CodePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7495626CE9A3400C8D475 /* CodePreviewCell.swift */; };
 		ADA7495926CE9A3400C8D475 /* CodePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7495726CE9A3400C8D475 /* CodePreviewCell.xib */; };
 		ADA7495E26CEBEA600C8D475 /* UIImage+Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */; };
+		ADA7496026CED14D00C8D475 /* SettingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7495F26CED14D00C8D475 /* SettingsObserver.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADA7502326ADA81E00783E71 /* StarredRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */; };
 		ADA7502426ADA81E00783E71 /* StarredRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */; };
@@ -659,6 +660,7 @@
 		ADA7495626CE9A3400C8D475 /* CodePreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodePreviewCell.swift; sourceTree = "<group>"; };
 		ADA7495726CE9A3400C8D475 /* CodePreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodePreviewCell.xib; sourceTree = "<group>"; };
 		ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Repository.swift"; sourceTree = "<group>"; };
+		ADA7495F26CED14D00C8D475 /* SettingsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsObserver.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADA7502126ADA81E00783E71 /* StarredRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepoTableViewCell.swift; sourceTree = "<group>"; };
 		ADA7502226ADA81E00783E71 /* StarredRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarredRepoTableViewCell.xib; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 		AD20E46F26A8979F003BB5F1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				ADA7495A26CE9ABB00C8D475 /* CodeOptions */,
 				AD20E47226A89934003BB5F1 /* SettingsViewModel.swift */,
 				AD20E47026A897CC003BB5F1 /* SettingsGeneralViewController.swift */,
 				AD20E47426A8A522003BB5F1 /* SettingsAppIconViewController.swift */,
@@ -1120,7 +1123,7 @@
 		AD39FDA526B9478A00F055FD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				AD39FDB126B94F1200F055FD /* Common2 */,
+				AD39FDB126B94F1200F055FD /* Utils */,
 				AD39FDAD26B94DDF00F055FD /* UseCases */,
 				AD39FDA626B9479700F055FD /* Entities */,
 				AD39FE3426BA81F700F055FD /* Repositories */,
@@ -1169,13 +1172,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
-		AD39FDB126B94F1200F055FD /* Common2 */ = {
+		AD39FDB126B94F1200F055FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FDB226B94F2F00F055FD /* Cancellable.swift */,
 				AD39FDC026B9671200F055FD /* ConnectionError.swift */,
+				ADA7495F26CED14D00C8D475 /* SettingsObserver.swift */,
 			);
-			path = Common2;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
@@ -1212,6 +1216,7 @@
 		AD39FE3526BA83F600F055FD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 				AD39FEA726BC68A000F055FD /* Repositories */,
 				AD2E262D26BC785700B25772 /* Network */,
 				AD20E44C26A6F289003BB5F1 /* Storage */,
@@ -1444,7 +1449,6 @@
 				ADD462E726BD776D00DD46CC /* ItemsList */,
 				ADC538A926CC3823009B7A7E /* Folder */,
 				AD8722DC26B816DE004649A4 /* File */,
-				ADA7495A26CE9ABB00C8D475 /* CodeOptions */,
 				AD20E46F26A8979F003BB5F1 /* Settings */,
 			);
 			path = Scenes;
@@ -1504,7 +1508,6 @@
 			isa = PBXGroup;
 			children = (
 				AD6B093B26BEDA16004644D2 /* NewStorage */,
-				AD79550926AC067B004E6973 /* SettingsStorage.swift */,
 				AD3776F6269F270A000AA54C /* UserStorage.swift */,
 				AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */,
 				AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */,
@@ -2315,6 +2318,7 @@
 				ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */,
 				ADC538D526CD1F7A009B7A7E /* EventsResponseModel.swift in Sources */,
 				ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */,
+				ADA7496026CED14D00C8D475 /* SettingsObserver.swift in Sources */,
 				AD39FE3926BA942800F055FD /* Observable.swift in Sources */,
 				AD6B098426BFFF52004644D2 /* EventResponseDTO.swift in Sources */,
 				AD25E4DA26B6F9390003B1E0 /* FileResponseModelDTO.swift in Sources */,

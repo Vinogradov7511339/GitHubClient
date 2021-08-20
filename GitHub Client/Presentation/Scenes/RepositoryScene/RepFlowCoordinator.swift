@@ -18,10 +18,12 @@ protocol RepFlowCoordinatorDependencies {
     func makeIssueViewController(for issue: Issue, actions: IssueActions) -> IssueDetailsViewController
     func makeContentViewCoontroller(path: URL, actions: FolderActions) -> UIViewController
     func makeFileViewController(path: URL, actions: FileActions) -> UIViewController
+    func makeCodeOptionsViwController() -> UIViewController
     func startUserFlow(with user: User)
     func startRepFlow(with repository: Repository)
     func openLink(url: URL)
     func share(url: URL)
+    func copy(text: String)
 }
 
 final class RepFlowCoordinator {
@@ -97,7 +99,9 @@ extension RepFlowCoordinator {
     }
 
     func openFile(_ filePath: URL) {
-        let actions = FileActions()
+        let actions = FileActions(openCodeOptions: openCodeOptions,
+                                  copy: dependencies.copy,
+                                  share: dependencies.share(url:))
         let viewController = dependencies.makeFileViewController(path: filePath, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -120,4 +124,10 @@ private extension RepFlowCoordinator {
     func startCommitsFlow(_ commit: ExtendedCommit) {}
     func startReleaseFlow(_ release: Release) {}
     func startPullRequestFlow(_ pullRequest: PullRequest) {}
+
+    func openCodeOptions() {
+        let viewController = dependencies.makeCodeOptionsViwController()
+        let nav = UINavigationController(rootViewController: viewController)
+        navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
+    }
 }

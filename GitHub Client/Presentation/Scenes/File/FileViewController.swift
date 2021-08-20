@@ -22,7 +22,7 @@ class FileViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,12 +48,29 @@ class FileViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
 
-    @objc func openMenu() {}
+    @objc func openMenu() {
+        let alert = UIAlertController(title: "Code menu", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Copy File Path", style: .default, handler: { _ in
+            self.viewModel.copyFilePath()
+        }))
+        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { _ in
+            self.viewModel.share()
+        }))
+        alert.addAction(UIAlertAction(title: "Code Options", style: .default, handler: { _ in
+            self.viewModel.openCodeOptions()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        }))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Binding
 extension FileViewController {
     func bind(to viewModel: FileViewModel) {
+        viewModel.settings.forceDarkMode.observe(on: self) { [weak self] in self?.changeMode($0) }
+        viewModel.settings.lineWrapping.observe(on: self) { [weak self] in self?.changeLineWraping($0) }
+        viewModel.settings.showLineNumbers.observe(on: self) { [weak self] in self?.changeLineNumbers($0) }
         viewModel.file.observe(on: self) { [weak self] in self?.update($0) }
     }
 
@@ -63,6 +80,16 @@ extension FileViewController {
 //        navigationItem.prompt = file.path
         label.text = file.content
     }
+
+    func changeMode(_ darkMode: Bool) {
+        overrideUserInterfaceStyle = darkMode ? .dark : .light
+    }
+
+    func changeLineWraping(_ lineWrapping: Bool) {
+        label.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16.0).isActive = lineWrapping
+    }
+
+    func changeLineNumbers(_ showLineNubers: Bool) {}
 }
 
 // MARK: - setup views

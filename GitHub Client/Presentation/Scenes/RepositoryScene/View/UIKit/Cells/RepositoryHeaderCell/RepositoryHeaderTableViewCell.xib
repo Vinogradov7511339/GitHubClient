@@ -50,13 +50,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="about" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoN-b4-WPe">
-                                <rect key="frame" x="0.0" y="71.5" width="44" height="131"/>
+                                <rect key="frame" x="0.0" y="71.5" width="44" height="127"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nEs-ZN-Fg1">
-                                <rect key="frame" x="0.0" y="210.5" width="53.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="206.5" width="53.5" height="20.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IL0-7f-Mpg">
                                         <rect key="frame" x="0.0" y="-0.5" width="22" height="21.5"/>
@@ -71,24 +71,24 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="M2i-Cw-RKh">
-                                <rect key="frame" x="0.0" y="239" width="213.5" height="20"/>
+                                <rect key="frame" x="0.0" y="235" width="217.5" height="24"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rep_item_star" translatesAutoresizingMaskIntoConstraints="NO" id="Eqw-he-fRU">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="24"/>
                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="count stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-Sg-s7B">
-                                        <rect key="frame" x="24" y="0.0" width="80.5" height="20"/>
+                                        <rect key="frame" x="24" y="0.0" width="80.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.triangle.branch" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-Zl-VmQ">
-                                        <rect key="frame" x="108.5" y="2" width="20" height="17"/>
-                                        <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rep_item_fork" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-Zl-VmQ">
+                                        <rect key="frame" x="108.5" y="0.0" width="24" height="24"/>
+                                        <color key="tintColor" systemColor="systemPurpleColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="count forks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYI-CM-kaI">
-                                        <rect key="frame" x="132.5" y="0.0" width="81" height="20"/>
+                                        <rect key="frame" x="136.5" y="0.0" width="81" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
@@ -220,9 +220,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.triangle.branch" catalog="system" width="128" height="108"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="link" catalog="system" width="128" height="122"/>
+        <image name="rep_item_fork" width="24" height="24"/>
         <image name="rep_item_star" width="20" height="19"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
@@ -242,6 +242,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

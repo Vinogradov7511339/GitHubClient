@@ -29,12 +29,12 @@ class SettingsViewModel {
         
         let termsOfServiceCell = TableCellViewModel(text: "Terms of Service")
         secondSectionItems.append(termsOfServiceCell)
-        
+
         let privacyPolicyCell = TableCellViewModel(text: "Privacy Policy")
         secondSectionItems.append(privacyPolicyCell)
         
         var thirdSectionItems: [Any] = []
-        
+
         let manageAccountsCell = TableCellViewModel(text: "Manage Accounts")
         thirdSectionItems.append(manageAccountsCell)
 

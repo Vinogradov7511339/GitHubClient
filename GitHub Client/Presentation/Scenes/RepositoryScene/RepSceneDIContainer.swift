@@ -15,6 +15,7 @@ class RepSceneDIContainer {
         var startRepFlow: (Repository) -> Void
         var openLink: (URL) -> Void
         var share: (URL) -> Void
+        var copy: (String) -> Void
     }
 
     private let dependencies: Dependencies
@@ -101,5 +102,14 @@ extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
 
     func makeFileViewController(path: URL, actions: FileActions) -> UIViewController {
         factory.makeFileVIewController(actions: actions, path: path)
+    }
+
+    func makeCodeOptionsViwController() -> UIViewController {
+        let viewController = CodeOptionsViewController()
+        return viewController
+    }
+
+    func copy(text: String) {
+        dependencies.copy(text)
     }
 }

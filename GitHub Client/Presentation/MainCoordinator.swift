@@ -106,7 +106,8 @@ class MainCoordinator: NSObject {
             startUserFlow: startUserFlow(user:),
             startRepFlow: startRepFlow(repository:),
             openLink: container.dependencies.openLink,
-            share: container.dependencies.share
+            share: container.dependencies.share,
+            copy: copy(text:)
         )
         let repSceneDIContainer = container.makeRepSceneDIContainer(dependencies: dependency)
         let flow = repSceneDIContainer.makeRepFlowCoordinator(in: currentNavigationController)
@@ -117,6 +118,11 @@ class MainCoordinator: NSObject {
         let actions = IssueActions()
         let viewController = container.makeIssueController(issue: issue, actions: actions)
         currentNavigationController.pushViewController(viewController, animated: true)
+    }
+
+    func copy(text: String) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = text
     }
 
     func startPullRequestFlow(pullRequest: PullRequest) {}
