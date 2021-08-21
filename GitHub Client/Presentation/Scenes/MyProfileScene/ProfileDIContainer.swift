@@ -34,11 +34,11 @@ final class ProfileDIContainer {
         profileFactory.profileViewController(actions)
     }
 
-    func createFollowersViewController(actions: UsersListActions) -> UIViewController {
+    func createFollowersViewController(actions: MyUsersViewModelActions) -> UIViewController {
         profileFactory.followersViewController(actions)
     }
 
-    func createFollowingViewController(actions: UsersListActions) -> UIViewController {
+    func createFollowingViewController(actions: MyUsersViewModelActions) -> UIViewController {
         profileFactory.followingViewController(actions)
     }
 

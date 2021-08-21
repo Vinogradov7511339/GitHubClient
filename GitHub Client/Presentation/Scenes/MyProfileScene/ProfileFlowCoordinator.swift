@@ -45,13 +45,13 @@ extension ProfileFlowCoordinator {
     }
 
     func showFollowers() {
-        let actions = UsersListActions(showUser: container.actions.openUserProfile)
+        let actions = MyUsersViewModelActions(showUser: container.actions.openUserProfile)
         let viewController = container.createFollowersViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showFollowing() {
-        let actions = UsersListActions(showUser: container.actions.openUserProfile)
+        let actions = MyUsersViewModelActions(showUser: container.actions.openUserProfile)
         let viewController = container.createFollowingViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

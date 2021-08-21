@@ -9,8 +9,8 @@ import UIKit
 
 protocol MyProfileFactory {
     func profileViewController(_ actions: ProfileActions) -> UIViewController
-    func followersViewController(_ actions: UsersListActions) -> UIViewController
-    func followingViewController(_ actions: UsersListActions) -> UIViewController
+    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController
+    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController
     func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController
@@ -33,12 +33,12 @@ extension MyProfileFactoryImpl: MyProfileFactory {
         ProfileViewController.create(with: profileViewModel(actions))
     }
 
-    func followersViewController(_ actions: UsersListActions) -> UIViewController {
-        UIViewController()
+    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
+        MyUsersViewController.create(with: followersViewModel(actions))
     }
 
-    func followingViewController(_ actions: UsersListActions) -> UIViewController {
-        UIViewController()
+    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
+        MyUsersViewController.create(with: followingViewModel(actions))
     }
 
     func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController {
@@ -57,6 +57,14 @@ extension MyProfileFactoryImpl: MyProfileFactory {
 private extension MyProfileFactoryImpl {
     func profileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
         return ProfileViewModelImpl(useCase: profileUseCase, actions: actions)
+    }
+
+    func followersViewModel(_ actions: MyUsersViewModelActions) -> MyUsersViewModel {
+        MyUsersViewModelImpl(myProfileUseCase: profileUseCase, type: .followers, actions: actions)
+    }
+
+    func followingViewModel(_ actions: MyUsersViewModelActions) -> MyUsersViewModel {
+        MyUsersViewModelImpl(myProfileUseCase: profileUseCase, type: .following, actions: actions)
     }
 
     func repositoriesViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
