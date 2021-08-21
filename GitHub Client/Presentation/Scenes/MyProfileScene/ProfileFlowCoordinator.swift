@@ -33,6 +33,7 @@ extension ProfileFlowCoordinator {
             showRepositories: showRepositories,
             showStarred: showStarred,
             showOrganizations: showOrganizations,
+            showSubscriptions: showSubscriptions,
             sendEmail: container.actions.sendMail,
             openLink: container.actions.openLink,
             share: container.actions.share
@@ -47,6 +48,11 @@ extension ProfileFlowCoordinator {
     func showFollowers() {
         let actions = MyUsersViewModelActions(showUser: container.actions.openUserProfile)
         let viewController = container.createFollowersViewController(actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showSubscriptions() {
+        let viewController = container.createSubscriptionsViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 

@@ -49,4 +49,8 @@ final class ProfileDIContainer {
     func createStarredViewController(actions: MyRepositoriesActions) -> UIViewController {
         profileFactory.starredViewController(actions)
     }
+
+    func createSubscriptionsViewController() -> UIViewController {
+        profileFactory.subscriptionsViewControler()
+    }
 }

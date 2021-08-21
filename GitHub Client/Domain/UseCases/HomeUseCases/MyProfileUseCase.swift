@@ -6,7 +6,8 @@
 //
 
 protocol MyProfileUseCase {
-    //MARK: - Profile
+
+    // MARK: - Profile
 
     typealias ProfileHandler = MyProfileRepository.ProfileHandler
     func fetchProfile(completion: @escaping ProfileHandler)
@@ -28,6 +29,11 @@ protocol MyProfileUseCase {
     typealias EventsHandler = EventsRepository.EventsHandler
     func fetchRecevedEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
     func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
+
+    // MARK: - Subscriptions
+
+    typealias SubscriptionsHandler = MyProfileRepository.SubscriptionsHandler
+    func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler)
 }
 
 final class MyProfileUseCaseImpl {
@@ -66,5 +72,9 @@ extension MyProfileUseCaseImpl: MyProfileUseCase {
 
     func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler) {
         profileRepository.fetchEvents(request: request, completion: completion)
+    }
+
+    func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler) {
+        profileRepository.fetchSubscriptions(page: page, completion: completion)
     }
 }

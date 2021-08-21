@@ -132,3 +132,21 @@ extension MyProfileRepositoryImpl {
         }
     }
 }
+
+// MARK: - Subscriptions
+extension MyProfileRepositoryImpl {
+    func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler) {
+        let endpoint = MyProfileEndpoinds.subscriptions(page: page)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let repositories = response.model.compactMap { $0.toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = ListResponseModel<Repository>(items: repositories, lastPage: page)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}

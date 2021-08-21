@@ -15,6 +15,7 @@ struct ProfileActions {
     let showRepositories: () -> Void
     let showStarred: () -> Void
     let showOrganizations: () -> Void
+    let showSubscriptions: () -> Void
     let sendEmail: (String) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
@@ -107,7 +108,7 @@ extension ProfileViewModelImpl {
         case (1, 2):
             actions.showOrganizations()
         case (1, 3):
-            //show subscriptions
+            actions.showSubscriptions()
             break
         default:
             break

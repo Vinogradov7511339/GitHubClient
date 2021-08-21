@@ -108,6 +108,10 @@
 		AD23E7C426D1892B009FEB27 /* MyUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7C326D1892B009FEB27 /* MyUsersViewController.swift */; };
 		AD23E7C726D18961009FEB27 /* MyUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7C626D18961009FEB27 /* MyUsersViewModel.swift */; };
 		AD23E7C926D18B3B009FEB27 /* MyUsersAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7C826D18B3B009FEB27 /* MyUsersAdapter.swift */; };
+		AD23E7CB26D19040009FEB27 /* MySubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7CA26D19040009FEB27 /* MySubscriptionsViewController.swift */; };
+		AD23E7CE26D19077009FEB27 /* MySubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7CD26D19077009FEB27 /* MySubscriptionsViewModel.swift */; };
+		AD23E7D026D19279009FEB27 /* MySubscriptionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7CF26D19279009FEB27 /* MySubscriptionsAdapter.swift */; };
+		AD23E7D426D1957C009FEB27 /* ListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7D326D1957C009FEB27 /* ListResponseModel.swift */; };
 		AD25E4DA26B6F9390003B1E0 /* FileResponseModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D926B6F9390003B1E0 /* FileResponseModelDTO.swift */; };
 		AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261126BC6D4C00B25772 /* WebImageView.swift */; };
 		AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261326BC6D5F00B25772 /* UITableView+extensions.swift */; };
@@ -494,6 +498,10 @@
 		AD23E7C326D1892B009FEB27 /* MyUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUsersViewController.swift; sourceTree = "<group>"; };
 		AD23E7C626D18961009FEB27 /* MyUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUsersViewModel.swift; sourceTree = "<group>"; };
 		AD23E7C826D18B3B009FEB27 /* MyUsersAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUsersAdapter.swift; sourceTree = "<group>"; };
+		AD23E7CA26D19040009FEB27 /* MySubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptionsViewController.swift; sourceTree = "<group>"; };
+		AD23E7CD26D19077009FEB27 /* MySubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptionsViewModel.swift; sourceTree = "<group>"; };
+		AD23E7CF26D19279009FEB27 /* MySubscriptionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptionsAdapter.swift; sourceTree = "<group>"; };
+		AD23E7D326D1957C009FEB27 /* ListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponseModel.swift; sourceTree = "<group>"; };
 		AD25E4D926B6F9390003B1E0 /* FileResponseModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResponseModelDTO.swift; sourceTree = "<group>"; };
 		AD2E261126BC6D4C00B25772 /* WebImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		AD2E261326BC6D5F00B25772 /* UITableView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
@@ -1109,6 +1117,16 @@
 			path = MyUsers;
 			sourceTree = "<group>";
 		};
+		AD23E7CC26D19046009FEB27 /* MySubscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				AD23E7CD26D19077009FEB27 /* MySubscriptionsViewModel.swift */,
+				AD23E7CF26D19279009FEB27 /* MySubscriptionsAdapter.swift */,
+				AD23E7CA26D19040009FEB27 /* MySubscriptionsViewController.swift */,
+			);
+			path = MySubscriptions;
+			sourceTree = "<group>";
+		};
 		AD25E4D526B6E5510003B1E0 /* RepositoryHeaderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1419,6 +1437,7 @@
 				AD20E3DE269F5DE4003BB5F1 /* Profile */,
 				AD23E7C226D18749009FEB27 /* MyRepositories */,
 				AD23E7C526D1894A009FEB27 /* MyUsers */,
+				AD23E7CC26D19046009FEB27 /* MySubscriptions */,
 			);
 			path = MyProfileScene;
 			sourceTree = "<group>";
@@ -2018,6 +2037,7 @@
 				AD23E7A426D111B9009FEB27 /* BranchesResponseModel.swift */,
 				AD23E7AC26D11FD6009FEB27 /* CommentsResponseMoodel.swift */,
 				AD23E7B026D12385009FEB27 /* IssueResponseModel.swift */,
+				AD23E7D326D1957C009FEB27 /* ListResponseModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -2512,6 +2532,7 @@
 				AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */,
 				AD23E78D26D10147009FEB27 /* LicenseRequestModel.swift in Sources */,
 				AD3F071826C2FA6D00BC494E /* BaseDetailsCell.swift in Sources */,
+				AD23E7CE26D19077009FEB27 /* MySubscriptionsViewModel.swift in Sources */,
 				AD6B097826BFF129004644D2 /* HomeSceneFactory.swift in Sources */,
 				AD6E417E26C659A200CEF3B0 /* IssuesViewModel.swift in Sources */,
 				AD39FE7326BB24A100F055FD /* EventsFlowCoordinator.swift in Sources */,
@@ -2580,6 +2601,7 @@
 				AD39FE4F26BABCD900F055FD /* UserProfileViewController.swift in Sources */,
 				AD6B094C26BEF76D004644D2 /* Typealiases+Enums.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
+				AD23E7D026D19279009FEB27 /* MySubscriptionsAdapter.swift in Sources */,
 				ADC538CA26CD1D8E009B7A7E /* RepositoriesResponseModel.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
@@ -2596,10 +2618,12 @@
 				AD6B094126BEE75B004644D2 /* AppConfiguration.swift in Sources */,
 				AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */,
 				ADA1693326C589140040B635 /* UsersListViewModel.swift in Sources */,
+				AD23E7D426D1957C009FEB27 /* ListResponseModel.swift in Sources */,
 				AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */,
 				AD39FE8826BBF0D300F055FD /* ProfileViewModel.swift in Sources */,
 				AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */,
 				AD6B094626BEF374004644D2 /* Decoder.swift in Sources */,
+				AD23E7CB26D19040009FEB27 /* MySubscriptionsViewController.swift in Sources */,
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD23E78F26D101C5009FEB27 /* WatchersRequestModel.swift in Sources */,
 				ADC5380B26CC09E2009B7A7E /* RepositoryInfoCell.swift in Sources */,

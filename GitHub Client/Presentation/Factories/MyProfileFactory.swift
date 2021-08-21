@@ -13,6 +13,7 @@ protocol MyProfileFactory {
     func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController
     func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController
+    func subscriptionsViewControler() -> UIViewController
     func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController
 }
 
@@ -49,6 +50,10 @@ extension MyProfileFactoryImpl: MyProfileFactory {
         MyRepositoriesViewController.create(with: starredViewModel(actions))
     }
 
+    func subscriptionsViewControler() -> UIViewController {
+        MySubscriptionsViewController.create(with: subscriptionsViewModel())
+    }
+
     func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController {
         UIViewController()
     }
@@ -73,6 +78,10 @@ private extension MyProfileFactoryImpl {
 
     func starredViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
         MyRepositoriesViewModelImpl(myProfileUseCase: profileUseCase, type: .starred, actions: actions)
+    }
+
+    func subscriptionsViewModel() -> MySubscriptionsViewModel {
+        MySubscriptionsViewModelImpl(myProfileUseCase: profileUseCase)
     }
 
     var profileUseCase: MyProfileUseCase {

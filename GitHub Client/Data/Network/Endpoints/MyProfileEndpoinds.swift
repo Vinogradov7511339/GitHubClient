@@ -33,6 +33,11 @@ struct MyProfileEndpoinds {
                         queryParametersEncodable: ["page": page])
     }
 
+    static func subscriptions(page: Int) -> Endpoint<[RepositoryResponseDTO]> {
+        return Endpoint(path: "user/subscriptions",
+                        queryParametersEncodable: ["page": page])
+    }
+
     static func receivedEvents(_ model: EventsRequestModel) -> Endpoint<[EventResponseDTO]> {
         let login = model.user.login
         let page = model.page

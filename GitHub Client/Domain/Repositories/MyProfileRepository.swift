@@ -7,7 +7,7 @@
 
 protocol MyProfileRepository {
 
-    //MARK: - Profile
+    // MARK: - Profile
 
     typealias ProfileHandler = (Result<AuthenticatedUser, Error>) -> Void
     func fetchProfile(completion: @escaping ProfileHandler)
@@ -29,4 +29,9 @@ protocol MyProfileRepository {
     typealias EventsHandler = EventsRepository.EventsHandler
     func fetchRecevedEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
     func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
+
+    // MARK: - Subscriptions
+    
+    typealias SubscriptionsHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
+    func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler)
 }
