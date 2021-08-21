@@ -26,6 +26,11 @@ final class AppDIContainer {
         return favoritesStorage
     }()
 
+    lazy var profileStorage: ProfileLocalStorage = {
+        let profileStorage = ProfileLocalStorageImpl()
+        return profileStorage
+    }()
+
     // MARK: - DIContainers of scenes
     func makeTabCoordinator(window: UIWindow,
                             dependencies: MainSceneDIContainer.Dependencies) -> MainCoordinator {

@@ -55,7 +55,7 @@ private extension ProfileViewController {
         viewModel.user.observe(on: self) { [weak self] in self?.update($0) }
     }
 
-    func update(_ profile: UserDetails?) {
+    func update(_ profile: UserProfile?) {
         guard let profile = profile else {
             return
         }

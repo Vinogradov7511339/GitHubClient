@@ -28,35 +28,45 @@ final class UsersListViewModelImpl: UsersListViewModel {
     var users: Observable<[User]> = Observable([])
 
     // MARK: - Private
-    private let useCase: UsersUseCase
+    private let userUseCase: UserProfileUseCase
     private let type: UsersListType
     private let actions: UsersListActions
     private var lastPage: Int?
+    private var currentPage: Int
 
-    init(useCase: UsersUseCase, type: UsersListType, actions: UsersListActions) {
-        self.useCase = useCase
+    init(userUseCase: UserProfileUseCase, type: UsersListType, actions: UsersListActions) {
+        self.userUseCase = userUseCase
         self.type = type
         self.actions = actions
+        self.currentPage = 1
     }
 }
 
 // MARK: - Input
 extension UsersListViewModelImpl {
     func viewDidLoad() {
-        let page = 1
-        let request = UsersRequestModel(page: page, listType: type)
-        useCase.fetchUsers(request: request) { result in
-            switch result {
-            case .success(let model):
-                self.lastPage = model.lastPage
-                self.users.value.append(contentsOf: model.items)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        fetch()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
         actions.showUser(users.value[indexPath.row])
+    }
+}
+
+// MARK: - Private
+private extension UsersListViewModelImpl {
+    func fetch() {
+        switch type {
+        case .userFollowers(let user):
+            let model = UsersRequestModel(user: user, page: currentPage)
+            userUseCase.fetchFollowers(request: model, completion: handle(_:))
+        case .userFollowings(let user):
+            let model = UsersRequestModel(user: user, page: currentPage)
+            userUseCase.fetchFollowing(request: model, completion: handle(_:))
+        }
+    }
+
+    func handle(_ result: Result<UsersResponseModel, Error>) {
+
     }
 }

@@ -8,20 +8,11 @@
 import UIKit
 
 struct HomeActions {
-    let showIssues: () -> Void
-    let showDiscussions: () -> Void
-    let showOrganizations: () -> Void
-    let showFavorites: () -> Void
-    let showRepositories: () -> Void
-    let showStarred: () -> Void
-    let showRepository: (Repository) -> Void
-    let showRecentEvent: (Event) -> Void
 }
 
 protocol HomeViewModelInput {
     func viewDidLoad()
     func refresh()
-    func showFavorites()
     func didSelectItem(at indexPath: IndexPath)
 }
 
@@ -68,10 +59,6 @@ extension HomeViewModelImpl {
         let widget = widgets.value[indexPath.row]
         openWidget(widget)
     }
-
-    func showFavorites() {
-        actions.showFavorites()
-    }
 }
 
 // MARK: - Private
@@ -81,9 +68,9 @@ private extension HomeViewModelImpl {
     func openWidget(_ widget: HomeWidget) {
         switch widget {
         case .issues:
-            actions.showIssues()
+            fatalError()
         case .starredRepositories:
-            actions.showRepositories()
+            fatalError()
         }
     }
 }

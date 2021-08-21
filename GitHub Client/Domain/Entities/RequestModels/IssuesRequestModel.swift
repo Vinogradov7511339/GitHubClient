@@ -9,3 +9,4 @@ struct IssuesRequestModel {
     let page: Int
     let issuesType: IssuesType
 }
+

@@ -18,33 +18,20 @@ class HomeFlowCoordinator {
     }
 
     func start() {
-        let viewController = container.createHomeViewController(actions: actions())
+        let viewController = container.homeViewController(actions: actions())
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension HomeFlowCoordinator {
     func actions() -> HomeActions {
-        .init(showIssues: showMyIssues,
-              showDiscussions: showMyDiscussions,
-              showOrganizations: container.actions.showOrganizations,
-              showFavorites: showFavorites,
-              showRepositories: container.actions.showRepositories,
-              showStarred: container.actions.showStarred,
-              showRepository: container.actions.showRepository,
-              showRecentEvent: container.actions.showEvent)
+        .init()
     }
 
     func showMyIssues() {
-        let actions = IssuesActions(showIssue: container.actions.openIssue)
-        let controller = container.createIssuesViewController(actions: actions)
+        let controller = container.issuesViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
 
     func showMyDiscussions() {}
-
-    func showFavorites() {
-        let viewController = container.createFavoritesViewController()
-        navigationController?.present(viewController, animated: true, completion: nil)
-    }
 }

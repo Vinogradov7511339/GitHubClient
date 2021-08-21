@@ -8,36 +8,45 @@
 import UIKit
 
 protocol HomeSceneFactory {
-    func makeHomeViewController(_ actions: HomeActions) -> UIViewController
+    func homeViewController(_ actions: HomeActions) -> UIViewController
+    func myIssuesViewController() -> UIViewController
 }
 
 final class HomeSceneFactoryImpl {
     private let dataTransferService: DataTransferService
-    private let storage: FavoritesStorage
+    private let favoritesStorage: FavoritesStorage
+    private let profileStorage: ProfileLocalStorage
 
-    init(dataTransferService: DataTransferService, storage: FavoritesStorage) {
+    init(dataTransferService: DataTransferService,
+         favoritesStorage: FavoritesStorage,
+         profileStorage: ProfileLocalStorage) {
         self.dataTransferService = dataTransferService
-        self.storage = storage
+        self.favoritesStorage = favoritesStorage
+        self.profileStorage = profileStorage
     }
 }
 
 // MAK: - HomeSceneFactory
 extension HomeSceneFactoryImpl: HomeSceneFactory {
-    func makeHomeViewController(_ actions: HomeActions) -> UIViewController {
+    func homeViewController(_ actions: HomeActions) -> UIViewController {
         HomeVC.create(with: createHomeViewModel(actions: actions))
+    }
+
+    func myIssuesViewController() -> UIViewController {
+        MyIssuesViewController()
     }
 }
 
 private extension HomeSceneFactoryImpl {
     func createHomeViewModel(actions: HomeActions) -> HomeViewModel {
-        HomeViewModelImpl(useCase: createHomeUseCase(), actions: actions)
+        HomeViewModelImpl(useCase: homeUseCase, actions: actions)
+    }
+    
+    var homeUseCase: HomeUseCase {
+        HomeUseCaseImpl(repository: profileRepository, favoritesStorage: favoritesStorage)
     }
 
-    func createHomeUseCase() -> HomeUseCase {
-        HomeUseCaseImpl(repository: createHomeRepository(), favoritesStorage: storage)
-    }
-
-    func createHomeRepository() -> HomeRepository {
-        HomeRepositoryImpl(dataTransferService: dataTransferService)
+    var profileRepository: MyProfileRepository {
+        MyProfileRepositoryImpl(dataTransferService: dataTransferService, localStorage: profileStorage)
     }
 }

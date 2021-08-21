@@ -7,7 +7,7 @@
 
 struct RepositoryDetails {
     let repository: Repository
-    let mdText: String
+    let mdText: String?
 //    let forksCount: Int
 //    let isStarred: Bool
 //    let isWatched: Bool

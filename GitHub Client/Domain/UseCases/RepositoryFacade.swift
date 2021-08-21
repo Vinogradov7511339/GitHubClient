@@ -30,12 +30,15 @@ extension RepositoryFacadeImpl: RepositoryFacade {
     func fetchDetails(repository: Repository, completion: @escaping (Result<RepositoryDetails, Error>) -> Void) {
         fetchReadMe(repository)
         dispatchGroup.notify(queue: .main) {
-            if let error = self.error {
-                completion(.failure(error))
-                return
-            }
+//            if let error = self.error {
+//                completion(.failure(error))
+//                return
+//            }
             if let readMe = self.readMe {
                 let details = RepositoryDetails(repository: repository, mdText: readMe)
+                completion(.success(details))
+            } else {
+                let details = RepositoryDetails(repository: repository, mdText: nil)
                 completion(.success(details))
             }
         }
@@ -49,8 +52,8 @@ private extension RepositoryFacadeImpl {
         dispatchGroup.enter()
         repRepository.fetchReadMe(repository: repository) { result in
             switch result {
-            case .success(let readMe):
-                self.readMe = readMe
+            case .success(let readMeFile):
+                self.readMe = readMeFile.content
             case .failure(let error):
                 self.error = error
             }

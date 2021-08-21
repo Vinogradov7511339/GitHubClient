@@ -8,7 +8,12 @@
 import UIKit
 
 protocol MyProfileFactory {
-    func makeMyProfileViewController(_ actions: ProfileActions) -> UIViewController
+    func profileViewController(_ actions: ProfileActions) -> UIViewController
+    func followersViewController(_ actions: UsersListActions) -> UIViewController
+    func followingViewController(_ actions: UsersListActions) -> UIViewController
+    func repositoriesViewController(_ actions: RepositoriesActions) -> UIViewController
+    func starredViewController(_ actions: RepositoriesActions) -> UIViewController
+    func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController
 }
 
 final class MyProfileFactoryImpl {
@@ -24,21 +29,41 @@ final class MyProfileFactoryImpl {
 
 // MARK: - MyProfileFactory
 extension MyProfileFactoryImpl: MyProfileFactory {
-    func makeMyProfileViewController(_ actions: ProfileActions) -> UIViewController {
-        ProfileViewController.create(with: createProfileViewModel(actions))
+    func profileViewController(_ actions: ProfileActions) -> UIViewController {
+        ProfileViewController.create(with: profileViewModel(actions))
+    }
+
+    func followersViewController(_ actions: UsersListActions) -> UIViewController {
+        UIViewController()
+    }
+
+    func followingViewController(_ actions: UsersListActions) -> UIViewController {
+        UIViewController()
+    }
+
+    func repositoriesViewController(_ actions: RepositoriesActions) -> UIViewController {
+        UIViewController()
+    }
+
+    func starredViewController(_ actions: RepositoriesActions) -> UIViewController {
+        UIViewController()
+    }
+
+    func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController {
+        UIViewController()
     }
 }
 
 private extension MyProfileFactoryImpl {
-    func createProfileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
-        return ProfileViewModelImpl(useCase: createProfileUseCase(), actions: actions)
+    func profileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
+        return ProfileViewModelImpl(useCase: profileUseCase, actions: actions)
     }
 
-    func createProfileUseCase() -> MyProfileUseCase {
-        return MyProfileUseCaseImpl(repository: createProfileRepository())
+    var profileUseCase: MyProfileUseCase {
+        MyProfileUseCaseImpl(profileRepository: profileRepository)
     }
 
-    func createProfileRepository() -> MyProfileRepository {
-        return MyProfileRepositoryImpl(dataTransferService: dataTransferService, localStorage: storage)
+    var profileRepository: MyProfileRepository {
+        MyProfileRepositoryImpl(dataTransferService: dataTransferService, localStorage: storage)
     }
 }

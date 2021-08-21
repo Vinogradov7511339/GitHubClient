@@ -56,17 +56,7 @@ extension EventsViewModelImpl {
 }
 
 private extension EventsViewModelImpl {
-    func fetch() {
-        let model = EventsRequestModel(page: currentPage)
-        useCase.fetchEvents(requestModel: model) { result in
-            switch result {
-            case .success(let model):
-                self.events.value = model.events
-            case .failure(let error):
-                self.handle(error: error)
-            }
-        }
-    }
+    func fetch() {}
 
     func handle(error: Error) {}
 }

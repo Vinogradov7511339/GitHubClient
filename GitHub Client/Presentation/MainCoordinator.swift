@@ -94,17 +94,11 @@ class MainCoordinator: NSObject {
     func showStarred(_ user: User) {
     }
 
-    func showMyStarred() {
-        let actions = RepositoriesActions(showRepository: startRepFlow)
-        let viewController = container.createStarredViewController(actions: actions)
-        currentNavigationController.pushViewController(viewController, animated: true)
-    }
-
     func startRepFlow(repository: Repository) {
         let dependency = RepSceneDIContainer.Dependencies(
             repository: repository,
-            startUserFlow: startUserFlow(user:),
-            startRepFlow: startRepFlow(repository:),
+            showUser: startUserFlow(user:),
+            showRepository: startRepFlow(repository:),
             openLink: container.dependencies.openLink,
             share: container.dependencies.share,
             copy: copy(text:)
@@ -112,12 +106,6 @@ class MainCoordinator: NSObject {
         let repSceneDIContainer = container.makeRepSceneDIContainer(dependencies: dependency)
         let flow = repSceneDIContainer.makeRepFlowCoordinator(in: currentNavigationController)
         flow.start()
-    }
-
-    func startIssueFlow(issue: Issue) {
-        let actions = IssueActions()
-        let viewController = container.makeIssueController(issue: issue, actions: actions)
-        currentNavigationController.pushViewController(viewController, animated: true)
     }
 
     func copy(text: String) {
@@ -129,23 +117,10 @@ class MainCoordinator: NSObject {
 
     func showMyOrganizationsList() {}
 
-    func showMyRepositories() {
-        let actions = RepositoriesActions(showRepository: startRepFlow(repository:))
-        let viewController = container.makeMyRepositoriesViewController(actions: actions)
-        currentNavigationController.pushViewController(viewController, animated: true)
-    }
-
     func startEventFlow(event: Event) {}
 
     func homeDependencies() -> HomeDIContainer.Actions {
-        .init(
-            showOrganizations: showMyOrganizationsList,
-            openIssue: startIssueFlow(issue:),
-            openPullRequest: startPullRequestFlow(pullRequest:),
-            showRepositories: showMyRepositories,
-            showRepository: startRepFlow(repository:),
-            showStarred: showMyStarred,
-            showEvent: startEventFlow(event:))
+        .init()
     }
 
     func profileDependencies() -> ProfileDIContainer.Actions {

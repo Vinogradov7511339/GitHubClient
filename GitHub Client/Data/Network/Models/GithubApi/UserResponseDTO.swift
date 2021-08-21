@@ -59,8 +59,8 @@ struct UserResponseDTO: Codable {
         )
     }
 
-    func mapToDetails() -> UserDetails {
-        return UserDetails(
+    func mapToDetails() -> UserProfile {
+        return UserProfile(
             user: self.toDomain(),
             status: "ToDo",
             location: location,
@@ -76,7 +76,7 @@ struct UserResponseDTO: Codable {
 
     func mapToAuthotization() -> AuthenticatedUser {
         let defaultUser = toDomain()
-        let detailsUser = UserDetails(
+        let detailsUser = UserProfile(
             user: defaultUser,
             status: "NaN",
             location: location,

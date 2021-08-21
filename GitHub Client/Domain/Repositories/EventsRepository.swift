@@ -8,6 +8,9 @@
 import Foundation
 
 protocol EventsRepository {
-    func fetchEvents(requestModel: EventsRequestModel,
-                     completion: @escaping (Result<EventsResponseModel, Error>) -> Void)
+
+    // MARK: - Events
+
+    typealias EventsHandler = (Result<EventsResponseModel, Error>) -> Void
+    func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
 }

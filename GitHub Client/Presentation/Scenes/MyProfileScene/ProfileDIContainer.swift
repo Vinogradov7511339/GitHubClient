@@ -22,36 +22,31 @@ final class ProfileDIContainer {
     // MARK: - Persistent Storage
     private let profileStorage: ProfileLocalStorage
     private let profileFactory: MyProfileFactory
-    private let usersListFactory: UsersListFactory
-    private let repositoriesFactory: RepositoriesFactory
 
     init(parentContainer: MainSceneDIContainer, actions: Actions) {
         self.actions = actions
         self.profileStorage = ProfileLocalStorageImpl()
-        self.profileFactory = MyProfileFactoryImpl(dataTransferService: parentContainer.apiDataTransferService,
+        profileFactory = MyProfileFactoryImpl(dataTransferService: parentContainer.apiDataTransferService,
             storage: profileStorage)
-        self.usersListFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
-        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func createProfileViewController(_ actions: ProfileActions) -> UIViewController {
-        profileFactory.makeMyProfileViewController(actions)
+        profileFactory.profileViewController(actions)
     }
 
-    func createFollowersViewController(actions: UsersListActions) -> UsersListViewController {
-        usersListFactory.makeMyFollowersViewController(actions: actions)
+    func createFollowersViewController(actions: UsersListActions) -> UIViewController {
+        profileFactory.followersViewController(actions)
     }
 
-    func createFollowingViewController(actions: UsersListActions) -> UsersListViewController {
-        usersListFactory.makeMyFollowingViewController(actions: actions)
+    func createFollowingViewController(actions: UsersListActions) -> UIViewController {
+        profileFactory.followingViewController(actions)
     }
 
-    func createRepositoriesViewController(
-        actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.makeMyRepositoriesViewController(actions: actions)
+    func createRepositoriesViewController(actions: RepositoriesActions) -> UIViewController {
+        profileFactory.repositoriesViewController(actions)
     }
 
-    func createStarredViewController(actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.makeMyStarredViewController(actions: actions)
+    func createStarredViewController(actions: RepositoriesActions) -> UIViewController {
+        profileFactory.starredViewController(actions)
     }
 }

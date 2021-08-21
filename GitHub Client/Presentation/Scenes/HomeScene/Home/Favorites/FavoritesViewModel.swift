@@ -30,30 +30,27 @@ final class FavoritesViewModelImpl: FavoritesViewModel {
 
     // MARK: - Private
 
-    private let useCase: FavoritesUseCase
     private var favorites: [Repository] = []
     private var notFavorites: [Repository] = []
 
-    init(useCase: FavoritesUseCase) {
-        self.useCase = useCase
-    }
+    init() {}
 }
 
 // MARK: - Input
 extension FavoritesViewModelImpl {
     func viewDidLoad() {
-        useCase.fetchRepositories { result in
-            switch result {
-            case .success(let repositories):
-                self.favorites = repositories.favorites
-                self.notFavorites = repositories.notFavorites
-                let mappedFavorites = self.favorites.map { self.map($0, isFavorite: true) }
-                let mappedNotFavorites = self.notFavorites.map { self.map($0, isFavorite: false) }
-                self.models.value = [mappedFavorites, mappedNotFavorites]
-            case .failure(let error):
-                self.handle(error)
-            }
-        }
+//        useCase.fetchRepositories { result in
+//            switch result {
+//            case .success(let repositories):
+//                self.favorites = repositories.favorites
+//                self.notFavorites = repositories.notFavorites
+//                let mappedFavorites = self.favorites.map { self.map($0, isFavorite: true) }
+//                let mappedNotFavorites = self.notFavorites.map { self.map($0, isFavorite: false) }
+//                self.models.value = [mappedFavorites, mappedNotFavorites]
+//            case .failure(let error):
+//                self.handle(error)
+//            }
+//        }
     }
 
     func didSelectRow(at indexPath: IndexPath) {

@@ -30,12 +30,12 @@ final class UserSceneDIContainer {
 
     let parentContainer: MainSceneDIContainer
     private let dependencies: Dependencies
-    private let repositoriesFactory: RepositoriesFactory
+    private let userFactory: UserFactory
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.parentContainer = parentContainer
         self.dependencies = dependencies
-        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
+        userFactory = UsersListFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     // MARK: - Flow Coordinators
@@ -46,36 +46,24 @@ final class UserSceneDIContainer {
 
 // MARK: - StarredFlowCoordinatorDependencies
 extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
-    func showFollowers(_ user: User) {
-        dependencies.showFollowers(user)
+    func profileViewController(actions: UserProfileActions) -> UIViewController {
+        userFactory.profileViewController(user: dependencies.user, actions)
     }
 
-    func showFollowing(_ user: User) {
-        dependencies.showFollowing(user)
+    func repositoriesViewController(actions: RepositoriesActions) -> UIViewController {
+        userFactory.repositoriesViewController(user: dependencies.user, actions)
     }
 
-    func showRepositories(_ user: User) {
-        dependencies.showRepositories(user)
+    func starredViewController(actions: RepositoriesActions) -> UIViewController {
+        userFactory.starredViewController(user: dependencies.user, actions)
     }
 
-    func showRecentEvents(_ user: User) {
-        dependencies.showRecentEvents(user)
+    func followersViewController(actions: UsersListActions) -> UIViewController {
+        userFactory.followersViewController(user: dependencies.user, actions)
     }
 
-    func showGists(_ user: User) {
-        dependencies.showGists(user)
-    }
-
-    func showSubscriptions(_ user: User) {
-        dependencies.showSubscriptions(user)
-    }
-
-    func showEvents(_ user: User) {
-        dependencies.showEvents(user)
-    }
-
-    func showOrganizations(_ user: User) {
-        dependencies.showOrganizations(user)
+    func followingViewController(actions: UsersListActions) -> UIViewController {
+        userFactory.followingViewController(user: dependencies.user, actions)
     }
 
     func sendMail(email: String) {
@@ -88,36 +76,5 @@ extension UserSceneDIContainer: UserFlowCoordinatorDependencies {
 
     func share(url: URL) {
         dependencies.share(url)
-    }
-
-    func startRepFlow(_ repository: Repository) {
-        dependencies.startRepFlow(repository)
-    }
-
-    // MARK: - UserProfile flow
-
-    func makeUserProfileViewController(actions: UserProfileActions) -> UserProfileViewController {
-        return UserProfileViewController.create(with: makeUserProfileViewModel(actions: actions))
-    }
-
-    func makeUserProfileViewModel(actions: UserProfileActions) -> UserProfileViewModel {
-        return UserProfileViewModelImpl(user: dependencies.user,
-                                        userProfileUseCase: makeUserProfileUseCase(),
-                                        actions: actions)
-    }
-
-    func makeUserProfileUseCase() -> UserProfileUseCase {
-        return UserProfileUseCaseImpl(repository: makeUserRepository())
-    }
-
-    func makeUserRepository() -> UserProfileRepository {
-        return UserProfileRepositoryImpl(
-            dataTransferService: parentContainer.apiDataTransferService)
-    }
-
-    // MARK: - Starred flow
-
-    func makeStarredViewController(user: User, actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.createStarrredViewController(for: user, actions: actions)
     }
 }

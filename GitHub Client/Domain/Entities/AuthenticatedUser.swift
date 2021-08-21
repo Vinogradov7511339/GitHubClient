@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthenticatedUser {
-    let userDetails: UserDetails
+    let userDetails: UserProfile
     let totalRepCount: Int
     let totalOwnedRepCount: Int
 }

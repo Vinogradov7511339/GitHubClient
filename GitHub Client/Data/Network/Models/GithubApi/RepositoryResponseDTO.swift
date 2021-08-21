@@ -13,7 +13,7 @@ struct Permissions: Codable {
     let pull: Bool?
 }
 
-struct License: Codable {
+struct LicenseResponseDTO: Codable {
     let key: String?
     let name: String?
     let url: URL?
@@ -104,7 +104,7 @@ class RepositoryResponseDTO: Codable {
     let updatedAt: String?
     let permissions: Permissions?
     let templateRepository: RepositoryResponseDTO?
-    let license: License?
+    let license: LicenseResponseDTO?
 
     init(id: Int,
          nodeId: String?,
@@ -180,7 +180,7 @@ class RepositoryResponseDTO: Codable {
          updatedAt: String?,
          permissions: Permissions?,
          templateRepository: RepositoryResponseDTO?,
-         license: License?) {
+         license: LicenseResponseDTO?) {
         self.id = id
         self.nodeId = nodeId
         self.name = name

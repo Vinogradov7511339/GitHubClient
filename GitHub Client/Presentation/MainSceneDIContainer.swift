@@ -26,14 +26,6 @@ final class MainSceneDIContainer: NSObject {
         return RepSceneDIContainer(parentContainer: self, dependencies: dependencies)
     }
 
-    func makeMyRepositoriesViewController(actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.makeMyStarredViewController(actions: actions)
-    }
-
-    func createStarredViewController(actions: RepositoriesActions) -> RepositoriesViewController {
-        repositoriesFactory.makeMyStarredViewController(actions: actions)
-    }
-
     var apiDataTransferService: DataTransferService {
         parentContainer.apiDataTransferService
     }
@@ -42,16 +34,16 @@ final class MainSceneDIContainer: NSObject {
         parentContainer.favoritesStorage
     }
 
+    var profileStorage: ProfileLocalStorage {
+        parentContainer.profileStorage
+    }
+
     private let parentContainer: AppDIContainer
     let dependencies: Dependencies
-    private let issueFactory: IssueFactory
-    private let repositoriesFactory: RepositoriesFactory
 
     init(appDIContainer: AppDIContainer, dependencies: Dependencies) {
         self.parentContainer = appDIContainer
         self.dependencies = dependencies
-        self.issueFactory = IssueFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
-        self.repositoriesFactory = RepositoriesFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeTabController() -> UITabBarController {
@@ -67,10 +59,6 @@ final class MainSceneDIContainer: NSObject {
                                          profileDependencies: profileDependencies)
         controller.setViewControllers(controllers, animated: true)
         controller.selectedIndex = TabBarPage.home.pageOrderNumber()
-    }
-
-    func makeIssueController(issue: Issue, actions: IssueActions) -> IssueDetailsViewController {
-        issueFactory.makeIssueViewController(issue: issue, actions: actions)
     }
 
     private func getControllers(homeDependencies: HomeDIContainer.Actions,

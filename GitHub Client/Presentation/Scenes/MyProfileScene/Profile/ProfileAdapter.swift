@@ -9,7 +9,7 @@ import UIKit
 
 protocol ProfileAdapter: UITableViewDataSource {
     func register(_ tableView: UITableView)
-    func update(with profile: UserDetails)
+    func update(with profile: UserProfile)
 }
 
 final class ProfileAdapterImpl: NSObject {
@@ -24,7 +24,7 @@ final class ProfileAdapterImpl: NSObject {
         .info: TableCellManager.create(cellType: ProfileItemCell.self)
     ]
 
-    private var profile: UserDetails?
+    private var profile: UserProfile?
 }
 
 // MARK: - ProfileAdapter
@@ -33,7 +33,7 @@ extension ProfileAdapterImpl: ProfileAdapter {
         cellManages.values.forEach { $0.register(tableView: tableView) }
     }
 
-    func update(with profile: UserDetails) {
+    func update(with profile: UserProfile) {
         self.profile = profile
     }
 

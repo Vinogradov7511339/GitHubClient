@@ -69,9 +69,9 @@ final class ProfileCardView: UIView {
     }
 
     weak var delegate: ProfileCardViewDelegate?
-    private var user: UserDetails?
+    private var user: UserProfile?
 
-    func setProfile(_ user: UserDetails) {
+    func setProfile(_ user: UserProfile) {
         self.user = user
         loginLabel.text = user.user.login
         avatarImageView.set(url: user.user.avatarUrl)

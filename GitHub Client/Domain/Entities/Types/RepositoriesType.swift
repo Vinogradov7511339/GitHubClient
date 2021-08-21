@@ -6,11 +6,6 @@
 //
 
 enum RepositoriesType {
-    case myRepositories
-    case myStarred
-
     case userRepositories(User)
     case userStarred(User)
-
-    case forks(Repository)
 }

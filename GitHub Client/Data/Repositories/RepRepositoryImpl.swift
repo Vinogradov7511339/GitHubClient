@@ -16,29 +16,68 @@ final class RepRepositoryImpl {
 }
 
 // MARK: - RepRepository
-extension RepRepositoryImpl: RepRepository {
-    func fetchRepository(repository: Repository, completion: @escaping (Result<Repository, Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getRepository(repository: repository)
+extension RepRepositoryImpl: RepRepository {}
+
+// MARK: Repositories
+extension RepRepositoryImpl {
+    func fetchRepList(request: RepListRequestModel, completion: @escaping RepListHandler) {
+        let endpoint = RepEndpoits.repositories(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                if let repository = response.model.toDomain() {
-                    completion(.success(repository))
-                } else {
-                    completion(.failure(NetworkError.cancelled)) // todo add error
-                }
+                let repList = response.model.compactMap { $0 .toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = RepListResponseModel(repositories: repList, lastPage: page)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
 
-    func fetchCommits(request: CommitsRequestModel, completion: @escaping (Result<CommitsResponseModel, Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getCommits(page: request.page, repository: request.repository)
+    func fetchRepository(repository: Repository, completion: @escaping RepHandler) {
+        let endpoint = RepEndpoits.repository(repository)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let lastPage = self.tryTakeLastPage(response.httpResponse)
+                if let repository = response.model.toDomain() {
+                    completion(.success(repository))
+                } else {
+                    assert(false, "parse error")
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Branches
+extension RepRepositoryImpl {
+    func fetchBranches(request: BranchesRequestModel, completion: @escaping BranchesHandler) {
+        let endpoint = RepEndpoits.branches(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let branches = response.model.map { $0 .toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = BranchesResponseModel(branches: branches, lastPage: page)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Commits
+extension RepRepositoryImpl {
+    func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler) {
+        let endpoint = RepEndpoits.commits(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.map { $0.toDomain() }
                 let model = CommitsResponseModel(items: items, lastPage: lastPage)
                 completion(.success(model))
@@ -48,22 +87,23 @@ extension RepRepositoryImpl: RepRepository {
         }
     }
 
-    func fetchReadMe(repository: Repository, completion: @escaping (Result<String, Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getReadMe(repository: repository)
+    func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler) {
+        let endpoint = RepEndpoits.commit(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
-                let content = model.model.content
-                let decodedContent = content.fromBase64()
-                completion(.success(decodedContent ?? ""))
+                completion(.success(model.model.toDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
+}
 
-    func fetchContent(path: URL, completion: @escaping (Result<[FolderItem], Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getContents(path: path)
+// MARK: - Content
+extension RepRepositoryImpl {
+    func fetchContent(path: URL, completion: @escaping ContentHandler) {
+        let endpoint = RepEndpoits.folder(path)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
@@ -75,8 +115,8 @@ extension RepRepositoryImpl: RepRepository {
         }
     }
 
-    func fetchFile(path: URL, completion: @escaping (Result<File, Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getFile(path: path)
+    func fetchFile(path: URL, completion: @escaping FileHandler) {
+        let endpoint = RepEndpoits.file(path)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
@@ -88,25 +128,170 @@ extension RepRepositoryImpl: RepRepository {
         }
     }
 
-    func fetchBranches(repository: Repository, completion: @escaping (Result<[Branch], Error>) -> Void) {
-        let endpoint = RepositoryEndpoits.getBranches(repository: repository)
+    func fetchReadMe(repository: Repository, completion: @escaping FileHandler) {
+        let endpoint = RepEndpoits.readMe(repository)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model.model.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Issues
+extension RepRepositoryImpl {
+    func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler) {
+        let endpoint = RepEndpoits.issues(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                completion(.success(response.model.map { $0.toDomain() }))
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let items = response.model.map { $0.toDomain() }
+//                let model = IssuesResponseModel(items: items, lastPage: lastPage)
+//                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
 
-    func tryTakeLastPage(_ response: HTTPURLResponse?) -> Int {
-        var count = 1
-        if let linkBody = response?.allHeaderFields["Link"] as? String {
-            if let newCount = linkBody.maxPageCount() {
-                count = newCount
+    func fetchIssue(request: IssueRequestModel, completion: @escaping IssueHandler) {
+        let endpoint = RepEndpoits.issue(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                fatalError()
+//                let response = IssueResponseModel(comments: <#T##[Comment]#>, lastPage: <#T##Int#>)
+//                completion(.success(model.model.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
-        return count
+    }
+}
+
+// MARK: - Pull Requests
+extension RepRepositoryImpl {
+    func fetchPRList(request: PRListRequestModel, completion: @escaping PRListHandler) {
+        let endpoint = RepEndpoits.pullRequests(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let items = response.model.compactMap { $0.toDomain() }
+                let model = PRListResponseModel(items: items, lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchPR(request: PRRequestModel, completion: @escaping PRHandler) {
+        let endpoint = RepEndpoits.pullRequest(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                if let pullRequest = model.model.toDomain() {
+                    completion(.success(pullRequest))
+                } else {
+                    assert(false, "parse error")
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Releases
+extension RepRepositoryImpl {
+
+    func fetchReleases(request: ReleasesRequestModel, completion: @escaping ReleasesHandler) {
+        let endpoint = RepEndpoits.releases(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let releases = response.model.map { $0.toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = ReleasesResponseModel(items: releases, lastPage: page)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchRelease(request: ReleaseRequestModel, completion: @escaping ReleaseHandler) {
+        let endpoint = RepEndpoits.release(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model.model.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - License
+extension RepRepositoryImpl {
+    func fetchLicense(request: LicenseRequestModel, completion: @escaping LicenseHandler) {
+        fatalError()
+    }
+}
+
+// MARK: - Watchers
+extension RepRepositoryImpl {
+    func fetchWatchers(request: WatchersRequestModel, completion: @escaping WatchersHandler) {
+        let endpoint = RepEndpoits.watchers(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let watchers = response.model.map { $0.toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = WatchersResponseModel(users: watchers, lastPage: page)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Forks
+extension RepRepositoryImpl {
+    func fetchForks(request: ForksRequestModel, completion: @escaping ForksHandler) {
+        let endpoint = RepEndpoits.forks(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let forks = response.model.compactMap { $0.toDomain() }
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = ForksResponseModel(forks: forks, lastPage: page)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// MARK: - Comments
+extension RepRepositoryImpl {
+    func fetchIssueComments(request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler) {
+        fatalError()
+    }
+
+    func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler) {
+        fatalError()
+    }
+
+    func fetchCommitComments(request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler) {
+        fatalError()
     }
 }

@@ -8,7 +8,8 @@
 import Foundation
 
 struct EventEndpoints {
-    static func getMyEvents(page: Int) -> Endpoint<[EventResponseDTO]> {
+    static func events(_ model: EventsRequestModel) -> Endpoint<[EventResponseDTO]> {
+        let page = model.page
         return Endpoint(path: "events",
                         queryParametersEncodable: ["page": page])
     }

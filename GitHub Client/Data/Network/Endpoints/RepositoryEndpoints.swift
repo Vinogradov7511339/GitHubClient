@@ -7,54 +7,119 @@
 
 import Foundation
 
-struct RepositoryEndpoits {
-    static func getStargazers(page: Int, repository: Repository) -> Endpoint<[UserResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/stargazers",
+struct RepEndpoits {
+
+    // MARK: - Repositories
+
+    static func repositories(_ model: RepListRequestModel) -> Endpoint<[RepositoryResponseDTO]> {
+        fatalError()
+    }
+
+    static func repository(_ rep: Repository) -> Endpoint<RepositoryResponseDTO> {
+        let login = rep.owner.login
+        let name = rep.name
+        return Endpoint(path: "repos/\(login)/\(name)")
+    }
+
+    // MARK: - Branches
+
+    static func branches(_ model: BranchesRequestModel) -> Endpoint<[BranchResponseDTO]> {
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        return Endpoint(path: "repos/\(login)/\(name)/branches")
+    }
+
+    // MARK: - Commits
+
+    static func commits(_ model: CommitsRequestModel) -> Endpoint<[CommitInfoResponse]> {
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let page = model.page
+        return Endpoint(path: "repos/\(login)/\(name)/commits",
                         queryParametersEncodable: ["page": page])
     }
 
-    static func getForks(page: Int, repository: Repository) -> Endpoint<[RepositoryResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/forks",
-                        queryParametersEncodable: ["page": page])
+    static func commit(_ model: CommitRequestModel) -> Endpoint<CommitInfoResponse> {
+        fatalError()
     }
 
-    static func getIssues(page: Int, repository: Repository) -> Endpoint<[IssueResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/issues",
-                        queryParametersEncodable: ["page": page])
-    }
+    // MARK: - Content
 
-    static func getPullRequests(page: Int, repository: Repository) -> Endpoint<[PullRequestResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/pulls",
-                        queryParametersEncodable: ["page": page])
-    }
-
-    static func getReleases(page: Int, repository: Repository) -> Endpoint<[ReleaseResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/releases",
-                        queryParametersEncodable: ["page": page])
-    }
-
-    static func getCommits(page: Int, repository: Repository) -> Endpoint<[CommitInfoResponse]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/commits",
-                        queryParametersEncodable: ["page": page])
-    }
-
-    static func getContents(path: URL) -> Endpoint<[DirectoryResponseModelDTO]> {
+    static func folder(_ path: URL) -> Endpoint<[DirectoryResponseModelDTO]> {
         return Endpoint(path: path.absoluteString, isFullPath: true)
     }
 
-    static func getFile(path: URL) -> Endpoint<FileResponseModelDTO> {
+    static func file(_ path: URL) -> Endpoint<FileResponseModelDTO> {
         return Endpoint(path: path.absoluteString, isFullPath: true)
     }
 
-    static func getReadMe(repository: Repository) -> Endpoint<FileResponseModelDTO> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/contents/README.md")
+    static func readMe(_ repository: Repository) -> Endpoint<FileResponseModelDTO> {
+        let login = repository.owner.login
+        let name = repository.name
+        return Endpoint(path: "repos/\(login)/\(name)/contents/README.md")
     }
 
-    static func getRepository(repository: Repository) -> Endpoint<RepositoryResponseDTO> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)")
+    // MARK: - Issues
+
+    static func issues(_ model: IssuesRequestModel) -> Endpoint<[IssueResponseDTO]> {
+        fatalError()
+//        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/issues",
+//                        queryParametersEncodable: ["page": page])
     }
 
-    static func getBranches(repository: Repository) -> Endpoint<[BranchResponseDTO]> {
-        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/branches")
+    static func issue(_ moodel: IssueRequestModel) -> Endpoint<IssueResponseDTO> {
+        fatalError()
+    }
+
+    static func issueComments(_ model: CommentsRequestModel<Issue>) -> Endpoint<[CommentResponseDTO]> {
+        fatalError()
+    }
+
+    // MARK: - Pull Requests
+
+    static func pullRequests(_ model: PRListRequestModel) -> Endpoint<[PullRequestResponseDTO]> {
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let page = model.page
+        return Endpoint(path: "repos/\(login)/\(name)/pulls",
+                        queryParametersEncodable: ["page": page])
+    }
+
+    static func pullRequest(_ model: PRRequestModel) -> Endpoint<PullRequestResponseDTO> {
+        fatalError()
+    }
+
+    // MARK: - Releases
+
+    static func releases(_ model: ReleasesRequestModel) -> Endpoint<[ReleaseResponseDTO]> {
+        fatalError()
+    }
+
+    static func release(_ model: ReleaseRequestModel) -> Endpoint<ReleaseResponseDTO> {
+        fatalError()
+    }
+
+    // MARK: - License
+
+    static func license(_ model: LicenseRequestModel) -> Endpoint<LicenseResponseDTO> {
+        fatalError()
+    }
+
+    // MARK: - Watchers
+
+    static func watchers(_ model: WatchersRequestModel) -> Endpoint<[UserResponseDTO]> {
+        fatalError()
+//        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/stargazers",
+//                        queryParametersEncodable: ["page": page])
+    }
+
+    // MARK: - Forks
+
+    static func forks(_ model: ForksRequestModel) -> Endpoint<[RepositoryResponseDTO]> {
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let page = model.page
+        return Endpoint(path: "repos/\(login)/\(name)/forks",
+                        queryParametersEncodable: ["page": page])
     }
 }

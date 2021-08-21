@@ -18,29 +18,18 @@ final class EventsRepositoryImpl {
 
 // MARK: - EventsRepository
 extension EventsRepositoryImpl: EventsRepository {
-    func fetchEvents(requestModel: EventsRequestModel,
-                     completion: @escaping (Result<EventsResponseModel, Error>) -> Void) {
-        let endpoint = EventEndpoints.getMyEvents(page: requestModel.page)
+    func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler) {
+        let endpoint = EventEndpoints.events(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
-                let lastPage = self.tryTakeLastPage(response.httpResponse)
-                let responseModel = EventsResponseModel(events: events, lastPage: lastPage)
-                completion(.success(responseModel))
+                let page = response.httpResponse?.lastPage ?? 1
+                let model = EventsResponseModel(events: events, lastPage: page)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
-    }
-
-    func tryTakeLastPage(_ response: HTTPURLResponse?) -> Int {
-        var count = 1
-        if let linkBody = response?.allHeaderFields["Link"] as? String {
-            if let newCount = linkBody.maxPageCount() {
-                count = newCount
-            }
-        }
-        return count
     }
 }

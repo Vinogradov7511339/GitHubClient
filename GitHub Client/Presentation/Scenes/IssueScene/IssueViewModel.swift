@@ -54,8 +54,8 @@ extension IssueViewModelImpl {
 // MARK: - Private
 private extension IssueViewModelImpl {
     func fetchComments() {
-        let model = IssueRequestModel(issue: issue, page: currentPage)
-        useCase.fetchComments(requestModel: model) { result in
+        let model = CommentsRequestModel<Issue>(item: issue, page: currentPage)
+        useCase.fetchComments(model) { result in
             switch result {
             case .success(let model):
                 self.updateComments(model)
@@ -65,7 +65,7 @@ private extension IssueViewModelImpl {
         }
     }
 
-    func updateComments(_ model: IssueResponseModel) {
+    func updateComments(_ model: CommentsResponseModel) {
         self.lastPage = model.lastPage
         self.currentPage += 1
         self.comments.value.append(contentsOf: model.comments)

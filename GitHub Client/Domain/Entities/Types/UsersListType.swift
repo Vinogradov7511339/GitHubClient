@@ -6,11 +6,11 @@
 //
 
 enum UsersListType {
-    case myFollowers
-    case myFollowing
+//    case myFollowers
+//    case myFollowing
 
     case userFollowers(User)
     case userFollowings(User)
 
-    case stargazers(Repository)
+//    case stargazers(Repository)
 }

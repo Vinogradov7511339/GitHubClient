@@ -39,7 +39,7 @@ protocol UserProfileViewModelInput {
 protocol UserProfileViewModelOutput {
 //    var cellManager: TableCellManager { get }
     var tableItems: Observable<[[Any]]> { get }
-    var userDetails: Observable<UserDetails?> { get }
+    var userDetails: Observable<UserProfile?> { get }
 
     func register(_ tableView: UITableView)
     func cellManager(for indexPath: IndexPath) -> TableCellManager
@@ -52,7 +52,7 @@ class UserProfileViewModelImpl: UserProfileViewModel {
     // MARK: - Output
 
     let tableItems: Observable<[[Any]]> = Observable([[]])
-    var userDetails: Observable<UserDetails?> = Observable(nil)
+    var userDetails: Observable<UserProfile?> = Observable(nil)
 
     // MARK: - Private
 
@@ -137,7 +137,7 @@ extension UserProfileViewModelImpl {
 
 private extension UserProfileViewModelImpl {
     func fetch() {
-        userProfileUseCase.fetch(user: user) { result in
+        userProfileUseCase.fetchProfile(user) { result in
             switch result {
             case .success(let user):
                 self.updateItems(user)
@@ -149,10 +149,10 @@ private extension UserProfileViewModelImpl {
     }
 
     func handle(error: Error) {
-
+        assert(false, error.localizedDescription)
     }
 
-    func updateItems(_ user: UserDetails) {
+    func updateItems(_ user: UserProfile) {
         let starred = MenuItemViewModel.ItemType.starred.viewModel
         let gists = MenuItemViewModel.ItemType.gists(user.gistsCount).viewModel
         let subscriptions = MenuItemViewModel.ItemType.subscriptions.viewModel

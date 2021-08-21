@@ -78,7 +78,7 @@ private extension UserProfileViewController {
         tableView.reloadData()
     }
 
-    func update(user: UserDetails?) {
+    func update(user: UserProfile?) {
         guard let user = user else { return }
         headerView.setProfile(user)
     }

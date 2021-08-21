@@ -6,6 +6,6 @@
 //
 
 struct UsersRequestModel {
+    let user: User
     let page: Int
-    let listType: UsersListType
 }

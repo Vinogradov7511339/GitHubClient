@@ -6,5 +6,6 @@
 //
 
 struct EventsRequestModel {
+    let user: User
     let page: Int
 }

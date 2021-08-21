@@ -30,24 +30,23 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
     var title: Observable<String>
 
     // MARK: - Private
-    private let useCase: RepositoriesUseCase
+    private let userUseCase: UserProfileUseCase
     private let type: RepositoriesType
     private let actions: RepositoriesActions
     private var lastPage: Int?
+    private var currentPage: Int = 1
 
-    init(useCase: RepositoriesUseCase, type: RepositoriesType, actions: RepositoriesActions) {
-        self.useCase = useCase
+    init(userUseCase: UserProfileUseCase, type: RepositoriesType, actions: RepositoriesActions) {
+        self.userUseCase = userUseCase
         self.type = type
         self.actions = actions
         self.title = Observable("")
 
         switch type {
-        case .myRepositories, .userRepositories(_):
+        case .userRepositories(_):
             title.value = NSLocalizedString("Repositories", comment: "")
-        case .myStarred, .userStarred(_):
+        case .userStarred(_):
             title.value = NSLocalizedString("Starred", comment: "")
-        case .forks(_):
-            title.value = NSLocalizedString("Forks", comment: "")
         }
     }
 }
@@ -55,20 +54,34 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
 // MARK: - Input
 extension RepositoriesViewModelImpl {
     func viewDidLoad() {
-        let page = 1
-        let request = RepositoriesRequestModel(page: page, listType: type)
-        useCase.fetch(request: request) { result in
-            switch result {
-            case .success(let model):
-                self.lastPage = model.lastPage
-                self.repositories.value.append(contentsOf: model.items)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        fetch()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
         actions.showRepository(repositories.value[indexPath.row])
+    }
+}
+
+// MARK: - Private
+private extension RepositoriesViewModelImpl {
+    func fetch() {
+        switch type {
+        case .userRepositories(let user):
+            let model = UsersRequestModel(user: user, page: currentPage)
+            userUseCase.fetchRepositories(request: model, completion: completion(_:))
+        case .userStarred(let user):
+            let model = UsersRequestModel(user: user, page: currentPage)
+            userUseCase.fetchStarred(request: model, completion: completion(_:))
+        }
+    }
+
+    func completion(_ result: Result<RepListResponseModel, Error>) {
+        switch result {
+        case .success(let model):
+            self.lastPage = model.lastPage
+            self.repositories.value.append(contentsOf: model.repositories)
+        case .failure(let error):
+            print(error)
+        }
     }
 }
