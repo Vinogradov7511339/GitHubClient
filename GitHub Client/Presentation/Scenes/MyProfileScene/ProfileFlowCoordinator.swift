@@ -57,13 +57,13 @@ extension ProfileFlowCoordinator {
     }
 
     func showRepositories() {
-        let actions = RepositoriesActions(showRepository: container.actions.openRepository)
+        let actions = MyRepositoriesActions(showRepository: container.actions.openRepository)
         let viewController = container.createRepositoriesViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showStarred() {
-        let actions = RepositoriesActions(showRepository: container.actions.openRepository)
+        let actions = MyRepositoriesActions(showRepository: container.actions.openRepository)
         let viewController = container.createStarredViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

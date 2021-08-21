@@ -11,8 +11,8 @@ protocol MyProfileFactory {
     func profileViewController(_ actions: ProfileActions) -> UIViewController
     func followersViewController(_ actions: UsersListActions) -> UIViewController
     func followingViewController(_ actions: UsersListActions) -> UIViewController
-    func repositoriesViewController(_ actions: RepositoriesActions) -> UIViewController
-    func starredViewController(_ actions: RepositoriesActions) -> UIViewController
+    func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController
+    func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController
 }
 
@@ -41,12 +41,12 @@ extension MyProfileFactoryImpl: MyProfileFactory {
         UIViewController()
     }
 
-    func repositoriesViewController(_ actions: RepositoriesActions) -> UIViewController {
-        UIViewController()
+    func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController {
+        MyRepositoriesViewController.create(with: repositoriesViewModel(actions))
     }
 
-    func starredViewController(_ actions: RepositoriesActions) -> UIViewController {
-        UIViewController()
+    func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController {
+        MyRepositoriesViewController.create(with: starredViewModel(actions))
     }
 
     func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController {
@@ -57,6 +57,14 @@ extension MyProfileFactoryImpl: MyProfileFactory {
 private extension MyProfileFactoryImpl {
     func profileViewModel(_ actions: ProfileActions) -> ProfileViewModel {
         return ProfileViewModelImpl(useCase: profileUseCase, actions: actions)
+    }
+
+    func repositoriesViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
+        MyRepositoriesViewModelImpl(myProfileUseCase: profileUseCase, type: .all, actions: actions)
+    }
+
+    func starredViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
+        MyRepositoriesViewModelImpl(myProfileUseCase: profileUseCase, type: .starred, actions: actions)
     }
 
     var profileUseCase: MyProfileUseCase {

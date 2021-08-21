@@ -42,11 +42,11 @@ final class ProfileDIContainer {
         profileFactory.followingViewController(actions)
     }
 
-    func createRepositoriesViewController(actions: RepositoriesActions) -> UIViewController {
+    func createRepositoriesViewController(actions: MyRepositoriesActions) -> UIViewController {
         profileFactory.repositoriesViewController(actions)
     }
 
-    func createStarredViewController(actions: RepositoriesActions) -> UIViewController {
+    func createStarredViewController(actions: MyRepositoriesActions) -> UIViewController {
         profileFactory.starredViewController(actions)
     }
 }

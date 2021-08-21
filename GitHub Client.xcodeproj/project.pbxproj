@@ -102,6 +102,9 @@
 		AD23E7B726D15C8A009FEB27 /* UserEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7B626D15C8A009FEB27 /* UserEventsViewController.swift */; };
 		AD23E7B926D1666B009FEB27 /* MyIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7B826D1666B009FEB27 /* MyIssuesViewController.swift */; };
 		AD23E7BB26D169A8009FEB27 /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7BA26D169A8009FEB27 /* RepositoryFactory.swift */; };
+		AD23E7BD26D17D9D009FEB27 /* MyRepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7BC26D17D9D009FEB27 /* MyRepositoriesViewController.swift */; };
+		AD23E7BF26D17DCA009FEB27 /* MyRepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7BE26D17DCA009FEB27 /* MyRepositoriesViewModel.swift */; };
+		AD23E7C126D18528009FEB27 /* MyRepositoriesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23E7C026D18528009FEB27 /* MyRepositoriesAdapter.swift */; };
 		AD25E4DA26B6F9390003B1E0 /* FileResponseModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25E4D926B6F9390003B1E0 /* FileResponseModelDTO.swift */; };
 		AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261126BC6D4C00B25772 /* WebImageView.swift */; };
 		AD2E261426BC6D5F00B25772 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E261326BC6D5F00B25772 /* UITableView+extensions.swift */; };
@@ -482,6 +485,9 @@
 		AD23E7B626D15C8A009FEB27 /* UserEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEventsViewController.swift; sourceTree = "<group>"; };
 		AD23E7B826D1666B009FEB27 /* MyIssuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIssuesViewController.swift; sourceTree = "<group>"; };
 		AD23E7BA26D169A8009FEB27 /* RepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactory.swift; sourceTree = "<group>"; };
+		AD23E7BC26D17D9D009FEB27 /* MyRepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRepositoriesViewController.swift; sourceTree = "<group>"; };
+		AD23E7BE26D17DCA009FEB27 /* MyRepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRepositoriesViewModel.swift; sourceTree = "<group>"; };
+		AD23E7C026D18528009FEB27 /* MyRepositoriesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRepositoriesAdapter.swift; sourceTree = "<group>"; };
 		AD25E4D926B6F9390003B1E0 /* FileResponseModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResponseModelDTO.swift; sourceTree = "<group>"; };
 		AD2E261126BC6D4C00B25772 /* WebImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		AD2E261326BC6D5F00B25772 /* UITableView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
@@ -1077,6 +1083,16 @@
 			path = RepUseCases;
 			sourceTree = "<group>";
 		};
+		AD23E7C226D18749009FEB27 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AD23E7BC26D17D9D009FEB27 /* MyRepositoriesViewController.swift */,
+				AD23E7BE26D17DCA009FEB27 /* MyRepositoriesViewModel.swift */,
+				AD23E7C026D18528009FEB27 /* MyRepositoriesAdapter.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		AD25E4D526B6E5510003B1E0 /* RepositoryHeaderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1328,6 +1344,8 @@
 				AD39FE2726BA6AB500F055FD /* UserSceneDIContainer.swift */,
 				AD39FE5026BABD0B00F055FD /* UserProfileViewModel.swift */,
 				AD39FE4E26BABCD900F055FD /* UserProfileViewController.swift */,
+				ADA1694126C63BFB0040B635 /* RepositoriesScene */,
+				ADA1692D26C581440040B635 /* UsersListScene */,
 				ADA1692B26C568810040B635 /* CellWithCollection.swift */,
 				ADBC1AE026C4FDC9000F9B88 /* ProfileCardView */,
 				ADA1692A26C568490040B635 /* ProfileMenuCell */,
@@ -1383,6 +1401,7 @@
 				AD39FE7826BB24E600F055FD /* ProfileFlowCoordinator.swift */,
 				AD39FE9226BC04E200F055FD /* ProfileDIContainer.swift */,
 				AD20E3DE269F5DE4003BB5F1 /* Profile */,
+				AD23E7C226D18749009FEB27 /* Repositories */,
 			);
 			path = MyProfileScene;
 			sourceTree = "<group>";
@@ -1506,8 +1525,6 @@
 		AD6B097426BFECD6004644D2 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				ADA1694126C63BFB0040B635 /* RepositoriesScene */,
-				ADA1692D26C581440040B635 /* UsersListScene */,
 				AD39FE6E26BB246B00F055FD /* HomeScene */,
 				AD39FE7126BB248D00F055FD /* EventsScene */,
 				AD39FE7426BB24AB00F055FD /* NotificationsScene */,
@@ -2304,6 +2321,7 @@
 				ADA1692F26C5816A0040B635 /* UsersListViewController.swift in Sources */,
 				AD6B099B26C04105004644D2 /* IssueViewModel.swift in Sources */,
 				AD6B095326BEF8F5004644D2 /* RequestGenerationError.swift in Sources */,
+				AD23E7C126D18528009FEB27 /* MyRepositoriesAdapter.swift in Sources */,
 				ADC538E626CD3661009B7A7E /* NotificationsRepositoryImpl.swift in Sources */,
 				ADA7495826CE9A3400C8D475 /* CodePreviewCell.swift in Sources */,
 				AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */,
@@ -2355,6 +2373,7 @@
 				AD23E7B726D15C8A009FEB27 /* UserEventsViewController.swift in Sources */,
 				ADDD512026C7DEC700F74240 /* EventsAdapter.swift in Sources */,
 				ADA3C85126CFD1F7009F9130 /* BranchesViewController.swift in Sources */,
+				AD23E7BD26D17D9D009FEB27 /* MyRepositoriesViewController.swift in Sources */,
 				ADA1692C26C568810040B635 /* CellWithCollection.swift in Sources */,
 				AD6B099226C014F7004644D2 /* Event.swift in Sources */,
 				ADC538C226CD1C71009B7A7E /* IssuesResponseModel.swift in Sources */,
@@ -2441,6 +2460,7 @@
 				AD6B097626BFECFD004644D2 /* MyProfileFactory.swift in Sources */,
 				AD39FE5D26BAE00800F055FD /* LoginViewModel.swift in Sources */,
 				ADC538E426CD3586009B7A7E /* NotificationsRepository.swift in Sources */,
+				AD23E7BF26D17DCA009FEB27 /* MyRepositoriesViewModel.swift in Sources */,
 				ADDF2E0826CAE04000CB1C22 /* ForkEventCell.swift in Sources */,
 				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
