@@ -151,13 +151,13 @@ enum TabBarPage: CaseIterable {
     func pageImage() -> UIImage? {
         switch self {
         case .home:
-            return .home
+            return UIImage.TabBar.home
         case .events:
-            return .explore
+            return UIImage.TabBar.explore
         case .explore:
-            return .notifications
+            return UIImage.TabBar.notifications
         case .profile:
-            return .profile
+            return UIImage.TabBar.profile
         }
     }
 

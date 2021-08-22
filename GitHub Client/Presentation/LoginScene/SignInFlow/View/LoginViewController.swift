@@ -9,6 +9,16 @@ import UIKit
 import WebKit
 
 class LoginViewController: UIViewController {
+
+    // MARK: - Create
+
+    static func create(with viewModel: LoginViewModel) -> LoginViewController {
+        let viewController = LoginViewController()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
+    // MARK: - Views
     
     //todo dark theme
     private lazy var gitHubImageView: UIImageView = {
@@ -55,11 +65,7 @@ class LoginViewController: UIViewController {
     private let webView = WKWebView()
     private var viewModel: LoginViewModel!
     
-    static func create(with viewModel: LoginViewModel) -> LoginViewController {
-        let viewController = LoginViewController()
-        viewController.viewModel = viewModel
-        return viewController
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

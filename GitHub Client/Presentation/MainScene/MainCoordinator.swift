@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCoordinator: NSObject {
+final class MainCoordinator: NSObject {
 
     private let container: MainSceneDIContainer
     private let tabBarController: UITabBarController
