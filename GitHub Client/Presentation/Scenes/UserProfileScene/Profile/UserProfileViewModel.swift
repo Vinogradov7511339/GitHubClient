@@ -24,22 +24,19 @@ struct UserProfileActions {
     let showEvents: (User) -> Void
 }
 
-protocol UserProfileViewModelInput {
+protocol UserProfileViewModelInput: ProfileHeaderViewDelegate {
     func viewDidLoad()
     func refresh()
     func share()
-    func showFollowers()
-    func showFollowing()
-    func showRepositories()
     func openLink(_ link: URL)
     func sendEmail(_ email: String)
     func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol UserProfileViewModelOutput {
-//    var cellManager: TableCellManager { get }
     var tableItems: Observable<[[Any]]> { get }
     var userDetails: Observable<UserProfile?> { get }
+    var backButtonTouchedState: Observable<Bool> { get }
 
     func register(_ tableView: UITableView)
     func cellManager(for indexPath: IndexPath) -> TableCellManager
@@ -53,6 +50,7 @@ class UserProfileViewModelImpl: UserProfileViewModel {
 
     let tableItems: Observable<[[Any]]> = Observable([[]])
     var userDetails: Observable<UserProfile?> = Observable(nil)
+    var backButtonTouchedState: Observable<Bool> = Observable(false)
 
     // MARK: - Private
 
@@ -132,6 +130,25 @@ extension UserProfileViewModelImpl {
         default:
             break
         }
+    }
+}
+
+// MARK: - ProfileHeaderViewDelegate
+extension UserProfileViewModelImpl: ProfileHeaderViewDelegate {
+    func backButtonTouched() {
+        backButtonTouchedState.value = true
+    }
+
+    func subscribeButtonTouched() {}
+
+    func gistsButtonTouched() {}
+
+    func followersButtonTouched() {
+        actions.showFollowers(user)
+    }
+
+    func followingButtonTouched() {
+        actions.showFollowing(user)
     }
 }
 

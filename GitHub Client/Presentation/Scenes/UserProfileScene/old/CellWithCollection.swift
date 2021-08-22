@@ -30,7 +30,7 @@ final class CellWithCollection: BaseTableViewCell {
         collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         heightAnchor.constraint(equalToConstant: 200.0).isActive = true
-        collectionView.backgroundColor = .blue
+        collectionView.backgroundColor = .systemBackground
     }
 
     override func populate(viewModel: Any) {

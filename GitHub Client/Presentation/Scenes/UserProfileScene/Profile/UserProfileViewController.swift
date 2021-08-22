@@ -17,10 +17,10 @@ class UserProfileViewController: UIViewController {
         return viewController
     }
 
-    private lazy var headerView: ProfileCardView = {
-        let view = ProfileCardView.instanceFromNib()
+    private lazy var headerView: ProfileHeaderViewProtocol = {
+        let view = ProfileHeaderView.instanceFromNib()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
+        view.delegate = viewModel
         return view
     }()
 
@@ -31,7 +31,7 @@ class UserProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .systemGroupedBackground
+        tableView.backgroundColor = .systemBackground
         tableView.tableFooterView = UIView()
         return tableView
     }()
@@ -72,6 +72,7 @@ private extension UserProfileViewController {
     func bind(to viewModel: UserProfileViewModel) {
         viewModel.tableItems.observe(on: self) { [weak self] _ in self?.reload() }
         viewModel.userDetails.observe(on: self) { [weak self] in self?.update(user: $0) }
+        viewModel.backButtonTouchedState.observe(on: self) { [weak self] in self?.backButtonTouch($0)}
     }
 
     func reload() {
@@ -80,7 +81,14 @@ private extension UserProfileViewController {
 
     func update(user: UserProfile?) {
         guard let user = user else { return }
-        headerView.setProfile(user)
+        headerViewHeight?.constant = headerView.maxHeight(for: user)
+        headerView.update(with: user)
+    }
+
+    func backButtonTouch(_ isClicked: Bool) {
+        if isClicked {
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -104,7 +112,8 @@ extension UserProfileViewController: UITableViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let headerViewHeight = headerViewHeight else { return }
-        let maxHeaderHeight = ProfileCardView.Const.maxHeight
+        guard let user = viewModel.userDetails.value else { return }
+        let maxHeaderHeight = headerView.maxHeight(for: user)
         let scrollDiff = (scrollView.contentOffset.y - previousScrollOffset)
         let isScrollingDown = scrollDiff > 0
         let isScrollingUp = scrollDiff < 0
@@ -152,33 +161,6 @@ extension UserProfileViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - ProfileCardViewDelegate
-extension UserProfileViewController: ProfileCardViewDelegate {
-    func backButtonTouchUpInside() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    func repositoriesButtonTouchUpInside() {
-        viewModel.showRepositories()
-    }
-
-    func followersButtonTouchUpInside() {
-        viewModel.showFollowers()
-    }
-
-    func followingsButtonTouchUpInside() {
-        viewModel.showFollowing()
-    }
-
-    func linkButtonTouchUpInside(link: URL) {
-        viewModel.openLink(link)
-    }
-
-    func emailButtonTouchUpInside(email: String) {
-        viewModel.sendEmail(email)
-    }
-}
-
 // MARK: - setup views
 private extension UserProfileViewController {
     func setupViews() {
@@ -189,8 +171,8 @@ private extension UserProfileViewController {
     func activateConstraints() {
         headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: ProfileCardView.Const.maxHeight)
+        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: headerView.defaultHeight)
         headerViewHeight?.isActive = true
 
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
