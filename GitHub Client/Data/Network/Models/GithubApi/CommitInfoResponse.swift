@@ -44,7 +44,8 @@ class CommitInfoResponse: Codable {
               message: commit.message,
               author: author.toDomain(),
               commiter: committer.toDomain(),
-              commentsCount: commit.commentCount)
+              commentsCount: commit.commentCount,
+              createdAt: Date())
     }
 }
 

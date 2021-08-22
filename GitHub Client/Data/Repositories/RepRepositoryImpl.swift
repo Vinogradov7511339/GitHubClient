@@ -149,9 +149,9 @@ extension RepRepositoryImpl {
             switch result {
             case .success(let response):
                 let lastPage = response.httpResponse?.lastPage ?? 1
-                let items = response.model.map { $0.toDomain() }
-//                let model = IssuesResponseModel(items: items, lastPage: lastPage)
-//                completion(.success(model))
+                let items = response.model.compactMap { $0.toDomain() }
+                let model = ListResponseModel<Issue>(items: items, lastPage: lastPage)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }

@@ -41,7 +41,7 @@ protocol RepRepository {
 
     // MARK: - Issues
 
-    typealias IssuesHandler = (Result<IssuesResponseModel, Error>) -> Void
+    typealias IssuesHandler = (Result<ListResponseModel<Issue>, Error>) -> Void
     func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler)
 
     typealias IssueHandler = (Result<ListResponseModel<Comment>, Error>) -> Void

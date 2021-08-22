@@ -30,14 +30,12 @@ final class CommitsViewModelImpl: CommitsViewModel {
     // MARK: - Private
     private let commitUseCase: CommitUseCase
     private let repository: Repository
-    private let branch: String
     private let actions: CommitsActions
     private var lastPage: Int?
 
-    init(commitUseCase: CommitUseCase, repository: Repository, branch: String, actions: CommitsActions) {
+    init(commitUseCase: CommitUseCase, repository: Repository, actions: CommitsActions) {
         self.commitUseCase = commitUseCase
         self.repository = repository
-        self.branch = branch
         self.actions = actions
     }
 }

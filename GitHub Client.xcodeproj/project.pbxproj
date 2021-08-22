@@ -337,7 +337,6 @@
 		ADC538AF26CCE23D009B7A7E /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC538AD26CCE23D009B7A7E /* FolderCell.xib */; };
 		ADC538BB26CD1B75009B7A7E /* CommitsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538BA26CD1B75009B7A7E /* CommitsRequestModel.swift */; };
 		ADC538C026CD1C51009B7A7E /* IssuesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538BF26CD1C51009B7A7E /* IssuesRequestModel.swift */; };
-		ADC538C226CD1C71009B7A7E /* IssuesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538C126CD1C71009B7A7E /* IssuesResponseModel.swift */; };
 		ADC538C426CD1CDA009B7A7E /* IssuesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538C326CD1CDA009B7A7E /* IssuesType.swift */; };
 		ADC538CE26CD1E17009B7A7E /* UsersRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538CD26CD1E17009B7A7E /* UsersRequestModel.swift */; };
 		ADC538D326CD1F62009B7A7E /* EventsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC538D226CD1F62009B7A7E /* EventsRequestModel.swift */; };
@@ -716,7 +715,6 @@
 		ADC538AD26CCE23D009B7A7E /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
 		ADC538BA26CD1B75009B7A7E /* CommitsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsRequestModel.swift; sourceTree = "<group>"; };
 		ADC538BF26CD1C51009B7A7E /* IssuesRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesRequestModel.swift; sourceTree = "<group>"; };
-		ADC538C126CD1C71009B7A7E /* IssuesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesResponseModel.swift; sourceTree = "<group>"; };
 		ADC538C326CD1CDA009B7A7E /* IssuesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesType.swift; sourceTree = "<group>"; };
 		ADC538CD26CD1E17009B7A7E /* UsersRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequestModel.swift; sourceTree = "<group>"; };
 		ADC538D226CD1F62009B7A7E /* EventsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRequestModel.swift; sourceTree = "<group>"; };
@@ -1993,7 +1991,6 @@
 		ADC538BC26CD1B96009B7A7E /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
-				ADC538C126CD1C71009B7A7E /* IssuesResponseModel.swift */,
 				AD23E7D326D1957C009FEB27 /* ListResponseModel.swift */,
 			);
 			path = ResponseModels;
@@ -2367,7 +2364,6 @@
 				AD23E7BD26D17D9D009FEB27 /* MyRepositoriesViewController.swift in Sources */,
 				ADA1692C26C568810040B635 /* CellWithCollection.swift in Sources */,
 				AD6B099226C014F7004644D2 /* Event.swift in Sources */,
-				ADC538C226CD1C71009B7A7E /* IssuesResponseModel.swift in Sources */,
 				ADBC1AD526C3F763000F9B88 /* Release.swift in Sources */,
 				AD23E7A926D11D0D009FEB27 /* UserRepository.swift in Sources */,
 				AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */,

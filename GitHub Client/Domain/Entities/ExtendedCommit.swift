@@ -24,4 +24,5 @@ struct ExtendedCommit {
     let author: User
     let commiter: User
     let commentsCount: Int
+    let createdAt: Date
 }

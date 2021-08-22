@@ -29,6 +29,7 @@ class CommitCell: BaseCollectionViewCell, NibLoadable {
 extension CommitCell: ConfigurableCell {
     func configure(viewModel: ExtendedCommit) {
         authorAvatarImageView.set(url: viewModel.author.avatarUrl)
+        createdAtLabel.text = viewModel.createdAt.timeAgoDisplay()
         authorLoginLabel.text = viewModel.author.login
         commiterLoginLabel.text = viewModel.commiter.login
         messageLabel.text = viewModel.message

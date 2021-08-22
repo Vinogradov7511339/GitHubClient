@@ -8,9 +8,9 @@
 import UIKit
 
 protocol RepositoryFactory {
-    func repositoryViewController() -> UIViewController
+    func repositoryViewController(_ rep: Repository, actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
-    func commitsViewController() -> UIViewController
+    func commitsViewController(_ rep: Repository, actions: CommitsActions) -> UIViewController
     func commitViewController() -> UIViewController
     func folderViewController() -> UIViewController
     func fileViewController() -> UIViewController
@@ -25,20 +25,27 @@ protocol RepositoryFactory {
     func forksViewController() -> UIViewController
 }
 
-final class RepositoryFactoryImpl {}
+final class RepositoryFactoryImpl {
+
+    private let dataTransferService: DataTransferService
+
+    init(dataTransferService: DataTransferService) {
+        self.dataTransferService = dataTransferService
+    }
+}
 
 // MARK: - RepositoryFactory
 extension RepositoryFactoryImpl: RepositoryFactory {
-    func repositoryViewController() -> UIViewController {
-        UIViewController()
+    func repositoryViewController(_ rep: Repository, actions: RepActions) -> UIViewController {
+        RepViewController.create(with: repViewModel(rep, actions: actions))
     }
 
     func branchesViewController() -> UIViewController {
         UIViewController()
     }
 
-    func commitsViewController() -> UIViewController {
-        UIViewController()
+    func commitsViewController(_ rep: Repository, actions: CommitsActions) -> UIViewController {
+        CommitsViewController.create(with: commitsViewModel(rep, actions: actions))
     }
 
     func commitViewController() -> UIViewController {
@@ -92,5 +99,27 @@ extension RepositoryFactoryImpl: RepositoryFactory {
 
 // MARK: - Private
 private extension RepositoryFactoryImpl {
+    func repViewModel(_ rep: Repository, actions: RepActions) -> RepViewModel {
+        RepViewModelImpl(repository: rep, repUseCase: repUseCase, actions: actions)
+    }
 
+    func commitsViewModel(_ rep: Repository, actions: CommitsActions) -> CommitsViewModel {
+        CommitsViewModelImpl(commitUseCase: commitsUseCase, repository: rep, actions: actions)
+    }
+
+    var repUseCase: RepUseCase {
+        RepUseCaseImpl(repositoryStorage: repRepository, repositoryFacade: repFacade)
+    }
+
+    var repFacade: RepositoryFacade {
+        RepositoryFacadeImpl(repRepository: repRepository)
+    }
+
+    var commitsUseCase: CommitUseCase {
+        CommitUseCaseImpl(repRepository: repRepository)
+    }
+
+    var repRepository: RepRepository {
+        RepRepositoryImpl(dataTransferService: dataTransferService)
+    }
 }

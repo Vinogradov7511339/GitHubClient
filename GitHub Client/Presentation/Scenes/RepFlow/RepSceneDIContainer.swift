@@ -23,7 +23,7 @@ class RepSceneDIContainer {
 
     init(parentContainer: MainSceneDIContainer, dependencies: Dependencies) {
         self.dependencies = dependencies
-        repositoryFactory = RepositoryFactoryImpl()
+        repositoryFactory = RepositoryFactoryImpl(dataTransferService: parentContainer.apiDataTransferService)
     }
 
     func makeRepFlowCoordinator(in navigationController: UINavigationController) -> RepFlowCoordinator {
@@ -32,16 +32,16 @@ class RepSceneDIContainer {
 }
 
 extension RepSceneDIContainer: RepFlowCoordinatorDependencies {
-    func repositoryViewController() -> UIViewController {
-        repositoryFactory.repositoryViewController()
+    func repositoryViewController(actions: RepActions) -> UIViewController {
+        repositoryFactory.repositoryViewController(dependencies.repository, actions: actions)
     }
 
     func branchesViewController() -> UIViewController {
         repositoryFactory.branchesViewController()
     }
 
-    func commitsViewController() -> UIViewController {
-        repositoryFactory.commitsViewController()
+    func commitsViewController(_ actions: CommitsActions) -> UIViewController {
+        repositoryFactory.commitsViewController(dependencies.repository, actions: actions)
     }
 
     func commitViewController() -> UIViewController {
