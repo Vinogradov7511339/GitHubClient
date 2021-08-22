@@ -30,7 +30,22 @@ final class ExploreTempViewController: UIViewController {
         activateConstraints()
         configureNavBar()
 
+        bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+}
+
+// MARK: - Binding
+private extension ExploreTempViewController {
+
+    func bind(to viewModel: ExploreTempViewModel) {
+        viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+    }
+
+    func showError(_ error: Error?) {
+        guard let error = error else { return }
+        let alert = ErrorAlertView.create(with: error)
+        alert.show(in: view)
     }
 }
 

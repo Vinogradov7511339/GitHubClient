@@ -11,11 +11,17 @@ protocol ExploreTempViewModelInput {
     func viewDidLoad()
 }
 
-protocol ExploreTempViewModelOutput {}
+protocol ExploreTempViewModelOutput {
+    var error: Observable<Error?> { get }
+}
 
 typealias ExploreTempViewModel = ExploreTempViewModelInput & ExploreTempViewModelOutput
 
 final class ExploreTempViewModelImpl: ExploreTempViewModel {
+
+    // MARK: - Output
+
+    var error: Observable<Error?> = Observable(nil)
 
     // MARK: - Private variables
 
@@ -45,6 +51,6 @@ extension ExploreTempViewModelImpl {
 // MARK: - Private
 private extension ExploreTempViewModelImpl {
     func handle(_ error: Error) {
-        assert(false, error.localizedDescription)
+        self.error.value = error
     }
 }

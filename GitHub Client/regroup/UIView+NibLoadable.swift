@@ -20,4 +20,8 @@ extension NibLoadable where Self: UIView {
     static var nib: UINib {
         return UINib(nibName: nibName, bundle: nil)
     }
+
+    static func createFromNib() -> Self {
+        Self.nib.instantiate(withOwner: self, options: nil)[0] as! Self
+    }
 }
