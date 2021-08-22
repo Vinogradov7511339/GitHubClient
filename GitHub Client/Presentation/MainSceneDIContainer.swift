@@ -11,6 +11,7 @@ final class MainSceneDIContainer: NSObject {
 
     struct Dependencies {
         let logout: () -> Void
+        let openSettings: (UINavigationController) -> Void
         let sendMail: (String) -> Void
         let openLink: (URL) -> Void
         let share: (URL) -> Void

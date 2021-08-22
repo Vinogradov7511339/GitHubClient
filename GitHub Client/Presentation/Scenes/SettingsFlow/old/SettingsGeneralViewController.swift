@@ -19,7 +19,7 @@ class SettingsGeneralViewController: UIViewController {
         return tableView
     }()
     
-    let viewModel = SettingsViewModel()
+    let viewModel = SettingsViewModelold()
     
     private let cellManager = TableCellManager.create(cellType: TableViewCell.self)
 

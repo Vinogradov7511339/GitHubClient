@@ -110,7 +110,10 @@ private extension ProfileViewController {
     }
 
     func configureNavBar() {
-        let settings = UIBarButtonItem(image: .settings, style: .plain, target: self, action: #selector(openSettings))
+        let settings = UIBarButtonItem(image: .settings,
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(openSettings))
         navigationItem.setRightBarButton(settings, animated: false)
     }
 }

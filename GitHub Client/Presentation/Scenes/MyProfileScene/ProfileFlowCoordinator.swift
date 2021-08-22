@@ -41,8 +41,11 @@ extension ProfileFlowCoordinator {
     }
 
     func openSettings() {
-        let viewController = SettingsGeneralViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        if let navigation = navigationController {
+            container.openSettings(in: navigation)
+        } else {
+            assert(false, "no navigation")
+        }
     }
 
     func showFollowers() {

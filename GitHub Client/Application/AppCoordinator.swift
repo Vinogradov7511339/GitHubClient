@@ -11,7 +11,6 @@ final class AppCoordinator {
 
     private let window: UIWindow
     private let appDIContainer: AppDIContainer
-    private var navigation: UINavigationController?
 
     init(in window: UIWindow, appDIContainer: AppDIContainer) {
         self.window = window
@@ -30,6 +29,7 @@ final class AppCoordinator {
     func startMainFlow() {
         let dependencies = MainSceneDIContainer.Dependencies(
             logout: startLoginFlow,
+            openSettings: openSettings,
             sendMail: sendEmail(email:),
             openLink: open(link:),
             share: share(link:)
@@ -44,6 +44,12 @@ final class AppCoordinator {
             userLoggedIn: startMainFlow)
         let loginDIContainer = appDIContainer.makeLoginSceneDIContainer(dependencies: dependency)
         let flow = loginDIContainer.makeLoginFlowCoordinator(in: window)
+        flow.start()
+    }
+
+    func openSettings(in navigation: UINavigationController) {
+        let dependency = appDIContainer.makeSettingsDependencies()
+        let flow = SettingsCoordinator(in: navigation, with: dependency)
         flow.start()
     }
 

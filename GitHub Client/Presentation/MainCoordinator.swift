@@ -127,6 +127,7 @@ class MainCoordinator: NSObject {
         .init(
             openUserProfile: startUserFlow(user:),
             openRepository: startRepFlow(repository:),
+            openSettings: container.dependencies.openSettings,
             sendMail: container.dependencies.sendMail,
             openLink: container.dependencies.openLink,
             share: container.dependencies.share)

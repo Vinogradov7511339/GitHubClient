@@ -12,6 +12,7 @@ final class ProfileDIContainer {
     struct Actions {
         var openUserProfile: (User) -> Void
         var openRepository: (Repository) -> Void
+        var openSettings: (UINavigationController) -> Void
         var sendMail: (String) -> Void
         var openLink: (URL) -> Void
         var share: (URL) -> Void
@@ -52,5 +53,9 @@ final class ProfileDIContainer {
 
     func createSubscriptionsViewController() -> UIViewController {
         profileFactory.subscriptionsViewControler()
+    }
+
+    func openSettings(in navigation: UINavigationController) {
+        actions.openSettings(navigation)
     }
 }

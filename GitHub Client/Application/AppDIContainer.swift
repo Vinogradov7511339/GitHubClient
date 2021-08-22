@@ -42,4 +42,8 @@ final class AppDIContainer {
         dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)
     }
+
+    func makeSettingsDependencies() -> SettingsCoordinatorDependencies {
+        SettingsDIContainer()
+    }
 }

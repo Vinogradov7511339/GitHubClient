@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewModel {
+class SettingsViewModelold {
     
     let items: [[Any]]
     
