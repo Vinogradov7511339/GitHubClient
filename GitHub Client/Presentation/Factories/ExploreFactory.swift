@@ -30,6 +30,14 @@ extension ExploreFactoryImpl: ExploreFactory {
 // MARK: - Private
 private extension ExploreFactoryImpl {
     func exploreViewModel() -> ExploreTempViewModel {
-        ExploreTempViewModelImpl()
+        ExploreTempViewModelImpl(useCase: exploreUseCase)
+    }
+
+    var exploreUseCase: ExploreTempUseCase {
+        ExploreTempUseCaseImpl(exploreRepository: exploreRepository)
+    }
+
+    var exploreRepository: ExploreTempRepository {
+        ExploreTempRepositoryImpl(dataTransferService: dataTransferService)
     }
 }

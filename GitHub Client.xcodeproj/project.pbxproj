@@ -195,6 +195,10 @@
 		AD5C8E4126D2BC3F003E2F38 /* ExploreTempViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */; };
 		AD5C8E4426D2BE32003E2F38 /* ExploreDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */; };
 		AD5C8E4626D2BEE7003E2F38 /* ExploreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4526D2BEE7003E2F38 /* ExploreFactory.swift */; };
+		AD5C8E4826D2C252003E2F38 /* ExploreTempUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */; };
+		AD5C8E4A26D2C40C003E2F38 /* ExploreTempRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4926D2C40C003E2F38 /* ExploreTempRepository.swift */; };
+		AD5C8E4C26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4B26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift */; };
+		AD5C8E4E26D2C634003E2F38 /* ExploreTempEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4D26D2C634003E2F38 /* ExploreTempEndpoints.swift */; };
 		AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */; };
 		AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */; };
 		AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5526C96FF700432E13 /* HomeVC.swift */; };
@@ -594,6 +598,10 @@
 		AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempViewModel.swift; sourceTree = "<group>"; };
 		AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDIContainer.swift; sourceTree = "<group>"; };
 		AD5C8E4526D2BEE7003E2F38 /* ExploreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFactory.swift; sourceTree = "<group>"; };
+		AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempUseCase.swift; sourceTree = "<group>"; };
+		AD5C8E4926D2C40C003E2F38 /* ExploreTempRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempRepository.swift; sourceTree = "<group>"; };
+		AD5C8E4B26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempRepositoryImpl.swift; sourceTree = "<group>"; };
+		AD5C8E4D26D2C634003E2F38 /* ExploreTempEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempEndpoints.swift; sourceTree = "<group>"; };
 		AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		AD65FA5526C96FF700432E13 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -1092,6 +1100,7 @@
 				AD6B098126BFFF2F004644D2 /* EventsUseCase.swift */,
 				ADC538DB26CD2B23009B7A7E /* NotificationsUseCase.swift */,
 				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
+				AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */,
 			);
 			path = HomeUseCases;
 			sourceTree = "<group>";
@@ -1358,6 +1367,7 @@
 				AD39FE4826BAAB4900F055FD /* RepRepository.swift */,
 				AD23E7A826D11D0D009FEB27 /* UserRepository.swift */,
 				AD39FE6126BAE88600F055FD /* LoginRepository.swift */,
+				AD5C8E4926D2C40C003E2F38 /* ExploreTempRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1479,6 +1489,7 @@
 				AD39FE4626BAAB3800F055FD /* RepRepositoryImpl.swift */,
 				AD6B096F26BFB2AF004644D2 /* UserRepositoryImpl.swift */,
 				AD6B09B226C29960004644D2 /* LoginRepositoryImpl.swift */,
+				AD5C8E4B26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1654,6 +1665,7 @@
 				AD6B09AC26C27D55004644D2 /* IssueEndpoints.swift */,
 				AD6B09B026C29440004644D2 /* LoginEndpoint.swift */,
 				ADC538E726CD36B3009B7A7E /* NotificationsEndpoints.swift */,
+				AD5C8E4D26D2C634003E2F38 /* ExploreTempEndpoints.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -2476,11 +2488,13 @@
 				ADA7494626CE580100C8D475 /* ProfileHeaderCell.swift in Sources */,
 				ADC538E226CD3250009B7A7E /* NotificationsFactory.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
+				AD5C8E4E26D2C634003E2F38 /* ExploreTempEndpoints.swift in Sources */,
 				AD23E79B26D1094A009FEB27 /* FolderViewController.swift in Sources */,
 				AD23E7C426D1892B009FEB27 /* MyUsersViewController.swift in Sources */,
 				ADC538EC26CD37DF009B7A7E /* NotificationsDIContainer.swift in Sources */,
 				ADA7494326CE31B100C8D475 /* ProfileAdapter.swift in Sources */,
 				AD39FE8426BBDD9800F055FD /* MainSceneDIContainer.swift in Sources */,
+				AD5C8E4C26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift in Sources */,
 				AD39FE6926BB1B3B00F055FD /* AppCoordinator.swift in Sources */,
 				ADC538C426CD1CDA009B7A7E /* IssuesType.swift in Sources */,
 				AD79550826ABFFF7004E6973 /* UIColor+hex.swift in Sources */,
@@ -2565,6 +2579,7 @@
 				AD6B095526BEF964004644D2 /* NetworkError.swift in Sources */,
 				AD8722E426B819A7004649A4 /* FileViewModel.swift in Sources */,
 				AD39FE4126BAA54D00F055FD /* RepViewModel.swift in Sources */,
+				AD5C8E4A26D2C40C003E2F38 /* ExploreTempRepository.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD6B097C26BFF992004644D2 /* EventsViewModel.swift in Sources */,
 				ADC538EA26CD3746009B7A7E /* NotificationResponseDTO.swift in Sources */,
@@ -2702,6 +2717,7 @@
 				AD23E7D726D2561E009FEB27 /* ProfileHeaderView.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
+				AD5C8E4826D2C252003E2F38 /* ExploreTempUseCase.swift in Sources */,
 				ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */,
 				ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,

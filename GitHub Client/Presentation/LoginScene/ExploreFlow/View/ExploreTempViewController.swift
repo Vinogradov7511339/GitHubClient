@@ -29,6 +29,8 @@ final class ExploreTempViewController: UIViewController {
         setupViews()
         activateConstraints()
         configureNavBar()
+
+        viewModel.viewDidLoad()
     }
 }
 
