@@ -62,7 +62,7 @@ extension RepositoryHeaderTableViewCell: ConfigurableCell {
         }
 
         if let homePage = repository.homePage {
-            linkLabel.text = homePage.absoluteString
+            linkLabel.text = homePage
             linkStackView.isHidden = false
         } else {
             linkStackView.isHidden = true

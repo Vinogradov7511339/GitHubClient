@@ -9,10 +9,12 @@ import UIKit
 
 protocol ExploreTempViewModelInput {
     func viewDidLoad()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol ExploreTempViewModelOutput {
     var error: Observable<Error?> { get }
+    var popular: Observable<[Repository]> { get }
 }
 
 typealias ExploreTempViewModel = ExploreTempViewModelInput & ExploreTempViewModelOutput
@@ -22,6 +24,7 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
     // MARK: - Output
 
     var error: Observable<Error?> = Observable(nil)
+    var popular: Observable<[Repository]> = Observable([])
 
     // MARK: - Private variables
 
@@ -37,15 +40,18 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 // MARK: - Input
 extension ExploreTempViewModelImpl {
     func viewDidLoad() {
-        useCase.fetch { result in
+        let model = SearchRequestModel(searchType: .repositories)
+        useCase.fetch(model) { result in
             switch result {
             case .success(let response):
-                print(response.items)
+                self.popular.value = response.items
             case.failure(let error):
                 self.handle(error)
             }
         }
     }
+
+    func didSelectItem(at indexPath: IndexPath) {}
 }
 
 // MARK: - Private

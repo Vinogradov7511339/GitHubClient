@@ -18,12 +18,13 @@ final class ExploreTempRepositoryImpl {
 
 // MARK: - ExploreTempRepository
 extension ExploreTempRepositoryImpl: ExploreTempRepository {
-    func fetch(completion: @escaping RepositoriesHandler) {
-        let endpoint = ExploreTempEndpoints.repositories()
+    func fetch(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler) {
+        let endpoint = ExploreTempEndpoints.repositories(searchModel)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let repositories = response.model.compactMap { $0.toDomain() }
+                print(response)
+                let repositories = response.model.items.compactMap { $0.toDomain() }
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let model = ListResponseModel<Repository>(items: repositories, lastPage: lastPage)
                 completion(.success(model))

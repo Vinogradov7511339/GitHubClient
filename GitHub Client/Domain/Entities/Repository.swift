@@ -18,7 +18,7 @@ struct Repository {
     let description: String?
     let language: String?
     let hasIssues: Bool
-    let homePage: URL?
+    let homePage: String?
     let contentPath: URL
     let currentBranch: String
 }

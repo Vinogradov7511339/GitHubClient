@@ -81,7 +81,7 @@ class RepositoryResponseDTO: Codable {
     let mirrorUrl: String?
     let hooksUrl: URL?
     let svnUrl: URL?
-    let homepage: URL?
+    let homepage: String?
     let language: String?
     let forksCount: Int?
     let stargazersCount: Int?
@@ -157,7 +157,7 @@ class RepositoryResponseDTO: Codable {
          mirrorUrl: String?,
          hooksUrl: URL?,
          svnUrl: URL?,
-         homepage: URL?,
+         homepage: String?,
          language: String?,
          forksCount: Int?,
          stargazersCount: Int?,

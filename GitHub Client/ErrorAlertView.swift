@@ -31,7 +31,7 @@ final class ErrorAlertView: UIView, NibLoadable {
 
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseIn) {
-            self.containerView.transform = CGAffineTransform.identity
+            self.containerView.transform = CGAffineTransform(scaleX: 0, y: 0)
         } completion: { _ in
             self.removeFromSuperview()
         }

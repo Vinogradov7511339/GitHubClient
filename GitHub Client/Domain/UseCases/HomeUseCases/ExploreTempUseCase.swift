@@ -9,7 +9,7 @@ import Foundation
 
 protocol ExploreTempUseCase {
     typealias RepositoriesHandler = ExploreTempRepository.RepositoriesHandler
-    func fetch(completion: @escaping RepositoriesHandler)
+    func fetch(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler)
 }
 
 final class ExploreTempUseCaseImpl {
@@ -23,7 +23,7 @@ final class ExploreTempUseCaseImpl {
 
 // MARK: - ExploreTempUseCase
 extension ExploreTempUseCaseImpl: ExploreTempUseCase {
-    func fetch(completion: @escaping RepositoriesHandler) {
-        exploreRepository.fetch(completion: completion)
+    func fetch(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler) {
+        exploreRepository.fetch(searchModel, completion: completion)
     }
 }

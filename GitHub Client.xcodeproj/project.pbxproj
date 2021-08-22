@@ -344,6 +344,12 @@
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
 		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
 		ADB60D5326D2CF4E0024479D /* UIImage+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5226D2CF4E0024479D /* UIImage+Error.swift */; };
+		ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5626D2D9A50024479D /* SearchResponseDTO.swift */; };
+		ADB60D5926D2DB880024479D /* SearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5826D2DB880024479D /* SearchRequestModel.swift */; };
+		ADB60D5B26D2E3AD0024479D /* ExploreLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */; };
+		ADB60D5D26D2E4F50024479D /* ExploreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */; };
+		ADB60D6026D2E5B00024479D /* PopularRepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5E26D2E5B00024479D /* PopularRepCell.swift */; };
+		ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D5F26D2E5B00024479D /* PopularRepCell.xib */; };
 		ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */; };
 		ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */; };
 		ADBC1AD326C3F70E000F9B88 /* ExtendedCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */; };
@@ -750,6 +756,12 @@
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
 		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
 		ADB60D5226D2CF4E0024479D /* UIImage+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Error.swift"; sourceTree = "<group>"; };
+		ADB60D5626D2D9A50024479D /* SearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseDTO.swift; sourceTree = "<group>"; };
+		ADB60D5826D2DB880024479D /* SearchRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestModel.swift; sourceTree = "<group>"; };
+		ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreLayout.swift; sourceTree = "<group>"; };
+		ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreAdapter.swift; sourceTree = "<group>"; };
+		ADB60D5E26D2E5B00024479D /* PopularRepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRepCell.swift; sourceTree = "<group>"; };
+		ADB60D5F26D2E5B00024479D /* PopularRepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularRepCell.xib; sourceTree = "<group>"; };
 		ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEndpoints.swift; sourceTree = "<group>"; };
 		ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseResponseDTO.swift; sourceTree = "<group>"; };
 		ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCommit.swift; sourceTree = "<group>"; };
@@ -940,7 +952,6 @@
 				ADC537FE26CBE3C8009B7A7E /* HomeAdapter.swift */,
 				ADC537FC26CBE028009B7A7E /* WidgetsHeaderView.swift */,
 				AD8722E726B83784004649A4 /* Favorites */,
-				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				ADBC1ACC26C3D778000F9B88 /* Cells */,
 			);
 			path = Home;
@@ -1585,8 +1596,12 @@
 		AD5C8E4226D2BE1D003E2F38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */,
+				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */,
+				AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */,
+				ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */,
+				ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */,
+				ADB60D6226D2E6900024479D /* PopularCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1985,6 +2000,7 @@
 				ADC538E926CD3746009B7A7E /* NotificationResponseDTO.swift */,
 				ADD8D25726CD659C00F6C17B /* PermissionsResponseDTO.swift */,
 				ADA3C85C26CFD7BE009F9130 /* BranchResponseDTO.swift */,
+				ADB60D5626D2D9A50024479D /* SearchResponseDTO.swift */,
 			);
 			path = GithubApi;
 			sourceTree = "<group>";
@@ -2059,6 +2075,15 @@
 				ADA8987026C811C200095B16 /* IssueCommentEventCell.xib */,
 			);
 			path = IssueCommentEventCell;
+			sourceTree = "<group>";
+		};
+		ADB60D6226D2E6900024479D /* PopularCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D5E26D2E5B00024479D /* PopularRepCell.swift */,
+				ADB60D5F26D2E5B00024479D /* PopularRepCell.xib */,
+			);
+			path = PopularCell;
 			sourceTree = "<group>";
 		};
 		ADBC1ACC26C3D778000F9B88 /* Cells */ = {
@@ -2156,6 +2181,7 @@
 				AD23E7AA26D11F9A009FEB27 /* CommentsRequestModel.swift */,
 				AD23E7AE26D1236A009FEB27 /* IssueRequestModel.swift */,
 				AD23E7B426D14BC8009FEB27 /* UserEventsRequestModel.swift */,
+				ADB60D5826D2DB880024479D /* SearchRequestModel.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -2364,6 +2390,7 @@
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
 				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
+				ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */,
 				AD3F071926C2FA6D00BC494E /* BaseDetailsCell.xib in Resources */,
 				ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */,
 				ADA7495926CE9A3400C8D475 /* CodePreviewCell.xib in Resources */,
@@ -2507,6 +2534,7 @@
 				ADA7494626CE580100C8D475 /* ProfileHeaderCell.swift in Sources */,
 				ADC538E226CD3250009B7A7E /* NotificationsFactory.swift in Sources */,
 				ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */,
+				ADB60D6026D2E5B00024479D /* PopularRepCell.swift in Sources */,
 				AD5C8E4E26D2C634003E2F38 /* ExploreTempEndpoints.swift in Sources */,
 				AD23E79B26D1094A009FEB27 /* FolderViewController.swift in Sources */,
 				AD23E7C426D1892B009FEB27 /* MyUsersViewController.swift in Sources */,
@@ -2535,6 +2563,7 @@
 				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
 				AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */,
 				AD9F81A526C7A0B200C320E6 /* CommentCell.swift in Sources */,
+				ADB60D5D26D2E4F50024479D /* ExploreAdapter.swift in Sources */,
 				AD39FE5726BAD67600F055FD /* LoginFlowCoordinator.swift in Sources */,
 				ADC538E026CD3003009B7A7E /* NotificationsAdapter.swift in Sources */,
 				AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */,
@@ -2559,6 +2588,7 @@
 				ADC538BB26CD1B75009B7A7E /* CommitsRequestModel.swift in Sources */,
 				AD2E262B26BC77AB00B25772 /* UserResponseDTO.swift in Sources */,
 				AD39FD9E26B874FB00F055FD /* CommitTableViewCell.swift in Sources */,
+				ADB60D5926D2DB880024479D /* SearchRequestModel.swift in Sources */,
 				ADA7494126CE306B00C8D475 /* ProfileViewController.swift in Sources */,
 				AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */,
 				AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */,
@@ -2674,6 +2704,7 @@
 				AD6B098C26C009DD004644D2 /* EventEndpoints.swift in Sources */,
 				ADC538D826CD27B5009B7A7E /* UIImage+TabBar.swift in Sources */,
 				ADA3C84D26CF9E9A009F9130 /* Int+Formatter.swift in Sources */,
+				ADB60D5B26D2E3AD0024479D /* ExploreLayout.swift in Sources */,
 				AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */,
 				ADC538D326CD1F62009B7A7E /* EventsRequestModel.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
@@ -2743,6 +2774,7 @@
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
+				ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */,
 				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,
