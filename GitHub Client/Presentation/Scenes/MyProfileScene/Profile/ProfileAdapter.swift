@@ -8,6 +8,8 @@
 import UIKit
 
 protocol ProfileAdapter: UITableViewDataSource {
+    var delegate: ProfileHeaderCellDelegate? { get set }
+
     func register(_ tableView: UITableView)
     func update(with profile: UserProfile)
 }
@@ -25,6 +27,8 @@ final class ProfileAdapterImpl: NSObject {
     ]
 
     private var profile: UserProfile?
+
+    weak var delegate: ProfileHeaderCellDelegate?
 }
 
 // MARK: - ProfileAdapter
@@ -57,6 +61,10 @@ extension ProfileAdapterImpl: ProfileAdapter {
 
         let cellManager = cellManages[sectionType]
         let cell = cellManager?.dequeueReusableCell(tableView: tableView, for: indexPath)
+        if let cell = cell as? ProfileHeaderCell {
+            cell.delegate = delegate
+        }
+
         cell?.populate(viewModel: viewModel)
         return cell ?? BaseTableViewCell(frame: .zero)
     }

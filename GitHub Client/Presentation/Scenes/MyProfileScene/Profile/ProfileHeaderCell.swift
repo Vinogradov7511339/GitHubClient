@@ -7,17 +7,33 @@
 
 import UIKit
 
+protocol ProfileHeaderCellDelegate: AnyObject {
+    func followersTouched()
+    func followingTouched()
+}
+
 class ProfileHeaderCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var infoStackView: UIStackView!
-    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+
+    weak var delegate: ProfileHeaderCellDelegate?
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
+    }
+
+    @IBAction func followersTouched(_ sender: UIButton) {
+        delegate?.followersTouched()
+    }
+
+    @IBAction func followingTouched(_ sender: UIButton) {
+        delegate?.followingTouched()
     }
 }
 
@@ -27,7 +43,8 @@ extension ProfileHeaderCell: ConfigurableCell {
         avatarImageView.set(url: viewModel.user.avatarUrl)
         nameLabel.text = viewModel.user.name
         loginLabel.text = viewModel.user.login
-        configureFollowButton()
+        followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
+        followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
         if let company = viewModel.company {
             add(company: company)
         }
@@ -69,14 +86,5 @@ extension ProfileHeaderCell: ConfigurableCell {
 
     func add(followers: Int, following: Int) {
 
-    }
-
-    func configureFollowButton() {
-        let title = NSLocalizedString("Follow", comment: "")
-        followButton.setTitle(title, for: .normal)
-        followButton.setTitleColor(.secondaryLabel, for: .normal)
-        followButton.cornerRadius = 8.0
-        followButton.borderColor = .secondaryLabel
-        followButton.borderWidth = 1.0
     }
 }

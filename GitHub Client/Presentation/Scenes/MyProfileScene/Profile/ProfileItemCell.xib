@@ -25,8 +25,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRQ-2H-jwI">
-                        <rect key="frame" x="56" y="11.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="64" y="11.5" width="42.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,7 +46,7 @@
                     <constraint firstAttribute="trailing" secondItem="EXV-89-zaq" secondAttribute="trailing" constant="16" id="IBE-es-Yha"/>
                     <constraint firstItem="gDi-37-0Xf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ORL-RN-Qg8"/>
                     <constraint firstItem="EXV-89-zaq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QE1-Qe-Pc9"/>
-                    <constraint firstItem="HRQ-2H-jwI" firstAttribute="leading" secondItem="gDi-37-0Xf" secondAttribute="trailing" constant="8" symbolic="YES" id="Zjx-XV-Sn8"/>
+                    <constraint firstItem="HRQ-2H-jwI" firstAttribute="leading" secondItem="gDi-37-0Xf" secondAttribute="trailing" constant="16" id="Zjx-XV-Sn8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

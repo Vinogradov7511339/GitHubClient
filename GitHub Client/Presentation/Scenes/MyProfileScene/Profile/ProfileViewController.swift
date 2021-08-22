@@ -21,6 +21,7 @@ final class ProfileViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGroupedBackground
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.dataSource = adapter
         tableView.delegate = self
@@ -29,6 +30,7 @@ final class ProfileViewController: UIViewController {
 
     private lazy var adapter: ProfileAdapter = {
         let adapter = ProfileAdapterImpl()
+        adapter.delegate = self
         return adapter
     }()
 
@@ -64,6 +66,17 @@ private extension ProfileViewController {
     }
 }
 
+// MARK: - ProfileHeaderCellDelegate
+extension ProfileViewController: ProfileHeaderCellDelegate {
+    func followingTouched() {
+        viewModel.showFollowing()
+    }
+
+    func followersTouched() {
+        viewModel.showFollowers()
+    }
+}
+
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -72,6 +85,15 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.section == 0 ? UITableView.automaticDimension : 56.0
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 1 ? 30.0 : 0.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 1 else { return nil }
+        return UIView()
     }
 }
 
