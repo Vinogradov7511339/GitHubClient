@@ -43,7 +43,8 @@ final class AppDIContainer {
         return LoginSceneDIContainer(dependencies: dependencies)
     }
 
-    func makeSettingsDependencies() -> SettingsCoordinatorDependencies {
-        SettingsDIContainer()
+    func makeSettingsDependencies(logoutAction: @escaping () -> Void) -> SettingsCoordinatorDependencies {
+        let dependencies = SettingsDIContainer.Dependencies.init(logout: logoutAction)
+        return SettingsDIContainer(dependencies)
     }
 }

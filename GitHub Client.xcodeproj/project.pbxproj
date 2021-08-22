@@ -185,6 +185,8 @@
 		AD5C8E2726D29E28003E2F38 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E2626D29E28003E2F38 /* SettingsCoordinator.swift */; };
 		AD5C8E2926D29F1C003E2F38 /* SettingsDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E2826D29F1C003E2F38 /* SettingsDIContainer.swift */; };
 		AD5C8E2B26D2A03F003E2F38 /* SettingsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E2A26D2A03F003E2F38 /* SettingsFactory.swift */; };
+		AD5C8E2E26D2A531003E2F38 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E2D26D2A531003E2F38 /* AccountViewController.swift */; };
+		AD5C8E3126D2A755003E2F38 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3026D2A755003E2F38 /* AccountViewModel.swift */; };
 		AD642CDC26ADD287004FCA2D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */; };
 		AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */; };
 		AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5526C96FF700432E13 /* HomeVC.swift */; };
@@ -574,6 +576,8 @@
 		AD5C8E2626D29E28003E2F38 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		AD5C8E2826D29F1C003E2F38 /* SettingsDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDIContainer.swift; sourceTree = "<group>"; };
 		AD5C8E2A26D2A03F003E2F38 /* SettingsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFactory.swift; sourceTree = "<group>"; };
+		AD5C8E2D26D2A531003E2F38 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		AD5C8E3026D2A755003E2F38 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		AD642CDA26ADD287004FCA2D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AD642CDB26ADD287004FCA2D /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		AD65FA5526C96FF700432E13 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -838,8 +842,7 @@
 				AD5C8E2C26D2A395003E2F38 /* MainSettings */,
 				ADA7495A26CE9ABB00C8D475 /* CodeOptions */,
 				AD5C8E1D26D29452003E2F38 /* old */,
-				AD5C8E2026D29633003E2F38 /* AccountCell.swift */,
-				AD5C8E2126D29633003E2F38 /* AccountCell.xib */,
+				AD5C8E3226D2AD01003E2F38 /* AccountSettings */,
 			);
 			path = SettingsFlow;
 			sourceTree = "<group>";
@@ -1489,11 +1492,30 @@
 		AD5C8E2C26D2A395003E2F38 /* MainSettings */ = {
 			isa = PBXGroup;
 			children = (
+				AD5C8E2F26D2A73E003E2F38 /* AccountCell */,
 				AD5C8E2426D297B0003E2F38 /* SettingsViewModel.swift */,
 				AD5C8E1E26D29472003E2F38 /* SettingsAdapter.swift */,
 				AD5C8E1B26D29314003E2F38 /* SettingsViewController.swift */,
 			);
 			path = MainSettings;
+			sourceTree = "<group>";
+		};
+		AD5C8E2F26D2A73E003E2F38 /* AccountCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C8E2026D29633003E2F38 /* AccountCell.swift */,
+				AD5C8E2126D29633003E2F38 /* AccountCell.xib */,
+			);
+			path = AccountCell;
+			sourceTree = "<group>";
+		};
+		AD5C8E3226D2AD01003E2F38 /* AccountSettings */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C8E2D26D2A531003E2F38 /* AccountViewController.swift */,
+				AD5C8E3026D2A755003E2F38 /* AccountViewModel.swift */,
+			);
+			path = AccountSettings;
 			sourceTree = "<group>";
 		};
 		AD642CD926ADD264004FCA2D /* UserCell */ = {
@@ -2432,6 +2454,7 @@
 				ADDD512026C7DEC700F74240 /* EventsAdapter.swift in Sources */,
 				ADA3C85126CFD1F7009F9130 /* BranchesViewController.swift in Sources */,
 				AD23E7BD26D17D9D009FEB27 /* MyRepositoriesViewController.swift in Sources */,
+				AD5C8E2E26D2A531003E2F38 /* AccountViewController.swift in Sources */,
 				ADA1692C26C568810040B635 /* CellWithCollection.swift in Sources */,
 				AD5C8E1F26D29472003E2F38 /* SettingsAdapter.swift in Sources */,
 				AD6B099226C014F7004644D2 /* Event.swift in Sources */,
@@ -2553,6 +2576,7 @@
 				AD23E77C26D0F788009FEB27 /* PRListViewController.swift in Sources */,
 				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
 				AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */,
+				AD5C8E3126D2A755003E2F38 /* AccountViewModel.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD6B098C26C009DD004644D2 /* EventEndpoints.swift in Sources */,
 				ADC538D826CD27B5009B7A7E /* UIImage+TabBar.swift in Sources */,

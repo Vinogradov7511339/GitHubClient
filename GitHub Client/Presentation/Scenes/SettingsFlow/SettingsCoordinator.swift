@@ -8,7 +8,10 @@
 import UIKit
 
 protocol SettingsCoordinatorDependencies {
-    func settingsViewController() -> UIViewController
+    var logout: () -> Void { get }
+
+    func settingsViewController(_ actions: SettingsActions) -> UIViewController
+    func accountViewController(_ actions: AccountActions) -> UIViewController
 }
 
 final class SettingsCoordinator {
@@ -23,7 +26,17 @@ final class SettingsCoordinator {
     }
 
     func start() {
-        let controller = dependencies.settingsViewController()
+        let actions = SettingsActions(showAccount: openAccountSettings)
+        let controller = dependencies.settingsViewController(actions)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+// MARK: - Coordinate
+private extension SettingsCoordinator {
+    func openAccountSettings() {
+        let actions = AccountActions(logout: dependencies.logout)
+        let controller = dependencies.accountViewController(actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

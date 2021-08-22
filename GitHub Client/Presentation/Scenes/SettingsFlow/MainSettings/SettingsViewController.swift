@@ -26,6 +26,7 @@ final class SettingsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.dataSource = adapter
+        tableView.delegate = self
         return tableView
     }()
 
@@ -46,6 +47,19 @@ final class SettingsViewController: UIViewController {
         activateConstraints()
         configureNavBar()
         adapter.register(tableView)
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension SettingsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        70.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
     }
 }
 

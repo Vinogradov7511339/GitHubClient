@@ -7,10 +7,13 @@
 
 import UIKit
 
-struct SettingsActions {}
+struct SettingsActions {
+    var showAccount: () -> Void
+}
 
 protocol SettingsViewModelInput {
     func viewDidLoad()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol SettingsViewModelOutput {
@@ -25,9 +28,15 @@ final class SettingsViewModelImpl: SettingsViewModel {
 
     var profile: Observable<AuthenticatedUser>
 
+    // MARK: - Private variables
+
+    private let actions: SettingsActions
+
     // MARK: - Lifecycle
 
-    init() {
+    init(actions: SettingsActions) {
+        self.actions = actions
+
         let avatarUrl = URL(string: "https://avatars.githubusercontent.com/u/26507891?v=4")!
         let mockUser = User(id: 1, avatarUrl: avatarUrl, login: "SashKo", name: "Sashik", bio: "Bio")
         let mockUserProfile = UserProfile(user: mockUser, status: nil, location: nil, company: nil, userBlogUrl: nil, userEmail: nil, followingCount: 0, followersCount: 0, gistsCount: 0, repositoriesCount: 0)
@@ -39,4 +48,13 @@ final class SettingsViewModelImpl: SettingsViewModel {
 // MARK: - Input
 extension SettingsViewModelImpl {
     func viewDidLoad() {}
+
+    func didSelectItem(at indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            actions.showAccount()
+        default:
+            break
+        }
+    }
 }

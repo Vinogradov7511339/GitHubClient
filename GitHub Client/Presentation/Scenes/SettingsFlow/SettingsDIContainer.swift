@@ -9,16 +9,26 @@ import UIKit
 
 final class SettingsDIContainer {
 
-    private let settingsFactory: SettingsFactory
+    struct Dependencies {
+        var logout: () -> Void
+    }
 
-    init() {
+    private let settingsFactory: SettingsFactory
+    var logout: () -> Void
+
+    init(_ dependencies: Dependencies) {
         settingsFactory = SettingsFactoryImpl()
+        self.logout = dependencies.logout
     }
 }
 
 // MARK: - SettingsCoordinatorDependencies
 extension SettingsDIContainer: SettingsCoordinatorDependencies {
-    func settingsViewController() -> UIViewController {
-        settingsFactory.settingsViewController()
+    func settingsViewController(_ actions: SettingsActions) -> UIViewController {
+        settingsFactory.settingsViewController(actions)
+    }
+
+    func accountViewController(_ actions: AccountActions) -> UIViewController {
+        settingsFactory.accountViewController(actions)
     }
 }

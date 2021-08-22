@@ -39,6 +39,7 @@ final class AppCoordinator {
     }
 
     func startLoginFlow() {
+        UserStorage.shared.clearStorage()
         let dependency = LoginSceneDIContainer.Dependencies.init(
             dataTransferService: appDIContainer.apiDataTransferService,
             userLoggedIn: startMainFlow)
@@ -48,7 +49,7 @@ final class AppCoordinator {
     }
 
     func openSettings(in navigation: UINavigationController) {
-        let dependency = appDIContainer.makeSettingsDependencies()
+        let dependency = appDIContainer.makeSettingsDependencies(logoutAction: startLoginFlow)
         let flow = SettingsCoordinator(in: navigation, with: dependency)
         flow.start()
     }
