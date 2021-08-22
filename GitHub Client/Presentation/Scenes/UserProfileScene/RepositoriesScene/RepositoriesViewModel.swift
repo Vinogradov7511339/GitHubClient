@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum RepositoriesViewModelType {
+    case all
+    case starred
+}
+
 struct RepositoriesActions {
     let showRepository: (Repository) -> Void
 }
@@ -30,22 +35,24 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
     var title: Observable<String>
 
     // MARK: - Private
+    private let user: User
     private let userUseCase: UserProfileUseCase
-    private let type: RepositoriesType
+    private let type: RepositoriesViewModelType
     private let actions: RepositoriesActions
     private var lastPage: Int?
     private var currentPage: Int = 1
 
-    init(userUseCase: UserProfileUseCase, type: RepositoriesType, actions: RepositoriesActions) {
+    init(user: User, userUseCase: UserProfileUseCase, type: RepositoriesViewModelType, actions: RepositoriesActions) {
+        self.user = user
         self.userUseCase = userUseCase
         self.type = type
         self.actions = actions
         self.title = Observable("")
 
         switch type {
-        case .userRepositories(_):
+        case .all:
             title.value = NSLocalizedString("Repositories", comment: "")
-        case .userStarred(_):
+        case .starred:
             title.value = NSLocalizedString("Starred", comment: "")
         }
     }
@@ -65,21 +72,20 @@ extension RepositoriesViewModelImpl {
 // MARK: - Private
 private extension RepositoriesViewModelImpl {
     func fetch() {
+        let model = UsersRequestModel(user: user, page: currentPage)
         switch type {
-        case .userRepositories(let user):
-            let model = UsersRequestModel(user: user, page: currentPage)
+        case .all:
             userUseCase.fetchRepositories(request: model, completion: completion(_:))
-        case .userStarred(let user):
-            let model = UsersRequestModel(user: user, page: currentPage)
+        case .starred:
             userUseCase.fetchStarred(request: model, completion: completion(_:))
         }
     }
 
-    func completion(_ result: Result<RepListResponseModel, Error>) {
+    func completion(_ result: Result<ListResponseModel<Repository>, Error>) {
         switch result {
         case .success(let model):
             self.lastPage = model.lastPage
-            self.repositories.value.append(contentsOf: model.repositories)
+            self.repositories.value.append(contentsOf: model.items)
         case .failure(let error):
             print(error)
         }

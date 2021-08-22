@@ -11,7 +11,7 @@ protocol UserRepository {
 
     // MARK: - Users
 
-    typealias UsersHandler = (Result<UsersResponseModel, Error>) -> Void
+    typealias UsersHandler = (Result<ListResponseModel<User>, Error>) -> Void
     func fetchFollowers(request: UsersRequestModel, completion: @escaping UsersHandler)
     func fetchFollowing(request: UsersRequestModel, completion: @escaping UsersHandler)
 

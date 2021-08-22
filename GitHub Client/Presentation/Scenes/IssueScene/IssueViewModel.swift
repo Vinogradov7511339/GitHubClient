@@ -65,10 +65,10 @@ private extension IssueViewModelImpl {
         }
     }
 
-    func updateComments(_ model: CommentsResponseModel) {
+    func updateComments(_ model: ListResponseModel<Comment>) {
         self.lastPage = model.lastPage
         self.currentPage += 1
-        self.comments.value.append(contentsOf: model.comments)
+        self.comments.value.append(contentsOf: model.items)
     }
 
     func handle(_ error: Error) {}

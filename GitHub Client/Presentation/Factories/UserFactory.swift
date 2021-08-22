@@ -61,19 +61,19 @@ private extension UsersListFactoryImpl {
     }
 
     func followersViewModel(for user: User, actions: UsersListActions) -> UsersListViewModel {
-        UsersListViewModelImpl.init(userUseCase: userUseCase, type: .userFollowers(user), actions: actions)
+        UsersListViewModelImpl.init(user: user, userUseCase: userUseCase, type: .followers, actions: actions)
     }
 
     func followingViewModel(for user: User, actions: UsersListActions) -> UsersListViewModel {
-        UsersListViewModelImpl.init(userUseCase: userUseCase, type: .userFollowings(user), actions: actions)
+        UsersListViewModelImpl.init(user: user, userUseCase: userUseCase, type: .following, actions: actions)
     }
 
     func repositoriesViewModel(for user: User, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(userUseCase: userUseCase, type: .userRepositories(user), actions: actions)
+        RepositoriesViewModelImpl(user: user, userUseCase: userUseCase, type: .all, actions: actions)
     }
 
     func starredViewModel(for user: User, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(userUseCase: userUseCase, type: .userStarred(user), actions: actions)
+        RepositoriesViewModelImpl(user: user, userUseCase: userUseCase, type: .starred, actions: actions)
     }
 
     var userUseCase: UserProfileUseCase {

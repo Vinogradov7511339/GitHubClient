@@ -85,11 +85,11 @@ private extension MyRepositoriesViewModelImpl {
         }
     }
 
-    func completion(_ result: Result<RepListResponseModel, Error>) {
+    func completion(_ result: Result<ListResponseModel<Repository>, Error>) {
         switch result {
         case .success(let response):
             self.lastPage = response.lastPage
-            self.repositories.value.append(contentsOf: response.repositories)
+            self.repositories.value.append(contentsOf: response.items)
         case .failure(let error):
             self.handle(error)
         }

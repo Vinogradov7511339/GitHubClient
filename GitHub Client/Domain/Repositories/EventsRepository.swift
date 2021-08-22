@@ -11,6 +11,6 @@ protocol EventsRepository {
 
     // MARK: - Events
 
-    typealias EventsHandler = (Result<EventsResponseModel, Error>) -> Void
+    typealias EventsHandler = (Result<ListResponseModel<Event>, Error>) -> Void
     func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
 }

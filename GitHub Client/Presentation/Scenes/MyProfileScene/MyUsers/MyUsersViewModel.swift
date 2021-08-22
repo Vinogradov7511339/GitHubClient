@@ -85,7 +85,7 @@ private extension MyUsersViewModelImpl {
         }
     }
 
-    func completion(_ result: Result<UsersResponseModel, Error>) {
+    func completion(_ result: Result<ListResponseModel<User>, Error>) {
         switch result {
         case .success(let response):
             self.lastPage = response.lastPage

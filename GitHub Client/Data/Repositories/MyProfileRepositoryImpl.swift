@@ -43,7 +43,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let followers = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = UsersResponseModel(items: followers, lastPage: page)
+                let model = ListResponseModel<User>(items: followers, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -58,7 +58,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let following = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = UsersResponseModel(items: following, lastPage: page)
+                let model = ListResponseModel<User>(items: following, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -76,7 +76,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let repositories = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = RepListResponseModel(repositories: repositories, lastPage: page)
+                let model = ListResponseModel<Repository>(items: repositories, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -91,7 +91,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let starred = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = RepListResponseModel(repositories: starred, lastPage: page)
+                let model = ListResponseModel<Repository>(items: starred, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -109,7 +109,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = EventsResponseModel(events: events, lastPage: page)
+                let model = ListResponseModel<Event>(items: events, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -124,7 +124,7 @@ extension MyProfileRepositoryImpl {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = EventsResponseModel(events: events, lastPage: page)
+                let model = ListResponseModel<Event>(items: events, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

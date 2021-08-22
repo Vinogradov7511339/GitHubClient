@@ -27,7 +27,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let repList = response.model.compactMap { $0 .toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = RepListResponseModel(repositories: repList, lastPage: page)
+                let model = ListResponseModel<Repository>(items: repList, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -61,7 +61,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let branches = response.model.map { $0 .toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = BranchesResponseModel(branches: branches, lastPage: page)
+                let model = ListResponseModel<Branch>(items: branches, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -79,7 +79,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.map { $0.toDomain() }
-                let model = CommitsResponseModel(items: items, lastPage: lastPage)
+                let model = ListResponseModel<ExtendedCommit>(items: items, lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -182,7 +182,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.compactMap { $0.toDomain() }
-                let model = PRListResponseModel(items: items, lastPage: lastPage)
+                let model = ListResponseModel<PullRequest>(items: items, lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -217,7 +217,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let releases = response.model.map { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = ReleasesResponseModel(items: releases, lastPage: page)
+                let model = ListResponseModel<Release>(items: releases, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -254,7 +254,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let watchers = response.model.map { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = WatchersResponseModel(users: watchers, lastPage: page)
+                let model = ListResponseModel<User>(items: watchers, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -272,7 +272,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let forks = response.model.compactMap { $0.toDomain() }
                 let page = response.httpResponse?.lastPage ?? 1
-                let model = ForksResponseModel(forks: forks, lastPage: page)
+                let model = ListResponseModel<Repository>(items: forks, lastPage: page)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

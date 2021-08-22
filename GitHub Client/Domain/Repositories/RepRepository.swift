@@ -11,7 +11,7 @@ protocol RepRepository {
 
     // MARK: - Repositories
 
-    typealias RepListHandler = (Result<RepListResponseModel, Error>) -> Void
+    typealias RepListHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
     func fetchRepList(request: RepListRequestModel, completion: @escaping RepListHandler)
 
     typealias RepHandler = (Result<Repository, Error>) -> Void
@@ -19,12 +19,12 @@ protocol RepRepository {
 
     // MARK: - Branches
 
-    typealias BranchesHandler = (Result<BranchesResponseModel, Error>) -> Void
+    typealias BranchesHandler = (Result<ListResponseModel<Branch>, Error>) -> Void
     func fetchBranches(request: BranchesRequestModel, completion: @escaping BranchesHandler)
 
     // MARK: - Commits
 
-    typealias CommitsHandler = (Result<CommitsResponseModel, Error>) -> Void
+    typealias CommitsHandler = (Result<ListResponseModel<ExtendedCommit>, Error>) -> Void
     func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
 
     typealias CommitHandler = (Result<ExtendedCommit, Error>) -> Void
@@ -44,12 +44,12 @@ protocol RepRepository {
     typealias IssuesHandler = (Result<IssuesResponseModel, Error>) -> Void
     func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler)
 
-    typealias IssueHandler = (Result<IssueResponseModel, Error>) -> Void
+    typealias IssueHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
     func fetchIssue(request: IssueRequestModel, completion: @escaping IssueHandler)
 
     // MARK: - Pull Requests
 
-    typealias PRListHandler = (Result<PRListResponseModel, Error>) -> Void
+    typealias PRListHandler = (Result<ListResponseModel<PullRequest>, Error>) -> Void
     func fetchPRList(request: PRListRequestModel, completion: @escaping PRListHandler)
 
     typealias PRHandler = (Result<PullRequest, Error>) -> Void
@@ -57,7 +57,7 @@ protocol RepRepository {
 
     // MARK: - Releases
 
-    typealias ReleasesHandler = (Result<ReleasesResponseModel, Error>) -> Void
+    typealias ReleasesHandler = (Result<ListResponseModel<Release>, Error>) -> Void
     func fetchReleases(request: ReleasesRequestModel, completion: @escaping ReleasesHandler)
 
     typealias ReleaseHandler = (Result<Release, Error>) -> Void
@@ -70,17 +70,17 @@ protocol RepRepository {
 
     // MARK: - Watchers
 
-    typealias WatchersHandler = (Result<WatchersResponseModel, Error>) -> Void
+    typealias WatchersHandler = (Result<ListResponseModel<User>, Error>) -> Void
     func fetchWatchers(request: WatchersRequestModel, completion: @escaping WatchersHandler)
 
     // MARK: - Forks
 
-    typealias ForksHandler = (Result<ForksResponseModel, Error>) -> Void
+    typealias ForksHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
     func fetchForks(request: ForksRequestModel, completion: @escaping ForksHandler)
 
     // MARK: - Comments
 
-    typealias CommentsHandler = (Result<CommentsResponseModel, Error>) -> Void
+    typealias CommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
     func fetchIssueComments(request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler)
     func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler)
     func fetchCommitComments(request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler)

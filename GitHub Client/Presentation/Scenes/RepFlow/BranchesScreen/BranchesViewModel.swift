@@ -65,7 +65,7 @@ private extension BranchesViewModelImpl {
             switch result {
             case .success(let response):
                 self.lastPage = response.lastPage
-                self.branches.value.append(contentsOf: response.branches)
+                self.branches.value.append(contentsOf: response.items)
             case .failure(let error):
                 self.handleError(error)
             }
