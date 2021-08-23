@@ -8,6 +8,9 @@
 import Foundation
 
 protocol ExploreTempRepository {
-    typealias RepositoriesHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
-    func fetch(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler)
+    typealias RepositoriesHandler = (Result<SearchResponseModel<Repository>, Error>) -> Void
+    func fetchRepositories(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler)
+
+    typealias UsersHandler = (Result<SearchResponseModel<User>, Error>) -> Void
+    func fetchUsers(_ searchModel: SearchRequestModel, completion: @escaping UsersHandler)
 }

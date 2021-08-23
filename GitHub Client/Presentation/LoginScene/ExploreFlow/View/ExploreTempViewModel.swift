@@ -15,6 +15,7 @@ protocol ExploreTempViewModelInput {
 protocol ExploreTempViewModelOutput {
     var error: Observable<Error?> { get }
     var popular: Observable<[Repository]> { get }
+    var searchResultsViewModel: SearchResultViewModel { get }
 }
 
 typealias ExploreTempViewModel = ExploreTempViewModelInput & ExploreTempViewModelOutput
@@ -25,6 +26,7 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 
     var error: Observable<Error?> = Observable(nil)
     var popular: Observable<[Repository]> = Observable([])
+    var searchResultsViewModel: SearchResultViewModel
 
     // MARK: - Private variables
 
@@ -34,14 +36,14 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 
     init(useCase: ExploreTempUseCase) {
         self.useCase = useCase
+        searchResultsViewModel = SearchResultViewModelImpl(useCase: useCase)
     }
 }
 
 // MARK: - Input
 extension ExploreTempViewModelImpl {
     func viewDidLoad() {
-        let model = SearchRequestModel(searchType: .repositories)
-        useCase.fetch(model) { result in
+        useCase.mostStarred { result in
             switch result {
             case .success(let response):
                 self.popular.value = response.items

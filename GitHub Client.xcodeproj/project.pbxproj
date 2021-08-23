@@ -350,6 +350,12 @@
 		ADB60D5D26D2E4F50024479D /* ExploreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */; };
 		ADB60D6026D2E5B00024479D /* PopularRepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D5E26D2E5B00024479D /* PopularRepCell.swift */; };
 		ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D5F26D2E5B00024479D /* PopularRepCell.xib */; };
+		ADB60D6426D37DE10024479D /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */; };
+		ADB60D6626D38B5E0024479D /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D6526D38B5E0024479D /* SearchResponseModel.swift */; };
+		ADB60D6826D38F2E0024479D /* ResultsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */; };
+		ADB60D6B26D3901A0024479D /* SearchRepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D6926D3901A0024479D /* SearchRepCell.swift */; };
+		ADB60D6C26D3901A0024479D /* SearchRepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D6A26D3901A0024479D /* SearchRepCell.xib */; };
+		ADB60D6F26D392220024479D /* SearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D6E26D392220024479D /* SearchAdapter.swift */; };
 		ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */; };
 		ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */; };
 		ADBC1AD326C3F70E000F9B88 /* ExtendedCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */; };
@@ -762,6 +768,12 @@
 		ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreAdapter.swift; sourceTree = "<group>"; };
 		ADB60D5E26D2E5B00024479D /* PopularRepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRepCell.swift; sourceTree = "<group>"; };
 		ADB60D5F26D2E5B00024479D /* PopularRepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularRepCell.xib; sourceTree = "<group>"; };
+		ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		ADB60D6526D38B5E0024479D /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
+		ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsAdapter.swift; sourceTree = "<group>"; };
+		ADB60D6926D3901A0024479D /* SearchRepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepCell.swift; sourceTree = "<group>"; };
+		ADB60D6A26D3901A0024479D /* SearchRepCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRepCell.xib; sourceTree = "<group>"; };
+		ADB60D6E26D392220024479D /* SearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAdapter.swift; sourceTree = "<group>"; };
 		ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEndpoints.swift; sourceTree = "<group>"; };
 		ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseResponseDTO.swift; sourceTree = "<group>"; };
 		ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCommit.swift; sourceTree = "<group>"; };
@@ -2086,6 +2098,15 @@
 			path = PopularCell;
 			sourceTree = "<group>";
 		};
+		ADB60D6D26D391B80024479D /* ResultRepCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D6926D3901A0024479D /* SearchRepCell.swift */,
+				ADB60D6A26D3901A0024479D /* SearchRepCell.xib */,
+			);
+			path = ResultRepCell;
+			sourceTree = "<group>";
+		};
 		ADBC1ACC26C3D778000F9B88 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2100,6 +2121,10 @@
 			isa = PBXGroup;
 			children = (
 				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
+				ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */,
+				ADB60D6E26D392220024479D /* SearchAdapter.swift */,
+				ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */,
+				ADB60D6D26D391B80024479D /* ResultRepCell */,
 			);
 			path = SearchResults;
 			sourceTree = "<group>";
@@ -2190,6 +2215,7 @@
 			isa = PBXGroup;
 			children = (
 				AD23E7D326D1957C009FEB27 /* ListResponseModel.swift */,
+				ADB60D6526D38B5E0024479D /* SearchResponseModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -2357,6 +2383,7 @@
 				ADA68BAB26B55621004AC06C /* octocat_gray-4.png in Resources */,
 				AD20E4DF26A8B313003BB5F1 /* AppIconPinkLight@2x-4.png in Resources */,
 				ADA68BAD26B55621004AC06C /* octocat_gray@3x-1.png in Resources */,
+				ADB60D6C26D3901A0024479D /* SearchRepCell.xib in Resources */,
 				ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */,
 				AD20E4D826A8B313003BB5F1 /* AppIconPinkLight@3x-1.png in Resources */,
 				AD20E57026AB4F39003BB5F1 /* SearchTypeTableViewCell.xib in Resources */,
@@ -2569,6 +2596,7 @@
 				AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */,
 				AD5C8E2926D29F1C003E2F38 /* SettingsDIContainer.swift in Sources */,
 				AD6B09A726C2767D004644D2 /* IssueUseCase.swift in Sources */,
+				ADB60D6826D38F2E0024479D /* ResultsAdapter.swift in Sources */,
 				AD23E7B726D15C8A009FEB27 /* UserEventsViewController.swift in Sources */,
 				ADDD512026C7DEC700F74240 /* EventsAdapter.swift in Sources */,
 				ADA3C85126CFD1F7009F9130 /* BranchesViewController.swift in Sources */,
@@ -2712,6 +2740,7 @@
 				AD6B098026BFFE1E004644D2 /* EventsSceneFactory.swift in Sources */,
 				ADBC1ADD26C4FD94000F9B88 /* ProfileCardView.swift in Sources */,
 				AD5C8E4426D2BE32003E2F38 /* ExploreDIContainer.swift in Sources */,
+				ADB60D6626D38B5E0024479D /* SearchResponseModel.swift in Sources */,
 				AD23E77F26D0F7B8009FEB27 /* PRListViewModel.swift in Sources */,
 				ADA1693E26C593F10040B635 /* UserCell.swift in Sources */,
 				AD23E77826D0F183009FEB27 /* PRListRequestModel.swift in Sources */,
@@ -2741,6 +2770,7 @@
 				AD6B095E26BEFC81004644D2 /* DataTransferErrorResolver.swift in Sources */,
 				AD20E53D26AAA5F1003BB5F1 /* NotificationsViewController.swift in Sources */,
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
+				ADB60D6B26D3901A0024479D /* SearchRepCell.swift in Sources */,
 				ADA3C84B26CF96A8009F9130 /* UIImage+RepListItem.swift in Sources */,
 				AD6E417726C6532200CEF3B0 /* RepositoriesAdapter.swift in Sources */,
 				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
@@ -2753,6 +2783,7 @@
 				AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
+				ADB60D6F26D392220024479D /* SearchAdapter.swift in Sources */,
 				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
 				ADA7495E26CEBEA600C8D475 /* UIImage+Repository.swift in Sources */,
 				ADA7495126CE989B00C8D475 /* CodeOptionsViewController.swift in Sources */,
@@ -2770,6 +2801,7 @@
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
 				AD5C8E4826D2C252003E2F38 /* ExploreTempUseCase.swift in Sources */,
 				ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */,
+				ADB60D6426D37DE10024479D /* SearchResultViewModel.swift in Sources */,
 				ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,

@@ -11,7 +11,17 @@ struct ExploreTempEndpoints {
     static func repositories(_ model: SearchRequestModel) ->
     Endpoint<SearchResponseDTO<RepositoryResponseDTO>> {
         var params: QueryType = [:]
-        params["q"] = "stars:>10000"
+        params["q"] = model.searchText
+        params["order"] = model.order.rawValue
+        params["sort"] = model.sort.rawValue
+        params["per_page"] = "5"
+        return Endpoint(path: "search/\(model.searchType.rawValue)", queryParametersEncodable: params)
+    }
+
+    static func users(_ model: SearchRequestModel) ->
+    Endpoint<SearchResponseDTO<UserResponseDTO>> {
+        var params: QueryType = [:]
+        params["q"] = model.searchText
         params["order"] = model.order.rawValue
         params["sort"] = model.sort.rawValue
         params["per_page"] = "5"

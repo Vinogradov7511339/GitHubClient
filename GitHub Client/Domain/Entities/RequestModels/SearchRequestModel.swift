@@ -11,6 +11,7 @@ struct SearchRequestModel {
     enum SearchType: String {
         case repositories
         case issues
+        case users
     }
 
     enum Order: String {
@@ -23,6 +24,7 @@ struct SearchRequestModel {
     }
 
     let searchType: SearchType
+    let searchText: String
     let order: Order = .desc
     let sort: Sort = .created
 }

@@ -18,15 +18,35 @@ final class ExploreTempRepositoryImpl {
 
 // MARK: - ExploreTempRepository
 extension ExploreTempRepositoryImpl: ExploreTempRepository {
-    func fetch(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler) {
+    func fetchRepositories(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler) {
         let endpoint = ExploreTempEndpoints.repositories(searchModel)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                print(response)
                 let repositories = response.model.items.compactMap { $0.toDomain() }
                 let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Repository>(items: repositories, lastPage: lastPage)
+                let total = response.model.totalCount
+                let model = SearchResponseModel<Repository>(items: repositories,
+                                                            lastPage: lastPage,
+                                                            total: total)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchUsers(_ searchModel: SearchRequestModel, completion: @escaping UsersHandler) {
+        let endpoint = ExploreTempEndpoints.users(searchModel)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let users = response.model.items.compactMap { $0.toDomain() }
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let total = response.model.totalCount
+                let model = SearchResponseModel<User>(items: users,
+                                                      lastPage: lastPage,
+                                                      total: total)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

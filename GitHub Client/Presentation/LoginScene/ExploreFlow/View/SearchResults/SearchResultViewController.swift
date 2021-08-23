@@ -8,20 +8,34 @@
 import UIKit
 
 class SearchResultViewController: UIViewController {
-    
-    enum State {
-        case typing(text: String)
-        case empty
+
+    // MARK: - Create
+
+    static func create(with viewModel: SearchResultViewModel) -> SearchResultViewController {
+        let viewController = SearchResultViewController()
+        viewController.viewModel = viewModel
+        return viewController
     }
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+
+    // MARK: - Views
+
+    private lazy var searchTableView: UITableView = {
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGroupedBackground
-        tableView.delegate = self
-        tableView.dataSource = self
-    
         tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = searchAdapter
+        return tableView
+    }()
+
+    private lazy var resultsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemGroupedBackground
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = resultsAdapter
         return tableView
     }()
     
@@ -32,93 +46,74 @@ class SearchResultViewController: UIViewController {
         return view
     }()
 
-    var text: String = "" {
-        didSet {
-            if !text.isEmpty {
-                state = .typing(text: text)
-            } else {
-                state = .empty
-            }
-        }
-    }
+    // MARK: - Private variables
 
-    private var recentSearches: [String] = []
-    private lazy var searchingViewModels: [SearchTypeCellViewModel] = models()
-    private let cellManager = TableCellManager.create(cellType: SearchTypeTableViewCell.self)
+    private var viewModel: SearchResultViewModel!
 
-    private var state: State = .empty {
-        didSet {
-            stateDidChanged()
-        }
-    }
+    private lazy var searchAdapter: SearchAdapter = {
+        let adapter = SearchAdapterImpl()
+        return adapter
+    }()
+
+    private lazy var resultsAdapter: ResultsAdapter = {
+        let adapter = ResultsAdapterImpl()
+        return adapter
+    }()
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
 
-        cellManager.register(tableView: tableView)
-    }
+        searchAdapter.register(searchTableView)
+        resultsAdapter.register(resultsTableView)
 
-    private func stateDidChanged() {
-        switch state {
-        case .empty:
-            emptyView.isHidden = !recentSearches.isEmpty
-            tableView.isHidden = recentSearches.isEmpty
-        case .typing(_):
-            emptyView.isHidden = true
-            tableView.isHidden = false
-        }
-        tableView.reloadData()
-    }
-
-    private func models() -> [SearchTypeCellViewModel] {
-        return [
-            SearchTypeCellViewModel(image: UIImage.issue, baseText: "Repositories with "),
-            SearchTypeCellViewModel(image: UIImage.issue, baseText: "Issues with "),
-            SearchTypeCellViewModel(image: UIImage.pullRequest, baseText: "Pull Requests with "),
-            SearchTypeCellViewModel(image: UIImage.issue, baseText: "People with "),
-            SearchTypeCellViewModel(image: UIImage.issue, baseText: "Organizations with "),
-            SearchTypeCellViewModel(image: UIImage.issue, baseText: "Jump to ")
-        ]
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension SearchResultViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        if !searchController.isActive {
-            return
+// MARK: - Binding
+private extension SearchResultViewController {
+    func bind(to viewModel: SearchResultViewModel) {
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
+    }
+
+    func updateState(_ state: SearchState) {
+        switch state {
+        case .empty:
+            emptyView.isHidden = false
+            searchTableView.isHidden = true
+            resultsTableView.isHidden = true
+
+        case .results(let repositories, _):
+            resultsAdapter.update(.repList(repositories))
+            resultsTableView.isHidden = false
+            emptyView.isHidden = true
+            searchTableView.isHidden = true
+
+        case .typing(let text):
+            searchAdapter.update(text)
+            emptyView.isHidden = true
+            searchTableView.isHidden = false
+            resultsTableView.isHidden = true
         }
-        text = searchController.searchBar.searchTextField.text ?? ""
+        resultsTableView.reloadData()
+        searchTableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension SearchResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter?.didSelectItem(at: indexPath)
-    }
-}
+        tableView.deselectRow(at: indexPath, animated: true)
 
-// MARK: - UITableViewDataSource
-extension SearchResultViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch state {
-        case .empty: return recentSearches.count
-        case .typing(_): return searchingViewModels.count
-        }
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch state {
-        case .typing(let text):
-            var viewModel = searchingViewModels[indexPath.row]
-            viewModel.text = "\(viewModel.baseText)\"\(text)\""
-            let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-            cell.populate(viewModel: viewModel)
-            return cell
-        case .empty:
-            return UITableViewCell()
+        if tableView === searchTableView {
+            viewModel.didSelectSearchItem(at: indexPath)
+        } else if tableView === resultsTableView {
+            viewModel.didSelectResultItem(at: indexPath)
         }
     }
 }
@@ -127,7 +122,8 @@ extension SearchResultViewController: UITableViewDataSource {
 private extension SearchResultViewController {
     func setupViews() {
         view.addSubview(emptyView)
-        view.addSubview(tableView)
+        view.addSubview(searchTableView)
+        view.addSubview(resultsTableView)
     }
 
     func activateConstraints() {
@@ -136,9 +132,14 @@ private extension SearchResultViewController {
         emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        searchTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        searchTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        searchTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        resultsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        resultsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        resultsTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        resultsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
