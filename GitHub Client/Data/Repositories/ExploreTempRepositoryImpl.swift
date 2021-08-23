@@ -53,4 +53,22 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
             }
         }
     }
+
+    func fetchIssues(_ searchModel: SearchRequestModel, completion: @escaping IssuesHandler) {
+        let endpoint = ExploreTempEndpoints.issues(searchModel)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let issues = response.model.items.compactMap { $0.toDomain() }
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let total = response.model.totalCount
+                let model = SearchResponseModel<Issue>(items: issues,
+                                                      lastPage: lastPage,
+                                                      total: total)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

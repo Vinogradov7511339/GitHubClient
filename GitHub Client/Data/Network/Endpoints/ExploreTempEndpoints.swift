@@ -30,7 +30,9 @@ struct ExploreTempEndpoints {
 
     static func issues(_ model: SearchRequestModel) -> Endpoint<SearchResponseDTO<IssueResponseDTO>> {
         var params: QueryType = [:]
-        params["q"] = "is:issue+windows+label:bug+language:python+state:open"
+        params["q"] = model.searchText
+        params["type"] = "Issues"
+//        params["q"] = "is:issue+windows+label:bug+language:python+state:open"
         params["order"] = model.order.rawValue
         params["sort"] = model.sort.rawValue
         return Endpoint(path: "search/\(model.searchType.rawValue)", queryParametersEncodable: params)

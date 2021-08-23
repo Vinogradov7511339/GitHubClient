@@ -13,4 +13,7 @@ protocol ExploreTempRepository {
 
     typealias UsersHandler = (Result<SearchResponseModel<User>, Error>) -> Void
     func fetchUsers(_ searchModel: SearchRequestModel, completion: @escaping UsersHandler)
+
+    typealias IssuesHandler = (Result<SearchResponseModel<Issue>, Error>) -> Void
+    func fetchIssues(_ searchModel: SearchRequestModel, completion: @escaping IssuesHandler)
 }

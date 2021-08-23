@@ -32,6 +32,7 @@ final class ExploreTempViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchResultsUpdater = viewModel.searchResultsViewModel
+        searchController.searchBar.delegate = viewModel.searchResultsViewModel
         return searchController
     }()
 
@@ -65,7 +66,7 @@ final class ExploreTempViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        searchController.searchBar.text = "GitHubClient"
+        searchController.searchBar.text = "GitHub"
     }
 }
 

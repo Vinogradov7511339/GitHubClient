@@ -88,8 +88,8 @@ private extension SearchResultViewController {
             searchTableView.isHidden = true
             resultsTableView.isHidden = true
 
-        case .results(let repositories, _):
-            resultsAdapter.update(.repList(repositories))
+        case .results(let result):
+            resultsAdapter.update(result)
             resultsTableView.isHidden = false
             emptyView.isHidden = true
             searchTableView.isHidden = true

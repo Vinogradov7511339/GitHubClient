@@ -9,8 +9,6 @@ import Foundation
 
 protocol ExploreTempUseCase {
 
-    func searchAllTypesByName(_ name: String, completion: @escaping RepositoriesHandler)
-
     // MARK: - Repositories
 
     typealias RepositoriesHandler = ExploreTempRepository.RepositoriesHandler
@@ -20,11 +18,21 @@ protocol ExploreTempUseCase {
     // MARK: - Users
     typealias UsersHandler = ExploreTempRepository.UsersHandler
     func searchUsersByName(_ name: String, completion: @escaping UsersHandler)
+
+    // MARK: - Issues
+    typealias IssuesHandler = ExploreTempRepository.IssuesHandler
+    func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler)
+
+    // MARK: - All
+    typealias AllResultsTuple = (SearchResponseModel<Repository>, SearchResponseModel<Issue>, SearchResponseModel<User>)
+    typealias AllResultHandler = (Result<AllResultsTuple, Error>) -> Void
+    func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler)
 }
 
 final class ExploreTempUseCaseImpl {
 
     private let exploreRepository: ExploreTempRepository
+    private let dispatchGroup = DispatchGroup()
 
     init(exploreRepository: ExploreTempRepository) {
         self.exploreRepository = exploreRepository
@@ -39,10 +47,6 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
         exploreRepository.fetchRepositories(searchModel, completion: completion)
     }
 
-    func searchAllTypesByName(_ name: String, completion: @escaping RepositoriesHandler) {
-
-    }
-
     func searchRepositoryByName(_ name: String, completion: @escaping RepositoriesHandler) {
         let text = "\(name) in:name,description"
         let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
@@ -53,5 +57,83 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
         let text = "\(name) in:name"
         let searchModel = SearchRequestModel(searchType: .users, searchText: text)
         exploreRepository.fetchUsers(searchModel, completion: completion)
+    }
+
+    func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler) {
+        let text = "\(label) in:title,body"
+        let searchModel = SearchRequestModel(searchType: .issues, searchText: text)
+        exploreRepository.fetchIssues(searchModel, completion: completion)
+    }
+
+    func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler) {
+        fetchAll(name, completion: completion)
+    }
+}
+
+// MARK: - Private
+private extension ExploreTempUseCaseImpl {
+    func fetchAll(_ name: String, completion: @escaping AllResultHandler) {
+        var repositories: SearchResponseModel<Repository>?
+        var issues: SearchResponseModel<Issue>?
+        var users: SearchResponseModel<User>?
+        var searchErrors: [Error] = []
+
+        dispatchGroup.enter()
+        dispatchGroup.enter()
+        dispatchGroup.enter()
+
+        dispatchGroup.notify(queue: .main) {
+            let repModel: SearchResponseModel<Repository>
+            if let repositories = repositories {
+                repModel = repositories
+            } else {
+                repModel = SearchResponseModel<Repository>(items: [], lastPage: 1, total: 0)
+            }
+
+            let issuesModel: SearchResponseModel<Issue>
+            if let issues = issues {
+                issuesModel = issues
+            } else {
+                issuesModel = SearchResponseModel<Issue>(items: [], lastPage: 1, total: 0)
+            }
+
+            let usersModel: SearchResponseModel<User>
+            if let users = users {
+                usersModel = users
+            } else {
+                usersModel = SearchResponseModel<User>(items: [], lastPage: 1, total: 0)
+            }
+            completion(.success((repModel, issuesModel, usersModel)))
+        }
+
+        searchRepositoryByName(name) { result in
+            switch result {
+            case .success(let response):
+                repositories = response
+            case .failure(let error):
+                searchErrors.append(error)
+            }
+            self.dispatchGroup.leave()
+        }
+
+        searchUsersByName(name) { result in
+            switch result {
+            case .success(let response):
+                users = response
+            case .failure(let error):
+                searchErrors.append(error)
+            }
+            self.dispatchGroup.leave()
+        }
+
+        searchIssueByLabel(name) { result in
+            switch result {
+            case .success(let response):
+                issues = response
+            case .failure(let error):
+                searchErrors.append(error)
+            }
+            self.dispatchGroup.leave()
+        }
     }
 }

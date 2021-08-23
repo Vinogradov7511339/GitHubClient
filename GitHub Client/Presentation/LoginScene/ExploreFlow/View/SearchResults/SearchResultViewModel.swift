@@ -8,12 +8,22 @@
 import UIKit
 
 enum SearchState {
-    case results(repositories: [Repository], total: Int)
+    case results(SearchResultType)
     case typing(text: String)
     case empty
 }
 
-protocol SearchResultViewModelInput: UISearchResultsUpdating {
+enum SearchResultType {
+    case empty
+    case repList(SearchResponseModel<Repository>)
+    case issues(SearchResponseModel<Issue>)
+    case users(SearchResponseModel<User>)
+    case all(repList: SearchResponseModel<Repository>,
+             issues: SearchResponseModel<Issue>,
+             users: SearchResponseModel<User>)
+}
+
+protocol SearchResultViewModelInput: UISearchResultsUpdating, UISearchBarDelegate {
     func viewDidLoad()
     func didSelectSearchItem(at indexPath: IndexPath)
     func didSelectResultItem(at indexPath: IndexPath)
@@ -53,6 +63,10 @@ extension SearchResultViewModelImpl {
         switch indexPath.row {
         case 0:
             searchRepository(text)
+        case 1:
+            searchIssue(text)
+        case 3:
+            searchUser(text)
         default:
             break
         }
@@ -75,17 +89,59 @@ extension SearchResultViewModelImpl {
     }
 }
 
+// MARK: - UISearchBarDelegate
+extension SearchResultViewModelImpl {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        searchAll(text)
+    }
+}
+
+// MARK: - Private
 private extension SearchResultViewModelImpl {
     func searchRepository(_ repName: String) {
-        useCase.searchRepositoryByName(repName, completion: handle(_:))
+        useCase.searchRepositoryByName(repName) { result in
+            switch result {
+            case .success(let response):
+                self.state.value = .results(.repList(response))
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
     }
 
-    func handle(_ result: Result<SearchResponseModel<Repository>, Error>) {
-        switch result {
-        case .success(let response):
-            state.value = .results(repositories: response.items, total: response.total)
-        case .failure(let error):
-            assert(false, error.localizedDescription)
+    func searchIssue(_ label: String) {
+        useCase.searchIssueByLabel(label) { result in
+            switch result {
+            case .success(let response):
+                self.state.value = .results(.issues(response))
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
+    func searchUser(_ userName: String) {
+        useCase.searchUsersByName(userName) { result in
+            switch result {
+            case .success(let response):
+                self.state.value = .results(.users(response))
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
+    func searchAll(_ text: String) {
+        useCase.searchAllTypesByName(text) { result in
+            switch result {
+            case .success(let response):
+                self.state.value = .results(.all(repList: response.0,
+                                                 issues: response.1,
+                                                 users: response.2))
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
         }
     }
 }
