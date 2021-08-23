@@ -12,6 +12,12 @@ final class LoginSceneDIContainer: NSObject {
     struct Dependencies {
         let dataTransferService: DataTransferService
         var userLoggedIn: () -> Void
+
+        let showRepository: (Repository) -> Void
+        let showIssue: (Issue) -> Void
+        let showPullRequest: (PullRequest) -> Void
+        let showUser: (User) -> Void
+        let showOrganization: (Organization) -> Void
     }
 
     let dependencies: Dependencies
@@ -51,7 +57,13 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         switch type {
         case .explore:
             let dependencies = ExploreDIContainer.Dependencies(
-                dataTransferService: dependencies.dataTransferService)
+                dataTransferService: dependencies.dataTransferService,
+                showRepository: dependencies.showRepository,
+                showIssue: dependencies.showIssue,
+                showPullRequest: dependencies.showPullRequest,
+                showUser: dependencies.showUser,
+                showOrganization: dependencies.showOrganization)
+
             let container = ExploreDIContainer(dependencies)
             let explore = ExploreFlowCoordinator(navigation, dependencies: container)
             explore.start()

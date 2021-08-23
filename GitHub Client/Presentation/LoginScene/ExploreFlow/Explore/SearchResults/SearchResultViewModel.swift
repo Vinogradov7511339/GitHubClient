@@ -7,6 +7,20 @@
 
 import UIKit
 
+struct SearchResultActions {
+    let loadRepList: (String) -> Void
+    let loadIssues: (String) -> Void
+    let loadPRList: (String) -> Void
+    let loadUsers: (String) -> Void
+    let loadOrgList: (String) -> Void
+
+    let showRepository: (Repository) -> Void
+    let showIssue: (Issue) -> Void
+    let showPullRequest: (PullRequest) -> Void
+    let showUser: (User) -> Void
+    let showOrganization: (Organization) -> Void
+}
+
 enum SearchState {
     case results(SearchResultType)
     case typing(text: String)
@@ -43,11 +57,13 @@ final class SearchResultViewModelImpl: NSObject, SearchResultViewModel {
 
     // MARK: - Private variables
 
+    private let actions: SearchResultActions
     private let useCase: ExploreTempUseCase
 
     // MARK: - Lifecycle
 
-    init(useCase: ExploreTempUseCase) {
+    init(actions: SearchResultActions, useCase: ExploreTempUseCase) {
+        self.actions = actions
         self.useCase = useCase
     }
 }

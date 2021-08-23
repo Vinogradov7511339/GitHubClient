@@ -34,9 +34,9 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 
     // MARK: - Lifecycle
 
-    init(useCase: ExploreTempUseCase) {
+    init(searchResultsViewModel: SearchResultViewModel, useCase: ExploreTempUseCase) {
+        self.searchResultsViewModel = searchResultsViewModel
         self.useCase = useCase
-        searchResultsViewModel = SearchResultViewModelImpl(useCase: useCase)
     }
 }
 

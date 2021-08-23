@@ -360,6 +360,12 @@
 		ADB60D7326D3C6FC0024479D /* ResultUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D7126D3C6FC0024479D /* ResultUserCell.xib */; };
 		ADB60D7726D3C7F10024479D /* ResultIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D7526D3C7F10024479D /* ResultIssueCell.swift */; };
 		ADB60D7826D3C7F10024479D /* ResultIssueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D7626D3C7F10024479D /* ResultIssueCell.xib */; };
+		ADB60D7C26D3DDC60024479D /* ResultTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D7A26D3DDC60024479D /* ResultTotalCell.swift */; };
+		ADB60D7D26D3DDC60024479D /* ResultTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D7B26D3DDC60024479D /* ResultTotalCell.xib */; };
+		ADB60D8026D3EAA70024479D /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D7F26D3EAA70024479D /* SearchListViewController.swift */; };
+		ADB60D8326D3EAE20024479D /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8226D3EAE20024479D /* SearchListViewModel.swift */; };
+		ADB60D8526D3EB6B0024479D /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8426D3EB6B0024479D /* Organization.swift */; };
+		ADB60D8726D3F32F0024479D /* SearchListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8626D3F32F0024479D /* SearchListAdapter.swift */; };
 		ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */; };
 		ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */; };
 		ADBC1AD326C3F70E000F9B88 /* ExtendedCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */; };
@@ -782,6 +788,12 @@
 		ADB60D7126D3C6FC0024479D /* ResultUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultUserCell.xib; sourceTree = "<group>"; };
 		ADB60D7526D3C7F10024479D /* ResultIssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultIssueCell.swift; sourceTree = "<group>"; };
 		ADB60D7626D3C7F10024479D /* ResultIssueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultIssueCell.xib; sourceTree = "<group>"; };
+		ADB60D7A26D3DDC60024479D /* ResultTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTotalCell.swift; sourceTree = "<group>"; };
+		ADB60D7B26D3DDC60024479D /* ResultTotalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTotalCell.xib; sourceTree = "<group>"; };
+		ADB60D7F26D3EAA70024479D /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		ADB60D8226D3EAE20024479D /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		ADB60D8426D3EB6B0024479D /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		ADB60D8626D3F32F0024479D /* SearchListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListAdapter.swift; sourceTree = "<group>"; };
 		ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEndpoints.swift; sourceTree = "<group>"; };
 		ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseResponseDTO.swift; sourceTree = "<group>"; };
 		ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCommit.swift; sourceTree = "<group>"; };
@@ -1358,6 +1370,7 @@
 				ADC538AA26CC3BB3009B7A7E /* Folder.swift */,
 				ADC538DD26CD2FC7009B7A7E /* EventNotification.swift */,
 				ADA3C85A26CFD531009F9130 /* Branch.swift */,
+				ADB60D8426D3EB6B0024479D /* Organization.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1598,7 +1611,8 @@
 			children = (
 				AD5C8E3326D2B2C0003E2F38 /* ExploreFlowCoordinator.swift */,
 				AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */,
-				AD5C8E4226D2BE1D003E2F38 /* View */,
+				AD5C8E4226D2BE1D003E2F38 /* Explore */,
+				ADB60D8126D3EAD00024479D /* SearchList */,
 			);
 			path = ExploreFlow;
 			sourceTree = "<group>";
@@ -1613,7 +1627,7 @@
 			path = MainScene;
 			sourceTree = "<group>";
 		};
-		AD5C8E4226D2BE1D003E2F38 /* View */ = {
+		AD5C8E4226D2BE1D003E2F38 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
 				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
@@ -1623,7 +1637,7 @@
 				ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */,
 				ADB60D6226D2E6900024479D /* PopularCell */,
 			);
-			path = View;
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		AD5C8E4F26D2CA1B003E2F38 /* regroup */ = {
@@ -2133,6 +2147,25 @@
 			path = ResultIssueCell;
 			sourceTree = "<group>";
 		};
+		ADB60D7E26D3DDCA0024479D /* ResultTotalCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D7A26D3DDC60024479D /* ResultTotalCell.swift */,
+				ADB60D7B26D3DDC60024479D /* ResultTotalCell.xib */,
+			);
+			path = ResultTotalCell;
+			sourceTree = "<group>";
+		};
+		ADB60D8126D3EAD00024479D /* SearchList */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D7F26D3EAA70024479D /* SearchListViewController.swift */,
+				ADB60D8226D3EAE20024479D /* SearchListViewModel.swift */,
+				ADB60D8626D3F32F0024479D /* SearchListAdapter.swift */,
+			);
+			path = SearchList;
+			sourceTree = "<group>";
+		};
 		ADBC1ACC26C3D778000F9B88 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2153,6 +2186,7 @@
 				ADB60D6D26D391B80024479D /* ResultRepCell */,
 				ADB60D7426D3C7C00024479D /* ResultUserCell */,
 				ADB60D7926D3C9120024479D /* ResultIssueCell */,
+				ADB60D7E26D3DDCA0024479D /* ResultTotalCell */,
 			);
 			path = SearchResults;
 			sourceTree = "<group>";
@@ -2474,6 +2508,7 @@
 				ADA68BA626B55621004AC06C /* octocat_gray@2x.png in Resources */,
 				ADC538AF26CCE23D009B7A7E /* FolderCell.xib in Resources */,
 				AD20E4DD26A8B313003BB5F1 /* AppIconPinkLight@2x-5.png in Resources */,
+				ADB60D7D26D3DDC60024479D /* ResultTotalCell.xib in Resources */,
 				AD20E4DC26A8B313003BB5F1 /* AppIconPinkLight@3x-2.png in Resources */,
 				AD20E4D526A8B313003BB5F1 /* AppIconPinkLight@2x-6.png in Resources */,
 				AD5C8E5326D2CA51003E2F38 /* ErrorAlertView.xib in Resources */,
@@ -2566,6 +2601,7 @@
 				AD93004E26C959B0002D7362 /* RepositoryItemCell.swift in Sources */,
 				AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */,
 				AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */,
+				ADB60D8326D3EAE20024479D /* SearchListViewModel.swift in Sources */,
 				AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */,
 				ADA1692F26C5816A0040B635 /* UsersListViewController.swift in Sources */,
 				AD6B099B26C04105004644D2 /* IssueViewModel.swift in Sources */,
@@ -2689,6 +2725,7 @@
 				AD5C8E4A26D2C40C003E2F38 /* ExploreTempRepository.swift in Sources */,
 				AD20E50626A993A5003BB5F1 /* Milestone.swift in Sources */,
 				AD6B097C26BFF992004644D2 /* EventsViewModel.swift in Sources */,
+				ADB60D8726D3F32F0024479D /* SearchListAdapter.swift in Sources */,
 				ADC538EA26CD3746009B7A7E /* NotificationResponseDTO.swift in Sources */,
 				ADC8180426B002FE00469BCF /* Reactions.swift in Sources */,
 				ADA3C85B26CFD531009F9130 /* Branch.swift in Sources */,
@@ -2769,6 +2806,7 @@
 				ADC538D326CD1F62009B7A7E /* EventsRequestModel.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
 				AD6B094326BEF267004644D2 /* NetworkErrorLogger.swift in Sources */,
+				ADB60D8526D3EB6B0024479D /* Organization.swift in Sources */,
 				AD6B098026BFFE1E004644D2 /* EventsSceneFactory.swift in Sources */,
 				ADBC1ADD26C4FD94000F9B88 /* ProfileCardView.swift in Sources */,
 				AD5C8E4426D2BE32003E2F38 /* ExploreDIContainer.swift in Sources */,
@@ -2828,6 +2866,7 @@
 				AD5C8E3626D2B317003E2F38 /* SignInFlowCoordinator.swift in Sources */,
 				AD20E55426AACAE3003BB5F1 /* SmallCollectionViewCell.swift in Sources */,
 				AD23E7D026D19279009FEB27 /* MySubscriptionsAdapter.swift in Sources */,
+				ADB60D8026D3EAA70024479D /* SearchListViewController.swift in Sources */,
 				AD23E7D726D2561E009FEB27 /* ProfileHeaderView.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
@@ -2835,6 +2874,7 @@
 				ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */,
 				ADB60D6426D37DE10024479D /* SearchResultViewModel.swift in Sources */,
 				ADA8987126C811C200095B16 /* IssueCommentEventCell.swift in Sources */,
+				ADB60D7C26D3DDC60024479D /* ResultTotalCell.swift in Sources */,
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,

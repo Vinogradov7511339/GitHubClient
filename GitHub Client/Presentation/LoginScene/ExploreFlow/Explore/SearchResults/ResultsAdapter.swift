@@ -18,6 +18,7 @@ final class ResultsAdapterImpl: NSObject {
     private let repCellManager = TableCellManager.create(cellType: SearchRepCell.self)
     private let usersCellManager = TableCellManager.create(cellType: ResultUserCell.self)
     private let issuesCellManager = TableCellManager.create(cellType: ResultIssueCell.self)
+    private let resultsCellManager = TableCellManager.create(cellType: ResultTotalCell.self)
 }
 
 // MARK: - ResultsAdapter
@@ -26,6 +27,7 @@ extension ResultsAdapterImpl: ResultsAdapter {
         repCellManager.register(tableView: tableView)
         usersCellManager.register(tableView: tableView)
         issuesCellManager.register(tableView: tableView)
+        resultsCellManager.register(tableView: tableView)
     }
 
     func update(_ resultType: SearchResultType) {
@@ -53,9 +55,9 @@ extension ResultsAdapterImpl {
         case .users(let userList): return userList.items.count
         case .issues(let issueList): return issueList.items.count
         case .all(let repList, let issues, let users):
-            if section == 0 { return repList.items.count }
-            if section == 1 { return issues.items.count }
-            if section == 2 { return users.items.count }
+            if section == 0 { return repList.items.count + 1 }
+            if section == 1 { return issues.items.count + 1 }
+            if section == 2 { return users.items.count + 1 }
             return 0
         }
     }
@@ -82,22 +84,43 @@ extension ResultsAdapterImpl {
 
         case .all(let repList, let issues, let users):
             if indexPath.section == 0 {
-                let item = repList.items[indexPath.row]
-                let cell = repCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-                cell.populate(viewModel: item)
-                return cell
+                if indexPath.row < repList.items.count {
+                    let item = repList.items[indexPath.row]
+                    let cell = repCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: item)
+                    return cell
+                } else {
+                    let model = ResultTotalViewModel(type: .repList, totalCount: repList.total)
+                    let cell = resultsCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: model)
+                    return cell
+                }
             }
             if indexPath.section == 1 {
-                let item = issues.items[indexPath.row]
-                let cell = issuesCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-                cell.populate(viewModel: item)
-                return cell
+                if indexPath.row < issues.items.count {
+                    let item = issues.items[indexPath.row]
+                    let cell = issuesCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: item)
+                    return cell
+                } else {
+                    let model = ResultTotalViewModel(type: .issues, totalCount: issues.total)
+                    let cell = resultsCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: model)
+                    return cell
+                }
             }
             if indexPath.section == 2 {
-                let item = users.items[indexPath.row]
-                let cell = usersCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-                cell.populate(viewModel: item)
-                return cell
+                if indexPath.row < users.items.count {
+                    let item = users.items[indexPath.row]
+                    let cell = usersCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: item)
+                    return cell
+                } else {
+                    let model = ResultTotalViewModel(type: .users, totalCount: users.total)
+                    let cell = resultsCellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+                    cell.populate(viewModel: model)
+                    return cell
+                }
             }
             return UITableViewCell()
         case .empty:
@@ -124,30 +147,6 @@ extension ResultsAdapterImpl {
             }
             if section == 2 {
                 return NSLocalizedString("Users", comment: "")
-            }
-            return nil
-        }
-    }
-
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch resultType {
-        case .empty:
-            return nil
-        case .repList(let model):
-            return NSLocalizedString("See \(model.total) more repositories", comment: "")
-        case .issues(let model):
-            return NSLocalizedString("See \(model.total) more issues", comment: "")
-        case .users(let model):
-            return NSLocalizedString("See \(model.total) more users", comment: "")
-        case .all(let repsModel, let issuesModel, let usersModel):
-            if section == 0 {
-                return NSLocalizedString("See \(repsModel.total) more repositories", comment: "")
-            }
-            if section == 1 {
-                return NSLocalizedString("See \(issuesModel.total) more issues", comment: "")
-            }
-            if section == 2 {
-                return NSLocalizedString("See \(usersModel.total) more users", comment: "")
             }
             return nil
         }

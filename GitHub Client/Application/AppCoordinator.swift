@@ -42,7 +42,12 @@ final class AppCoordinator {
         UserStorage.shared.clearStorage()
         let dependency = LoginSceneDIContainer.Dependencies.init(
             dataTransferService: appDIContainer.apiDataTransferService,
-            userLoggedIn: startMainFlow)
+            userLoggedIn: startMainFlow,
+            showRepository: showRepository(_:),
+            showIssue: showIssue(_:),
+            showPullRequest: showPullRequest(_:),
+            showUser: showUser(_:),
+            showOrganization: showOrganization(_:))
         let loginDIContainer = appDIContainer.makeLoginSceneDIContainer(dependencies: dependency)
         let flow = loginDIContainer.makeLoginFlowCoordinator(in: window)
         flow.start()
@@ -57,4 +62,10 @@ final class AppCoordinator {
     func open(link: URL) {}
     func share(link: URL) {}
     func sendEmail(email: String) {}
+
+    func showRepository(_ rep: Repository) {}
+    func showIssue(_ isssue: Issue) {}
+    func showPullRequest(_ pullRequest: PullRequest) {}
+    func showUser(_ user: User) {}
+    func showOrganization(_ org: Organization) {}
 }
