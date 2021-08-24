@@ -11,6 +11,26 @@ struct SearchTypeCellViewModel {
     let image: UIImage?
     let baseText: String
     var text: String = ""
+
+    init(_ type: SearchType) {
+        switch type {
+        case .repositories:
+            image = UIImage.issue
+            baseText = "Repositories with "
+        case .issues:
+            image = UIImage.issue
+            baseText = "Issues with "
+        case .pullRequests:
+            image = UIImage.pullRequest
+            baseText = "Pull Requests with "
+        case .people:
+            image = UIImage.issue
+            baseText = "People with "
+        case .organizations:
+            image = UIImage.issue
+            baseText = "Organizations with "
+        }
+    }
 }
 
 class SearchTypeTableViewCell: BaseTableViewCell, NibLoadable {

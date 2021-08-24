@@ -8,13 +8,7 @@
 import UIKit
 
 struct ResultTotalViewModel {
-    enum ResultType {
-        case repList
-        case issues
-        case users
-    }
-
-    let type: ResultType
+    let type: SearchType
     let totalCount: Int
 }
 
@@ -39,12 +33,16 @@ extension ResultTotalCell: ConfigurableCell {
         let formattedTotal = formater.string(from: total) ?? "\(total)"
 
         switch viewModel.type {
-        case .repList:
-            totalResultsLabel.text = "See \(formattedTotal) more repositories"
+        case .repositories:
+            totalResultsLabel.text = "See all \(formattedTotal) repositories"
         case .issues:
-            totalResultsLabel.text = "See \(formattedTotal) more issues"
-        case .users:
-            totalResultsLabel.text = "See \(formattedTotal) more users"
+            totalResultsLabel.text = "See all \(formattedTotal) issues"
+        case .pullRequests:
+            totalResultsLabel.text = "See all \(formattedTotal) pull requests"
+        case .people:
+            totalResultsLabel.text = "See all \(formattedTotal) people"
+        case .organizations:
+            totalResultsLabel.text = "See all \(formattedTotal) organizations"
         }
     }
 }

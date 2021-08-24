@@ -366,6 +366,12 @@
 		ADB60D8326D3EAE20024479D /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8226D3EAE20024479D /* SearchListViewModel.swift */; };
 		ADB60D8526D3EB6B0024479D /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8426D3EB6B0024479D /* Organization.swift */; };
 		ADB60D8726D3F32F0024479D /* SearchListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8626D3F32F0024479D /* SearchListAdapter.swift */; };
+		ADB60D8A26D4C3B50024479D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8926D4C3B50024479D /* Enums.swift */; };
+		ADB60D8D26D4CAE10024479D /* CustomNavTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */; };
+		ADB60D9026D4D2F30024479D /* ResultPullRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D8E26D4D2F30024479D /* ResultPullRequestCell.swift */; };
+		ADB60D9126D4D2F30024479D /* ResultPullRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D8F26D4D2F30024479D /* ResultPullRequestCell.xib */; };
+		ADB60D9526D4D3760024479D /* ResultOrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB60D9326D4D3760024479D /* ResultOrganizationCell.swift */; };
+		ADB60D9626D4D3760024479D /* ResultOrganizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB60D9426D4D3760024479D /* ResultOrganizationCell.xib */; };
 		ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */; };
 		ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */; };
 		ADBC1AD326C3F70E000F9B88 /* ExtendedCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */; };
@@ -794,6 +800,12 @@
 		ADB60D8226D3EAE20024479D /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 		ADB60D8426D3EB6B0024479D /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		ADB60D8626D3F32F0024479D /* SearchListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListAdapter.swift; sourceTree = "<group>"; };
+		ADB60D8926D4C3B50024479D /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavTitleView.swift; sourceTree = "<group>"; };
+		ADB60D8E26D4D2F30024479D /* ResultPullRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPullRequestCell.swift; sourceTree = "<group>"; };
+		ADB60D8F26D4D2F30024479D /* ResultPullRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultPullRequestCell.xib; sourceTree = "<group>"; };
+		ADB60D9326D4D3760024479D /* ResultOrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOrganizationCell.swift; sourceTree = "<group>"; };
+		ADB60D9426D4D3760024479D /* ResultOrganizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultOrganizationCell.xib; sourceTree = "<group>"; };
 		ADBC1ACE26C3F0D0000F9B88 /* RepositoryEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEndpoints.swift; sourceTree = "<group>"; };
 		ADBC1AD026C3F54D000F9B88 /* ReleaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseResponseDTO.swift; sourceTree = "<group>"; };
 		ADBC1AD226C3F70E000F9B88 /* ExtendedCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedCommit.swift; sourceTree = "<group>"; };
@@ -1865,8 +1877,8 @@
 			isa = PBXGroup;
 			children = (
 				AD5C8E4F26D2CA1B003E2F38 /* regroup */,
-				AD5C8E5026D2CA37003E2F38 /* ErrorAlertView.swift */,
-				AD5C8E5226D2CA51003E2F38 /* ErrorAlertView.xib */,
+				ADB60D8B26D4CAC70024479D /* ErrorAlert */,
+				ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */,
 			);
 			name = UIComponents;
 			path = ..;
@@ -2166,6 +2178,46 @@
 			path = SearchList;
 			sourceTree = "<group>";
 		};
+		ADB60D8826D4C3840024479D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D6D26D391B80024479D /* ResultRepCell */,
+				ADB60D7426D3C7C00024479D /* ResultUserCell */,
+				ADB60D7926D3C9120024479D /* ResultIssueCell */,
+				ADB60D7E26D3DDCA0024479D /* ResultTotalCell */,
+				ADB60D9226D4D35A0024479D /* ResultPullRequestCell */,
+				ADB60D9726D4D49B0024479D /* ResultsOrganizationsCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		ADB60D8B26D4CAC70024479D /* ErrorAlert */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C8E5026D2CA37003E2F38 /* ErrorAlertView.swift */,
+				AD5C8E5226D2CA51003E2F38 /* ErrorAlertView.xib */,
+			);
+			path = ErrorAlert;
+			sourceTree = "<group>";
+		};
+		ADB60D9226D4D35A0024479D /* ResultPullRequestCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D8E26D4D2F30024479D /* ResultPullRequestCell.swift */,
+				ADB60D8F26D4D2F30024479D /* ResultPullRequestCell.xib */,
+			);
+			path = ResultPullRequestCell;
+			sourceTree = "<group>";
+		};
+		ADB60D9726D4D49B0024479D /* ResultsOrganizationsCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D9326D4D3760024479D /* ResultOrganizationCell.swift */,
+				ADB60D9426D4D3760024479D /* ResultOrganizationCell.xib */,
+			);
+			path = ResultsOrganizationsCell;
+			sourceTree = "<group>";
+		};
 		ADBC1ACC26C3D778000F9B88 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2181,12 +2233,10 @@
 			children = (
 				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
 				ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */,
+				ADB60D8926D4C3B50024479D /* Enums.swift */,
 				ADB60D6E26D392220024479D /* SearchAdapter.swift */,
 				ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */,
-				ADB60D6D26D391B80024479D /* ResultRepCell */,
-				ADB60D7426D3C7C00024479D /* ResultUserCell */,
-				ADB60D7926D3C9120024479D /* ResultIssueCell */,
-				ADB60D7E26D3DDCA0024479D /* ResultTotalCell */,
+				ADB60D8826D4C3840024479D /* Cells */,
 			);
 			path = SearchResults;
 			sourceTree = "<group>";
@@ -2467,6 +2517,7 @@
 				AD20E4E126A8B313003BB5F1 /* AppIconPinkLight-3.png in Resources */,
 				AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */,
 				AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */,
+				ADB60D9126D4D2F30024479D /* ResultPullRequestCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
 				ADDF2E0926CAE04000CB1C22 /* ForkEventCell.xib in Resources */,
@@ -2495,6 +2546,7 @@
 				ADA1693F26C593F10040B635 /* UserCell.xib in Resources */,
 				AD20E4D326A8B313003BB5F1 /* AppIconPinkLight@2x-7.png in Resources */,
 				ADA68BA526B55621004AC06C /* octocat_gray-3.png in Resources */,
+				ADB60D9626D4D3760024479D /* ResultOrganizationCell.xib in Resources */,
 				ADA68BA926B55621004AC06C /* octocat_gray-2.png in Resources */,
 				ADC5380C26CC09E2009B7A7E /* RepositoryInfoCell.xib in Resources */,
 				AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */,
@@ -2643,6 +2695,7 @@
 				AD20E44726A6B845003BB5F1 /* ReadMeTableViewCell.swift in Sources */,
 				AD5C8E2B26D2A03F003E2F38 /* SettingsFactory.swift in Sources */,
 				AD39A58626C67AC200309481 /* CommitsUseCase.swift in Sources */,
+				ADB60D8A26D4C3B50024479D /* Enums.swift in Sources */,
 				AD8722D826B810DA004649A4 /* DirectoryResponseModelDTO.swift in Sources */,
 				AD39FE9326BC04E200F055FD /* ProfileDIContainer.swift in Sources */,
 				AD508E7E26C51E690091132A /* MenuItemCell.swift in Sources */,
@@ -2735,6 +2788,7 @@
 				AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */,
 				AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */,
 				AD6B099426C0226E004644D2 /* Issue.swift in Sources */,
+				ADB60D8D26D4CAE10024479D /* CustomNavTitleView.swift in Sources */,
 				AD20E56C26AB4090003BB5F1 /* SearchResultViewController.swift in Sources */,
 				AD93005126C960E3002D7362 /* CompositionalLayoutFactory.swift in Sources */,
 				AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */,
@@ -2778,6 +2832,7 @@
 				AD20E44426A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift in Sources */,
 				ADBC1AD326C3F70E000F9B88 /* ExtendedCommit.swift in Sources */,
 				ADB60D7726D3C7F10024479D /* ResultIssueCell.swift in Sources */,
+				ADB60D9526D4D3760024479D /* ResultOrganizationCell.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModelold.swift in Sources */,
 				AD23E78B26D0FFA3009FEB27 /* ReleaseRequestModel.swift in Sources */,
 				AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */,
@@ -2808,6 +2863,7 @@
 				AD6B094326BEF267004644D2 /* NetworkErrorLogger.swift in Sources */,
 				ADB60D8526D3EB6B0024479D /* Organization.swift in Sources */,
 				AD6B098026BFFE1E004644D2 /* EventsSceneFactory.swift in Sources */,
+				ADB60D9026D4D2F30024479D /* ResultPullRequestCell.swift in Sources */,
 				ADBC1ADD26C4FD94000F9B88 /* ProfileCardView.swift in Sources */,
 				AD5C8E4426D2BE32003E2F38 /* ExploreDIContainer.swift in Sources */,
 				ADB60D6626D38B5E0024479D /* SearchResponseModel.swift in Sources */,

@@ -14,14 +14,7 @@ protocol SearchAdapter: UITableViewDataSource {
 
 final class SearchAdapterImpl: NSObject {
     private let cellManager = TableCellManager.create(cellType: SearchTypeTableViewCell.self)
-    private let items: [SearchTypeCellViewModel] = [
-        SearchTypeCellViewModel(image: UIImage.issue, baseText: "Repositories with "),
-        SearchTypeCellViewModel(image: UIImage.issue, baseText: "Issues with "),
-        SearchTypeCellViewModel(image: UIImage.pullRequest, baseText: "Pull Requests with "),
-        SearchTypeCellViewModel(image: UIImage.issue, baseText: "People with "),
-        SearchTypeCellViewModel(image: UIImage.issue, baseText: "Organizations with "),
-        SearchTypeCellViewModel(image: UIImage.issue, baseText: "Jump to ")
-    ]
+    private let items: [SearchTypeCellViewModel] = SearchType.allCases.map { SearchTypeCellViewModel($0) }
 
     private var searchText: String = ""
 }

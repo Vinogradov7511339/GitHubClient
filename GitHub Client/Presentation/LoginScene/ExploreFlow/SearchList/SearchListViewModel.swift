@@ -30,7 +30,7 @@ protocol SearchListViewModelInput {
 }
 
 protocol SearchListViewModelOutput {
-    var title: Observable<String> { get }
+    var detailTitle: Observable<(String, String)> { get }
     var items: Observable<[Any]> { get }
     var type: SearchListType { get }
 }
@@ -41,7 +41,7 @@ final class SearchListViewModelImpl: SearchListViewModel {
 
     // MARK: - Output
 
-    let title: Observable<String>
+    var detailTitle: Observable<(String, String)>
     let items: Observable<[Any]> = Observable([])
     let type: SearchListType
 
@@ -63,18 +63,20 @@ final class SearchListViewModelImpl: SearchListViewModel {
         self.useCase = useCase
         self.searchParameters = searchParameters
 
+        let title: (String, String)
         switch type {
         case .repositories:
-            title = Observable<String>("Repository")
+            title = ("Repository", "from 10000")
         case .issues:
-            title = Observable<String>("Issues")
+            title = ("Issues", "from 10000")
         case .pullRequests:
-            title = Observable<String>("Pull Requests")
+            title = ("Pull Requests", "from 10000")
         case .users:
-            title = Observable<String>("Users")
+            title = ("Users", "from 10000")
         case .organizations:
-            title = Observable<String>("Organizations")
+            title = ("Organizations", "from 10000")
         }
+        detailTitle = Observable<(String, String)>(title)
     }
 }
 
@@ -119,5 +121,38 @@ extension SearchListViewModelImpl {
 private extension SearchListViewModelImpl {
     func fetch() {
 
+    }
+
+    func searchRepository(_ repName: String) {
+        useCase.searchRepositoryByName(repName) { result in
+            switch result {
+            case .success(let response):
+                self.items.value = response.items
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
+    func searchIssue(_ label: String) {
+        useCase.searchIssueByLabel(label) { result in
+            switch result {
+            case .success(let response):
+                self.items.value = response.items
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
+    func searchUser(_ userName: String) {
+        useCase.searchUsersByName(userName) { result in
+            switch result {
+            case .success(let response):
+                self.items.value = response.items
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
     }
 }

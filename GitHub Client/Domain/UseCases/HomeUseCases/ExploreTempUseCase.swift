@@ -24,7 +24,7 @@ protocol ExploreTempUseCase {
     func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler)
 
     // MARK: - All
-    typealias AllResultsTuple = (SearchResponseModel<Repository>, SearchResponseModel<Issue>, SearchResponseModel<User>)
+    typealias AllResultsTuple = [SearchType: SearchResponseModel<Any>]
     typealias AllResultHandler = (Result<AllResultsTuple, Error>) -> Void
     func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler)
 }
@@ -75,7 +75,10 @@ private extension ExploreTempUseCaseImpl {
     func fetchAll(_ name: String, completion: @escaping AllResultHandler) {
         var repositories: SearchResponseModel<Repository>?
         var issues: SearchResponseModel<Issue>?
+        var pullRequests: SearchResponseModel<PullRequest>?
         var users: SearchResponseModel<User>?
+        var organizations: SearchResponseModel<Organization>?
+
         var searchErrors: [Error] = []
 
         dispatchGroup.enter()
@@ -97,13 +100,34 @@ private extension ExploreTempUseCaseImpl {
                 issuesModel = SearchResponseModel<Issue>(items: [], lastPage: 1, total: 0)
             }
 
+            let pullRequestModel: SearchResponseModel<PullRequest>
+            if let pullRequests = pullRequests {
+                pullRequestModel = pullRequests
+            } else {
+                pullRequestModel = SearchResponseModel<PullRequest>(items: [], lastPage: 1, total: 0)
+            }
+
             let usersModel: SearchResponseModel<User>
             if let users = users {
                 usersModel = users
             } else {
                 usersModel = SearchResponseModel<User>(items: [], lastPage: 1, total: 0)
             }
-            completion(.success((repModel, issuesModel, usersModel)))
+
+            let organizationsModel: SearchResponseModel<Organization>
+            if let organizations = organizations {
+                organizationsModel = organizations
+            } else {
+                organizationsModel = SearchResponseModel<Organization>(items: [], lastPage: 1, total: 0)
+            }
+            let result: [SearchType: SearchResponseModel<Any>] = [:
+//                .repositories: repModel,
+//                .issues: issuesModel,
+//                .pullRequests: pullRequestModel,
+//                .people: usersModel,
+//                .organizations: organizationsModel
+            ]
+            completion(.success(result))
         }
 
         searchRepositoryByName(name) { result in

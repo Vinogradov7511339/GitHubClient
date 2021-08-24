@@ -57,13 +57,13 @@ final class SearchListViewController: UIViewController {
 private extension SearchListViewController {
     func bind(to viewModel: SearchListViewModel) {
         viewModel.items.observe(on: self) { [weak self] in self?.updateItems($0) }
-        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
+        viewModel.detailTitle.observe(on: self) { [weak self] in self?.updateTitle($0) }
     }
 
     func updateItems(_ newItems: [Any]) {}
 
-    func updateTitle(_ title: String) {
-        self.title = title
+    func updateTitle(_ detailTitle: (String, String)) {
+        navigationItem.titleView = setTitle(title: detailTitle.0, subtitle: detailTitle.1)
     }
 }
 
