@@ -10,4 +10,5 @@ target 'GitHub Client' do
   
   # Pods for GitHub Client
     pod 'SwiftLint'
+    pod 'lottie-ios'
 end

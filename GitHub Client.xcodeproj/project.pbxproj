@@ -171,6 +171,10 @@
 		AD3F071826C2FA6D00BC494E /* BaseDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */; };
 		AD3F071926C2FA6D00BC494E /* BaseDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */; };
 		AD43612826D568180004F742 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43612726D568180004F742 /* OnboardingViewController.swift */; };
+		AD43612B26D577560004F742 /* favorites_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612A26D577560004F742 /* favorites_animation.json */; };
+		AD43612E26D57D000004F742 /* notifications_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612C26D57D000004F742 /* notifications_animation.json */; };
+		AD43612F26D57D000004F742 /* temp_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612D26D57D000004F742 /* temp_animation.json */; };
+		AD43613226D57D910004F742 /* String+OnboardingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */; };
 		AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */; };
 		AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */; };
 		AD508E7E26C51E690091132A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD508E7C26C51E690091132A /* MenuItemCell.swift */; };
@@ -602,6 +606,10 @@
 		AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailsCell.swift; sourceTree = "<group>"; };
 		AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseDetailsCell.xib; sourceTree = "<group>"; };
 		AD43612726D568180004F742 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AD43612A26D577560004F742 /* favorites_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites_animation.json; sourceTree = "<group>"; };
+		AD43612C26D57D000004F742 /* notifications_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notifications_animation.json; sourceTree = "<group>"; };
+		AD43612D26D57D000004F742 /* temp_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = temp_animation.json; sourceTree = "<group>"; };
+		AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OnboardingAnimation.swift"; sourceTree = "<group>"; };
 		AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AD508E7C26C51E690091132A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
@@ -934,6 +942,7 @@
 				AD79550526ABFD8E004E6973 /* LanguageColors.json */,
 				ADB26BA226B3DA8E0043CEBB /* MDTest.md */,
 				AD3776EE269F2698000AA54C /* Info.plist */,
+				AD43613026D57D060004F742 /* OnboardingAnimations */,
 				ADC538D726CD27B5009B7A7E /* UIImage+TabBar.swift */,
 				ADA7494E26CE62D800C8D475 /* UIImage+NavBar.swift */,
 				ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */,
@@ -1566,6 +1575,17 @@
 				AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		AD43613026D57D060004F742 /* OnboardingAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				AD43612A26D577560004F742 /* favorites_animation.json */,
+				AD43612C26D57D000004F742 /* notifications_animation.json */,
+				AD43612D26D57D000004F742 /* temp_animation.json */,
+				AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */,
+			);
+			path = OnboardingAnimations;
 			sourceTree = "<group>";
 		};
 		AD5C8E1D26D29452003E2F38 /* old */ = {
@@ -2392,6 +2412,7 @@
 				AD3776DA269F2697000AA54C /* Frameworks */,
 				AD3776DB269F2697000AA54C /* Resources */,
 				ADA1D81826B71257000537C8 /* ShellScript */,
+				13E027788D0C0BF7C23317EC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2466,7 +2487,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD20E4D426A8B313003BB5F1 /* AppIconPinkLight@2x.png in Resources */,
+				AD43612B26D577560004F742 /* favorites_animation.json in Resources */,
 				ADB60D7326D3C6FC0024479D /* ResultUserCell.xib in Resources */,
+				AD43612E26D57D000004F742 /* notifications_animation.json in Resources */,
 				AD5C8E2326D29633003E2F38 /* AccountCell.xib in Resources */,
 				AD508E7F26C51E690091132A /* MenuItemCell.xib in Resources */,
 				ADDD512426C7EC8D00F74240 /* WatchEventCell.xib in Resources */,
@@ -2498,6 +2521,7 @@
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
 				AD20E4E126A8B313003BB5F1 /* AppIconPinkLight-3.png in Resources */,
 				AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */,
+				AD43612F26D57D000004F742 /* temp_animation.json in Resources */,
 				AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */,
 				ADB60D9126D4D2F30024479D /* ResultPullRequestCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
@@ -2561,6 +2585,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13E027788D0C0BF7C23317EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		ADA1D81826B71257000537C8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2919,6 +2960,7 @@
 				AD39FE5B26BAD85600F055FD /* AuthenticatedUser.swift in Sources */,
 				ADA3C85726CFD47C009F9130 /* BranchCell.swift in Sources */,
 				AD6B098626C0010F004644D2 /* EventsRepository.swift in Sources */,
+				AD43613226D57D910004F742 /* String+OnboardingAnimation.swift in Sources */,
 				AD6B095A26BEFB5A004644D2 /* URLSessionTask+NetworkCancellable.swift in Sources */,
 				AD6B09A526C274C6004644D2 /* Comment.swift in Sources */,
 				ADA1694326C63C2F0040B635 /* RepositoriesViewController.swift in Sources */,
