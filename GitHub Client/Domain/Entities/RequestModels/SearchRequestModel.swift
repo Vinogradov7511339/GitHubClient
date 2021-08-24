@@ -28,5 +28,6 @@ struct SearchRequestModel {
     let searchText: String
     let order: Order = .desc
     let sort: Sort = .created
-    let perPage: Int = 5
+    let perPage: Int
+    let page: Int
 }

@@ -1,13 +1,11 @@
 //
-//  Enums.swift
+//  SearchType.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 24.08.2021.
 //
 
-import UIKit
-
-protocol AnyEntity {}
+import Foundation
 
 enum SearchState {
     case results(SearchResultType)

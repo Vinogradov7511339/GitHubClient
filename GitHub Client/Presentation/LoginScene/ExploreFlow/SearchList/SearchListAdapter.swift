@@ -17,7 +17,7 @@ final class SearchListAdapterImpl: NSObject {
     private let cellManager: CollectionCellManager
     private var items: [Any] = []
 
-    init(type: SearchListType) {
+    init(type: SearchType) {
         switch type {
         case .repositories:
             cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
@@ -25,10 +25,8 @@ final class SearchListAdapterImpl: NSObject {
             cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
         case .pullRequests:
             cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
-        case .users:
-            cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
-        case .organizations:
-            cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
+        case .people:
+            cellManager = CollectionCellManager.create(cellType: UserCell.self)
         }
     }
 }

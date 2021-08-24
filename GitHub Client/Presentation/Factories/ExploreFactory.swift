@@ -74,7 +74,7 @@ private extension ExploreFactoryImpl {
 
     func usersSearchListViewModel(_ searchQuery: String, actions: SearchListActions) -> SearchListViewModel {
         SearchListViewModelImpl(actions: actions,
-                                type: .users,
+                                type: .people,
                                 useCase: exploreUseCase,
                                 searchParameters: searchQuery)
     }

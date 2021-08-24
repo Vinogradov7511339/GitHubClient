@@ -24,6 +24,7 @@ final class SearchListViewController: UIViewController {
         let layout = layoutFactory.layout
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemGroupedBackground
         collectionView.dataSource = adapter
         collectionView.delegate = self
         return collectionView
@@ -60,7 +61,10 @@ private extension SearchListViewController {
         viewModel.detailTitle.observe(on: self) { [weak self] in self?.updateTitle($0) }
     }
 
-    func updateItems(_ newItems: [Any]) {}
+    func updateItems(_ newItems: [Any]) {
+        adapter.update(newItems)
+        collectionView.reloadData()
+    }
 
     func updateTitle(_ detailTitle: (String, String)) {
         navigationItem.titleView = setTitle(title: detailTitle.0, subtitle: detailTitle.1)

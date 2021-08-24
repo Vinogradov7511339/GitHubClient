@@ -12,29 +12,29 @@ protocol ExploreTempUseCase {
     // MARK: - Repositories
 
     typealias RepositoriesHandler = ExploreTempRepository.RepositoriesHandler
-    func mostStarred(completion: @escaping RepositoriesHandler)
-    func searchRepositoryByName(_ name: String, completion: @escaping RepositoriesHandler)
+    func mostStarred(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler)
+    func searchRepositoryByName(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler)
 
     // MARK: - Issues
 
     typealias IssuesHandler = ExploreTempRepository.IssuesHandler
-    func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler)
+    func searchIssueByLabel(_ model: SearchRequestModel, completion: @escaping IssuesHandler)
 
     // MARK: - PullRequests
 
     typealias PullRequestsHandler = (Result<SearchResponseModel, Error>) -> Void
-    func searchPullRequests(_ label: String, completion: @escaping PullRequestsHandler)
+    func searchPullRequests(_ model: SearchRequestModel, completion: @escaping PullRequestsHandler)
 
     // MARK: - Users
 
     typealias UsersHandler = ExploreTempRepository.UsersHandler
-    func searchUsersByName(_ name: String, completion: @escaping UsersHandler)
+    func searchUsersByName(_ model: SearchRequestModel, completion: @escaping UsersHandler)
 
     // MARK: - All
 
     typealias AllResultsTuple = [SearchType: SearchResponseModel]
     typealias AllResultHandler = (Result<AllResultsTuple, Error>) -> Void
-    func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler)
+    func searchAllTypesByName(_ model: SearchRequestModel, completion: @escaping AllResultHandler)
 }
 
 final class ExploreTempUseCaseImpl {
@@ -49,44 +49,44 @@ final class ExploreTempUseCaseImpl {
 
 // MARK: - ExploreTempUseCase
 extension ExploreTempUseCaseImpl: ExploreTempUseCase {
-    func mostStarred(completion: @escaping RepositoriesHandler) {
-        let text = "stars:>10000"
-        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
-        exploreRepository.fetchRepositories(searchModel, completion: completion)
+    func mostStarred(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler) {
+//        let text = "stars:>10000"
+//        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
+        exploreRepository.fetchRepositories(model, completion: completion)
     }
 
-    func searchRepositoryByName(_ name: String, completion: @escaping RepositoriesHandler) {
-        let text = "\(name) in:name,description"
-        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
-        exploreRepository.fetchRepositories(searchModel, completion: completion)
+    func searchRepositoryByName(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler) {
+//        let text = "\(name) in:name,description"
+//        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
+        exploreRepository.fetchRepositories(model, completion: completion)
     }
 
-    func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler) {
-        let text = "\(label) in:title,body"
-        let searchModel = SearchRequestModel(searchType: .issues, searchText: text)
-        exploreRepository.fetchIssues(searchModel, completion: completion)
+    func searchIssueByLabel(_ model: SearchRequestModel, completion: @escaping IssuesHandler) {
+//        let text = "\(label) in:title,body"
+//        let searchModel = SearchRequestModel(searchType: .issues, searchText: text)
+        exploreRepository.fetchIssues(model, completion: completion)
     }
 
-    func searchPullRequests(_ label: String, completion: @escaping PullRequestsHandler) {
-        let text = "\(label) in:title,body"
-        let searchModel = SearchRequestModel(searchType: .pullRequests, searchText: text)
-        exploreRepository.fetchPullRequests(searchModel, completion: completion)
+    func searchPullRequests(_ model: SearchRequestModel, completion: @escaping PullRequestsHandler) {
+//        let text = "\(label) in:title,body"
+//        let searchModel = SearchRequestModel(searchType: .pullRequests, searchText: text)
+        exploreRepository.fetchPullRequests(model, completion: completion)
     }
 
-    func searchUsersByName(_ name: String, completion: @escaping UsersHandler) {
-        let text = "\(name) in:name"
-        let searchModel = SearchRequestModel(searchType: .users, searchText: text)
-        exploreRepository.fetchUsers(searchModel, completion: completion)
+    func searchUsersByName(_ model: SearchRequestModel, completion: @escaping UsersHandler) {
+//        let text = "\(name) in:name"
+//        let searchModel = SearchRequestModel(searchType: .users, searchText: text)
+        exploreRepository.fetchUsers(model, completion: completion)
     }
 
-    func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler) {
-        fetchAll(name, completion: completion)
+    func searchAllTypesByName(_ model: SearchRequestModel, completion: @escaping AllResultHandler) {
+        fetchAll(model, completion: completion)
     }
 }
 
 // MARK: - Private
 private extension ExploreTempUseCaseImpl {
-    func fetchAll(_ name: String, completion: @escaping AllResultHandler) {
+    func fetchAll(_ model: SearchRequestModel, completion: @escaping AllResultHandler) {
         var repositories: SearchResponseModel?
         var issues: SearchResponseModel?
         var pullRequests: SearchResponseModel?
@@ -137,7 +137,7 @@ private extension ExploreTempUseCaseImpl {
             completion(.success(result))
         }
 
-        searchRepositoryByName(name) { result in
+        searchRepositoryByName(model) { result in
             switch result {
             case .success(let response):
                 repositories = response
@@ -147,7 +147,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchIssueByLabel(name) { result in
+        searchIssueByLabel(model) { result in
             switch result {
             case .success(let response):
                 issues = response
@@ -157,7 +157,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchPullRequests(name) { result in
+        searchPullRequests(model) { result in
             switch result {
             case .success(let response):
                 pullRequests = response
@@ -167,7 +167,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchUsersByName(name) { result in
+        searchUsersByName(model) { result in
             switch result {
             case .success(let response):
                 users = response

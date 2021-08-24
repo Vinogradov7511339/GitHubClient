@@ -20,7 +20,7 @@ final class ResultsAdapterImpl: NSObject {
         .repositories: TableCellManager.create(cellType: SearchRepCell.self),
         .issues: TableCellManager.create(cellType: ResultIssueCell.self),
         .pullRequests: TableCellManager.create(cellType: ResultPullRequestCell.self),
-        .people: TableCellManager.create(cellType: ResultUserCell.self),
+        .people: TableCellManager.create(cellType: ResultUserCell.self)
     ]
     private let resultsCellManager = TableCellManager.create(cellType: ResultTotalCell.self)
 }

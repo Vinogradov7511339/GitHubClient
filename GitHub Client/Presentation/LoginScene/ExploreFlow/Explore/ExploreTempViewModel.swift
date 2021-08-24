@@ -43,7 +43,8 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 // MARK: - Input
 extension ExploreTempViewModelImpl {
     func viewDidLoad() {
-        useCase.mostStarred { result in
+        let searchViewModel = SearchRequestModel(searchType: .repositories, searchText: "stars:>10000", perPage: 10, page: 1)
+        useCase.mostStarred(searchViewModel) { result in
             switch result {
             case .success(let response):
                 if let repositories = response.items as? [Repository] {

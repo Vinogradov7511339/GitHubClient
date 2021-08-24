@@ -26,11 +26,7 @@ class ResultTotalCell: BaseTableViewCell, NibLoadable {
 extension ResultTotalCell: ConfigurableCell {
 
     func configure(viewModel: ResultTotalViewModel) {
-        let formater = NumberFormatter()
-        formater.groupingSeparator = "."
-        formater.numberStyle = .decimal
-        let total = NSNumber(integerLiteral: viewModel.totalCount)
-        let formattedTotal = formater.string(from: total) ?? "\(total)"
+        let formattedTotal = viewModel.totalCount.separatedBy(".")
 
         switch viewModel.type {
         case .repositories:
