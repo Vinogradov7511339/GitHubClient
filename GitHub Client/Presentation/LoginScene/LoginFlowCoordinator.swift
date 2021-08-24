@@ -10,7 +10,7 @@ import UIKit
 protocol LoginFlowCoordinatorDependencies {
     func tabBar() -> UITabBarController
     func configure(_ controller: UITabBarController)
-    func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController
+    func makeLoginViewController(actions: LoginViewModelActions) -> UIViewController
     func userLoggedIn()
 }
 

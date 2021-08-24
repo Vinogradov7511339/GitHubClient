@@ -43,7 +43,7 @@ extension DeveloperSettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //todo confirm alert
-            ApplicationPresenter.shared.logout()
+//            ApplicationPresenter.shared.logout()
         }
     }
     

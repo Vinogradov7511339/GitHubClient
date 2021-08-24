@@ -41,7 +41,7 @@ extension StarredRepoTableViewCell: ConfigurableCell {
         if let language = viewModel.language {
             languageColorImageView.isHidden = false
             languageLabel.isHidden = false
-            languageColorImageView.tintColor = UIColor.getLanguageColor(for: language)
+//            languageColorImageView.tintColor = UIColor.getLanguageColor(for: language)
             languageLabel.text = language
         } else {
             languageColorImageView.isHidden = true

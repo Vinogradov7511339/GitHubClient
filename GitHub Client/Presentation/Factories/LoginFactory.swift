@@ -4,9 +4,10 @@
 //
 //  Created by Alexander Vinogradov on 10.08.2021.
 //
+import UIKit
 
 protocol LoginFactory {
-    func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController
+    func makeLoginViewController(actions: LoginViewModelActions) -> UIViewController
 }
 
 final class LoginFactoryImpl {
@@ -20,8 +21,8 @@ final class LoginFactoryImpl {
 
 // MARK: - LoginFactory
 extension LoginFactoryImpl: LoginFactory {
-    func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController {
-        return LoginViewController.create(with: makeLoginViewModel(actions: actions))
+    func makeLoginViewController(actions: LoginViewModelActions) -> UIViewController {
+        return OnboardingViewController.create(with: makeLoginViewModel(actions: actions))
     }
 }
 

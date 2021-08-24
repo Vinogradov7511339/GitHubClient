@@ -23,7 +23,7 @@ final class SignInFactoryImpl {
 // MARK: - SignInFactory
 extension SignInFactoryImpl: SignInFactory {
     func signInViewController(_ actions: LoginViewModelActions) -> UIViewController {
-        LoginViewController.create(with: loginViewModel(actions))
+        OnboardingViewController.create(with: loginViewModel(actions))
     }
 }
 

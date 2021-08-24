@@ -18,6 +18,7 @@ protocol LoginViewModelInput {
 
 protocol LoginViewModelOutput {
     var error: Observable<String> { get }
+    var introScenes: [IntroScene] { get }
 }
 
 typealias LoginViewModel = LoginViewModelInput & LoginViewModelOutput
@@ -29,7 +30,14 @@ class LoginViewModelImpl: LoginViewModel {
     
     // MARK: - Output
     var error: Observable<String> = Observable("")
-    
+    var introScenes: [IntroScene] {
+        var list: [IntroScene] = []
+        list.append(IntroScene(name: "First", mainTitle: "Hey there! Welcome to our App", animationName: "onboarding-car"))
+        list.append(IntroScene(name: "Second", mainTitle: "Please bear with us for onborading", animationName: "onboarding-piggy-bank"))
+        list.append(IntroScene(name: "Third", mainTitle: "You are all caugth up", animationName: "loading-checkmark"))
+        return list
+    }
+
     init(loginUseCase: LoginUseCase, actions: LoginViewModelActions) {
         self.loginUseCase = loginUseCase
         self.actions = actions

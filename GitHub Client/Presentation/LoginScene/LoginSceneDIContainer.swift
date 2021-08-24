@@ -84,7 +84,7 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
 
     // MARK: - Login flow
 
-    func makeLoginViewController(actions: LoginViewModelActions) -> LoginViewController {
+    func makeLoginViewController(actions: LoginViewModelActions) -> UIViewController {
         loginFactory.makeLoginViewController(actions: actions)
     }
 

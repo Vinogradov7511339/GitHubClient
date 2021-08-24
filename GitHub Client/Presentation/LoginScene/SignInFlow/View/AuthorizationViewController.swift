@@ -29,7 +29,7 @@ class AuthorizationViewController: UIViewController {
     }()
     
     weak var delegate: AuthorizationViewControllerDelegate?
-    
+
     private let uuid = UIDevice.current.identifierForVendor!.uuidString
 
     override func viewDidLoad() {
@@ -37,23 +37,27 @@ class AuthorizationViewController: UIViewController {
         setupViews()
         activateConstraints()
         configureNavigationBar()
-        
+
         webView.load(authRequest)
     }
-    
+
     @objc func cancelAction() {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func refreshAction() {
         self.webView.reload()
     }
 
     private func configureNavigationBar() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelAction))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                           target: self,
+                                           action: #selector(self.cancelAction))
         navigationItem.leftBarButtonItem = cancelButton
 
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshAction))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                            target: self,
+                                            action: #selector(self.refreshAction))
         navigationItem.rightBarButtonItem = refreshButton
     }
 
@@ -77,7 +81,9 @@ class AuthorizationViewController: UIViewController {
 
 // MARK: - WKNavigationDelegate
 extension AuthorizationViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         self.requestForCallbackUl(navigationAction.request)
         decisionHandler(.allow)
     }

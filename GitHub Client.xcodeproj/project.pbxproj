@@ -61,7 +61,6 @@
 		AD20E55826AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E55626AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift */; };
 		AD20E55926AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E55726AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib */; };
 		AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */; };
-		AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */; };
 		AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56426AB1324003BB5F1 /* AccountSettingsViewController.swift */; };
 		AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */; };
 		AD20E56A26AB2F76003BB5F1 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E56926AB2F76003BB5F1 /* ErrorResponse.swift */; };
@@ -121,7 +120,7 @@
 		AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E2269F2697000AA54C /* SceneDelegate.swift */; };
 		AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3776E9269F2698000AA54C /* Assets.xcassets */; };
 		AD3776ED269F2698000AA54C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3776EB269F2698000AA54C /* LaunchScreen.storyboard */; };
-		AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* LoginViewController.swift */; };
+		AD3776F5269F26B1000AA54C /* OnboardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */; };
 		AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F6269F270A000AA54C /* UserStorage.swift */; };
 		AD39A57F26C6796900309481 /* CommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A57E26C6796900309481 /* CommitsViewController.swift */; };
 		AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A58126C6799600309481 /* CommitsAdapter.swift */; };
@@ -171,6 +170,7 @@
 		AD3F070F26C2E63A00BC494E /* GitHub_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F070E26C2E63A00BC494E /* GitHub_ClientTests.swift */; };
 		AD3F071826C2FA6D00BC494E /* BaseDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */; };
 		AD3F071926C2FA6D00BC494E /* BaseDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */; };
+		AD43612826D568180004F742 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43612726D568180004F742 /* OnboardingViewController.swift */; };
 		AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */; };
 		AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */; };
 		AD508E7E26C51E690091132A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD508E7C26C51E690091132A /* MenuItemCell.swift */; };
@@ -272,6 +272,7 @@
 		AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722E826B83796004649A4 /* FavoritesViewController.swift */; };
 		AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */; };
 		AD8722F226B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */; };
+		AD90D13126D54C4D00D33076 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90D13026D54C4D00D33076 /* IntroductionViewController.swift */; };
 		AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003626C8262D002D7362 /* EventsFilterViewController.swift */; };
 		AD93003A26C82D47002D7362 /* EventFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93003926C82D47002D7362 /* EventFilterView.swift */; };
 		AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD93004826C94F9D002D7362 /* String+ISO8601.swift */; };
@@ -489,7 +490,6 @@
 		AD20E55626AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AD20E55726AAD0B3003BB5F1 /* SmallCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		AD20E56026AAFB35003BB5F1 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
-		AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresenter.swift; sourceTree = "<group>"; };
 		AD20E56426AB1324003BB5F1 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		AD20E56926AB2F76003BB5F1 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
@@ -551,7 +551,7 @@
 		AD3776E9269F2698000AA54C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD3776EC269F2698000AA54C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD3776EE269F2698000AA54C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD3776F4269F26B1000AA54C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageController.swift; sourceTree = "<group>"; };
 		AD3776F6269F270A000AA54C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		AD39A57E26C6796900309481 /* CommitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsViewController.swift; sourceTree = "<group>"; };
 		AD39A58126C6799600309481 /* CommitsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsAdapter.swift; sourceTree = "<group>"; };
@@ -603,6 +603,7 @@
 		AD3F071026C2E63A00BC494E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailsCell.swift; sourceTree = "<group>"; };
 		AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseDetailsCell.xib; sourceTree = "<group>"; };
+		AD43612726D568180004F742 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AD508E7C26C51E690091132A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
@@ -704,6 +705,7 @@
 		AD8722E826B83796004649A4 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AD8722EF26B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		AD8722F026B842E6004649A4 /* FavoriteRepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteRepositoryTableViewCell.xib; sourceTree = "<group>"; };
+		AD90D13026D54C4D00D33076 /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		AD93003626C8262D002D7362 /* EventsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFilterViewController.swift; sourceTree = "<group>"; };
 		AD93003926C82D47002D7362 /* EventFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterView.swift; sourceTree = "<group>"; };
 		AD93004826C94F9D002D7362 /* String+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ISO8601.swift"; sourceTree = "<group>"; };
@@ -1109,8 +1111,10 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */,
-				AD3776F4269F26B1000AA54C /* LoginViewController.swift */,
+				AD43612726D568180004F742 /* OnboardingViewController.swift */,
 				AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */,
+				AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */,
+				AD90D13026D54C4D00D33076 /* IntroductionViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1340,7 +1344,6 @@
 				AD3776E0269F2697000AA54C /* AppDelegate.swift */,
 				AD3776E2269F2697000AA54C /* SceneDelegate.swift */,
 				AD39FE6826BB1B3B00F055FD /* AppCoordinator.swift */,
-				AD20E56226AB0147003BB5F1 /* ApplicationPresenter.swift */,
 				AD39FE2526BA69D900F055FD /* AppDIContainer.swift */,
 			);
 			path = Application;
@@ -2653,7 +2656,7 @@
 				AD6B098226BFFF2F004644D2 /* EventsUseCase.swift in Sources */,
 				AD6B09B326C29960004644D2 /* LoginRepositoryImpl.swift in Sources */,
 				ADB60D9926D4FE7F0024479D /* SearchType.swift in Sources */,
-				AD3776F5269F26B1000AA54C /* LoginViewController.swift in Sources */,
+				AD3776F5269F26B1000AA54C /* OnboardingPageController.swift in Sources */,
 				ADDD512826C7ECE800F74240 /* PushEventCell.swift in Sources */,
 				ADA3C85D26CFD7BE009F9130 /* BranchResponseDTO.swift in Sources */,
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
@@ -2687,9 +2690,9 @@
 				AD6B098A26C00891004644D2 /* OrganzationResponseDTO.swift in Sources */,
 				AD39FE5126BABD0B00F055FD /* UserProfileViewModel.swift in Sources */,
 				AD5C8E3426D2B2C0003E2F38 /* ExploreFlowCoordinator.swift in Sources */,
-				AD20E56326AB0147003BB5F1 /* ApplicationPresenter.swift in Sources */,
 				AD39FE3F26BAA28A00F055FD /* RepFlowCoordinator.swift in Sources */,
 				AD6B09B826C2A18B004644D2 /* CoreDataStorage.xcdatamodeld in Sources */,
+				AD90D13126D54C4D00D33076 /* IntroductionViewController.swift in Sources */,
 				AD20E54226AAA698003BB5F1 /* EventsViewController.swift in Sources */,
 				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
 				AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */,
@@ -2724,6 +2727,7 @@
 				ADA7494126CE306B00C8D475 /* ProfileViewController.swift in Sources */,
 				AD93003726C8262D002D7362 /* EventsFilterViewController.swift in Sources */,
 				AD39FE3D26BAA20A00F055FD /* RepSceneDIContainer.swift in Sources */,
+				AD43612826D568180004F742 /* OnboardingViewController.swift in Sources */,
 				AD20E45726A723B0003BB5F1 /* AsyncOperation.swift in Sources */,
 				AD39FE2626BA69D900F055FD /* AppDIContainer.swift in Sources */,
 				AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */,

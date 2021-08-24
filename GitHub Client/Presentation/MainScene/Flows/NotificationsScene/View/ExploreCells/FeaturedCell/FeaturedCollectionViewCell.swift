@@ -26,7 +26,7 @@ struct FeaturedCellViewModel {
         isStarred = false
         starsCount = "\(repository.stargazersCount ?? 0)"
         language = repository.language ?? ""
-        languageColor = UIColor.getLanguageColor(for: repository.language)
+        languageColor = nil
     }
 }
 
