@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchBarWithFiltersView: UIView {
-    
+
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false

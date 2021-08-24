@@ -321,7 +321,6 @@
 		ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */; };
 		ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9E26B55620004AC06C /* octocat_gray-1.png */; };
 		ADA68BB126B55621004AC06C /* octocat_gray@2x-3.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */; };
-		ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */; };
 		ADA7494126CE306B00C8D475 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7494026CE306B00C8D475 /* ProfileViewController.swift */; };
 		ADA7494326CE31B100C8D475 /* ProfileAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7494226CE31B100C8D475 /* ProfileAdapter.swift */; };
 		ADA7494626CE580100C8D475 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7494426CE580100C8D475 /* ProfileHeaderCell.swift */; };
@@ -421,7 +420,6 @@
 		ADDD512E26C7ED5200F74240 /* CreateEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADDD512C26C7ED5200F74240 /* CreateEventCell.xib */; };
 		ADDF2E0826CAE04000CB1C22 /* ForkEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF2E0626CAE04000CB1C22 /* ForkEventCell.swift */; };
 		ADDF2E0926CAE04000CB1C22 /* ForkEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADDF2E0726CAE04000CB1C22 /* ForkEventCell.xib */; };
-		ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -754,7 +752,6 @@
 		ADA68B9D26B55620004AC06C /* octocat_gray@2x-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-6.png"; sourceTree = "<group>"; };
 		ADA68B9E26B55620004AC06C /* octocat_gray-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray-1.png"; sourceTree = "<group>"; };
 		ADA68B9F26B55620004AC06C /* octocat_gray@2x-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octocat_gray@2x-3.png"; sourceTree = "<group>"; };
-		ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesFilters.swift; sourceTree = "<group>"; };
 		ADA7494026CE306B00C8D475 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		ADA7494226CE31B100C8D475 /* ProfileAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAdapter.swift; sourceTree = "<group>"; };
 		ADA7494426CE580100C8D475 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
@@ -854,7 +851,6 @@
 		ADDD512C26C7ED5200F74240 /* CreateEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateEventCell.xib; sourceTree = "<group>"; };
 		ADDF2E0626CAE04000CB1C22 /* ForkEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkEventCell.swift; sourceTree = "<group>"; };
 		ADDF2E0726CAE04000CB1C22 /* ForkEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForkEventCell.xib; sourceTree = "<group>"; };
-		ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStorage.swift; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -894,7 +890,6 @@
 			isa = PBXGroup;
 			children = (
 				ADA68BB926B56F72004AC06C /* GithubApi */,
-				ADA68BBA26B5709E004AC06C /* Filter */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1112,9 +1107,9 @@
 			children = (
 				AD39FE5C26BAE00800F055FD /* LoginViewModel.swift */,
 				AD43612726D568180004F742 /* OnboardingViewController.swift */,
-				AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */,
 				AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */,
 				AD90D13026D54C4D00D33076 /* IntroductionViewController.swift */,
+				AD43612926D574030004F742 /* WebView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1565,6 +1560,14 @@
 			path = "GitHub ClientTests";
 			sourceTree = "<group>";
 		};
+		AD43612926D574030004F742 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E56726AB24FA003BB5F1 /* AuthorizationViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		AD5C8E1D26D29452003E2F38 /* old */ = {
 			isa = PBXGroup;
 			children = (
@@ -1664,7 +1667,6 @@
 				AD79550726ABFFF7004E6973 /* UIColor+hex.swift */,
 				AD79550126ABEFC5004E6973 /* UIView+IBInspectable.swift */,
 				AD20E52926AA8CFC003BB5F1 /* SearchBarWithFiltersView.swift */,
-				ADE7A48126B66F1C00C0C89D /* FilterStorage.swift */,
 				AD20E42F26A5DFD7003BB5F1 /* TableCellManager */,
 				AD3F071626C2FA6D00BC494E /* BaseDetailsCell.swift */,
 				AD3F071726C2FA6D00BC494E /* BaseDetailsCell.xib */,
@@ -2050,14 +2052,6 @@
 			path = GithubApi;
 			sourceTree = "<group>";
 		};
-		ADA68BBA26B5709E004AC06C /* Filter */ = {
-			isa = PBXGroup;
-			children = (
-				ADA68BBB26B570BB004AC06C /* IssuesFilters.swift */,
-			);
-			path = Filter;
-			sourceTree = "<group>";
-		};
 		ADA7494826CE5B9100C8D475 /* HeaderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2398,7 +2392,6 @@
 				AD3776DA269F2697000AA54C /* Frameworks */,
 				AD3776DB269F2697000AA54C /* Resources */,
 				ADA1D81826B71257000537C8 /* ShellScript */,
-				8E369A7EACDF67CAD20F53CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2568,23 +2561,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8E369A7EACDF67CAD20F53CB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitHub Client/Pods-GitHub Client-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ADA1D81826B71257000537C8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2662,7 +2638,6 @@
 				AD6B096526BEFDCD004644D2 /* Functions.swift in Sources */,
 				ADA7494B26CE5BCB00C8D475 /* ProfileItemCell.swift in Sources */,
 				AD2E261226BC6D4C00B25772 /* WebImageView.swift in Sources */,
-				ADE7A48226B66F1C00C0C89D /* FilterStorage.swift in Sources */,
 				AD23E7BB26D169A8009FEB27 /* RepositoryFactory.swift in Sources */,
 				ADBC1AD926C43582000F9B88 /* FavoritesViewModel.swift in Sources */,
 				ADA7494626CE580100C8D475 /* ProfileHeaderCell.swift in Sources */,
@@ -2898,7 +2873,6 @@
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADB60D6F26D392220024479D /* SearchAdapter.swift in Sources */,
-				ADA68BBC26B570BB004AC06C /* IssuesFilters.swift in Sources */,
 				ADA7495E26CEBEA600C8D475 /* UIImage+Repository.swift in Sources */,
 				ADA7495126CE989B00C8D475 /* CodeOptionsViewController.swift in Sources */,
 				AD5C8E3A26D2B546003E2F38 /* SignInDIContainer.swift in Sources */,
