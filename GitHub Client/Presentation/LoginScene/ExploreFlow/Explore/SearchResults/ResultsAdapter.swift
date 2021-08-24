@@ -21,7 +21,6 @@ final class ResultsAdapterImpl: NSObject {
         .issues: TableCellManager.create(cellType: ResultIssueCell.self),
         .pullRequests: TableCellManager.create(cellType: ResultPullRequestCell.self),
         .people: TableCellManager.create(cellType: ResultUserCell.self),
-        .organizations: TableCellManager.create(cellType: ResultOrganizationCell.self)
     ]
     private let resultsCellManager = TableCellManager.create(cellType: ResultTotalCell.self)
 }

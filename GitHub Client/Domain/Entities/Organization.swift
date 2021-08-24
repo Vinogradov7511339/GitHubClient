@@ -9,4 +9,5 @@ import Foundation
 
 struct Organization {
     let name: String
+    let avatarUrl: URL?
 }

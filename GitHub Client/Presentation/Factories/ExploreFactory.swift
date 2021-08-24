@@ -14,7 +14,6 @@ protocol ExploreFactory {
     func issuesViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func pullRequestsViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func usersViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
-    func organizationsViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
 }
 
 final class ExploreFactoryImpl {
@@ -47,10 +46,6 @@ extension ExploreFactoryImpl: ExploreFactory {
     func usersViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController {
         SearchListViewController.create(with: usersSearchListViewModel(searchQuery, actions: actions))
     }
-
-    func organizationsViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController {
-        SearchListViewController.create(with: orgsSearchListViewModel(searchQuery, actions: actions))
-    }
 }
 
 // MARK: - SearchList view models
@@ -80,13 +75,6 @@ private extension ExploreFactoryImpl {
     func usersSearchListViewModel(_ searchQuery: String, actions: SearchListActions) -> SearchListViewModel {
         SearchListViewModelImpl(actions: actions,
                                 type: .users,
-                                useCase: exploreUseCase,
-                                searchParameters: searchQuery)
-    }
-
-    func orgsSearchListViewModel(_ searchQuery: String, actions: SearchListActions) -> SearchListViewModel {
-        SearchListViewModelImpl(actions: actions,
-                                type: .organizations,
                                 useCase: exploreUseCase,
                                 searchParameters: searchQuery)
     }

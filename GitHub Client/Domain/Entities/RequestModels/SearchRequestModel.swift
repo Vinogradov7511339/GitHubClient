@@ -9,9 +9,10 @@ import Foundation
 
 struct SearchRequestModel {
     enum SearchType: String {
-        case repositories
-        case issues
-        case users
+        case repositories = "/repositories"
+        case issues = "/issues"
+        case pullRequests = "/pr"
+        case users = "/users"
     }
 
     enum Order: String {
@@ -27,4 +28,5 @@ struct SearchRequestModel {
     let searchText: String
     let order: Order = .desc
     let sort: Sort = .created
+    let perPage: Int = 5
 }

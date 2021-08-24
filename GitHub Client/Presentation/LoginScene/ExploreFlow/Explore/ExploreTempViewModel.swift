@@ -46,7 +46,11 @@ extension ExploreTempViewModelImpl {
         useCase.mostStarred { result in
             switch result {
             case .success(let response):
-                self.popular.value = response.items
+                if let repositories = response.items as? [Repository] {
+                    self.popular.value = repositories
+                } else {
+                    self.popular.value = []
+                }
             case.failure(let error):
                 self.handle(error)
             }

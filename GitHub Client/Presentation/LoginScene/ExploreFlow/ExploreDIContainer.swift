@@ -64,10 +64,6 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
         exploreFactory.usersViewController(searchQuery, actions: searchListActions())
     }
 
-    func organizationsViewController(_ searchQuery: String) -> UIViewController {
-        exploreFactory.organizationsViewController(searchQuery, actions: searchListActions())
-    }
-
     func showRepository(_ repository: Repository) {
         dependencies.showRepository(repository)
     }

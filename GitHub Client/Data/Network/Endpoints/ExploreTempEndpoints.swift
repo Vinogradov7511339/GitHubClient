@@ -10,31 +10,34 @@ import Foundation
 struct ExploreTempEndpoints {
     static func repositories(_ model: SearchRequestModel) ->
     Endpoint<SearchResponseDTO<RepositoryResponseDTO>> {
-        var params: QueryType = [:]
-        params["q"] = model.searchText
-        params["order"] = model.order.rawValue
-        params["sort"] = model.sort.rawValue
-        params["per_page"] = "5"
-        return Endpoint(path: "search/\(model.searchType.rawValue)", queryParametersEncodable: params)
+        return Endpoint(path: path(model), queryParametersEncodable: parameters(model))
+    }
+
+    static func issues(_ model: SearchRequestModel) ->
+    Endpoint<SearchResponseDTO<IssueResponseDTO>> {
+        return Endpoint(path: path(model), queryParametersEncodable: parameters(model))
+    }
+
+    static func pullRequests(_ model: SearchRequestModel) ->
+    Endpoint<SearchResponseDTO<PullRequestResponseDTO>> {
+        return Endpoint(path: path(model), queryParametersEncodable: parameters(model))
     }
 
     static func users(_ model: SearchRequestModel) ->
     Endpoint<SearchResponseDTO<UserResponseDTO>> {
-        var params: QueryType = [:]
-        params["q"] = model.searchText
-        params["order"] = model.order.rawValue
-        params["sort"] = model.sort.rawValue
-        params["per_page"] = "5"
-        return Endpoint(path: "search/\(model.searchType.rawValue)", queryParametersEncodable: params)
+        return Endpoint(path: path(model), queryParametersEncodable: parameters(model))
     }
 
-    static func issues(_ model: SearchRequestModel) -> Endpoint<SearchResponseDTO<IssueResponseDTO>> {
+    private static func path(_ model: SearchRequestModel) -> String {
+        return "search\(model.searchType.rawValue)"
+    }
+
+    private static func parameters(_ model: SearchRequestModel) -> QueryType {
         var params: QueryType = [:]
         params["q"] = model.searchText
-        params["type"] = "Issues"
-//        params["q"] = "is:issue+windows+label:bug+language:python+state:open"
         params["order"] = model.order.rawValue
         params["sort"] = model.sort.rawValue
-        return Endpoint(path: "search/\(model.searchType.rawValue)", queryParametersEncodable: params)
+        params["per_page"] = "\(model.perPage)"
+        return params
     }
 }

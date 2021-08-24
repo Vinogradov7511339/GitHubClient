@@ -14,7 +14,6 @@ protocol ExploreFlowCoordinatorDependencies {
     func issuesViewController(_ searchQuery: String) -> UIViewController
     func pullRequestsViewController(_ searchQuery: String) -> UIViewController
     func usersViewController(_ searchQuery: String) -> UIViewController
-    func organizationsViewController(_ searchQuery: String) -> UIViewController
 
     func showRepository(_ repository: Repository)
     func showIssue(_ issue: Issue)
@@ -37,12 +36,10 @@ final class ExploreFlowCoordinator {
                                           loadIssues: showIssues(_:),
                                           loadPRList: showPRList(_:),
                                           loadUsers: showUsers(_:),
-                                          loadOrgList: showOrgList(_:),
                                           showRepository: dependencies.showRepository(_:),
                                           showIssue: dependencies.showIssue(_:),
                                           showPullRequest: dependencies.showPullRequest(_:),
-                                          showUser: dependencies.showUser(_:),
-                                          showOrganization: dependencies.showOrganization(_:))
+                                          showUser: dependencies.showUser(_:))
         let viewController = dependencies.exploreViewController(actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -67,11 +64,6 @@ private extension ExploreFlowCoordinator {
 
     func showUsers(_ searchQuery: String) {
         let viewController = dependencies.usersViewController(searchQuery)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func showOrgList(_ searchQuery: String) {
-        let viewController = dependencies.organizationsViewController(searchQuery)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

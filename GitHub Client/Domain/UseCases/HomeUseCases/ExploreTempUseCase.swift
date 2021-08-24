@@ -15,16 +15,24 @@ protocol ExploreTempUseCase {
     func mostStarred(completion: @escaping RepositoriesHandler)
     func searchRepositoryByName(_ name: String, completion: @escaping RepositoriesHandler)
 
-    // MARK: - Users
-    typealias UsersHandler = ExploreTempRepository.UsersHandler
-    func searchUsersByName(_ name: String, completion: @escaping UsersHandler)
-
     // MARK: - Issues
+
     typealias IssuesHandler = ExploreTempRepository.IssuesHandler
     func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler)
 
+    // MARK: - PullRequests
+
+    typealias PullRequestsHandler = (Result<SearchResponseModel, Error>) -> Void
+    func searchPullRequests(_ label: String, completion: @escaping PullRequestsHandler)
+
+    // MARK: - Users
+
+    typealias UsersHandler = ExploreTempRepository.UsersHandler
+    func searchUsersByName(_ name: String, completion: @escaping UsersHandler)
+
     // MARK: - All
-    typealias AllResultsTuple = [SearchType: SearchResponseModel<Any>]
+
+    typealias AllResultsTuple = [SearchType: SearchResponseModel]
     typealias AllResultHandler = (Result<AllResultsTuple, Error>) -> Void
     func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler)
 }
@@ -53,16 +61,22 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
         exploreRepository.fetchRepositories(searchModel, completion: completion)
     }
 
-    func searchUsersByName(_ name: String, completion: @escaping UsersHandler) {
-        let text = "\(name) in:name"
-        let searchModel = SearchRequestModel(searchType: .users, searchText: text)
-        exploreRepository.fetchUsers(searchModel, completion: completion)
-    }
-
     func searchIssueByLabel(_ label: String, completion: @escaping IssuesHandler) {
         let text = "\(label) in:title,body"
         let searchModel = SearchRequestModel(searchType: .issues, searchText: text)
         exploreRepository.fetchIssues(searchModel, completion: completion)
+    }
+
+    func searchPullRequests(_ label: String, completion: @escaping PullRequestsHandler) {
+        let text = "\(label) in:title,body"
+        let searchModel = SearchRequestModel(searchType: .pullRequests, searchText: text)
+        exploreRepository.fetchPullRequests(searchModel, completion: completion)
+    }
+
+    func searchUsersByName(_ name: String, completion: @escaping UsersHandler) {
+        let text = "\(name) in:name"
+        let searchModel = SearchRequestModel(searchType: .users, searchText: text)
+        exploreRepository.fetchUsers(searchModel, completion: completion)
     }
 
     func searchAllTypesByName(_ name: String, completion: @escaping AllResultHandler) {
@@ -73,59 +87,52 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
 // MARK: - Private
 private extension ExploreTempUseCaseImpl {
     func fetchAll(_ name: String, completion: @escaping AllResultHandler) {
-        var repositories: SearchResponseModel<Repository>?
-        var issues: SearchResponseModel<Issue>?
-        var pullRequests: SearchResponseModel<PullRequest>?
-        var users: SearchResponseModel<User>?
-        var organizations: SearchResponseModel<Organization>?
+        var repositories: SearchResponseModel?
+        var issues: SearchResponseModel?
+        var pullRequests: SearchResponseModel?
+        var users: SearchResponseModel?
 
         var searchErrors: [Error] = []
 
         dispatchGroup.enter()
         dispatchGroup.enter()
         dispatchGroup.enter()
+        dispatchGroup.enter()
 
         dispatchGroup.notify(queue: .main) {
-            let repModel: SearchResponseModel<Repository>
+            let repModel: SearchResponseModel
             if let repositories = repositories {
                 repModel = repositories
             } else {
-                repModel = SearchResponseModel<Repository>(items: [], lastPage: 1, total: 0)
+                repModel = SearchResponseModel(itemsType: .repository([]), lastPage: 1, total: 0)
             }
 
-            let issuesModel: SearchResponseModel<Issue>
+            let issuesModel: SearchResponseModel
             if let issues = issues {
                 issuesModel = issues
             } else {
-                issuesModel = SearchResponseModel<Issue>(items: [], lastPage: 1, total: 0)
+                issuesModel = SearchResponseModel(itemsType: .issue([]), lastPage: 1, total: 0)
             }
 
-            let pullRequestModel: SearchResponseModel<PullRequest>
+            let pullRequestModel: SearchResponseModel
             if let pullRequests = pullRequests {
                 pullRequestModel = pullRequests
             } else {
-                pullRequestModel = SearchResponseModel<PullRequest>(items: [], lastPage: 1, total: 0)
+                pullRequestModel = SearchResponseModel(itemsType: .pullRequest([]), lastPage: 1, total: 0)
             }
 
-            let usersModel: SearchResponseModel<User>
+            let usersModel: SearchResponseModel
             if let users = users {
                 usersModel = users
             } else {
-                usersModel = SearchResponseModel<User>(items: [], lastPage: 1, total: 0)
+                usersModel = SearchResponseModel(itemsType: .users([]), lastPage: 1, total: 0)
             }
 
-            let organizationsModel: SearchResponseModel<Organization>
-            if let organizations = organizations {
-                organizationsModel = organizations
-            } else {
-                organizationsModel = SearchResponseModel<Organization>(items: [], lastPage: 1, total: 0)
-            }
-            let result: [SearchType: SearchResponseModel<Any>] = [:
-//                .repositories: repModel,
-//                .issues: issuesModel,
-//                .pullRequests: pullRequestModel,
-//                .people: usersModel,
-//                .organizations: organizationsModel
+            let result: [SearchType: SearchResponseModel] = [
+                .repositories: repModel,
+                .issues: issuesModel,
+                .pullRequests: pullRequestModel,
+                .people: usersModel,
             ]
             completion(.success(result))
         }
@@ -140,20 +147,30 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchUsersByName(name) { result in
+        searchIssueByLabel(name) { result in
             switch result {
             case .success(let response):
-                users = response
+                issues = response
             case .failure(let error):
                 searchErrors.append(error)
             }
             self.dispatchGroup.leave()
         }
 
-        searchIssueByLabel(name) { result in
+        searchPullRequests(name) { result in
             switch result {
             case .success(let response):
-                issues = response
+                pullRequests = response
+            case .failure(let error):
+                searchErrors.append(error)
+            }
+            self.dispatchGroup.leave()
+        }
+
+        searchUsersByName(name) { result in
+            switch result {
+            case .success(let response):
+                users = response
             case .failure(let error):
                 searchErrors.append(error)
             }

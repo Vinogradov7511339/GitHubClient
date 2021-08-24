@@ -26,9 +26,6 @@ struct SearchTypeCellViewModel {
         case .people:
             image = UIImage.issue
             baseText = "People with "
-        case .organizations:
-            image = UIImage.issue
-            baseText = "Organizations with "
         }
     }
 }

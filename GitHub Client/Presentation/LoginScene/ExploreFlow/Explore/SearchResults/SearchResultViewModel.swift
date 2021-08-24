@@ -12,13 +12,11 @@ struct SearchResultActions {
     let loadIssues: (String) -> Void
     let loadPRList: (String) -> Void
     let loadUsers: (String) -> Void
-    let loadOrgList: (String) -> Void
 
     let showRepository: (Repository) -> Void
     let showIssue: (Issue) -> Void
     let showPullRequest: (PullRequest) -> Void
     let showUser: (User) -> Void
-    let showOrganization: (Organization) -> Void
 }
 
 protocol SearchResultViewModelInput: UISearchResultsUpdating, UISearchBarDelegate {
@@ -74,8 +72,6 @@ extension SearchResultViewModelImpl {
             actions.loadPRList(text)
         case .people:
             actions.loadUsers(text)
-        case .organizations:
-            actions.loadOrgList(text)
         }
     }
 
@@ -107,8 +103,6 @@ extension SearchResultViewModelImpl {
                 actions.loadPRList(searchText)
             case .people:
                 actions.loadUsers(searchText)
-            case .organizations:
-                actions.loadOrgList(searchText)
             }
         }
     }
@@ -127,9 +121,6 @@ extension SearchResultViewModelImpl {
         }
         if let user = item as? User {
             actions.showUser(user)
-        }
-        if let organization = item as? Organization {
-            actions.showOrganization(organization)
         }
     }
 }

@@ -18,6 +18,10 @@ struct OrganzationResponseDTO: Codable {
     let issuesUrl: URL?
     let membersUrl: String?
     let publicMembersUrl: String?
-    let avatarUrl: URL
+    let avatarUrl: URL?
     let description: String?
+
+    func toDomain() -> Organization {
+        .init(name: login, avatarUrl: avatarUrl)
+    }
 }

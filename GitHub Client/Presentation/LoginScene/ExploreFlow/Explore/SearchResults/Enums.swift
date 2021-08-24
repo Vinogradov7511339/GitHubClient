@@ -17,13 +17,7 @@ enum SearchState {
 
 enum SearchResultType {
     case empty
-//    case all(repList: SearchResponseModel<Repository>,
-//             issues: SearchResponseModel<Issue>,
-//             pullRequets: SearchResponseModel<PullRequest>,
-//             users: SearchResponseModel<User>,
-//             organizations: SearchResponseModel<Organization>)
-
-    case results([SearchType: SearchResponseModel<Any>])
+    case results([SearchType: SearchResponseModel])
 }
 
 enum SearchType: Int, CaseIterable {
@@ -31,7 +25,6 @@ enum SearchType: Int, CaseIterable {
     case issues
     case pullRequests
     case people
-    case organizations
 
     var title: String {
         switch self {
@@ -43,8 +36,6 @@ enum SearchType: Int, CaseIterable {
             return NSLocalizedString("Pull Requests", comment: "")
         case .people:
             return NSLocalizedString("People", comment: "")
-        case .organizations:
-            return NSLocalizedString("Organizations", comment: "")
         }
     }
 }

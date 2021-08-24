@@ -8,12 +8,15 @@
 import Foundation
 
 protocol ExploreTempRepository {
-    typealias RepositoriesHandler = (Result<SearchResponseModel<Repository>, Error>) -> Void
+    typealias RepositoriesHandler = (Result<SearchResponseModel, Error>) -> Void
     func fetchRepositories(_ searchModel: SearchRequestModel, completion: @escaping RepositoriesHandler)
 
-    typealias UsersHandler = (Result<SearchResponseModel<User>, Error>) -> Void
-    func fetchUsers(_ searchModel: SearchRequestModel, completion: @escaping UsersHandler)
-
-    typealias IssuesHandler = (Result<SearchResponseModel<Issue>, Error>) -> Void
+    typealias IssuesHandler = (Result<SearchResponseModel, Error>) -> Void
     func fetchIssues(_ searchModel: SearchRequestModel, completion: @escaping IssuesHandler)
+
+    typealias PullRequestsHandler = (Result<SearchResponseModel, Error>) -> Void
+    func fetchPullRequests(_ searchModel: SearchRequestModel, completion: @escaping PullRequestsHandler)
+
+    typealias UsersHandler = (Result<SearchResponseModel, Error>) -> Void
+    func fetchUsers(_ searchModel: SearchRequestModel, completion: @escaping UsersHandler)
 }

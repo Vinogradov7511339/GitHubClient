@@ -41,8 +41,6 @@ extension ResultTotalCell: ConfigurableCell {
             totalResultsLabel.text = "See all \(formattedTotal) pull requests"
         case .people:
             totalResultsLabel.text = "See all \(formattedTotal) people"
-        case .organizations:
-            totalResultsLabel.text = "See all \(formattedTotal) organizations"
         }
     }
 }
