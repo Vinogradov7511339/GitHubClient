@@ -13,7 +13,10 @@ protocol UserFactory {
     func followingViewController(user: User, _ actions: UsersListActions) -> UIViewController
     func repositoriesViewController(user: User, _ actions: RepositoriesActions) -> UIViewController
     func starredViewController(user: User, _ actions: RepositoriesActions) -> UIViewController
-    func eventsViewController(user: User, _ actions: EventsActions) -> UIViewController
+    func gistsViewController(user: User) -> UIViewController
+    func subscriptionsViewController(user: User) -> UIViewController
+    func eventsViewController(user: User) -> UIViewController
+    func recentEventsViewController(user: User) -> UIViewController
 }
 
 final class UsersListFactoryImpl {
@@ -27,6 +30,22 @@ final class UsersListFactoryImpl {
 
 // MARK: - UsersListFactory
 extension UsersListFactoryImpl: UserFactory {
+    func gistsViewController(user: User) -> UIViewController {
+        UIViewController()
+    }
+
+    func subscriptionsViewController(user: User) -> UIViewController {
+        UIViewController()
+    }
+
+    func eventsViewController(user: User) -> UIViewController {
+        UIViewController()
+    }
+
+    func recentEventsViewController(user: User) -> UIViewController {
+        UIViewController()
+    }
+
 
     func profileViewController(user: User, _ actions: UserProfileActions) -> UIViewController {
         UserProfileViewController.create(with: userProfileViewModel(user: user, actions: actions))
@@ -46,10 +65,6 @@ extension UsersListFactoryImpl: UserFactory {
 
     func starredViewController(user: User, _ actions: RepositoriesActions) -> UIViewController {
         RepositoriesViewController.create(with: repositoriesViewModel(for: user, actions: actions))
-    }
-
-    func eventsViewController(user: User, _ actions: EventsActions) -> UIViewController {
-        UserEventsViewController()
     }
 }
 

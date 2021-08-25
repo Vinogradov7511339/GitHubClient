@@ -11,11 +11,13 @@ final class AppDIContainer {
 
     static let shared = AppDIContainer()
 
-    private init() {}
+    // MARK: - Private variables
 
-    lazy var appConfiguration = AppConfiguration()
+    private let appConfiguration = AppConfiguration()
 
-    lazy var apiDataTransferService: DataTransferService = {
+    // MARK: - Services
+
+    lazy var dataTransferService: DataTransferService = {
         let config = ApiDataNetworkConfig(baseURL: URL(string: appConfiguration.apiBaseURL)!)
         let networkService = NetworkServiceImpl(config: config)
         return DataTransferServiceImpl(with: networkService)
@@ -35,21 +37,142 @@ final class AppDIContainer {
         let profileStorage = ProfileLocalStorageImpl()
         return profileStorage
     }()
+}
 
-    // MARK: - DIContainers of scenes
-    func makeTabCoordinator(window: UIWindow,
-                            dependencies: MainSceneDIContainer.Dependencies) -> MainCoordinator {
-        let container = MainSceneDIContainer(appDIContainer: self, dependencies: dependencies)
-        return MainCoordinator.init(in: window, mainSceneDIContainer: container)
+// MARK: - AppCoordinatorDependencies
+extension AppDIContainer: AppCoordinatorDependencies {
+
+    // MARK: - Factories
+
+    var userFactory: UserFactory {
+        UsersListFactoryImpl(dataTransferService: dataTransferService)
     }
 
-    func makeLoginSceneDIContainer(
-        dependencies: LoginSceneDIContainer.Dependencies) -> LoginSceneDIContainer {
-        return LoginSceneDIContainer(dependencies: dependencies)
+    // MARK: - Coordinators
+
+    func notLoggedCoordinator(in window: UIWindow,
+                            actions: AppCoordinatorActions) -> NotLoggedFlowCoordinator {
+
+        let container = NotLoggedSceneDIContainer(loginDependencies(actions))
+        return NotLoggedFlowCoordinator(in: window, dependencies: container)
     }
 
-    func makeSettingsDependencies(logoutAction: @escaping () -> Void) -> SettingsCoordinatorDependencies {
-        let dependencies = SettingsDIContainer.Dependencies.init(logout: logoutAction)
-        return SettingsDIContainer(dependencies)
+    func mainCoordinator(in window: UIWindow,
+                         actions: AppCoordinatorActions) -> MainCoordinator {
+
+        let container = MainSceneDIContainer(mainDependencies(actions))
+        return MainCoordinator(in: window, dependencies: container)
+    }
+
+    func settingsCoordinator(in nav: UINavigationController,
+                             actions: AppCoordinatorActions) -> SettingsCoordinator {
+
+        let container = SettingsDIContainer(settingsDependencies(actions))
+        return SettingsCoordinator(with: container, in: nav)
+    }
+
+    func repositoryCoordinator(in nav: UINavigationController,
+                               actions: AppCoordinatorActions,
+                               repository: Repository) -> RepFlowCoordinator {
+
+        let container = RepositoryDIContainer(repositoryDependencies(actions, repository: repository))
+        return RepFlowCoordinator(in: nav, with: container)
+    }
+
+    func userCoordinator(in nav: UINavigationController,
+                         actions: AppCoordinatorActions,
+                         user: User) -> UserFlowCoordinator {
+
+        let container = UserProfileDIContainer(dependencies: userDependencies(actions, user: user))
+        return UserFlowCoordinator(with: container, in: nav)
+    }
+
+    func issueCoordinator(in nav: UINavigationController,
+                          actions: AppCoordinatorActions,
+                          issue: Issue) -> IssueCoordinator {
+
+        let container = IssueDIContainer(issueDependencies(actions, issue: issue))
+        return IssueCoordinator(with: container, in: nav)
+    }
+
+    func pullRequestCoordinator(in nav: UINavigationController,
+                                actions: AppCoordinatorActions,
+                                pullRequest: PullRequest) -> PullRequestCoordinator {
+
+        let container = PullRequestDIContainer(pullRequestDependencies(actions, pullRequest: pullRequest))
+        return PullRequestCoordinator(with: container, in: nav)
+    }
+
+}
+
+// MARK: - Dependencies
+private extension AppDIContainer {
+    func loginDependencies(_ actions: AppCoordinatorActions) -> NotLoggedSceneDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              searchFilterStorage: searchFilterStorage,
+              userLoggedIn: actions.login,
+              openSettings: actions.openSettings(in:),
+              openRepository: actions.openRepository(_:in:),
+              openUser: actions.openUser(_:in:),
+              openIssue: actions.openIssue(_:in:),
+              openPullRequest: actions.openPullRequest(_:in:))
+    }
+
+    func mainDependencies(_ actions: AppCoordinatorActions) -> MainSceneDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              favoritesStorage: favoritesStorage,
+              profileStorage: profileStorage,
+              searchFilterStorage: searchFilterStorage,
+              logout: actions.logout,
+              openSettings: actions.openSettings(in:),
+              openRepository: actions.openRepository(_:in:),
+              openUser: actions.openUser(_:in:),
+              openIssue: actions.openIssue(_:in:),
+              openPullRequest: actions.openPullRequest(_:in:),
+              sendMail: actions.send(email:),
+              openLink: actions.open(link:),
+              share: actions.share(link:))
+    }
+
+    func settingsDependencies(_ actions: AppCoordinatorActions) -> SettingsDIContainer.Dependencies {
+        .init(logout: actions.logout)
+    }
+
+    func repositoryDependencies(_ actions: AppCoordinatorActions,
+                                repository: Repository) -> RepositoryDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              repository: repository,
+              showUser: actions.openUser(_:in:),
+              openLink: actions.open(link:),
+              share: actions.share(link:),
+              copy: actions.copy(text:))
+    }
+
+    func userDependencies(_ actions: AppCoordinatorActions,
+                          user: User) -> UserProfileDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              user: user,
+              startRepFlow: actions.openRepository(_:in:),
+              openLink: actions.open(link:),
+              share: actions.share(link:),
+              sendEmail: actions.send(email:),
+              showRecentEvents: actions.openUserRecentEvents(_:in:),
+              showStarred: actions.openUserStarred(_:in:),
+              showGists: actions.openUserGists(_:in:),
+              showSubscriptions: actions.openUserSubscriptions(_:in:),
+              showEvents: actions.openUserEvents(_:in:),
+              showRepositories: actions.openUserRepositories(_:in:),
+              showFollowers: actions.openUserFollowers(_:in:),
+              showFollowing: actions.openUserFollowing(_:in:))
+    }
+
+    func issueDependencies(_ actions: AppCoordinatorActions,
+                           issue: Issue) -> IssueDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService)
+    }
+
+    func pullRequestDependencies(_ actions: AppCoordinatorActions,
+                                 pullRequest: PullRequest) -> PullRequestDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService)
     }
 }

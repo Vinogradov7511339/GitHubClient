@@ -14,7 +14,6 @@ protocol MyProfileFactory {
     func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController
     func subscriptionsViewControler() -> UIViewController
-    func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController
 }
 
 final class MyProfileFactoryImpl {
@@ -52,10 +51,6 @@ extension MyProfileFactoryImpl: MyProfileFactory {
 
     func subscriptionsViewControler() -> UIViewController {
         MySubscriptionsViewController.create(with: subscriptionsViewModel())
-    }
-
-    func eventsViewController(_ actions: EventsActions, user: User) -> UIViewController {
-        UIViewController()
     }
 }
 
