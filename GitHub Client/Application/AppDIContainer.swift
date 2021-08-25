@@ -21,6 +21,11 @@ final class AppDIContainer {
         return DataTransferServiceImpl(with: networkService)
     }()
 
+    lazy var searchFilterStorage: SearchFilterStorage = {
+        let storage = SearchFilterStorageImpl.shared
+        return storage
+    }()
+
     lazy var favoritesStorage: FavoritesStorage = {
         let favoritesStorage = FavoritesStorageImpl()
         return favoritesStorage

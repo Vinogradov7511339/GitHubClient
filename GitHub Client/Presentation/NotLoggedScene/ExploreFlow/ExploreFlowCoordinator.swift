@@ -8,7 +8,9 @@
 import UIKit
 
 protocol ExploreFlowCoordinatorDependencies {
-    func exploreViewController(_ actions: SearchResultActions) -> UIViewController
+    func exploreViewController(exploreActions: ExploreActions,
+                               _ actions: SearchResultActions) -> UIViewController
+    func searchFilterViewController() -> UIViewController
 
     func repListViewController(_ searchQuery: String) -> UIViewController
     func issuesViewController(_ searchQuery: String) -> UIViewController
@@ -40,7 +42,8 @@ final class ExploreFlowCoordinator {
                                           showIssue: dependencies.showIssue(_:),
                                           showPullRequest: dependencies.showPullRequest(_:),
                                           showUser: dependencies.showUser(_:))
-        let viewController = dependencies.exploreViewController(actions)
+        let exploreActions = ExploreActions(openFilter: openFilter)
+        let viewController = dependencies.exploreViewController(exploreActions: exploreActions, actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -65,5 +68,11 @@ private extension ExploreFlowCoordinator {
     func showUsers(_ searchQuery: String) {
         let viewController = dependencies.usersViewController(searchQuery)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func openFilter() {
+        let viewController = dependencies.searchFilterViewController()
+        let nav = UINavigationController(rootViewController: viewController)
+        navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
     }
 }

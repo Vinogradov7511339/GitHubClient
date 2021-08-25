@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ExploreFactory {
-    func exploreViewController(_ actions: SearchResultActions) -> UIViewController
+    func exploreViewController(exploreActions: ExploreActions, _ actions: SearchResultActions) -> UIViewController
+    func searchFilterViewController() -> UIViewController
 
     func repListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func issuesViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
@@ -19,16 +20,22 @@ protocol ExploreFactory {
 final class ExploreFactoryImpl {
 
     private let dataTransferService: DataTransferService
+    private let searchFilterStorage: SearchFilterStorage
 
-    init(dataTransferService: DataTransferService) {
+    init(dataTransferService: DataTransferService, searchFilterStorage: SearchFilterStorage) {
         self.dataTransferService = dataTransferService
+        self.searchFilterStorage = searchFilterStorage
     }
 }
 
 // MARK: - ExploreFactory
 extension ExploreFactoryImpl: ExploreFactory {
-    func exploreViewController(_ actions: SearchResultActions) -> UIViewController {
-        ExploreTempViewController.create(with: exploreViewModel(actions))
+    func exploreViewController(exploreActions: ExploreActions, _ actions: SearchResultActions) -> UIViewController {
+        ExploreTempViewController.create(with: exploreViewModel(exploreActions: exploreActions, actions))
+    }
+
+    func searchFilterViewController() -> UIViewController {
+        SearchFilterViewController.create(with: searchFilterStorage)
     }
 
     func repListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController {
@@ -82,8 +89,8 @@ private extension ExploreFactoryImpl {
 
 // MARK: - Explore view models
 private extension ExploreFactoryImpl {
-    func exploreViewModel(_ actions: SearchResultActions) -> ExploreTempViewModel {
-        ExploreTempViewModelImpl(searchResultsViewModel: searchResultViewModel(actions),
+    func exploreViewModel(exploreActions: ExploreActions, _ actions: SearchResultActions) -> ExploreTempViewModel {
+        ExploreTempViewModelImpl(actions: exploreActions, searchResultsViewModel: searchResultViewModel(actions),
                                  useCase: exploreUseCase)
     }
 

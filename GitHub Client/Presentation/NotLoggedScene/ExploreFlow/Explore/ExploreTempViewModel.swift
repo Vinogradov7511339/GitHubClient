@@ -7,9 +7,14 @@
 
 import UIKit
 
+struct ExploreActions {
+    let openFilter: () -> Void
+}
+
 protocol ExploreTempViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func openFilter()
 }
 
 protocol ExploreTempViewModelOutput {
@@ -31,10 +36,14 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
     // MARK: - Private variables
 
     private let useCase: ExploreTempUseCase
+    private let actions: ExploreActions
 
     // MARK: - Lifecycle
 
-    init(searchResultsViewModel: SearchResultViewModel, useCase: ExploreTempUseCase) {
+    init(actions: ExploreActions,
+         searchResultsViewModel: SearchResultViewModel,
+         useCase: ExploreTempUseCase) {
+        self.actions = actions
         self.searchResultsViewModel = searchResultsViewModel
         self.useCase = useCase
     }
@@ -59,6 +68,10 @@ extension ExploreTempViewModelImpl {
     }
 
     func didSelectItem(at indexPath: IndexPath) {}
+
+    func openFilter() {
+        actions.openFilter()
+    }
 }
 
 // MARK: - Private

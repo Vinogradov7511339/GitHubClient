@@ -27,6 +27,7 @@ final class SearchListViewController: UIViewController {
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.dataSource = adapter
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
         return collectionView
     }()
 
@@ -73,7 +74,24 @@ private extension SearchListViewController {
 
 // MARK: - UICollectionViewDelegate
 extension SearchListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectItem(at: indexPath)
+    }
+}
 
+// MARK: - UICollectionViewDataSourcePrefetching
+extension SearchListViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLastCell(_:)) {
+            viewModel.loadNextPage()
+        }
+    }
+}
+
+private extension SearchListViewController {
+    func isLastCell(_ indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.items.value.count
+    }
 }
 
 // MARK: - Setup views

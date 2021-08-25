@@ -13,6 +13,7 @@ final class ExploreDIContainer {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
+        let searchFilterStorage: SearchFilterStorage
 
         let showRepository: (Repository) -> Void
         let showIssue: (Issue) -> Void
@@ -30,7 +31,8 @@ final class ExploreDIContainer {
 
     init(_ dependencies: Dependencies) {
         self.dependencies = dependencies
-        exploreFactory = ExploreFactoryImpl(dataTransferService: dependencies.dataTransferService)
+        exploreFactory = ExploreFactoryImpl(dataTransferService: dependencies.dataTransferService,
+                                            searchFilterStorage: dependencies.searchFilterStorage)
     }
 
     private func searchListActions() -> SearchListActions {
@@ -44,8 +46,8 @@ final class ExploreDIContainer {
 
 // MARK: - ExploreFlowCoordinatorDependencies
 extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
-    func exploreViewController(_ actions: SearchResultActions) -> UIViewController {
-        exploreFactory.exploreViewController(actions)
+    func exploreViewController(exploreActions: ExploreActions, _ actions: SearchResultActions) -> UIViewController {
+        exploreFactory.exploreViewController(exploreActions: exploreActions, actions)
     }
 
     func repListViewController(_ searchQuery: String) -> UIViewController {
@@ -82,5 +84,9 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
 
     func showOrganization(_ organization: Organization) {
         dependencies.showOrganization(organization)
+    }
+
+    func searchFilterViewController() -> UIViewController {
+        exploreFactory.searchFilterViewController()
     }
 }

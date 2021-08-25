@@ -24,6 +24,7 @@ protocol SearchListViewModelInput {
 
 protocol SearchListViewModelOutput {
     var detailTitle: Observable<(String, String)> { get }
+    var isFetching: Observable<Bool> { get }
     var items: Observable<[Any]> { get }
     var type: SearchType { get }
 }
@@ -35,6 +36,7 @@ final class SearchListViewModelImpl: SearchListViewModel {
     // MARK: - Output
 
     var detailTitle: Observable<(String, String)>
+    var isFetching: Observable<Bool> = Observable(false)
     let items: Observable<[Any]> = Observable([])
     let type: SearchType
 
@@ -120,22 +122,38 @@ private extension SearchListViewModelImpl {
         return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 
-
     func fetch() {
-        let model = SearchRequestModel(searchType: .issues, searchText: "todo", perPage: 5, page: 1)
+        guard !isFetching.value else {
+            return
+        }
+        isFetching.value = true
+
         switch type {
         case .repositories:
+            let model = SearchRequestModel(searchType: .repositories,
+                                           searchText: "\(searchParameters) in:name,description", perPage: 20,
+                                           page: currentPage)
             useCase.searchRepositoryByName(model, completion: handle(_:))
         case .issues:
+            let model = SearchRequestModel(searchType: .issues,
+                                           searchText: "\(searchParameters) in:title,body", perPage: 20,
+                                           page: currentPage)
             useCase.searchIssueByLabel(model, completion: handle(_:))
         case .pullRequests:
+            let model = SearchRequestModel(searchType: .pullRequests,
+                                           searchText: "\(searchParameters) in:title,body", perPage: 20,
+                                           page: currentPage)
             useCase.searchPullRequests(model, completion: handle(_:))
         case .people:
+            let model = SearchRequestModel(searchType: .users,
+                                           searchText: "\(searchParameters) in:name", perPage: 20,
+                                           page: currentPage)
             useCase.searchUsersByName(model, completion: handle(_:))
         }
     }
 
     func handle(_ result: Result<SearchResponseModel, Error>) {
+        isFetching.value = false
         switch result {
         case .success(let model):
             updateTitle(model.total)

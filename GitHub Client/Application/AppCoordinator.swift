@@ -42,6 +42,7 @@ final class AppCoordinator {
         UserStorage.shared.clearStorage()
         let dependency = LoginSceneDIContainer.Dependencies.init(
             dataTransferService: appDIContainer.apiDataTransferService,
+            searchFilterStorage: appDIContainer.searchFilterStorage,
             userLoggedIn: startMainFlow,
             openSettings: openSettings,
             showRepository: showRepository(_:),

@@ -70,6 +70,13 @@ final class ExploreTempViewController: UIViewController {
     }
 }
 
+// MARK: - Actions
+extension ExploreTempViewController {
+    @objc func openFilter() {
+        viewModel.openFilter()
+    }
+}
+
 // MARK: - Binding
 private extension ExploreTempViewController {
 
@@ -114,5 +121,10 @@ private extension ExploreTempViewController {
     func configureNavBar() {
         title = NSLocalizedString("Explore", comment: "")
         navigationItem.searchController = searchController
+        let filter = UIBarButtonItem(image: .checkmark,
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(openFilter))
+        navigationItem.setRightBarButton(filter, animated: false)
     }
 }

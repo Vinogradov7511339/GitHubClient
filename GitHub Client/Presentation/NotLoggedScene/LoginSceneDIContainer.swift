@@ -11,6 +11,7 @@ final class LoginSceneDIContainer: NSObject {
     
     struct Dependencies {
         let dataTransferService: DataTransferService
+        let searchFilterStorage: SearchFilterStorage
         var userLoggedIn: () -> Void
         var openSettings: (UINavigationController) -> Void
 
@@ -59,6 +60,7 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         case .explore:
             let dependencies = ExploreDIContainer.Dependencies(
                 dataTransferService: dependencies.dataTransferService,
+                searchFilterStorage: dependencies.searchFilterStorage,
                 showRepository: dependencies.showRepository,
                 showIssue: dependencies.showIssue,
                 showPullRequest: dependencies.showPullRequest,

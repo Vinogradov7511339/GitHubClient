@@ -174,6 +174,11 @@
 		AD43612B26D577560004F742 /* favorites_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612A26D577560004F742 /* favorites_animation.json */; };
 		AD43612E26D57D000004F742 /* notifications_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612C26D57D000004F742 /* notifications_animation.json */; };
 		AD43613226D57D910004F742 /* String+OnboardingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */; };
+		AD43613526D632D90004F742 /* SearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613426D632D90004F742 /* SearchFilter.swift */; };
+		AD43613826D6331E0004F742 /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613726D6331E0004F742 /* SearchFilterViewController.swift */; };
+		AD43613A26D633860004F742 /* SearchFilterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613926D633860004F742 /* SearchFilterStorage.swift */; };
+		AD43613D26D63BFD0004F742 /* SearchFilterPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613C26D63BFD0004F742 /* SearchFilterPageController.swift */; };
+		AD43613F26D63F790004F742 /* SearchFilterItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613E26D63F790004F742 /* SearchFilterItemViewController.swift */; };
 		AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */; };
 		AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */; };
 		AD508E7E26C51E690091132A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD508E7C26C51E690091132A /* MenuItemCell.swift */; };
@@ -608,6 +613,11 @@
 		AD43612A26D577560004F742 /* favorites_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites_animation.json; sourceTree = "<group>"; };
 		AD43612C26D57D000004F742 /* notifications_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notifications_animation.json; sourceTree = "<group>"; };
 		AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OnboardingAnimation.swift"; sourceTree = "<group>"; };
+		AD43613426D632D90004F742 /* SearchFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilter.swift; sourceTree = "<group>"; };
+		AD43613726D6331E0004F742 /* SearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
+		AD43613926D633860004F742 /* SearchFilterStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterStorage.swift; sourceTree = "<group>"; };
+		AD43613C26D63BFD0004F742 /* SearchFilterPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterPageController.swift; sourceTree = "<group>"; };
+		AD43613E26D63F790004F742 /* SearchFilterItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterItemViewController.swift; sourceTree = "<group>"; };
 		AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		AD508E7C26C51E690091132A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
@@ -1365,6 +1375,7 @@
 		AD39FDA626B9479700F055FD /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				AD43613426D632D90004F742 /* SearchFilter.swift */,
 				ADC538D626CD1FEF009B7A7E /* Types */,
 				ADC538B926CD1B60009B7A7E /* RequestModels */,
 				ADC538BC26CD1B96009B7A7E /* ResponseModels */,
@@ -1413,11 +1424,12 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				AD39FE5526BAD65D00F055FD /* LoginScene */,
+				AD39FE5526BAD65D00F055FD /* NotLoggedScene */,
 				AD5C8E3D26D2BBF0003E2F38 /* MainScene */,
 				AD8722D026B7D846004649A4 /* UIComponents */,
 				AD2AC81F26BD785200AF161C /* Utils */,
 				AD6B099726C0350E004644D2 /* Factories */,
+				AD43613626D632F20004F742 /* SearchFilter */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1425,6 +1437,7 @@
 		AD39FE3426BA81F700F055FD /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				AD43613926D633860004F742 /* SearchFilterStorage.swift */,
 				AD6B098526C0010F004644D2 /* EventsRepository.swift */,
 				ADC538E326CD3586009B7A7E /* NotificationsRepository.swift */,
 				AD2E263526BD3BB800B25772 /* MyProfileRepository.swift */,
@@ -1489,7 +1502,7 @@
 			path = UserProfileScene;
 			sourceTree = "<group>";
 		};
-		AD39FE5526BAD65D00F055FD /* LoginScene */ = {
+		AD39FE5526BAD65D00F055FD /* NotLoggedScene */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE5626BAD67600F055FD /* LoginFlowCoordinator.swift */,
@@ -1497,7 +1510,7 @@
 				AD5C8E3826D2B4C8003E2F38 /* ExploreFlow */,
 				AD5C8E3726D2B4BC003E2F38 /* SignInFlow */,
 			);
-			path = LoginScene;
+			path = NotLoggedScene;
 			sourceTree = "<group>";
 		};
 		AD39FE6E26BB246B00F055FD /* HomeScene */ = {
@@ -1585,6 +1598,36 @@
 			path = OnboardingAnimations;
 			sourceTree = "<group>";
 		};
+		AD43613326D62EFD0004F742 /* AllResults */ = {
+			isa = PBXGroup;
+			children = (
+				ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */,
+				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
+				ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */,
+				ADB60D6E26D392220024479D /* SearchAdapter.swift */,
+				ADB60D8826D4C3840024479D /* Cells */,
+			);
+			path = AllResults;
+			sourceTree = "<group>";
+		};
+		AD43613626D632F20004F742 /* SearchFilter */ = {
+			isa = PBXGroup;
+			children = (
+				AD43613B26D63B900004F742 /* View */,
+			);
+			path = SearchFilter;
+			sourceTree = "<group>";
+		};
+		AD43613B26D63B900004F742 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD43613726D6331E0004F742 /* SearchFilterViewController.swift */,
+				AD43613C26D63BFD0004F742 /* SearchFilterPageController.swift */,
+				AD43613E26D63F790004F742 /* SearchFilterItemViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AD5C8E1D26D29452003E2F38 /* old */ = {
 			isa = PBXGroup;
 			children = (
@@ -1642,8 +1685,8 @@
 			children = (
 				AD5C8E3326D2B2C0003E2F38 /* ExploreFlowCoordinator.swift */,
 				AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */,
+				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				AD5C8E4226D2BE1D003E2F38 /* Explore */,
-				ADB60D8126D3EAD00024479D /* SearchList */,
 			);
 			path = ExploreFlow;
 			sourceTree = "<group>";
@@ -1661,7 +1704,6 @@
 		AD5C8E4226D2BE1D003E2F38 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */,
 				AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */,
 				ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */,
@@ -2231,11 +2273,8 @@
 		ADBC1ACD26C3D8E1000F9B88 /* SearchResults */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E56B26AB4090003BB5F1 /* SearchResultViewController.swift */,
-				ADB60D6326D37DE10024479D /* SearchResultViewModel.swift */,
-				ADB60D6E26D392220024479D /* SearchAdapter.swift */,
-				ADB60D6726D38F2E0024479D /* ResultsAdapter.swift */,
-				ADB60D8826D4C3840024479D /* Cells */,
+				AD43613326D62EFD0004F742 /* AllResults */,
+				ADB60D8126D3EAD00024479D /* SearchList */,
 			);
 			path = SearchResults;
 			sourceTree = "<group>";
@@ -2648,6 +2687,7 @@
 				AD23E7C726D18961009FEB27 /* MyUsersViewModel.swift in Sources */,
 				AD93003A26C82D47002D7362 /* EventFilterView.swift in Sources */,
 				AD6B09BB26C2A23D004644D2 /* CoreDataStorage.swift in Sources */,
+				AD43613D26D63BFD0004F742 /* SearchFilterPageController.swift in Sources */,
 				ADC538AE26CCE23D009B7A7E /* FolderCell.swift in Sources */,
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
 				ADC538DC26CD2B23009B7A7E /* NotificationsUseCase.swift in Sources */,
@@ -2755,6 +2795,7 @@
 				AD23E78926D0FE7C009FEB27 /* PRRequestModel.swift in Sources */,
 				AD20E56F26AB4F39003BB5F1 /* SearchTypeTableViewCell.swift in Sources */,
 				ADC5380626CBF650009B7A7E /* HomeWidget.swift in Sources */,
+				AD43613A26D633860004F742 /* SearchFilterStorage.swift in Sources */,
 				ADBC1AD126C3F54D000F9B88 /* ReleaseResponseDTO.swift in Sources */,
 				ADBC1ACF26C3F0D0000F9B88 /* RepositoryEndpoints.swift in Sources */,
 				ADA7496026CED14D00C8D475 /* SettingsObserver.swift in Sources */,
@@ -2798,6 +2839,7 @@
 				AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */,
 				AD23E78326D0FDAB009FEB27 /* ReleasesRequestModel.swift in Sources */,
 				AD20E57826ABDA7C003BB5F1 /* Dictionary+extensions.swift in Sources */,
+				AD43613826D6331E0004F742 /* SearchFilterViewController.swift in Sources */,
 				AD6B09B526C29BC0004644D2 /* LoginFactory.swift in Sources */,
 				AD20E55026AAC4B3003BB5F1 /* MediumCollectionViewCell.swift in Sources */,
 				AD6B093A26BED725004644D2 /* MyProfileEndpoinds.swift in Sources */,
@@ -2938,6 +2980,7 @@
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
+				AD43613526D632D90004F742 /* SearchFilter.swift in Sources */,
 				AD6B094126BEE75B004644D2 /* AppConfiguration.swift in Sources */,
 				AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */,
 				ADA1693326C589140040B635 /* UsersListViewModel.swift in Sources */,
@@ -2971,6 +3014,7 @@
 				AD6B09B126C29440004644D2 /* LoginEndpoint.swift in Sources */,
 				ADB185DA26D26D05000245A9 /* UIImageView+UserProfile.swift in Sources */,
 				AD6B094826BEF394004644D2 /* DataTransferErrorLogger.swift in Sources */,
+				AD43613F26D63F790004F742 /* SearchFilterItemViewController.swift in Sources */,
 				ADC538AB26CC3BB3009B7A7E /* Folder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
