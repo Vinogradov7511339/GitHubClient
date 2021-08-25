@@ -63,6 +63,7 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        configureNavBar()
         viewModel.viewDidLoad()
     }
 }
@@ -71,6 +72,10 @@ final class OnboardingViewController: UIViewController {
 extension OnboardingViewController {
     @objc func authButtonTapped() {
         present(authorizationViewController, animated: true, completion: nil)
+    }
+
+    @objc func openSettings() {
+        viewModel.openSettings()
     }
 }
 
@@ -111,5 +116,13 @@ private extension OnboardingViewController {
         pageController.view.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         pageController.view.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
         pageController.view.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+    }
+
+    func configureNavBar() {
+        let settings = UIBarButtonItem(image: .settings,
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(openSettings))
+        navigationItem.setRightBarButton(settings, animated: false)
     }
 }

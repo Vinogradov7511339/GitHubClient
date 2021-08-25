@@ -43,6 +43,7 @@ final class AppCoordinator {
         let dependency = LoginSceneDIContainer.Dependencies.init(
             dataTransferService: appDIContainer.apiDataTransferService,
             userLoggedIn: startMainFlow,
+            openSettings: openSettings,
             showRepository: showRepository(_:),
             showIssue: showIssue(_:),
             showPullRequest: showPullRequest(_:),

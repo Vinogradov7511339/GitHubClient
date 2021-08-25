@@ -9,10 +9,12 @@ import UIKit
 
 struct LoginViewModelActions {
     let userLoggedIn: () -> Void
+    let openSettings: () -> Void
 }
 
 protocol LoginViewModelInput {
     func viewDidLoad()
+    func openSettings()
     func fetchToken(authCode: String)
 }
 
@@ -27,19 +29,19 @@ class LoginViewModelImpl: LoginViewModel {
     
     private let loginUseCase: LoginUseCase
     private let actions: LoginViewModelActions
-    
+
     // MARK: - Output
     var error: Observable<String> = Observable("")
     var introScenes: [IntroScene] = [
-        IntroScene(name: "First",
-                   mainTitle: "Hey there! Welcome to our App",
+        IntroScene(name: "Notificatons",
+                   mainTitle: "Watch your notifications",
                    animationName: String.OnboardingAnimation.favorites),
-        IntroScene(name: "Second",
-                   mainTitle: "Please bear with us for onborading",
+        IntroScene(name: "Comments",
+                   mainTitle: "Leave comments in discussions",
                    animationName: String.OnboardingAnimation.notifications),
-        IntroScene(name: "Third",
-                   mainTitle: "You are all caugth up",
-                   animationName: String.OnboardingAnimation.temp)
+        IntroScene(name: "Subscribe",
+                   mainTitle: "Subscribe to projects activity",
+                   animationName: String.OnboardingAnimation.favorites)
     ]
 
     init(loginUseCase: LoginUseCase, actions: LoginViewModelActions) {
@@ -51,6 +53,10 @@ class LoginViewModelImpl: LoginViewModel {
 // MARK: - LoginViewModelInput
 extension LoginViewModelImpl {
     func viewDidLoad() {}
+
+    func openSettings() {
+        actions.openSettings()
+    }
 
     func fetchToken(authCode: String) {
         loginUseCase.fetchToken(authCode: authCode) { result in

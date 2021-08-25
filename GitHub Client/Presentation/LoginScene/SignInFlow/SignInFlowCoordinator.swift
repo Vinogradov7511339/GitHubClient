@@ -8,7 +8,9 @@
 import UIKit
 
 protocol SignInFlowCoordinatorDependencies {
-    func signInViewController() -> UIViewController
+    func signInViewController(with actions: LoginViewModelActions) -> UIViewController
+    func openSettings(in nav: UINavigationController)
+    func userLoggedIn()
 }
 
 final class SignInFlowCoordinator {
@@ -27,8 +29,22 @@ final class SignInFlowCoordinator {
     }
 
     func start() {
-        
-        let viewController = dependencies.signInViewController()
+        let actions = LoginViewModelActions(
+            userLoggedIn: userLoggedIn,
+            openSettings: openSettings)
+        let viewController = dependencies.signInViewController(with: actions)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func userLoggedIn() {
+        dependencies.userLoggedIn()
+    }
+
+    func openSettings() {
+        guard let navigationController = self.navigationController else {
+            assert(false, "no navigation")
+            return
+        }
+        dependencies.openSettings(in: navigationController)
     }
 }

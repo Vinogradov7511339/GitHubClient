@@ -14,6 +14,7 @@ final class SignInDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let login: () -> Void
+        let openSettings: (UINavigationController) -> Void
     }
 
     // MARK: - Private variables
@@ -33,8 +34,15 @@ final class SignInDIContainer {
 
 // MARK: - SignInFlowCoordinatorDependencies
 extension SignInDIContainer: SignInFlowCoordinatorDependencies {
-    func signInViewController() -> UIViewController {
-        let loginActions = LoginViewModelActions(userLoggedIn: dependencies.login)
-        return signInFactory.signInViewController(loginActions)
+    func signInViewController(with actions: LoginViewModelActions) -> UIViewController {
+        return signInFactory.signInViewController(actions)
+    }
+
+    func openSettings(in nav: UINavigationController) {
+        dependencies.openSettings(nav)
+    }
+
+    func userLoggedIn() {
+        dependencies.login()
     }
 }

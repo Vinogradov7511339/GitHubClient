@@ -173,7 +173,6 @@
 		AD43612826D568180004F742 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43612726D568180004F742 /* OnboardingViewController.swift */; };
 		AD43612B26D577560004F742 /* favorites_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612A26D577560004F742 /* favorites_animation.json */; };
 		AD43612E26D57D000004F742 /* notifications_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612C26D57D000004F742 /* notifications_animation.json */; };
-		AD43612F26D57D000004F742 /* temp_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AD43612D26D57D000004F742 /* temp_animation.json */; };
 		AD43613226D57D910004F742 /* String+OnboardingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */; };
 		AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */; };
 		AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */; };
@@ -608,7 +607,6 @@
 		AD43612726D568180004F742 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AD43612A26D577560004F742 /* favorites_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites_animation.json; sourceTree = "<group>"; };
 		AD43612C26D57D000004F742 /* notifications_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notifications_animation.json; sourceTree = "<group>"; };
-		AD43612D26D57D000004F742 /* temp_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = temp_animation.json; sourceTree = "<group>"; };
 		AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OnboardingAnimation.swift"; sourceTree = "<group>"; };
 		AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
@@ -1582,7 +1580,6 @@
 			children = (
 				AD43612A26D577560004F742 /* favorites_animation.json */,
 				AD43612C26D57D000004F742 /* notifications_animation.json */,
-				AD43612D26D57D000004F742 /* temp_animation.json */,
 				AD43613126D57D910004F742 /* String+OnboardingAnimation.swift */,
 			);
 			path = OnboardingAnimations;
@@ -2521,7 +2518,6 @@
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
 				AD20E4E126A8B313003BB5F1 /* AppIconPinkLight-3.png in Resources */,
 				AD642CDD26ADD287004FCA2D /* UserTableViewCell.xib in Resources */,
-				AD43612F26D57D000004F742 /* temp_animation.json in Resources */,
 				AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */,
 				ADB60D9126D4D2F30024479D /* ResultPullRequestCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,

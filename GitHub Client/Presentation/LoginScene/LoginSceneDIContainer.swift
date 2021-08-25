@@ -12,6 +12,7 @@ final class LoginSceneDIContainer: NSObject {
     struct Dependencies {
         let dataTransferService: DataTransferService
         var userLoggedIn: () -> Void
+        var openSettings: (UINavigationController) -> Void
 
         let showRepository: (Repository) -> Void
         let showIssue: (Issue) -> Void
@@ -70,7 +71,8 @@ extension LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         case .signIn:
             let dependencies = SignInDIContainer.Dependencies(
                 dataTransferService: dependencies.dataTransferService,
-                login: dependencies.userLoggedIn)
+                login: dependencies.userLoggedIn,
+                openSettings: dependencies.openSettings)
             let container = SignInDIContainer(dependencies)
             let signIn = SignInFlowCoordinator(navigation, dependencies: container)
             signIn.start()

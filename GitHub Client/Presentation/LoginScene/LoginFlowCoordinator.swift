@@ -11,12 +11,11 @@ protocol LoginFlowCoordinatorDependencies {
     func tabBar() -> UITabBarController
     func configure(_ controller: UITabBarController)
     func makeLoginViewController(actions: LoginViewModelActions) -> UIViewController
-    func userLoggedIn()
 }
 
 final class LoginFlowCoordinator {
 
-    // MARK: - Privae variables
+    // MARK: - Private variables
 
     private let window: UIWindow
     private let dependencies: LoginFlowCoordinatorDependencies
@@ -44,11 +43,5 @@ final class LoginFlowCoordinator {
         } else {
             window.rootViewController = tabBarController
         }
-    }
-}
-
-extension LoginFlowCoordinator {
-    func actions() -> LoginViewModelActions {
-        .init(userLoggedIn: dependencies.userLoggedIn)
     }
 }

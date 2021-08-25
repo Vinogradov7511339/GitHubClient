@@ -27,9 +27,12 @@ final class IntroductionViewController: UIViewController {
         return label
     }()
 
-    private lazy var animationContainer: AnimationView = {
+    private lazy var animationView: AnimationView = {
         let view = AnimationView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.animation = Animation.named(scene.animationName)
+        view.backgroundBehavior = .pauseAndRestore
+        view.loopMode = .loop
         return view
     }()
 
@@ -44,18 +47,16 @@ final class IntroductionViewController: UIViewController {
         setupViews()
         activateConstraints()
         descriptionLabel.text = scene.mainTitle
-        animationContainer.animation = Animation.named(scene.animationName)
-        animationContainer.loopMode = .loop
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animationContainer.play()
+        animationView.play()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        animationContainer.stop()
+        animationView.stop()
     }
 }
 
@@ -63,17 +64,17 @@ final class IntroductionViewController: UIViewController {
 private extension IntroductionViewController {
     func setupViews() {
         view.addSubview(descriptionLabel)
-        view.addSubview(animationContainer)
+        view.addSubview(animationView)
     }
 
     func activateConstraints() {
-        animationContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        animationContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        animationContainer.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-        animationContainer.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        animationView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        animationView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
 
         descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: animationContainer.bottomAnchor, constant: 16.0).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 16.0).isActive = true
     }
 }

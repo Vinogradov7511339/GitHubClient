@@ -11,6 +11,5 @@ extension String {
     enum OnboardingAnimation {
         static let favorites = "favorites_animation"
         static let notifications = "notifications_animation"
-        static let temp = "temp_animation"
     }
 }
