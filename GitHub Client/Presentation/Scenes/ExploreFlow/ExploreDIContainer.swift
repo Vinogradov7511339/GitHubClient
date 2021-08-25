@@ -14,6 +14,7 @@ final class ExploreDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let searchFilterStorage: SearchFilterStorage
+        let exploreSettingsStorage: ExploreSettingsStorage
 
         let showRepository: (Repository, UINavigationController) -> Void
         let showIssue: (Issue, UINavigationController) -> Void
@@ -31,14 +32,16 @@ final class ExploreDIContainer {
     init(_ dependencies: Dependencies) {
         self.dependencies = dependencies
         exploreFactory = ExploreFactoryImpl(dataTransferService: dependencies.dataTransferService,
-                                            searchFilterStorage: dependencies.searchFilterStorage)
+                                            searchFilterStorage: dependencies.searchFilterStorage,
+                                            exploreSettingsStorage: dependencies.exploreSettingsStorage)
     }
 }
 
 // MARK: - ExploreFlowCoordinatorDependencies
 extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
 
-    func exploreViewController(exploreActions: ExploreActions, _ actions: SearchResultActions) -> UIViewController {
+    func exploreViewController(exploreActions: ExploreActions,
+                               _ actions: SearchResultActions) -> UIViewController {
         exploreFactory.exploreViewController(exploreActions: exploreActions, actions)
     }
 

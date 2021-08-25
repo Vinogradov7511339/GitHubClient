@@ -85,14 +85,15 @@ final class AppCoordinator {
 // MARK: - Main flows
 private extension AppCoordinator {
     func startMainFlow() {
-        let flow = dependencies.notLoggedCoordinator(in: window, actions: self)
+        let flow = dependencies.mainCoordinator(in: window, actions: self)
         flow.start()
     }
 
     func startLoginFlow() {
         UserStorage.shared.clearStorage()
-        let flow = dependencies.mainCoordinator(in: window, actions: self)
+        let flow = dependencies.notLoggedCoordinator(in: window, actions: self)
         flow.start()
+
     }
 }
 

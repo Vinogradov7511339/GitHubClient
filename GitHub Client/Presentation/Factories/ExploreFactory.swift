@@ -21,10 +21,15 @@ final class ExploreFactoryImpl {
 
     private let dataTransferService: DataTransferService
     private let searchFilterStorage: SearchFilterStorage
+    private let exploreSettingsStorage: ExploreSettingsStorage
 
-    init(dataTransferService: DataTransferService, searchFilterStorage: SearchFilterStorage) {
+    init(dataTransferService: DataTransferService,
+         searchFilterStorage: SearchFilterStorage,
+         exploreSettingsStorage: ExploreSettingsStorage) {
+
         self.dataTransferService = dataTransferService
         self.searchFilterStorage = searchFilterStorage
+        self.exploreSettingsStorage = exploreSettingsStorage
     }
 }
 
@@ -90,8 +95,10 @@ private extension ExploreFactoryImpl {
 // MARK: - Explore view models
 private extension ExploreFactoryImpl {
     func exploreViewModel(exploreActions: ExploreActions, _ actions: SearchResultActions) -> ExploreTempViewModel {
-        ExploreTempViewModelImpl(actions: exploreActions, searchResultsViewModel: searchResultViewModel(actions),
-                                 useCase: exploreUseCase)
+        ExploreTempViewModelImpl(actions: exploreActions,
+                                 searchResultsViewModel: searchResultViewModel(actions),
+                                 useCase: exploreUseCase,
+                                 exploreSettingsStorage: exploreSettingsStorage)
     }
 
     func searchResultViewModel(_ actions: SearchResultActions) -> SearchResultViewModel {

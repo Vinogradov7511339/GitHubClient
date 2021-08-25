@@ -16,6 +16,7 @@ final class MainSceneDIContainer: NSObject {
         let favoritesStorage: FavoritesStorage
         let profileStorage: ProfileLocalStorage
         let searchFilterStorage: SearchFilterStorage
+        let exploreSettingsStorage: ExploreSettingsStorage
 
         let logout: () -> Void
         let openSettings: (UINavigationController) -> Void
@@ -96,6 +97,7 @@ private extension MainSceneDIContainer {
     func exploreDependencies() -> ExploreDIContainer.Dependencies {
         .init(dataTransferService: dependencies.dataTransferService,
               searchFilterStorage: dependencies.searchFilterStorage,
+              exploreSettingsStorage: dependencies.exploreSettingsStorage,
               showRepository: dependencies.openRepository,
               showIssue: dependencies.openIssue,
               showPullRequest: dependencies.openPullRequest,

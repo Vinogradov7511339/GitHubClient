@@ -14,6 +14,7 @@ final class NotLoggedSceneDIContainer: NSObject {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let searchFilterStorage: SearchFilterStorage
+        let exploreSettingsStorage: ExploreSettingsStorage
 
         var userLoggedIn: () -> Void
         var openSettings: (UINavigationController) -> Void
@@ -84,6 +85,7 @@ private extension NotLoggedSceneDIContainer {
     func exploreDependencies() -> ExploreDIContainer.Dependencies {
         .init(dataTransferService: dependencies.dataTransferService,
               searchFilterStorage: dependencies.searchFilterStorage,
+              exploreSettingsStorage: dependencies.exploreSettingsStorage,
               showRepository: dependencies.openRepository,
               showIssue: dependencies.openIssue,
               showPullRequest: dependencies.openPullRequest,

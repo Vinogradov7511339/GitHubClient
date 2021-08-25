@@ -46,7 +46,8 @@ final class ExploreFlowCoordinator {
                                           showIssue: showIssue(_:),
                                           showPullRequest: showPullRequest(_:),
                                           showUser: showUser(_:))
-        let exploreActions = ExploreActions(openFilter: openFilter)
+        let exploreActions = ExploreActions(openFilter: openFilter,
+                                            openRepository: showRepository(_:))
         let viewController = dependencies.exploreViewController(exploreActions: exploreActions, actions)
         navigationController?.pushViewController(viewController, animated: true)
     }

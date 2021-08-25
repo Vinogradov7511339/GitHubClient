@@ -11,16 +11,15 @@ final class HomeVC: UIViewController {
 
     static let sectionHeaderElementKind = "section-header-element-kind"
 
+    // MARK: - Create
+
     static func create(with viewModel: HomeViewModel) -> HomeVC {
         let viewController = HomeVC()
         viewController.viewModel = viewModel
         return viewController
     }
 
-    private lazy var adapter: HomeAdapter = {
-        let adapter = HomeAdapterImpl()
-        return adapter
-    }()
+    // MARK: - Views
 
     private lazy var collectionView: UICollectionView = {
         let layout = HomeFlowLayout().layout
@@ -35,7 +34,16 @@ final class HomeVC: UIViewController {
         return collectionView
     }()
 
+    // MARK: - Private views
+
+    private lazy var adapter: HomeAdapter = {
+        let adapter = HomeAdapterImpl()
+        return adapter
+    }()
+
     private var viewModel: HomeViewModel!
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

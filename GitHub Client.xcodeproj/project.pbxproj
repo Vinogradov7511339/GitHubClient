@@ -414,6 +414,8 @@
 		ADF9A84726D6A9140017D11F /* IssueDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */; };
 		ADF9A84926D6A9C80017D11F /* PullRequestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */; };
 		ADF9A84C26D6AA160017D11F /* PullRequestDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84B26D6AA160017D11F /* PullRequestDIContainer.swift */; };
+		ADF9A84E26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */; };
+		ADF9A85026D6D2700017D11F /* ExploreSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84F26D6D2700017D11F /* ExploreSettingsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -839,6 +841,8 @@
 		ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDIContainer.swift; sourceTree = "<group>"; };
 		ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestCoordinator.swift; sourceTree = "<group>"; };
 		ADF9A84B26D6AA160017D11F /* PullRequestDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestDIContainer.swift; sourceTree = "<group>"; };
+		ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreWidgetsHeaderView.swift; sourceTree = "<group>"; };
+		ADF9A84F26D6D2700017D11F /* ExploreSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSettingsStorage.swift; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1397,6 +1401,7 @@
 		AD39FE3426BA81F700F055FD /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				ADF9A84F26D6D2700017D11F /* ExploreSettingsStorage.swift */,
 				AD43613926D633860004F742 /* SearchFilterStorage.swift */,
 				AD6B098526C0010F004644D2 /* EventsRepository.swift */,
 				ADC538E326CD3586009B7A7E /* NotificationsRepository.swift */,
@@ -1657,6 +1662,7 @@
 			children = (
 				AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */,
 				AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */,
+				ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */,
 				ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */,
 				ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */,
 				ADB60D6226D2E6900024479D /* PopularCell */,
@@ -2846,6 +2852,7 @@
 				AD23E7D026D19279009FEB27 /* MySubscriptionsAdapter.swift in Sources */,
 				ADF9A84726D6A9140017D11F /* IssueDIContainer.swift in Sources */,
 				ADB60D8026D3EAA70024479D /* SearchListViewController.swift in Sources */,
+				ADF9A84E26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift in Sources */,
 				AD23E7D726D2561E009FEB27 /* ProfileHeaderView.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
@@ -2859,6 +2866,7 @@
 				ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */,
 				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
+				ADF9A85026D6D2700017D11F /* ExploreSettingsStorage.swift in Sources */,
 				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,
 				AD43613526D632D90004F742 /* SearchFilter.swift in Sources */,

@@ -28,40 +28,36 @@ class ExploreLayout {
         return layout
     }()
 
+    private var widgetsSection: NSCollectionLayoutSection {
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.interGroupSpacing = 4.0
+        return section
+    }
+
     private lazy var group: NSCollectionLayoutGroup = {
-        NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
+        NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    }()
+
+    private lazy var groupSize: NSCollectionLayoutSize = {
+        let size = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.95),
+            heightDimension: .estimated(300.0)
+        )
+        return size
     }()
 
     private lazy var item: NSCollectionLayoutItem = {
-        NSCollectionLayoutItem(layoutSize: size)
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        return item
     }()
 
     private lazy var size: NSCollectionLayoutSize = {
         let size = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(75)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
         )
         return size
     }()
-}
-
-// MARK: - Widgets
-private extension ExploreLayout {
-    var widgetsSection: NSCollectionLayoutSection {
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-        section.interGroupSpacing = 4.0
-        section.boundarySupplementaryItems = [widgetsHeader]
-        return section
-    }
-
-    var widgetsHeader: NSCollectionLayoutBoundarySupplementaryItem {
-        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: widgetsHeaderSize,
-                                                    elementKind: HomeVC.sectionHeaderElementKind,
-                                                    alignment: .top)
-    }
-
-    var widgetsHeaderSize: NSCollectionLayoutSize {
-        NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95), heightDimension: .estimated(40.0))
-    }
 }

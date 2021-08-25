@@ -37,6 +37,11 @@ final class AppDIContainer {
         let profileStorage = ProfileLocalStorageImpl()
         return profileStorage
     }()
+
+    lazy var exploreSettingsStorage: ExploreSettingsStorage = {
+        let exploreSettingsStorage = ExploreSettingsStorageImpl()
+        return exploreSettingsStorage
+    }()
 }
 
 // MARK: - AppCoordinatorDependencies
@@ -110,6 +115,7 @@ private extension AppDIContainer {
     func loginDependencies(_ actions: AppCoordinatorActions) -> NotLoggedSceneDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
               searchFilterStorage: searchFilterStorage,
+              exploreSettingsStorage: exploreSettingsStorage,
               userLoggedIn: actions.login,
               openSettings: actions.openSettings(in:),
               openRepository: actions.openRepository(_:in:),
@@ -123,6 +129,7 @@ private extension AppDIContainer {
               favoritesStorage: favoritesStorage,
               profileStorage: profileStorage,
               searchFilterStorage: searchFilterStorage,
+              exploreSettingsStorage: exploreSettingsStorage,
               logout: actions.logout,
               openSettings: actions.openSettings(in:),
               openRepository: actions.openRepository(_:in:),

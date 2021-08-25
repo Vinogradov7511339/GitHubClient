@@ -41,6 +41,12 @@ final class ExploreTempViewController: UIViewController {
         return controller
     }()
 
+    private lazy var headerView: ExploreWidgetsHeaderView = {
+        let view = ExploreWidgetsHeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     // MARK: - Private variables
 
     private var viewModel: ExploreTempViewModel!
@@ -63,11 +69,6 @@ final class ExploreTempViewController: UIViewController {
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        searchController.searchBar.text = "GitHub"
-    }
 }
 
 // MARK: - Actions
@@ -82,12 +83,17 @@ private extension ExploreTempViewController {
 
     func bind(to viewModel: ExploreTempViewModel) {
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+        viewModel.popularTitle.observe(on: self) { [weak self] in self?.updatePopularTitle($0) }
         viewModel.popular.observe(on: self) { [weak self] in self?.update($0) }
     }
 
     func update(_ popular: [Repository]) {
         adapter.update(popular)
         collectionView.reloadData()
+    }
+
+    func updatePopularTitle(_ newTitle: String) {
+        headerView.configure(with: newTitle, handler: viewModel.openPopularSettings)
     }
 
     func showError(_ error: Error?) {
@@ -108,11 +114,17 @@ extension ExploreTempViewController: UICollectionViewDelegate {
 // MARK: - Setup views
 private extension ExploreTempViewController {
     func setupViews() {
+        view.addSubview(headerView)
         view.addSubview(collectionView)
     }
 
     func activateConstraints() {
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        headerView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+
+        collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
