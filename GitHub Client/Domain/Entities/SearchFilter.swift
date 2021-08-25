@@ -20,6 +20,19 @@ struct SearchFilter {
         case byName
         case byDescription
         case byReadMe
+
+        func parameter(_ searchText: String) -> String {
+            switch self {
+            case .all:
+                return "\(searchText) in:name,description"
+            case .byName:
+                return "\(searchText) in:name,description"
+            case .byDescription:
+                return "\(searchText) in:name,description"
+            case .byReadMe:
+                return "\(searchText) in:name,description"
+            }
+        }
     }
 
     enum IssuesSearchParameters: String, CaseIterable {
@@ -27,6 +40,19 @@ struct SearchFilter {
         case byTitle
         case byBody
         case byComments
+
+        func parameter(_ searchText: String) -> String {
+            switch self {
+            case .all:
+                return "\(searchText) in:title,body"
+            case .byTitle:
+                return "\(searchText) in:title,body"
+            case .byBody:
+                return "\(searchText) in:title,body"
+            case .byComments:
+                return "\(searchText) in:title,body"
+            }
+        }
     }
 
     enum PullReqestsSearchParameters: String, CaseIterable {
@@ -34,6 +60,19 @@ struct SearchFilter {
         case byTitle
         case byBody
         case byComments
+
+        func parameter(_ searchText: String) -> String {
+            switch self {
+            case .all:
+                return "\(searchText) in:title,body"
+            case .byTitle:
+                return "\(searchText) in:title,body"
+            case .byBody:
+                return "\(searchText) in:title,body"
+            case .byComments:
+                return "\(searchText) in:title,body"
+            }
+        }
     }
 
     enum UsersSearchParameters: String, CaseIterable {
@@ -41,6 +80,19 @@ struct SearchFilter {
         case byName
         case byLogin
         case byEmail
+
+        func parameter(_ searchText: String) -> String {
+            switch self {
+            case .all:
+                return "\(searchText) in:name"
+            case .byName:
+                return "\(searchText) in:name"
+            case .byLogin:
+                return "\(searchText) in:name"
+            case .byEmail:
+                return "\(searchText) in:name"
+            }
+        }
     }
 
     var repositoriesSearchParameters: RepositoriesSearchParameters

@@ -102,7 +102,7 @@ private extension ExploreFactoryImpl {
 // MARK: - Private
 private extension ExploreFactoryImpl {
     var exploreUseCase: ExploreTempUseCase {
-        ExploreTempUseCaseImpl(exploreRepository: exploreRepository)
+        ExploreTempUseCaseImpl(searchFilter: searchFilterStorage.filter, exploreRepository: exploreRepository)
     }
 
     var exploreRepository: ExploreTempRepository {

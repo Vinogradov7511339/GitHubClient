@@ -7,42 +7,49 @@
 
 import Foundation
 
+struct NarrowFilterError: Error {
+    let filterType: SearchFilter.FilterType
+    let filter: SearchFilter
+}
+
 protocol ExploreTempUseCase {
 
     // MARK: - Repositories
 
     typealias RepositoriesHandler = ExploreTempRepository.RepositoriesHandler
     func mostStarred(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler)
-    func searchRepositoryByName(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler)
+    func searchRepositoryByName(_ name: String, page: Int, completion: @escaping RepositoriesHandler)
 
     // MARK: - Issues
 
     typealias IssuesHandler = ExploreTempRepository.IssuesHandler
-    func searchIssueByLabel(_ model: SearchRequestModel, completion: @escaping IssuesHandler)
+    func searchIssueByLabel(_ name: String, page: Int, completion: @escaping IssuesHandler)
 
     // MARK: - PullRequests
 
     typealias PullRequestsHandler = (Result<SearchResponseModel, Error>) -> Void
-    func searchPullRequests(_ model: SearchRequestModel, completion: @escaping PullRequestsHandler)
+    func searchPullRequests(_ name: String, page: Int, completion: @escaping PullRequestsHandler)
 
     // MARK: - Users
 
     typealias UsersHandler = ExploreTempRepository.UsersHandler
-    func searchUsersByName(_ model: SearchRequestModel, completion: @escaping UsersHandler)
+    func searchUsersByName(_ name: String, page: Int, completion: @escaping UsersHandler)
 
     // MARK: - All
 
     typealias AllResultsTuple = [SearchType: SearchResponseModel]
     typealias AllResultHandler = (Result<AllResultsTuple, Error>) -> Void
-    func searchAllTypesByName(_ model: SearchRequestModel, completion: @escaping AllResultHandler)
+    func searchAllTypesByName(_ searchText: String, completion: @escaping AllResultHandler)
 }
 
 final class ExploreTempUseCaseImpl {
 
+    private let searchFilter: SearchFilter
     private let exploreRepository: ExploreTempRepository
     private let dispatchGroup = DispatchGroup()
 
-    init(exploreRepository: ExploreTempRepository) {
+    init(searchFilter: SearchFilter, exploreRepository: ExploreTempRepository) {
+        self.searchFilter = searchFilter
         self.exploreRepository = exploreRepository
     }
 }
@@ -55,38 +62,115 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
         exploreRepository.fetchRepositories(model, completion: completion)
     }
 
-    func searchRepositoryByName(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler) {
-//        let text = "\(name) in:name,description"
-//        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
-        exploreRepository.fetchRepositories(model, completion: completion)
+    func searchRepositoryByName(_ name: String, page: Int, completion: @escaping RepositoriesHandler) {
+        let query = searchFilter.repositoriesSearchParameters.parameter(name)
+        let model = SearchRequestModel(searchType: .repositories,
+                                       searchText: query,
+                                       perPage: 20,
+                                       page: page)
+        exploreRepository.fetchRepositories(model) { result in
+            switch result {
+            case .success(let model):
+                self.checkFilters(.repositories, page: page, model: model, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func searchIssueByLabel(_ model: SearchRequestModel, completion: @escaping IssuesHandler) {
-//        let text = "\(label) in:title,body"
-//        let searchModel = SearchRequestModel(searchType: .issues, searchText: text)
-        exploreRepository.fetchIssues(model, completion: completion)
+    func searchIssueByLabel(_ name: String, page: Int, completion: @escaping IssuesHandler) {
+        let query = searchFilter.issuesSearchParameters.parameter(name)
+        let model = SearchRequestModel(searchType: .issues,
+                                       searchText: query,
+                                       perPage: 20,
+                                       page: page)
+        exploreRepository.fetchIssues(model) { result in
+            switch result {
+            case .success(let model):
+                self.checkFilters(.issues, page: page, model: model, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func searchPullRequests(_ model: SearchRequestModel, completion: @escaping PullRequestsHandler) {
-//        let text = "\(label) in:title,body"
-//        let searchModel = SearchRequestModel(searchType: .pullRequests, searchText: text)
-        exploreRepository.fetchPullRequests(model, completion: completion)
+    func searchPullRequests(_ name: String, page: Int, completion: @escaping PullRequestsHandler) {
+        let query = searchFilter.pullReqestsSearchParameters.parameter(name)
+        let model = SearchRequestModel(searchType: .pullRequests,
+                                       searchText: query,
+                                       perPage: 20,
+                                       page: page)
+        exploreRepository.fetchPullRequests(model) { result in
+            switch result {
+            case .success(let model):
+                self.checkFilters(.pullRequests, page: page, model: model, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func searchUsersByName(_ model: SearchRequestModel, completion: @escaping UsersHandler) {
-//        let text = "\(name) in:name"
-//        let searchModel = SearchRequestModel(searchType: .users, searchText: text)
-        exploreRepository.fetchUsers(model, completion: completion)
+    func searchUsersByName(_ name: String, page: Int, completion: @escaping UsersHandler) {
+        let query = searchFilter.usersSearchParameters.parameter(name)
+        let model = SearchRequestModel(searchType: .users,
+                                       searchText: query,
+                                       perPage: 20,
+                                       page: page)
+        exploreRepository.fetchUsers(model) { result in
+            switch result {
+            case .success(let model):
+                self.checkFilters(.people, page: page, model: model, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func searchAllTypesByName(_ model: SearchRequestModel, completion: @escaping AllResultHandler) {
-        fetchAll(model, completion: completion)
+    func searchAllTypesByName(_ searchText: String, completion: @escaping AllResultHandler) {
+        fetchAll(searchText, completion: completion)
+    }
+}
+
+// MARK: - Handle Empty results
+private extension ExploreTempUseCaseImpl {
+    func checkFilters(_ filterType: SearchFilter.FilterType,
+                      page: Int,
+                      model: SearchResponseModel,
+                      completion: @escaping (Result<SearchResponseModel, Error>) -> Void) {
+        guard model.items.isEmpty && page > 1 else {
+            completion(.success(model))
+            return
+        }
+        switch filterType {
+        case .repositories:
+            if searchFilter.repositoriesSearchParameters == .all {
+                completion(.success(model))
+                return
+            }
+        case .issues:
+            if searchFilter.issuesSearchParameters == .all {
+                completion(.success(model))
+                return
+            }
+        case .pullRequests:
+            if searchFilter.pullReqestsSearchParameters == .all {
+                completion(.success(model))
+                return
+            }
+        case .people:
+            if searchFilter.usersSearchParameters == .all {
+                completion(.success(model))
+                return
+            }
+        }
+        let narrowFilterError = NarrowFilterError(filterType: filterType, filter: searchFilter)
+        completion(.failure(narrowFilterError))
     }
 }
 
 // MARK: - Private
 private extension ExploreTempUseCaseImpl {
-    func fetchAll(_ model: SearchRequestModel, completion: @escaping AllResultHandler) {
+    func fetchAll(_ searchText: String, completion: @escaping AllResultHandler) {
         var repositories: SearchResponseModel?
         var issues: SearchResponseModel?
         var pullRequests: SearchResponseModel?
@@ -137,7 +221,7 @@ private extension ExploreTempUseCaseImpl {
             completion(.success(result))
         }
 
-        searchRepositoryByName(model) { result in
+        searchRepositoryByName(searchText, page: 1) { result in
             switch result {
             case .success(let response):
                 repositories = response
@@ -147,7 +231,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchIssueByLabel(model) { result in
+        searchIssueByLabel(searchText, page: 1) { result in
             switch result {
             case .success(let response):
                 issues = response
@@ -157,7 +241,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchPullRequests(model) { result in
+        searchPullRequests(searchText, page: 1) { result in
             switch result {
             case .success(let response):
                 pullRequests = response
@@ -167,7 +251,7 @@ private extension ExploreTempUseCaseImpl {
             self.dispatchGroup.leave()
         }
 
-        searchUsersByName(model) { result in
+        searchUsersByName(searchText, page: 1) { result in
             switch result {
             case .success(let response):
                 users = response

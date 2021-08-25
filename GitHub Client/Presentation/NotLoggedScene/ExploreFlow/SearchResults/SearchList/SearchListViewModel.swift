@@ -130,25 +130,13 @@ private extension SearchListViewModelImpl {
 
         switch type {
         case .repositories:
-            let model = SearchRequestModel(searchType: .repositories,
-                                           searchText: "\(searchParameters) in:name,description", perPage: 20,
-                                           page: currentPage)
-            useCase.searchRepositoryByName(model, completion: handle(_:))
+            useCase.searchRepositoryByName(searchParameters, page: currentPage, completion: handle(_:))
         case .issues:
-            let model = SearchRequestModel(searchType: .issues,
-                                           searchText: "\(searchParameters) in:title,body", perPage: 20,
-                                           page: currentPage)
-            useCase.searchIssueByLabel(model, completion: handle(_:))
+            useCase.searchIssueByLabel(searchParameters, page: currentPage, completion: handle(_:))
         case .pullRequests:
-            let model = SearchRequestModel(searchType: .pullRequests,
-                                           searchText: "\(searchParameters) in:title,body", perPage: 20,
-                                           page: currentPage)
-            useCase.searchPullRequests(model, completion: handle(_:))
+            useCase.searchPullRequests(searchParameters, page: currentPage, completion: handle(_:))
         case .people:
-            let model = SearchRequestModel(searchType: .users,
-                                           searchText: "\(searchParameters) in:name", perPage: 20,
-                                           page: currentPage)
-            useCase.searchUsersByName(model, completion: handle(_:))
+            useCase.searchUsersByName(searchParameters, page: currentPage, completion: handle(_:))
         }
     }
 

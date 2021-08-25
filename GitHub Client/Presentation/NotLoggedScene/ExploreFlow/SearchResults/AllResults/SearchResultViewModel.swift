@@ -150,8 +150,7 @@ extension SearchResultViewModelImpl {
 // MARK: - Private
 private extension SearchResultViewModelImpl {
     func searchAll(_ text: String) {
-        let model = SearchRequestModel(searchType: .issues, searchText: "todo", perPage: 5, page: 1)
-        useCase.searchAllTypesByName(model) { result in
+        useCase.searchAllTypesByName(text) { result in
             switch result {
             case .success(let response):
                 self.state.value = .results(.results(response))
