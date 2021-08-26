@@ -121,7 +121,6 @@
 		AD3776F5269F26B1000AA54C /* OnboardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */; };
 		AD3776F7269F270A000AA54C /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776F6269F270A000AA54C /* UserStorage.swift */; };
 		AD39A57F26C6796900309481 /* CommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A57E26C6796900309481 /* CommitsViewController.swift */; };
-		AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A58126C6799600309481 /* CommitsAdapter.swift */; };
 		AD39A58426C679F000309481 /* CommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A58326C679F000309481 /* CommitsViewModel.swift */; };
 		AD39A58626C67AC200309481 /* CommitsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A58526C67AC200309481 /* CommitsUseCase.swift */; };
 		AD39A58B26C67DDF00309481 /* CommitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39A58926C67DDF00309481 /* CommitCell.swift */; };
@@ -551,7 +550,6 @@
 		AD3776F4269F26B1000AA54C /* OnboardingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageController.swift; sourceTree = "<group>"; };
 		AD3776F6269F270A000AA54C /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		AD39A57E26C6796900309481 /* CommitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsViewController.swift; sourceTree = "<group>"; };
-		AD39A58126C6799600309481 /* CommitsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsAdapter.swift; sourceTree = "<group>"; };
 		AD39A58326C679F000309481 /* CommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsViewModel.swift; sourceTree = "<group>"; };
 		AD39A58526C67AC200309481 /* CommitsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsUseCase.swift; sourceTree = "<group>"; };
 		AD39A58926C67DDF00309481 /* CommitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitCell.swift; sourceTree = "<group>"; };
@@ -1302,7 +1300,6 @@
 			children = (
 				AD39A58326C679F000309481 /* CommitsViewModel.swift */,
 				AD39A57E26C6796900309481 /* CommitsViewController.swift */,
-				AD39A58126C6799600309481 /* CommitsAdapter.swift */,
 				AD39A58D26C67DE500309481 /* CommitCell */,
 			);
 			path = CommitsScreen;
@@ -2923,7 +2920,6 @@
 				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
 				ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */,
-				AD39A58226C6799600309481 /* CommitsAdapter.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				ADF9A85026D6D2700017D11F /* ExploreWidgetsRequestStorage.swift in Sources */,
 				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,

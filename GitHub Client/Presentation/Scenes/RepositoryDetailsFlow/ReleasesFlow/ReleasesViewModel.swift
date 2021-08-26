@@ -42,6 +42,5 @@ extension ReleasesViewModelImpl {
     func didSelectItem(at indexPath: IndexPath) {}
 }
 
-
 // MARK: - Private
 private extension ReleasesViewModelImpl {}

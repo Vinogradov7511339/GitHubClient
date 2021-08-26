@@ -14,10 +14,11 @@ struct CommitsActions {
 protocol CommitsViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func refresh()
 }
 
 protocol CommitsViewModelOutput {
-    var commits: Observable<[ExtendedCommit]> { get }
+    var state: Observable<ItemsSceneState<ExtendedCommit>> { get }
 }
 
 typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
@@ -25,13 +26,14 @@ typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
 final class CommitsViewModelImpl: CommitsViewModel {
 
     // MARK: - Output
-    var commits: Observable<[ExtendedCommit]> = Observable([])
+    var state: Observable<ItemsSceneState<ExtendedCommit>> = Observable(.loading)
 
     // MARK: - Private
     private let commitUseCase: CommitUseCase
     private let repository: Repository
     private let actions: CommitsActions
     private var lastPage: Int?
+    private var currentPage = 1
 
     init(commitUseCase: CommitUseCase, repository: Repository, actions: CommitsActions) {
         self.commitUseCase = commitUseCase
@@ -43,20 +45,37 @@ final class CommitsViewModelImpl: CommitsViewModel {
 // MARK: - Input
 extension CommitsViewModelImpl {
     func viewDidLoad() {
-        let page = 1
-        let request = CommitsRequestModel(page: page, repository: repository)
+        fetch()
+    }
+
+    func didSelectItem(at indexPath: IndexPath) {
+        switch state.value {
+        case .loaded(let items):
+            let commit = items[indexPath.row]
+            actions.showCommit(commit)
+        default:
+            break
+        }
+    }
+
+    func refresh() {
+        fetch()
+    }
+}
+
+// MARK: - Private
+private extension CommitsViewModelImpl {
+    func fetch() {
+        state.value = .loading
+        let request = CommitsRequestModel(page: currentPage, repository: repository)
         commitUseCase.fetchCommits(request: request) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage
-                self.commits.value.append(contentsOf: model.items)
+                self.state.value = .loaded(items: model.items)
             case .failure(let error):
-                print(error)
+                self.state.value = .error(error: error)
             }
         }
-    }
-
-    func didSelectItem(at indexPath: IndexPath) {
-        actions.showCommit(commits.value[indexPath.row])
     }
 }

@@ -92,6 +92,7 @@ extension IssuesViewController: UICollectionViewDelegate {
 // MARK: - Setup Views
 private extension IssuesViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(collectionView)
     }
 

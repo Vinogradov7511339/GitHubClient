@@ -9,53 +9,18 @@ import UIKit
 
 final class CommitsViewController: UIViewController {
 
-    class TempLayout: UICollectionViewFlowLayout {
-
-        override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-            let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
-            layoutAttributesObjects?.forEach({ layoutAttributes in
-                if layoutAttributes.representedElementCategory == .cell {
-                    if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
-                        layoutAttributes.frame = newFrame
-                    }
-                }
-            })
-            return layoutAttributesObjects
-        }
-
-        override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-            guard let collectionView = collectionView else { fatalError() }
-            guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
-                return nil
-            }
-
-            layoutAttributes.frame.origin.x = sectionInset.left
-            layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
-            return layoutAttributes
-        }
-    }
-
+    // MARK: - Create
     static func create(with viewModel: CommitsViewModel) -> CommitsViewController {
         let viewController = CommitsViewController()
         viewController.viewModel = viewModel
         return viewController
     }
 
-    private lazy var adapter: CommitsAdapter = {
-        CommitsAdapterImpl(cellManager: cellManager)
-    }()
-
-    private var viewModel: CommitsViewModel!
-    private let cellManager = CollectionCellManager.create(cellType: CommitCell.self)
-
-    private lazy var layout: TempLayout = {
-        let layout = TempLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 8.0, right: 16.0)
-        return layout
-    }()
+    // MARK: - Views
 
     private lazy var collectionView: UICollectionView = {
+        let layoutFactory = CompositionalLayoutFactory()
+        let layout = layoutFactory.layout
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
@@ -63,6 +28,17 @@ final class CommitsViewController: UIViewController {
         collectionView.dataSource = adapter
         return collectionView
     }()
+
+    // MARK: - Private variables
+
+    private lazy var adapter: CollectionViewAdapter = {
+        CollectionViewAdapterImpl(with: cellManager)
+    }()
+
+    private var viewModel: CommitsViewModel!
+    private let cellManager = CollectionCellManager.create(cellType: CommitCell.self)
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,12 +53,38 @@ final class CommitsViewController: UIViewController {
 // MARK: - Binding
 private extension CommitsViewController {
     func bind(to viewModel: CommitsViewModel) {
-        viewModel.commits.observe(on: self) { [weak self] in self?.updateItems($0)}
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0)}
     }
 
-    func updateItems(_ commits: [ExtendedCommit]) {
+    func updateState(_ newState: ItemsSceneState<ExtendedCommit>) {
+        switch newState {
+        case .loaded(let items):
+            prepareLoadedState(items)
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        }
+    }
+
+    func prepareLoadedState(_ commits: [ExtendedCommit]) {
+        hideLoader()
+        hideError()
+        collectionView.isHidden = false
         adapter.update(commits)
         collectionView.reloadData()
+    }
+
+    func prepareLoadingState() {
+        collectionView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        collectionView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
     }
 }
 
@@ -97,6 +99,7 @@ extension CommitsViewController: UICollectionViewDelegate {
 // MARK: - Setup Views
 private extension CommitsViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(collectionView)
     }
 
