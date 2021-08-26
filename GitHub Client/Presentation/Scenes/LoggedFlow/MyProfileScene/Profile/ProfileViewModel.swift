@@ -35,8 +35,6 @@ protocol ProfileViewModelInput {
 }
 
 protocol ProfileViewModelOutput {
-    var cellManager: TableCellManager { get }
-    var tableItems: Observable<[Any]> { get }
     var user: Observable<UserProfile?> { get }
 }
 
@@ -46,8 +44,6 @@ final class ProfileViewModelImpl: ProfileViewModel {
 
     // MARK: - Output
 
-    let cellManager: TableCellManager
-    let tableItems: Observable<[Any]> = Observable(ProfileViewModelImpl.items())
     var user: Observable<UserProfile?> = Observable(nil)
 
     // MARK: - Private
@@ -58,7 +54,6 @@ final class ProfileViewModelImpl: ProfileViewModel {
     init(useCase: MyProfileUseCase, actions: ProfileActions) {
         self.useCase = useCase
         self.actions = actions
-        cellManager = TableCellManager.create(cellType: BaseDetailsCell.self)
     }
 }
 
@@ -108,14 +103,9 @@ extension ProfileViewModelImpl {
             assert(false, "update models")
         case (1, 3):
             actions.showSubscriptions()
-            break
         default:
             break
         }
-    }
-
-    static func items() -> [BaseDetailsCellViewModel] {
-        return [.repositories, .starred, .organizations, .following]
     }
 }
 
