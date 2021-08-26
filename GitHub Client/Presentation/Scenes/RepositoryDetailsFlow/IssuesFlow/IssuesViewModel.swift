@@ -14,10 +14,11 @@ struct IssuesActions {
 protocol IssuesViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func refresh()
 }
 
 protocol IssuesViewModelOutput {
-    var issues: Observable<[Issue]> { get }
+    var state: Observable<ItemsSceneState<Issue>> { get }
 }
 
 typealias IssuesViewModel = IssuesViewModelInput & IssuesViewModelOutput
@@ -25,7 +26,7 @@ typealias IssuesViewModel = IssuesViewModelInput & IssuesViewModelOutput
 final class IssuesViewModelImpl: IssuesViewModel {
 
     // MARK: - Output
-    var issues: Observable<[Issue]> = Observable([])
+    var state: Observable<ItemsSceneState<Issue>> = Observable(.loading)
 
     // MARK: - Private
     private let issueUseCase: IssueUseCase
@@ -44,18 +45,36 @@ final class IssuesViewModelImpl: IssuesViewModel {
 // MARK: - Input
 extension IssuesViewModelImpl {
     func viewDidLoad() {
+        fetch()
+    }
+
+    func refresh() {
+        fetch()
+    }
+
+    func didSelectItem(at indexPath: IndexPath) {
+        switch state.value {
+        case .loaded(let issues):
+            let issue = issues[indexPath.row]
+            actions.showIssue(issue)
+        default:
+            break
+        }
+    }
+}
+
+// MARK: - Private
+private extension IssuesViewModelImpl {
+    func fetch() {
+        state.value = .loading
         issueUseCase.fetchAllIssues(repository, page: currentPage) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage
-                self.issues.value.append(contentsOf: model.items)
+                self.state.value = .loaded(items: model.items)
             case .failure(let error):
-                print(error)
+                self.state.value = .error(error: error)
             }
         }
-    }
-
-    func didSelectItem(at indexPath: IndexPath) {
-        actions.showIssue(issues.value[indexPath.row])
     }
 }

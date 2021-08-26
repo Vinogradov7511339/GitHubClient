@@ -420,6 +420,7 @@
 		ADFCEFFB26D81C8D004FB341 /* IssueFilterStorageImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCEFFA26D81C8D004FB341 /* IssueFilterStorageImpl.swift */; };
 		ADFCEFFD26D81CF6004FB341 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCEFFC26D81CF6004FB341 /* TableViewAdapter.swift */; };
 		ADFCEFFF26D81E77004FB341 /* CollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCEFFE26D81E77004FB341 /* CollectionViewAdapter.swift */; };
+		ADFCF00526D823F6004FB341 /* ItemsSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -852,6 +853,7 @@
 		ADFCEFFA26D81C8D004FB341 /* IssueFilterStorageImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterStorageImpl.swift; sourceTree = "<group>"; };
 		ADFCEFFC26D81CF6004FB341 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
 		ADFCEFFE26D81E77004FB341 /* CollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewAdapter.swift; sourceTree = "<group>"; };
+		ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsSceneState.swift; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1406,7 +1408,6 @@
 				AD8722D026B7D846004649A4 /* UIComponents */,
 				AD2AC81F26BD785200AF161C /* Extensions */,
 				AD6B099726C0350E004644D2 /* Factories */,
-				AD43613626D632F20004F742 /* SearchFilter */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1671,6 +1672,7 @@
 			children = (
 				AD5C8E3326D2B2C0003E2F38 /* ExploreFlowCoordinator.swift */,
 				AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */,
+				AD43613626D632F20004F742 /* SearchFilter */,
 				ADBC1ACD26C3D8E1000F9B88 /* SearchResults */,
 				AD5C8E4226D2BE1D003E2F38 /* Explore */,
 			);
@@ -2240,8 +2242,8 @@
 		ADC538A926CC3823009B7A7E /* Folder */ = {
 			isa = PBXGroup;
 			children = (
-				AD23E79A26D1094A009FEB27 /* FolderViewController.swift */,
 				AD8722DF26B81840004649A4 /* FolderViewModel.swift */,
+				AD23E79A26D1094A009FEB27 /* FolderViewController.swift */,
 				ADC538B026CCE58D009B7A7E /* FolderCell */,
 				AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */,
 			);
@@ -2310,6 +2312,7 @@
 				AD39FE5526BAD65D00F055FD /* NotLoggedFlow */,
 				AD5C8E3D26D2BBF0003E2F38 /* LoggedFlow */,
 				ADF9A84A26D6A9FE0017D11F /* PullRequest */,
+				ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2649,6 +2652,7 @@
 				AD23E7C126D18528009FEB27 /* MyRepositoriesAdapter.swift in Sources */,
 				AD5BD95926D75F1000B41E6A /* FolderAdapter.swift in Sources */,
 				AD5C8E2726D29E28003E2F38 /* SettingsCoordinator.swift in Sources */,
+				ADFCF00526D823F6004FB341 /* ItemsSceneState.swift in Sources */,
 				ADB60D5326D2CF4E0024479D /* UIImage+Error.swift in Sources */,
 				ADC538E626CD3661009B7A7E /* NotificationsRepositoryImpl.swift in Sources */,
 				ADA7495826CE9A3400C8D475 /* CodePreviewCell.swift in Sources */,

@@ -46,12 +46,38 @@ final class IssuesViewController: UIViewController {
 // MARK: - Binding
 private extension IssuesViewController {
     func bind(to viewModel: IssuesViewModel) {
-        viewModel.issues.observe(on: self) { [weak self] in self?.updateItems($0)}
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateItems(_ issues: [Issue]) {
+    func updateState(_ newState: ItemsSceneState<Issue>) {
+        switch newState {
+        case .error(let error):
+            prepareErrorState(error)
+        case .loading:
+            prepareLoadingState()
+        case .loaded(let items):
+            prepareLoadedState(items)
+        }
+    }
+
+    func prepareLoadingState() {
+        collectionView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareLoadedState(_ issues: [Issue]) {
+        hideLoader()
+        hideError()
+        collectionView.isHidden = false
         adapter.update(issues)
         collectionView.reloadData()
+    }
+
+    func prepareErrorState(_ error: Error) {
+        collectionView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
     }
 }
 

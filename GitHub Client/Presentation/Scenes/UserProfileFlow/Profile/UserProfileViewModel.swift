@@ -124,7 +124,6 @@ extension UserProfileViewModelImpl {
             actions.showSubscriptions(user)
         case (2, 1):
             assert(false, "remove")
-            break
         case (2, 2):
             actions.showEvents(user)
         default:
