@@ -29,13 +29,14 @@ final class IssuesViewModelImpl: IssuesViewModel {
 
     // MARK: - Private
     private let issueUseCase: IssueUseCase
-    private let issuesType: IssuesType
+    private let repository: Repository
     private let actions: IssuesActions
     private var lastPage: Int?
+    private var currentPage = 1
 
-    init(issueUseCase: IssueUseCase, issuesType: IssuesType, actions: IssuesActions) {
+    init(issueUseCase: IssueUseCase, repository: Repository, actions: IssuesActions) {
         self.issueUseCase = issueUseCase
-        self.issuesType = issuesType
+        self.repository = repository
         self.actions = actions
     }
 }
@@ -43,9 +44,7 @@ final class IssuesViewModelImpl: IssuesViewModel {
 // MARK: - Input
 extension IssuesViewModelImpl {
     func viewDidLoad() {
-        let page = 1
-        let request = IssuesRequestModel(page: page, issuesType: issuesType)
-        issueUseCase.fetchIssues(request) { result in
+        issueUseCase.fetchAllIssues(repository, page: currentPage) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

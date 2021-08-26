@@ -13,6 +13,7 @@ final class RepositoryDIContainer {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
+        let issueFilterStorage: IssueFilterStorage
         let repository: Repository
 
         var showUser: (User, UINavigationController) -> Void
@@ -30,7 +31,9 @@ final class RepositoryDIContainer {
 
     init(_ dependencies: Dependencies) {
         self.dependencies = dependencies
-        repositoryFactory = RepositoryFactoryImpl(dataTransferService: dependencies.dataTransferService)
+        repositoryFactory = RepositoryFactoryImpl(
+            dataTransferService: dependencies.dataTransferService,
+            issueFilterStorage: dependencies.issueFilterStorage)
     }
 }
 
@@ -60,8 +63,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.fileViewController()
     }
 
-    func issuesViewController() -> UIViewController {
-        repositoryFactory.issuesViewController()
+    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController {
+        repositoryFactory.issuesViewController(repository, actions: actions)
     }
 
     func issueViewController() -> UIViewController {

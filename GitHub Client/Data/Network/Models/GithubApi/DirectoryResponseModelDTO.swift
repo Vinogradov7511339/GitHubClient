@@ -16,7 +16,7 @@ struct DirectoryResponseModelDTO: Codable {
     let url: URL
     let htmlUrl: URL
     let gitUrl: URL
-    let downloadUrl: URL
+    let downloadUrl: URL?
     let type: String
     //    let _links
 

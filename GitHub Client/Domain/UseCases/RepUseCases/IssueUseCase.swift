@@ -9,7 +9,9 @@ import Foundation
 
 protocol IssueUseCase {
     typealias IssuesHandler = RepRepository.IssuesHandler
-    func fetchIssues(_ request: IssuesRequestModel, completion: @escaping IssuesHandler)
+    func fetchAllIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler)
+    func fetchOpenIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler)
+    func fetchCloseIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler)
 
     typealias IssueHandler = RepRepository.IssueHandler
     func fetchIssue(_ request: IssueRequestModel, completion: @escaping IssueHandler)
@@ -21,16 +23,32 @@ protocol IssueUseCase {
 final class IssueUseCaseImpl {
 
     private let repRepository: RepRepository
+    private let filterStorage: IssueFilterStorage
 
-    init(repRepository: RepRepository) {
+    init(repRepository: RepRepository, filterStorage: IssueFilterStorage) {
         self.repRepository = repRepository
+        self.filterStorage = filterStorage
     }
 }
 
 // MARK: - IssueUseCase
 extension IssueUseCaseImpl: IssueUseCase {
-    func fetchIssues(_ request: IssuesRequestModel, completion: @escaping IssuesHandler) {
-        repRepository.fetchIssues(request: request, completion: completion)
+    func fetchAllIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler) {
+        let filter = filterStorage.filter(for: .all)
+        let model = IssuesRequestModel(page: page, repository: repository, filter: filter)
+        repRepository.fetchIssues(request: model, completion: completion)
+    }
+
+    func fetchOpenIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler) {
+        let filter = filterStorage.filter(for: .open)
+        let model = IssuesRequestModel(page: page, repository: repository, filter: filter)
+        repRepository.fetchIssues(request: model, completion: completion)
+    }
+
+    func fetchCloseIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler) {
+        let filter = filterStorage.filter(for: .close)
+        let model = IssuesRequestModel(page: page, repository: repository, filter: filter)
+        repRepository.fetchIssues(request: model, completion: completion)
     }
 
     func fetchIssue(_ request: IssueRequestModel, completion: @escaping IssueHandler) {

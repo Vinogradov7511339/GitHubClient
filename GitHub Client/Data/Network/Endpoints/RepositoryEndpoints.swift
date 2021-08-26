@@ -62,9 +62,39 @@ struct RepEndpoits {
     // MARK: - Issues
 
     static func issues(_ model: IssuesRequestModel) -> Endpoint<[IssueResponseDTO]> {
-        fatalError()
-//        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/issues",
-//                        queryParametersEncodable: ["page": page])
+        let owner = model.repository.owner.login
+        let repo = model.repository.name
+        let filter = model.filter
+
+        var params: QueryType = [:]
+        params["state"] = filter.state.rawValue
+        params["sort"] = filter.sort.rawValue
+        params["direction"] = filter.direction.rawValue
+        params["per_page"] = "\(filter.perPage)"
+        params["page"] = "\(model.page)"
+
+        if let assignee = filter.assignee {
+            params["assignee"] = assignee
+        }
+        if let creator = filter.creator {
+            params["creator"] = creator
+        }
+        if let mentioned = filter.mentioned {
+            params["mentioned"] = mentioned
+        }
+        let labels = filter.labels.joined(separator: ",")
+        if !labels.isEmpty {
+            params["labels"] = labels
+        }
+
+        if let date = filter.since {
+            let formatter = ISO8601DateFormatter()
+            let dateStr = formatter.string(from: date)
+            params["since"] = dateStr
+        }
+
+        return Endpoint(path: "repos/\(owner)/\(repo)/issues",
+                        queryParametersEncodable: params)
     }
 
     static func issue(_ moodel: IssueRequestModel) -> Endpoint<IssueResponseDTO> {

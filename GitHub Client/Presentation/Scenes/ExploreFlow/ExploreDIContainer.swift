@@ -14,7 +14,7 @@ final class ExploreDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let searchFilterStorage: SearchFilterStorage
-        let exploreSettingsStorage: ExploreSettingsStorage
+        let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
         let showRepository: (Repository, UINavigationController) -> Void
         let showIssue: (Issue, UINavigationController) -> Void

@@ -45,7 +45,7 @@ final class SearchFilterViewController: UIViewController {
     private var items: [String] = SearchFilter.FilterType.allCases.map { $0.rawValue }
     private lazy var childControllers: [UIViewController] = {
         SearchFilter.FilterType.allCases.map {
-            SearchFilterItemViewController.create(with: filterStorage.filter, type: $0)
+            SearchFilterItemViewController.create(with: filterStorage.filter(for: .all), type: $0)
         }
     }()
 

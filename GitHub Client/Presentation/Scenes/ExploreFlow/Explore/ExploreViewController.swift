@@ -51,10 +51,17 @@ final class ExploreViewController: UIViewController {
 
     private var viewModel: ExploreViewModel!
 
-    private lazy var adapter: ExploreAdapter = {
-        let adapter = ExploreAdapterImpl()
+    let cellManager = CollectionCellManager.create(cellType: PopularRepCell.self)
+
+    private lazy var adapter: CollectionViewAdapter = {
+        let adapter = CollectionViewAdapterImpl(with: cellManager)
         return adapter
     }()
+
+//    private lazy var adapter: ExploreAdapter = {
+//        let adapter = ExploreAdapterImpl()
+//        return adapter
+//    }()
 
     // MARK: - Lifecycle
 

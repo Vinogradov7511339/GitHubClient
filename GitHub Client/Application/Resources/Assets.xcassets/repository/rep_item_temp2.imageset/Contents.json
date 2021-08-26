@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "rep_item_file.png",
+      "filename" : "round_receipt_long_white_18pt_3x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "rep_item_file@2x.png",
+      "filename" : "round_receipt_long_white_18pt_3x@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "rep_item_file@3x.png",
+      "filename" : "round_receipt_long_white_18pt_3x@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -14,7 +14,7 @@ final class NotLoggedSceneDIContainer: NSObject {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let searchFilterStorage: SearchFilterStorage
-        let exploreSettingsStorage: ExploreSettingsStorage
+        let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
         var userLoggedIn: () -> Void
         var openSettings: (UINavigationController) -> Void

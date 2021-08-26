@@ -20,7 +20,7 @@ final class RepViewController: UIViewController {
     private let adapter: RepositoryAdapter = RepositoryAdapterImpl()
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
@@ -56,18 +56,43 @@ final class RepViewController: UIViewController {
 private extension RepViewController {
     func bind(to viewModel: RepViewModel) {
         viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
-        viewModel.repository.observe(on: self) { [weak self] in self?.updateItems($0) }
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
     func updateTitle(_ title: String) {
         self.title = title
     }
 
-    func updateItems(_ repository: RepositoryDetails?) {
-        guard let repository = repository else { return }
+    func updateState(_ newState: RepositoryScreenState) {
+        switch newState {
+        case .loaded(let repository):
+            prepareLoadedState(with: repository)
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        }
+    }
+
+    func prepareLoadedState(with repository: RepositoryDetails) {
+        hideLoader()
+        hideError()
+        tableView.isHidden = false
         refreshControl.endRefreshing()
         adapter.update(repository)
         tableView.reloadData()
+    }
+
+    func prepareLoadingState() {
+        tableView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        tableView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
     }
 }
 
@@ -75,12 +100,6 @@ private extension RepViewController {
 extension RepViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-//        switch indexPath.section {
-//        case 0, 3:
-//            return UITableView.automaticDimension
-//        default:
-//            return 56.0
-//        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -128,6 +147,7 @@ extension RepViewController: RepositoryHeaderTableViewCellDelegate {
 // MARK: - setup views
 private extension RepViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
     }
 

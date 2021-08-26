@@ -50,16 +50,13 @@ final class ExploreViewModelImpl: ExploreViewModel {
     init(actions: ExploreActions,
          searchResultsViewModel: SearchResultViewModel,
          useCase: ExploreUseCase,
-         exploreSettingsStorage: ExploreSettingsStorage) {
+         exploreSettingsStorage: ExploreWidgetsRequestStorage) {
 
         self.actions = actions
         self.searchResultsViewModel = searchResultsViewModel
         self.useCase = useCase
-        switch exploreSettingsStorage.searchType {
-        case .mostStarred(let model):
-            self.requestModel = model
-            self.popularTitle.value = NSLocalizedString("Most starred", comment: "")
-        }
+        self.requestModel = exploreSettingsStorage.model(for: .mostStarred)
+        self.popularTitle.value = NSLocalizedString("Most starred", comment: "")
     }
 }
 

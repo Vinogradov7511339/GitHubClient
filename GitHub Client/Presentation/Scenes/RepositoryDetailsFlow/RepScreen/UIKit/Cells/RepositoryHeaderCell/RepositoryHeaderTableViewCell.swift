@@ -20,9 +20,12 @@ protocol RepositoryHeaderTableViewCellDelegate: AnyObject {
 
 class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 
+    @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var licenseStackView: UIStackView!
+    @IBOutlet weak var licenseLabel: UILabel!
     @IBOutlet weak var starsAndFolksStackView: UIStackView!
     @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var forksCountLabel: UILabel!
@@ -50,6 +53,8 @@ class RepositoryHeaderTableViewCell: BaseTableViewCell, NibLoadable {
 extension RepositoryHeaderTableViewCell: ConfigurableCell {
     func configure(viewModel: RepositoryDetailsHeaderCellViewModel) {
         let repository = viewModel.repository
+        let owner = viewModel.repository.owner
+        fullNameLabel.text = "\(owner.login) / \(repository.name)"
         avatarImageView.set(url: viewModel.repository.owner.avatarUrl)
         ownerNameLabel.text = repository.owner.login
 
@@ -61,6 +66,14 @@ extension RepositoryHeaderTableViewCell: ConfigurableCell {
             aboutLabel.text = repository.description ?? ""
         } else {
             aboutLabel.isHidden = true
+        }
+
+        if let license = repository.license {
+            licenseStackView.isHidden = false
+            let tempLicense = license.split(separator: " ").first ?? "Vasya"
+            licenseLabel.text = String(tempLicense)
+        } else {
+            licenseStackView.isHidden = true
         }
     }
 }

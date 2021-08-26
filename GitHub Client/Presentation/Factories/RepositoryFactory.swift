@@ -14,7 +14,7 @@ protocol RepositoryFactory {
     func commitViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
-    func issuesViewController() -> UIViewController
+    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
     func issueViewController() -> UIViewController
     func pullRequestsViewController() -> UIViewController
     func pullRequestViewController() -> UIViewController
@@ -28,9 +28,13 @@ protocol RepositoryFactory {
 final class RepositoryFactoryImpl {
 
     private let dataTransferService: DataTransferService
+    private let issueFilterStorage: IssueFilterStorage
 
-    init(dataTransferService: DataTransferService) {
+    init(dataTransferService: DataTransferService,
+         issueFilterStorage: IssueFilterStorage) {
+
         self.dataTransferService = dataTransferService
+        self.issueFilterStorage = issueFilterStorage
     }
 }
 
@@ -60,8 +64,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func issuesViewController() -> UIViewController {
-        UIViewController()
+    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController {
+        IssuesViewController.create(with: issuesViewModel(repository, actions: actions))
     }
 
     func issueViewController() -> UIViewController {
@@ -109,6 +113,14 @@ private extension RepositoryFactoryImpl {
 
     func folderViewModel(_ path: URL, actions: FolderActions) -> FolderViewModel {
         FolderViewModelImpl(actions: actions, path: path, repUseCase: repUseCase)
+    }
+
+    func issuesViewModel(_ repository: Repository, actions: IssuesActions) -> IssuesViewModel {
+        IssuesViewModelImpl(issueUseCase: issueUseCase, repository: repository, actions: actions)
+    }
+
+    var issueUseCase: IssueUseCase {
+        IssueUseCaseImpl(repRepository: repRepository, filterStorage: issueFilterStorage)
     }
 
     var repUseCase: RepUseCase {

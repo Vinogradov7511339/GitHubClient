@@ -16,7 +16,7 @@ final class MainSceneDIContainer: NSObject {
         let favoritesStorage: FavoritesStorage
         let profileStorage: ProfileLocalStorage
         let searchFilterStorage: SearchFilterStorage
-        let exploreSettingsStorage: ExploreSettingsStorage
+        let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
         let logout: () -> Void
         let openSettings: (UINavigationController) -> Void

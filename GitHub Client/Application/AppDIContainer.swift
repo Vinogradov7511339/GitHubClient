@@ -24,7 +24,12 @@ final class AppDIContainer {
     }()
 
     lazy var searchFilterStorage: SearchFilterStorage = {
-        let storage = SearchFilterStorageImpl.shared
+        let storage = SearchFilterStorageImpl()
+        return storage
+    }()
+
+    lazy var issueFilterStorage: IssueFilterStorage = {
+        let storage = IssueFilterStorageImpl()
         return storage
     }()
 
@@ -38,8 +43,8 @@ final class AppDIContainer {
         return profileStorage
     }()
 
-    lazy var exploreSettingsStorage: ExploreSettingsStorage = {
-        let exploreSettingsStorage = ExploreSettingsStorageImpl()
+    lazy var exploreSettingsStorage: ExploreWidgetsRequestStorage = {
+        let exploreSettingsStorage = ExploreWidgetsRequestStorageImpl()
         return exploreSettingsStorage
     }()
 }
@@ -148,6 +153,7 @@ private extension AppDIContainer {
     func repositoryDependencies(_ actions: AppCoordinatorActions,
                                 repository: Repository) -> RepositoryDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
+              issueFilterStorage: issueFilterStorage,
               repository: repository,
               showUser: actions.openUser(_:in:),
               openLink: actions.open(link:),

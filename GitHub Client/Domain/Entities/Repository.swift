@@ -21,4 +21,5 @@ struct Repository {
     let homePage: String?
     let contentPath: URL
     let currentBranch: String
+    let license: String?
 }

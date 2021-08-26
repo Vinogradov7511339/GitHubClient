@@ -7,5 +7,6 @@
 
 struct IssuesRequestModel {
     let page: Int
-    let issuesType: IssuesType
+    let repository: Repository
+    let filter: IssuesFilter
 }

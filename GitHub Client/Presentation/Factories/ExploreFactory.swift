@@ -21,11 +21,11 @@ final class ExploreFactoryImpl {
 
     private let dataTransferService: DataTransferService
     private let searchFilterStorage: SearchFilterStorage
-    private let exploreSettingsStorage: ExploreSettingsStorage
+    private let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
     init(dataTransferService: DataTransferService,
          searchFilterStorage: SearchFilterStorage,
-         exploreSettingsStorage: ExploreSettingsStorage) {
+         exploreSettingsStorage: ExploreWidgetsRequestStorage) {
 
         self.dataTransferService = dataTransferService
         self.searchFilterStorage = searchFilterStorage
@@ -109,7 +109,7 @@ private extension ExploreFactoryImpl {
 // MARK: - Private
 private extension ExploreFactoryImpl {
     var exploreUseCase: ExploreUseCase {
-        ExploreUseCaseImpl(searchFilter: searchFilterStorage.filter, exploreRepository: exploreRepository)
+        ExploreUseCaseImpl(searchFilterStorage: searchFilterStorage, exploreRepository: exploreRepository)
     }
 
     var exploreRepository: ExploreTempRepository {

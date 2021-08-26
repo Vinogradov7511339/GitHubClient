@@ -276,7 +276,8 @@ class RepositoryResponseDTO: Codable {
             hasIssues: hasIssues ?? false,
             homePage: homepage,
             contentPath: path,
-            currentBranch: defaultBranch ?? "NaN"
+            currentBranch: defaultBranch ?? "NaN",
+            license: license?.name
         )
     }
 }

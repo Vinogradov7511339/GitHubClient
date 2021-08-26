@@ -41,12 +41,17 @@ protocol RepViewModelInput {
     func showReleases()
     func showLicense()
     func showWatchers()
+}
 
+enum RepositoryScreenState {
+    case loading
+    case loaded(RepositoryDetails)
+    case error(Error)
 }
 
 protocol RepViewModelOutput {
     var title: Observable<String> { get }
-    var repository: Observable<RepositoryDetails?> { get }
+    var state: Observable<RepositoryScreenState> { get }
 }
 
 typealias RepViewModel = RepViewModelInput & RepViewModelOutput
@@ -55,7 +60,7 @@ final class RepViewModelImpl: RepViewModel {
 
     // MARK: - OUTPUT
 
-    let repository: Observable<RepositoryDetails?> = Observable(nil)
+    let state: Observable<RepositoryScreenState> = Observable(.loading)
     var title: Observable<String>
 
     // MARK: - Private variables
@@ -131,16 +136,14 @@ private extension RepViewModelImpl {
     }
 
     func fetch() {
+        state.value = .loading
         repUseCase.fetchRepository(repository: rep) { result in
             switch result {
             case .success(let repository):
-                self.repository.value = repository
+                self.state.value = .loaded(repository)
             case .failure(let error):
-                self.handle(error)
+                self.state.value = .error(error)
             }
         }
-    }
-    func handle(_ error: Error) {
-        assert(false, "error happen \(error)")
     }
 }

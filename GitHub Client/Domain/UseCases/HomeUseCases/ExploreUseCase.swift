@@ -44,13 +44,15 @@ protocol ExploreUseCase {
 
 final class ExploreUseCaseImpl {
 
-    private let searchFilter: SearchFilter
+    private let searchFilterStorage: SearchFilterStorage
     private let exploreRepository: ExploreTempRepository
+    private let searchFilter: SearchFilter
     private let dispatchGroup = DispatchGroup()
 
-    init(searchFilter: SearchFilter, exploreRepository: ExploreTempRepository) {
-        self.searchFilter = searchFilter
+    init(searchFilterStorage: SearchFilterStorage, exploreRepository: ExploreTempRepository) {
+        self.searchFilterStorage = searchFilterStorage
         self.exploreRepository = exploreRepository
+        self.searchFilter = searchFilterStorage.filter(for: .all)
     }
 }
 
