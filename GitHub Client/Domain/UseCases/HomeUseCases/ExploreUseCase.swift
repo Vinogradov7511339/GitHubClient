@@ -1,5 +1,5 @@
 //
-//  ExploreTempUseCase.swift
+//  ExploreUseCase.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 22.08.2021.
@@ -12,7 +12,7 @@ struct NarrowFilterError: Error {
     let filter: SearchFilter
 }
 
-protocol ExploreTempUseCase {
+protocol ExploreUseCase {
 
     // MARK: - Repositories
 
@@ -42,7 +42,7 @@ protocol ExploreTempUseCase {
     func searchAllTypesByName(_ searchText: String, completion: @escaping AllResultHandler)
 }
 
-final class ExploreTempUseCaseImpl {
+final class ExploreUseCaseImpl {
 
     private let searchFilter: SearchFilter
     private let exploreRepository: ExploreTempRepository
@@ -55,7 +55,7 @@ final class ExploreTempUseCaseImpl {
 }
 
 // MARK: - ExploreTempUseCase
-extension ExploreTempUseCaseImpl: ExploreTempUseCase {
+extension ExploreUseCaseImpl: ExploreUseCase {
     func mostStarred(_ model: SearchRequestModel, completion: @escaping RepositoriesHandler) {
 //        let text = "stars:>10000"
 //        let searchModel = SearchRequestModel(searchType: .repositories, searchText: text)
@@ -132,7 +132,7 @@ extension ExploreTempUseCaseImpl: ExploreTempUseCase {
 }
 
 // MARK: - Handle Empty results
-private extension ExploreTempUseCaseImpl {
+private extension ExploreUseCaseImpl {
     func checkFilters(_ filterType: SearchFilter.FilterType,
                       page: Int,
                       model: SearchResponseModel,
@@ -169,7 +169,7 @@ private extension ExploreTempUseCaseImpl {
 }
 
 // MARK: - Private
-private extension ExploreTempUseCaseImpl {
+private extension ExploreUseCaseImpl {
     func fetchAll(_ searchText: String, completion: @escaping AllResultHandler) {
         var repositories: SearchResponseModel?
         var issues: SearchResponseModel?

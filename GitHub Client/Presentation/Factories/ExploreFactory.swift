@@ -36,7 +36,7 @@ final class ExploreFactoryImpl {
 // MARK: - ExploreFactory
 extension ExploreFactoryImpl: ExploreFactory {
     func exploreViewController(exploreActions: ExploreActions, _ actions: SearchResultActions) -> UIViewController {
-        ExploreTempViewController.create(with: exploreViewModel(exploreActions: exploreActions, actions))
+        ExploreViewController.create(with: exploreViewModel(exploreActions: exploreActions, actions))
     }
 
     func searchFilterViewController() -> UIViewController {
@@ -94,8 +94,8 @@ private extension ExploreFactoryImpl {
 
 // MARK: - Explore view models
 private extension ExploreFactoryImpl {
-    func exploreViewModel(exploreActions: ExploreActions, _ actions: SearchResultActions) -> ExploreTempViewModel {
-        ExploreTempViewModelImpl(actions: exploreActions,
+    func exploreViewModel(exploreActions: ExploreActions, _ actions: SearchResultActions) -> ExploreViewModel {
+        ExploreViewModelImpl(actions: exploreActions,
                                  searchResultsViewModel: searchResultViewModel(actions),
                                  useCase: exploreUseCase,
                                  exploreSettingsStorage: exploreSettingsStorage)
@@ -108,8 +108,8 @@ private extension ExploreFactoryImpl {
 
 // MARK: - Private
 private extension ExploreFactoryImpl {
-    var exploreUseCase: ExploreTempUseCase {
-        ExploreTempUseCaseImpl(searchFilter: searchFilterStorage.filter, exploreRepository: exploreRepository)
+    var exploreUseCase: ExploreUseCase {
+        ExploreUseCaseImpl(searchFilter: searchFilterStorage.filter, exploreRepository: exploreRepository)
     }
 
     var exploreRepository: ExploreTempRepository {

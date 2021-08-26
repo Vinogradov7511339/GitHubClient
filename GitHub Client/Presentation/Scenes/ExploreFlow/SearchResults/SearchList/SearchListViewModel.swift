@@ -42,7 +42,7 @@ final class SearchListViewModelImpl: SearchListViewModel {
     // MARK: - Private variables
 
     private let actions: SearchListActions
-    private let useCase: ExploreTempUseCase
+    private let useCase: ExploreUseCase
     private let searchParameters: String
     private var currentPage = 1
     private var lastPage: Int?
@@ -51,7 +51,7 @@ final class SearchListViewModelImpl: SearchListViewModel {
 
     init(actions: SearchListActions,
          type: SearchType,
-         useCase: ExploreTempUseCase,
+         useCase: ExploreUseCase,
          searchParameters: String) {
 
         self.actions = actions

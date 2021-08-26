@@ -11,9 +11,10 @@ final class ErrorAlertView: UIView, NibLoadable {
 
     // MARK: - Create
 
-    static func create(with error: Error) -> ErrorAlertView {
+    static func create(with error: Error, reloadHandler: @escaping () -> Void) -> ErrorAlertView {
         let alert = ErrorAlertView.createFromNib()
         alert.error = error
+        alert.reloadHandler = reloadHandler
         return alert
     }
 
@@ -26,6 +27,7 @@ final class ErrorAlertView: UIView, NibLoadable {
     // MARK: - Private variables
 
     var error: Error!
+    var reloadHandler: (() -> Void)?
 
     // MARK: - Actions
 
@@ -35,6 +37,7 @@ final class ErrorAlertView: UIView, NibLoadable {
         } completion: { _ in
             self.removeFromSuperview()
         }
+        reloadHandler?()
     }
 
     func show(in view: UIView) {

@@ -22,7 +22,7 @@ final class NotificationsFactoryImpl {
 // MARRK: - NotificationsFactory
 extension NotificationsFactoryImpl: NotificationsFactory {
     func makeNotificationsViewController(actions: NotificationsActions) -> UIViewController {
-        ExploreViewController.create(with: makeNotificationsViewModel(actions: actions))
+        NotificationsViewController.create(with: makeNotificationsViewModel(actions: actions))
     }
 }
 

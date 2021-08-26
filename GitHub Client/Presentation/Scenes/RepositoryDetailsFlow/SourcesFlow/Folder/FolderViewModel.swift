@@ -17,6 +17,7 @@ struct FolderActions {
 
 protocol FolderViewModelInput {
     func viewDidLoad()
+    func refresh()
     func didSelectItem(at indexPath: IndexPath)
     func openFolderSettings()
     func share()
@@ -25,7 +26,13 @@ protocol FolderViewModelInput {
 
 protocol FolderViewModelOutput {
     var title: Observable<String> { get }
-    var items: Observable<[FolderItem]> { get }
+    var state: Observable<FolderScreenState> { get }
+}
+
+enum FolderScreenState {
+    case loading
+    case loaded([FolderItem])
+    case error(Error)
 }
 
 typealias FolderViewModel = FolderViewModelInput & FolderViewModelOutput
@@ -35,7 +42,7 @@ final class FolderViewModelImpl {
     // MARK: - INPUT
 
     var title: Observable<String> = Observable("")
-    var items: Observable<[FolderItem]> = Observable([])
+    var state: Observable<FolderScreenState> = Observable(.loading)
 
     // MARK: - Private
 
@@ -53,11 +60,18 @@ final class FolderViewModelImpl {
 // MARK: - FolderViewModel
 extension FolderViewModelImpl: FolderViewModel {
     func viewDidLoad() {
+        state.value = .loading
+        fetch()
+    }
+
+    func refresh() {
+        state.value = .loading
         fetch()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        let item = items.value[indexPath.row]
+        guard case .loaded(let items) = state.value else { return }
+        let item = items[indexPath.row]
         switch item.type {
         case .folder:
             actions.openFolder(item.url)
@@ -83,12 +97,10 @@ private extension FolderViewModelImpl {
         repUseCase.fetchContent(path: path) { result in
             switch result {
             case .success(let items):
-                self.items.value = items
+                self.state.value = .loaded(items)
             case .failure(let error):
-                self.handle(error)
+                self.state.value = .error(error)
             }
         }
     }
-
-    func handle(_ error: Error) {}
 }

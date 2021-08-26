@@ -1,5 +1,5 @@
 //
-//  ExploreTempViewModel.swift
+//  ExploreViewModel.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 22.08.2021.
@@ -9,26 +9,28 @@ import UIKit
 
 struct ExploreActions {
     let openFilter: () -> Void
+    let openPopularMenu: () -> Void
     let openRepository: (Repository) -> Void
 }
 
-protocol ExploreTempViewModelInput {
+protocol ExploreViewModelInput {
     func viewDidLoad()
+    func reload()
     func didSelectItem(at indexPath: IndexPath)
     func openFilter()
     func openPopularSettings()
 }
 
-protocol ExploreTempViewModelOutput {
+protocol ExploreViewModelOutput {
     var error: Observable<Error?> { get }
     var popularTitle: Observable<String> { get }
     var popular: Observable<[Repository]> { get }
     var searchResultsViewModel: SearchResultViewModel { get }
 }
 
-typealias ExploreTempViewModel = ExploreTempViewModelInput & ExploreTempViewModelOutput
+typealias ExploreViewModel = ExploreViewModelInput & ExploreViewModelOutput
 
-final class ExploreTempViewModelImpl: ExploreTempViewModel {
+final class ExploreViewModelImpl: ExploreViewModel {
 
     // MARK: - Output
 
@@ -39,7 +41,7 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 
     // MARK: - Private variables
 
-    private let useCase: ExploreTempUseCase
+    private let useCase: ExploreUseCase
     private let actions: ExploreActions
     private let requestModel: SearchRequestModel
 
@@ -47,7 +49,7 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 
     init(actions: ExploreActions,
          searchResultsViewModel: SearchResultViewModel,
-         useCase: ExploreTempUseCase,
+         useCase: ExploreUseCase,
          exploreSettingsStorage: ExploreSettingsStorage) {
 
         self.actions = actions
@@ -62,8 +64,32 @@ final class ExploreTempViewModelImpl: ExploreTempViewModel {
 }
 
 // MARK: - Input
-extension ExploreTempViewModelImpl {
+extension ExploreViewModelImpl {
     func viewDidLoad() {
+        fetch()
+    }
+
+    func reload() {
+        fetch()
+    }
+
+    func didSelectItem(at indexPath: IndexPath) {
+        let repository = popular.value[indexPath.row]
+        actions.openRepository(repository)
+    }
+
+    func openFilter() {
+        actions.openFilter()
+    }
+
+    func openPopularSettings() {
+        actions.openPopularMenu()
+    }
+}
+
+// MARK: - Private
+private extension ExploreViewModelImpl {
+    func fetch() {
         useCase.mostStarred(requestModel) { result in
             switch result {
             case .success(let response):
@@ -77,21 +103,6 @@ extension ExploreTempViewModelImpl {
             }
         }
     }
-
-    func didSelectItem(at indexPath: IndexPath) {
-        let repository = popular.value[indexPath.row]
-        actions.openRepository(repository)
-    }
-
-    func openFilter() {
-        actions.openFilter()
-    }
-
-    func openPopularSettings() {}
-}
-
-// MARK: - Private
-private extension ExploreTempViewModelImpl {
     func handle(_ error: Error) {
         self.error.value = error
     }

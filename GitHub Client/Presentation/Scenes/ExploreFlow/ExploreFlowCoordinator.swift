@@ -14,7 +14,7 @@ protocol ExploreFlowCoordinatorDependencies {
 
     func repListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func issuesViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
-    func pullRequestsViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
+    func prListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func usersViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
 
     func showRepository(_ repository: Repository, in nav: UINavigationController)
@@ -32,7 +32,8 @@ final class ExploreFlowCoordinator {
 
     // MARK: - Lifecycle
 
-    init(with dependencies: ExploreFlowCoordinatorDependencies, in navigationController: UINavigationController) {
+    init(with dependencies: ExploreFlowCoordinatorDependencies,
+         in navigationController: UINavigationController) {
         self.dependencies = dependencies
         self.navigationController = navigationController
     }
@@ -47,6 +48,7 @@ final class ExploreFlowCoordinator {
                                           showPullRequest: showPullRequest(_:),
                                           showUser: showUser(_:))
         let exploreActions = ExploreActions(openFilter: openFilter,
+                                            openPopularMenu: openPupularMenu,
                                             openRepository: showRepository(_:))
         let viewController = dependencies.exploreViewController(exploreActions: exploreActions, actions)
         navigationController?.pushViewController(viewController, animated: true)
@@ -100,7 +102,7 @@ private extension ExploreFlowCoordinator {
     }
 
     func showPRList(_ searchQuery: String) {
-        let viewController = dependencies.pullRequestsViewController(searchQuery, actions: searchListActions())
+        let viewController = dependencies.prListViewController(searchQuery, actions: searchListActions())
         navigationController?.pushViewController(viewController, animated: true)
     }
 
@@ -114,4 +116,6 @@ private extension ExploreFlowCoordinator {
         let nav = UINavigationController(rootViewController: viewController)
         navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
     }
+
+    func openPupularMenu() {}
 }

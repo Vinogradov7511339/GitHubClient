@@ -1,5 +1,5 @@
 //
-//  ExploreViewController.swift
+//  NotificationsViewController.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 23.07.2021.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ExploreViewController: UIViewController {
+class NotificationsViewController: UIViewController {
 
-    static func create(with viewModel: NotificationsViewModel) -> ExploreViewController {
-        let viewController = ExploreViewController()
+    static func create(with viewModel: NotificationsViewModel) -> NotificationsViewController {
+        let viewController = NotificationsViewController()
         viewController.viewModel = viewModel
         return viewController
     }
@@ -59,7 +59,7 @@ class ExploreViewController: UIViewController {
 }
 
 // MARK: - Binding
-extension ExploreViewController {
+extension NotificationsViewController {
     func bind(to viewModel: NotificationsViewModel) {
         viewModel.notifications.observe(on: self) { [weak self] in self?.update($0) }
     }
@@ -72,10 +72,10 @@ extension ExploreViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ExploreViewController: UICollectionViewDelegate {}
+extension NotificationsViewController: UICollectionViewDelegate {}
 
 // MARK: - setup views
-private extension ExploreViewController {
+private extension NotificationsViewController {
     func setupViews() {
         view.addSubview(collectionView)
     }

@@ -40,12 +40,12 @@ final class SearchResultViewModelImpl: NSObject, SearchResultViewModel {
     // MARK: - Private variables
 
     private let actions: SearchResultActions
-    private let useCase: ExploreTempUseCase
+    private let useCase: ExploreUseCase
     private var searchText: String = ""
 
     // MARK: - Lifecycle
 
-    init(actions: SearchResultActions, useCase: ExploreTempUseCase) {
+    init(actions: SearchResultActions, useCase: ExploreUseCase) {
         self.actions = actions
         self.useCase = useCase
     }

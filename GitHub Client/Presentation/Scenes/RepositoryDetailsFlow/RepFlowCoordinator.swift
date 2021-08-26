@@ -12,7 +12,7 @@ protocol RepFlowCoordinatorDependencies {
     func branchesViewController() -> UIViewController
     func commitsViewController(_ actions: CommitsActions) -> UIViewController
     func commitViewController() -> UIViewController
-    func folderViewController() -> UIViewController
+    func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
     func issuesViewController() -> UIViewController
     func issueViewController() -> UIViewController
@@ -122,7 +122,7 @@ private extension RepFlowCoordinator {
                                     openFolderSettings: openFoldersSettings,
                                     share: dependencies.share(url:),
                                     copy: dependencies.copy(text:))
-        let viewController = dependencies.folderViewController()
+        let viewController = dependencies.folderViewController(path, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 

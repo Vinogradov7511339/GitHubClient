@@ -25,7 +25,12 @@ struct RepActions {
 protocol RepViewModelInput {
     func viewDidLoad()
     func refresh()
-    func addToFavorites()
+
+    func showStargazers()
+    func showForks()
+
+    func addToStarred()
+    func subscribe()
 
     func showBranches()
     func showCommits()
@@ -40,6 +45,7 @@ protocol RepViewModelInput {
 }
 
 protocol RepViewModelOutput {
+    var title: Observable<String> { get }
     var repository: Observable<RepositoryDetails?> { get }
 }
 
@@ -50,6 +56,7 @@ final class RepViewModelImpl: RepViewModel {
     // MARK: - OUTPUT
 
     let repository: Observable<RepositoryDetails?> = Observable(nil)
+    var title: Observable<String>
 
     // MARK: - Private variables
 
@@ -61,11 +68,11 @@ final class RepViewModelImpl: RepViewModel {
     // MARK: - Init
 
     init(repository: Repository, repUseCase: RepUseCase, actions: RepActions) {
-//        self.repository = Observable(repository)
         self.rep = repository
         self.repUseCase = repUseCase
         self.actions = actions
         self.currentBranch = rep.currentBranch
+        title = Observable(repository.name)
     }
 }
 
@@ -79,6 +86,18 @@ extension RepViewModelImpl {
         fetch()
     }
 
+    func showStargazers() {
+        actions.showStargazers(rep)
+    }
+
+    func showForks() {
+        actions.showForks(rep)
+    }
+
+    func addToStarred() {}
+
+    func subscribe() {}
+
     func addToFavorites() {}
 
     func showBranches() {
@@ -89,9 +108,13 @@ extension RepViewModelImpl {
         actions.showCommits(rep, currentBranch)
     }
 
-    func showSources() {}
+    func showSources() {
+        actions.showCode(rep.contentPath)
+    }
 
-    func showIssues() {}
+    func showIssues() {
+        actions.showIssues(rep)
+    }
 
     func showPullRequests() {}
 

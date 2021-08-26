@@ -1,5 +1,5 @@
 //
-//  ExploreTempViewController.swift
+//  ExploreViewController.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 22.08.2021.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class ExploreTempViewController: UIViewController {
+final class ExploreViewController: UIViewController {
 
     // MARK: - Create
 
-    static func create(with viewModel: ExploreTempViewModel) -> ExploreTempViewController {
-        let viewController = ExploreTempViewController()
+    static func create(with viewModel: ExploreViewModel) -> ExploreViewController {
+        let viewController = ExploreViewController()
         viewController.viewModel = viewModel
         return viewController
     }
@@ -49,7 +49,7 @@ final class ExploreTempViewController: UIViewController {
 
     // MARK: - Private variables
 
-    private var viewModel: ExploreTempViewModel!
+    private var viewModel: ExploreViewModel!
 
     private lazy var adapter: ExploreAdapter = {
         let adapter = ExploreAdapterImpl()
@@ -72,16 +72,16 @@ final class ExploreTempViewController: UIViewController {
 }
 
 // MARK: - Actions
-extension ExploreTempViewController {
+extension ExploreViewController {
     @objc func openFilter() {
         viewModel.openFilter()
     }
 }
 
 // MARK: - Binding
-private extension ExploreTempViewController {
+private extension ExploreViewController {
 
-    func bind(to viewModel: ExploreTempViewModel) {
+    func bind(to viewModel: ExploreViewModel) {
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
         viewModel.popularTitle.observe(on: self) { [weak self] in self?.updatePopularTitle($0) }
         viewModel.popular.observe(on: self) { [weak self] in self?.update($0) }
@@ -98,13 +98,13 @@ private extension ExploreTempViewController {
 
     func showError(_ error: Error?) {
         guard let error = error else { return }
-        let alert = ErrorAlertView.create(with: error)
+        let alert = ErrorAlertView.create(with: error, reloadHandler: viewModel.reload)
         alert.show(in: view)
     }
 }
 
 // MARK: - UICollectionViewDelegate
-extension ExploreTempViewController: UICollectionViewDelegate {
+extension ExploreViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
@@ -112,7 +112,7 @@ extension ExploreTempViewController: UICollectionViewDelegate {
 }
 
 // MARK: - Setup views
-private extension ExploreTempViewController {
+private extension ExploreViewController {
     func setupViews() {
         view.addSubview(headerView)
         view.addSubview(collectionView)
@@ -133,7 +133,7 @@ private extension ExploreTempViewController {
     func configureNavBar() {
         title = NSLocalizedString("Explore", comment: "")
         navigationItem.searchController = searchController
-        let filter = UIBarButtonItem(image: .checkmark,
+        let filter = UIBarButtonItem(image: .filter,
                                        style: .plain,
                                        target: self,
                                        action: #selector(openFilter))

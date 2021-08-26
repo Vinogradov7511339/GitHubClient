@@ -183,6 +183,11 @@
 		AD508E7F26C51E690091132A /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD508E7D26C51E690091132A /* MenuItemCell.xib */; };
 		AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */; };
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
+		AD5BD95926D75F1000B41E6A /* FolderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */; };
+		AD5BD96026D7632F00B41E6A /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD95F26D7632F00B41E6A /* UIViewController+Loading.swift */; };
+		AD5BD96226D763F000B41E6A /* String+LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD96126D763F000B41E6A /* String+LoadingAnimation.swift */; };
+		AD5BD96426D764DF00B41E6A /* UIViewController+NoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD96326D764DF00B41E6A /* UIViewController+NoData.swift */; };
+		AD5BD96626D765BD00B41E6A /* 9073-empty-store-box.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BD96526D765BD00B41E6A /* 9073-empty-store-box.json */; };
 		AD5C8E1C26D29314003E2F38 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E1B26D29314003E2F38 /* SettingsViewController.swift */; };
 		AD5C8E1F26D29472003E2F38 /* SettingsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E1E26D29472003E2F38 /* SettingsAdapter.swift */; };
 		AD5C8E2226D29633003E2F38 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E2026D29633003E2F38 /* AccountCell.swift */; };
@@ -197,11 +202,11 @@
 		AD5C8E3626D2B317003E2F38 /* SignInFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3526D2B317003E2F38 /* SignInFlowCoordinator.swift */; };
 		AD5C8E3A26D2B546003E2F38 /* SignInDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3926D2B546003E2F38 /* SignInDIContainer.swift */; };
 		AD5C8E3C26D2B657003E2F38 /* SignInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3B26D2B657003E2F38 /* SignInFactory.swift */; };
-		AD5C8E3F26D2BC24003E2F38 /* ExploreTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */; };
-		AD5C8E4126D2BC3F003E2F38 /* ExploreTempViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */; };
+		AD5C8E3F26D2BC24003E2F38 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E3E26D2BC24003E2F38 /* ExploreViewController.swift */; };
+		AD5C8E4126D2BC3F003E2F38 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4026D2BC3F003E2F38 /* ExploreViewModel.swift */; };
 		AD5C8E4426D2BE32003E2F38 /* ExploreDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */; };
 		AD5C8E4626D2BEE7003E2F38 /* ExploreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4526D2BEE7003E2F38 /* ExploreFactory.swift */; };
-		AD5C8E4826D2C252003E2F38 /* ExploreTempUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */; };
+		AD5C8E4826D2C252003E2F38 /* ExploreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4726D2C252003E2F38 /* ExploreUseCase.swift */; };
 		AD5C8E4A26D2C40C003E2F38 /* ExploreTempRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4926D2C40C003E2F38 /* ExploreTempRepository.swift */; };
 		AD5C8E4C26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4B26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift */; };
 		AD5C8E4E26D2C634003E2F38 /* ExploreTempEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C8E4D26D2C634003E2F38 /* ExploreTempEndpoints.swift */; };
@@ -416,6 +421,7 @@
 		ADF9A84C26D6AA160017D11F /* PullRequestDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84B26D6AA160017D11F /* PullRequestDIContainer.swift */; };
 		ADF9A84E26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */; };
 		ADF9A85026D6D2700017D11F /* ExploreSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84F26D6D2700017D11F /* ExploreSettingsStorage.swift */; };
+		ADFCEFEE26D7E94C004FB341 /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCEFED26D7E94B004FB341 /* UIViewController+Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -610,6 +616,12 @@
 		AD508E7D26C51E690091132A /* MenuItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
 		AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellManager.swift; sourceTree = "<group>"; };
+		AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderAdapter.swift; sourceTree = "<group>"; };
+		AD5BD95D26D762BC00B41E6A /* paperplane.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = paperplane.json; sourceTree = "<group>"; };
+		AD5BD95F26D7632F00B41E6A /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
+		AD5BD96126D763F000B41E6A /* String+LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LoadingAnimation.swift"; sourceTree = "<group>"; };
+		AD5BD96326D764DF00B41E6A /* UIViewController+NoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NoData.swift"; sourceTree = "<group>"; };
+		AD5BD96526D765BD00B41E6A /* 9073-empty-store-box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "9073-empty-store-box.json"; sourceTree = "<group>"; };
 		AD5C8E1B26D29314003E2F38 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AD5C8E1E26D29472003E2F38 /* SettingsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdapter.swift; sourceTree = "<group>"; };
 		AD5C8E2026D29633003E2F38 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -624,11 +636,11 @@
 		AD5C8E3526D2B317003E2F38 /* SignInFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD5C8E3926D2B546003E2F38 /* SignInDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDIContainer.swift; sourceTree = "<group>"; };
 		AD5C8E3B26D2B657003E2F38 /* SignInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFactory.swift; sourceTree = "<group>"; };
-		AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempViewController.swift; sourceTree = "<group>"; };
-		AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempViewModel.swift; sourceTree = "<group>"; };
+		AD5C8E3E26D2BC24003E2F38 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		AD5C8E4026D2BC3F003E2F38 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		AD5C8E4326D2BE32003E2F38 /* ExploreDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDIContainer.swift; sourceTree = "<group>"; };
 		AD5C8E4526D2BEE7003E2F38 /* ExploreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFactory.swift; sourceTree = "<group>"; };
-		AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempUseCase.swift; sourceTree = "<group>"; };
+		AD5C8E4726D2C252003E2F38 /* ExploreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreUseCase.swift; sourceTree = "<group>"; };
 		AD5C8E4926D2C40C003E2F38 /* ExploreTempRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempRepository.swift; sourceTree = "<group>"; };
 		AD5C8E4B26D2C5E5003E2F38 /* ExploreTempRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempRepositoryImpl.swift; sourceTree = "<group>"; };
 		AD5C8E4D26D2C634003E2F38 /* ExploreTempEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTempEndpoints.swift; sourceTree = "<group>"; };
@@ -843,6 +855,7 @@
 		ADF9A84B26D6AA160017D11F /* PullRequestDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestDIContainer.swift; sourceTree = "<group>"; };
 		ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreWidgetsHeaderView.swift; sourceTree = "<group>"; };
 		ADF9A84F26D6D2700017D11F /* ExploreSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSettingsStorage.swift; sourceTree = "<group>"; };
+		ADFCEFED26D7E94B004FB341 /* UIViewController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Error.swift"; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -921,12 +934,13 @@
 		AD20E47626A8B1D9003BB5F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD5BD95E26D762FE00B41E6A /* LottieAnimations */,
 				AD20E4E426A8B33C003BB5F1 /* AppAlternativeIcons */,
 				AD3776E9269F2698000AA54C /* Assets.xcassets */,
 				AD79550526ABFD8E004E6973 /* LanguageColors.json */,
+				AD5BD96526D765BD00B41E6A /* 9073-empty-store-box.json */,
 				ADB26BA226B3DA8E0043CEBB /* MDTest.md */,
 				AD3776EE269F2698000AA54C /* Info.plist */,
-				AD43613026D57D060004F742 /* OnboardingAnimations */,
 				ADC538D726CD27B5009B7A7E /* UIImage+TabBar.swift */,
 				ADA7494E26CE62D800C8D475 /* UIImage+NavBar.swift */,
 				ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */,
@@ -1139,7 +1153,7 @@
 				AD6B098126BFFF2F004644D2 /* EventsUseCase.swift */,
 				ADC538DB26CD2B23009B7A7E /* NotificationsUseCase.swift */,
 				AD2E263326BD3B0D00B25772 /* MyProfileUseCase.swift */,
-				AD5C8E4726D2C252003E2F38 /* ExploreTempUseCase.swift */,
+				AD5C8E4726D2C252003E2F38 /* ExploreUseCase.swift */,
 			);
 			path = HomeUseCases;
 			sourceTree = "<group>";
@@ -1232,6 +1246,9 @@
 				AD93004A26C950E0002D7362 /* Date+RelativeDateTimeFormatter.swift */,
 				AD93005026C960E3002D7362 /* CompositionalLayoutFactory.swift */,
 				ADA3C84C26CF9E9A009F9130 /* Int+Formatter.swift */,
+				AD5BD95F26D7632F00B41E6A /* UIViewController+Loading.swift */,
+				AD5BD96326D764DF00B41E6A /* UIViewController+NoData.swift */,
+				ADFCEFED26D7E94B004FB341 /* UIViewController+Error.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1582,6 +1599,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AD5BD95C26D762BC00B41E6A /* LoadingAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				AD5BD95D26D762BC00B41E6A /* paperplane.json */,
+				AD5BD96126D763F000B41E6A /* String+LoadingAnimation.swift */,
+			);
+			path = LoadingAnimations;
+			sourceTree = "<group>";
+		};
+		AD5BD95E26D762FE00B41E6A /* LottieAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				AD43613026D57D060004F742 /* OnboardingAnimations */,
+				AD5BD95C26D762BC00B41E6A /* LoadingAnimations */,
+			);
+			path = LottieAnimations;
+			sourceTree = "<group>";
+		};
 		AD5C8E1D26D29452003E2F38 /* old */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,8 +1695,8 @@
 		AD5C8E4226D2BE1D003E2F38 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C8E4026D2BC3F003E2F38 /* ExploreTempViewModel.swift */,
-				AD5C8E3E26D2BC24003E2F38 /* ExploreTempViewController.swift */,
+				AD5C8E4026D2BC3F003E2F38 /* ExploreViewModel.swift */,
+				AD5C8E3E26D2BC24003E2F38 /* ExploreViewController.swift */,
 				ADF9A84D26D6CB1F0017D11F /* ExploreWidgetsHeaderView.swift */,
 				ADB60D5A26D2E3AD0024479D /* ExploreLayout.swift */,
 				ADB60D5C26D2E4F50024479D /* ExploreAdapter.swift */,
@@ -2247,6 +2282,7 @@
 				AD23E79A26D1094A009FEB27 /* FolderViewController.swift */,
 				AD8722DF26B81840004649A4 /* FolderViewModel.swift */,
 				ADC538B026CCE58D009B7A7E /* FolderCell */,
+				AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -2450,6 +2486,7 @@
 				ADA68BAC26B55621004AC06C /* octocat_gray@2x-1.png in Resources */,
 				AD20E55526AACAE3003BB5F1 /* SmallCollectionViewCell.xib in Resources */,
 				ADA3C85826CFD47C009F9130 /* BranchCell.xib in Resources */,
+				AD5BD96626D765BD00B41E6A /* 9073-empty-store-box.json in Resources */,
 				ADA68BA126B55621004AC06C /* octocat_gray@3x-3.png in Resources */,
 				AD20E4E226A8B313003BB5F1 /* AppIconPinkLight@3x.png in Resources */,
 				AD79550626ABFD8E004E6973 /* LanguageColors.json in Resources */,
@@ -2595,6 +2632,7 @@
 				AD6B099B26C04105004644D2 /* IssueViewModel.swift in Sources */,
 				AD6B095326BEF8F5004644D2 /* RequestGenerationError.swift in Sources */,
 				AD23E7C126D18528009FEB27 /* MyRepositoriesAdapter.swift in Sources */,
+				AD5BD95926D75F1000B41E6A /* FolderAdapter.swift in Sources */,
 				AD5C8E2726D29E28003E2F38 /* SettingsCoordinator.swift in Sources */,
 				ADB60D5326D2CF4E0024479D /* UIImage+Error.swift in Sources */,
 				ADC538E626CD3661009B7A7E /* NotificationsRepositoryImpl.swift in Sources */,
@@ -2640,10 +2678,12 @@
 				AD6B09B826C2A18B004644D2 /* CoreDataStorage.xcdatamodeld in Sources */,
 				AD90D13126D54C4D00D33076 /* IntroductionViewController.swift in Sources */,
 				AD39FE6026BAE16700F055FD /* LoginUseCase.swift in Sources */,
+				AD5BD96026D7632F00B41E6A /* UIViewController+Loading.swift in Sources */,
 				ADF9A84926D6A9C80017D11F /* PullRequestCoordinator.swift in Sources */,
 				AD6B095726BEF981004644D2 /* DataTransferError.swift in Sources */,
 				AD9F81A526C7A0B200C320E6 /* CommentCell.swift in Sources */,
 				ADB60D5D26D2E4F50024479D /* ExploreAdapter.swift in Sources */,
+				ADFCEFEE26D7E94C004FB341 /* UIViewController+Error.swift in Sources */,
 				AD39FE5726BAD67600F055FD /* NotLoggedFlowCoordinator.swift in Sources */,
 				ADC538E026CD3003009B7A7E /* NotificationsAdapter.swift in Sources */,
 				AD6B09AD26C27D55004644D2 /* IssueEndpoints.swift in Sources */,
@@ -2682,7 +2722,7 @@
 				ADF9A84C26D6AA160017D11F /* PullRequestDIContainer.swift in Sources */,
 				AD23E7A326D10FC9009FEB27 /* ForksRequestModel.swift in Sources */,
 				AD23E7B526D14BC8009FEB27 /* UserEventsRequestModel.swift in Sources */,
-				AD5C8E4126D2BC3F003E2F38 /* ExploreTempViewModel.swift in Sources */,
+				AD5C8E4126D2BC3F003E2F38 /* ExploreViewModel.swift in Sources */,
 				ADA3C84F26CFC588009F9130 /* RepositoryFacade.swift in Sources */,
 				AD39A57F26C6796900309481 /* CommitsViewController.swift in Sources */,
 				AD23E78926D0FE7C009FEB27 /* PRRequestModel.swift in Sources */,
@@ -2785,9 +2825,11 @@
 				AD5C8E3126D2A755003E2F38 /* AccountViewModel.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD6B098C26C009DD004644D2 /* EventEndpoints.swift in Sources */,
+				AD5BD96226D763F000B41E6A /* String+LoadingAnimation.swift in Sources */,
 				ADC538D826CD27B5009B7A7E /* UIImage+TabBar.swift in Sources */,
 				ADA3C84D26CF9E9A009F9130 /* Int+Formatter.swift in Sources */,
 				ADB60D5B26D2E3AD0024479D /* ExploreLayout.swift in Sources */,
+				AD5BD96426D764DF00B41E6A /* UIViewController+NoData.swift in Sources */,
 				AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */,
 				ADC538D326CD1F62009B7A7E /* EventsRequestModel.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
@@ -2856,7 +2898,7 @@
 				AD23E7D726D2561E009FEB27 /* ProfileHeaderView.swift in Sources */,
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD6B097A26BFF498004644D2 /* FavoritesStorage.swift in Sources */,
-				AD5C8E4826D2C252003E2F38 /* ExploreTempUseCase.swift in Sources */,
+				AD5C8E4826D2C252003E2F38 /* ExploreUseCase.swift in Sources */,
 				ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */,
 				ADB60D6426D37DE10024479D /* SearchResultViewModel.swift in Sources */,
 				ADB60D7C26D3DDC60024479D /* ResultTotalCell.swift in Sources */,
@@ -2874,7 +2916,7 @@
 				AD6B096226BEFD56004644D2 /* NetworkCancellable.swift in Sources */,
 				ADA1693326C589140040B635 /* UsersListViewModel.swift in Sources */,
 				AD23E7D426D1957C009FEB27 /* ListResponseModel.swift in Sources */,
-				AD5C8E3F26D2BC24003E2F38 /* ExploreTempViewController.swift in Sources */,
+				AD5C8E3F26D2BC24003E2F38 /* ExploreViewController.swift in Sources */,
 				AD39FE4726BAAB3800F055FD /* RepRepositoryImpl.swift in Sources */,
 				AD39FE8826BBF0D300F055FD /* ProfileViewModel.swift in Sources */,
 				AD2E263626BD3BB800B25772 /* MyProfileRepository.swift in Sources */,

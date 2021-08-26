@@ -55,7 +55,12 @@ final class RepViewController: UIViewController {
 // MARK: - Bind
 private extension RepViewController {
     func bind(to viewModel: RepViewModel) {
+        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
         viewModel.repository.observe(on: self) { [weak self] in self?.updateItems($0) }
+    }
+
+    func updateTitle(_ title: String) {
+        self.title = title
     }
 
     func updateItems(_ repository: RepositoryDetails?) {
@@ -103,8 +108,20 @@ extension RepViewController: UITableViewDelegate {
 
 // MARK: - RepositoryHeaderTableViewCellDelegate
 extension RepViewController: RepositoryHeaderTableViewCellDelegate {
-    func favoritesButtonTouchUpInside() {
-        viewModel.addToFavorites()
+    func starsButtonTapped() {
+        viewModel.showStargazers()
+    }
+
+    func forksButtonTapped() {
+        viewModel.showForks()
+    }
+
+    func starButtonTapped() {
+        viewModel.addToStarred()
+    }
+
+    func subscribeButtonTapped() {
+        viewModel.subscribe()
     }
 }
 

@@ -53,7 +53,7 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
         exploreFactory.issuesViewController(searchQuery, actions: actions)
     }
 
-    func pullRequestsViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController {
+    func prListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController {
         exploreFactory.pullRequestsViewController(searchQuery, actions: actions)
     }
 
