@@ -7,14 +7,22 @@
 
 import Foundation
 
-struct Issue: Identifiable, Equatable {
+enum IssueState: String {
+    case open
+    case close
+    case unknown
+}
+
+struct Issue {
     let id: Int
     let number: Int
+    let url: URL
+    let htmlUrl: URL
     let commentsURL: URL
-    let state: String // change
+    let state: IssueState
     let title: String
     let body: String
     let user: User
     let commentsCount: Int
-    let openedAt: Date
+    let createdAt: Date?
 }

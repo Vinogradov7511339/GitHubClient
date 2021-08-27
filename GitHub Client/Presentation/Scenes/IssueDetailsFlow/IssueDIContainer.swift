@@ -13,6 +13,7 @@ final class IssueDIContainer {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
+        let filterStorage: IssueFilterStorage
         let issue: Issue
     }
 
@@ -23,13 +24,15 @@ final class IssueDIContainer {
 
     init(_ dependencies: Dependencies) {
         self.dependencies = dependencies
-        self.issueFactory = IssueFactoryImpl()
+        self.issueFactory = IssueFactoryImpl(
+            dataTrasferService: dependencies.dataTransferService,
+            filterStorage: dependencies.filterStorage)
     }
 }
 
 // MARK: - IssueCoordinatorDependencies
 extension IssueDIContainer: IssueCoordinatorDependencies {
-    func issueViewController() -> UIViewController {
-        issueFactory.issueViewController()
+    func issueViewController(actions: IssueActions) -> UIViewController {
+        issueFactory.issueViewController(dependencies.issue, actions: actions)
     }
 }

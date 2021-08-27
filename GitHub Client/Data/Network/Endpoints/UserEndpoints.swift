@@ -23,7 +23,7 @@ struct UserEndpoints {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func profile(_ model: User) -> Endpoint<UserResponseDTO> {
+    static func profile(_ model: User) -> Endpoint<UserDetailsResponseDTO> {
         let login = model.login
         return Endpoint(path: "users/\(login)")
     }

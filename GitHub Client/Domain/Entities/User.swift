@@ -7,9 +7,16 @@
 import Foundation
 
 struct User: Identifiable, Equatable {
+    enum UserType: String {
+        case user = "User"
+        case bot = "Bot"
+        case organization = "Organization"
+        case unknown
+    }
+
     let id: Int
-    let avatarUrl: URL
     let login: String
-    let name: String?
-    let bio: String?
+    let avatarUrl: URL
+    let url: URL
+    let type: UserType
 }

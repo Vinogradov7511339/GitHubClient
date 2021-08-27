@@ -38,8 +38,8 @@ final class SettingsViewModelImpl: SettingsViewModel {
         self.actions = actions
 
         let avatarUrl = URL(string: "https://avatars.githubusercontent.com/u/26507891?v=4")!
-        let mockUser = User(id: 1, avatarUrl: avatarUrl, login: "SashKo", name: "Sashik", bio: "Bio")
-        let mockUserProfile = UserProfile(user: mockUser, status: nil, location: nil, company: nil, userBlogUrl: nil, userEmail: nil, followingCount: 0, followersCount: 0, gistsCount: 0, repositoriesCount: 0)
+        let mockUser = User(id: 1, login: "Sashko", avatarUrl: avatarUrl, url: avatarUrl, type: .user)
+        let mockUserProfile = UserProfile(user: mockUser, name: nil, bio: nil, location: nil, company: nil, userBlogUrl: nil, userEmail: nil, followingCount: 0, followersCount: 0, gistsCount: 0, repositoriesCount: 0)
         let mockAuthenticatedUser = AuthenticatedUser(userDetails: mockUserProfile, totalRepCount: 0, totalOwnedRepCount: 0)
         profile = Observable(mockAuthenticatedUser)
     }

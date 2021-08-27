@@ -158,8 +158,20 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchIssue(request: IssueRequestModel, completion: @escaping IssueHandler) {
-        let endpoint = RepEndpoits.issue(request)
+    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler) {
+        let endpoint = RepEndpoits.issue(issue)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.model.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler) {
+        let endpoint = RepEndpoits.issueComments(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
@@ -190,16 +202,12 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchPR(request: PRRequestModel, completion: @escaping PRHandler) {
-        let endpoint = RepEndpoits.pullRequest(request)
+    func fetchPR(_ pullRequest: PullRequest, completion: @escaping PRHandler) {
+        let endpoint = RepEndpoits.pullRequest(pullRequest)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
-                if let pullRequest = model.model.toDomain() {
-                    completion(.success(pullRequest))
-                } else {
-                    assert(false, "parse error")
-                }
+                completion(.success(model.model.toDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -284,7 +292,18 @@ extension RepRepositoryImpl {
 // MARK: - Comments
 extension RepRepositoryImpl {
     func fetchIssueComments(request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler) {
-        fatalError()
+        let endpoint = RepEndpoits.issueComments(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let comments = response.model.map { $0.toDomain() }
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let model = ListResponseModel<Comment>(items: comments, lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler) {

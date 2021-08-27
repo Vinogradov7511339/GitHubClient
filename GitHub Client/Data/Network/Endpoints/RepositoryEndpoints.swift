@@ -97,17 +97,21 @@ struct RepEndpoits {
                         queryParametersEncodable: params)
     }
 
-    static func issue(_ moodel: IssueRequestModel) -> Endpoint<IssueResponseDTO> {
-        fatalError()
+    static func issue(_ issue: Issue) -> Endpoint<IssueResponseDTO> {
+        return Endpoint(path: issue.url.absoluteString, isFullPath: true)
     }
 
     static func issueComments(_ model: CommentsRequestModel<Issue>) -> Endpoint<[CommentResponseDTO]> {
-        fatalError()
+        var params: QueryType = [:]
+        params["page"] = "\(model.page)"
+        return Endpoint(path: model.item.commentsURL.absoluteString,
+                        isFullPath: true,
+                        queryParametersEncodable: params)
     }
 
     // MARK: - Pull Requests
 
-    static func pullRequests(_ model: PRListRequestModel) -> Endpoint<[PullRequestResponseDTO]> {
+    static func pullRequests(_ model: PRListRequestModel) -> Endpoint<[PRResponseDTO]> {
         let login = model.repository.owner.login
         let name = model.repository.name
         let page = model.page
@@ -115,11 +119,8 @@ struct RepEndpoits {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func pullRequest(_ model: PRRequestModel) -> Endpoint<PullRequestResponseDTO> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
-        let pullRequestId = model.pullRequest.id
-        return Endpoint(path: "repos/\(login)/\(name)/pulls/\(pullRequestId)")
+    static func pullRequest(_ pullRequest: PullRequest) -> Endpoint<PRDetailsResponseDTO> {
+        return Endpoint(path: pullRequest.url.absoluteString, isFullPath: true)
     }
 
     // MARK: - Releases

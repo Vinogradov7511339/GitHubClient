@@ -82,7 +82,7 @@ extension ProfileHeaderView: ProfileHeaderViewProtocol {
     func maxHeight(for profile: UserProfile) -> CGFloat {
         let stackItemHeight: CGFloat = 21
         var minHeight = defaultHeight
-        if profile.user.name != nil {
+        if profile.name != nil {
             minHeight += stackItemHeight
         }
         if profile.userEmail != nil {
@@ -163,7 +163,7 @@ private extension ProfileHeaderView {
         publicRepsCountLabel.text = profile.repositoriesCount.roundedWithAbbreviations
 
         infoStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        if let name = profile.user.name {
+        if let name = profile.name {
             let title = NSLocalizedString("name", comment: "")
             add(title, name)
         }

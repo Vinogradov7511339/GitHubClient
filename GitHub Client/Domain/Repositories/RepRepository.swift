@@ -44,16 +44,19 @@ protocol RepRepository {
     typealias IssuesHandler = (Result<ListResponseModel<Issue>, Error>) -> Void
     func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler)
 
-    typealias IssueHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
-    func fetchIssue(request: IssueRequestModel, completion: @escaping IssueHandler)
+    typealias IssueHandler = (Result<Issue, Error>) -> Void
+    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler)
+
+    typealias IssueCommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler)
 
     // MARK: - Pull Requests
 
     typealias PRListHandler = (Result<ListResponseModel<PullRequest>, Error>) -> Void
     func fetchPRList(request: PRListRequestModel, completion: @escaping PRListHandler)
 
-    typealias PRHandler = (Result<PullRequest, Error>) -> Void
-    func fetchPR(request: PRRequestModel, completion: @escaping PRHandler)
+    typealias PRHandler = (Result<PullRequestDetails, Error>) -> Void
+    func fetchPR(_ pullRequest: PullRequest, completion: @escaping PRHandler)
 
     // MARK: - Releases
 

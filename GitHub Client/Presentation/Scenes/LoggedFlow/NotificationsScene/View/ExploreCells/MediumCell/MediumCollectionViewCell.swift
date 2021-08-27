@@ -18,8 +18,8 @@ struct MediumCellViewModel {
     let languageColor: UIColor?
 
     init(repository: RepositoryResponseDTO) {
-        repositoryImageUrl = repository.owner?.avatarUrl
-        ownerName = repository.owner?.login ?? ""
+        repositoryImageUrl = repository.owner.avatarUrl
+        ownerName = repository.owner.login
         repositoryName = repository.name ?? ""
         isStarred = false
         starCount = "\(repository.stargazersCount ?? 0)"

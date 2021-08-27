@@ -13,8 +13,8 @@ extension UserCDEntity {
         id = Int64(user.id)
         avatarURL = user.avatarUrl
         login = user.login
-        name = user.name
-        bio = user.bio
+        name = ""
+        bio = ""
     }
 
     func toDomain() -> User? {
@@ -24,12 +24,6 @@ extension UserCDEntity {
         guard let login = login else {
             return nil
         }
-        return .init(
-            id: Int(id),
-            avatarUrl: avatarURL,
-            login: login,
-            name: name,
-            bio: bio
-        )
+        return .init(id: 1, login: "a", avatarUrl: avatarURL, url: avatarURL, type: .user)
     }
 }

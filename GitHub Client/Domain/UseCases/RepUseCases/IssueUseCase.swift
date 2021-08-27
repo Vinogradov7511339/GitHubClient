@@ -14,10 +14,10 @@ protocol IssueUseCase {
     func fetchCloseIssues(_ repository: Repository, page: Int, completion: @escaping IssuesHandler)
 
     typealias IssueHandler = RepRepository.IssueHandler
-    func fetchIssue(_ request: IssueRequestModel, completion: @escaping IssueHandler)
+    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler)
 
-    typealias CommentsHandler = RepRepository.CommentsHandler
-    func fetchComments(_ request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler)
+    typealias IssueCommentsHandler = RepRepository.IssueCommentsHandler
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler)
 }
 
 final class IssueUseCaseImpl {
@@ -51,11 +51,12 @@ extension IssueUseCaseImpl: IssueUseCase {
         repRepository.fetchIssues(request: model, completion: completion)
     }
 
-    func fetchIssue(_ request: IssueRequestModel, completion: @escaping IssueHandler) {
-        repRepository.fetchIssue(request: request, completion: completion)
+    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler) {
+        repRepository.fetchIssue(issue, completion: completion)
     }
 
-    func fetchComments(_ request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler) {
-        repRepository.fetchIssueComments(request: request, completion: completion)
+
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler) {
+        repRepository.fetchIssueComments(request, completion: completion)
     }
 }

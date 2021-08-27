@@ -10,7 +10,7 @@ import Foundation
 struct PullRequestReviewResponseDTO: Codable {
     let id: Int
     let nodeId: String
-    let user: UserResponseDTO
+    let user: UserDetailsResponseDTO
     let body: String?
     let state: String
     let htmlUrl: URL

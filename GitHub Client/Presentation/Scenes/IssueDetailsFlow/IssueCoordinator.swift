@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IssueCoordinatorDependencies {
-    func issueViewController() -> UIViewController
+    func issueViewController(actions: IssueActions) -> UIViewController
 }
 
 final class IssueCoordinator {
@@ -26,7 +26,8 @@ final class IssueCoordinator {
     }
 
     func start() {
-        let controller = dependencies.issueViewController()
+        let actions = IssueActions()
+        let controller = dependencies.issueViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -41,7 +41,7 @@ class ProfileHeaderCell: BaseTableViewCell, NibLoadable {
 extension ProfileHeaderCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
         avatarImageView.set(url: viewModel.user.avatarUrl)
-        nameLabel.text = viewModel.user.name
+        nameLabel.text = viewModel.name
         loginLabel.text = viewModel.user.login
         followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
         followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations

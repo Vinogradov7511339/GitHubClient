@@ -29,12 +29,12 @@ struct RepositoriesResponse: Codable {
 }
 
 // https://docs.github.com/en/rest/reference/repos
-class RepositoryResponseDTO: Codable {
+struct RepositoryResponseDTO: Codable {
     let id: Int
     let nodeId: String?
     let name: String?
     let fullName: String?
-    let owner: UserResponseDTO?
+    let owner: UserResponseDTO
     let `private`: Bool? // private
     let htmlUrl: URL?
     let description: String?
@@ -103,160 +103,7 @@ class RepositoryResponseDTO: Codable {
     let createdAt: String?
     let updatedAt: String?
     let permissions: Permissions?
-    let templateRepository: RepositoryResponseDTO?
     let license: LicenseResponseDTO?
-
-    init(id: Int,
-         nodeId: String?,
-         name: String?,
-         fullName: String?,
-         owner: UserResponseDTO?,
-         isPrivate: Bool?,
-         htmlUrl: URL?,
-         description: String?,
-         fork: Bool?,
-         url: URL?,
-         archiveUrl: String?,
-         assigneesUrl: String?,
-         blobsUrl: String?,
-         branchesUrl: String?,
-         collaboratorsUrl: String?,
-         commentsUrl: String?,
-         commitsUrl: String?,
-         compareUrl: String?,
-         contentsUrl: String?,
-         contributorsUrl: URL?,
-         deploymentsUrl: URL?,
-         downloadsUrl: URL?,
-         eventsUrl: URL?,
-         forksUrl: URL?,
-         gitCommitsrl: String?,
-         gitRefsUrl: String?,
-         gitTagsUrl: String?,
-         gitUrl: URL?,
-         issueCommentUrl: String?,
-         issueEventsUrl: String?,
-         issuesUrl: String?,
-         keysUrl: String?,
-         labelsUrl: String?,
-         languagesUrl: URL?,
-         mergesUrl: URL?,
-         milestonesUrl: String?,
-         notificationsUrl: String?,
-         pullsUrl: String?,
-         releasesUrl: String?,
-         sshUrl: URL?,
-         stargazersUrl: URL?,
-         statusesUrl: String?,
-         subscribersUrl: URL?,
-         subscriptionUrl: URL?,
-         tagsUrl: URL?,
-         teamsUrl: URL?,
-         treesUrl: String?,
-         cloneUrl: URL?,
-         mirrorUrl: String?,
-         hooksUrl: URL?,
-         svnUrl: URL?,
-         homepage: String?,
-         language: String?,
-         forksCount: Int?,
-         stargazersCount: Int?,
-         watchersCount: Int?,
-         size: Int?,
-         defaultBranch: String?,
-         openIssuesCount: Int?,
-         isTemplate: Bool?,
-         topics: [String]?,
-         hasIssues: Bool?,
-         hasProjects: Bool?,
-         hasWiki: Bool?,
-         hasPages: Bool?,
-         hasDownloads: Bool?,
-         archived: Bool?,
-         disabled: Bool?,
-         visibility: String?,
-         pushedAt: String?,
-         createdAt: String?,
-         updatedAt: String?,
-         permissions: Permissions?,
-         templateRepository: RepositoryResponseDTO?,
-         license: LicenseResponseDTO?) {
-        self.id = id
-        self.nodeId = nodeId
-        self.name = name
-        self.fullName = fullName
-        self.owner = owner
-        self.private = isPrivate
-        self.htmlUrl = htmlUrl
-        self.description = description
-        self.fork = fork
-        self.url = url
-        self.archiveUrl = archiveUrl
-        self.assigneesUrl = assigneesUrl
-        self.blobsUrl = blobsUrl
-        self.branchesUrl = branchesUrl
-        self.collaboratorsUrl = collaboratorsUrl
-        self.commentsUrl = commentsUrl
-        self.commitsUrl = commitsUrl
-        self.compareUrl = compareUrl
-        self.contentsUrl = contentsUrl
-        self.contributorsUrl = contributorsUrl
-        self.deploymentsUrl = deploymentsUrl
-        self.downloadsUrl = downloadsUrl
-        self.eventsUrl = eventsUrl
-        self.forksUrl = forksUrl
-        self.gitCommitsrl = gitCommitsrl
-        self.gitRefsUrl = gitRefsUrl
-        self.gitTagsUrl = gitTagsUrl
-        self.gitUrl = gitUrl
-        self.issueCommentUrl = issueCommentUrl
-        self.issueEventsUrl = issueEventsUrl
-        self.issuesUrl = issuesUrl
-        self.keysUrl = keysUrl
-        self.labelsUrl = labelsUrl
-        self.languagesUrl = languagesUrl
-        self.mergesUrl = mergesUrl
-        self.milestonesUrl = milestonesUrl
-        self.notificationsUrl = notificationsUrl
-        self.pullsUrl = pullsUrl
-        self.releasesUrl = releasesUrl
-        self.sshUrl = sshUrl
-        self.stargazersUrl = stargazersUrl
-        self.statusesUrl = statusesUrl
-        self.subscribersUrl = subscribersUrl
-        self.subscriptionUrl = subscriptionUrl
-        self.tagsUrl = tagsUrl
-        self.teamsUrl = teamsUrl
-        self.treesUrl = treesUrl
-        self.cloneUrl = cloneUrl
-        self.mirrorUrl = mirrorUrl
-        self.hooksUrl = hooksUrl
-        self.svnUrl = svnUrl
-        self.homepage = homepage
-        self.language = language
-        self.forksCount = forksCount
-        self.stargazersCount = stargazersCount
-        self.watchersCount = watchersCount
-        self.size = size
-        self.defaultBranch = defaultBranch
-        self.openIssuesCount = openIssuesCount
-        self.isTemplate = isTemplate
-        self.topics = topics
-        self.hasIssues = hasIssues
-        self.hasProjects = hasProjects
-        self.hasWiki = hasWiki
-        self.hasPages = hasPages
-        self.hasDownloads = hasDownloads
-        self.archived = archived
-        self.disabled = disabled
-        self.visibility = visibility
-        self.pushedAt = pushedAt
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
-        self.permissions = permissions
-        self.templateRepository = templateRepository
-        self.license = license
-    }
 
     func toDomain() -> Repository? {
         let newPath = contentsUrl?.replacingOccurrences(of: "/{+path}", with: "") ?? ""
@@ -265,7 +112,7 @@ class RepositoryResponseDTO: Codable {
         }
         return Repository(
             repositoryId: id,
-            owner: owner!.toDomain(),
+            owner: owner.toDomain(),
             name: name!,
             starsCount: stargazersCount ?? 0,
             forksCount: forksCount ?? 0,

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PullRequestCoordinatorDependencies {
-    func prViewController() -> UIViewController
+    func prViewController(actions: PRActions) -> UIViewController
 }
 
 final class PullRequestCoordinator {
@@ -26,7 +26,8 @@ final class PullRequestCoordinator {
     }
 
     func start() {
-        let controller = dependencies.prViewController()
+        let actions = PRActions()
+        let controller = dependencies.prViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

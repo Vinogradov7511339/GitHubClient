@@ -9,7 +9,8 @@ import Foundation
 
 struct UserProfile {
     let user: User
-    let status: String?
+    let name: String?
+    let bio: String?
     let location: String?
     let company: String?
     let userBlogUrl: URL?

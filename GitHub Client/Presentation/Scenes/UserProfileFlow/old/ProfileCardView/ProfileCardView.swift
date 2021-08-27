@@ -78,7 +78,7 @@ final class ProfileCardView: UIView {
         followersCountLabel.text = "\(user.followersCount)"
         followingCountLabel.text = "\(user.followingCount)"
         repositoriesCountLabel.text = "\(user.repositoriesCount)"
-        if let name = user.user.name {
+        if let name = user.name {
             nameLabel.isHidden = false
             nameLabel.text = name
         } else {

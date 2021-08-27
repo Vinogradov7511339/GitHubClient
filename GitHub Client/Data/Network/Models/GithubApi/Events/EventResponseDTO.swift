@@ -25,9 +25,14 @@ struct EventResponseDTO: Codable {
         let gravatarId: String?
         let url: URL
         let avatarUrl: URL
+        let type: String
 
         func toDomain() -> User {
-            .init(id: id, avatarUrl: avatarUrl, login: login, name: nil, bio: nil)
+            .init(id: id,
+                  login: login,
+                  avatarUrl: avatarUrl,
+                  url: url,
+                  type: User.UserType(rawValue: type) ?? .unknown)
         }
     }
 
@@ -56,7 +61,7 @@ struct EventResponseDTO: Codable {
         let issue: IssueResponseDTO? // IssueCommentEvent, IssuesEvent
         let comment: CommentResponseDTO? // IssueCommentEvent, PullRequestReviewCommentEvent
         let review: PullRequestReviewResponseDTO? // PullRequestReviewEvent
-        let pullRequest: PullRequestResponseDTO? // PullRequestReviewEvent, PullRequestReviewCommentEvent
+        let pullRequest: PRResponseDTO? // PullRequestReviewEvent, PullRequestReviewCommentEvent
         let commits: [EventCommitResponseDTO]? // PushEvent
         let release: ReleaseResponseDTO? // ReleaseEvent
     }

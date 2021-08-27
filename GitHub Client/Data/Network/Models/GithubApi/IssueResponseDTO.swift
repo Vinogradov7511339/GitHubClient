@@ -9,28 +9,27 @@ import Foundation
 
 struct IssueResponseDTO: Codable {
     let id: Int
-    let nodeId: String?
-    let url: URL?
+    let url: URL
     let repositoryUrl: URL?
     let labelsUrl: String?
     let commentsUrl: URL
     let eventsUrl: URL?
-    let htmlUrl: URL?
+    let htmlUrl: URL
     let number: Int
-    let state: String?
-    let title: String?
-    let body: String?
-    let user: UserResponseDTO?
-    let labels: [LabelModel?]?
+    let state: String
+    let title: String
+    let body: String
+    let user: UserResponseDTO
+    let labels: [LabelResponseDTO?]?
     let assignee: UserResponseDTO?
     let assignees: [UserResponseDTO?]?
     let milestone: Milestone?
     let locked: Bool?
     let activeLockReason: String?
-    let comments: Int?
+    let comments: Int
     let pullRequest: IssuePullRequestResponseDTO?
     let closedAt: String?
-    let createdAt: String?
+    let createdAt: String
     let updatedAt: String?
     let repository: RepositoryResponseDTO?
     let authorAssociation: String?
@@ -42,23 +41,19 @@ struct IssueResponseDTO: Codable {
         let patchUrl: URL
     }
 
-    func toDomain() -> Issue? {
-        guard let user = user?.toDomain() else {
-            return nil
-        }
-        guard let createdAt = createdAt?.toDate() else {
-            return nil
-        }
-        return Issue(
+    func toDomain() -> Issue {
+        .init(
             id: id,
             number: number,
+            url: url,
+            htmlUrl: htmlUrl,
             commentsURL: commentsUrl,
-            state: state ?? "NaN",
-            title: title ?? "NaN",
-            body: body ?? "NaN",
-            user: user,
-            commentsCount: comments ?? 0,
-            openedAt: createdAt
+            state: IssueState(rawValue: state) ?? .unknown,
+            title: title,
+            body: body,
+            user: user.toDomain(),
+            commentsCount: comments,
+            createdAt: createdAt.toDate()
         )
     }
 }

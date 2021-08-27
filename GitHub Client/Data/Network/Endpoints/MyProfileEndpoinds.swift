@@ -9,7 +9,7 @@ import Foundation
 
 struct MyProfileEndpoinds {
 
-    static func profile() -> Endpoint<UserResponseDTO> {
+    static func profile() -> Endpoint<UserDetailsResponseDTO> {
         Endpoint(path: "user")
     }
 

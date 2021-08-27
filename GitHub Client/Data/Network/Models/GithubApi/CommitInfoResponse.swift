@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommitInfoResponse: Codable {
+struct CommitInfoResponse: Codable {
     let sha: String
     let nodeId: String
     let commit: CommitResponse
@@ -17,27 +17,6 @@ class CommitInfoResponse: Codable {
     let author: UserResponseDTO
     let committer: UserResponseDTO
     let parents: [ParentCommit]
-
-    init(
-        sha: String,
-        nodeId: String,
-        commit: CommitResponse,
-        url: URL,
-        htmlUrl: URL,
-        commentsUrl: URL,
-        author: UserResponseDTO,
-        committer: UserResponseDTO,
-        parents: [ParentCommit]) {
-        self.sha = sha
-        self.nodeId = nodeId
-        self.commit = commit
-        self.url = url
-        self.htmlUrl = htmlUrl
-        self.commentsUrl = commentsUrl
-        self.author = author
-        self.committer = committer
-        self.parents = parents
-    }
 
     func toDomain() -> ExtendedCommit {
         .init(sha: sha,
@@ -88,7 +67,7 @@ class CommitVerification: Codable {
     let reason: String
     let signature: String?
     let payload: String?
-    
+
     init(verified: Bool, reason: String, signature: String, payload: String) {
         self.verified = verified
         self.reason = reason

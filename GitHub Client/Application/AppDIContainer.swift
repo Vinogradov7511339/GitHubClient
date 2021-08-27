@@ -191,6 +191,7 @@ private extension AppDIContainer {
     func issueDependencies(_ actions: AppCoordinatorActions,
                            issue: Issue) -> IssueDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
+              filterStorage: issueFilterStorage,
               issue: issue)
     }
 

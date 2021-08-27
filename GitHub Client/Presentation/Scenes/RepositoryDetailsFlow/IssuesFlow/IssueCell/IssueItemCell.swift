@@ -26,8 +26,8 @@ extension IssueItemCell: ConfigurableCell {
     func configure(viewModel: Issue) {
         issueTitleLabel.text = viewModel.title
         openedByLabel.attributedText = attributedText(issue: viewModel)
-        openedAtLabel.text = viewModel.openedAt.timeAgoDisplay()
-        issueStateLabel.text = viewModel.state
+        openedAtLabel.text = viewModel.createdAt?.timeAgoDisplay()
+        issueStateLabel.text = viewModel.state.rawValue
         commentsCountLabel.text = "\(viewModel.commentsCount)"
     }
 

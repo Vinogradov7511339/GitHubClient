@@ -23,13 +23,13 @@ final class PullRequestDIContainer {
 
     init(_ dependencies: Dependencies) {
         self.dependencies = dependencies
-        self.prFactory = PullRequestFactoryImpl()
+        self.prFactory = PullRequestFactoryImpl(dataTransferService: dependencies.dataTransferService)
     }
 }
 
 // MARK: - PullRequestCoordinatorDependencies
 extension PullRequestDIContainer: PullRequestCoordinatorDependencies {
-    func prViewController() -> UIViewController {
-        prFactory.pullRequestViewController()
+    func prViewController(actions: PRActions) -> UIViewController {
+        prFactory.pullRequestViewController(dependencies.pullRequest, actions: actions)
     }
 }

@@ -19,7 +19,7 @@ struct ExploreTempEndpoints {
     }
 
     static func pullRequests(_ model: SearchRequestModel) ->
-    Endpoint<SearchResponseDTO<PullRequestResponseDTO>> {
+    Endpoint<SearchResponseDTO<PRResponseDTO>> {
         return Endpoint(path: path(model), queryParametersEncodable: parameters(model))
     }
 

@@ -55,7 +55,7 @@ extension UserProfileRepositoryImpl {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):
-                completion(.success(model.model.mapToDetails()))
+                completion(.success(model.model.toDomain()))
             case .failure(let error):
                 completion(.failure(error))
             }

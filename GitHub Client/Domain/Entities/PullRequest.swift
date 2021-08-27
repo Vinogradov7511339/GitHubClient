@@ -5,12 +5,20 @@
 //  Created by Alexander Vinogradov on 08.08.2021.
 //
 
-struct PullRequest: Identifiable, Equatable {
+import Foundation
+
+enum PullRequestState: String {
+    case open
+    case close
+    case unknown
+}
+
+struct PullRequest {
     let id: Int
+    let url: URL
     let number: Int
-    let state: String // todo
+    let state: PullRequestState
     let title: String
-    let user: User
-    let body: String?
-    let assignedTo: User
+    let labels: [LabelResponseDTO]
+    let createdAt: Date?
 }

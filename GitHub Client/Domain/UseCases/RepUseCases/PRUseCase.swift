@@ -12,7 +12,7 @@ protocol PRUseCase {
     func fetchPRList(_ repository: Repository, page: Int, completion: @escaping PRListHandler)
 
     typealias PRHandler = RepRepository.PRHandler
-    func fetchPR(request: PRRequestModel, completion: @escaping PRHandler)
+    func fetchPR(_ pullRequest: PullRequest, completion: @escaping PRHandler)
 
     typealias CommentsHandler = RepRepository.CommentsHandler
     func fetchComments(_ request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler)
@@ -34,8 +34,8 @@ extension PRUseCaseImpl: PRUseCase {
         repRepository.fetchPRList(request: model, completion: completion)
     }
 
-    func fetchPR(request: PRRequestModel, completion: @escaping PRHandler) {
-        repRepository.fetchPR(request: request, completion: completion)
+    func fetchPR(_ pullRequest: PullRequest, completion: @escaping PRHandler) {
+        repRepository.fetchPR(pullRequest, completion: completion)
     }
 
     func fetchComments(_ request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler) {
