@@ -9,7 +9,7 @@ import Foundation
 
 protocol PRUseCase {
     typealias PRListHandler = RepRepository.PRListHandler
-    func fetchPRList(request: PRListRequestModel, completion: @escaping PRListHandler)
+    func fetchPRList(_ repository: Repository, page: Int, completion: @escaping PRListHandler)
 
     typealias PRHandler = RepRepository.PRHandler
     func fetchPR(request: PRRequestModel, completion: @escaping PRHandler)
@@ -29,8 +29,9 @@ final class PRUseCaseImpl {
 
 // MARK: - PRUseCase
 extension PRUseCaseImpl: PRUseCase {
-    func fetchPRList(request: PRListRequestModel, completion: @escaping PRListHandler) {
-        repRepository.fetchPRList(request: request, completion: completion)
+    func fetchPRList(_ repository: Repository, page: Int, completion: @escaping PRListHandler) {
+        let model = PRListRequestModel(repository: repository, page: page)
+        repRepository.fetchPRList(request: model, completion: completion)
     }
 
     func fetchPR(request: PRRequestModel, completion: @escaping PRHandler) {

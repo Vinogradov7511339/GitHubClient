@@ -121,7 +121,9 @@ extension RepViewModelImpl {
         actions.showIssues(rep)
     }
 
-    func showPullRequests() {}
+    func showPullRequests() {
+        actions.showPullRequests(rep)
+    }
 
     func showReleases() {}
 

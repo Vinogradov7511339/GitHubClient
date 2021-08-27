@@ -17,7 +17,8 @@ final class PullRequestCoordinator {
 
     // MARK: - Lifecycle
 
-    init(with dependencies: PullRequestCoordinatorDependencies, in navigationController: UINavigationController) {
+    init(with dependencies: PullRequestCoordinatorDependencies,
+         in navigationController: UINavigationController) {
         self.dependencies = dependencies
         self.navigationController = navigationController
     }

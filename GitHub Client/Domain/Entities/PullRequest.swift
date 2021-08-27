@@ -6,7 +6,6 @@
 //
 
 struct PullRequest: Identifiable, Equatable {
-    // swiftlint:disable identifier_name
     let id: Int
     let number: Int
     let state: String // todo

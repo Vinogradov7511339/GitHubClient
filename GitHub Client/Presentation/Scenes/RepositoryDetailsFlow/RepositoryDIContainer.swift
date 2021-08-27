@@ -71,8 +71,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.issueViewController()
     }
 
-    func pullRequestsViewController() -> UIViewController {
-        repositoryFactory.pullRequestsViewController()
+    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
+        repositoryFactory.pullRequestsViewController(rep, actions: actions)
     }
 
     func pullRequestViewController() -> UIViewController {

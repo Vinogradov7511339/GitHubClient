@@ -16,7 +16,7 @@ protocol RepositoryFactory {
     func fileViewController() -> UIViewController
     func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
     func issueViewController() -> UIViewController
-    func pullRequestsViewController() -> UIViewController
+    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController
     func pullRequestViewController() -> UIViewController
     func releasesViewController() -> UIViewController
     func releaseViewController() -> UIViewController
@@ -72,8 +72,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func pullRequestsViewController() -> UIViewController {
-        UIViewController()
+    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
+        PRListViewController.create(with: prListViewModel(rep, actions: actions))
     }
 
     func pullRequestViewController() -> UIViewController {
@@ -119,8 +119,16 @@ private extension RepositoryFactoryImpl {
         IssuesViewModelImpl(issueUseCase: issueUseCase, repository: repository, actions: actions)
     }
 
+    func prListViewModel(_ rep: Repository, actions: PRListActions) -> PRListViewModel {
+        PRListViewModelImpl(rep: rep, useCase: pullRequestUseCase, actions: actions)
+    }
+
     var issueUseCase: IssueUseCase {
         IssueUseCaseImpl(repRepository: repRepository, filterStorage: issueFilterStorage)
+    }
+
+    var pullRequestUseCase: PRUseCase {
+        PRUseCaseImpl(repRepository: repRepository)
     }
 
     var repUseCase: RepUseCase {

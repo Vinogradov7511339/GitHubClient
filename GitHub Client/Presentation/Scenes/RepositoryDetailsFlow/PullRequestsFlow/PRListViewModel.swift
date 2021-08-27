@@ -14,10 +14,11 @@ struct PRListActions {
 protocol PRListViewModelInput {
     func viewDidLoad()
     func didSelectItem(at indexPath: IndexPath)
+    func refresh()
 }
 
 protocol PRListViewModelOutput {
-    var items: Observable<[PullRequest]> { get }
+    var state: Observable<ItemsSceneState<PullRequest>> { get }
 }
 
 typealias PRListViewModel = PRListViewModelInput & PRListViewModelOutput
@@ -26,21 +27,58 @@ final class PRListViewModelImpl: PRListViewModel {
 
     // MARK: - Output
 
-    var items: Observable<[PullRequest]> = Observable([])
+    var state: Observable<ItemsSceneState<PullRequest>> = Observable(.loading)
 
     // MARK: - Private variables
 
+    private let rep: Repository
+    private let useCase: PRUseCase
+    private let actions: PRListActions
+    private var lastPage: Int?
+    private var currentPage = 1
+
     // MARK: - Lifecycle
+
+    init(rep: Repository, useCase: PRUseCase, actions: PRListActions) {
+        self.rep = rep
+        self.useCase = useCase
+        self.actions = actions
+    }
 }
 
 // MARK: - Input
 extension PRListViewModelImpl {
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        fetch()
+    }
 
-    func didSelectItem(at indexPath: IndexPath) {}
+    func didSelectItem(at indexPath: IndexPath) {
+        switch state.value {
+        case .loaded(let items):
+            let pullRequest = items[indexPath.row]
+            actions.show(pullRequest)
+        default:
+            break
+        }
+    }
+
+    func refresh() {
+        fetch()
+    }
 }
 
 // MARK: - Private
 private extension PRListViewModelImpl {
-
+    func fetch() {
+        state.value = .loading
+        useCase.fetchPRList(rep, page: currentPage) { result in
+            switch result {
+            case .success(let model):
+                self.lastPage = model.lastPage
+                self.state.value = .loaded(items: model.items)
+            case .failure(let error):
+                self.state.value = .error(error: error)
+            }
+        }
+    }
 }
