@@ -1,32 +1,33 @@
 //
-//  PullRequestCoordinator.swift
+//  ReleaseFlowCoordinator.swift
 //  GitHub Client
 //
-//  Created by Alexander Vinogradov on 25.08.2021.
+//  Created by Alexander Vinogradov on 27.08.2021.
 //
 
 import UIKit
 
-protocol PullRequestCoordinatorDependencies {
-    func prViewController() -> UIViewController
+protocol ReleaseFlowCoordinatorDependencies {
+    func releaseViewController() -> UIViewController
 }
 
-final class PullRequestCoordinator {
+final class ReleaseFlowCoordinator {
 
     // MARK: - Private variables
+
     private weak var navigationController: UINavigationController?
-    private let dependencies: PullRequestCoordinatorDependencies
+    private let dependencies: ReleaseFlowCoordinatorDependencies
 
     // MARK: - Lifecycle
 
-    init(with dependencies: PullRequestCoordinatorDependencies,
+    init(with dependencies: ReleaseFlowCoordinatorDependencies,
          in navigationController: UINavigationController) {
         self.dependencies = dependencies
         self.navigationController = navigationController
     }
 
     func start() {
-        let controller = dependencies.prViewController()
+        let controller = dependencies.releaseViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
 }

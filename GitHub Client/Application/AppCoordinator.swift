@@ -31,6 +31,10 @@ protocol AppCoordinatorDependencies {
     func pullRequestCoordinator(in nav: UINavigationController,
                                 actions: AppCoordinatorActions,
                                 pullRequest: PullRequest) -> PullRequestCoordinator
+
+    func releaseCoordinator(in nav: UINavigationController,
+                            actions: AppCoordinatorActions,
+                            release: Release) -> ReleaseFlowCoordinator
 }
 
 protocol AppCoordinatorActions {
@@ -47,6 +51,7 @@ protocol AppCoordinatorActions {
     func openUser(_ user: User, in nav: UINavigationController)
     func openIssue(_ issue: Issue, in nav: UINavigationController)
     func openPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController)
+    func openRelease(_ release: Release, in nav: UINavigationController)
 
     func openUserRecentEvents(_ user: User, in nav: UINavigationController)
     func openUserStarred(_ user: User, in nav: UINavigationController)
@@ -150,8 +155,14 @@ extension AppCoordinator: AppCoordinatorActions {
     }
 
     func openPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController) {
-        let coordinator = dependencies.pullRequestCoordinator(in: nav, actions: self,
+        let coordinator = dependencies.pullRequestCoordinator(in: nav,
+                                                              actions: self,
                                                               pullRequest: pullRequest)
+        coordinator.start()
+    }
+
+    func openRelease(_ release: Release, in nav: UINavigationController) {
+        let coordinator = dependencies.releaseCoordinator(in: nav, actions: self, release: release)
         coordinator.start()
     }
 

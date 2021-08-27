@@ -15,11 +15,8 @@ protocol RepositoryFactory {
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
     func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
-    func issueViewController() -> UIViewController
     func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController
-    func pullRequestViewController() -> UIViewController
     func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController
-    func releaseViewController() -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
     func forksViewController() -> UIViewController
@@ -68,16 +65,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         IssuesViewController.create(with: issuesViewModel(repository, actions: actions))
     }
 
-    func issueViewController() -> UIViewController {
-        UIViewController()
-    }
-
     func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
         PRListViewController.create(with: prListViewModel(rep, actions: actions))
-    }
-
-    func pullRequestViewController() -> UIViewController {
-        UIViewController()
     }
 
     func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController {

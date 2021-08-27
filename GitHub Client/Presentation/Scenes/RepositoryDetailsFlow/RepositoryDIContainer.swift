@@ -17,6 +17,10 @@ final class RepositoryDIContainer {
         let repository: Repository
 
         var showUser: (User, UINavigationController) -> Void
+        var showIssue: (Issue, UINavigationController) -> Void
+        var showPullRequest: (PullRequest, UINavigationController) -> Void
+        var showRelease: (Release, UINavigationController) -> Void
+
         var openLink: (URL) -> Void
         var share: (URL) -> Void
         var copy: (String) -> Void
@@ -39,6 +43,9 @@ final class RepositoryDIContainer {
 
 // MARK: - Routing
 extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
+
+    // MARK: - Factory
+
     func repositoryViewController(actions: RepActions) -> UIViewController {
         repositoryFactory.repositoryViewController(dependencies.repository, actions: actions)
     }
@@ -67,24 +74,12 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.issuesViewController(repository, actions: actions)
     }
 
-    func issueViewController() -> UIViewController {
-        repositoryFactory.issueViewController()
-    }
-
     func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
         repositoryFactory.pullRequestsViewController(rep, actions: actions)
     }
 
-    func pullRequestViewController() -> UIViewController {
-        repositoryFactory.pullRequestViewController()
-    }
-
     func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController {
         repositoryFactory.releasesViewController(rep, actions: actions)
-    }
-
-    func releaseViewController() -> UIViewController {
-        repositoryFactory.releaseViewController()
     }
 
     func licenseViewController() -> UIViewController {
@@ -99,8 +94,22 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.forksViewController()
     }
 
+    // MARK: - Dependencies
+
     func codeOptionsViewController() -> UIViewController {
         fatalError()
+    }
+
+    func showIssue(_ issue: Issue, in nav: UINavigationController) {
+        dependencies.showIssue(issue, nav)
+    }
+
+    func showPullRequest(_ pr: PullRequest, in nav: UINavigationController) {
+        dependencies.showPullRequest(pr, nav)
+    }
+
+    func showRelease(_ release: Release, in nav: UINavigationController) {
+        dependencies.showRelease(release, nav)
     }
 
     func show(user: User, in nav: UINavigationController) {

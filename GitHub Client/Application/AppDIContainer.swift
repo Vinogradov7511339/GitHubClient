@@ -113,6 +113,12 @@ extension AppDIContainer: AppCoordinatorDependencies {
         return PullRequestCoordinator(with: container, in: nav)
     }
 
+    func releaseCoordinator(in nav: UINavigationController,
+                            actions: AppCoordinatorActions,
+                            release: Release) -> ReleaseFlowCoordinator {
+        let container = ReleaseDIContainer(releaseDependencies(actions, release: release))
+        return ReleaseFlowCoordinator(with: container, in: nav)
+    }
 }
 
 // MARK: - Dependencies
@@ -156,6 +162,9 @@ private extension AppDIContainer {
               issueFilterStorage: issueFilterStorage,
               repository: repository,
               showUser: actions.openUser(_:in:),
+              showIssue: actions.openIssue(_:in:),
+              showPullRequest: actions.openPullRequest(_:in:),
+              showRelease: actions.openRelease(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               copy: actions.copy(text:))
@@ -181,11 +190,19 @@ private extension AppDIContainer {
 
     func issueDependencies(_ actions: AppCoordinatorActions,
                            issue: Issue) -> IssueDIContainer.Dependencies {
-        .init(dataTransferService: dataTransferService)
+        .init(dataTransferService: dataTransferService,
+              issue: issue)
     }
 
     func pullRequestDependencies(_ actions: AppCoordinatorActions,
                                  pullRequest: PullRequest) -> PullRequestDIContainer.Dependencies {
-        .init(dataTransferService: dataTransferService)
+        .init(dataTransferService: dataTransferService,
+              pullRequest: pullRequest)
+    }
+
+    func releaseDependencies(_ actions: AppCoordinatorActions,
+                             release: Release) -> ReleaseDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              release: release)
     }
 }

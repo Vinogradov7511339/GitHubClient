@@ -424,6 +424,11 @@
 		ADFCF00926D8C21F004FB341 /* PullRequestItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFCF00726D8C21F004FB341 /* PullRequestItemCell.xib */; };
 		ADFCF00D26D8C9FD004FB341 /* ReleaseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF00B26D8C9FD004FB341 /* ReleaseItemCell.swift */; };
 		ADFCF00E26D8C9FD004FB341 /* ReleaseItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */; };
+		ADFCF01226D8DB14004FB341 /* ReleaseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF01126D8DB14004FB341 /* ReleaseFlowCoordinator.swift */; };
+		ADFCF01426D8DBEC004FB341 /* ReleaseDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF01326D8DBEC004FB341 /* ReleaseDIContainer.swift */; };
+		ADFCF01626D8DFEB004FB341 /* IssueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF01526D8DFEB004FB341 /* IssueFactory.swift */; };
+		ADFCF01826D8E087004FB341 /* PullRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF01726D8E087004FB341 /* PullRequestFactory.swift */; };
+		ADFCF01A26D8E0DD004FB341 /* ReleaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF01926D8E0DD004FB341 /* ReleaseFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -860,6 +865,11 @@
 		ADFCF00726D8C21F004FB341 /* PullRequestItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PullRequestItemCell.xib; sourceTree = "<group>"; };
 		ADFCF00B26D8C9FD004FB341 /* ReleaseItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseItemCell.swift; sourceTree = "<group>"; };
 		ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReleaseItemCell.xib; sourceTree = "<group>"; };
+		ADFCF01126D8DB14004FB341 /* ReleaseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseFlowCoordinator.swift; sourceTree = "<group>"; };
+		ADFCF01326D8DBEC004FB341 /* ReleaseDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDIContainer.swift; sourceTree = "<group>"; };
+		ADFCF01526D8DFEB004FB341 /* IssueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFactory.swift; sourceTree = "<group>"; };
+		ADFCF01726D8E087004FB341 /* PullRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestFactory.swift; sourceTree = "<group>"; };
+		ADFCF01926D8E0DD004FB341 /* ReleaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseFactory.swift; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1808,6 +1818,9 @@
 				AD5C8E2A26D2A03F003E2F38 /* SettingsFactory.swift */,
 				AD5C8E3B26D2B657003E2F38 /* SignInFactory.swift */,
 				AD5C8E4526D2BEE7003E2F38 /* ExploreFactory.swift */,
+				ADFCF01526D8DFEB004FB341 /* IssueFactory.swift */,
+				ADFCF01726D8E087004FB341 /* PullRequestFactory.swift */,
+				ADFCF01926D8E0DD004FB341 /* ReleaseFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -2312,13 +2325,14 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE5226BABD5E00F055FD /* UserProfileFlow */,
-				AD20E51426A9AFE1003BB5F1 /* IssueDetailsFlow */,
 				AD39FE3B26BAA1EA00F055FD /* RepositoryDetailsFlow */,
 				AD20E46F26A8979F003BB5F1 /* SettingsFlow */,
 				AD5C8E3826D2B4C8003E2F38 /* ExploreFlow */,
 				AD39FE5526BAD65D00F055FD /* NotLoggedFlow */,
 				AD5C8E3D26D2BBF0003E2F38 /* LoggedFlow */,
+				AD20E51426A9AFE1003BB5F1 /* IssueDetailsFlow */,
 				ADF9A84A26D6A9FE0017D11F /* PullRequest */,
+				ADFCF01026D8DB02004FB341 /* Release */,
 				ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */,
 			);
 			path = Scenes;
@@ -2407,6 +2421,15 @@
 				ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */,
 			);
 			path = ReleaseCell;
+			sourceTree = "<group>";
+		};
+		ADFCF01026D8DB02004FB341 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				ADFCF01126D8DB14004FB341 /* ReleaseFlowCoordinator.swift */,
+				ADFCF01326D8DBEC004FB341 /* ReleaseDIContainer.swift */,
+			);
+			path = Release;
 			sourceTree = "<group>";
 		};
 		B3CBF346F940A4CEEBCC7762 /* Pods */ = {
@@ -2669,6 +2692,7 @@
 				AD20E4EA26A8B9A3003BB5F1 /* SettingAppearanceViewController.swift in Sources */,
 				ADC538DC26CD2B23009B7A7E /* NotificationsUseCase.swift in Sources */,
 				AD93004E26C959B0002D7362 /* RepositoryItemCell.swift in Sources */,
+				ADFCF01A26D8E0DD004FB341 /* ReleaseFactory.swift in Sources */,
 				AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */,
 				AD2E262F26BD17F600B25772 /* HomeViewModel.swift in Sources */,
 				ADB60D8326D3EAE20024479D /* SearchListViewModel.swift in Sources */,
@@ -2833,6 +2857,7 @@
 				AD39FDA126B91E8100F055FD /* CommentResponseDTO.swift in Sources */,
 				AD23E7C926D18B3B009FEB27 /* MyUsersAdapter.swift in Sources */,
 				AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */,
+				ADFCF01626D8DFEB004FB341 /* IssueFactory.swift in Sources */,
 				AD39FE4926BAAB4900F055FD /* RepRepository.swift in Sources */,
 				ADC8180226B0021F00469BCF /* Discussion.swift in Sources */,
 				AD39FD9826B86CC000F055FD /* CommitInfoResponse.swift in Sources */,
@@ -2878,6 +2903,7 @@
 				ADC538D326CD1F62009B7A7E /* EventsRequestModel.swift in Sources */,
 				AD39FDA826B947BB00F055FD /* Repository.swift in Sources */,
 				AD6B094326BEF267004644D2 /* NetworkErrorLogger.swift in Sources */,
+				ADFCF01826D8E087004FB341 /* PullRequestFactory.swift in Sources */,
 				ADB60D8526D3EB6B0024479D /* Organization.swift in Sources */,
 				ADB60D9026D4D2F30024479D /* ResultPullRequestCell.swift in Sources */,
 				ADBC1ADD26C4FD94000F9B88 /* ProfileCardView.swift in Sources */,
@@ -2885,6 +2911,7 @@
 				ADB60D6626D38B5E0024479D /* SearchResponseModel.swift in Sources */,
 				AD23E77F26D0F7B8009FEB27 /* PRListViewModel.swift in Sources */,
 				ADA1693E26C593F10040B635 /* UserCell.swift in Sources */,
+				ADFCF01226D8DB14004FB341 /* ReleaseFlowCoordinator.swift in Sources */,
 				AD23E77826D0F183009FEB27 /* PRListRequestModel.swift in Sources */,
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
@@ -2919,6 +2946,7 @@
 				AD23E77626D0F05F009FEB27 /* HTTPURLResponse+lastPage.swift in Sources */,
 				AD5C8E2526D297B0003E2F38 /* SettingsViewModel.swift in Sources */,
 				AD8722DE26B816EB004649A4 /* FileViewController.swift in Sources */,
+				ADFCF01426D8DBEC004FB341 /* ReleaseDIContainer.swift in Sources */,
 				AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */,
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
 				AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */,
