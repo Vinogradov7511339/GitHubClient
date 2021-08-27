@@ -28,10 +28,10 @@ protocol RepUseCase {
     // MARK: - Releases
 
     typealias ReleasesHandler = RepRepository.ReleasesHandler
-    func fetchReleases(request: ReleasesRequestModel, completion: @escaping ReleasesHandler)
+    func fetchReleases(_ rep: Repository, page: Int, completion: @escaping ReleasesHandler)
 
     typealias ReleaseHandler = RepRepository.ReleaseHandler
-    func fetchRelease(request: ReleaseRequestModel, completion: @escaping ReleaseHandler)
+    func fetchRelease(_ rep: Repository, _ release: Release, completion: @escaping ReleaseHandler)
 
     // MARK: - License
 
@@ -73,7 +73,6 @@ extension RepUseCaseImpl: RepUseCase {
                 completion(.failure(error))
             }
         }
-
     }
 
     func fetchBranches(request: BranchesRequestModel, completion: @escaping BranchesHandler) {
@@ -92,12 +91,14 @@ extension RepUseCaseImpl: RepUseCase {
         repositoryStorage.fetchReadMe(repository: repository, completion: completion)
     }
 
-    func fetchReleases(request: ReleasesRequestModel, completion: @escaping ReleasesHandler) {
-        repositoryStorage.fetchReleases(request: request, completion: completion)
+    func fetchReleases(_ rep: Repository, page: Int, completion: @escaping ReleasesHandler) {
+        let model = ReleasesRequestModel(repository: rep, page: page)
+        repositoryStorage.fetchReleases(request: model, completion: completion)
     }
 
-    func fetchRelease(request: ReleaseRequestModel, completion: @escaping ReleaseHandler) {
-        repositoryStorage.fetchRelease(request: request, completion: completion)
+    func fetchRelease(_ rep: Repository, _ release: Release, completion: @escaping ReleaseHandler) {
+        let model = ReleaseRequestModel(repository: rep, release: release)
+        repositoryStorage.fetchRelease(request: model, completion: completion)
     }
 
     func fetchLicense(request: LicenseRequestModel, completion: @escaping LicenseHandler) {

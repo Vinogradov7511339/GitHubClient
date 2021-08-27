@@ -7,4 +7,7 @@
 
 import Foundation
 
-struct PRRequestModel {}
+struct PRRequestModel {
+    let pullRequest: PullRequest
+    let repository: Repository
+}

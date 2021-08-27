@@ -422,6 +422,8 @@
 		ADFCF00526D823F6004FB341 /* ItemsSceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */; };
 		ADFCF00826D8C21F004FB341 /* PullRequestItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF00626D8C21F004FB341 /* PullRequestItemCell.swift */; };
 		ADFCF00926D8C21F004FB341 /* PullRequestItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFCF00726D8C21F004FB341 /* PullRequestItemCell.xib */; };
+		ADFCF00D26D8C9FD004FB341 /* ReleaseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCF00B26D8C9FD004FB341 /* ReleaseItemCell.swift */; };
+		ADFCF00E26D8C9FD004FB341 /* ReleaseItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -856,6 +858,8 @@
 		ADFCF00426D823F6004FB341 /* ItemsSceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsSceneState.swift; sourceTree = "<group>"; };
 		ADFCF00626D8C21F004FB341 /* PullRequestItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestItemCell.swift; sourceTree = "<group>"; };
 		ADFCF00726D8C21F004FB341 /* PullRequestItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PullRequestItemCell.xib; sourceTree = "<group>"; };
+		ADFCF00B26D8C9FD004FB341 /* ReleaseItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseItemCell.swift; sourceTree = "<group>"; };
+		ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReleaseItemCell.xib; sourceTree = "<group>"; };
 		D1C30E116BEEB4701B9A973A /* Pods_GitHub_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1137,6 +1141,7 @@
 			children = (
 				AD23E79226D1030B009FEB27 /* ReleasesViewController.swift */,
 				AD23E79526D1032E009FEB27 /* ReleasesViewModel.swift */,
+				ADFCF00F26D8CA2E004FB341 /* ReleaseCell */,
 			);
 			path = ReleasesFlow;
 			sourceTree = "<group>";
@@ -2395,6 +2400,15 @@
 			path = PullRequestCell;
 			sourceTree = "<group>";
 		};
+		ADFCF00F26D8CA2E004FB341 /* ReleaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADFCF00B26D8C9FD004FB341 /* ReleaseItemCell.swift */,
+				ADFCF00C26D8C9FD004FB341 /* ReleaseItemCell.xib */,
+			);
+			path = ReleaseCell;
+			sourceTree = "<group>";
+		};
 		B3CBF346F940A4CEEBCC7762 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2526,6 +2540,7 @@
 				AD20E4E126A8B313003BB5F1 /* AppIconPinkLight-3.png in Resources */,
 				AD39FD9F26B874FB00F055FD /* CommitTableViewCell.xib in Resources */,
 				ADB60D9126D4D2F30024479D /* ResultPullRequestCell.xib in Resources */,
+				ADFCF00E26D8C9FD004FB341 /* ReleaseItemCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
 				ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */,
@@ -2937,6 +2952,7 @@
 				AD20E50826A994A6003BB5F1 /* PullRequestResponseDTO.swift in Sources */,
 				ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
+				ADFCF00D26D8C9FD004FB341 /* ReleaseItemCell.swift in Sources */,
 				ADF9A85026D6D2700017D11F /* ExploreWidgetsRequestStorage.swift in Sources */,
 				AD93004926C94F9D002D7362 /* String+ISO8601.swift in Sources */,
 				AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */,

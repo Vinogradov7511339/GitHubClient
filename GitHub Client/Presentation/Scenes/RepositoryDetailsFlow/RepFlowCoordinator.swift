@@ -18,7 +18,7 @@ protocol RepFlowCoordinatorDependencies {
     func issueViewController() -> UIViewController
     func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController
     func pullRequestViewController() -> UIViewController
-    func releasesViewController() -> UIViewController
+    func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController
     func releaseViewController() -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
@@ -110,7 +110,7 @@ private extension RepFlowCoordinator {
 
     func showReleases(_ repository: Repository) {
         let actions = ReleasesActions(show: startReleaseFlow(_:))
-        let viewController = dependencies.releasesViewController()
+        let viewController = dependencies.releasesViewController(repository, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 

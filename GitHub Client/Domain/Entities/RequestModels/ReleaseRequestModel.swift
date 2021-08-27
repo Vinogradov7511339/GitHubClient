@@ -7,4 +7,7 @@
 
 import Foundation
 
-struct ReleaseRequestModel {}
+struct ReleaseRequestModel {
+    let repository: Repository
+    let release: Release
+}

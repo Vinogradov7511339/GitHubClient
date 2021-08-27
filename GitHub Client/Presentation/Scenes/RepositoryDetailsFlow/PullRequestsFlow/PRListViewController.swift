@@ -24,6 +24,7 @@ final class PRListViewController: UIViewController {
         let layout = layoutFactory.layout
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemGroupedBackground
         collectionView.dataSource = adapter
         collectionView.delegate = self
         return collectionView

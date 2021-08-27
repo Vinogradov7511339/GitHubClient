@@ -116,17 +116,27 @@ struct RepEndpoits {
     }
 
     static func pullRequest(_ model: PRRequestModel) -> Endpoint<PullRequestResponseDTO> {
-        fatalError()
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let pullRequestId = model.pullRequest.id
+        return Endpoint(path: "repos/\(login)/\(name)/pulls/\(pullRequestId)")
     }
 
     // MARK: - Releases
 
     static func releases(_ model: ReleasesRequestModel) -> Endpoint<[ReleaseResponseDTO]> {
-        fatalError()
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let page = model.page
+        return Endpoint(path: "repos/\(login)/\(name)/releases",
+                        queryParametersEncodable: ["page": page])
     }
 
     static func release(_ model: ReleaseRequestModel) -> Endpoint<ReleaseResponseDTO> {
-        fatalError()
+        let login = model.repository.owner.login
+        let name = model.repository.name
+        let releaseId = model.release.id
+        return Endpoint(path: "repos/\(login)/\(name)/releases/\(releaseId)")
     }
 
     // MARK: - License
