@@ -7,12 +7,23 @@
 
 import UIKit
 
+protocol CommentCellDelegate: AnyObject {}
+
 class CommentCell: BaseCollectionViewCell, NibLoadable {
+
+    // MARK: - Delegate
+
+    weak var delegate: CommentCellDelegate?
+
+    // MARK: - Views
+
     @IBOutlet weak var userAvatarImageView: WebImageView!
     @IBOutlet weak var userLoginLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var messageStackView: UIStackView!
     @IBOutlet weak var emotionsStackView: UIStackView!
+
+    // MARK: - Actions
 
     @IBAction func addEmotionButtonTouchUpInside(_ sender: UIButton) {
         

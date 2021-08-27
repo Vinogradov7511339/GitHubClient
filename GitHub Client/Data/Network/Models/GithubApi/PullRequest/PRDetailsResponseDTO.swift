@@ -30,7 +30,8 @@ struct PRDetailsResponseDTO: Codable {
     let commitsUrl: URL
     let reviewCommentsUrl: URL
     let statusesUrl: URL
-//    let head
+    let head: PRBaseResponseDTO
+    let base: PRBaseResponseDTO
     let authorAssociation: String
     let merged: Bool
     let mergeable: Bool
@@ -51,6 +52,8 @@ struct PRDetailsResponseDTO: Codable {
               state: PullRequestState(rawValue: state) ?? .unknown,
               title: title,
               body: body,
+              head: head,
+              base: base,
               labels: labels,
               commitsCount: commits,
               additionsCount: additions,

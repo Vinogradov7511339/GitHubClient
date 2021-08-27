@@ -29,7 +29,8 @@ struct PRResponseDTO: Codable {
     let commitsUrl: URL
     let reviewCommentsUrl: URL
     let statusesUrl: URL
-//    let head
+    let head: PRBaseResponseDTO
+    let base: PRBaseResponseDTO
     let authorAssociation: String
 
     func toDomain() -> PullRequest {
@@ -38,6 +39,8 @@ struct PRResponseDTO: Codable {
               number: number,
               state: PullRequestState(rawValue: state) ?? .unknown,
               title: title,
+              head: head,
+              base: base,
               labels: labels,
               createdAt: createdAt.toDate())
     }

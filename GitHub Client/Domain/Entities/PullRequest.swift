@@ -19,6 +19,8 @@ struct PullRequest {
     let number: Int
     let state: PullRequestState
     let title: String
+    let head: PRBaseResponseDTO
+    let base: PRBaseResponseDTO
     let labels: [LabelResponseDTO]
     let createdAt: Date?
 }

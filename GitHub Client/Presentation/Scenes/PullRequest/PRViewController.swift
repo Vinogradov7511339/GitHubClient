@@ -17,9 +17,25 @@ final class PRViewController: UIViewController {
         return viewController
     }
 
+    // MARK: - Views
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemGroupedBackground
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.dataSource = adapter
+        tableView.delegate = self
+        return tableView
+    }()
+
     // MARK: - Private variables
 
     private var viewModel: PRViewModel!
+    private lazy var adapter: PRAdapter = {
+        PRAdapterImpl()
+    }()
 
     // MARK: - Lifecycle
 
@@ -27,6 +43,8 @@ final class PRViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+
+        adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -45,32 +63,47 @@ private extension PRViewController {
             prepareErrorState(with: error)
         case .loading:
             prepareLoadingState()
-        case .loaded(let model):
-            prepareLoadedState(model)
+        case .loaded(let model, let comments):
+            prepareLoadedState(model, comments: comments)
         }
     }
 
     func prepareLoadingState() {
+        tableView.isHidden = true
         hideError()
         showLoader()
     }
 
     func prepareErrorState(with error: Error) {
+        tableView.isHidden = true
         hideLoader()
         showError(error, reloadCompletion: viewModel.refresh)
     }
 
-    func prepareLoadedState(_ model: PullRequestDetails) {
+    func prepareLoadedState(_ model: PullRequestDetails, comments: [Comment]) {
+        tableView.isHidden = false
         hideError()
         hideLoader()
+        adapter.update(with: model, comments: comments)
+        tableView.reloadData()
     }
+}
+
+// MARK: - UITableViewDelegate
+extension PRViewController: UITableViewDelegate {
 }
 
 // MARK: - Setup views
 private extension PRViewController {
     func setupViews() {
         view.backgroundColor = .systemGroupedBackground
+        view.addSubview(tableView)
     }
 
-    func activateConstraints() {}
+    func activateConstraints() {
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
 }

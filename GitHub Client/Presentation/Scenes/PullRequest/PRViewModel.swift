@@ -21,7 +21,7 @@ protocol PRViewModelOutput {
 enum PRScreenState {
     case loading
     case error(Error)
-    case loaded(PullRequestDetails)
+    case loaded(PullRequestDetails, [Comment])
 }
 
 typealias PRViewModel = PRViewModelInput & PRViewModelOutput
@@ -67,7 +67,7 @@ private extension PRViewModelImpl {
         useCase.fetchPR(pullRequest) { result in
             switch result {
             case .success(let prDetails):
-                self.state.value = .loaded(prDetails)
+                self.state.value = .loaded(prDetails, [])
             case .failure(let error):
                 self.state.value = .error(error)
             }

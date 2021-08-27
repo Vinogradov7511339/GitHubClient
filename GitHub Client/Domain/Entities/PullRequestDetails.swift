@@ -13,6 +13,8 @@ struct PullRequestDetails {
     let state: PullRequestState
     let title: String
     let body: String
+    let head: PRBaseResponseDTO
+    let base: PRBaseResponseDTO
     let labels: [LabelResponseDTO]
     let commitsCount: Int
     let additionsCount: Int
