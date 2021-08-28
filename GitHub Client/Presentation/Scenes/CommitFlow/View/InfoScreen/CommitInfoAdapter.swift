@@ -14,13 +14,29 @@ protocol CommitInfoAdapter: UITableViewDataSource {
 
 enum CommitInfoSectionType: Int, CaseIterable {
     case author
+    case message
     case parentCommit
+
+    var title: String {
+        switch self {
+        case .author:
+            return "Author"
+        case .message:
+            return "Message"
+        case .parentCommit:
+            return "Parent commit"
+        }
+    }
 }
 
 final class CommitInfoAdapterImpl: NSObject {
 
     private var commit: Commit?
-    private let cellManagers: [CommitInfoSectionType: TableCellManager] = [:]
+    private let cellManagers: [CommitInfoSectionType: TableCellManager] = [
+        .author: TableCellManager.create(cellType: CommitInfoAuthorCell.self),
+        .message: TableCellManager.create(cellType: CommitInfoMessageCell.self),
+        .parentCommit: TableCellManager.create(cellType: CommitInfoParentCell.self)
+    ]
 }
 
 // MARK: - CommitInfoAdapter
@@ -56,5 +72,9 @@ extension CommitInfoAdapterImpl {
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
         cell.populate(viewModel: commit)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        CommitInfoSectionType(rawValue: section)?.title
     }
 }

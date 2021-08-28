@@ -129,6 +129,12 @@
 		AD2E8FD126DAA035000A40D1 /* CommitDiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FD026DAA035000A40D1 /* CommitDiffViewController.swift */; };
 		AD2E8FD326DAA066000A40D1 /* CommitInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FD226DAA066000A40D1 /* CommitInfoViewController.swift */; };
 		AD2E8FD626DABBFF000A40D1 /* CommitInfoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FD526DABBFF000A40D1 /* CommitInfoAdapter.swift */; };
+		AD2E8FDC26DAC02C000A40D1 /* CommitInfoParentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FDA26DAC02C000A40D1 /* CommitInfoParentCell.swift */; };
+		AD2E8FDD26DAC02C000A40D1 /* CommitInfoParentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FDB26DAC02C000A40D1 /* CommitInfoParentCell.xib */; };
+		AD2E8FE026DAC151000A40D1 /* CommitInfoAuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FDE26DAC151000A40D1 /* CommitInfoAuthorCell.swift */; };
+		AD2E8FE126DAC151000A40D1 /* CommitInfoAuthorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FDF26DAC151000A40D1 /* CommitInfoAuthorCell.xib */; };
+		AD2E8FE626DAC3AF000A40D1 /* CommitInfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FE426DAC3AF000A40D1 /* CommitInfoMessageCell.swift */; };
+		AD2E8FE726DAC3AF000A40D1 /* CommitInfoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */; };
 		AD3776E1269F2697000AA54C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E0269F2697000AA54C /* AppDelegate.swift */; };
 		AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E2269F2697000AA54C /* SceneDelegate.swift */; };
 		AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3776E9269F2698000AA54C /* Assets.xcassets */; };
@@ -593,6 +599,12 @@
 		AD2E8FD026DAA035000A40D1 /* CommitDiffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitDiffViewController.swift; sourceTree = "<group>"; };
 		AD2E8FD226DAA066000A40D1 /* CommitInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoViewController.swift; sourceTree = "<group>"; };
 		AD2E8FD526DABBFF000A40D1 /* CommitInfoAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoAdapter.swift; sourceTree = "<group>"; };
+		AD2E8FDA26DAC02C000A40D1 /* CommitInfoParentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoParentCell.swift; sourceTree = "<group>"; };
+		AD2E8FDB26DAC02C000A40D1 /* CommitInfoParentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitInfoParentCell.xib; sourceTree = "<group>"; };
+		AD2E8FDE26DAC151000A40D1 /* CommitInfoAuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoAuthorCell.swift; sourceTree = "<group>"; };
+		AD2E8FDF26DAC151000A40D1 /* CommitInfoAuthorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitInfoAuthorCell.xib; sourceTree = "<group>"; };
+		AD2E8FE426DAC3AF000A40D1 /* CommitInfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoMessageCell.swift; sourceTree = "<group>"; };
+		AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitInfoMessageCell.xib; sourceTree = "<group>"; };
 		AD3776DD269F2697000AA54C /* GitHub Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3776E0269F2697000AA54C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3776E2269F2697000AA54C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1426,8 +1438,38 @@
 			children = (
 				AD2E8FD226DAA066000A40D1 /* CommitInfoViewController.swift */,
 				AD2E8FD526DABBFF000A40D1 /* CommitInfoAdapter.swift */,
+				AD2E8FE326DAC18E000A40D1 /* AuthorCell */,
+				AD2E8FE226DAC184000A40D1 /* ParentCell */,
+				AD2E8FE826DAC5B1000A40D1 /* MessageCell */,
 			);
 			path = InfoScreen;
+			sourceTree = "<group>";
+		};
+		AD2E8FE226DAC184000A40D1 /* ParentCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E8FDA26DAC02C000A40D1 /* CommitInfoParentCell.swift */,
+				AD2E8FDB26DAC02C000A40D1 /* CommitInfoParentCell.xib */,
+			);
+			path = ParentCell;
+			sourceTree = "<group>";
+		};
+		AD2E8FE326DAC18E000A40D1 /* AuthorCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E8FDE26DAC151000A40D1 /* CommitInfoAuthorCell.swift */,
+				AD2E8FDF26DAC151000A40D1 /* CommitInfoAuthorCell.xib */,
+			);
+			path = AuthorCell;
+			sourceTree = "<group>";
+		};
+		AD2E8FE826DAC5B1000A40D1 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E8FE426DAC3AF000A40D1 /* CommitInfoMessageCell.swift */,
+				AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */,
+			);
+			path = MessageCell;
 			sourceTree = "<group>";
 		};
 		AD3776D4269F2697000AA54C = {
@@ -2737,6 +2779,7 @@
 				ADA68BAB26B55621004AC06C /* octocat_gray-4.png in Resources */,
 				AD20E4DF26A8B313003BB5F1 /* AppIconPinkLight@2x-4.png in Resources */,
 				ADA68BAD26B55621004AC06C /* octocat_gray@3x-1.png in Resources */,
+				AD2E8FDD26DAC02C000A40D1 /* CommitInfoParentCell.xib in Resources */,
 				AD2E8FB026DA183A000A40D1 /* PRDiffCell.xib in Resources */,
 				ADB60D6C26D3901A0024479D /* SearchRepCell.xib in Resources */,
 				ADB60D7826D3C7F10024479D /* ResultIssueCell.xib in Resources */,
@@ -2773,6 +2816,7 @@
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
+				AD2E8FE126DAC151000A40D1 /* CommitInfoAuthorCell.xib in Resources */,
 				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
 				ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */,
@@ -2781,6 +2825,7 @@
 				AD39A58C26C67DDF00309481 /* CommitCell.xib in Resources */,
 				ADC5380326CBE484009B7A7E /* HomeWidgetCell.xib in Resources */,
 				ADBC1ADF26C4FDB4000F9B88 /* ProfileCardView.xib in Resources */,
+				AD2E8FE726DAC3AF000A40D1 /* CommitInfoMessageCell.xib in Resources */,
 				ADA68BAA26B55621004AC06C /* octocat_gray@2x-2.png in Resources */,
 				AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */,
 				ADA7494726CE580100C8D475 /* ProfileHeaderCell.xib in Resources */,
@@ -3126,6 +3171,7 @@
 				AD23E77F26D0F7B8009FEB27 /* PRListViewModel.swift in Sources */,
 				ADA1693E26C593F10040B635 /* UserCell.swift in Sources */,
 				ADFCF01226D8DB14004FB341 /* ReleaseFlowCoordinator.swift in Sources */,
+				AD2E8FDC26DAC02C000A40D1 /* CommitInfoParentCell.swift in Sources */,
 				AD23E77826D0F183009FEB27 /* PRListRequestModel.swift in Sources */,
 				AD20E56526AB1324003BB5F1 /* AccountSettingsViewController.swift in Sources */,
 				AD79550A26AC067B004E6973 /* SettingsStorage.swift in Sources */,
@@ -3221,6 +3267,7 @@
 				AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */,
 				AD23E78F26D101C5009FEB27 /* WatchersRequestModel.swift in Sources */,
 				ADFCF02626D90259004FB341 /* PullRequestDetails.swift in Sources */,
+				AD2E8FE626DAC3AF000A40D1 /* CommitInfoMessageCell.swift in Sources */,
 				ADC5380B26CC09E2009B7A7E /* RepositoryInfoCell.swift in Sources */,
 				ADC538CE26CD1E17009B7A7E /* UsersRequestModel.swift in Sources */,
 				ADFCEFF926D81C65004FB341 /* SearchFilterStorageImpl.swift in Sources */,
@@ -3240,6 +3287,7 @@
 				AD2E8FCB26DA5B73000A40D1 /* CommitDIContainer.swift in Sources */,
 				AD5C8E2226D29633003E2F38 /* AccountCell.swift in Sources */,
 				AD20E56126AAFB35003BB5F1 /* TokenResponse.swift in Sources */,
+				AD2E8FE026DAC151000A40D1 /* CommitInfoAuthorCell.swift in Sources */,
 				AD6B09C126C2A7C0004644D2 /* UserCDEntity+Mapping.swift in Sources */,
 				AD6B09B126C29440004644D2 /* LoginEndpoint.swift in Sources */,
 				ADB185DA26D26D05000245A9 /* UIImageView+UserProfile.swift in Sources */,
