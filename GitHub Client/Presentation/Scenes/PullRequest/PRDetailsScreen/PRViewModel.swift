@@ -7,11 +7,17 @@
 
 import UIKit
 
-struct PRActions {}
+struct PRActions {
+    let showDiff: (URL) -> Void
+    let showCommits: (URL) -> Void
+}
 
 protocol PRViewModelInput {
     func viewDidLoad()
     func refresh()
+
+    func showDiff()
+    func showCommits()
 }
 
 protocol PRViewModelOutput {
@@ -57,6 +63,15 @@ extension PRViewModelImpl {
 
     func refresh() {
         fetchPullRequest()
+    }
+
+
+    func showDiff() {
+        actions.showDiff(pullRequest.diffUrl)
+    }
+
+    func showCommits() {
+        actions.showCommits(pullRequest.commitsUrl)
     }
 }
 

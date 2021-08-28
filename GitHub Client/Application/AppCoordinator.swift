@@ -35,6 +35,10 @@ protocol AppCoordinatorDependencies {
     func releaseCoordinator(in nav: UINavigationController,
                             actions: AppCoordinatorActions,
                             release: Release) -> ReleaseFlowCoordinator
+
+    func commitsCoordinator(in nav: UINavigationController,
+                            actions: AppCoordinatorActions,
+                            commitsUrl: URL) -> CommitsCoordinator
 }
 
 protocol AppCoordinatorActions {
@@ -52,6 +56,10 @@ protocol AppCoordinatorActions {
     func openIssue(_ issue: Issue, in nav: UINavigationController)
     func openPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController)
     func openRelease(_ release: Release, in nav: UINavigationController)
+
+    func showCommits(_ url: URL, in nav: UINavigationController)
+
+    // MARK: - Remove
 
     func openUserRecentEvents(_ user: User, in nav: UINavigationController)
     func openUserStarred(_ user: User, in nav: UINavigationController)
@@ -163,6 +171,11 @@ extension AppCoordinator: AppCoordinatorActions {
 
     func openRelease(_ release: Release, in nav: UINavigationController) {
         let coordinator = dependencies.releaseCoordinator(in: nav, actions: self, release: release)
+        coordinator.start()
+    }
+
+    func showCommits(_ url: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.commitsCoordinator(in: nav, actions: self, commitsUrl: url)
         coordinator.start()
     }
 

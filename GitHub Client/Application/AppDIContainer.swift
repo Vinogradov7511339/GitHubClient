@@ -119,6 +119,11 @@ extension AppDIContainer: AppCoordinatorDependencies {
         let container = ReleaseDIContainer(releaseDependencies(actions, release: release))
         return ReleaseFlowCoordinator(with: container, in: nav)
     }
+
+    func commitsCoordinator(in nav: UINavigationController, actions: AppCoordinatorActions, commitsUrl: URL) -> CommitsCoordinator {
+        let container = CommitsDIContainer(commitsDependencies(actions, commitsUrl: commitsUrl))
+        return CommitsCoordinator(with: container, in: nav)
+    }
 }
 
 // MARK: - Dependencies
@@ -198,12 +203,20 @@ private extension AppDIContainer {
     func pullRequestDependencies(_ actions: AppCoordinatorActions,
                                  pullRequest: PullRequest) -> PullRequestDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
-              pullRequest: pullRequest)
+              pullRequest: pullRequest,
+              showCommits: actions.showCommits(_:in:))
     }
 
     func releaseDependencies(_ actions: AppCoordinatorActions,
                              release: Release) -> ReleaseDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
               release: release)
+    }
+
+    func commitsDependencies(_ actions: AppCoordinatorActions,
+                             commitsUrl: URL) -> CommitsDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+                      issueFilterStorage: issueFilterStorage,
+                      commitsUrl: commitsUrl)
     }
 }

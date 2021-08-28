@@ -54,8 +54,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.branchesViewController()
     }
 
-    func commitsViewController(_ actions: CommitsActions) -> UIViewController {
-        repositoryFactory.commitsViewController(dependencies.repository, actions: actions)
+    func commitsViewController(actions: CommitsActions) -> UIViewController {
+        repositoryFactory.commitsViewController(dependencies.repository.commitsUrl, actions: actions)
     }
 
     func commitViewController() -> UIViewController {

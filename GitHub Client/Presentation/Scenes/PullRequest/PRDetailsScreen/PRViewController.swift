@@ -91,6 +91,25 @@ private extension PRViewController {
 
 // MARK: - UITableViewDelegate
 extension PRViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let sectionType = PRSectionType(rawValue: indexPath.section) else { return }
+        switch sectionType {
+        case .prInfo:
+            didSelect(indexPath.row)
+        case .comment: break
+        }
+    }
+
+    private func didSelect(_ row: Int) {
+        guard let rowType = PRHeaderCellType(rawValue: row) else { return }
+        switch rowType {
+        case .header: break
+        case .headerComment: break
+        case .diffCell: viewModel.showDiff()
+        case .commits: viewModel.showCommits()
+        }
+    }
 }
 
 // MARK: - Setup views

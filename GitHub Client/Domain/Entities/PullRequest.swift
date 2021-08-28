@@ -16,6 +16,8 @@ enum PullRequestState: String {
 struct PullRequest {
     let id: Int
     let url: URL
+    let diffUrl: URL
+    let commitsUrl: URL
     let number: Int
     let state: PullRequestState
     let title: String

@@ -32,10 +32,9 @@ struct RepEndpoits {
     // MARK: - Commits
 
     static func commits(_ model: CommitsRequestModel) -> Endpoint<[CommitInfoResponse]> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
         let page = model.page
-        return Endpoint(path: "repos/\(login)/\(name)/commits",
+        return Endpoint(path: model.commitsUrl.absoluteString,
+                        isFullPath: true,
                         queryParametersEncodable: ["page": page])
     }
 

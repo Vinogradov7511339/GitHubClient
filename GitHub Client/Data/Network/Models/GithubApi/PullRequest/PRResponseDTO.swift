@@ -10,6 +10,8 @@ import Foundation
 struct PRResponseDTO: Codable {
     let url: URL
     let id: Int
+    let htmlUrl: URL
+    let diffUrl: URL
     let issueUrl: URL?
     let number: Int
     let state: String
@@ -36,6 +38,8 @@ struct PRResponseDTO: Codable {
     func toDomain() -> PullRequest {
         .init(id: id,
               url: url,
+              diffUrl: diffUrl,
+              commitsUrl: commitsUrl,
               number: number,
               state: PullRequestState(rawValue: state) ?? .unknown,
               title: title,

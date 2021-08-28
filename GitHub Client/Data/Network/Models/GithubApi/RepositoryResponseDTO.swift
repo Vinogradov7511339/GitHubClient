@@ -46,7 +46,7 @@ struct RepositoryResponseDTO: Codable {
     let branchesUrl: String?
     let collaboratorsUrl: String?
     let commentsUrl: String?
-    let commitsUrl: String?
+    let commitsUrl: String
     let compareUrl: String?
     let contentsUrl: String?
     let contributorsUrl: URL?
@@ -107,7 +107,11 @@ struct RepositoryResponseDTO: Codable {
 
     func toDomain() -> Repository? {
         let newPath = contentsUrl?.replacingOccurrences(of: "/{+path}", with: "") ?? ""
+        let commitsPath = commitsUrl.replacingOccurrences(of: "{/sha}", with: "")
         guard let path = URL(string: newPath) else {
+            return nil
+        }
+        guard let commitsUrl = URL(string: commitsPath) else {
             return nil
         }
         return Repository(
@@ -122,6 +126,7 @@ struct RepositoryResponseDTO: Codable {
             language: language,
             hasIssues: hasIssues ?? false,
             homePage: homepage,
+            commitsUrl: commitsUrl,
             contentPath: path,
             currentBranch: defaultBranch ?? "NaN",
             license: license?.name

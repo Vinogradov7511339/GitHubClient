@@ -14,6 +14,8 @@ final class PullRequestDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let pullRequest: PullRequest
+
+        let showCommits: (URL, UINavigationController) -> Void
     }
 
     // MARK: - Private variables
@@ -31,5 +33,13 @@ final class PullRequestDIContainer {
 extension PullRequestDIContainer: PullRequestCoordinatorDependencies {
     func prViewController(actions: PRActions) -> UIViewController {
         prFactory.pullRequestViewController(dependencies.pullRequest, actions: actions)
+    }
+
+    func diffViewController(_ url: URL, actions: DiffActions) -> UIViewController {
+        prFactory.diffViewController(url, actions: actions)
+    }
+
+    func showCommits(_ url: URL, in nav: UINavigationController) {
+        dependencies.showCommits(url, nav)
     }
 }

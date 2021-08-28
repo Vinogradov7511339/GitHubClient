@@ -10,7 +10,7 @@ import UIKit
 protocol RepositoryFactory {
     func repositoryViewController(_ rep: Repository, actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
-    func commitsViewController(_ rep: Repository, actions: CommitsActions) -> UIViewController
+    func commitsViewController(_ commitsUrl: URL, actions: CommitsActions) -> UIViewController
     func commitViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
@@ -45,8 +45,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func commitsViewController(_ rep: Repository, actions: CommitsActions) -> UIViewController {
-        CommitsViewController.create(with: commitsViewModel(rep, actions: actions))
+    func commitsViewController(_ commitsUrl: URL, actions: CommitsActions) -> UIViewController {
+        CommitsViewController.create(with: commitsViewModel(commitsUrl, actions: actions))
     }
 
     func commitViewController() -> UIViewController {
@@ -96,8 +96,8 @@ private extension RepositoryFactoryImpl {
         RepViewModelImpl(repository: rep, repUseCase: repUseCase, actions: actions)
     }
 
-    func commitsViewModel(_ rep: Repository, actions: CommitsActions) -> CommitsViewModel {
-        CommitsViewModelImpl(commitUseCase: commitsUseCase, repository: rep, actions: actions)
+    func commitsViewModel(_ commitsUrl: URL, actions: CommitsActions) -> CommitsViewModel {
+        CommitsViewModelImpl(commitUseCase: commitsUseCase, commitsUrl: commitsUrl, actions: actions)
     }
 
     func folderViewModel(_ path: URL, actions: FolderActions) -> FolderViewModel {

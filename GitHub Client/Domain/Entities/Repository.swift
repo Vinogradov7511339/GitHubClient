@@ -19,6 +19,7 @@ struct Repository {
     let language: String?
     let hasIssues: Bool
     let homePage: String?
+    let commitsUrl: URL
     let contentPath: URL
     let currentBranch: String
     let license: String?

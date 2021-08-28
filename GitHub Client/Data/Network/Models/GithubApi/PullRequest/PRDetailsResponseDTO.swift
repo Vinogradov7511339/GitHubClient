@@ -48,9 +48,11 @@ struct PRDetailsResponseDTO: Codable {
 
     func toDomain() -> PullRequestDetails {
         .init(number: number,
+              url: url,
               htmlUrl: htmlUrl,
               state: PullRequestState(rawValue: state) ?? .unknown,
               title: title,
+              user: user.toDomain(),
               body: body,
               head: head,
               base: base,
@@ -58,6 +60,9 @@ struct PRDetailsResponseDTO: Codable {
               commitsCount: commits,
               additionsCount: additions,
               deletionsCount: deletions,
-              changedFilesCount: changedFiles)
+              changedFilesCount: changedFiles,
+              createdAt: createdAt.toDate(),
+              updatedAt: updatedAt?.toDate(),
+              closedAt: closedAt?.toDate())
     }
 }

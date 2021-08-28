@@ -30,14 +30,14 @@ final class CommitsViewModelImpl: CommitsViewModel {
 
     // MARK: - Private
     private let commitUseCase: CommitUseCase
-    private let repository: Repository
+    private let commitsUrl: URL
     private let actions: CommitsActions
     private var lastPage: Int?
     private var currentPage = 1
 
-    init(commitUseCase: CommitUseCase, repository: Repository, actions: CommitsActions) {
+    init(commitUseCase: CommitUseCase, commitsUrl: URL, actions: CommitsActions) {
         self.commitUseCase = commitUseCase
-        self.repository = repository
+        self.commitsUrl = commitsUrl
         self.actions = actions
     }
 }
@@ -67,7 +67,7 @@ extension CommitsViewModelImpl {
 private extension CommitsViewModelImpl {
     func fetch() {
         state.value = .loading
-        let request = CommitsRequestModel(page: currentPage, repository: repository)
+        let request = CommitsRequestModel(page: currentPage, commitsUrl: commitsUrl)
         commitUseCase.fetchCommits(request: request) { result in
             switch result {
             case .success(let model):

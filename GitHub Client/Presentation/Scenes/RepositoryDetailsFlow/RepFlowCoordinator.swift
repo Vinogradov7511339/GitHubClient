@@ -10,7 +10,7 @@ import UIKit
 protocol RepFlowCoordinatorDependencies {
     func repositoryViewController(actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
-    func commitsViewController(_ actions: CommitsActions) -> UIViewController
+    func commitsViewController(actions: CommitsActions) -> UIViewController
     func commitViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
@@ -140,7 +140,7 @@ private extension RepFlowCoordinator {
 
     func showCommits(_ repository: Repository, _ branch: String) {
         let actions = CommitsActions(showCommit: startCommitsFlow(_:))
-        let viewController = dependencies.commitsViewController(actions  )
+        let viewController = dependencies.commitsViewController(actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

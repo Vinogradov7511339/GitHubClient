@@ -14,6 +14,9 @@ enum PRSectionType: Int, CaseIterable {
 
 enum PRHeaderCellType: Int {
     case header
+    case headerComment
+    case diffCell
+    case commits
 }
 
 protocol PRAdapter: UITableViewDataSource {
@@ -26,7 +29,10 @@ final class PRAdapterImpl: NSObject {
     private var comments: [Comment] = []
     private let commentCellManager = TableCellManager.create(cellType: PRCommentCell.self)
     private let prInfoCellManagers: [PRHeaderCellType: TableCellManager] = [
-        .header: TableCellManager.create(cellType: PRHeaderCell.self)
+        .header: TableCellManager.create(cellType: PRHeaderCell.self),
+        .headerComment: TableCellManager.create(cellType: PRHeaderCommentCell.self),
+        .diffCell: TableCellManager.create(cellType: PRDiffCell.self),
+        .commits: TableCellManager.create(cellType: PRCommitsCell.self)
     ]
 }
 
@@ -88,6 +94,6 @@ extension PRAdapterImpl {
 
 private extension PullRequestDetails {
     var cells: [PRHeaderCellType] {
-        return [.header]
+        return [.header, .headerComment, .diffCell, .commits]
     }
 }
