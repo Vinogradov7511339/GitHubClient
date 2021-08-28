@@ -28,7 +28,7 @@ protocol RepRepository {
     func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
 
     typealias CommitHandler = (Result<Commit, Error>) -> Void
-    func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler)
+    func fetchCommit(_ commitUrl: URL, completion: @escaping CommitHandler)
 
     // MARK: - Content
 

@@ -101,7 +101,7 @@ private extension RepositoryFactoryImpl {
     }
 
     func commitViewModel(_ commitUrl: URL, actions: CommitActions) -> CommitViewModel {
-        CommitViewModelImpl(commitUrl: commitUrl, useCase: repUseCase, actions: actions)
+        CommitViewModelImpl(commitUrl: commitUrl, useCase: commitsUseCase, actions: actions)
     }
 
     func folderViewModel(_ path: URL, actions: FolderActions) -> FolderViewModel {

@@ -87,8 +87,8 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler) {
-        let endpoint = RepEndpoits.commit(request)
+    func fetchCommit(_ commitUrl: URL, completion: @escaping CommitHandler) {
+        let endpoint = RepEndpoits.commit(commitUrl)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):

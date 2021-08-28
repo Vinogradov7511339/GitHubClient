@@ -12,7 +12,7 @@ protocol CommitUseCase {
     func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
 
     typealias CommitHandler = RepRepository.CommitHandler
-    func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler)
+    func fetchCommit(commitUrl: URL, completion: @escaping CommitHandler)
 
     typealias CommentsHandler = RepRepository.CommentsHandler
     func fetchComments(_ request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler)
@@ -33,8 +33,8 @@ extension CommitUseCaseImpl: CommitUseCase {
         repRepository.fetchCommits(request: request, completion: completion)
     }
 
-    func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler) {
-        repRepository.fetchCommit(request: request, completion: completion)
+    func fetchCommit(commitUrl: URL, completion: @escaping CommitHandler) {
+        repRepository.fetchCommit(commitUrl, completion: completion)
     }
 
     func fetchComments(_ request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler) {

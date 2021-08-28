@@ -38,8 +38,8 @@ struct RepEndpoits {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func commit(_ model: CommitRequestModel) -> Endpoint<CommitResponseDTO> {
-        fatalError()
+    static func commit(_ commitUrl: URL) -> Endpoint<CommitResponseDTO> {
+        return Endpoint(path: commitUrl.absoluteString, isFullPath: true)
     }
 
     // MARK: - Content
