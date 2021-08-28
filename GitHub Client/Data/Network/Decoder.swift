@@ -26,3 +26,18 @@ extension JSONResponseDecoder: ResponseDecoder {
         return try jsonDecoder.decode(T.self, from: data)
     }
 }
+
+final class TextResponseDecoder {}
+
+// MARK: - ResponseDecoder
+extension TextResponseDecoder: ResponseDecoder {
+    func decode<T>(_ data: Data) throws -> T where T : Decodable {
+        if let result = String(data: data, encoding: .utf8) as? T {
+            return result
+        } else {
+            throw TextDecodeError()
+        }
+    }
+}
+
+struct TextDecodeError: Error {}

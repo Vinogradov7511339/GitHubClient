@@ -56,5 +56,19 @@ extension DiffViewModelImpl {
 
 // MARK: - Private
 private extension DiffViewModelImpl {
-    func fetch() {}
+    func fetch() {
+        state.value = .loading
+        useCase.fetchDiff(diffUrl) { result in
+            switch result {
+            case .success(let raw):
+                self.handleDiff(raw)
+            case .failure(let error):
+                self.state.value = .error(error: error)
+            }
+        }
+    }
+
+    func handleDiff(_ raw: String) {
+        print("a")
+    }
 }

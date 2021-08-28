@@ -24,10 +24,10 @@ protocol RepRepository {
 
     // MARK: - Commits
 
-    typealias CommitsHandler = (Result<ListResponseModel<ExtendedCommit>, Error>) -> Void
+    typealias CommitsHandler = (Result<ListResponseModel<Commit>, Error>) -> Void
     func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
 
-    typealias CommitHandler = (Result<ExtendedCommit, Error>) -> Void
+    typealias CommitHandler = (Result<Commit, Error>) -> Void
     func fetchCommit(request: CommitRequestModel, completion: @escaping CommitHandler)
 
     // MARK: - Content
@@ -48,7 +48,8 @@ protocol RepRepository {
     func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler)
 
     typealias IssueCommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
-    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler)
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>,
+                            completion: @escaping IssueCommentsHandler)
 
     // MARK: - Pull Requests
 
@@ -85,6 +86,10 @@ protocol RepRepository {
 
     typealias CommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
     func fetchIssueComments(request: CommentsRequestModel<Issue>, completion: @escaping CommentsHandler)
-    func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler)
+    func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>,
+                                  completion: @escaping CommentsHandler)
     func fetchCommitComments(request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler)
+
+    // MARK: - Diff
+    func fetchDiff(_ url: URL, completion: @escaping (Result<String, Error>) -> Void)
 }

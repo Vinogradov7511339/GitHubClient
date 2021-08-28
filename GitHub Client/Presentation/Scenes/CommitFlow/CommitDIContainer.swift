@@ -1,5 +1,5 @@
 //
-//  CommitsDIContainer.swift
+//  CommitDIContainer.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 28.08.2021.
@@ -7,16 +7,14 @@
 
 import UIKit
 
-final class CommitsDIContainer {
+final class CommitDIContainer {
 
     // MARK: - Dependencies
 
     struct Dependencies {
         let dataTransferService: DataTransferService
         let issueFilterStorage: IssueFilterStorage
-        let commitsUrl: URL
-
-        let showCommit: (URL, UINavigationController) -> Void
+        let commitUrl: URL
     }
 
     // MARK: - Private variables
@@ -32,13 +30,9 @@ final class CommitsDIContainer {
     }
 }
 
-// MARK: - CommitsCoordinatorDependencies
-extension CommitsDIContainer: CommitsCoordinatorDependencies {
-    func commitsViewController(actions: CommitsActions) -> UIViewController {
-        repFactory.commitsViewController(dependencies.commitsUrl, actions: actions)
-    }
-
-    func show(_ commit: URL, in nav: UINavigationController) {
-        dependencies.showCommit(commit, nav)
+// MARK: - CommitCoordinatorDependencies
+extension CommitDIContainer: CommitCoordinatorDependencies {
+    func commitViewController(_ actions: CommitActions) -> UIViewController {
+        repFactory.commitViewController(dependencies.commitUrl, actions: actions)
     }
 }

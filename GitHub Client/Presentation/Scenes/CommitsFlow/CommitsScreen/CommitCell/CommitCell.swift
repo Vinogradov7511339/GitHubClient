@@ -27,12 +27,12 @@ class CommitCell: BaseCollectionViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension CommitCell: ConfigurableCell {
-    func configure(viewModel: ExtendedCommit) {
+    func configure(viewModel: Commit) {
         authorAvatarImageView.set(url: viewModel.author.avatarUrl)
-        createdAtLabel.text = viewModel.createdAt.timeAgoDisplay()
+        createdAtLabel.text = viewModel.createdAt?.timeAgoDisplay() ?? ""
         authorLoginLabel.text = viewModel.author.login
         commiterLoginLabel.text = viewModel.commiter.login
         messageLabel.text = viewModel.message
-        commentsCountLabel.text = "\(viewModel.commentsCount)"
+        commentsCountLabel.text = "\(viewModel.commentCount)"
     }
 }

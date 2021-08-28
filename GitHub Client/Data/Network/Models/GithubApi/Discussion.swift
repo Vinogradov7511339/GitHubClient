@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Discussion: Codable {
     let author: UserDetailsResponseDTO?
     let body: String?

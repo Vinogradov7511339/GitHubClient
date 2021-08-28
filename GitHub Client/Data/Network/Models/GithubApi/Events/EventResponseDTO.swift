@@ -74,7 +74,8 @@ struct EventResponseDTO: Codable {
         let url: URL
 
         func toDomain() -> Commit {
-            return .init(sha: sha, author: author.toDomain(), message: message, url: url)
+            fatalError()
+//            return .init(sha: sha, author: author.toDomain(), message: message, url: url)
         }
     }
 
@@ -82,8 +83,9 @@ struct EventResponseDTO: Codable {
         let email: String
         let name: String
 
-        func toDomain() -> Commit.Author {
-            .init(email: email, name: name)
+        func toDomain() -> Commit {
+            fatalError()
+//            .init(email: email, name: name)
         }
     }
 

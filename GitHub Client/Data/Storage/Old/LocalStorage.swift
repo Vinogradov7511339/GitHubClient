@@ -136,42 +136,42 @@ private extension LocalStorage {
                 }
             }
         }
-        
+
         if let operation = lastOperation {
             operation.addDependency(operation)
         }
-        
+
         lastOperation = operation
         operationQueue.addOperation(operation)
     }
-    
+
     func handleSaveError(_ error: Error) {
         let nsError = error as NSError
         guard let sqlLiteError = nsError.userInfo[NSSQLiteErrorDomain] as? Int else {
             return
         }
-        
+
         switch sqlLiteError {
         case SqlLiteErrors.sqliteFull:
             self.postDiskFullNotification()
-            
+
         default:
             self.postFailNotification(error: error)
         }
     }
-    
+
     func postDiskFullNotification() {
         NotificationCenter.default.post(
             name: Notification.Name.Storage.diskFull,
             object: nil,
             userInfo: nil)
     }
-    
+
     func postFailNotification(error: Error) {
         let userInfo: [AnyHashable: Any] = [
-            LocalStorage.storageErrorKey: error,
+            LocalStorage.storageErrorKey: error
         ]
-        
+
         NotificationCenter.default.post(
             name: Notification.Name.Storage.didFail,
             object: nil,

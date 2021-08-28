@@ -16,6 +16,8 @@ protocol PRUseCase {
 
     typealias CommentsHandler = RepRepository.CommentsHandler
     func fetchComments(_ request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler)
+
+    func fetchDiff(_ url: URL, completion: @escaping (Result<String, Error>) -> Void)
 }
 
 final class PRUseCaseImpl {
@@ -40,5 +42,9 @@ extension PRUseCaseImpl: PRUseCase {
 
     func fetchComments(_ request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler) {
         repRepository.fetchPullRequestComments(request: request, completion: completion)
+    }
+
+    func fetchDiff(_ url: URL, completion: @escaping (Result<String, Error>) -> Void) {
+        repRepository.fetchDiff(url, completion: completion)
     }
 }

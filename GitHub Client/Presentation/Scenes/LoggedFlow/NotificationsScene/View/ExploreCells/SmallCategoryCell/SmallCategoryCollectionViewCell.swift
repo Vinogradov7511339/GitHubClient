@@ -16,7 +16,7 @@ struct SmallCategoryCellViewModel {
     init(profile: UserDetailsResponseDTO) {
         avatarUrl = profile.avatarUrl
         login = profile.login
-        followers = "\(profile.followers ?? 0) followers"
+        followers = "\(profile.followers.roundedWithAbbreviations) followers"
     }
 }
 

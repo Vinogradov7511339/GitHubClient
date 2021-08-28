@@ -10,8 +10,6 @@ import UIKit
 protocol RepFlowCoordinatorDependencies {
     func repositoryViewController(actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
-    func commitsViewController(actions: CommitsActions) -> UIViewController
-    func commitViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
     func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
@@ -21,6 +19,7 @@ protocol RepFlowCoordinatorDependencies {
     func watchersViewController() -> UIViewController
     func forksViewController() -> UIViewController
 
+    func showCommits(_ url: URL, in nav: UINavigationController)
     func showPullRequest(_ pr: PullRequest, in nav: UINavigationController)
     func showRelease(_ release: Release, in nav: UINavigationController)
     func showIssue(_ issue: Issue, in nav: UINavigationController)
@@ -66,7 +65,7 @@ private extension RepFlowCoordinator {
             showReleases: showReleases(_:),
             showWatchers: showWatchers(_:),
             showCode: showCode(_:),
-            showCommits: showCommits,
+            showCommits: showCommits(in: nav),
             openLink: dependencies.openLink(url:),
             share: dependencies.share(url:)
         )
@@ -137,12 +136,6 @@ private extension RepFlowCoordinator {
         let viewController = dependencies.fileViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
-
-    func showCommits(_ repository: Repository, _ branch: String) {
-        let actions = CommitsActions(showCommit: startCommitsFlow(_:))
-        let viewController = dependencies.commitsViewController(actions: actions)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
 private extension RepFlowCoordinator {
@@ -152,14 +145,18 @@ private extension RepFlowCoordinator {
     }
 
     func showPullRequest(in nav: UINavigationController) -> (PullRequest) -> Void {
-        return { pr in self.dependencies.showPullRequest(pr, in: nav) }
+        return { pullRequest in self.dependencies.showPullRequest(pullRequest, in: nav) }
+    }
+
+    func showCommits(in nav: UINavigationController) -> (URL) -> Void {
+        return { commitsUrl in self.dependencies.showCommits(commitsUrl, in: nav)}
     }
 
     func showRelease(in nav: UINavigationController) -> (Release) -> Void {
         return { release in self.dependencies.showRelease(release, in: nav) }
     }
 
-    func startCommitsFlow(_ commit: ExtendedCommit) {}
+    func startCommitsFlow(_ commit: Commit) {}
 
     func openCodeOptions() {
         let viewController = dependencies.codeOptionsViewController()

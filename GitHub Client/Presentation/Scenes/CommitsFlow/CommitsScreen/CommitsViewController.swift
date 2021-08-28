@@ -56,7 +56,7 @@ private extension CommitsViewController {
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0)}
     }
 
-    func updateState(_ newState: ItemsSceneState<ExtendedCommit>) {
+    func updateState(_ newState: ItemsSceneState<Commit>) {
         switch newState {
         case .loaded(let items):
             prepareLoadedState(items)
@@ -67,7 +67,7 @@ private extension CommitsViewController {
         }
     }
 
-    func prepareLoadedState(_ commits: [ExtendedCommit]) {
+    func prepareLoadedState(_ commits: [Commit]) {
         hideLoader()
         hideError()
         collectionView.isHidden = false

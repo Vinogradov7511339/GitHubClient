@@ -17,7 +17,7 @@ struct RepActions {
     let showReleases: (Repository) -> Void
     let showWatchers: (Repository) -> Void
     let showCode: (URL) -> Void
-    let showCommits: (Repository, String) -> Void
+    let showCommits: (URL) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
 }
@@ -110,7 +110,7 @@ extension RepViewModelImpl {
     }
 
     func showCommits() {
-        actions.showCommits(rep, currentBranch)
+        actions.showCommits(rep.commitsUrl)
     }
 
     func showSources() {

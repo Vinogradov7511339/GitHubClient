@@ -39,6 +39,10 @@ protocol AppCoordinatorDependencies {
     func commitsCoordinator(in nav: UINavigationController,
                             actions: AppCoordinatorActions,
                             commitsUrl: URL) -> CommitsCoordinator
+
+    func commitCoordinator(in nav: UINavigationController,
+                           actions: AppCoordinatorActions,
+                           commitsUrl: URL) -> CommitCoordinator
 }
 
 protocol AppCoordinatorActions {
@@ -58,6 +62,7 @@ protocol AppCoordinatorActions {
     func openRelease(_ release: Release, in nav: UINavigationController)
 
     func showCommits(_ url: URL, in nav: UINavigationController)
+    func showCommit(_ url: URL, in nav: UINavigationController)
 
     // MARK: - Remove
 
@@ -176,6 +181,11 @@ extension AppCoordinator: AppCoordinatorActions {
 
     func showCommits(_ url: URL, in nav: UINavigationController) {
         let coordinator = dependencies.commitsCoordinator(in: nav, actions: self, commitsUrl: url)
+        coordinator.start()
+    }
+
+    func showCommit(_ url: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.commitCoordinator(in: nav, actions: self, commitsUrl: url)
         coordinator.start()
     }
 

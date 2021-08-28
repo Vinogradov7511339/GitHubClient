@@ -79,7 +79,7 @@ extension RepRepositoryImpl {
             case .success(let response):
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.map { $0.toDomain() }
-                let model = ListResponseModel<ExtendedCommit>(items: items, lastPage: lastPage)
+                let model = ListResponseModel<Commit>(items: items, lastPage: lastPage)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -170,7 +170,8 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchIssueComments(_ request: CommentsRequestModel<Issue>, completion: @escaping IssueCommentsHandler) {
+    func fetchIssueComments(_ request: CommentsRequestModel<Issue>,
+                            completion: @escaping IssueCommentsHandler) {
         let endpoint = RepEndpoits.issueComments(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
@@ -306,11 +307,28 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>, completion: @escaping CommentsHandler) {
+    func fetchPullRequestComments(request: CommentsRequestModel<PullRequest>,
+                                  completion: @escaping CommentsHandler) {
         fatalError()
     }
 
-    func fetchCommitComments(request: CommentsRequestModel<Commit>, completion: @escaping CommentsHandler) {
+    func fetchCommitComments(request: CommentsRequestModel<Commit>,
+                             completion: @escaping CommentsHandler) {
         fatalError()
+    }
+}
+
+// MARK: - Diff
+extension RepRepositoryImpl {
+    func fetchDiff(_ url: URL, completion: @escaping (Result<String, Error>) -> Void) {
+        let endpoint = RepEndpoits.diff(url)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let model):
+                completion(.success(model.model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

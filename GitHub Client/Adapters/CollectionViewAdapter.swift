@@ -35,15 +35,16 @@ extension CollectionViewAdapterImpl: CollectionViewAdapter {
 
 // MARK: - UICollectionViewDataSource
 extension CollectionViewAdapterImpl {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         let cell = cellManager.dequeueReusableCell(collectionView: collectionView, for: indexPath)
         cell.populate(viewModel: item)
         return cell
     }
 }
-

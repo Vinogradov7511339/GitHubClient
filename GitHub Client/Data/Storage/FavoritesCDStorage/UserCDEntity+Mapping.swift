@@ -24,6 +24,6 @@ extension UserCDEntity {
         guard let login = login else {
             return nil
         }
-        return .init(id: 1, login: "a", avatarUrl: avatarURL, url: avatarURL, type: .user)
+        return .init(id: 1, login: login, avatarUrl: avatarURL, url: avatarURL, type: .user)
     }
 }

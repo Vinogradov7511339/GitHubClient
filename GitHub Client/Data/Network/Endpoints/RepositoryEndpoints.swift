@@ -31,14 +31,14 @@ struct RepEndpoits {
 
     // MARK: - Commits
 
-    static func commits(_ model: CommitsRequestModel) -> Endpoint<[CommitInfoResponse]> {
+    static func commits(_ model: CommitsRequestModel) -> Endpoint<[CommitResponseDTO]> {
         let page = model.page
         return Endpoint(path: model.commitsUrl.absoluteString,
                         isFullPath: true,
                         queryParametersEncodable: ["page": page])
     }
 
-    static func commit(_ model: CommitRequestModel) -> Endpoint<CommitInfoResponse> {
+    static func commit(_ model: CommitRequestModel) -> Endpoint<CommitResponseDTO> {
         fatalError()
     }
 
@@ -161,5 +161,11 @@ struct RepEndpoits {
         let page = model.page
         return Endpoint(path: "repos/\(login)/\(name)/forks",
                         queryParametersEncodable: ["page": page])
+    }
+
+    // MARK: - Diff
+
+    static func diff(_ path: URL) -> Endpoint<String> {
+        return Endpoint(path: path.absoluteString, isFullPath: true, responseDecoder: TextResponseDecoder())
     }
 }

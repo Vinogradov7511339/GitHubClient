@@ -18,8 +18,11 @@ class UserStorage {
     static let shared = UserStorage()
 
     var loginState: LoginState {
-        if token == nil { return .notLogged }
-        else { return .logged }
+        if token == nil {
+            return .notLogged
+        } else {
+            return .logged
+        }
     }
 
     var token: TokenResponse? {

@@ -20,6 +20,7 @@ final class RepositoryDIContainer {
         var showIssue: (Issue, UINavigationController) -> Void
         var showPullRequest: (PullRequest, UINavigationController) -> Void
         var showRelease: (Release, UINavigationController) -> Void
+        let showCommits: (URL, UINavigationController) -> Void
 
         var openLink: (URL) -> Void
         var share: (URL) -> Void
@@ -54,12 +55,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.branchesViewController()
     }
 
-    func commitsViewController(actions: CommitsActions) -> UIViewController {
-        repositoryFactory.commitsViewController(dependencies.repository.commitsUrl, actions: actions)
-    }
-
-    func commitViewController() -> UIViewController {
-        repositoryFactory.commitViewController()
+    func showCommits(_ url: URL, in nav: UINavigationController) {
+        dependencies.showCommits(url, nav)
     }
 
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController {

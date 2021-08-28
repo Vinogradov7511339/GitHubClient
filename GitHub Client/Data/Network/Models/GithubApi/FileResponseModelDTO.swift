@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileResponseModelDTO: Codable {
+struct FileResponseModelDTO: Codable {
     let name: String
     let path: String
     let sha: String
@@ -19,26 +19,6 @@ class FileResponseModelDTO: Codable {
     let type: String
     let content: String
     let encoding: String?
-//    let _links
-    
-    internal init(name: String, path: String,
-                  sha: String, size: Int,
-                  url: URL, htmlUrl: URL,
-                  gitUrl: URL, downloadUrl: URL,
-                  type: String, content: String,
-                  encoding: String?) {
-        self.name = name
-        self.path = path
-        self.sha = sha
-        self.size = size
-        self.url = url
-        self.htmlUrl = htmlUrl
-        self.gitUrl = gitUrl
-        self.downloadUrl = downloadUrl
-        self.type = type
-        self.content = content
-        self.encoding = encoding
-    }
 
     func toDomain() -> File {
         var content: String

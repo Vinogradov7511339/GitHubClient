@@ -9,7 +9,8 @@ import Foundation
 
 protocol RepUseCase {
     typealias RepHandler = RepRepository.RepHandler
-    func fetchRepository(repository: Repository, completion: @escaping (Result<RepositoryDetails, Error>) -> Void)
+    func fetchRepository(repository: Repository,
+                         completion: @escaping (Result<RepositoryDetails, Error>) -> Void)
 
     // MARK: - Branches
 
@@ -64,7 +65,8 @@ class RepUseCaseImpl {
 // MARK: - RepUseCase
 extension RepUseCaseImpl: RepUseCase {
 
-    func fetchRepository(repository: Repository, completion: @escaping (Result<RepositoryDetails, Error>) -> Void) {
+    func fetchRepository(repository: Repository,
+                         completion: @escaping (Result<RepositoryDetails, Error>) -> Void) {
         repositoryStorage.fetchRepository(repository: repository) { result in
             switch result {
             case .success(let repository):

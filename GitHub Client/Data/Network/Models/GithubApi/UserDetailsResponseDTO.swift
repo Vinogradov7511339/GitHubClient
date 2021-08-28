@@ -76,17 +76,11 @@ struct UserDetailsResponseDTO: Codable {
                      totalRepCount: totalPrivateRepos ?? -1,
                      totalOwnedRepCount: ownedPrivateRepos ?? -1)
     }
+
     struct Plan: Codable {
         let name: String?
         let space: Int?
         let privateRepos: Int?
         let collaborators: Int?
-
-        enum CodingKeys: String, CodingKey {
-            case name
-            case space
-            case privateRepos = "private_repos"
-            case collaborators
-        }
     }
 }

@@ -31,7 +31,7 @@ protocol MyProfileRepository {
     func fetchEvents(request: EventsRequestModel, completion: @escaping EventsHandler)
 
     // MARK: - Subscriptions
-    
+
     typealias SubscriptionsHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
     func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler)
 }

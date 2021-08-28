@@ -120,9 +120,18 @@ extension AppDIContainer: AppCoordinatorDependencies {
         return ReleaseFlowCoordinator(with: container, in: nav)
     }
 
-    func commitsCoordinator(in nav: UINavigationController, actions: AppCoordinatorActions, commitsUrl: URL) -> CommitsCoordinator {
+    func commitsCoordinator(in nav: UINavigationController,
+                            actions: AppCoordinatorActions,
+                            commitsUrl: URL) -> CommitsCoordinator {
         let container = CommitsDIContainer(commitsDependencies(actions, commitsUrl: commitsUrl))
         return CommitsCoordinator(with: container, in: nav)
+    }
+
+    func commitCoordinator(in nav: UINavigationController,
+                           actions: AppCoordinatorActions,
+                           commitsUrl: URL) -> CommitCoordinator {
+        let container = CommitDIContainer(commitDependencies(commitsUrl))
+        return CommitCoordinator(with: container, in: nav)
     }
 }
 
@@ -170,6 +179,7 @@ private extension AppDIContainer {
               showIssue: actions.openIssue(_:in:),
               showPullRequest: actions.openPullRequest(_:in:),
               showRelease: actions.openRelease(_:in:),
+              showCommits: actions.showCommits(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               copy: actions.copy(text:))
@@ -217,6 +227,13 @@ private extension AppDIContainer {
                              commitsUrl: URL) -> CommitsDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
                       issueFilterStorage: issueFilterStorage,
-                      commitsUrl: commitsUrl)
+                      commitsUrl: commitsUrl,
+                      showCommit: actions.showCommit(_:in:))
+    }
+
+    func commitDependencies(_ commitUrl: URL) -> CommitDIContainer.Dependencies {
+        .init(dataTransferService: dataTransferService,
+              issueFilterStorage: issueFilterStorage,
+              commitUrl: commitUrl)
     }
 }

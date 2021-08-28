@@ -8,7 +8,7 @@
 import UIKit
 
 struct CommitsActions {
-    let showCommit: (ExtendedCommit) -> Void
+    let showCommit: (URL) -> Void
 }
 
 protocol CommitsViewModelInput {
@@ -18,7 +18,7 @@ protocol CommitsViewModelInput {
 }
 
 protocol CommitsViewModelOutput {
-    var state: Observable<ItemsSceneState<ExtendedCommit>> { get }
+    var state: Observable<ItemsSceneState<Commit>> { get }
 }
 
 typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
@@ -26,7 +26,7 @@ typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
 final class CommitsViewModelImpl: CommitsViewModel {
 
     // MARK: - Output
-    var state: Observable<ItemsSceneState<ExtendedCommit>> = Observable(.loading)
+    var state: Observable<ItemsSceneState<Commit>> = Observable(.loading)
 
     // MARK: - Private
     private let commitUseCase: CommitUseCase
@@ -52,7 +52,7 @@ extension CommitsViewModelImpl {
         switch state.value {
         case .loaded(let items):
             let commit = items[indexPath.row]
-            actions.showCommit(commit)
+            actions.showCommit(commit.url)
         default:
             break
         }

@@ -41,7 +41,7 @@ struct CommitCellViewModel {
     let isVerified: Bool?
     let date: String
 
-    init(_ commit: ExtendedCommit) {
+    init(_ commit: Commit) {
         authorsAvatars = [commit.author.avatarUrl]
         message = commit.message
         additionalMessage = nil
@@ -68,7 +68,7 @@ class CommitTableViewCell: BaseTableViewCell, NibLoadable {
 }
 
 extension CommitTableViewCell: ConfigurableCell {
-    func configure(viewModel: ExtendedCommit) {
+    func configure(viewModel: Commit) {
         messageLabel.text = viewModel.message
 //        messageLabel.text = viewModel.message
 //        dateLabel.text = viewModel.date

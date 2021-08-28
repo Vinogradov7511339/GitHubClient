@@ -18,7 +18,7 @@ struct Reactions: Codable {
     let hooray: Int
     let eyes: Int
     let rocket: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case url
         case totalCount = "total_count"
