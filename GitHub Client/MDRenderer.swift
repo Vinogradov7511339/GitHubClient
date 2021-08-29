@@ -24,8 +24,8 @@ final class MDRenderer {
         let items = parser.parse()
         for item in items {
             switch item {
-            case .text(let lines):
-                let view = textView(lines)
+            case .text(let textTypes):
+                let view = textView(textTypes)
                 stackView.addArrangedSubview(view)
 
             case .header(let header):
@@ -50,15 +50,16 @@ final class MDRenderer {
 
 // MARK: - Views
 private extension MDRenderer {
-    func textView(_ text: [String]) -> UIView {
+    func textView(_ textTypes: [TextType]) -> UIView {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = text.joined(separator: "\n")
+        label.attributedText = attributedString(from: textTypes)
         return label
     }
 
     func headerView(_ header: String) -> UIView {
         let label = UILabel()
+        label.numberOfLines = 0
         label.font = .boldSystemFont(ofSize: 17.0)
         label.text = header
         return label
@@ -83,5 +84,45 @@ private extension MDRenderer {
         let imageURL = URL(string: "temp")
         imageView.set(url: imageURL)
         return imageView
+    }
+}
+
+// MARK: - Attributes
+private extension MDRenderer {
+
+    typealias Attributes = [NSAttributedString.Key: Any]
+
+    func attributedString(from textTypes: [TextType]) -> NSAttributedString {
+        let totalAttrString = NSMutableAttributedString()
+        for textType in textTypes {
+            switch textType {
+            case .link(let text, let link):
+                let attrStr = linkAttributedString(text, link: link)
+                totalAttrString.append(attrStr)
+
+            case .bold(let text):
+                let attr: Attributes = [.font: UIFont.boldSystemFont(ofSize: 14.0)]
+                let attrStr = NSAttributedString(string: text, attributes: attr)
+                totalAttrString.append(attrStr)
+
+            case .italic(let text):
+                let attr: Attributes = [.font: UIFont.italicSystemFont(ofSize: 14.0)]
+                let attrStr = NSAttributedString(string: text, attributes: attr)
+                totalAttrString.append(attrStr)
+
+            case .text(let text):
+                let attrString = NSAttributedString(string: text)
+                totalAttrString.append(attrString)
+            }
+        }
+
+        return totalAttrString
+    }
+
+    func linkAttributedString(_ text: String, link: String) -> NSAttributedString {
+        let attrStr = NSMutableAttributedString(string: text, attributes: [:])
+        let foundRange = attrStr.mutableString.range(of: text)
+        attrStr.addAttribute(.link, value: link, range: foundRange)
+        return attrStr
     }
 }
