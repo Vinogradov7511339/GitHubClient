@@ -23,7 +23,7 @@ protocol RepositoryAdapter: UITableViewDataSource {
     func update(_ repository: RepositoryDetails)
 }
 
-final class RepositoryAdapterImpl: NSObject, RepositoryAdapter{
+final class RepositoryAdapterImpl: NSObject, RepositoryAdapter {
 
     enum SectionTypes: Int, CaseIterable {
         case header
@@ -36,7 +36,7 @@ final class RepositoryAdapterImpl: NSObject, RepositoryAdapter{
         .header: TableCellManager.create(cellType: RepositoryHeaderTableViewCell.self),
         .info: TableCellManager.create(cellType: RepositoryInfoCell.self),
         .code: TableCellManager.create(cellType: RepositoryInfoCell.self),
-        .readMe: TableCellManager.create(cellType: ReadMeTableViewCell.self)
+        .readMe: TableCellManager.create(cellType: ReadMeCell.self)
     ]
 
     private var repository: RepositoryDetails?
@@ -54,7 +54,7 @@ extension RepositoryAdapterImpl {
 }
 
 // MARK: - UITableViewDataSource
-extension RepositoryAdapterImpl  {
+extension RepositoryAdapterImpl {
     func numberOfSections(in tableView: UITableView) -> Int {
         SectionTypes.allCases.count
     }
@@ -106,7 +106,7 @@ private extension RepositoryAdapterImpl {
             return infoViewModel(for: indexPath.row, repository: repository)
         case .readMe:
             if let readMe = repository.mdText {
-                return ReadMeCellViewModel(mdText: readMe)
+                return readMe
             } else {
                 return nil
             }

@@ -14,7 +14,6 @@
 		AD20E40C26A58DB3003BB5F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */; };
 		AD20E44426A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44226A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift */; };
 		AD20E44526A6B749003BB5F1 /* RepositoryHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD20E44326A6B749003BB5F1 /* RepositoryHeaderTableViewCell.xib */; };
-		AD20E44726A6B845003BB5F1 /* ReadMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44626A6B845003BB5F1 /* ReadMeTableViewCell.swift */; };
 		AD20E44E26A6F29D003BB5F1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */; };
 		AD20E45326A70FC6003BB5F1 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */; };
 		AD20E45526A719B8003BB5F1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */; };
@@ -208,6 +207,10 @@
 		AD508E7F26C51E690091132A /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD508E7D26C51E690091132A /* MenuItemCell.xib */; };
 		AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */; };
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
+		AD596EE026DBCF0A004A3A1C /* MDRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */; };
+		AD596EE226DBD4A9004A3A1C /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD596EE126DBD4A9004A3A1C /* CodeView.swift */; };
+		AD596EE526DBE432004A3A1C /* ReadMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD596EE326DBE432004A3A1C /* ReadMeCell.swift */; };
+		AD596EE626DBE432004A3A1C /* ReadMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD596EE426DBE432004A3A1C /* ReadMeCell.xib */; };
 		AD5BD95926D75F1000B41E6A /* FolderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */; };
 		AD5BD96026D7632F00B41E6A /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD95F26D7632F00B41E6A /* UIViewController+Loading.swift */; };
 		AD5BD96226D763F000B41E6A /* String+LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BD96126D763F000B41E6A /* String+LoadingAnimation.swift */; };
@@ -486,7 +489,6 @@
 		AD20E40B26A58DB3003BB5F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E44226A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E44326A6B749003BB5F1 /* RepositoryHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		AD20E44626A6B845003BB5F1 /* ReadMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeTableViewCell.swift; sourceTree = "<group>"; };
 		AD20E44D26A6F29D003BB5F1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		AD20E45226A70FC6003BB5F1 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		AD20E45426A719B8003BB5F1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -684,6 +686,10 @@
 		AD508E7D26C51E690091132A /* MenuItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
 		AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellManager.swift; sourceTree = "<group>"; };
+		AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDRenderer.swift; sourceTree = "<group>"; };
+		AD596EE126DBD4A9004A3A1C /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		AD596EE326DBE432004A3A1C /* ReadMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeCell.swift; sourceTree = "<group>"; };
+		AD596EE426DBE432004A3A1C /* ReadMeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadMeCell.xib; sourceTree = "<group>"; };
 		AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderAdapter.swift; sourceTree = "<group>"; };
 		AD5BD95D26D762BC00B41E6A /* paperplane.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = paperplane.json; sourceTree = "<group>"; };
 		AD5BD95F26D7632F00B41E6A /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
@@ -1324,7 +1330,8 @@
 		AD25E4D626B6E56A0003B1E0 /* ReposReadMeCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD20E44626A6B845003BB5F1 /* ReadMeTableViewCell.swift */,
+				AD596EE326DBE432004A3A1C /* ReadMeCell.swift */,
+				AD596EE426DBE432004A3A1C /* ReadMeCell.xib */,
 			);
 			path = ReposReadMeCell;
 			sourceTree = "<group>";
@@ -1684,7 +1691,7 @@
 			isa = PBXGroup;
 			children = (
 				AD39FE4026BAA54D00F055FD /* RepViewModel.swift */,
-				AD6B09A126C05056004644D2 /* UIKit */,
+				AD6B09A126C05056004644D2 /* View */,
 			);
 			path = RepScreen;
 			sourceTree = "<group>";
@@ -2048,14 +2055,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AD6B09A126C05056004644D2 /* UIKit */ = {
+		AD6B09A126C05056004644D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				AD39FE4226BAA55900F055FD /* RepViewController.swift */,
 				ADC5380726CC03EC009B7A7E /* RepositoryAdapter.swift */,
 				ADC538A626CC3620009B7A7E /* Cells */,
 			);
-			path = UIKit;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AD6B09B926C2A226004644D2 /* CoreData */ = {
@@ -2119,6 +2126,8 @@
 				ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */,
 				AD93005026C960E3002D7362 /* CompositionalLayoutFactory.swift */,
 				AD2E261126BC6D4C00B25772 /* WebImageView.swift */,
+				AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */,
+				AD596EE126DBD4A9004A3A1C /* CodeView.swift */,
 			);
 			name = UIComponents;
 			path = ..;
@@ -2832,6 +2841,7 @@
 				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
 				AD2E8FE126DAC151000A40D1 /* CommitInfoAuthorCell.xib in Resources */,
+				AD596EE626DBE432004A3A1C /* ReadMeCell.xib in Resources */,
 				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
 				ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */,
@@ -2975,6 +2985,8 @@
 				ADD8D25826CD659C00F6C17B /* PermissionsResponseDTO.swift in Sources */,
 				AD6B098226BFFF2F004644D2 /* EventsUseCase.swift in Sources */,
 				AD6B09B326C29960004644D2 /* LoginRepositoryImpl.swift in Sources */,
+				AD596EE526DBE432004A3A1C /* ReadMeCell.swift in Sources */,
+				AD596EE226DBD4A9004A3A1C /* CodeView.swift in Sources */,
 				ADB60D9926D4FE7F0024479D /* SearchType.swift in Sources */,
 				AD3776F5269F26B1000AA54C /* OnboardingPageController.swift in Sources */,
 				ADA3C85D26CFD7BE009F9130 /* BranchResponseDTO.swift in Sources */,
@@ -2999,7 +3011,6 @@
 				ADFCEFF326D81B26004FB341 /* IssuesFilter.swift in Sources */,
 				ADA7495426CE9A1A00C8D475 /* CodeOptionCell.swift in Sources */,
 				AD20E54626AAAB96003BB5F1 /* NotificationsViewModel.swift in Sources */,
-				AD20E44726A6B845003BB5F1 /* ReadMeTableViewCell.swift in Sources */,
 				AD5C8E2B26D2A03F003E2F38 /* SettingsFactory.swift in Sources */,
 				AD39A58626C67AC200309481 /* CommitsUseCase.swift in Sources */,
 				AD8722D826B810DA004649A4 /* DirectoryResponseModelDTO.swift in Sources */,
@@ -3148,6 +3159,7 @@
 				AD20E44426A6B749003BB5F1 /* RepositoryHeaderTableViewCell.swift in Sources */,
 				ADBC1AD326C3F70E000F9B88 /* Commit.swift in Sources */,
 				ADB60D7726D3C7F10024479D /* ResultIssueCell.swift in Sources */,
+				AD596EE026DBCF0A004A3A1C /* MDRenderer.swift in Sources */,
 				AD20E47326A89934003BB5F1 /* SettingsViewModelold.swift in Sources */,
 				AD23E78B26D0FFA3009FEB27 /* ReleaseRequestModel.swift in Sources */,
 				AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */,
