@@ -135,6 +135,8 @@
 		AD2E8FE126DAC151000A40D1 /* CommitInfoAuthorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FDF26DAC151000A40D1 /* CommitInfoAuthorCell.xib */; };
 		AD2E8FE626DAC3AF000A40D1 /* CommitInfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FE426DAC3AF000A40D1 /* CommitInfoMessageCell.swift */; };
 		AD2E8FE726DAC3AF000A40D1 /* CommitInfoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */; };
+		AD2E8FEB26DBA05D000A40D1 /* DiffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E8FE926DBA05D000A40D1 /* DiffCell.swift */; };
+		AD2E8FEC26DBA05D000A40D1 /* DiffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2E8FEA26DBA05D000A40D1 /* DiffCell.xib */; };
 		AD3776E1269F2697000AA54C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E0269F2697000AA54C /* AppDelegate.swift */; };
 		AD3776E3269F2697000AA54C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3776E2269F2697000AA54C /* SceneDelegate.swift */; };
 		AD3776EA269F2698000AA54C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3776E9269F2698000AA54C /* Assets.xcassets */; };
@@ -605,6 +607,8 @@
 		AD2E8FDF26DAC151000A40D1 /* CommitInfoAuthorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitInfoAuthorCell.xib; sourceTree = "<group>"; };
 		AD2E8FE426DAC3AF000A40D1 /* CommitInfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitInfoMessageCell.swift; sourceTree = "<group>"; };
 		AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommitInfoMessageCell.xib; sourceTree = "<group>"; };
+		AD2E8FE926DBA05D000A40D1 /* DiffCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCell.swift; sourceTree = "<group>"; };
+		AD2E8FEA26DBA05D000A40D1 /* DiffCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiffCell.xib; sourceTree = "<group>"; };
 		AD3776DD269F2697000AA54C /* GitHub Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3776E0269F2697000AA54C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3776E2269F2697000AA54C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1375,6 +1379,7 @@
 			children = (
 				AD2E8FBF26DA3F39000A40D1 /* DiffViewModel.swift */,
 				AD2E8FC126DA40CB000A40D1 /* DiffViewController.swift */,
+				AD2E8FED26DBA0A0000A40D1 /* DiffCell */,
 			);
 			path = DiffScreen;
 			sourceTree = "<group>";
@@ -1470,6 +1475,15 @@
 				AD2E8FE526DAC3AF000A40D1 /* CommitInfoMessageCell.xib */,
 			);
 			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		AD2E8FED26DBA0A0000A40D1 /* DiffCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD2E8FE926DBA05D000A40D1 /* DiffCell.swift */,
+				AD2E8FEA26DBA05D000A40D1 /* DiffCell.xib */,
+			);
+			path = DiffCell;
 			sourceTree = "<group>";
 		};
 		AD3776D4269F2697000AA54C = {
@@ -2772,6 +2786,7 @@
 				AD5C8E2326D29633003E2F38 /* AccountCell.xib in Resources */,
 				AD508E7F26C51E690091132A /* MenuItemCell.xib in Resources */,
 				AD20E44526A6B749003BB5F1 /* RepositoryHeaderTableViewCell.xib in Resources */,
+				AD2E8FEC26DBA05D000A40D1 /* DiffCell.xib in Resources */,
 				AD23E7DA26D25647009FEB27 /* ProfileHeaderView.xib in Resources */,
 				AD20E4D726A8B313003BB5F1 /* AppIconPinkLight@2x-3.png in Resources */,
 				AD9F81A226C7A01D00C320E6 /* IssueHeaderCell.xib in Resources */,
@@ -3201,6 +3216,7 @@
 				AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */,
 				ADB60D6B26D3901A0024479D /* SearchRepCell.swift in Sources */,
 				ADA3C84B26CF96A8009F9130 /* UIImage+RepListItem.swift in Sources */,
+				AD2E8FEB26DBA05D000A40D1 /* DiffCell.swift in Sources */,
 				AD6E417726C6532200CEF3B0 /* RepositoriesAdapter.swift in Sources */,
 				AD6B094A26BEF6F0004644D2 /* NetworkConfigurable.swift in Sources */,
 				AD2E8FD326DAA066000A40D1 /* CommitInfoViewController.swift in Sources */,

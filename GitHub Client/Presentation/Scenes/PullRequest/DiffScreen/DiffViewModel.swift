@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-struct TempDiff {}
+import TextCompiler
 
 struct DiffActions {}
 
@@ -17,7 +16,7 @@ protocol DiffViewModelInput {
 }
 
 protocol DiffViewModelOutput {
-    var state: Observable<ItemsSceneState<TempDiff>> { get }
+    var state: Observable<ItemsSceneState<Diff>> { get }
 }
 
 typealias DiffViewModel = DiffViewModelInput & DiffViewModelOutput
@@ -26,7 +25,7 @@ final class DiffViewModelImpl: DiffViewModel {
 
     // MARK: - Output
 
-    var state: Observable<ItemsSceneState<TempDiff>> = Observable(.loading)
+    var state: Observable<ItemsSceneState<Diff>> = Observable(.loading)
 
     // MARK: - Private variables
 
@@ -69,6 +68,8 @@ private extension DiffViewModelImpl {
     }
 
     func handleDiff(_ raw: String) {
-        print("a")
+        let parser = GitDiffParser(raw: raw)
+        let diffs = parser.parse()
+        state.value = .loaded(items: diffs)
     }
 }
