@@ -39,17 +39,21 @@ struct MyProfileEndpoinds {
     }
 
     static func receivedEvents(_ model: EventsRequestModel) -> Endpoint<[EventResponseDTO]> {
-        let login = model.user.login
-        let page = model.page
-        return Endpoint(path: "users/\(login)/received_events",
-                        queryParametersEncodable: ["page": page])
+        var params: QueryType = [:]
+        params["page"] = "\(model.page)"
+        params["per_page"] = "\(model.perPage)"
+
+        return Endpoint(path: model.path.absoluteString, isFullPath: true,
+                        queryParametersEncodable: params)
     }
 
     static func events(_ model: EventsRequestModel) -> Endpoint<[EventResponseDTO]> {
-        let login = model.user.login
-        let page = model.page
-        return Endpoint(path: "users/\(login)/events/public",
-                        queryParametersEncodable: ["page": page])
+        var params: QueryType = [:]
+        params["page"] = "\(model.page)"
+        params["per_page"] = "\(model.perPage)"
+
+        return Endpoint(path: model.path.absoluteString, isFullPath: true,
+                        queryParametersEncodable: params)
     }
 
     static func issues(page: Int) -> Endpoint<[IssueResponseDTO]> {

@@ -182,6 +182,8 @@
 		AD3AC9F226DD28D700BC08FF /* UserActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3AC9F026DD28D700BC08FF /* UserActionCell.xib */; };
 		AD3AC9F626DD2C1A00BC08FF /* UserActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3AC9F426DD2C1A00BC08FF /* UserActivityCell.swift */; };
 		AD3AC9F726DD2C1A00BC08FF /* UserActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3AC9F526DD2C1A00BC08FF /* UserActivityCell.xib */; };
+		AD3AC9FD26DD4CDA00BC08FF /* UserActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3AC9FB26DD4CDA00BC08FF /* UserActivityItemCell.swift */; };
+		AD3AC9FE26DD4CDA00BC08FF /* UserActivityItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3AC9FC26DD4CDA00BC08FF /* UserActivityItemCell.xib */; };
 		AD3C439C26D91A7C00C4FC29 /* PRCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3C439A26D91A7C00C4FC29 /* PRCommentCell.swift */; };
 		AD3C439D26D91A7C00C4FC29 /* PRCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3C439B26D91A7C00C4FC29 /* PRCommentCell.xib */; };
 		AD3C43A026D91C6A00C4FC29 /* PRAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3C439F26D91C6A00C4FC29 /* PRAdapter.swift */; };
@@ -667,6 +669,8 @@
 		AD3AC9F026DD28D700BC08FF /* UserActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserActionCell.xib; sourceTree = "<group>"; };
 		AD3AC9F426DD2C1A00BC08FF /* UserActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityCell.swift; sourceTree = "<group>"; };
 		AD3AC9F526DD2C1A00BC08FF /* UserActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserActivityCell.xib; sourceTree = "<group>"; };
+		AD3AC9FB26DD4CDA00BC08FF /* UserActivityItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityItemCell.swift; sourceTree = "<group>"; };
+		AD3AC9FC26DD4CDA00BC08FF /* UserActivityItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserActivityItemCell.xib; sourceTree = "<group>"; };
 		AD3C439A26D91A7C00C4FC29 /* PRCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRCommentCell.swift; sourceTree = "<group>"; };
 		AD3C439B26D91A7C00C4FC29 /* PRCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PRCommentCell.xib; sourceTree = "<group>"; };
 		AD3C439F26D91C6A00C4FC29 /* PRAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRAdapter.swift; sourceTree = "<group>"; };
@@ -1769,8 +1773,18 @@
 			children = (
 				AD3AC9F426DD2C1A00BC08FF /* UserActivityCell.swift */,
 				AD3AC9F526DD2C1A00BC08FF /* UserActivityCell.xib */,
+				AD3AC9FF26DD4FD300BC08FF /* ActivityItemCell */,
 			);
 			path = ActivityCell;
+			sourceTree = "<group>";
+		};
+		AD3AC9FF26DD4FD300BC08FF /* ActivityItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD3AC9FB26DD4CDA00BC08FF /* UserActivityItemCell.swift */,
+				AD3AC9FC26DD4CDA00BC08FF /* UserActivityItemCell.xib */,
+			);
+			path = ActivityItemCell;
 			sourceTree = "<group>";
 		};
 		AD3C439E26D91C2B00C4FC29 /* CommentCell */ = {
@@ -2910,6 +2924,7 @@
 				ADA68BA226B55621004AC06C /* octocat_gray@2x-7.png in Resources */,
 				AD20E4DB26A8B313003BB5F1 /* AppIconPinkLight@2x-2.png in Resources */,
 				ADB60D6126D2E5B00024479D /* PopularRepCell.xib in Resources */,
+				AD3AC9FE26DD4CDA00BC08FF /* UserActivityItemCell.xib in Resources */,
 				ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */,
 				ADA7495926CE9A3400C8D475 /* CodePreviewCell.xib in Resources */,
 				AD39A58C26C67DDF00309481 /* CommitCell.xib in Resources */,
@@ -3341,6 +3356,7 @@
 				AD20E54A26AAB78D003BB5F1 /* FeaturedCollectionViewCell.swift in Sources */,
 				ADA3C85426CFD22A009F9130 /* BranchesViewModel.swift in Sources */,
 				AD20E50826A994A6003BB5F1 /* PRResponseDTO.swift in Sources */,
+				AD3AC9FD26DD4CDA00BC08FF /* UserActivityItemCell.swift in Sources */,
 				ADB60D5726D2D9A50024479D /* SearchResponseDTO.swift in Sources */,
 				AD39FDC126B9671200F055FD /* ConnectionError.swift in Sources */,
 				ADFCF00D26D8C9FD004FB341 /* ReleaseItemCell.swift in Sources */,

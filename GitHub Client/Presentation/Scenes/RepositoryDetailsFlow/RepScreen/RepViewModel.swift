@@ -118,7 +118,7 @@ extension RepViewModelImpl {
     }
 
     func showSources() {
-        actions.showCode(rep.contentPath)
+        actions.showCode(rep.contentUrl)
     }
 
     func showIssues() {

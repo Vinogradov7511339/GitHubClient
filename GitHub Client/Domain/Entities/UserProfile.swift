@@ -19,4 +19,16 @@ struct UserProfile {
     let followersCount: Int
     let gistsCount: Int
     let repositoriesCount: Int
+    var lastEvents: [Event]
+
+    let htmlUrl: URL
+    let followersUrl: URL
+    let followingUrl: URL
+    let gistsUrl: URL
+    let starredUrl: URL
+    let subscriptionsUrl: URL
+    let organizationsUrl: URL
+    let repositoriesUrl: URL
+    let eventsUrl: URL
+    let receivedEventsUrl: URL
 }

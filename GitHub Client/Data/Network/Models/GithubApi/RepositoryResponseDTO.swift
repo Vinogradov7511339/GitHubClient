@@ -32,18 +32,18 @@ struct RepositoriesResponse: Codable {
 struct RepositoryResponseDTO: Codable {
     let id: Int
     let nodeId: String?
-    let name: String?
+    let name: String
     let fullName: String?
     let owner: UserResponseDTO
     let `private`: Bool? // private
-    let htmlUrl: URL?
+    let htmlUrl: URL
     let description: String?
     let fork: Bool?
     let url: URL?
     let archiveUrl: String?
     let assigneesUrl: String?
     let blobsUrl: String?
-    let branchesUrl: String?
+    let branchesUrl: String
     let collaboratorsUrl: String?
     let commentsUrl: String?
     let commitsUrl: String
@@ -52,27 +52,27 @@ struct RepositoryResponseDTO: Codable {
     let contributorsUrl: URL?
     let deploymentsUrl: URL?
     let downloadsUrl: URL?
-    let eventsUrl: URL?
-    let forksUrl: URL?
+    let eventsUrl: URL
+    let forksUrl: URL
     let gitCommitsrl: String?
     let gitRefsUrl: String?
     let gitTagsUrl: String?
     let gitUrl: URL?
     let issueCommentUrl: String?
     let issueEventsUrl: String?
-    let issuesUrl: String?
+    let issuesUrl: String
     let keysUrl: String?
     let labelsUrl: String?
-    let languagesUrl: URL?
+    let languagesUrl: URL
     let mergesUrl: URL?
     let milestonesUrl: String?
     let notificationsUrl: String?
-    let pullsUrl: String?
+    let pullsUrl: String
     let releasesUrl: String?
     let sshUrl: URL?
-    let stargazersUrl: URL?
+    let stargazersUrl: URL
     let statusesUrl: String?
-    let subscribersUrl: URL?
+    let subscribersUrl: URL
     let subscriptionUrl: URL?
     let tagsUrl: URL?
     let teamsUrl: URL?
@@ -83,15 +83,15 @@ struct RepositoryResponseDTO: Codable {
     let svnUrl: URL?
     let homepage: String?
     let language: String?
-    let forksCount: Int?
-    let stargazersCount: Int?
-    let watchersCount: Int?
+    let forksCount: Int
+    let stargazersCount: Int
+    let watchersCount: Int
     let size: Int?
-    let defaultBranch: String?
-    let openIssuesCount: Int?
+    let defaultBranch: String
+    let openIssuesCount: Int
     let isTemplate: Bool?
     let topics: [String]?
-    let hasIssues: Bool?
+    let hasIssues: Bool
     let hasProjects: Bool?
     let hasWiki: Bool?
     let hasPages: Bool?
@@ -106,30 +106,44 @@ struct RepositoryResponseDTO: Codable {
     let license: LicenseResponseDTO?
 
     func toDomain() -> Repository? {
-        let newPath = contentsUrl?.replacingOccurrences(of: "/{+path}", with: "") ?? ""
+        let contentPath = contentsUrl?.replacingOccurrences(of: "/{+path}", with: "") ?? ""
+        guard let contentUrl = URL(string: contentPath) else { return nil }
+
         let commitsPath = commitsUrl.replacingOccurrences(of: "{/sha}", with: "")
-        guard let path = URL(string: newPath) else {
-            return nil
-        }
-        guard let commitsUrl = URL(string: commitsPath) else {
-            return nil
-        }
-        return Repository(
-            repositoryId: id,
-            owner: owner.toDomain(),
-            name: name!,
-            starsCount: stargazersCount ?? 0,
-            forksCount: forksCount ?? 0,
-            openIssuesCount: openIssuesCount ?? 0,
-            watchersCount: watchersCount ?? 0,
-            description: description,
-            language: language,
-            hasIssues: hasIssues ?? false,
-            homePage: homepage,
-            commitsUrl: commitsUrl,
-            contentPath: path,
-            currentBranch: defaultBranch ?? "NaN",
-            license: license?.name
-        )
+        guard let commitsUrl = URL(string: commitsPath) else { return nil }
+
+        let branchesPath = branchesUrl.replacingOccurrences(of: "{/branch}", with: "")
+        guard let branchesUrl = URL(string: branchesPath) else { return nil }
+
+        let issuesPath = issuesUrl.replacingOccurrences(of: "{/number}", with: "")
+        guard let issuesUrl = URL(string: issuesPath) else { return nil }
+
+        let pullsPath = pullsUrl.replacingOccurrences(of: "{/number}", with: "")
+        guard let pullsUrl = URL(string: pullsPath) else { return nil }
+
+        return .init(repositoryId: id,
+                     owner: owner.toDomain(),
+                     name: name,
+                     starsCount: stargazersCount,
+                     forksCount: forksCount,
+                     openIssuesCount: openIssuesCount,
+                     watchersCount: watchersCount,
+                     description: description,
+                     language: language,
+                     hasIssues: hasIssues,
+                     homePage: homepage,
+                     currentBranch: defaultBranch,
+                     license: license?.name,
+                     htmlUrl: htmlUrl,
+                     forksUrl: forksUrl,
+                     eventsUrl: eventsUrl,
+                     branchesUrl: branchesUrl,
+                     languagesUrl: languagesUrl,
+                     stargazersUrl: stargazersUrl,
+                     subscribersUrl: subscribersUrl,
+                     commitsUrl: commitsUrl,
+                     contentUrl: contentUrl,
+                     issuesUrl: issuesUrl,
+                     pullsUrl: pullsUrl)
     }
 }

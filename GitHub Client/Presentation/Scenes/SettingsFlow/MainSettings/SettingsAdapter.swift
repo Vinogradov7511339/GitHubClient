@@ -20,9 +20,9 @@ final class SettingsAdapterImpl: NSObject {
             SettingsSection.account: TableCellManager.create(cellType: AccountCell.self)
         ]
 
-    private let user: User
+    private let user: User?
 
-    init(_ user: User) {
+    init(_ user: User?) {
         self.user = user
     }
 }

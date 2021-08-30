@@ -13,5 +13,5 @@ struct LabelResponseDTO: Codable {
     let name: String
     let color: String
     let `default`: Bool
-    let description: String
+    let description: String?
 }

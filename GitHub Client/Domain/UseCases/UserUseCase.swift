@@ -29,7 +29,7 @@ final class UserProfileUseCaseImpl {
 }
 
 // MARK: - UserProfileUseCase
-extension UserProfileUseCaseImpl: UserProfileUseCase {
+extension UserProfileUseCaseImpl : UserProfileUseCase {
     func fetchFollowers(request: UsersRequestModel, completion: @escaping UsersHandler) {
         userRepository.fetchFollowers(request: request, completion: completion)
     }
@@ -39,7 +39,22 @@ extension UserProfileUseCaseImpl: UserProfileUseCase {
     }
 
     func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler) {
-        userRepository.fetchProfile(userUrl, completion: completion)
+        userRepository.fetchProfile(userUrl) { result in
+            switch result {
+            case .success(var userProfile):
+                self.fetchLastEvents(userProfile.eventsUrl) { result in
+                    switch result {
+                    case .success(let model):
+                        userProfile.lastEvents = model.items
+                        completion(.success(userProfile))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func fetchRepositories(request: UsersRequestModel, completion: @escaping RepListHandler) {
@@ -48,5 +63,14 @@ extension UserProfileUseCaseImpl: UserProfileUseCase {
 
     func fetchStarred(request: UsersRequestModel, completion: @escaping RepListHandler) {
         userRepository.fetchStarred(request: request, completion: completion)
+    }
+}
+
+// MARK: - Private
+private extension UserProfileUseCaseImpl {
+    typealias EventsHandler = UserRepository.EventsHandler
+    func fetchLastEvents(_ url: URL, completion: @escaping EventsHandler) {
+       let model = EventsRequestModel(path: url, page: 1, perPage: 10)
+        userRepository.fetchEvents(request: model, completion: completion)
     }
 }

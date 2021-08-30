@@ -19,8 +19,18 @@ struct Repository {
     let language: String?
     let hasIssues: Bool
     let homePage: String?
-    let commitsUrl: URL
-    let contentPath: URL
     let currentBranch: String
     let license: String?
+
+    let htmlUrl: URL
+    let forksUrl: URL
+    let eventsUrl: URL
+    let branchesUrl: URL
+    let languagesUrl: URL
+    let stargazersUrl: URL
+    let subscribersUrl: URL
+    let commitsUrl: URL
+    let contentUrl: URL
+    let issuesUrl: URL
+    let pullsUrl: URL
 }

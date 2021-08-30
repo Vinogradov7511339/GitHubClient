@@ -35,7 +35,7 @@ final class SettingsViewController: UIViewController {
     private var viewModel: SettingsViewModel!
 
     private lazy var adapter: SettingsAdapter = {
-        let adapter = SettingsAdapterImpl(viewModel.profile.value.userDetails.user)
+        let adapter = SettingsAdapterImpl(viewModel.profile.value?.userDetails.user)
         return adapter
     }()
 

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Discussion: Codable {
-    let author: UserDetailsResponseDTO?
+    let author: UserResponseDTO?
     let body: String?
     let bodyHtml: String?
     let bodyVersion: String?
