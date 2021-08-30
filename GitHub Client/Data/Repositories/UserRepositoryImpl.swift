@@ -50,8 +50,8 @@ extension UserProfileRepositoryImpl {
 
 // MARK: - User Profile
 extension UserProfileRepositoryImpl {
-    func fetchProfile(_ user: User, completion: @escaping ProfileHandler) {
-        let endpoint = UserEndpoints.profile(user)
+    func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler) {
+        let endpoint = UserEndpoints.profile(userUrl)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let model):

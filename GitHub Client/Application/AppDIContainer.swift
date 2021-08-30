@@ -91,9 +91,9 @@ extension AppDIContainer: AppCoordinatorDependencies {
 
     func userCoordinator(in nav: UINavigationController,
                          actions: AppCoordinatorActions,
-                         user: User) -> UserFlowCoordinator {
+                         userUrl: URL) -> UserFlowCoordinator {
 
-        let container = UserProfileDIContainer(dependencies: userDependencies(actions, user: user))
+        let container = UserProfileDIContainer(dependencies: userDependencies(actions, userUrl: userUrl))
         return UserFlowCoordinator(with: container, in: nav)
     }
 
@@ -186,9 +186,9 @@ private extension AppDIContainer {
     }
 
     func userDependencies(_ actions: AppCoordinatorActions,
-                          user: User) -> UserProfileDIContainer.Dependencies {
+                          userUrl: URL) -> UserProfileDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
-              user: user,
+              userUrl: userUrl,
               startRepFlow: actions.openRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),

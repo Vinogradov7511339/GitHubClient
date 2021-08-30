@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserFactory {
-    func profileViewController(user: User, _ actions: UserProfileActions) -> UIViewController
+    func profileViewController(userUrl: URL, _ actions: UserProfileActions) -> UIViewController
     func followersViewController(user: User, _ actions: UsersListActions) -> UIViewController
     func followingViewController(user: User, _ actions: UsersListActions) -> UIViewController
     func repositoriesViewController(user: User, _ actions: RepositoriesActions) -> UIViewController
@@ -46,9 +46,8 @@ extension UsersListFactoryImpl: UserFactory {
         UIViewController()
     }
 
-
-    func profileViewController(user: User, _ actions: UserProfileActions) -> UIViewController {
-        UserProfileViewController.create(with: userProfileViewModel(user: user, actions: actions))
+    func profileViewController(userUrl: URL, _ actions: UserProfileActions) -> UIViewController {
+        UserProfileViewController.create(with: userProfileViewModel(userUrl: userUrl, actions: actions))
     }
 
     func followersViewController(user: User, _ actions: UsersListActions) -> UIViewController {
@@ -69,8 +68,8 @@ extension UsersListFactoryImpl: UserFactory {
 }
 
 private extension UsersListFactoryImpl {
-    func userProfileViewModel(user: User, actions: UserProfileActions) -> UserProfileViewModel {
-        return UserProfileViewModelImpl(user: user,
+    func userProfileViewModel(userUrl: URL, actions: UserProfileActions) -> UserProfileViewModel {
+        return UserProfileViewModelImpl(userUrl: userUrl,
                                         userProfileUseCase: userUseCase,
                                         actions: actions)
     }

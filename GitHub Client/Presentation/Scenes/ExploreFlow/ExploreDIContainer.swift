@@ -19,7 +19,7 @@ final class ExploreDIContainer {
         let showRepository: (Repository, UINavigationController) -> Void
         let showIssue: (Issue, UINavigationController) -> Void
         let showPullRequest: (PullRequest, UINavigationController) -> Void
-        let showUser: (User, UINavigationController) -> Void
+        let showUser: (URL, UINavigationController) -> Void
     }
 
     // MARK: - Private variables
@@ -74,7 +74,7 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
     }
 
     func showUser(_ user: User, in nav: UINavigationController) {
-        dependencies.showUser(user, nav)
+        dependencies.showUser(user.url, nav)
     }
 
     func searchFilterViewController() -> UIViewController {

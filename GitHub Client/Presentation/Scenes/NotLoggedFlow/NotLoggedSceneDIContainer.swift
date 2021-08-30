@@ -19,7 +19,7 @@ final class NotLoggedSceneDIContainer: NSObject {
         var userLoggedIn: () -> Void
         var openSettings: (UINavigationController) -> Void
         let openRepository: (Repository, UINavigationController) -> Void
-        let openUser: (User, UINavigationController) -> Void
+        let openUser: (URL, UINavigationController) -> Void
         let openIssue: (Issue, UINavigationController) -> Void
         let openPullRequest: (PullRequest, UINavigationController) -> Void
     }

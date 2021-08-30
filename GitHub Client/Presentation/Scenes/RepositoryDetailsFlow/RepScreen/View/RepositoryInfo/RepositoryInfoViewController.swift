@@ -86,7 +86,24 @@ private extension RepositoryInfoViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension RepositoryInfoViewController: UITableViewDelegate {}
+extension RepositoryInfoViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let sectionType = RepositoryInfoSectionType(rawValue: indexPath.section)
+        switch sectionType {
+        case .owner:
+            viewModel.showOwner()
+        case .stargazers:
+            viewModel.showStargazers()
+        case .forks:
+            viewModel.showForks()
+        case .license:
+            viewModel.showLicense()
+        default:
+            break
+        }
+    }
+}
 
 // MARK: - Setup views
 private extension RepositoryInfoViewController {

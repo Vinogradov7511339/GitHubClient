@@ -11,7 +11,7 @@ struct RepActions {
     let showBranches: (Repository, @escaping (Branch) -> Void) -> Void
     let showStargazers: (Repository) -> Void
     let showForks: (Repository) -> Void
-    let showOwner: (User) -> Void
+    let showUser: (URL) -> Void
     let showIssues: (Repository) -> Void
     let showPullRequests: (Repository) -> Void
     let showReleases: (Repository) -> Void
@@ -90,7 +90,10 @@ extension RepViewModelImpl {
         fetch()
     }
 
-    func showOwner() {}
+    func showOwner() {
+        let url = rep.owner.url
+        actions.showUser(url)
+    }
 
     func showStargazers() {
         actions.showStargazers(rep)

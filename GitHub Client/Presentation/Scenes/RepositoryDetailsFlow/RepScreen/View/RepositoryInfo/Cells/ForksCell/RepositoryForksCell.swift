@@ -20,6 +20,6 @@ class RepositoryForksCell: BaseTableViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension RepositoryForksCell: ConfigurableCell {
     func configure(viewModel: RepositoryDetails) {
-        forksCountLabel.text = viewModel.repository.forksCount.roundedWithAbbreviations
+        forksCountLabel.text = viewModel.repository.forksCount.separatedBy(".")
     }
 }

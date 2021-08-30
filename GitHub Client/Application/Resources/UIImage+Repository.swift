@@ -18,7 +18,7 @@ extension UIImage {
         // MARK: - Badges
 
         static var star: UIImage? { UIImage(named: "rep_item_star") }
-        static var fork: UIImage? { UIImage(named: "rep_item_fork") }
+        static var fork: UIImage? { UIImage(named: "repository_fork") }
 
         // MARK: - Items
 
@@ -27,8 +27,8 @@ extension UIImage {
         static var issues: UIImage? { UIImage(named: "rep_item_issues") }
         static var pullRequests: UIImage? { UIImage(named: "rep_item_pull_requests") }
         static var releases: UIImage? { UIImage(named: "rep_item_releases") }
-        static var watchers: UIImage? { UIImage(named: "rep_item_watchers") }
+        static var watchers: UIImage? { UIImage(named: "repositry_watchers") }
         static var commits: UIImage? { UIImage(named: "rep_item_commits") }
-        static var license: UIImage? { UIImage(named: "rep_item_license") }
+        static var license: UIImage? { UIImage(named: "repository_license") }
     }
 }

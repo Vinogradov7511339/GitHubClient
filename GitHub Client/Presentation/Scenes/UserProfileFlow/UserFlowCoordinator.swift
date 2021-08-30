@@ -37,13 +37,13 @@ final class UserFlowCoordinator {
 
     // MARK: - Lifecycle
 
-    init(with dependencies: UserFlowCoordinatorDependencies, in navigationController: UINavigationController) {
+    init(with dependencies: UserFlowCoordinatorDependencies,
+         in navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.dependencies = dependencies
     }
 
     func start() {
-
         guard let nav = navigationController else { return }
         let actions = actions(in: nav)
         let viewController = dependencies.profileViewController(actions: actions)

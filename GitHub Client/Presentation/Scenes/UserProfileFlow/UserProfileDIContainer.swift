@@ -13,7 +13,7 @@ final class UserProfileDIContainer {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
-        let user: User
+        let userUrl: URL
 
         var startRepFlow: (Repository, UINavigationController) -> Void
         var openLink: (URL) -> Void
@@ -91,22 +91,26 @@ extension UserProfileDIContainer: UserFlowCoordinatorDependencies {
     // MARK: - Factory
 
     func profileViewController(actions: UserProfileActions) -> UIViewController {
-        userFactory.profileViewController(user: dependencies.user, actions)
+        userFactory.profileViewController(userUrl: dependencies.userUrl, actions)
     }
 
     func repositoriesViewController(actions: RepositoriesActions) -> UIViewController {
-        userFactory.repositoriesViewController(user: dependencies.user, actions)
+        fatalError()
+//        userFactory.repositoriesViewController(user: dependencies.user, actions)
     }
 
     func starredViewController(actions: RepositoriesActions) -> UIViewController {
-        userFactory.starredViewController(user: dependencies.user, actions)
+        fatalError()
+//        userFactory.starredViewController(user: dependencies.user, actions)
     }
 
     func followersViewController(actions: UsersListActions) -> UIViewController {
-        userFactory.followersViewController(user: dependencies.user, actions)
+        fatalError()
+//        userFactory.followersViewController(user: dependencies.user, actions)
     }
 
     func followingViewController(actions: UsersListActions) -> UIViewController {
-        userFactory.followingViewController(user: dependencies.user, actions)
+        fatalError()
+//        userFactory.followingViewController(user: dependencies.user, actions)
     }
 }

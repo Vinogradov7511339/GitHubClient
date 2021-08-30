@@ -23,22 +23,19 @@ struct UserProfileActions {
     let showEvents: (User) -> Void
 }
 
-protocol UserProfileViewModelInput: ProfileHeaderViewDelegate {
+protocol UserProfileViewModelInput {
     func viewDidLoad()
     func refresh()
-    func share()
-    func openLink(_ link: URL)
-    func sendEmail(_ email: String)
-    func didSelectItem(at indexPath: IndexPath)
+}
+
+enum UserScreenState {
+    case loaded(UserProfile)
+    case error(Error)
+    case loading
 }
 
 protocol UserProfileViewModelOutput {
-    var tableItems: Observable<[[Any]]> { get }
-    var userDetails: Observable<UserProfile?> { get }
-    var backButtonTouchedState: Observable<Bool> { get }
-
-    func register(_ tableView: UITableView)
-    func cellManager(for indexPath: IndexPath) -> TableCellManager
+    var state: Observable<UserScreenState> { get }
 }
 
 typealias UserProfileViewModel = UserProfileViewModelInput & UserProfileViewModelOutput
@@ -47,22 +44,16 @@ class UserProfileViewModelImpl: UserProfileViewModel {
 
     // MARK: - Output
 
-    let tableItems: Observable<[[Any]]> = Observable([[]])
-    var userDetails: Observable<UserProfile?> = Observable(nil)
-    var backButtonTouchedState: Observable<Bool> = Observable(false)
+    var state: Observable<UserScreenState> = Observable(.loading)
 
     // MARK: - Private
 
-    private let user: User
+    private let userUrl: URL
     private let userProfileUseCase: UserProfileUseCase
     private let actions: UserProfileActions
-    private let cellManagers: [TableCellManager] = [
-        TableCellManager.create(cellType: CellWithCollection.self),
-        TableCellManager.create(cellType: MenuItemCell.self)
-    ]
 
-    init(user: User, userProfileUseCase: UserProfileUseCase, actions: UserProfileActions) {
-        self.user = user
+    init(userUrl: URL, userProfileUseCase: UserProfileUseCase, actions: UserProfileActions) {
+        self.userUrl = userUrl
         self.userProfileUseCase = userProfileUseCase
         self.actions = actions
     }
@@ -70,18 +61,6 @@ class UserProfileViewModelImpl: UserProfileViewModel {
 
 // MARK: - Output
 extension UserProfileViewModelImpl {
-    func register(_ tableView: UITableView) {
-        cellManagers.forEach { $0.register(tableView: tableView) }
-    }
-
-    func cellManager(for indexPath: IndexPath) -> TableCellManager {
-        if indexPath.section == 0 {
-            return cellManagers[0]
-        } else {
-            return cellManagers[1]
-        }
-    }
-
     func viewDidLoad() {
         fetch()
     }
@@ -89,92 +68,18 @@ extension UserProfileViewModelImpl {
     func refresh() {
         fetch()
     }
-
-    func share() {}
-
-    func showFollowers() {
-        actions.showFollowers(user)
-    }
-
-    func showFollowing() {
-        actions.showFollowing(user)
-    }
-
-    func openLink(_ link: URL) {
-        actions.openLink(link)
-    }
-
-    func sendEmail(_ email: String) {
-        actions.sendEmail(email)
-    }
-
-    func showRepositories() {
-        actions.showRepositories(user)
-    }
-
-    func didSelectItem(at indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            actions.showRecentEvents(user)
-        case (1, 0):
-            actions.showStarred(user)
-        case (1, 1):
-            actions.showGists(user)
-        case (2, 0):
-            actions.showSubscriptions(user)
-        case (2, 1):
-            assert(false, "remove")
-        case (2, 2):
-            actions.showEvents(user)
-        default:
-            break
-        }
-    }
-}
-
-// MARK: - ProfileHeaderViewDelegate
-extension UserProfileViewModelImpl: ProfileHeaderViewDelegate {
-    func backButtonTouched() {
-        backButtonTouchedState.value = true
-    }
-
-    func subscribeButtonTouched() {}
-
-    func gistsButtonTouched() {}
-
-    func followersButtonTouched() {
-        actions.showFollowers(user)
-    }
-
-    func followingButtonTouched() {
-        actions.showFollowing(user)
-    }
 }
 
 private extension UserProfileViewModelImpl {
     func fetch() {
-        userProfileUseCase.fetchProfile(user) { result in
+        state.value = .loading
+        userProfileUseCase.fetchProfile(userUrl) { result in
             switch result {
-            case .success(let user):
-                self.updateItems(user)
-                self.userDetails.value = user
+            case .success(let profile):
+                self.state.value = .loaded(profile)
             case .failure(let error):
-                self.handle(error: error)
+                self.state.value = .error(error)
             }
         }
-    }
-
-    func handle(error: Error) {
-        assert(false, error.localizedDescription)
-    }
-
-    func updateItems(_ user: UserProfile) {
-        let starred = MenuItemViewModel.ItemType.starred.viewModel
-        let gists = MenuItemViewModel.ItemType.gists(user.gistsCount).viewModel
-        let subscriptions = MenuItemViewModel.ItemType.subscriptions.viewModel
-        let organizations = MenuItemViewModel.ItemType.organizations.viewModel
-        let events = MenuItemViewModel.ItemType.events.viewModel
-        let recentEvents = CellWithCollectionViewModel()
-        tableItems.value = [[recentEvents], [starred, gists], [subscriptions, organizations, events]]
     }
 }

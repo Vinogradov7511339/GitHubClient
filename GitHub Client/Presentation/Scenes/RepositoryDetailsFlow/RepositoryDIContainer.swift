@@ -16,7 +16,7 @@ final class RepositoryDIContainer {
         let issueFilterStorage: IssueFilterStorage
         let repository: Repository
 
-        var showUser: (User, UINavigationController) -> Void
+        var showUser: (URL, UINavigationController) -> Void
         var showIssue: (Issue, UINavigationController) -> Void
         var showPullRequest: (PullRequest, UINavigationController) -> Void
         var showRelease: (Release, UINavigationController) -> Void
@@ -109,8 +109,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         dependencies.showRelease(release, nav)
     }
 
-    func show(user: User, in nav: UINavigationController) {
-        dependencies.showUser(user, nav)
+    func showUser(_ url: URL, in nav: UINavigationController) {
+        dependencies.showUser(url, nav)
     }
 
     func openLink(url: URL) {

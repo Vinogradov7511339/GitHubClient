@@ -18,7 +18,7 @@ protocol UserRepository {
     // MARK: - User Profile
 
     typealias ProfileHandler = (Result<UserProfile, Error>) -> Void
-    func fetchProfile(_ user: User, completion: @escaping ProfileHandler)
+    func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler)
 
     // MARK: - User Repositories
 

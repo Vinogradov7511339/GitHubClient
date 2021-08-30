@@ -23,9 +23,9 @@ protocol RepFlowCoordinatorDependencies {
     func showPullRequest(_ pr: PullRequest, in nav: UINavigationController)
     func showRelease(_ release: Release, in nav: UINavigationController)
     func showIssue(_ issue: Issue, in nav: UINavigationController)
+    func showUser(_ url: URL, in nav: UINavigationController)
 
     func codeOptionsViewController() -> UIViewController
-    func show(user: User, in nav: UINavigationController)
     func openLink(url: URL)
     func share(url: URL)
     func copy(text: String)
@@ -59,7 +59,7 @@ private extension RepFlowCoordinator {
             showBranches: showBranches,
             showStargazers: showStargazers(_:),
             showForks: showForks(_:),
-            showOwner: showUser(in: nav),
+            showUser: showUser(in: nav),
             showIssues: showIssues(_:),
             showPullRequests: showPullRequests(_:),
             showReleases: showReleases(_:),
@@ -74,10 +74,6 @@ private extension RepFlowCoordinator {
 
 // MARK: - Routing
 private extension RepFlowCoordinator {
-    func showUser(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.show(user: user, in: nav)}
-    }
-
     func showBranches(_ repository: Repository, _ action: @escaping (Branch) -> Void) {
         let actions = BranchesActions(select: action)
         let viewController = dependencies.branchesViewController()
@@ -139,6 +135,10 @@ private extension RepFlowCoordinator {
 }
 
 private extension RepFlowCoordinator {
+
+    func showUser(in nav: UINavigationController) -> (URL) -> Void {
+        return { userUrl in self.dependencies.showUser(userUrl, in: nav)}
+    }
 
     func showIssue(in nav: UINavigationController) -> (Issue) -> Void {
         return { issue in self.dependencies.showIssue(issue, in: nav)}

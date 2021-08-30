@@ -58,11 +58,6 @@ final class ExploreViewController: UIViewController {
         return adapter
     }()
 
-//    private lazy var adapter: ExploreAdapter = {
-//        let adapter = ExploreAdapterImpl()
-//        return adapter
-//    }()
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

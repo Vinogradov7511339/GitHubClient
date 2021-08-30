@@ -17,14 +17,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="XST-Wj-LAt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                        <rect key="frame" x="12" y="12" width="296" height="60"/>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="XST-Wj-LAt" secondAttribute="trailing" id="Hvg-2P-Qks"/>
-                    <constraint firstItem="XST-Wj-LAt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KOd-76-Fkf"/>
-                    <constraint firstItem="XST-Wj-LAt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q9l-7f-WTE"/>
-                    <constraint firstAttribute="bottom" secondItem="XST-Wj-LAt" secondAttribute="bottom" id="yPW-n7-hx4"/>
+                    <constraint firstAttribute="trailing" secondItem="XST-Wj-LAt" secondAttribute="trailing" constant="12" id="Hvg-2P-Qks"/>
+                    <constraint firstItem="XST-Wj-LAt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="KOd-76-Fkf"/>
+                    <constraint firstItem="XST-Wj-LAt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Q9l-7f-WTE"/>
+                    <constraint firstAttribute="bottom" secondItem="XST-Wj-LAt" secondAttribute="bottom" constant="12" id="yPW-n7-hx4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

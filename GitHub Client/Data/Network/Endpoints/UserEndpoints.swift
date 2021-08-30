@@ -23,9 +23,8 @@ struct UserEndpoints {
                         queryParametersEncodable: ["page": page])
     }
 
-    static func profile(_ model: User) -> Endpoint<UserDetailsResponseDTO> {
-        let login = model.login
-        return Endpoint(path: "users/\(login)")
+    static func profile(_ url: URL) -> Endpoint<UserDetailsResponseDTO> {
+        return Endpoint(path: url.absoluteString, isFullPath: true)
     }
 
     static func repositories(_ model: UsersRequestModel) -> Endpoint<[RepositoryResponseDTO]> {

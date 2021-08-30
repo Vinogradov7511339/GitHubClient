@@ -8,8 +8,8 @@
 import UIKit
 
 class UserProfileViewController: UIViewController {
-    
-    private var viewModel: UserProfileViewModel!
+
+    // MARK: - Create
 
     static func create(with viewModel: UserProfileViewModel) -> UserProfileViewController {
         let viewController = UserProfileViewController()
@@ -17,167 +17,95 @@ class UserProfileViewController: UIViewController {
         return viewController
     }
 
-    private lazy var headerView: ProfileHeaderViewProtocol = {
-        let view = ProfileHeaderView.instanceFromNib()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = viewModel
-        return view
-    }()
+    // MARK: - Views
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .systemGroupedBackground
         tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = adapter
         return tableView
     }()
 
-    let minHeaderHeight: CGFloat = 70.0
-    var previousScrollOffset: CGFloat = 0
-    var headerViewHeight: NSLayoutConstraint?
+    // MARK: - Private variables
+
+    private var viewModel: UserProfileViewModel!
+    private lazy var adapter: UserAdapter = {
+        UserAdapterImpl()
+    }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        view.backgroundColor = .systemBackground
 
-        viewModel.register(tableView)
+        adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
-
-    @objc func share(_ sender: AnyObject) {
-        viewModel.share()
     }
 }
 
 // MARK: - Binding
 private extension UserProfileViewController {
     func bind(to viewModel: UserProfileViewModel) {
-        viewModel.tableItems.observe(on: self) { [weak self] _ in self?.reload() }
-        viewModel.userDetails.observe(on: self) { [weak self] in self?.update(user: $0) }
-        viewModel.backButtonTouchedState.observe(on: self) { [weak self] in self?.backButtonTouch($0)}
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func reload() {
-        tableView.reloadData()
-    }
-
-    func update(user: UserProfile?) {
-        guard let user = user else { return }
-        headerViewHeight?.constant = headerView.maxHeight(for: user)
-        headerView.update(with: user)
-    }
-
-    func backButtonTouch(_ isClicked: Bool) {
-        if isClicked {
-            navigationController?.popViewController(animated: true)
+    func updateState(_ newState: UserScreenState) {
+        switch newState {
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loaded(let profile):
+            prepareLoadedState(profile)
         }
+    }
+
+    func prepareLoadingState() {
+        tableView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        tableView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
+    }
+
+    func prepareLoadedState(_ profile: UserProfile) {
+        tableView.isHidden = false
+        hideLoader()
+        hideError()
+        adapter.update(profile)
+        tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension UserProfileViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.didSelectItem(at: indexPath)
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .systemGroupedBackground
-        return view
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let headerViewHeight = headerViewHeight else { return }
-        guard let user = viewModel.userDetails.value else { return }
-        let maxHeaderHeight = headerView.maxHeight(for: user)
-        let scrollDiff = (scrollView.contentOffset.y - previousScrollOffset)
-        let isScrollingDown = scrollDiff > 0
-        let isScrollingUp = scrollDiff < 0
-//        if canAnimateHeader(scrollView) {
-            var newHeight = headerViewHeight.constant
-            if isScrollingDown {
-                newHeight = max(minHeaderHeight, headerViewHeight.constant - abs(scrollDiff))
-            } else if isScrollingUp {
-                newHeight = min(maxHeaderHeight, headerViewHeight.constant + abs(scrollDiff))
-            }
-            if newHeight != headerViewHeight.constant {
-                headerViewHeight.constant = newHeight
-                let percent = (newHeight - minHeaderHeight) / (maxHeaderHeight - minHeaderHeight)
-                headerView.updateHeight(percent)
-                setScrollPosition()
-                previousScrollOffset = scrollView.contentOffset.y
-            }
-//        }
-    }
-
-    func canAnimateHeader (_ scrollView: UIScrollView) -> Bool {
-        let scrollViewMaxHeight = scrollView.frame.height + self.headerViewHeight!.constant - minHeaderHeight
-        return scrollView.contentSize.height > scrollViewMaxHeight
-    }
-    func setScrollPosition() {
-        self.tableView.contentOffset = CGPoint(x: 0, y: 0)
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension UserProfileViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.tableItems.value.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableItems.value[section].count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableItem = viewModel.tableItems.value[indexPath.section][indexPath.row]
-        let cell = viewModel.cellManager(for: indexPath).dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: tableItem)
-        return cell
     }
 }
 
 // MARK: - setup views
 private extension UserProfileViewController {
     func setupViews() {
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
-        view.addSubview(headerView)
     }
 
     func activateConstraints() {
-        headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        headerViewHeight = headerView.heightAnchor.constraint(equalToConstant: headerView.defaultHeight)
-        headerViewHeight?.isActive = true
-
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }

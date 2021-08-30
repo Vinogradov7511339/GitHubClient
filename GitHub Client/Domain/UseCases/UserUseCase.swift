@@ -13,7 +13,7 @@ protocol UserProfileUseCase {
     func fetchFollowing(request: UsersRequestModel, completion: @escaping UsersHandler)
 
     typealias ProfileHandler = UserRepository.ProfileHandler
-    func fetchProfile(_ user: User, completion: @escaping ProfileHandler)
+    func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler)
 
     typealias RepListHandler = RepRepository.RepListHandler
     func fetchRepositories(request: UsersRequestModel, completion: @escaping RepListHandler)
@@ -38,8 +38,8 @@ extension UserProfileUseCaseImpl: UserProfileUseCase {
         userRepository.fetchFollowing(request: request, completion: completion)
     }
 
-    func fetchProfile(_ user: User, completion: @escaping ProfileHandler) {
-        userRepository.fetchProfile(user, completion: completion)
+    func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler) {
+        userRepository.fetchProfile(userUrl, completion: completion)
     }
 
     func fetchRepositories(request: UsersRequestModel, completion: @escaping RepListHandler) {

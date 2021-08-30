@@ -14,7 +14,7 @@ final class ProfileDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
 
-        var openUserProfile: (User, UINavigationController) -> Void
+        var openUserProfile: (URL, UINavigationController) -> Void
         var openRepository: (Repository, UINavigationController) -> Void
         var openSettings: (UINavigationController) -> Void
         var sendMail: (String) -> Void
@@ -71,7 +71,7 @@ extension ProfileDIContainer: ProfileFlowCoordinatorDependencies {
     }
 
     func openProfile(_ user: User, in nav: UINavigationController) {
-        dependencies.openUserProfile(user, nav)
+        dependencies.openUserProfile(user.url, nav)
     }
 
     func share(_ url: URL) {

@@ -9,10 +9,9 @@ import UIKit
 
 extension UIImage {
     enum UserProfile {
-        static var follow: UIImage? { UIImage(named: "user_profile_follow") }
-        static var following: UIImage? { UIImage(named: "user_profile_folloing") }
-        static var followers: UIImage? { UIImage(named: "user_profile_followers") }
-        static var repositories: UIImage? { UIImage(named: "user_profile_repositories") }
-        static var info: UIImage? { UIImage(named: "user_profile_info") }
+        static var repositories: UIImage? { return UIImage(named: "user_repositories") }
+        static var starred: UIImage? { return UIImage(named: "user_starred") }
+        static var gists: UIImage? { return UIImage(named: "user_gists") }
+        static var events: UIImage? { return UIImage(named: "user_events") }
     }
 }
