@@ -26,18 +26,20 @@ typealias IssuesViewModel = IssuesViewModelInput & IssuesViewModelOutput
 final class IssuesViewModelImpl: IssuesViewModel {
 
     // MARK: - Output
+
     var state: Observable<ItemsSceneState<Issue>> = Observable(.loading)
 
-    // MARK: - Private
+    // MARK: - Private variables
+
+    private let url: URL
     private let issueUseCase: IssueUseCase
-    private let repository: Repository
     private let actions: IssuesActions
     private var lastPage: Int?
     private var currentPage = 1
 
-    init(issueUseCase: IssueUseCase, repository: Repository, actions: IssuesActions) {
+    init(_ url: URL, issueUseCase: IssueUseCase, actions: IssuesActions) {
+        self.url = url
         self.issueUseCase = issueUseCase
-        self.repository = repository
         self.actions = actions
     }
 }
@@ -67,7 +69,7 @@ extension IssuesViewModelImpl {
 private extension IssuesViewModelImpl {
     func fetch() {
         state.value = .loading
-        issueUseCase.fetchAllIssues(repository, page: currentPage) { result in
+        issueUseCase.fetchAllIssues(url, page: currentPage) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

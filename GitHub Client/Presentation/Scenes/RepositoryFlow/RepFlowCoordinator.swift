@@ -12,18 +12,19 @@ protocol RepFlowCoordinatorDependencies {
     func branchesViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
-    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
-    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController
-    func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController
+    func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
+    func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
+    func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
-    func forksViewController() -> UIViewController
+    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController
 
     func showCommits(_ url: URL, in nav: UINavigationController)
     func showPullRequest(_ pr: PullRequest, in nav: UINavigationController)
     func showRelease(_ release: Release, in nav: UINavigationController)
     func showIssue(_ issue: Issue, in nav: UINavigationController)
     func showUser(_ url: URL, in nav: UINavigationController)
+    func showRepository(_ rep: Repository, in nav: UINavigationController)
 
     func codeOptionsViewController() -> UIViewController
     func openLink(url: URL)
@@ -55,65 +56,38 @@ final class RepFlowCoordinator {
 // MARK: - Repository Actions
 private extension RepFlowCoordinator {
     func actions(_ nav: UINavigationController) -> RepActions {
-        .init(
-            showBranches: showBranches,
-            showStargazers: showStargazers(_:),
-            showForks: showForks(_:),
-            showUser: showUser(in: nav),
-            showIssues: showIssues(_:),
-            showPullRequests: showPullRequests(_:),
-            showReleases: showReleases(_:),
-            showWatchers: showWatchers(_:),
-            showCode: showCode(_:),
-            showCommits: showCommits(in: nav),
-            openLink: dependencies.openLink(url:),
-            share: dependencies.share(url:)
-        )
+        .init(showOwner: showUser(in: nav),
+              showStargazers: showStargazers(_:),
+              showForks: showForks(_:),
+              showSources: showCode(_:),
+              showCommits: showCommits(in: nav),
+              showBranches: showBranches(_:),
+              showIssues: showIssues(_:),
+              showPulls: showPulls(_:),
+              showReleases: showReleases(_:))
     }
 }
 
 // MARK: - Routing
 private extension RepFlowCoordinator {
-    func showBranches(_ repository: Repository, _ action: @escaping (Branch) -> Void) {
-        let actions = BranchesActions(select: action)
+    func showBranches(_ url: URL) {
         let viewController = dependencies.branchesViewController()
         let nav = UINavigationController(rootViewController: viewController)
         navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
     }
 
-    func showStargazers(_ repository: Repository) {
+    func showStargazers(_ url: URL) {
 //        let actions = UsersListActions(showUser: dependencies.show(user:))
 //        let viewController = dependencies.makeStargazersViewController(for: repository, actions: actions)
 //        navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showForks(_ repository: Repository) {
-        let viewController = dependencies.forksViewController()
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func showIssues(_ repository: Repository) {
+    func showForks(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = IssuesActions(showIssue: showIssue(in: nav))
-        let viewController = dependencies.issuesViewController(repository, actions: actions)
+        let actions = ForksActions(showRepository: showRepository(in: nav))
+        let viewController = dependencies.forksViewController(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
-
-    func showPullRequests(_ repository: Repository) {
-        guard let nav = navigationController else { return }
-        let actions = PRListActions(show: showPullRequest(in: nav))
-        let viewController = dependencies.pullRequestsViewController(repository, actions: actions)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func showReleases(_ repository: Repository) {
-        guard let nav = navigationController else { return }
-        let actions = ReleasesActions(show: showRelease(in: nav))
-        let viewController = dependencies.releasesViewController(repository, actions: actions)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func showWatchers(_ repository: Repository) {}
 
     func showCode(_ path: URL) {
         let actions = FolderActions(openFolder: showCode(_:),
@@ -122,6 +96,27 @@ private extension RepFlowCoordinator {
                                     share: dependencies.share(url:),
                                     copy: dependencies.copy(text:))
         let viewController = dependencies.folderViewController(path, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showIssues(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = IssuesActions(showIssue: showIssue(in: nav))
+        let viewController = dependencies.issuesViewController(url, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showPulls(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = PRListActions(show: showPullRequest(in: nav))
+        let viewController = dependencies.pullRequestsViewController(url, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showReleases(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = ReleasesActions(show: showRelease(in: nav))
+        let viewController = dependencies.releasesViewController(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
@@ -135,9 +130,12 @@ private extension RepFlowCoordinator {
 }
 
 private extension RepFlowCoordinator {
-
     func showUser(in nav: UINavigationController) -> (URL) -> Void {
         return { userUrl in self.dependencies.showUser(userUrl, in: nav)}
+    }
+
+    func showCommits(in nav: UINavigationController) -> (URL) -> Void {
+        return { commitsUrl in self.dependencies.showCommits(commitsUrl, in: nav)}
     }
 
     func showIssue(in nav: UINavigationController) -> (Issue) -> Void {
@@ -148,8 +146,8 @@ private extension RepFlowCoordinator {
         return { pullRequest in self.dependencies.showPullRequest(pullRequest, in: nav) }
     }
 
-    func showCommits(in nav: UINavigationController) -> (URL) -> Void {
-        return { commitsUrl in self.dependencies.showCommits(commitsUrl, in: nav)}
+    func showRepository(in nav: UINavigationController) -> (Repository) -> Void {
+        return { repository in self.dependencies.showRepository(repository, in: nav)}
     }
 
     func showRelease(in nav: UINavigationController) -> (Release) -> Void {

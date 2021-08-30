@@ -8,7 +8,6 @@
 import Foundation
 
 struct PRListRequestModel {
-    let repository: Repository
+    let path: URL
     let page: Int
 }
-

@@ -24,12 +24,12 @@ protocol RepUseCase {
 
     typealias FileHandler = RepRepository.FileHandler
     func fetchFile(path: URL, completion: @escaping FileHandler)
-    func fetchReadMe(repository: Repository, completion: @escaping FileHandler)  
+    func fetchReadMe(repository: Repository, completion: @escaping FileHandler)
 
     // MARK: - Releases
 
     typealias ReleasesHandler = RepRepository.ReleasesHandler
-    func fetchReleases(_ rep: Repository, page: Int, completion: @escaping ReleasesHandler)
+    func fetchReleases(_ url: URL, page: Int, completion: @escaping ReleasesHandler)
 
     typealias ReleaseHandler = RepRepository.ReleaseHandler
     func fetchRelease(_ rep: Repository, _ release: Release, completion: @escaping ReleaseHandler)
@@ -93,8 +93,8 @@ extension RepUseCaseImpl: RepUseCase {
         repositoryStorage.fetchReadMe(repository: repository, completion: completion)
     }
 
-    func fetchReleases(_ rep: Repository, page: Int, completion: @escaping ReleasesHandler) {
-        let model = ReleasesRequestModel(repository: rep, page: page)
+    func fetchReleases(_ url: URL, page: Int, completion: @escaping ReleasesHandler) {
+        let model = ReleasesRequestModel(path: url, page: page)
         repositoryStorage.fetchReleases(request: model, completion: completion)
     }
 

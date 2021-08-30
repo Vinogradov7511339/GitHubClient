@@ -8,6 +8,6 @@
 import Foundation
 
 struct ForksRequestModel {
-    let repository: Repository
+    let path: URL
     let page: Int
 }

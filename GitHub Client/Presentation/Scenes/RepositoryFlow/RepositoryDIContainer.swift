@@ -21,6 +21,7 @@ final class RepositoryDIContainer {
         var showPullRequest: (PullRequest, UINavigationController) -> Void
         var showRelease: (Release, UINavigationController) -> Void
         let showCommits: (URL, UINavigationController) -> Void
+        var showRepository: (Repository, UINavigationController) -> Void
 
         var openLink: (URL) -> Void
         var share: (URL) -> Void
@@ -67,16 +68,16 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.fileViewController()
     }
 
-    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController {
-        repositoryFactory.issuesViewController(repository, actions: actions)
+    func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController {
+        repositoryFactory.issuesViewController(url, actions: actions)
     }
 
-    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
-        repositoryFactory.pullRequestsViewController(rep, actions: actions)
+    func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController {
+        repositoryFactory.pullRequestsViewController(url, actions: actions)
     }
 
-    func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController {
-        repositoryFactory.releasesViewController(rep, actions: actions)
+    func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController {
+        repositoryFactory.releasesViewController(url, actions: actions)
     }
 
     func licenseViewController() -> UIViewController {
@@ -87,8 +88,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.watchersViewController()
     }
 
-    func forksViewController() -> UIViewController {
-        repositoryFactory.forksViewController()
+    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController {
+        repositoryFactory.forksViewController(url, actions: actions)
     }
 
     // MARK: - Dependencies
@@ -99,6 +100,10 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
 
     func showIssue(_ issue: Issue, in nav: UINavigationController) {
         dependencies.showIssue(issue, nav)
+    }
+
+    func showRepository(_ rep: Repository, in nav: UINavigationController) {
+        dependencies.showRepository(rep, nav)
     }
 
     func showPullRequest(_ pr: PullRequest, in nav: UINavigationController) {

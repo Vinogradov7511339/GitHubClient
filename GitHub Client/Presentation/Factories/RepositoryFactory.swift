@@ -14,12 +14,12 @@ protocol RepositoryFactory {
     func commitViewController(_ commitUrl: URL, actions: CommitActions) -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
     func fileViewController() -> UIViewController
-    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController
-    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController
-    func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController
+    func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
+    func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
+    func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
-    func forksViewController() -> UIViewController
+    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController
 }
 
 final class RepositoryFactoryImpl {
@@ -61,16 +61,16 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func issuesViewController(_ repository: Repository, actions: IssuesActions) -> UIViewController {
-        IssuesViewController.create(with: issuesViewModel(repository, actions: actions))
+    func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController {
+        IssuesViewController.create(with: issuesViewModel(url, actions: actions))
     }
 
-    func pullRequestsViewController(_ rep: Repository, actions: PRListActions) -> UIViewController {
-        PRListViewController.create(with: prListViewModel(rep, actions: actions))
+    func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController {
+        PRListViewController.create(with: prListViewModel(url, actions: actions))
     }
 
-    func releasesViewController(_ rep: Repository, actions: ReleasesActions) -> UIViewController {
-        ReleasesViewController.create(with: releasesViewModel(rep, actions: actions))
+    func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController {
+        ReleasesViewController.create(with: releasesViewModel(url, actions: actions))
     }
 
     func releaseViewController() -> UIViewController {
@@ -85,8 +85,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func forksViewController() -> UIViewController {
-        UIViewController()
+    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController {
+        ForksViewController.create(with: forksViewModel(url, actions: actions))
     }
 }
 
@@ -108,16 +108,20 @@ private extension RepositoryFactoryImpl {
         FolderViewModelImpl(actions: actions, path: path, repUseCase: repUseCase)
     }
 
-    func issuesViewModel(_ repository: Repository, actions: IssuesActions) -> IssuesViewModel {
-        IssuesViewModelImpl(issueUseCase: issueUseCase, repository: repository, actions: actions)
+    func issuesViewModel(_ url: URL, actions: IssuesActions) -> IssuesViewModel {
+        IssuesViewModelImpl(url, issueUseCase: issueUseCase, actions: actions)
     }
 
-    func prListViewModel(_ rep: Repository, actions: PRListActions) -> PRListViewModel {
-        PRListViewModelImpl(rep: rep, useCase: pullRequestUseCase, actions: actions)
+    func prListViewModel(_ url: URL, actions: PRListActions) -> PRListViewModel {
+        PRListViewModelImpl(url, useCase: pullRequestUseCase, actions: actions)
     }
 
-    func releasesViewModel(_ rep: Repository, actions: ReleasesActions) -> ReleasesViewModel {
-        ReleasesViewModelImpl(rep: rep, useCase: repUseCase, actions: actions)
+    func releasesViewModel(_ url: URL, actions: ReleasesActions) -> ReleasesViewModel {
+        ReleasesViewModelImpl(url, useCase: repUseCase, actions: actions)
+    }
+
+    func forksViewModel(_ url: URL, actions: ForksActions) -> ForksViewModel {
+        ForksViewModelImpl(url, useCase: repUseCase, actions: actions)
     }
 
     var issueUseCase: IssueUseCase {

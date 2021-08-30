@@ -112,7 +112,7 @@ extension RepositoryActivityViewController: UITableViewDelegate {
         case .issues:
             viewModel.showIssues()
         case .pullRequests:
-            viewModel.showPullRequests()
+            viewModel.showPulls()
         case .releases:
             viewModel.showReleases()
         default:

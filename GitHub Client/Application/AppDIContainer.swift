@@ -180,6 +180,7 @@ private extension AppDIContainer {
               showPullRequest: actions.openPullRequest(_:in:),
               showRelease: actions.openRelease(_:in:),
               showCommits: actions.showCommits(_:in:),
+              showRepository: actions.openRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               copy: actions.copy(text:))

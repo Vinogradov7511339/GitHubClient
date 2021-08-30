@@ -68,7 +68,7 @@ struct RepositoryResponseDTO: Codable {
     let milestonesUrl: String?
     let notificationsUrl: String?
     let pullsUrl: String
-    let releasesUrl: String?
+    let releasesUrl: String
     let sshUrl: URL?
     let stargazersUrl: URL
     let statusesUrl: String?
@@ -121,6 +121,9 @@ struct RepositoryResponseDTO: Codable {
         let pullsPath = pullsUrl.replacingOccurrences(of: "{/number}", with: "")
         guard let pullsUrl = URL(string: pullsPath) else { return nil }
 
+        let releasesPath = releasesUrl.replacingOccurrences(of: "{/id}", with: "")
+        guard let releasesUrl = URL(string: releasesPath) else { return nil }
+
         return .init(repositoryId: id,
                      owner: owner.toDomain(),
                      name: name,
@@ -144,6 +147,7 @@ struct RepositoryResponseDTO: Codable {
                      commitsUrl: commitsUrl,
                      contentUrl: contentUrl,
                      issuesUrl: issuesUrl,
-                     pullsUrl: pullsUrl)
+                     pullsUrl: pullsUrl,
+                     releasesUrl: releasesUrl)
     }
 }

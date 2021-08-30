@@ -33,4 +33,5 @@ struct Repository {
     let contentUrl: URL
     let issuesUrl: URL
     let pullsUrl: URL
+    let releasesUrl: URL
 }

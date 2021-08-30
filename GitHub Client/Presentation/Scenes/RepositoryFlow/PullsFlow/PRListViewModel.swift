@@ -31,7 +31,7 @@ final class PRListViewModelImpl: PRListViewModel {
 
     // MARK: - Private variables
 
-    private let rep: Repository
+    private let url: URL
     private let useCase: PRUseCase
     private let actions: PRListActions
     private var lastPage: Int?
@@ -39,8 +39,8 @@ final class PRListViewModelImpl: PRListViewModel {
 
     // MARK: - Lifecycle
 
-    init(rep: Repository, useCase: PRUseCase, actions: PRListActions) {
-        self.rep = rep
+    init(_ url: URL, useCase: PRUseCase, actions: PRListActions) {
+        self.url = url
         self.useCase = useCase
         self.actions = actions
     }
@@ -71,7 +71,7 @@ extension PRListViewModelImpl {
 private extension PRListViewModelImpl {
     func fetch() {
         state.value = .loading
-        useCase.fetchPRList(rep, page: currentPage) { result in
+        useCase.fetchPRList(url, page: currentPage) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

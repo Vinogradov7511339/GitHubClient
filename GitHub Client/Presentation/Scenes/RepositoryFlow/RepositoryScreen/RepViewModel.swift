@@ -8,18 +8,16 @@
 import UIKit
 
 struct RepActions {
-    let showBranches: (Repository, @escaping (Branch) -> Void) -> Void
-    let showStargazers: (Repository) -> Void
-    let showForks: (Repository) -> Void
-    let showUser: (URL) -> Void
-    let showIssues: (Repository) -> Void
-    let showPullRequests: (Repository) -> Void
-    let showReleases: (Repository) -> Void
-    let showWatchers: (Repository) -> Void
-    let showCode: (URL) -> Void
+    let showOwner: (URL) -> Void
+    let showStargazers: (URL) -> Void
+    let showForks: (URL) -> Void
+
+    let showSources: (URL) -> Void
     let showCommits: (URL) -> Void
-    let openLink: (URL) -> Void
-    let share: (URL) -> Void
+    let showBranches: (URL) -> Void
+    let showIssues: (URL) -> Void
+    let showPulls: (URL) -> Void
+    let showReleases: (URL) -> Void
 }
 
 protocol RepViewModelInput {
@@ -35,11 +33,8 @@ protocol RepViewModelInput {
     func showCommits()
     func showBranches()
     func showIssues()
-    func showPullRequests()
+    func showPulls()
     func showReleases()
-
-    func addToStarred()
-    func subscribe()
 }
 
 enum RepositoryScreenState {
@@ -64,9 +59,9 @@ final class RepViewModelImpl: RepViewModel {
 
     // MARK: - Private variables
 
+    private let rep: Repository
     private let repUseCase: RepUseCase
     private let actions: RepActions
-    private let rep: Repository
     private var currentBranch: String
 
     // MARK: - Init
@@ -91,51 +86,42 @@ extension RepViewModelImpl {
     }
 
     func showOwner() {
-        let url = rep.owner.url
-        actions.showUser(url)
+        actions.showOwner(rep.owner.url)
     }
 
     func showStargazers() {
-        actions.showStargazers(rep)
+        actions.showStargazers(rep.stargazersUrl)
     }
 
     func showForks() {
-        actions.showForks(rep)
+        actions.showForks(rep.forksUrl)
     }
 
-    func addToStarred() {}
+    func showLicense() {}
 
-    func subscribe() {}
-
-    func addToFavorites() {}
-
-    func showBranches() {
-        actions.showBranches(rep, updateBranch(newBranch:))
+    func showSources() {
+        actions.showSources(rep.contentUrl)
     }
 
     func showCommits() {
         actions.showCommits(rep.commitsUrl)
     }
 
-    func showSources() {
-        actions.showCode(rep.contentUrl)
+    func showBranches() {
+        actions.showBranches(rep.branchesUrl)
     }
 
     func showIssues() {
-        actions.showIssues(rep)
+        actions.showIssues(rep.issuesUrl)
     }
 
-    func showPullRequests() {
-        actions.showPullRequests(rep)
+    func showPulls() {
+        actions.showPulls(rep.pullsUrl)
     }
 
     func showReleases() {
-        actions.showReleases(rep)
+        actions.showReleases(rep.releasesUrl)
     }
-
-    func showLicense() {}
-
-    func showWatchers() {}
 }
 
 private extension RepViewModelImpl {

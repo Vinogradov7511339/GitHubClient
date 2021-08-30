@@ -42,7 +42,8 @@ extension UserActivityCell: UICollectionViewDataSource {
         events.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = cellManager.dequeueReusableCell(collectionView: collectionView, for: indexPath)
         cell.populate(viewModel: events[indexPath.row])
         return cell

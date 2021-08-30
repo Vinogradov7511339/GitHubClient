@@ -18,7 +18,7 @@ struct IssueResponseDTO: Codable {
     let number: Int
     let state: String
     let title: String
-    let body: String
+    let body: String?
     let user: UserResponseDTO
     let labels: [LabelResponseDTO?]?
     let assignee: UserResponseDTO?
@@ -50,7 +50,7 @@ struct IssueResponseDTO: Codable {
             commentsURL: commentsUrl,
             state: IssueState(rawValue: state) ?? .unknown,
             title: title,
-            body: body,
+            body: body ?? "",
             user: user.toDomain(),
             commentsCount: comments,
             createdAt: createdAt.toDate()

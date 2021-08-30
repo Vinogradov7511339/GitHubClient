@@ -61,8 +61,6 @@ struct RepEndpoits {
     // MARK: - Issues
 
     static func issues(_ model: IssuesRequestModel) -> Endpoint<[IssueResponseDTO]> {
-        let owner = model.repository.owner.login
-        let repo = model.repository.name
         let filter = model.filter
 
         var params: QueryType = [:]
@@ -92,7 +90,8 @@ struct RepEndpoits {
             params["since"] = dateStr
         }
 
-        return Endpoint(path: "repos/\(owner)/\(repo)/issues",
+        return Endpoint(path: model.path.absoluteString,
+                        isFullPath: true,
                         queryParametersEncodable: params)
     }
 
@@ -111,10 +110,9 @@ struct RepEndpoits {
     // MARK: - Pull Requests
 
     static func pullRequests(_ model: PRListRequestModel) -> Endpoint<[PRResponseDTO]> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
         let page = model.page
-        return Endpoint(path: "repos/\(login)/\(name)/pulls",
+        return Endpoint(path: model.path.absoluteString,
+                        isFullPath: true,
                         queryParametersEncodable: ["page": page])
     }
 
@@ -125,10 +123,9 @@ struct RepEndpoits {
     // MARK: - Releases
 
     static func releases(_ model: ReleasesRequestModel) -> Endpoint<[ReleaseResponseDTO]> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
         let page = model.page
-        return Endpoint(path: "repos/\(login)/\(name)/releases",
+        return Endpoint(path: model.path.absoluteString,
+                        isFullPath: true,
                         queryParametersEncodable: ["page": page])
     }
 
@@ -156,10 +153,9 @@ struct RepEndpoits {
     // MARK: - Forks
 
     static func forks(_ model: ForksRequestModel) -> Endpoint<[RepositoryResponseDTO]> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
         let page = model.page
-        return Endpoint(path: "repos/\(login)/\(name)/forks",
+        return Endpoint(path: model.path.absoluteString,
+                        isFullPath: true,
                         queryParametersEncodable: ["page": page])
     }
 
