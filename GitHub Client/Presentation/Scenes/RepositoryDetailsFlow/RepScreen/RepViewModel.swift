@@ -26,21 +26,20 @@ protocol RepViewModelInput {
     func viewDidLoad()
     func refresh()
 
+    func showOwner()
     func showStargazers()
     func showForks()
+    func showLicense()
 
-    func addToStarred()
-    func subscribe()
-
-    func showBranches()
-    func showCommits()
     func showSources()
-
+    func showCommits()
+    func showBranches()
     func showIssues()
     func showPullRequests()
     func showReleases()
-    func showLicense()
-    func showWatchers()
+
+    func addToStarred()
+    func subscribe()
 }
 
 enum RepositoryScreenState {
@@ -90,6 +89,8 @@ extension RepViewModelImpl {
     func refresh() {
         fetch()
     }
+
+    func showOwner() {}
 
     func showStargazers() {
         actions.showStargazers(rep)

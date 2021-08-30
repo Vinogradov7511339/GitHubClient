@@ -19,11 +19,12 @@ class ReadMeCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension ReadMeCell: ConfigurableCell {
-    func configure(viewModel: String) {
+    func configure(viewModel: RepositoryDetails) {
         guard stackView.arrangedSubviews.isEmpty else {
             return
         }
-        let renderer = MDRenderer(text: viewModel)
+        guard let text = viewModel.mdText else { return }
+        let renderer = MDRenderer(text: text)
         renderer.render(in: stackView)
     }
 }
