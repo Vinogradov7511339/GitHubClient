@@ -84,8 +84,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.licenseViewController()
     }
 
-    func watchersViewController() -> UIViewController {
-        repositoryFactory.watchersViewController()
+    func usersViewController(_ type: RepositoryUsersType, actions: UsersActions) -> UIViewController {
+        repositoryFactory.usersViewController(type, actions: actions)
     }
 
     func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {

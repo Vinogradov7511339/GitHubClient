@@ -93,14 +93,26 @@ extension RepositoryInfoViewController: UITableViewDelegate {
         switch sectionType {
         case .owner:
             viewModel.showOwner()
-        case .stargazers:
-            viewModel.showStargazers()
-        case .forks:
-            viewModel.showForks()
+        case .popularity:
+            showItem(row: indexPath.row)
         case .license:
             viewModel.showLicense()
         default:
             break
+        }
+    }
+
+    func showItem(row: Int) {
+        guard let itemType = RepositoryInfoRowType(rawValue: row) else { return }
+        switch itemType {
+        case .contributors:
+            viewModel.showContributors()
+        case .forks:
+            viewModel.showForks()
+        case .stargazers:
+            viewModel.showStargazers()
+        case .subscribers:
+            viewModel.showSubscribers()
         }
     }
 }

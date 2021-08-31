@@ -10,31 +10,12 @@ import Foundation
 struct RepEndpoits {
 
     // MARK: - Repositories
-
-    static func repositories(_ model: RepListRequestModel) -> Endpoint<[RepositoryResponseDTO]> {
-        fatalError()
-    }
-
+    
     static func repository(_ url: URL) -> Endpoint<RepositoryResponseDTO> {
         return Endpoint(path: url.absoluteString, isFullPath: true)
     }
 
-    // MARK: - Branches
-
-    static func branches(_ model: BranchesRequestModel) -> Endpoint<[BranchResponseDTO]> {
-        let login = model.repository.owner.login
-        let name = model.repository.name
-        return Endpoint(path: "repos/\(login)/\(name)/branches")
-    }
-
     // MARK: - Commits
-
-    static func commits(_ model: CommitsRequestModel) -> Endpoint<[CommitResponseDTO]> {
-        let page = model.page
-        return Endpoint(path: model.commitsUrl.absoluteString,
-                        isFullPath: true,
-                        queryParametersEncodable: ["page": page])
-    }
 
     static func commit(_ commitUrl: URL) -> Endpoint<CommitResponseDTO> {
         return Endpoint(path: commitUrl.absoluteString, isFullPath: true)
@@ -120,13 +101,6 @@ struct RepEndpoits {
 
     // MARK: - Releases
 
-    static func releases(_ model: ReleasesRequestModel) -> Endpoint<[ReleaseResponseDTO]> {
-        let page = model.page
-        return Endpoint(path: model.path.absoluteString,
-                        isFullPath: true,
-                        queryParametersEncodable: ["page": page])
-    }
-
     static func release(_ model: ReleaseRequestModel) -> Endpoint<ReleaseResponseDTO> {
         let login = model.repository.owner.login
         let name = model.repository.name
@@ -138,24 +112,6 @@ struct RepEndpoits {
 
     static func license(_ model: LicenseRequestModel) -> Endpoint<LicenseResponseDTO> {
         fatalError()
-    }
-
-    // MARK: - Watchers
-
-    static func watchers(_ model: ListRequestModel) -> Endpoint<[UserResponseDTO]> {
-        let page = model.page
-        return Endpoint(path: model.path.absoluteString,
-                        isFullPath: true,
-                        queryParametersEncodable: ["page": page])
-    }
-
-    // MARK: - Forks
-
-    static func forks(_ model: ForksRequestModel) -> Endpoint<[RepositoryResponseDTO]> {
-        let page = model.page
-        return Endpoint(path: model.path.absoluteString,
-                        isFullPath: true,
-                        queryParametersEncodable: ["page": page])
     }
 
     // MARK: - Diff

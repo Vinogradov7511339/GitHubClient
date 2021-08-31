@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "round_group_white_18pt_3x.png",
+      "filename" : "repository_subscribers.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "round_group_white_18pt_3x@2x.png",
+      "filename" : "repository_subscribers@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "round_group_white_18pt_3x@3x.png",
+      "filename" : "repository_subscribers@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

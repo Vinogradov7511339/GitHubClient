@@ -18,7 +18,7 @@ protocol RepositoryFactory {
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
-    func watchersViewController() -> UIViewController
+    func usersViewController(_ type: RepositoryUsersType, actions: UsersActions) -> UIViewController
     func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
 }
 
@@ -81,8 +81,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func watchersViewController() -> UIViewController {
-        UIViewController()
+    func usersViewController(_ type: RepositoryUsersType, actions: UsersActions) -> UIViewController {
+        UsersListViewController.create(with: usersViewModel(type, actions: actions))
     }
 
     func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {
@@ -122,6 +122,10 @@ private extension RepositoryFactoryImpl {
 
     func forksViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
         RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+    }
+
+    func usersViewModel(_ type: RepositoryUsersType, actions: UsersActions) -> UsersViewModel {
+        UsersViewModelImpl(type, useCase: listUseCase, actions: actions)
     }
 
     var issueUseCase: IssueUseCase {

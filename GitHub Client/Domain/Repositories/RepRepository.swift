@@ -58,7 +58,6 @@ protocol RepRepository {
     typealias LicenseHandler = (Result<LicenseResponseDTO, Error>) -> Void
     func fetchLicense(request: LicenseRequestModel, completion: @escaping LicenseHandler)
 
-
     // MARK: - Comments
 
     typealias CommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void

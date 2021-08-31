@@ -16,7 +16,7 @@ protocol RepFlowCoordinatorDependencies {
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
-    func watchersViewController() -> UIViewController
+    func usersViewController(_ type: RepositoryUsersType, actions: UsersActions) -> UIViewController
     func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
 
     func showCommits(_ url: URL, in nav: UINavigationController)
@@ -57,8 +57,10 @@ final class RepFlowCoordinator {
 private extension RepFlowCoordinator {
     func actions(_ nav: UINavigationController) -> RepActions {
         .init(showOwner: showUser(in: nav),
-              showStargazers: showStargazers(_:),
               showForks: showForks(_:),
+              showStargazers: showStargazers(_:),
+              showSubscribers: showSubscribers(_:),
+              showContributors: showContributors(_:),
               showSources: showCode(_:),
               showCommits: showCommits(in: nav),
               showBranches: showBranches(_:),
@@ -70,23 +72,38 @@ private extension RepFlowCoordinator {
 
 // MARK: - Routing
 private extension RepFlowCoordinator {
+    func showStargazers(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = UsersActions(showUser: showUser(in: nav))
+        let viewController = dependencies.usersViewController(.stargazers(url), actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+
+    func showSubscribers(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = UsersActions(showUser: showUser(in: nav))
+        let viewController = dependencies.usersViewController(.subscribers(url), actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+
+    func showContributors(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = UsersActions(showUser: showUser(in: nav))
+        let viewController = dependencies.usersViewController(.contributors(url), actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+
     func showBranches(_ url: URL) {
         let viewController = dependencies.branchesViewController()
         let nav = UINavigationController(rootViewController: viewController)
         navigationController?.viewControllers.last?.present(nav, animated: true, completion: nil)
     }
 
-    func showStargazers(_ url: URL) {
-//        let actions = UsersListActions(showUser: dependencies.show(user:))
-//        let viewController = dependencies.makeStargazersViewController(for: repository, actions: actions)
-//        navigationController?.pushViewController(viewController, animated: true)
-    }
-
     func showForks(_ url: URL) {
         guard let nav = navigationController else { return }
         let actions = RepositoriesActions(showRepository: showRepository(in: nav))
         let viewController = dependencies.forksViewController(url, actions: actions)
-        navigationController?.pushViewController(viewController, animated: true)
+        nav.pushViewController(viewController, animated: true)
     }
 
     func showCode(_ path: URL) {

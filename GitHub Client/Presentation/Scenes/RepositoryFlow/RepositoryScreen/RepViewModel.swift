@@ -9,8 +9,11 @@ import UIKit
 
 struct RepActions {
     let showOwner: (URL) -> Void
-    let showStargazers: (URL) -> Void
+
     let showForks: (URL) -> Void
+    let showStargazers: (URL) -> Void
+    let showSubscribers: (URL) -> Void
+    let showContributors: (URL) -> Void
 
     let showSources: (URL) -> Void
     let showCommits: (URL) -> Void
@@ -25,8 +28,12 @@ protocol RepViewModelInput {
     func refresh()
 
     func showOwner()
-    func showStargazers()
+
     func showForks()
+    func showStargazers()
+    func showSubscribers()
+    func showContributors()
+
     func showLicense()
 
     func showSources()
@@ -83,41 +90,60 @@ extension RepViewModelImpl {
     }
 
     func showOwner() {
-//        actions.showOwner(rep.owner.url)
-    }
-
-    func showStargazers() {
-//        actions.showStargazers(rep.stargazersUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showOwner(rep.repository.owner.url)
     }
 
     func showForks() {
-//        actions.showForks(rep.forksUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showForks(rep.repository.forksUrl)
+    }
+
+    func showStargazers() {
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showStargazers(rep.repository.stargazersUrl)
+    }
+
+    func showSubscribers() {
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showSubscribers(rep.repository.subscribersUrl)
+    }
+
+    func showContributors() {
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showContributors(rep.repository.contributorsUrl)
     }
 
     func showLicense() {}
 
     func showSources() {
-//        actions.showSources(rep.contentUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showSources(rep.repository.contentUrl)
     }
 
     func showCommits() {
-//        actions.showCommits(rep.commitsUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showCommits(rep.repository.commitsUrl)
     }
 
     func showBranches() {
-//        actions.showBranches(rep.branchesUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showBranches(rep.repository.branchesUrl)
     }
 
     func showIssues() {
-//        actions.showIssues(rep.issuesUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showIssues(rep.repository.issuesUrl)
     }
 
     func showPulls() {
-//        actions.showPulls(rep.pullsUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showPulls(rep.repository.pullsUrl)
     }
 
     func showReleases() {
-//        actions.showReleases(rep.releasesUrl)
+        guard case .loaded(let rep) = state.value else { return }
+        actions.showReleases(rep.repository.releasesUrl)
     }
 }
 
