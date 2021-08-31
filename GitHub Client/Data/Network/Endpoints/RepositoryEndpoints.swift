@@ -15,10 +15,8 @@ struct RepEndpoits {
         fatalError()
     }
 
-    static func repository(_ rep: Repository) -> Endpoint<RepositoryResponseDTO> {
-        let login = rep.owner.login
-        let name = rep.name
-        return Endpoint(path: "repos/\(login)/\(name)")
+    static func repository(_ url: URL) -> Endpoint<RepositoryResponseDTO> {
+        return Endpoint(path: url.absoluteString, isFullPath: true)
     }
 
     // MARK: - Branches
@@ -144,10 +142,11 @@ struct RepEndpoits {
 
     // MARK: - Watchers
 
-    static func watchers(_ model: WatchersRequestModel) -> Endpoint<[UserResponseDTO]> {
-        fatalError()
-//        return Endpoint(path: "repos/\(repository.owner.login)/\(repository.name)/stargazers",
-//                        queryParametersEncodable: ["page": page])
+    static func watchers(_ model: ListRequestModel) -> Endpoint<[UserResponseDTO]> {
+        let page = model.page
+        return Endpoint(path: model.path.absoluteString,
+                        isFullPath: true,
+                        queryParametersEncodable: ["page": page])
     }
 
     // MARK: - Forks

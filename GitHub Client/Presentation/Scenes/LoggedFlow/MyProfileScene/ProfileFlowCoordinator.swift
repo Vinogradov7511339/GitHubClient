@@ -8,16 +8,16 @@
 import UIKit
 
 protocol ProfileFlowCoordinatorDependencies {
-    func profileViewController(_ actions: ProfileActions) -> UIViewController
-    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController
-    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController
+    func profileViewController(actions: ProfileActions) -> UIViewController
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func subscriptionsViewController() -> UIViewController
-    func showRepositories(_ actions: MyRepositoriesActions) -> UIViewController
-    func showStarred(_ actions: MyRepositoriesActions) -> UIViewController
+    func showRepositories(_ url: URL, actions: RepositoriesActions) -> UIViewController
+    func showStarred(_ url: URL, actions: RepositoriesActions) -> UIViewController
 
     func openSettings(in nav: UINavigationController)
-    func openRepository(_ repository: Repository, in nav: UINavigationController)
-    func openProfile(_ user: User, in nav: UINavigationController)
+    func openRepository(_ repository: URL, in nav: UINavigationController)
+    func openProfile(_ user: URL, in nav: UINavigationController)
 
     func share(_ url: URL)
     func open(_ link: URL)
@@ -40,18 +40,18 @@ class ProfileFlowCoordinator {
 
     func start() {
         guard let nav = navigationController else { return }
-        let controller = dependencies.profileViewController(actions(in: nav))
+        let controller = dependencies.profileViewController(actions: actions(in: nav))
         navigationController?.pushViewController(controller, animated: true)
     }
 }
 
 // MARK: - Currying functions
 private extension ProfileFlowCoordinator {
-    func openRepository(in nav: UINavigationController) -> (Repository) -> Void {
+    func openRepository(in nav: UINavigationController) -> (URL) -> Void {
         return { repository in self.dependencies.openRepository(repository, in: nav) }
     }
 
-    func openProfile(in nav: UINavigationController) -> (User) -> Void {
+    func openProfile(in nav: UINavigationController) -> (URL) -> Void {
         return { user in self.dependencies.openProfile(user, in: nav) }
     }
 
@@ -62,11 +62,10 @@ private extension ProfileFlowCoordinator {
     func actions(in nav: UINavigationController) -> ProfileActions {
         .init(
             openSettings: openSettings,
-            showFollowers: showFollowers,
-            showFollowing: showFollowing,
-            showRepository: openRepository(in: nav),
-            showRepositories: showRepositories,
-            showStarred: showStarred,
+            showFollowers: showFollowers(_:),
+            showFollowing: showFollowing(_:),
+            showRepositories: showRepositories(_:),
+            showStarred: showStarred(_:),
             showSubscriptions: showSubscriptions,
             sendEmail: dependencies.send,
             openLink: dependencies.open,
@@ -82,17 +81,17 @@ private extension ProfileFlowCoordinator {
         dependencies.openSettings(in: nav)
     }
 
-    func showFollowers() {
+    func showFollowers(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = MyUsersViewModelActions(showUser: openProfile(in: nav))
-        let viewController = dependencies.followersViewController(actions)
+        let actions = UsersActions(showUser: openProfile(in: nav))
+        let viewController = dependencies.followersViewController(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showFollowing() {
+    func showFollowing(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = MyUsersViewModelActions(showUser: openProfile(in: nav))
-        let viewController = dependencies.followingViewController(actions)
+        let actions = UsersActions(showUser: openProfile(in: nav))
+        let viewController = dependencies.followingViewController(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
@@ -101,17 +100,17 @@ private extension ProfileFlowCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showRepositories() {
+    func showRepositories(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = MyRepositoriesActions(showRepository: openRepository(in: nav))
-        let viewController = dependencies.showRepositories(actions)
+        let actions = RepositoriesActions(showRepository: openRepository(in: nav))
+        let viewController = dependencies.showRepositories(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showStarred() {
+    func showStarred(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = MyRepositoriesActions(showRepository: openRepository(in: nav))
-        let viewController = dependencies.showStarred(actions)
+        let actions = RepositoriesActions(showRepository: openRepository(in: nav))
+        let viewController = dependencies.showStarred(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

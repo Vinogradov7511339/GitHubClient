@@ -17,14 +17,14 @@ protocol RepFlowCoordinatorDependencies {
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
-    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController
+    func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
 
     func showCommits(_ url: URL, in nav: UINavigationController)
     func showPullRequest(_ pr: PullRequest, in nav: UINavigationController)
     func showRelease(_ release: Release, in nav: UINavigationController)
     func showIssue(_ issue: Issue, in nav: UINavigationController)
     func showUser(_ url: URL, in nav: UINavigationController)
-    func showRepository(_ rep: Repository, in nav: UINavigationController)
+    func showRepository(_ url: URL, in nav: UINavigationController)
 
     func codeOptionsViewController() -> UIViewController
     func openLink(url: URL)
@@ -84,7 +84,7 @@ private extension RepFlowCoordinator {
 
     func showForks(_ url: URL) {
         guard let nav = navigationController else { return }
-        let actions = ForksActions(showRepository: showRepository(in: nav))
+        let actions = RepositoriesActions(showRepository: showRepository(in: nav))
         let viewController = dependencies.forksViewController(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -146,7 +146,7 @@ private extension RepFlowCoordinator {
         return { pullRequest in self.dependencies.showPullRequest(pullRequest, in: nav) }
     }
 
-    func showRepository(in nav: UINavigationController) -> (Repository) -> Void {
+    func showRepository(in nav: UINavigationController) -> (URL) -> Void {
         return { repository in self.dependencies.showRepository(repository, in: nav)}
     }
 

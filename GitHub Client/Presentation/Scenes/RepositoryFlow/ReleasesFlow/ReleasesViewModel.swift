@@ -32,14 +32,14 @@ final class ReleasesViewModelImpl: ReleasesViewModel {
     // MARK: - Private variables
 
     private let url: URL
-    private let useCase: RepUseCase
+    private let useCase: ListUseCase
     private let actions: ReleasesActions
     private var lastPage: Int?
     private var currentPage = 1
 
     // MARK: - Lifecycle
 
-    init(_ url: URL, useCase: RepUseCase, actions: ReleasesActions) {
+    init(_ url: URL, useCase: ListUseCase, actions: ReleasesActions) {
         self.url = url
         self.useCase = useCase
         self.actions = actions
@@ -71,7 +71,8 @@ extension ReleasesViewModelImpl {
 private extension ReleasesViewModelImpl {
     func fetch() {
         state.value = .loading
-        useCase.fetchReleases(url, page: currentPage) { result in
+        let model = ListRequestModel(path: url, page: currentPage)
+        useCase.fetchReleases(model) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

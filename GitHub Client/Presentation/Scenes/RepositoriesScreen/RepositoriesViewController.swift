@@ -1,13 +1,15 @@
 //
-//  RepositoriesViewController.swift
+//  ForksViewController.swift
 //  GitHub Client
 //
-//  Created by Alexander Vinogradov on 13.08.2021.
+//  Created by Alexander Vinogradov on 30.08.2021.
 //
 
 import UIKit
 
 final class RepositoriesViewController: UIViewController {
+
+    // MARK: - Create
 
     static func create(with viewModel: RepositoriesViewModel) -> RepositoriesViewController {
         let viewController = RepositoriesViewController()
@@ -15,28 +17,36 @@ final class RepositoriesViewController: UIViewController {
         return viewController
     }
 
-    private lazy var adapter: RepositoriesAdapter = {
-        RepositoriesAdapterImpl(cellManager: cellManager)
-    }()
-
-    private var viewModel: RepositoriesViewModel!
-    private let cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
+    // MARK: - Views
 
     private lazy var collectionView: UICollectionView = {
         let layoutFactory = CompositionalLayoutFactory()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutFactory.layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let layout = layoutFactory.layout
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemGroupedBackground
-        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = adapter
+        collectionView.delegate = self
         return collectionView
     }()
+
+    // MARK: - Private variables
+
+    private var viewModel: RepositoriesViewModel!
+    private let cellManager = CollectionCellManager.create(cellType: RepositoryItemCell.self)
+    private lazy var adapter: CollectionViewAdapter = {
+        CollectionViewAdapterImpl(with: cellManager)
+    }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-        cellManager.register(collectionView: collectionView)
+
+        adapter.register(collectionView)
+
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
@@ -45,16 +55,37 @@ final class RepositoriesViewController: UIViewController {
 // MARK: - Binding
 private extension RepositoriesViewController {
     func bind(to viewModel: RepositoriesViewModel) {
-        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
-        viewModel.repositories.observe(on: self) { [weak self] in self?.updateItems($0)}
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateTitle(_ title: String) {
-        self.title = title
+    func updateState(_ newState: ItemsSceneState<Repository>) {
+        switch newState {
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loaded(let items):
+            prepareLoadedState(items)
+        }
     }
 
-    func updateItems(_ repositories: [Repository]) {
-        adapter.update(repositories)
+    func prepareLoadingState() {
+        collectionView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        collectionView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
+    }
+
+    func prepareLoadedState(_ items: [Repository]) {
+        collectionView.isHidden = false
+        hideLoader()
+        hideError()
+        adapter.update(items)
         collectionView.reloadData()
     }
 }
@@ -67,15 +98,9 @@ extension RepositoriesViewController: UICollectionViewDelegate {
     }
 }
 
-extension RepositoriesViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return .zero
-//    }
-}
-
-// MARK: - Setup Views
 private extension RepositoriesViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(collectionView)
     }
 

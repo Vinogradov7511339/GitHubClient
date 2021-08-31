@@ -26,18 +26,20 @@ typealias CommitsViewModel = CommitsViewModelInput & CommitsViewModelOutput
 final class CommitsViewModelImpl: CommitsViewModel {
 
     // MARK: - Output
+
     var state: Observable<ItemsSceneState<Commit>> = Observable(.loading)
 
-    // MARK: - Private
-    private let commitUseCase: CommitUseCase
-    private let commitsUrl: URL
+    // MARK: - Private variables
+
+    private let url: URL
+    private let useCase: ListUseCase
     private let actions: CommitsActions
     private var lastPage: Int?
     private var currentPage = 1
 
-    init(commitUseCase: CommitUseCase, commitsUrl: URL, actions: CommitsActions) {
-        self.commitUseCase = commitUseCase
-        self.commitsUrl = commitsUrl
+    init(_ url: URL, useCase: ListUseCase, actions: CommitsActions) {
+        self.url = url
+        self.useCase = useCase
         self.actions = actions
     }
 }
@@ -67,8 +69,8 @@ extension CommitsViewModelImpl {
 private extension CommitsViewModelImpl {
     func fetch() {
         state.value = .loading
-        let request = CommitsRequestModel(page: currentPage, commitsUrl: commitsUrl)
-        commitUseCase.fetchCommits(request: request) { result in
+        let request = ListRequestModel(path: url, page: currentPage)
+        useCase.fetchCommits(request) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

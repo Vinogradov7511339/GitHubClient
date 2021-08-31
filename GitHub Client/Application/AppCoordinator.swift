@@ -18,7 +18,7 @@ protocol AppCoordinatorDependencies {
 
     func repositoryCoordinator(in nav: UINavigationController,
                                actions: AppCoordinatorActions,
-                               repository: Repository) -> RepFlowCoordinator
+                               repository: URL) -> RepFlowCoordinator
 
     func userCoordinator(in nav: UINavigationController,
                          actions: AppCoordinatorActions,
@@ -55,7 +55,7 @@ protocol AppCoordinatorActions {
     func copy(text: String)
 
     func openSettings(in nav: UINavigationController)
-    func openRepository(_ repository: Repository, in nav: UINavigationController)
+    func openRepository(_ repository: URL, in nav: UINavigationController)
     func openUser(_ url: URL, in nav: UINavigationController)
     func openIssue(_ issue: Issue, in nav: UINavigationController)
     func openPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController)
@@ -63,17 +63,6 @@ protocol AppCoordinatorActions {
 
     func showCommits(_ url: URL, in nav: UINavigationController)
     func showCommit(_ url: URL, in nav: UINavigationController)
-
-    // MARK: - Remove
-
-    func openUserRecentEvents(_ user: User, in nav: UINavigationController)
-    func openUserStarred(_ user: User, in nav: UINavigationController)
-    func openUserGists(_ user: User, in nav: UINavigationController)
-    func openUserSubscriptions(_ user: User, in nav: UINavigationController)
-    func openUserEvents(_ user: User, in nav: UINavigationController)
-    func openUserRepositories(_ user: User, in nav: UINavigationController)
-    func openUserFollowers(_ user: User, in nav: UINavigationController)
-    func openUserFollowing(_ user: User, in nav: UINavigationController)
 }
 
 final class AppCoordinator {
@@ -152,7 +141,7 @@ extension AppCoordinator: AppCoordinatorActions {
         coordinator.start()
     }
 
-    func openRepository(_ repository: Repository, in nav: UINavigationController) {
+    func openRepository(_ repository: URL, in nav: UINavigationController) {
         let coordinator = dependencies.repositoryCoordinator(in: nav, actions: self, repository: repository)
         coordinator.start()
     }
@@ -188,57 +177,11 @@ extension AppCoordinator: AppCoordinatorActions {
         let coordinator = dependencies.commitCoordinator(in: nav, actions: self, commitsUrl: url)
         coordinator.start()
     }
-
-    // MARK: - Screens
-
-    func openUserRecentEvents(_ user: User, in nav: UINavigationController) {
-        let viewController = dependencies.userFactory.recentEventsViewController(user: user)
-        nav.pushViewController(viewController, animated: true)
-    }
-
-    func openUserStarred(_ user: User, in nav: UINavigationController) {
-        let actions = RepositoriesActions(showRepository: openRepository(in: nav))
-        let viewController = dependencies.userFactory.starredViewController(user: user, actions)
-        nav.pushViewController(viewController, animated: true)
-    }
-
-    func openUserGists(_ user: User, in nav: UINavigationController) {
-        let viewController = dependencies.userFactory.gistsViewController(user: user)
-        nav.pushViewController(viewController, animated: true)
-    }
-
-    func openUserSubscriptions(_ user: User, in nav: UINavigationController) {
-        let viewController = dependencies.userFactory.subscriptionsViewController(user: user)
-        nav.pushViewController(viewController, animated: true)
-    }
-
-    func openUserEvents(_ user: User, in nav: UINavigationController) {
-        let viewController = dependencies.userFactory.eventsViewController(user: user)
-        nav.pushViewController(viewController, animated: true)
-    }
-
-    func openUserRepositories(_ user: User, in nav: UINavigationController) {
-        let actions = RepositoriesActions(showRepository: openRepository(in: nav))
-        let viewControllers = dependencies.userFactory.repositoriesViewController(user: user, actions)
-        nav.pushViewController(viewControllers, animated: true)
-    }
-
-    func openUserFollowers(_ user: User, in nav: UINavigationController) {
-//        let actions = UsersListActions(showUser: openUser(in: nav))
-//        let viewControllers = dependencies.userFactory.followersViewController(user: user, actions)
-//        nav.pushViewController(viewControllers, animated: true)
-    }
-
-    func openUserFollowing(_ user: User, in nav: UINavigationController) {
-//        let actions = UsersListActions(showUser: openUser(in: nav))
-//        let viewControllers = dependencies.userFactory.followingViewController(user: user, actions)
-//        nav.pushViewController(viewControllers, animated: true)
-    }
 }
 
 // MARK: - Currying functions
 private extension AppCoordinator {
-    func openRepository(in nav: UINavigationController) -> (Repository) -> Void {
+    func openRepository(in nav: UINavigationController) -> (URL) -> Void {
         return { repository in self.openRepository(repository, in: nav)}
     }
 

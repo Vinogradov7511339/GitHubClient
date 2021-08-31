@@ -55,23 +55,20 @@ final class RepViewModelImpl: RepViewModel {
     // MARK: - OUTPUT
 
     let state: Observable<RepositoryScreenState> = Observable(.loading)
-    var title: Observable<String>
+    var title: Observable<String> = Observable("")
 
     // MARK: - Private variables
 
-    private let rep: Repository
+    private let url: URL
     private let repUseCase: RepUseCase
     private let actions: RepActions
-    private var currentBranch: String
 
     // MARK: - Init
 
-    init(repository: Repository, repUseCase: RepUseCase, actions: RepActions) {
-        self.rep = repository
+    init(_ url: URL, repUseCase: RepUseCase, actions: RepActions) {
+        self.url = url
         self.repUseCase = repUseCase
         self.actions = actions
-        self.currentBranch = rep.currentBranch
-        title = Observable(repository.name)
     }
 }
 
@@ -86,52 +83,48 @@ extension RepViewModelImpl {
     }
 
     func showOwner() {
-        actions.showOwner(rep.owner.url)
+//        actions.showOwner(rep.owner.url)
     }
 
     func showStargazers() {
-        actions.showStargazers(rep.stargazersUrl)
+//        actions.showStargazers(rep.stargazersUrl)
     }
 
     func showForks() {
-        actions.showForks(rep.forksUrl)
+//        actions.showForks(rep.forksUrl)
     }
 
     func showLicense() {}
 
     func showSources() {
-        actions.showSources(rep.contentUrl)
+//        actions.showSources(rep.contentUrl)
     }
 
     func showCommits() {
-        actions.showCommits(rep.commitsUrl)
+//        actions.showCommits(rep.commitsUrl)
     }
 
     func showBranches() {
-        actions.showBranches(rep.branchesUrl)
+//        actions.showBranches(rep.branchesUrl)
     }
 
     func showIssues() {
-        actions.showIssues(rep.issuesUrl)
+//        actions.showIssues(rep.issuesUrl)
     }
 
     func showPulls() {
-        actions.showPulls(rep.pullsUrl)
+//        actions.showPulls(rep.pullsUrl)
     }
 
     func showReleases() {
-        actions.showReleases(rep.releasesUrl)
+//        actions.showReleases(rep.releasesUrl)
     }
 }
 
 private extension RepViewModelImpl {
-    func updateBranch(newBranch: Branch) {
-        currentBranch = newBranch.name
-    }
-
     func fetch() {
         state.value = .loading
-        repUseCase.fetchRepository(repository: rep) { result in
+        repUseCase.fetchRepository(url) { result in
             switch result {
             case .success(let repository):
                 self.state.value = .loaded(repository)

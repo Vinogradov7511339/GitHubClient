@@ -11,17 +11,8 @@ protocol UserFlowCoordinatorDependencies {
     func profileViewController(actions: UserProfileActions) -> UIViewController
     func repositoriesViewController(actions: RepositoriesActions) -> UIViewController
     func starredViewController(actions: RepositoriesActions) -> UIViewController
-    func followersViewController(actions: UsersListActions) -> UIViewController
-    func followingViewController(actions: UsersListActions) -> UIViewController
-
-    func showFollowers(_ user: User, in nav: UINavigationController)
-    func showFollowing(_ user: User, in nav: UINavigationController)
-    func showRepositories(_ user: User, in nav: UINavigationController)
-    func showStarred(_ user: User, in nav: UINavigationController)
-    func showRecentEvents(_ user: User, in nav: UINavigationController)
-    func showGists(_ user: User, in nav: UINavigationController)
-    func showSubscriptions(_ user: User, in nav: UINavigationController)
-    func showEvents(_ user: User, in nav: UINavigationController)
+    func followersViewController(actions: UsersActions) -> UIViewController
+    func followingViewController(actions: UsersActions) -> UIViewController
 
     func sendMail(email: String)
     func openLink(url: URL)
@@ -54,52 +45,29 @@ final class UserFlowCoordinator {
 // MARK: - UserProfile Actions
 private extension UserFlowCoordinator {
     func actions(in nav: UINavigationController) -> UserProfileActions {
-        .init(showRepositories: showFollowers(in: nav),
-              showFollowers: showFollowers(in: nav),
-              showFollowing: showFollowing(in: nav),
+        .init(showRepositories: showRepositories(_:),
+              showFollowers: showFollowers(_:),
+              showFollowing: showFollowing(_:),
               sendEmail: dependencies.sendMail(email:),
               openLink: dependencies.openLink(url:),
               share: dependencies.share(url:),
-              showRecentEvents: showRecentEvents(in: nav),
-              showStarred: showStarred(in: nav),
-              showGists: showGists(in: nav),
-              showSubscriptions: showSubscriptions(in: nav),
-              showEvents: showEvents(in: nav)
+              showRecentEvents: showRecentEvents(_:),
+              showStarred: showStarred(_:),
+              showGists: showGists(_:),
+              showSubscriptions: showSubscriptions(_:),
+              showEvents: showEvents(_:)
         )
     }
 }
 
 // MARK: - Routing
 private extension UserFlowCoordinator {
-    func showFollowers(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showFollowers(user, in: nav) }
-    }
-
-    func showFollowing(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showFollowing(user, in: nav) }
-    }
-
-    func showRepositories(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showRepositories(user, in: nav) }
-    }
-
-    func showStarred(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showStarred(user, in: nav) }
-    }
-
-    func showRecentEvents(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showRecentEvents(user, in: nav) }
-    }
-
-    func showGists(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showGists(user, in: nav) }
-    }
-
-    func showSubscriptions(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showSubscriptions(user, in: nav) }
-    }
-
-    func showEvents(in nav: UINavigationController) -> (User) -> Void {
-        return { user in self.dependencies.showEvents(user, in: nav) }
-    }
+    func showFollowers(_ url: URL) {}
+    func showFollowing(_ url: URL) {}
+    func showEvents(_ url: URL) {}
+    func showRecentEvents(_ url: URL) {}
+    func showStarred(_ url: URL) {}
+    func showGists(_ url: URL) {}
+    func showSubscriptions(_ url: URL) {}
+    func showRepositories(_ url: URL) {}
 }

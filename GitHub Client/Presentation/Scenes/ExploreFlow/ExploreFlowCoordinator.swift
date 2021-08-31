@@ -17,7 +17,7 @@ protocol ExploreFlowCoordinatorDependencies {
     func prListViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
     func usersViewController(_ searchQuery: String, actions: SearchListActions) -> UIViewController
 
-    func showRepository(_ repository: Repository, in nav: UINavigationController)
+    func showRepository(_ repository: URL, in nav: UINavigationController)
     func showIssue(_ issue: Issue, in nav: UINavigationController)
     func showPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController)
     func showUser(_ user: User, in nav: UINavigationController)
@@ -67,7 +67,7 @@ private extension ExploreFlowCoordinator {
 
 // MARK: - Details Routing
 private extension ExploreFlowCoordinator {
-    func showRepository(_ repository: Repository) {
+    func showRepository(_ repository: URL) {
         guard let nav = navigationController else { return }
         dependencies.showRepository(repository, in: nav)
     }

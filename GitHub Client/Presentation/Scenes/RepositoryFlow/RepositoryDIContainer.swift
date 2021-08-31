@@ -14,14 +14,14 @@ final class RepositoryDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let issueFilterStorage: IssueFilterStorage
-        let repository: Repository
+        let url: URL
 
         var showUser: (URL, UINavigationController) -> Void
         var showIssue: (Issue, UINavigationController) -> Void
         var showPullRequest: (PullRequest, UINavigationController) -> Void
         var showRelease: (Release, UINavigationController) -> Void
         let showCommits: (URL, UINavigationController) -> Void
-        var showRepository: (Repository, UINavigationController) -> Void
+        var showRepository: (URL, UINavigationController) -> Void
 
         var openLink: (URL) -> Void
         var share: (URL) -> Void
@@ -49,7 +49,7 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
     // MARK: - Factory
 
     func repositoryViewController(actions: RepActions) -> UIViewController {
-        repositoryFactory.repositoryViewController(dependencies.repository, actions: actions)
+        repositoryFactory.repositoryViewController(dependencies.url, actions: actions)
     }
 
     func branchesViewController() -> UIViewController {
@@ -88,7 +88,7 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.watchersViewController()
     }
 
-    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController {
+    func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {
         repositoryFactory.forksViewController(url, actions: actions)
     }
 
@@ -102,7 +102,7 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         dependencies.showIssue(issue, nav)
     }
 
-    func showRepository(_ rep: Repository, in nav: UINavigationController) {
+    func showRepository(_ rep: URL, in nav: UINavigationController) {
         dependencies.showRepository(rep, nav)
     }
 

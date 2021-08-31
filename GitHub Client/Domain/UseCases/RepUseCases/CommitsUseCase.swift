@@ -8,9 +8,6 @@
 import Foundation
 
 protocol CommitUseCase {
-    typealias CommitsHandler = RepRepository.CommitsHandler
-    func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
-
     typealias CommitHandler = RepRepository.CommitHandler
     func fetchCommit(commitUrl: URL, completion: @escaping CommitHandler)
 
@@ -29,10 +26,6 @@ final class CommitUseCaseImpl {
 
 // MARK: - CommitsUseCase
 extension CommitUseCaseImpl: CommitUseCase {
-    func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler) {
-        repRepository.fetchCommits(request: request, completion: completion)
-    }
-
     func fetchCommit(commitUrl: URL, completion: @escaping CommitHandler) {
         repRepository.fetchCommit(commitUrl, completion: completion)
     }

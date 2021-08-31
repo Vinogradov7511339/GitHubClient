@@ -8,19 +8,19 @@
 import UIKit
 
 struct UserProfileActions {
-    let showRepositories: (User) -> Void
-    let showFollowers: (User) -> Void
-    let showFollowing: (User) -> Void
+    let showRepositories: (URL) -> Void
+    let showFollowers: (URL) -> Void
+    let showFollowing: (URL) -> Void
 
     let sendEmail: (String) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
 
-    let showRecentEvents: (User) -> Void
-    let showStarred: (User) -> Void
-    let showGists: (User) -> Void
-    let showSubscriptions: (User) -> Void
-    let showEvents: (User) -> Void
+    let showRecentEvents: (URL) -> Void
+    let showStarred: (URL) -> Void
+    let showGists: (URL) -> Void
+    let showSubscriptions: (URL) -> Void
+    let showEvents: (URL) -> Void
 }
 
 protocol UserProfileViewModelInput {

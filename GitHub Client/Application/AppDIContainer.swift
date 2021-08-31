@@ -83,7 +83,7 @@ extension AppDIContainer: AppCoordinatorDependencies {
 
     func repositoryCoordinator(in nav: UINavigationController,
                                actions: AppCoordinatorActions,
-                               repository: Repository) -> RepFlowCoordinator {
+                               repository: URL) -> RepFlowCoordinator {
 
         let container = RepositoryDIContainer(repositoryDependencies(actions, repository: repository))
         return RepFlowCoordinator(in: nav, with: container)
@@ -171,10 +171,10 @@ private extension AppDIContainer {
     }
 
     func repositoryDependencies(_ actions: AppCoordinatorActions,
-                                repository: Repository) -> RepositoryDIContainer.Dependencies {
+                                repository: URL) -> RepositoryDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
               issueFilterStorage: issueFilterStorage,
-              repository: repository,
+              url: repository,
               showUser: actions.openUser(_:in:),
               showIssue: actions.openIssue(_:in:),
               showPullRequest: actions.openPullRequest(_:in:),
@@ -193,15 +193,7 @@ private extension AppDIContainer {
               startRepFlow: actions.openRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
-              sendEmail: actions.send(email:),
-              showRecentEvents: actions.openUserRecentEvents(_:in:),
-              showStarred: actions.openUserStarred(_:in:),
-              showGists: actions.openUserGists(_:in:),
-              showSubscriptions: actions.openUserSubscriptions(_:in:),
-              showEvents: actions.openUserEvents(_:in:),
-              showRepositories: actions.openUserRepositories(_:in:),
-              showFollowers: actions.openUserFollowers(_:in:),
-              showFollowing: actions.openUserFollowing(_:in:))
+              sendEmail: actions.send(email:))
     }
 
     func issueDependencies(_ actions: AppCoordinatorActions,

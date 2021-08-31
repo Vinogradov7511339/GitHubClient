@@ -9,22 +9,10 @@ import Foundation
 
 protocol UserRepository {
 
-    // MARK: - Users
-
-    typealias UsersHandler = (Result<ListResponseModel<User>, Error>) -> Void
-    func fetchFollowers(request: UsersRequestModel, completion: @escaping UsersHandler)
-    func fetchFollowing(request: UsersRequestModel, completion: @escaping UsersHandler)
-
     // MARK: - User Profile
 
     typealias ProfileHandler = (Result<UserProfile, Error>) -> Void
     func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler)
-
-    // MARK: - User Repositories
-
-    typealias RepListHandler = RepRepository.RepListHandler
-    func fetchRepList(request: UsersRequestModel, completion: @escaping RepListHandler)
-    func fetchStarred(request: UsersRequestModel, completion: @escaping RepListHandler)
 
     // MARK: - User Events
 

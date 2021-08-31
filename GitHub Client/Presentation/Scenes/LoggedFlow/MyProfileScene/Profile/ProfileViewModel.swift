@@ -9,11 +9,10 @@ import UIKit
 
 struct ProfileActions {
     let openSettings: () -> Void
-    let showFollowers: () -> Void
-    let showFollowing: () -> Void
-    let showRepository: (Repository) -> Void
-    let showRepositories: () -> Void
-    let showStarred: () -> Void
+    let showFollowers: (URL) -> Void
+    let showFollowing: (URL) -> Void
+    let showRepositories: (URL) -> Void
+    let showStarred: (URL) -> Void
     let showSubscriptions: () -> Void
     let sendEmail: (String) -> Void
     let openLink: (URL) -> Void
@@ -74,11 +73,11 @@ extension ProfileViewModelImpl {
     }
 
     func showFollowers() {
-        actions.showFollowers()
+//        actions.showFollowers()
     }
 
     func showFollowing() {
-        actions.showFollowing()
+//        actions.showFollowing()
     }
 
     func openLink() {}
@@ -86,26 +85,26 @@ extension ProfileViewModelImpl {
     func sendEmail() {}
 
     func openRepositories() {
-        actions.showRepositories()
+//        actions.showRepositories()
     }
 
     func openStarred() {
-        actions.showStarred()
+//        actions.showStarred()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.row) {
-        case (1, 0):
-            actions.showRepositories()
-        case (1, 1):
-            actions.showStarred()
-        case (1, 2):
-            assert(false, "update models")
-        case (1, 3):
-            actions.showSubscriptions()
-        default:
-            break
-        }
+//        switch (indexPath.section, indexPath.row) {
+//        case (1, 0):
+//            actions.showRepositories()
+//        case (1, 1):
+//            actions.showStarred()
+//        case (1, 2):
+//            assert(false, "update models")
+//        case (1, 3):
+//            actions.showSubscriptions()
+//        default:
+//            break
+//        }
     }
 }
 

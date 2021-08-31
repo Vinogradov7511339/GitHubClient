@@ -8,11 +8,11 @@
 import UIKit
 
 protocol MyProfileFactory {
-    func profileViewController(_ actions: ProfileActions) -> UIViewController
-    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController
-    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController
-    func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController
-    func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController
+    func profileViewController(actions: ProfileActions) -> UIViewController
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
+    func repositoriesViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
+    func starredViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func subscriptionsViewControler() -> UIViewController
 }
 
@@ -29,24 +29,24 @@ final class MyProfileFactoryImpl {
 
 // MARK: - MyProfileFactory
 extension MyProfileFactoryImpl: MyProfileFactory {
-    func profileViewController(_ actions: ProfileActions) -> UIViewController {
+    func profileViewController(actions: ProfileActions) -> UIViewController {
         ProfileViewController.create(with: profileViewModel(actions))
     }
 
-    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
-        MyUsersViewController.create(with: followersViewModel(actions))
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        UsersListViewController.create(with: followersViewModel(url, actions: actions))
     }
 
-    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
-        MyUsersViewController.create(with: followingViewModel(actions))
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        UsersListViewController.create(with: followingViewModel(url, actions: actions))
     }
 
-    func repositoriesViewController(_ actions: MyRepositoriesActions) -> UIViewController {
-        MyRepositoriesViewController.create(with: repositoriesViewModel(actions))
+    func repositoriesViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {
+        RepositoriesViewController.create(with: repositoriesViewModel(url, actions: actions))
     }
 
-    func starredViewController(_ actions: MyRepositoriesActions) -> UIViewController {
-        MyRepositoriesViewController.create(with: starredViewModel(actions))
+    func starredViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {
+        RepositoriesViewController.create(with: starredViewModel(url, actions: actions))
     }
 
     func subscriptionsViewControler() -> UIViewController {
@@ -59,20 +59,20 @@ private extension MyProfileFactoryImpl {
         return ProfileViewModelImpl(useCase: profileUseCase, actions: actions)
     }
 
-    func followersViewModel(_ actions: MyUsersViewModelActions) -> MyUsersViewModel {
-        MyUsersViewModelImpl(myProfileUseCase: profileUseCase, type: .followers, actions: actions)
+    func followersViewModel(_ url: URL, actions: UsersActions) -> UsersViewModel {
+        UsersViewModelImpl(.followers(url), useCase: listUseCase, actions: actions)
     }
 
-    func followingViewModel(_ actions: MyUsersViewModelActions) -> MyUsersViewModel {
-        MyUsersViewModelImpl(myProfileUseCase: profileUseCase, type: .following, actions: actions)
+    func followingViewModel(_ url: URL, actions: UsersActions) -> UsersViewModel {
+        UsersViewModelImpl(.following(url), useCase: listUseCase, actions: actions)
     }
 
-    func repositoriesViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
-        MyRepositoriesViewModelImpl(myProfileUseCase: profileUseCase, type: .all, actions: actions)
+    func repositoriesViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
+       RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
     }
 
-    func starredViewModel(_ actions: MyRepositoriesActions) -> MyRepositoriesViewModel {
-        MyRepositoriesViewModelImpl(myProfileUseCase: profileUseCase, type: .starred, actions: actions)
+    func starredViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
+        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
     }
 
     func subscriptionsViewModel() -> MySubscriptionsViewModel {
@@ -81,6 +81,14 @@ private extension MyProfileFactoryImpl {
 
     var profileUseCase: MyProfileUseCase {
         MyProfileUseCaseImpl(profileRepository: profileRepository)
+    }
+
+    var listUseCase: ListUseCase {
+        ListUseCaseImpl(repository: listRepository)
+    }
+
+    var listRepository: ListRepository {
+        ListRepositoryImpl(dataTransferService: dataTransferService)
     }
 
     var profileRepository: MyProfileRepository {

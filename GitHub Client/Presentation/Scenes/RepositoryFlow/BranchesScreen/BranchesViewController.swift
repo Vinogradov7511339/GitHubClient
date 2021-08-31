@@ -25,7 +25,7 @@ final class BranchesViewController: UIViewController {
         tableView.backgroundColor = .systemGroupedBackground
         tableView.tableFooterView = UIView()
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = adapter
         return tableView
     }()
 
@@ -38,6 +38,9 @@ final class BranchesViewController: UIViewController {
 
     private var viewModel: BranchesViewModel!
     private let cellManager = TableCellManager.create(cellType: BranchCell.self)
+    private lazy var adapter: TableViewAdapter = {
+        TableViewAdapterImpl(with: cellManager)
+    }()
 
     // MARK: - Lifecycle
 
@@ -45,9 +48,9 @@ final class BranchesViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
-
         configureNavBar()
-        cellManager.register(tableView: tableView)
+
+        adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -63,25 +66,38 @@ final class BranchesViewController: UIViewController {
 // MARK: - Binding
 private extension BranchesViewController {
     func bind(to viewModel: BranchesViewModel) {
-        viewModel.branches.observe(on: self) { [weak self] _ in self?.update() }
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func update() {
+    func updateState(_ newState: ItemsSceneState<Branch>) {
+        switch newState {
+        case .loaded(let items):
+            prepareLoadedState(items)
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loading:
+            prepareLoadingState()
+        }
+    }
+
+    func prepareLoadedState(_ items: [Branch]) {
+        tableView.isHidden = false
+        hideError()
+        hideLoader()
+        adapter.update(items)
         tableView.reloadData()
     }
-}
 
-// MARK: - UITableViewDataSource
-extension BranchesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.branches.value.count
+    func prepareErrorState(with error: Error) {
+        tableView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.reload)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let branch = viewModel.branches.value[indexPath.row]
-        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
-        cell.populate(viewModel: branch)
-        return cell
+    func prepareLoadingState() {
+        tableView.isHidden = true
+        hideError()
+        showLoader()
     }
 }
 

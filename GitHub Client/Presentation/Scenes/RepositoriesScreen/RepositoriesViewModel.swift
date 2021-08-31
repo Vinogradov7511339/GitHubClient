@@ -7,24 +7,24 @@
 
 import UIKit
 
-struct ForksActions {
-    var showRepository: (Repository) -> Void
+struct RepositoriesActions {
+    var showRepository: (URL) -> Void
 }
 
-protocol ForksViewModelInput {
+protocol RepositoriesViewModelInput {
     func viewDidLoad()
     func refresh()
 
     func didSelectItem(at indexPath: IndexPath)
 }
 
-protocol ForksViewModelOutput {
+protocol RepositoriesViewModelOutput {
     var state: Observable<ItemsSceneState<Repository>> { get }
 }
 
-typealias ForksViewModel = ForksViewModelInput & ForksViewModelOutput
+typealias RepositoriesViewModel = RepositoriesViewModelInput & RepositoriesViewModelOutput
 
-final class ForksViewModelImpl: ForksViewModel {
+final class RepositoriesViewModelImpl: RepositoriesViewModel {
 
     // MARK: - Output
 
@@ -33,14 +33,14 @@ final class ForksViewModelImpl: ForksViewModel {
     // MARK: - Private variables
 
     private let url: URL
-    private let useCase: RepUseCase
-    private let actions: ForksActions
+    private let useCase: ListUseCase
+    private let actions: RepositoriesActions
     private var currentPage: Int = 1
     private var lastPage: Int?
 
     // MARK: - Lifecycle
 
-    init(_ url: URL, useCase: RepUseCase, actions: ForksActions) {
+    init(_ url: URL, useCase: ListUseCase, actions: RepositoriesActions) {
         self.url = url
         self.useCase = useCase
         self.actions = actions
@@ -48,7 +48,7 @@ final class ForksViewModelImpl: ForksViewModel {
 }
 
 // MARK: - Input
-extension ForksViewModelImpl {
+extension RepositoriesViewModelImpl {
     func viewDidLoad() {
         fetch()
     }
@@ -59,16 +59,16 @@ extension ForksViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         guard case .loaded(let items) = state.value else { return }
-        actions.showRepository(items[indexPath.row])
+        actions.showRepository(items[indexPath.row].url)
     }
 }
 
 // MARK: - Private
-private extension ForksViewModelImpl {
+private extension RepositoriesViewModelImpl {
     func fetch() {
         self.state.value = .loading
-        let model = ForksRequestModel(path: url, page: currentPage)
-        useCase.fetchForks(request: model) { result in
+        let model = ListRequestModel(path: url, page: currentPage)
+        useCase.fetchRepositories(model) { result in
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage

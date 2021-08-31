@@ -16,7 +16,7 @@ final class ExploreDIContainer {
         let searchFilterStorage: SearchFilterStorage
         let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
-        let showRepository: (Repository, UINavigationController) -> Void
+        let showRepository: (URL, UINavigationController) -> Void
         let showIssue: (Issue, UINavigationController) -> Void
         let showPullRequest: (PullRequest, UINavigationController) -> Void
         let showUser: (URL, UINavigationController) -> Void
@@ -61,7 +61,7 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
         exploreFactory.usersViewController(searchQuery, actions: actions)
     }
 
-    func showRepository(_ repository: Repository, in nav: UINavigationController) {
+    func showRepository(_ repository: URL, in nav: UINavigationController) {
         dependencies.showRepository(repository, nav)
     }
 

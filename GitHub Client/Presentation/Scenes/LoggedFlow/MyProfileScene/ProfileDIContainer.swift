@@ -15,7 +15,7 @@ final class ProfileDIContainer {
         let dataTransferService: DataTransferService
 
         var openUserProfile: (URL, UINavigationController) -> Void
-        var openRepository: (Repository, UINavigationController) -> Void
+        var openRepository: (URL, UINavigationController) -> Void
         var openSettings: (UINavigationController) -> Void
         var sendMail: (String) -> Void
         var openLink: (URL) -> Void
@@ -38,40 +38,40 @@ final class ProfileDIContainer {
 
 // MARK: - ProfileFlowCoordinatorDependencies
 extension ProfileDIContainer: ProfileFlowCoordinatorDependencies {
-    func profileViewController(_ actions: ProfileActions) -> UIViewController {
-        profileFactory.profileViewController(actions)
+    func profileViewController(actions: ProfileActions) -> UIViewController {
+        profileFactory.profileViewController(actions: actions)
     }
 
-    func followersViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
-        profileFactory.followersViewController(actions)
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        profileFactory.followersViewController(url, actions: actions)
     }
 
-    func followingViewController(_ actions: MyUsersViewModelActions) -> UIViewController {
-        profileFactory.followingViewController(actions)
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        profileFactory.followingViewController(url, actions: actions)
     }
 
     func subscriptionsViewController() -> UIViewController {
         profileFactory.subscriptionsViewControler()
     }
 
-    func showRepositories(_ actions: MyRepositoriesActions) -> UIViewController {
-        profileFactory.repositoriesViewController(actions)
+    func showRepositories(_ url: URL, actions: RepositoriesActions) -> UIViewController {
+        profileFactory.repositoriesViewController(url, actions: actions)
     }
 
-    func showStarred(_ actions: MyRepositoriesActions) -> UIViewController {
-        profileFactory.starredViewController(actions)
+    func showStarred(_ url: URL, actions: RepositoriesActions) -> UIViewController {
+        profileFactory.starredViewController(url, actions: actions)
     }
 
     func openSettings(in nav: UINavigationController) {
         dependencies.openSettings(nav)
     }
 
-    func openRepository(_ repository: Repository, in nav: UINavigationController) {
+    func openRepository(_ repository: URL, in nav: UINavigationController) {
         dependencies.openRepository(repository, nav)
     }
 
-    func openProfile(_ user: User, in nav: UINavigationController) {
-        dependencies.openUserProfile(user.url, nav)
+    func openProfile(_ user: URL, in nav: UINavigationController) {
+        dependencies.openUserProfile(user, nav)
     }
 
     func share(_ url: URL) {

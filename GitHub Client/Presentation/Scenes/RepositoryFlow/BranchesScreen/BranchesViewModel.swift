@@ -13,11 +13,12 @@ struct BranchesActions {
 
 protocol BranchesViewModelInput {
     func viewDidLoad()
+    func reload()
     func didSelectRow(at indexPath: IndexPath)
 }
 
 protocol BranchesViewModelOutput {
-    var branches: Observable<[Branch]> { get }
+    var state: Observable<ItemsSceneState<Branch>> { get }
 }
 
 typealias BranchesViewModel = BranchesViewModelInput & BranchesViewModelOutput
@@ -26,22 +27,22 @@ final class BranchesViewModelImpl: BranchesViewModel {
 
     // MARK: - Output
 
-    var branches: Observable<[Branch]> = Observable([])
+    var state: Observable<ItemsSceneState<Branch>> = Observable(.loading)
 
     // MARK: - Private variables
 
+    private let url: URL
+    private let useCase: ListUseCase
     private let actions: BranchesActions
-    private let repUserCase: RepUseCase
-    private let repository: Repository
     private var currentPage = 1
     private var lastPage: Int?
 
     // MARK: - Lifcycle
 
-    init(actions: BranchesActions, repUserCase: RepUseCase, repository: Repository) {
+    init(_ url: URL, useCase: ListUseCase, actions: BranchesActions) {
+        self.url = url
+        self.useCase = useCase
         self.actions = actions
-        self.repUserCase = repUserCase
-        self.repository = repository
     }
 }
 
@@ -51,8 +52,13 @@ extension BranchesViewModelImpl {
         fetch()
     }
 
+    func reload() {
+        fetch()
+    }
+
     func didSelectRow(at indexPath: IndexPath) {
-        let selectedBranch = branches.value[indexPath.row]
+        guard case .loaded(let items) = state.value else { return }
+        let selectedBranch = items[indexPath.row]
         actions.select(selectedBranch)
     }
 }
@@ -60,17 +66,15 @@ extension BranchesViewModelImpl {
 // MARK: - Private
 private extension BranchesViewModelImpl {
     func fetch() {
-        let model = BranchesRequestModel(repository: repository, page: currentPage)
-        repUserCase.fetchBranches(request: model) { result in
+        let model = ListRequestModel(path: url, page: currentPage)
+        useCase.fetchBranches(model) { result in
             switch result {
             case .success(let response):
                 self.lastPage = response.lastPage
-                self.branches.value.append(contentsOf: response.items)
+                self.state.value = .loaded(items: response.items)
             case .failure(let error):
-                self.handleError(error)
+                self.state.value = .error(error: error)
             }
         }
     }
-
-    func handleError(_ error: Error) {}
 }

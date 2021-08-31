@@ -13,7 +13,7 @@ struct SearchResultActions {
     let loadPRList: (String) -> Void
     let loadUsers: (String) -> Void
 
-    let showRepository: (Repository) -> Void
+    let showRepository: (URL) -> Void
     let showIssue: (Issue) -> Void
     let showPullRequest: (PullRequest) -> Void
     let showUser: (User) -> Void
@@ -109,7 +109,7 @@ extension SearchResultViewModelImpl {
 
     private func open(item: Any) {
         if let repository = item as? Repository {
-            actions.showRepository(repository)
+            actions.showRepository(repository.url)
             return
         }
         if let issue = item as? Issue {

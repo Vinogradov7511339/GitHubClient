@@ -8,16 +8,8 @@
 import Foundation
 
 protocol UserProfileUseCase {
-    typealias UsersHandler = UserRepository.UsersHandler
-    func fetchFollowers(request: UsersRequestModel, completion: @escaping UsersHandler)
-    func fetchFollowing(request: UsersRequestModel, completion: @escaping UsersHandler)
-
     typealias ProfileHandler = UserRepository.ProfileHandler
     func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler)
-
-    typealias RepListHandler = RepRepository.RepListHandler
-    func fetchRepositories(request: UsersRequestModel, completion: @escaping RepListHandler)
-    func fetchStarred(request: UsersRequestModel, completion: @escaping RepListHandler)
 }
 
 final class UserProfileUseCaseImpl {
@@ -30,14 +22,6 @@ final class UserProfileUseCaseImpl {
 
 // MARK: - UserProfileUseCase
 extension UserProfileUseCaseImpl : UserProfileUseCase {
-    func fetchFollowers(request: UsersRequestModel, completion: @escaping UsersHandler) {
-        userRepository.fetchFollowers(request: request, completion: completion)
-    }
-
-    func fetchFollowing(request: UsersRequestModel, completion: @escaping UsersHandler) {
-        userRepository.fetchFollowing(request: request, completion: completion)
-    }
-
     func fetchProfile(_ userUrl: URL, completion: @escaping ProfileHandler) {
         userRepository.fetchProfile(userUrl) { result in
             switch result {
@@ -55,14 +39,6 @@ extension UserProfileUseCaseImpl : UserProfileUseCase {
                 completion(.failure(error))
             }
         }
-    }
-
-    func fetchRepositories(request: UsersRequestModel, completion: @escaping RepListHandler) {
-        userRepository.fetchRepList(request: request, completion: completion)
-    }
-
-    func fetchStarred(request: UsersRequestModel, completion: @escaping RepListHandler) {
-        userRepository.fetchStarred(request: request, completion: completion)
     }
 }
 

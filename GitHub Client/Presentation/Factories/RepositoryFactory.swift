@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RepositoryFactory {
-    func repositoryViewController(_ rep: Repository, actions: RepActions) -> UIViewController
+    func repositoryViewController(_ rep: URL, actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
     func commitsViewController(_ commitsUrl: URL, actions: CommitsActions) -> UIViewController
     func commitViewController(_ commitUrl: URL, actions: CommitActions) -> UIViewController
@@ -19,7 +19,7 @@ protocol RepositoryFactory {
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
     func licenseViewController() -> UIViewController
     func watchersViewController() -> UIViewController
-    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController
+    func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
 }
 
 final class RepositoryFactoryImpl {
@@ -37,7 +37,7 @@ final class RepositoryFactoryImpl {
 
 // MARK: - RepositoryFactory
 extension RepositoryFactoryImpl: RepositoryFactory {
-    func repositoryViewController(_ rep: Repository, actions: RepActions) -> UIViewController {
+    func repositoryViewController(_ rep: URL, actions: RepActions) -> UIViewController {
         RepViewController.create(with: repViewModel(rep, actions: actions))
     }
 
@@ -85,19 +85,19 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         UIViewController()
     }
 
-    func forksViewController(_ url: URL, actions: ForksActions) -> UIViewController {
-        ForksViewController.create(with: forksViewModel(url, actions: actions))
+    func forksViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController {
+        RepositoriesViewController.create(with: forksViewModel(url, actions: actions))
     }
 }
 
 // MARK: - Private
 private extension RepositoryFactoryImpl {
-    func repViewModel(_ rep: Repository, actions: RepActions) -> RepViewModel {
-        RepViewModelImpl(repository: rep, repUseCase: repUseCase, actions: actions)
+    func repViewModel(_ rep: URL, actions: RepActions) -> RepViewModel {
+        RepViewModelImpl(rep, repUseCase: repUseCase, actions: actions)
     }
 
     func commitsViewModel(_ commitsUrl: URL, actions: CommitsActions) -> CommitsViewModel {
-        CommitsViewModelImpl(commitUseCase: commitsUseCase, commitsUrl: commitsUrl, actions: actions)
+        CommitsViewModelImpl(commitsUrl, useCase: listUseCase, actions: actions)
     }
 
     func commitViewModel(_ commitUrl: URL, actions: CommitActions) -> CommitViewModel {
@@ -117,11 +117,11 @@ private extension RepositoryFactoryImpl {
     }
 
     func releasesViewModel(_ url: URL, actions: ReleasesActions) -> ReleasesViewModel {
-        ReleasesViewModelImpl(url, useCase: repUseCase, actions: actions)
+        ReleasesViewModelImpl(url, useCase: listUseCase, actions: actions)
     }
 
-    func forksViewModel(_ url: URL, actions: ForksActions) -> ForksViewModel {
-        ForksViewModelImpl(url, useCase: repUseCase, actions: actions)
+    func forksViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
+        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
     }
 
     var issueUseCase: IssueUseCase {
@@ -142,6 +142,14 @@ private extension RepositoryFactoryImpl {
 
     var commitsUseCase: CommitUseCase {
         CommitUseCaseImpl(repRepository: repRepository)
+    }
+
+    var listUseCase: ListUseCase {
+        ListUseCaseImpl(repository: listRepository)
+    }
+
+    var listRepository: ListRepository {
+        ListRepositoryImpl(dataTransferService: dataTransferService)
     }
 
     var repRepository: RepRepository {

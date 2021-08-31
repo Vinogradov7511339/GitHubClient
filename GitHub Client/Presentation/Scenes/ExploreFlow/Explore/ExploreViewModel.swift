@@ -10,7 +10,7 @@ import UIKit
 struct ExploreActions {
     let openFilter: () -> Void
     let openPopularMenu: () -> Void
-    let openRepository: (Repository) -> Void
+    let openRepository: (URL) -> Void
 }
 
 protocol ExploreViewModelInput {
@@ -72,7 +72,7 @@ extension ExploreViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         let repository = popular.value[indexPath.row]
-        actions.openRepository(repository)
+        actions.openRepository(repository.url)
     }
 
     func openFilter() {

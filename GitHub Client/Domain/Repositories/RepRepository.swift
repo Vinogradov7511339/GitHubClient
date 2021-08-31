@@ -11,21 +11,10 @@ protocol RepRepository {
 
     // MARK: - Repositories
 
-    typealias RepListHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
-    func fetchRepList(request: RepListRequestModel, completion: @escaping RepListHandler)
-
     typealias RepHandler = (Result<Repository, Error>) -> Void
-    func fetchRepository(repository: Repository, completion: @escaping RepHandler)
-
-    // MARK: - Branches
-
-    typealias BranchesHandler = (Result<ListResponseModel<Branch>, Error>) -> Void
-    func fetchBranches(request: BranchesRequestModel, completion: @escaping BranchesHandler)
+    func fetchRepository(_ url: URL, completion: @escaping RepHandler)
 
     // MARK: - Commits
-
-    typealias CommitsHandler = (Result<ListResponseModel<Commit>, Error>) -> Void
-    func fetchCommits(request: CommitsRequestModel, completion: @escaping CommitsHandler)
 
     typealias CommitHandler = (Result<Commit, Error>) -> Void
     func fetchCommit(_ commitUrl: URL, completion: @escaping CommitHandler)
@@ -61,9 +50,6 @@ protocol RepRepository {
 
     // MARK: - Releases
 
-    typealias ReleasesHandler = (Result<ListResponseModel<Release>, Error>) -> Void
-    func fetchReleases(request: ReleasesRequestModel, completion: @escaping ReleasesHandler)
-
     typealias ReleaseHandler = (Result<Release, Error>) -> Void
     func fetchRelease(request: ReleaseRequestModel, completion: @escaping ReleaseHandler)
 
@@ -72,15 +58,6 @@ protocol RepRepository {
     typealias LicenseHandler = (Result<LicenseResponseDTO, Error>) -> Void
     func fetchLicense(request: LicenseRequestModel, completion: @escaping LicenseHandler)
 
-    // MARK: - Watchers
-
-    typealias WatchersHandler = (Result<ListResponseModel<User>, Error>) -> Void
-    func fetchWatchers(request: WatchersRequestModel, completion: @escaping WatchersHandler)
-
-    // MARK: - Forks
-
-    typealias ForksHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
-    func fetchForks(request: ForksRequestModel, completion: @escaping ForksHandler)
 
     // MARK: - Comments
 

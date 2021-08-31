@@ -39,7 +39,7 @@ struct RepositoryResponseDTO: Codable {
     let htmlUrl: URL
     let description: String?
     let fork: Bool?
-    let url: URL?
+    let url: URL
     let archiveUrl: String?
     let assigneesUrl: String?
     let blobsUrl: String?
@@ -49,7 +49,7 @@ struct RepositoryResponseDTO: Codable {
     let commitsUrl: String
     let compareUrl: String?
     let contentsUrl: String?
-    let contributorsUrl: URL?
+    let contributorsUrl: URL
     let deploymentsUrl: URL?
     let downloadsUrl: URL?
     let eventsUrl: URL
@@ -137,6 +137,7 @@ struct RepositoryResponseDTO: Codable {
                      homePage: homepage,
                      currentBranch: defaultBranch,
                      license: license?.name,
+                     url: url,
                      htmlUrl: htmlUrl,
                      forksUrl: forksUrl,
                      eventsUrl: eventsUrl,
@@ -144,6 +145,7 @@ struct RepositoryResponseDTO: Codable {
                      languagesUrl: languagesUrl,
                      stargazersUrl: stargazersUrl,
                      subscribersUrl: subscribersUrl,
+                     contributorsUrl: contributorsUrl,
                      commitsUrl: commitsUrl,
                      contentUrl: contentUrl,
                      issuesUrl: issuesUrl,

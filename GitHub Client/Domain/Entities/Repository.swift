@@ -21,7 +21,7 @@ struct Repository {
     let homePage: String?
     let currentBranch: String
     let license: String?
-
+    let url: URL
     let htmlUrl: URL
     let forksUrl: URL
     let eventsUrl: URL
@@ -29,6 +29,7 @@ struct Repository {
     let languagesUrl: URL
     let stargazersUrl: URL
     let subscribersUrl: URL
+    let contributorsUrl: URL
     let commitsUrl: URL
     let contentUrl: URL
     let issuesUrl: URL
