@@ -42,11 +42,19 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        configureNavBar()
 
         adapter.register(tableView)
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+}
+
+// MARK: - Actions
+extension UserProfileViewController {
+    @objc func share() {
+        viewModel.share()
     }
 }
 
@@ -107,5 +115,13 @@ private extension UserProfileViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+
+    func configureNavBar() {
+        title = NSLocalizedString("Profile", comment: "")
+        let share = UIBarButtonItem(barButtonSystemItem: .action,
+                                    target: self,
+                                    action: #selector(share))
+        navigationItem.rightBarButtonItem = share
     }
 }

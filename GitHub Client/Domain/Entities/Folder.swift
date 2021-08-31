@@ -23,6 +23,7 @@ struct File {
     let name: String
     let path: String
     let url: URL
+    let htmlUrl: URL
     let content: String
     let size: Int
 }

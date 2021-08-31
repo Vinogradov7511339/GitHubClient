@@ -11,7 +11,7 @@ protocol RepFlowCoordinatorDependencies {
     func repositoryViewController(actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
-    func fileViewController() -> UIViewController
+    func fileViewController(_ path: URL, actions: FileActions) -> UIViewController
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
@@ -56,7 +56,8 @@ final class RepFlowCoordinator {
 // MARK: - Repository Actions
 private extension RepFlowCoordinator {
     func actions(_ nav: UINavigationController) -> RepActions {
-        .init(showOwner: showUser(in: nav),
+        .init(share: dependencies.share(url:),
+              showOwner: showUser(in: nav),
               showForks: showForks(_:),
               showStargazers: showStargazers(_:),
               showSubscribers: showSubscribers(_:),
@@ -141,7 +142,7 @@ private extension RepFlowCoordinator {
         let actions = FileActions(openCodeOptions: openCodeOptions,
                                   copy: dependencies.copy,
                                   share: dependencies.share(url:))
-        let viewController = dependencies.fileViewController()
+        let viewController = dependencies.fileViewController(filePath, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 struct RepActions {
+    let share: (URL) -> Void
+    
     let showOwner: (URL) -> Void
 
     let showForks: (URL) -> Void
@@ -26,6 +28,8 @@ struct RepActions {
 protocol RepViewModelInput {
     func viewDidLoad()
     func refresh()
+
+    func share()
 
     func showOwner()
 
@@ -87,6 +91,11 @@ extension RepViewModelImpl {
 
     func refresh() {
         fetch()
+    }
+
+    func share() {
+        guard case .loaded(let rep) = state.value else { return }
+        actions.share(rep.repository.htmlUrl)
     }
 
     func showOwner() {

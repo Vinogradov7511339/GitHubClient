@@ -15,13 +15,21 @@ struct FileActions {
 
 protocol FileViewModelInput {
     func viewDidLoad()
+    func refresh()
+
     func copyFilePath()
     func share()
     func openCodeOptions()
 }
 
+enum FileScreenState {
+    case loaded(File)
+    case error(Error)
+    case loading
+}
+
 protocol FileViewModelOutput {
-    var file: Observable<File?> { get }
+    var state: Observable<FileScreenState> { get }
     var settings: CodeOptions { get }
 }
 
@@ -31,19 +39,19 @@ final class FileViewModelImpl: FileViewModel {
 
     // MARK: - Output
 
-    var file: Observable<File?> = Observable(nil)
+    var state: Observable<FileScreenState> = Observable(.loading)
     var settings: CodeOptions
 
     // MARK: - Private
 
-    private let actions: FileActions
     private let filePath: URL
     private let useCase: RepUseCase
+    private let actions: FileActions
 
-    init(actions: FileActions, filePath: URL, useCase: RepUseCase) {
-        self.actions = actions
+    init(_ filePath: URL, useCase: RepUseCase, actions: FileActions) {
         self.filePath = filePath
         self.useCase = useCase
+        self.actions = actions
         self.settings = SettingsStorageImpl.shared.codeOptions
     }
 }
@@ -51,19 +59,21 @@ final class FileViewModelImpl: FileViewModel {
 // MARK: - FileViewModelInput
 extension FileViewModelImpl {
     func viewDidLoad() {
-        fetchContent()
+        fetch()
+    }
+
+    func refresh() {
+        fetch()
     }
 
     func copyFilePath() {
-        guard let file = file.value?.path else {
-            assert(false, "no file path")
-            return
-        }
-        actions.copy(file)
+        guard case .loaded(let file) = state.value else { return }
+        actions.copy(file.path)
     }
 
     func share() {
-        actions.share(filePath)
+        guard case .loaded(let file) = state.value else { return }
+        actions.share(file.htmlUrl)
     }
 
     func openCodeOptions() {
@@ -73,16 +83,15 @@ extension FileViewModelImpl {
 
 // MARK: - private
 private extension FileViewModelImpl {
-    func fetchContent() {
+    func fetch() {
+        state.value = .loading
         useCase.fetchFile(path: filePath) { result in
             switch result {
             case .success(let file):
-                self.file.value = file
+                self.state.value = .loaded(file)
             case .failure(let error):
-                self.handle(error)
+                self.state.value = .error(error)
             }
         }
     }
-
-    func handle(_ error: Error) {}
 }

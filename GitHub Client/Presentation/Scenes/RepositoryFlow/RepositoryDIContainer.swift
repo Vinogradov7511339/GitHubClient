@@ -64,8 +64,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         repositoryFactory.folderViewController(path, actions: actions)
     }
 
-    func fileViewController() -> UIViewController {
-        repositoryFactory.fileViewController()
+    func fileViewController(_ path: URL, actions: FileActions) -> UIViewController {
+        repositoryFactory.fileViewController(path, actions: actions)
     }
 
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController {

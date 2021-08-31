@@ -41,7 +41,10 @@ class FileViewController: UIViewController {
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
+}
 
+// MARK: - Menu
+extension FileViewController {
     @objc func openMenu() {
         let alert = UIAlertController(title: "Code menu", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Copy File Path", style: .default, handler: { _ in
@@ -65,13 +68,38 @@ extension FileViewController {
         viewModel.settings.forceDarkMode.observe(on: self) { [weak self] in self?.changeMode($0) }
         viewModel.settings.lineWrapping.observe(on: self) { [weak self] in self?.changeLineWraping($0) }
         viewModel.settings.showLineNumbers.observe(on: self) { [weak self] in self?.changeLineNumbers($0) }
-        viewModel.file.observe(on: self) { [weak self] in self?.update($0) }
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func update(_ file: File?) {
-        guard let file = file else { return }
+    func updateState(_ newState: FileScreenState) {
+        switch newState {
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loaded(let file):
+            prepareLoadedState(file)
+        }
+
+    }
+
+    func prepareLoadingState() {
+        label.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        label.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
+    }
+
+    func prepareLoadedState(_ file: File) {
+        label.isHidden = false
+        hideError()
+        hideLoader()
         title = file.name
-//        navigationItem.prompt = file.path
         label.text = file.content
     }
 

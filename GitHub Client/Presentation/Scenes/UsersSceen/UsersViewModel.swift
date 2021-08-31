@@ -29,6 +29,21 @@ enum RepositoryUsersType {
         case .contributors(let url): return url
         }
     }
+
+    var title: String {
+        switch self {
+        case .followers(_):
+            return NSLocalizedString("Followers", comment: "")
+        case .following(_):
+            return NSLocalizedString("Following", comment: "")
+        case .stargazers(_):
+            return NSLocalizedString("Stargazers", comment: "")
+        case .subscribers(_):
+            return NSLocalizedString("Subscribres", comment: "")
+        case .contributors(_):
+            return NSLocalizedString("Contributors", comment: "")
+        }
+    }
 }
 
 protocol UsersViewModelInput {
@@ -38,6 +53,7 @@ protocol UsersViewModelInput {
 }
 
 protocol UsersViewModelOutput {
+    var title: Observable<String> { get }
     var state: Observable<ItemsSceneState<User>> { get }
 }
 
@@ -47,6 +63,7 @@ final class UsersViewModelImpl: UsersViewModel {
 
     // MARK: - Output
 
+    var title: Observable<String>
     var state: Observable<ItemsSceneState<User>> = Observable(.loading)
 
     // MARK: - Private variables
@@ -63,6 +80,7 @@ final class UsersViewModelImpl: UsersViewModel {
         self.type = type
         self.useCase = useCase
         self.actions = actions
+        self.title = Observable(type.title)
     }
 }
 

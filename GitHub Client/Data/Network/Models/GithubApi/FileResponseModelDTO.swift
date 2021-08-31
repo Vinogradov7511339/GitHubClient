@@ -30,6 +30,7 @@ struct FileResponseModelDTO: Codable {
         return .init(name: name,
                      path: path,
                      url: url,
+                     htmlUrl: htmlUrl,
                      content: content,
                      size: size)
     }

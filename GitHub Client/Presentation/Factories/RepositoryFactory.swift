@@ -13,7 +13,7 @@ protocol RepositoryFactory {
     func commitsViewController(_ commitsUrl: URL, actions: CommitsActions) -> UIViewController
     func commitViewController(_ commitUrl: URL, actions: CommitActions) -> UIViewController
     func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
-    func fileViewController() -> UIViewController
+    func fileViewController(_ path: URL, actions: FileActions) -> UIViewController
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
     func releasesViewController(_ url: URL, actions: ReleasesActions) -> UIViewController
@@ -57,8 +57,9 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         FolderViewController.create(with: folderViewModel(path, actions: actions))
     }
 
-    func fileViewController() -> UIViewController {
-        UIViewController()
+    func fileViewController(_ path: URL, actions: FileActions) -> UIViewController {
+        FileViewController
+            .create(with: fileViewModel(path, actions: actions))
     }
 
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController {
@@ -106,6 +107,10 @@ private extension RepositoryFactoryImpl {
 
     func folderViewModel(_ path: URL, actions: FolderActions) -> FolderViewModel {
         FolderViewModelImpl(actions: actions, path: path, repUseCase: repUseCase)
+    }
+
+    func fileViewModel(_ path: URL, actions: FileActions) -> FileViewModel {
+        FileViewModelImpl(path, useCase: repUseCase, actions: actions)
     }
 
     func issuesViewModel(_ url: URL, actions: IssuesActions) -> IssuesViewModel {

@@ -45,17 +45,17 @@ final class UserFlowCoordinator {
 // MARK: - UserProfile Actions
 private extension UserFlowCoordinator {
     func actions(in nav: UINavigationController) -> UserProfileActions {
-        .init(showRepositories: showRepositories(_:),
-              showFollowers: showFollowers(_:),
+        .init(showFollowers: showFollowers(_:),
               showFollowing: showFollowing(_:),
               sendEmail: dependencies.sendMail(email:),
               openLink: dependencies.openLink(url:),
               share: dependencies.share(url:),
-              showRecentEvents: showRecentEvents(_:),
+              showRepositories: showRepositories(_:),
               showStarred: showStarred(_:),
               showGists: showGists(_:),
-              showSubscriptions: showSubscriptions(_:),
-              showEvents: showEvents(_:)
+              showEvents: showEvents(_:),
+              showRecentEvents: showRecentEvents(_:),
+              showSubscriptions: showSubscriptions(_:)
         )
     }
 }

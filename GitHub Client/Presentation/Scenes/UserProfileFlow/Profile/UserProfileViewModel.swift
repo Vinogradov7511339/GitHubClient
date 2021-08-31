@@ -8,7 +8,6 @@
 import UIKit
 
 struct UserProfileActions {
-    let showRepositories: (URL) -> Void
     let showFollowers: (URL) -> Void
     let showFollowing: (URL) -> Void
 
@@ -16,16 +15,21 @@ struct UserProfileActions {
     let openLink: (URL) -> Void
     let share: (URL) -> Void
 
-    let showRecentEvents: (URL) -> Void
+    let showRepositories: (URL) -> Void
     let showStarred: (URL) -> Void
     let showGists: (URL) -> Void
-    let showSubscriptions: (URL) -> Void
     let showEvents: (URL) -> Void
+
+    let showRecentEvents: (URL) -> Void
+    let showSubscriptions: (URL) -> Void
+
 }
 
 protocol UserProfileViewModelInput {
     func viewDidLoad()
     func refresh()
+
+    func share()
 }
 
 enum UserScreenState {
@@ -67,6 +71,11 @@ extension UserProfileViewModelImpl {
 
     func refresh() {
         fetch()
+    }
+
+    func share() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.share(profile.htmlUrl)
     }
 }
 

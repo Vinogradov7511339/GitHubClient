@@ -54,7 +54,12 @@ final class UsersListViewController: UIViewController {
 // MARK: - Binding
 private extension UsersListViewController {
     func bind(to viewModel: UsersViewModel) {
+        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
+    }
+
+    func updateTitle(_ newTitle: String) {
+        title = newTitle
     }
 
     func updateState(_ newState: ItemsSceneState<User>) {

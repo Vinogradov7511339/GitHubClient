@@ -78,6 +78,10 @@ extension RepViewController {
             view.bringSubviewToFront(activityViewController.view)
         }
     }
+
+    @objc func share() {
+        viewModel.share()
+    }
 }
 
 // MARK: - setup views
@@ -93,5 +97,9 @@ private extension RepViewController {
 
     func configureNavBar() {
         navigationItem.titleView = segmentControl
+        let share = UIBarButtonItem(barButtonSystemItem: .action,
+                                    target: self,
+                                    action: #selector(share))
+        navigationItem.rightBarButtonItem = share
     }
 }
