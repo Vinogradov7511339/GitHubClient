@@ -22,7 +22,7 @@ class UserHeaderCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var loginLabel: UILabel!
-    @IBOutlet weak var userInfoStackView: UIStackView!
+    @IBOutlet weak var popularityStackView: UIStackView!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     
@@ -49,7 +49,13 @@ extension UserHeaderCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
         avatarImageView.set(url: viewModel.user.avatarUrl)
         loginLabel.text = viewModel.user.login
-        followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
-        followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
+        switch viewModel.user.type {
+        case .user, .bot:
+            popularityStackView.isHidden = false
+            followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
+            followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
+        default:
+            popularityStackView.isHidden = true
+        }
     }
 }

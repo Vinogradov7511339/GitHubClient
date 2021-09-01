@@ -35,11 +35,23 @@ enum UserActionsRowType: Int, CaseIterable {
 }
 
 protocol UserAdapter: UITableViewDataSource {
+    var visibleSectionTypes: [UserSectionType] { get }
+    var visibleRows: [UserActionsRowType] { get }
+
     func register(_ tableView: UITableView)
     func update(_ profile: UserProfile)
 }
 
 final class UserAdapterImpl: NSObject {
+
+    // MARK: - Public variables
+
+    weak var delegate: UserHeaderCellDelegate?
+    var visibleSectionTypes: [UserSectionType] = []
+    var visibleRows: [UserActionsRowType] = []
+
+    // MARK: - Private variables
+
     private var userProfile: UserProfile?
     private let cellManagers: [UserSectionType: TableCellManager] = [
         .header: TableCellManager.create(cellType: UserHeaderCell.self),
@@ -48,7 +60,7 @@ final class UserAdapterImpl: NSObject {
         .actions: TableCellManager.create(cellType: UserActionCell.self)
     ]
 
-    weak var delegate: UserHeaderCellDelegate?
+    // MARK: - Lifecycle
 
     init(headerDelegate: UserHeaderCellDelegate?) {
         delegate = headerDelegate
@@ -63,21 +75,29 @@ extension UserAdapterImpl: UserAdapter {
 
     func update(_ profile: UserProfile) {
         self.userProfile = profile
+        self.visibleSectionTypes = profile.sections
+        self.visibleRows = profile.rows
     }
 }
 
 // MARK: - UITableViewDataSource
 extension UserAdapterImpl {
     func numberOfSections(in tableView: UITableView) -> Int {
-        UserSectionType.allCases.count
+        visibleSectionTypes.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        UserSectionType(rawValue: section)?.numberOfRows ?? 0
+        let sectionType = visibleSectionTypes[section]
+        switch sectionType {
+        case .header, .info, .activity:
+            return 1
+        case .actions:
+            return visibleRows.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sectionType = UserSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+        let sectionType = visibleSectionTypes[indexPath.section]
         guard let cellManager = cellManagers[sectionType] else { return UITableViewCell() }
         guard let viewModel = viewModel(for: indexPath) else { return UITableViewCell() }
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
@@ -89,7 +109,7 @@ extension UserAdapterImpl {
     }
 
     func viewModel(for indexPath: IndexPath) -> Any? {
-        guard let sectionType = UserSectionType(rawValue: indexPath.section) else { return nil }
+        let sectionType = visibleSectionTypes[indexPath.section]
         switch sectionType {
         case .header:
             return userProfile
@@ -98,7 +118,36 @@ extension UserAdapterImpl {
         case .activity:
             return userProfile
         case .actions:
-            return UserActionsRowType(rawValue: indexPath.row)
+            return visibleRows[indexPath.row]
+        }
+    }
+}
+
+private extension UserProfile {
+    var sections:  [UserSectionType] {
+        var sections: [UserSectionType] = []
+        sections.append(.header)
+        sections.append(.info)
+        switch user.type {
+        case .user, .bot:
+            if !lastEvents.isEmpty {
+                sections.append(.activity)
+            }
+        default:
+            break
+        }
+        sections.append(.actions)
+        return sections
+    }
+
+    var rows: [UserActionsRowType] {
+        switch user.type {
+        case .user, .bot:
+            return [.repositories, .starred, .gists, .events]
+        case .organization:
+            return [.repositories]
+        case .unknown:
+            return []
         }
     }
 }

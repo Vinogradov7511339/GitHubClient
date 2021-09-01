@@ -8,6 +8,8 @@
 import UIKit
 
 class UserInfoCell: BaseTableViewCell, NibLoadable {
+    @IBOutlet weak var emailStackView: UIStackView!
+    @IBOutlet weak var companyStackView: UIStackView!
 
     @IBOutlet weak var profileTypeButton: UIButton!
     @IBOutlet weak var nameButton: UIButton!
@@ -31,6 +33,17 @@ extension UserInfoCell: ConfigurableCell {
         setTitle(viewModel.userBlogUrl?.absoluteString, for: blogButton)
         setTitle(viewModel.location, for: locationButton)
         setTitle(viewModel.company, for: companyButton)
+
+        switch viewModel.user.type {
+        case .user:
+            emailStackView.isHidden = false
+            companyStackView.isHidden = false
+        case .bot:
+            emailStackView.isHidden = true
+        case .organization, .unknown:
+            emailStackView.isHidden = true
+            companyStackView.isHidden = true
+        }
     }
 
     private func setTitle(_ title: String?, for button: UIButton) {

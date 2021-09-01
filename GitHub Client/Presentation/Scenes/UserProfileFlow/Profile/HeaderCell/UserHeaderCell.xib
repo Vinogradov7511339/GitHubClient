@@ -185,6 +185,7 @@
                 <outlet property="followersCountLabel" destination="bR1-S2-IX3" id="28r-tt-Vxu"/>
                 <outlet property="followingCountLabel" destination="MNh-ZW-LZv" id="hqx-CK-X83"/>
                 <outlet property="loginLabel" destination="73L-nv-Uzp" id="RA6-pJ-Il7"/>
+                <outlet property="popularityStackView" destination="Zmx-Hs-vmf" id="kIa-4x-byD"/>
             </connections>
             <point key="canvasLocation" x="44.927536231884062" y="141.62946428571428"/>
         </tableViewCell>

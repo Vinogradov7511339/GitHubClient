@@ -26,14 +26,18 @@ extension UserProfileUseCaseImpl : UserProfileUseCase {
         userRepository.fetchProfile(userUrl) { result in
             switch result {
             case .success(var userProfile):
-                self.fetchLastEvents(userProfile.eventsUrl) { result in
-                    switch result {
-                    case .success(let model):
-                        userProfile.lastEvents = model.items
-                        completion(.success(userProfile))
-                    case .failure(let error):
-                        completion(.failure(error))
+                if userProfile.user.type == .user && userProfile.user.type == .bot {
+                    self.fetchLastEvents(userProfile.eventsUrl) { result in
+                        switch result {
+                        case .success(let model):
+                            userProfile.lastEvents = model.items
+                            completion(.success(userProfile))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
                     }
+                } else {
+                    completion(.success(userProfile))
                 }
             case .failure(let error):
                 completion(.failure(error))

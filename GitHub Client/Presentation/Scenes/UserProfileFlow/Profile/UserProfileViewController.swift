@@ -117,7 +117,7 @@ extension UserProfileViewController: UserHeaderCellDelegate {
 extension UserProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let sectionType = UserSectionType(rawValue: indexPath.section)
+        let sectionType = adapter.visibleSectionTypes[indexPath.section]
         switch sectionType {
         case .actions:
             openAction(at: indexPath.row)
@@ -127,7 +127,7 @@ extension UserProfileViewController: UITableViewDelegate {
     }
 
     func openAction(at index: Int) {
-        let rowType = UserActionsRowType(rawValue: index)
+        let rowType = adapter.visibleRows[index]
         switch rowType {
         case .repositories:
             viewModel.showRepositories()
@@ -137,8 +137,6 @@ extension UserProfileViewController: UITableViewDelegate {
             viewModel.showGists()
         case .events:
             viewModel.showEvents()
-        default:
-            break
         }
     }
 }

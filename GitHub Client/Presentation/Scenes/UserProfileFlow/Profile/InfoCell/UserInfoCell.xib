@@ -198,7 +198,9 @@
             <connections>
                 <outlet property="blogButton" destination="80O-oG-Xxu" id="WPI-zx-hw1"/>
                 <outlet property="companyButton" destination="sUB-iy-9Uj" id="bGv-A9-iie"/>
+                <outlet property="companyStackView" destination="w5C-fx-A4N" id="Ee7-MY-29A"/>
                 <outlet property="emailButton" destination="bXw-iw-EwP" id="iJh-Ug-9Qc"/>
+                <outlet property="emailStackView" destination="uug-ve-j43" id="yrZ-NX-0iM"/>
                 <outlet property="locationButton" destination="Ukk-1Z-c4t" id="CvH-qd-HQG"/>
                 <outlet property="nameButton" destination="JnD-H6-UFN" id="lek-yG-BND"/>
                 <outlet property="profileTypeButton" destination="N07-Ls-FV0" id="TmN-cB-dKI"/>
