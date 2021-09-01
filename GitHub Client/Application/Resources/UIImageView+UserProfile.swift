@@ -13,5 +13,8 @@ extension UIImage {
         static var starred: UIImage? { return UIImage(named: "user_starred") }
         static var gists: UIImage? { return UIImage(named: "user_gists") }
         static var events: UIImage? { return UIImage(named: "user_events") }
+
+        static var follow: UIImage? { return UIImage(named: "user_follow") }
+        static var unfollow: UIImage? { return UIImage(named: "user_unfollow") }
     }
 }

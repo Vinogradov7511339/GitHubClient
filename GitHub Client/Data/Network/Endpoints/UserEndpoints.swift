@@ -13,13 +13,7 @@ struct UserEndpoints {
         return Endpoint(path: url.absoluteString, isFullPath: true)
     }
 
-    // old
-
-    static func receivedEvents(login: String, page: Int) -> Endpoint<[EventResponseDTO]> {
-        return Endpoint(path: "users/\(login)/received_events")
-    }
-
-    static func events(login: String, page: Int) -> Endpoint<[EventResponseDTO]> {
-        return Endpoint(path: "users/\(login)/events/public")
+    static func followed(_ login: String) -> Endpoint<Void> {
+        return Endpoint(path: "user/following/\(login)")
     }
 }

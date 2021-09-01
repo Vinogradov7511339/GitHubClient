@@ -18,7 +18,7 @@ protocol DataTransferService {
     @discardableResult
     func request<E: ResponseRequestable>(
         with endpoint: E,
-        completion: @escaping CompletionHandler<Void>) -> NetworkCancellable? where E.Response == Void
+        completion: @escaping CompletionHandler<HTTPURLResponse?>) -> NetworkCancellable? where E.Response == Void
 }
 
 final class DataTransferServiceImpl {
@@ -62,11 +62,11 @@ extension DataTransferServiceImpl: DataTransferService {
 
     func request<E: ResponseRequestable>(
         with endpoint: E,
-        completion: @escaping CompletionHandler<Void>) -> NetworkCancellable? where E.Response == Void {
+        completion: @escaping CompletionHandler<HTTPURLResponse?>) -> NetworkCancellable? where E.Response == Void {
         return self.networkService.request(endpoint: endpoint) { result in
             switch result {
-            case .success:
-                DispatchQueue.main.async { return completion(.success(())) }
+            case .success(let response):
+                DispatchQueue.main.async { return completion(.success((response.httpResponse))) }
             case .failure(let error):
                 self.errorLogger.log(error: error)
                 let error = self.resolve(networkError: error)

@@ -20,6 +20,7 @@ struct UserProfile {
     let gistsCount: Int
     let repositoriesCount: Int
     var lastEvents: [Event]
+    var isFollowed: Bool?
 
     let htmlUrl: URL
     let followersUrl: URL

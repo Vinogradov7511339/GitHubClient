@@ -58,6 +58,17 @@ extension UserHeaderCell: ConfigurableCell {
         followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
         followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
         fillInfo(viewModel)
+        prepareFollowButton(viewModel)
+    }
+
+    private func prepareFollowButton(_ profile: UserProfile) {
+        guard let isFollowed = profile.isFollowed else {
+            followButton.isHidden = true
+            return
+        }
+        followButton.isHidden = false
+        let image: UIImage? = isFollowed ? UIImage.UserProfile.unfollow : UIImage.UserProfile.follow
+        followButton.setImage(image, for: .normal)
     }
 
     private func fillInfo(_ profile: UserProfile) {
