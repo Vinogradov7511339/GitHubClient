@@ -111,4 +111,23 @@ extension ListRepositoryImpl: ListRepository {
             }
         }
     }
+
+    func fetchEvents(_ requestModel: ListRequestModel, completion: @escaping EventsHandler) {
+        var params: QueryType = [:]
+        params["page"] = "\(requestModel.page)"
+        let endpoint = Endpoint<[EventResponseDTO]>(path: requestModel.path.absoluteString,
+                                                   isFullPath: true,
+                                                   queryParametersEncodable: params)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let events = response.model.compactMap { $0.toDomain() }
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let model = ListResponseModel<Event>(items: events, lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

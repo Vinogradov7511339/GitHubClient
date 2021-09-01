@@ -71,4 +71,8 @@ extension UserProfileDIContainer: UserFlowCoordinatorDependencies {
         fatalError()
 //        userFactory.followingViewController(user: dependencies.user, actions)
     }
+
+    func eventsViewController(_ eventsUrl: URL, _ recivedEventsUrl: URL, actions: EventsActions) -> UIViewController {
+        userFactory.eventsViewController(eventsUrl, recivedEventsUrl, actions: actions)
+    }
 }

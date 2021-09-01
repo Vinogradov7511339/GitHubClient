@@ -18,7 +18,7 @@ struct PRResponseDTO: Codable {
     let locked: Bool
     let title: String
     let user: UserResponseDTO
-    let body: String
+    let body: String?
     let createdAt: String
     let updatedAt: String?
     let closedAt: String?

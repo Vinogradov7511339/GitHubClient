@@ -13,6 +13,9 @@ protocol UserFlowCoordinatorDependencies {
     func starredViewController(actions: RepositoriesActions) -> UIViewController
     func followersViewController(actions: UsersActions) -> UIViewController
     func followingViewController(actions: UsersActions) -> UIViewController
+    func eventsViewController(_ eventsUrl: URL,
+                              _ recivedEventsUrl: URL,
+                              actions: EventsActions) -> UIViewController
 
     func sendMail(email: String)
     func openLink(url: URL)
@@ -53,8 +56,7 @@ private extension UserFlowCoordinator {
               showRepositories: showRepositories(_:),
               showStarred: showStarred(_:),
               showGists: showGists(_:),
-              showEvents: showEvents(_:),
-              showRecentEvents: showRecentEvents(_:),
+              showEvents: showEvents,
               showSubscriptions: showSubscriptions(_:)
         )
     }
@@ -64,8 +66,13 @@ private extension UserFlowCoordinator {
 private extension UserFlowCoordinator {
     func showFollowers(_ url: URL) {}
     func showFollowing(_ url: URL) {}
-    func showEvents(_ url: URL) {}
-    func showRecentEvents(_ url: URL) {}
+    
+    func showEvents(_ events: URL, _ recentEvents: URL) {
+        let actions = EventsActions()
+        let viewController = dependencies.eventsViewController(events, recentEvents, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
     func showStarred(_ url: URL) {}
     func showGists(_ url: URL) {}
     func showSubscriptions(_ url: URL) {}

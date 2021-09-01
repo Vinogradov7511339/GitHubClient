@@ -9,12 +9,15 @@ import UIKit
 
 enum UserSectionType: Int, CaseIterable {
     case header
+    case info
     case activity
     case actions
 
     var numberOfRows: Int {
         switch self {
         case .header:
+            return 1
+        case .info:
             return 1
         case .activity:
             return 1
@@ -40,6 +43,7 @@ final class UserAdapterImpl: NSObject {
     private var userProfile: UserProfile?
     private let cellManagers: [UserSectionType: TableCellManager] = [
         .header: TableCellManager.create(cellType: UserHeaderCell.self),
+        .info: TableCellManager.create(cellType: UserInfoCell.self),
         .activity: TableCellManager.create(cellType: UserActivityCell.self),
         .actions: TableCellManager.create(cellType: UserActionCell.self)
     ]
@@ -88,6 +92,8 @@ extension UserAdapterImpl {
         guard let sectionType = UserSectionType(rawValue: indexPath.section) else { return nil }
         switch sectionType {
         case .header:
+            return userProfile
+        case .info:
             return userProfile
         case .activity:
             return userProfile

@@ -22,6 +22,9 @@ protocol ListUseCase {
 
     typealias ReleasesHandler = ListRepository.ReleasesHandler
     func fetchReleases(_ requestModel: ListRequestModel, completion: @escaping ReleasesHandler)
+
+    typealias EventsHandler = ListRepository.EventsHandler
+    func fetchEvents(_ requestModel: ListRequestModel, completion: @escaping EventsHandler)
 }
 
 final class ListUseCaseImpl {
@@ -52,5 +55,9 @@ extension ListUseCaseImpl: ListUseCase {
 
     func fetchReleases(_ requestModel: ListRequestModel, completion: @escaping ReleasesHandler) {
         repository.fetchReleases(requestModel, completion: completion)
+    }
+
+    func fetchEvents(_ requestModel: ListRequestModel, completion: @escaping EventsHandler) {
+        repository.fetchEvents(requestModel, completion: completion)
     }
 }

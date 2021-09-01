@@ -22,4 +22,7 @@ protocol ListRepository {
 
     typealias ReleasesHandler = (Result<ListResponseModel<Release>, Error>) -> Void
     func fetchReleases(_ requestModel: ListRequestModel, completion: @escaping ReleasesHandler)
+
+    typealias EventsHandler = (Result<ListResponseModel<Event>, Error>) -> Void
+    func fetchEvents(_ requestModel: ListRequestModel, completion: @escaping EventsHandler)
 }

@@ -8,5 +8,10 @@
 import Foundation
 
 struct Event {
+    let type: EventType
+    let user: User
+    let createdAt: Date
+    let repositoryName: String
+    let repositoryURL: URL
     let event: EventResponseDTO
 }

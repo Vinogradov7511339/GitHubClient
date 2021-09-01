@@ -10,7 +10,6 @@ import UIKit
 protocol UserHeaderCellDelegate: AnyObject {
     func followersButtonTapped()
     func followingButtonTapped()
-    func followButtonTapped()
 }
 
 class UserHeaderCell: BaseTableViewCell, NibLoadable {
@@ -26,7 +25,6 @@ class UserHeaderCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var userInfoStackView: UIStackView!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
-    @IBOutlet weak var followButton: UIButton!
     
     // MARK: - Actions
 
@@ -36,10 +34,6 @@ class UserHeaderCell: BaseTableViewCell, NibLoadable {
 
     @IBAction func followingButtonTouched(_ sender: UIButton) {
         delegate?.followingButtonTapped()
-    }
-
-    @IBAction func followButtonTapped(_ sender: UIButton) {
-        delegate?.followButtonTapped()
     }
 
     // MARK: - Lifecycle
@@ -57,41 +51,5 @@ extension UserHeaderCell: ConfigurableCell {
         loginLabel.text = viewModel.user.login
         followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
         followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
-        fillInfo(viewModel)
-        prepareFollowButton(viewModel)
-    }
-
-    private func prepareFollowButton(_ profile: UserProfile) {
-        guard let isFollowed = profile.isFollowed else {
-            followButton.isHidden = true
-            return
-        }
-        followButton.isHidden = false
-        let image: UIImage? = isFollowed ? UIImage.UserProfile.unfollow : UIImage.UserProfile.follow
-        followButton.setImage(image, for: .normal)
-    }
-
-    private func fillInfo(_ profile: UserProfile) {
-        userInfoStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        if let email = profile.userEmail {
-            addItem(email)
-        }
-        if let blog = profile.userBlogUrl {
-            addItem(blog.absoluteString)
-        }
-        if let location = profile.location {
-            addItem(location)
-        }
-        if let company = profile.company {
-            addItem(company)
-        }
-    }
-
-    private func addItem(_ text: String) {
-        let label = UILabel()
-        label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 14.0)
-        label.text = text
-        userInfoStackView.addArrangedSubview(label)
     }
 }

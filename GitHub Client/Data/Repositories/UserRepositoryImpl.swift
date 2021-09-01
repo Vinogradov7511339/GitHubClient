@@ -75,7 +75,7 @@ extension UserProfileRepositoryImpl {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let items = response.model.map { $0.toDomain() }
+                let items = response.model.compactMap { $0.toDomain() }
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let model = ListResponseModel<Event>(items: items, lastPage: lastPage)
                 completion(.success(model))
@@ -90,7 +90,7 @@ extension UserProfileRepositoryImpl {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let items = response.model.map { $0.toDomain() }
+                let items = response.model.compactMap { $0.toDomain() }
                 let lastPage = response.httpResponse?.lastPage ?? 1
                 let model = ListResponseModel<Event>(items: items, lastPage: lastPage)
                 completion(.success(model))

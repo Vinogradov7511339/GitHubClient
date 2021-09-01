@@ -18,9 +18,8 @@ struct UserProfileActions {
     let showRepositories: (URL) -> Void
     let showStarred: (URL) -> Void
     let showGists: (URL) -> Void
-    let showEvents: (URL) -> Void
+    let showEvents: (_ events: URL, _ receivedEvents:URL) -> Void
 
-    let showRecentEvents: (URL) -> Void
     let showSubscriptions: (URL) -> Void
 
 }
@@ -32,6 +31,11 @@ protocol UserProfileViewModelInput {
     func showFollowers()
     func showFollowing()
     func follow()
+
+    func showRepositories()
+    func showStarred()
+    func showGists()
+    func showEvents()
 
     func share()
 }
@@ -82,6 +86,26 @@ extension UserProfileViewModelImpl {
     }
 
     func follow() {}
+
+    func showRepositories() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showRepositories(profile.repositoriesUrl)
+    }
+
+    func showStarred() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showStarred(profile.starredUrl)
+    }
+
+    func showGists() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showGists(profile.gistsUrl)
+    }
+
+    func showEvents() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showEvents(profile.eventsUrl, profile.receivedEventsUrl)
+    }
 
     func share() {
         guard case .loaded(let profile) = state.value else { return }

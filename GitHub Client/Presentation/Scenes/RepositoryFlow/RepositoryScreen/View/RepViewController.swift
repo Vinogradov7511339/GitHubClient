@@ -55,6 +55,8 @@ final class RepViewController: UIViewController {
 
     private var viewModel: RepViewModel!
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

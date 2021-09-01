@@ -23,6 +23,7 @@ class UserProfileViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGroupedBackground
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = adapter
@@ -55,6 +56,10 @@ class UserProfileViewController: UIViewController {
 extension UserProfileViewController {
     @objc func share() {
         viewModel.share()
+    }
+
+    @objc func followButtonTapped() {
+        viewModel.follow()
     }
 }
 
@@ -89,6 +94,7 @@ private extension UserProfileViewController {
 
     func prepareLoadedState(_ profile: UserProfile) {
         tableView.isHidden = false
+        configureNavBar(profile.isFollowed)
         hideLoader()
         hideError()
         adapter.update(profile)
@@ -105,16 +111,35 @@ extension UserProfileViewController: UserHeaderCellDelegate {
     func followingButtonTapped() {
         viewModel.showFollowing()
     }
-
-    func followButtonTapped() {
-        viewModel.follow()
-    }
 }
 
 // MARK: - UITableViewDelegate
 extension UserProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let sectionType = UserSectionType(rawValue: indexPath.section)
+        switch sectionType {
+        case .actions:
+            openAction(at: indexPath.row)
+        default:
+            break
+        }
+    }
+
+    func openAction(at index: Int) {
+        let rowType = UserActionsRowType(rawValue: index)
+        switch rowType {
+        case .repositories:
+            viewModel.showRepositories()
+        case .starred:
+            viewModel.showStarred()
+        case .gists:
+            viewModel.showGists()
+        case .events:
+            viewModel.showEvents()
+        default:
+            break
+        }
     }
 }
 
@@ -132,11 +157,27 @@ private extension UserProfileViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
-    func configureNavBar() {
+    func configureNavBar(_ followed: Bool? = nil) {
         title = NSLocalizedString("Profile", comment: "")
-        let share = UIBarButtonItem(barButtonSystemItem: .action,
-                                    target: self,
-                                    action: #selector(share))
-        navigationItem.rightBarButtonItem = share
+        var buttons: [UIBarButtonItem] = []
+        buttons.append(shareButton())
+        if let followed = followed {
+            buttons.append(followButton(followed))
+        }
+        navigationItem.rightBarButtonItems = buttons
+    }
+
+    func shareButton() -> UIBarButtonItem {
+        UIBarButtonItem(barButtonSystemItem: .action,
+                        target: self,
+                        action: #selector(share))
+    }
+
+    func followButton(_ followed: Bool) -> UIBarButtonItem {
+        let image: UIImage? = followed ? UIImage.UserProfile.unfollow : UIImage.UserProfile.follow
+        return  UIBarButtonItem(image: image,
+                                style: .plain,
+                                target: self,
+                                action: #selector(followButtonTapped))
     }
 }

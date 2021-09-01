@@ -18,8 +18,15 @@ struct EventResponseDTO: Codable {
     let org: OrganzationResponseDTO?
     let createdAt: String
 
-    func toDomain() -> Event {
-        .init(event: self)
+    func toDomain() -> Event? {
+        guard let eventType = EventType(rawValue: type) else { return nil }
+        guard let createdAdDate = createdAt.toDate() else { return nil }
+        return .init(type: eventType,
+                     user: actor.toDomain(),
+                     createdAt: createdAdDate,
+                     repositoryName: repo.name,
+                     repositoryURL: repo.url,
+                     event: self)
     }
 
     struct EventUserResponseDTO: Codable {
@@ -30,6 +37,14 @@ struct EventResponseDTO: Codable {
         let url: URL
         let avatarUrl: URL
         let type: String?
+
+        func toDomain() -> User {
+            .init(id: id,
+                  login: displayLogin ?? login,
+                  avatarUrl: avatarUrl,
+                  url: url,
+                  type: User.UserType(rawValue: type ?? "") ?? .unknown)
+        }
     }
 
     struct EventRepositoryReesponseDTO: Codable {

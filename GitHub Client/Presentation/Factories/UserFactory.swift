@@ -15,7 +15,9 @@ protocol UserFactory {
     func starredViewController(_ url: URL, _ actions: RepositoriesActions) -> UIViewController
     func gistsViewController(_ url: URL) -> UIViewController
     func subscriptionsViewController(_ url: URL) -> UIViewController
-    func eventsViewController(_ url: URL) -> UIViewController
+    func eventsViewController(_ eventsUrl: URL,
+                              _ recivedEventsUrl: URL,
+                              actions: EventsActions) -> UIViewController
 }
 
 final class UsersListFactoryImpl {
@@ -37,8 +39,10 @@ extension UsersListFactoryImpl: UserFactory {
         UIViewController()
     }
 
-    func eventsViewController(_ url: URL) -> UIViewController {
-        UIViewController()
+    func eventsViewController(_ eventsUrl: URL, _ recivedEventsUrl: URL, actions: EventsActions) -> UIViewController {
+        let eventsViewModel = eventsViewModel(eventsUrl, actions: actions)
+        let recivedEventsViewModel = receivedEventsViewModel(recivedEventsUrl, actions: actions)
+        return EventsViewController.create(events: eventsViewModel, received: recivedEventsViewModel)
     }
 
     func profileViewController(userUrl: URL, _ actions: UserProfileActions) -> UIViewController {
@@ -83,6 +87,14 @@ private extension UsersListFactoryImpl {
 
     func starredViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
         RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+    }
+
+    func eventsViewModel(_ url: URL, actions: EventsActions) -> EventsViewModel {
+        EventsViewModelImpl(.events(url), usecase: listUseCase, actions: actions)
+    }
+
+    func receivedEventsViewModel(_ url: URL, actions: EventsActions) -> EventsViewModel {
+        EventsViewModelImpl(.recentEvents(url), usecase: listUseCase, actions: actions)
     }
 
     var listUseCase: ListUseCase {

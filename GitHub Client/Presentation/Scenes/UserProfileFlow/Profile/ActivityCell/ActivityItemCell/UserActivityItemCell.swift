@@ -9,6 +9,10 @@ import UIKit
 
 class UserActivityItemCell: BaseCollectionViewCell, NibLoadable {
 
+    @IBOutlet weak var eventTypeImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var createdAtLabel: UILabel!
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -17,5 +21,9 @@ class UserActivityItemCell: BaseCollectionViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension UserActivityItemCell: ConfigurableCell {
-    func configure(viewModel: Event) {}
+    func configure(viewModel: Event) {
+        eventTypeImageView.image = viewModel.image
+        titleLabel.attributedText = viewModel.fullTitle
+        createdAtLabel.text = viewModel.createdAt.timeAgoDisplay()
+    }
 }
