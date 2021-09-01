@@ -38,7 +38,7 @@ private extension CommitDiffViewController {
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateState(_ newState: CommitScreenState) {
+    func updateState(_ newState: DetailsScreenState<Commit>) {
         switch newState {
         case .loading:
             prepareLoadingState()

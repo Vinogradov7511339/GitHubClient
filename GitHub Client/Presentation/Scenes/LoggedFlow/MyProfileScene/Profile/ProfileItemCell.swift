@@ -7,17 +7,6 @@
 
 import UIKit
 
-struct ProfileItemCellViewModel {
-    enum ItemType: CaseIterable {
-        case repositories
-        case starred
-        case organizations
-        case subscriptions
-    }
-
-    let type: ItemType
-}
-
 class ProfileItemCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var itemImageView: UIImageView!
@@ -31,20 +20,20 @@ class ProfileItemCell: BaseTableViewCell, NibLoadable {
 
 // MARK: - ConfigurableCell
 extension ProfileItemCell: ConfigurableCell {
-    func configure(viewModel: ProfileItemCellViewModel) {
-        switch viewModel.type {
+    func configure(viewModel: MyProfileRowType) {
+        switch viewModel {
         case .repositories:
             itemImageView.image = .repositories
             itemNameLabel.text = .repositories
         case .starred:
             itemImageView.image = .starred
             itemNameLabel.text = .starred
-        case .organizations:
-            itemImageView.image = .organizations
-            itemNameLabel.text = .organizations
-        case .subscriptions:
-            itemImageView.image = .subscribers
-            itemNameLabel.text = "Subscriptions"
+//        case .organizations:
+//            itemImageView.image = .organizations
+//            itemNameLabel.text = .organizations
+//        case .subscriptions:
+//            itemImageView.image = .subscribers
+//            itemNameLabel.text = "Subscriptions"
         }
     }
 }

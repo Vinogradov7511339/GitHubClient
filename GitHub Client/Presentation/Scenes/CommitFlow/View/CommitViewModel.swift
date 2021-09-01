@@ -18,13 +18,7 @@ protocol CommitViewModelInput {
 }
 
 protocol CommitViewModelOutput {
-    var state: Observable<CommitScreenState> { get }
-}
-
-enum CommitScreenState {
-    case loading
-    case error(Error)
-    case loaded(Commit)
+    var state: Observable<DetailsScreenState<Commit>> { get }
 }
 
 typealias CommitViewModel = CommitViewModelInput & CommitViewModelOutput
@@ -33,7 +27,7 @@ final class CommitViewModelImpl: CommitViewModel {
 
     // MARK: - Output
 
-    var state: Observable<CommitScreenState> = Observable(.loading)
+    var state: Observable<DetailsScreenState<Commit>> = Observable(.loading)
 
     // MARK: - Private variables
 

@@ -29,17 +29,15 @@ protocol UserProfileViewModelInput {
     func viewDidLoad()
     func refresh()
 
+    func showFollowers()
+    func showFollowing()
+    func follow()
+
     func share()
 }
 
-enum UserScreenState {
-    case loaded(UserProfile)
-    case error(Error)
-    case loading
-}
-
 protocol UserProfileViewModelOutput {
-    var state: Observable<UserScreenState> { get }
+    var state: Observable<DetailsScreenState<UserProfile>> { get }
 }
 
 typealias UserProfileViewModel = UserProfileViewModelInput & UserProfileViewModelOutput
@@ -48,7 +46,7 @@ class UserProfileViewModelImpl: UserProfileViewModel {
 
     // MARK: - Output
 
-    var state: Observable<UserScreenState> = Observable(.loading)
+    var state: Observable<DetailsScreenState<UserProfile>> = Observable(.loading)
 
     // MARK: - Private
 
@@ -72,6 +70,18 @@ extension UserProfileViewModelImpl {
     func refresh() {
         fetch()
     }
+
+    func showFollowers() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showFollowers(profile.followersUrl)
+    }
+
+    func showFollowing() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showFollowing(profile.followingUrl)
+    }
+
+    func follow() {}
 
     func share() {
         guard case .loaded(let profile) = state.value else { return }

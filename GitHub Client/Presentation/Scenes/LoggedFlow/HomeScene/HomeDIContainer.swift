@@ -13,7 +13,6 @@ final class HomeDIContainer {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
-        let favoritesStorage: FavoritesStorage
         let profileStorage: ProfileLocalStorage
     }
 
@@ -27,7 +26,6 @@ final class HomeDIContainer {
         self.dependencies = dependencies
         self.homeSceneFactory = HomeSceneFactoryImpl(
             dataTransferService: dependencies.dataTransferService,
-            favoritesStorage: dependencies.favoritesStorage,
             profileStorage: dependencies.profileStorage)
     }
 }

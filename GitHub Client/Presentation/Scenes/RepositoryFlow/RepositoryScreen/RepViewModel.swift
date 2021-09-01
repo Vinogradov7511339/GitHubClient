@@ -9,7 +9,7 @@ import UIKit
 
 struct RepActions {
     let share: (URL) -> Void
-    
+
     let showOwner: (URL) -> Void
 
     let showForks: (URL) -> Void
@@ -48,15 +48,9 @@ protocol RepViewModelInput {
     func showReleases()
 }
 
-enum RepositoryScreenState {
-    case loading
-    case loaded(RepositoryDetails)
-    case error(Error)
-}
-
 protocol RepViewModelOutput {
     var title: Observable<String> { get }
-    var state: Observable<RepositoryScreenState> { get }
+    var state: Observable<DetailsScreenState<RepositoryDetails>> { get }
 }
 
 typealias RepViewModel = RepViewModelInput & RepViewModelOutput
@@ -65,7 +59,7 @@ final class RepViewModelImpl: RepViewModel {
 
     // MARK: - OUTPUT
 
-    let state: Observable<RepositoryScreenState> = Observable(.loading)
+    let state: Observable<DetailsScreenState<RepositoryDetails>> = Observable(.loading)
     var title: Observable<String> = Observable("")
 
     // MARK: - Private variables

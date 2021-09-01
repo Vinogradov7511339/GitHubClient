@@ -71,7 +71,7 @@ extension FileViewController {
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateState(_ newState: FileScreenState) {
+    func updateState(_ newState: DetailsScreenState<File>) {
         switch newState {
         case .loading:
             prepareLoadingState()

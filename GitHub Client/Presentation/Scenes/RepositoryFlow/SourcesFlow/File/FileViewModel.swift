@@ -22,14 +22,8 @@ protocol FileViewModelInput {
     func openCodeOptions()
 }
 
-enum FileScreenState {
-    case loaded(File)
-    case error(Error)
-    case loading
-}
-
 protocol FileViewModelOutput {
-    var state: Observable<FileScreenState> { get }
+    var state: Observable<DetailsScreenState<File>> { get }
     var settings: CodeOptions { get }
 }
 
@@ -39,7 +33,7 @@ final class FileViewModelImpl: FileViewModel {
 
     // MARK: - Output
 
-    var state: Observable<FileScreenState> = Observable(.loading)
+    var state: Observable<DetailsScreenState<File>> = Observable(.loading)
     var settings: CodeOptions
 
     // MARK: - Private

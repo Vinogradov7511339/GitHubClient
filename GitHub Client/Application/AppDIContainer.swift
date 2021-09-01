@@ -33,11 +33,6 @@ final class AppDIContainer {
         return storage
     }()
 
-    lazy var favoritesStorage: FavoritesStorage = {
-        let favoritesStorage = FavoritesStorageImpl()
-        return favoritesStorage
-    }()
-
     lazy var profileStorage: ProfileLocalStorage = {
         let profileStorage = ProfileLocalStorageImpl()
         return profileStorage
@@ -151,7 +146,6 @@ private extension AppDIContainer {
 
     func mainDependencies(_ actions: AppCoordinatorActions) -> MainSceneDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
-              favoritesStorage: favoritesStorage,
               profileStorage: profileStorage,
               searchFilterStorage: searchFilterStorage,
               exploreSettingsStorage: exploreSettingsStorage,

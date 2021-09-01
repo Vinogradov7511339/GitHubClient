@@ -30,7 +30,7 @@ final class MyProfileFactoryImpl {
 // MARK: - MyProfileFactory
 extension MyProfileFactoryImpl: MyProfileFactory {
     func profileViewController(actions: ProfileActions) -> UIViewController {
-        ProfileViewController.create(with: profileViewModel(actions))
+        MyProfileViewController.create(with: profileViewModel(actions))
     }
 
     func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController {

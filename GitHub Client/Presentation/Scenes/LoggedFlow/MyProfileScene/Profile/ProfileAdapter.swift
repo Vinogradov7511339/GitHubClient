@@ -7,28 +7,40 @@
 
 import UIKit
 
-protocol ProfileAdapter: UITableViewDataSource {
-    var delegate: ProfileHeaderCellDelegate? { get set }
+enum MyProfileSectionTypes: Int, CaseIterable {
+    case header
+    case info
 
+    var numberOfRows: Int {
+        switch self {
+        case .header: return 1
+        case .info: return MyProfileRowType.allCases.count
+        }
+    }
+}
+
+enum MyProfileRowType: Int, CaseIterable {
+    case repositories
+    case starred
+}
+
+protocol ProfileAdapter: UITableViewDataSource {
     func register(_ tableView: UITableView)
     func update(with profile: UserProfile)
 }
 
 final class ProfileAdapterImpl: NSObject {
-
-    enum SectionTypes: Int, CaseIterable {
-        case header
-        case info
-    }
-
-    private let cellManages: [SectionTypes: TableCellManager] = [
+    private var profile: UserProfile?
+    private let cellManages: [MyProfileSectionTypes: TableCellManager] = [
         .header: TableCellManager.create(cellType: ProfileHeaderCell.self),
         .info: TableCellManager.create(cellType: ProfileItemCell.self)
     ]
 
-    private var profile: UserProfile?
-
     weak var delegate: ProfileHeaderCellDelegate?
+
+    init(headerDelegate: ProfileHeaderCellDelegate?) {
+        delegate = headerDelegate
+    }
 }
 
 // MARK: - ProfileAdapter
@@ -42,69 +54,41 @@ extension ProfileAdapterImpl: ProfileAdapter {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        SectionTypes.allCases.count
+        MyProfileSectionTypes.allCases.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        numberOfRows(in: section)
+        MyProfileSectionTypes(rawValue: section)?.numberOfRows ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sectionType = SectionTypes(rawValue: indexPath.section) else {
-            assert(false, "no type")
-            return BaseTableViewCell(frame: .zero)
+        guard let sectionType = MyProfileSectionTypes(rawValue: indexPath.section) else {
+            return UITableViewCell()
         }
         guard let viewModel = viewModel(indexPath) else {
-            assert(false, "Empty viewmodel")
-            return BaseTableViewCell(frame: .zero)
+            return UITableViewCell()
         }
-
-        let cellManager = cellManages[sectionType]
-        let cell = cellManager?.dequeueReusableCell(tableView: tableView, for: indexPath)
-        if let cell = cell as? ProfileHeaderCell {
-            cell.delegate = delegate
+        guard let cellManager = cellManages[sectionType] else { return UITableViewCell() }
+        let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+        cell.populate(viewModel: viewModel)
+        if let headerCell = cell as? ProfileHeaderCell {
+            headerCell.delegate = delegate
         }
-
-        cell?.populate(viewModel: viewModel)
-        return cell ?? BaseTableViewCell(frame: .zero)
+        return cell
     }
 }
 
 private extension ProfileAdapterImpl {
-    func numberOfRows(in section: Int) -> Int {
-        guard profile != nil else { return 0 }
-        guard let type = SectionTypes(rawValue: section) else {
-            assert(false, "no type")
-            return 0
-        }
-        switch type {
-        case .header: return 1
-        case .info: return ProfileItemCellViewModel.ItemType.allCases.count
-        }
-    }
-
     func viewModel(_ indexPath: IndexPath) -> Any? {
         guard let profile = profile else { return nil }
-        guard let type = SectionTypes(rawValue: indexPath.section) else {
-            assert(false, "no type")
-            return nil
-        }
+        let type = MyProfileSectionTypes(rawValue: indexPath.section)
         switch type {
         case .header:
             return profile
         case .info:
-            switch indexPath.row {
-            case 0:
-                return ProfileItemCellViewModel.init(type: .repositories)
-            case 1:
-                return ProfileItemCellViewModel.init(type: .starred)
-            case 2:
-                return ProfileItemCellViewModel.init(type: .organizations)
-            case 3:
-                return ProfileItemCellViewModel.init(type: .subscriptions)
-            default:
-                return nil
-            }
+            return MyProfileRowType(rawValue: indexPath.row)
+        default:
+            return nil
         }
     }
 }

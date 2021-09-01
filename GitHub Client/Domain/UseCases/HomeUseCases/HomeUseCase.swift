@@ -14,17 +14,15 @@ protocol HomeUseCase {
 final class HomeUseCaseImpl {
 
     let repository: MyProfileRepository
-    let favoritesStorage: FavoritesStorage
 
-    init(repository: MyProfileRepository, favoritesStorage: FavoritesStorage) {
+    init(repository: MyProfileRepository) {
         self.repository = repository
-        self.favoritesStorage = favoritesStorage
     }
 }
 
 // MARK: - HomeUseCase
 extension HomeUseCaseImpl: HomeUseCase {
     func fetchWidgets(completion: @escaping (Result<[HomeWidget], Error>) -> Void) {
-        favoritesStorage.fetchWidgets(completion: completion)
+        completion(.failure(MapError()))
     }
 }

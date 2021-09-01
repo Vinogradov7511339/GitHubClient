@@ -13,7 +13,6 @@ final class MainSceneDIContainer: NSObject {
 
     struct Dependencies {
         let dataTransferService: DataTransferService
-        let favoritesStorage: FavoritesStorage
         let profileStorage: ProfileLocalStorage
         let searchFilterStorage: SearchFilterStorage
         let exploreSettingsStorage: ExploreWidgetsRequestStorage
@@ -90,7 +89,6 @@ extension MainSceneDIContainer: MainCoordinatorDependencies {
 private extension MainSceneDIContainer {
     func homeDependencies() -> HomeDIContainer.Dependencies {
         .init(dataTransferService: dependencies.dataTransferService,
-              favoritesStorage: dependencies.favoritesStorage,
               profileStorage: dependencies.profileStorage)
     }
 

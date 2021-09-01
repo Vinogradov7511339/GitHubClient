@@ -43,6 +43,12 @@ final class UserAdapterImpl: NSObject {
         .activity: TableCellManager.create(cellType: UserActivityCell.self),
         .actions: TableCellManager.create(cellType: UserActionCell.self)
     ]
+
+    weak var delegate: UserHeaderCellDelegate?
+
+    init(headerDelegate: UserHeaderCellDelegate?) {
+        delegate = headerDelegate
+    }
 }
 
 // MARK: - UserAdapter
@@ -71,6 +77,9 @@ extension UserAdapterImpl {
         guard let cellManager = cellManagers[sectionType] else { return UITableViewCell() }
         guard let viewModel = viewModel(for: indexPath) else { return UITableViewCell() }
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
+        if let headerCell = cell as? UserHeaderCell {
+            headerCell.delegate = delegate
+        }
         cell.populate(viewModel: viewModel)
         return cell
     }

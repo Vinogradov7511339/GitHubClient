@@ -14,14 +14,11 @@ protocol HomeSceneFactory {
 
 final class HomeSceneFactoryImpl {
     private let dataTransferService: DataTransferService
-    private let favoritesStorage: FavoritesStorage
     private let profileStorage: ProfileLocalStorage
 
     init(dataTransferService: DataTransferService,
-         favoritesStorage: FavoritesStorage,
          profileStorage: ProfileLocalStorage) {
         self.dataTransferService = dataTransferService
-        self.favoritesStorage = favoritesStorage
         self.profileStorage = profileStorage
     }
 }
@@ -43,7 +40,7 @@ private extension HomeSceneFactoryImpl {
     }
     
     var homeUseCase: HomeUseCase {
-        HomeUseCaseImpl(repository: profileRepository, favoritesStorage: favoritesStorage)
+        HomeUseCaseImpl(repository: profileRepository)
     }
 
     var profileRepository: MyProfileRepository {

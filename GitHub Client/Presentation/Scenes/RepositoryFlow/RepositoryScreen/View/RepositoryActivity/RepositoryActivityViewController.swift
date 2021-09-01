@@ -53,7 +53,7 @@ private extension RepositoryActivityViewController {
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateState(_ newState: RepositoryScreenState) {
+    func updateState(_ newState: DetailsScreenState<RepositoryDetails>) {
         switch newState {
         case .error(let error):
             prepareErrorState(error: error)

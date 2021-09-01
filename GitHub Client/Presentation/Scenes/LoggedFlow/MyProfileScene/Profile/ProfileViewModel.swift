@@ -26,15 +26,22 @@ protocol ProfileViewModelInput {
     func openSettings()
     func showFollowers()
     func showFollowing()
+    func showEditProfile()
     func openLink()
     func sendEmail()
+    
     func openRepositories()
     func openStarred()
-    func didSelectItem(at indexPath: IndexPath)
+}
+
+enum MyProfileScreenState {
+    case loaded(AuthenticatedUser)
+    case error(Error)
+    case loading
 }
 
 protocol ProfileViewModelOutput {
-    var user: Observable<UserProfile?> { get }
+    var state: Observable<MyProfileScreenState> { get }
 }
 
 typealias ProfileViewModel = ProfileViewModelInput & ProfileViewModelOutput
@@ -43,7 +50,7 @@ final class ProfileViewModelImpl: ProfileViewModel {
 
     // MARK: - Output
 
-    var user: Observable<UserProfile?> = Observable(nil)
+    var state: Observable<MyProfileScreenState> = Observable(.loading)
 
     // MARK: - Private
 
@@ -73,38 +80,29 @@ extension ProfileViewModelImpl {
     }
 
     func showFollowers() {
-//        actions.showFollowers()
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showFollowers(profile.userDetails.followersUrl)
     }
 
     func showFollowing() {
-//        actions.showFollowing()
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showFollowing(profile.userDetails.followingUrl)
     }
+    
+    func showEditProfile() {}
 
     func openLink() {}
 
     func sendEmail() {}
 
     func openRepositories() {
-//        actions.showRepositories()
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showRepositories(profile.userDetails.repositoriesUrl)
     }
 
     func openStarred() {
-//        actions.showStarred()
-    }
-
-    func didSelectItem(at indexPath: IndexPath) {
-//        switch (indexPath.section, indexPath.row) {
-//        case (1, 0):
-//            actions.showRepositories()
-//        case (1, 1):
-//            actions.showStarred()
-//        case (1, 2):
-//            assert(false, "update models")
-//        case (1, 3):
-//            actions.showSubscriptions()
-//        default:
-//            break
-//        }
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showStarred(profile.userDetails.starredUrl)
     }
 }
 
@@ -113,14 +111,10 @@ private extension ProfileViewModelImpl {
         useCase.fetchProfile { result in
             switch result {
             case .success(let user):
-                self.user.value = user.userDetails
+                self.state.value = .loaded(user)
             case .failure(let error):
-                self.handle(error: error)
+                self.state.value = .error(error)
             }
         }
-    }
-
-    func handle(error: Error) {
-
     }
 }

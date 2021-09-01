@@ -7,33 +7,46 @@
 
 import UIKit
 
+
 protocol ProfileHeaderCellDelegate: AnyObject {
-    func followersTouched()
-    func followingTouched()
+    func followersButtonTapped()
+    func followingButtonTapped()
+    func editProfileButtonTapped()
 }
 
 class ProfileHeaderCell: BaseTableViewCell, NibLoadable {
 
-    @IBOutlet weak var avatarImageView: WebImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var loginLabel: UILabel!
-    @IBOutlet weak var infoStackView: UIStackView!
-    @IBOutlet weak var followersCountLabel: UILabel!
-    @IBOutlet weak var followingCountLabel: UILabel!
+    // MARK: - Public variables
 
     weak var delegate: ProfileHeaderCellDelegate?
+
+    // MARK: - Views
+
+    @IBOutlet weak var avatarImageView: WebImageView!
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var infoStackView: UIStackView!
+
+    // MARK: - Actions
+
+    @IBAction func followersButtonTouched(_ sender: UIButton) {
+        delegate?.followersButtonTapped()
+    }
+
+    @IBAction func followingButtonTouched(_ sender: UIButton) {
+        delegate?.followingButtonTapped()
+    }
+
+    @IBAction func editProfileButtonTapped(_ sender: UIButton) {
+        delegate?.editProfileButtonTapped()
+    }
+
+    // MARK: - Lifecycle
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
-    }
-
-    @IBAction func followersTouched(_ sender: UIButton) {
-        delegate?.followersTouched()
-    }
-
-    @IBAction func followingTouched(_ sender: UIButton) {
-        delegate?.followingTouched()
     }
 }
 
@@ -41,50 +54,33 @@ class ProfileHeaderCell: BaseTableViewCell, NibLoadable {
 extension ProfileHeaderCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
         avatarImageView.set(url: viewModel.user.avatarUrl)
-        nameLabel.text = viewModel.name
         loginLabel.text = viewModel.user.login
         followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
         followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
-        if let company = viewModel.company {
-            add(company: company)
+        fillInfo(viewModel)
+    }
+
+    private func fillInfo(_ profile: UserProfile) {
+        infoStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        if let email = profile.userEmail {
+            addItem(email)
         }
-        if let link = viewModel.userBlogUrl {
-            add(link: link.absoluteString)
+        if let blog = profile.userBlogUrl {
+            addItem(blog.absoluteString)
         }
-        if let email = viewModel.userEmail {
-            add(email: email)
+        if let location = profile.location {
+            addItem(location)
         }
-        add(followers: viewModel.followersCount, following: viewModel.followingCount)
+        if let company = profile.company {
+            addItem(company)
+        }
     }
 
-    func add(email: String) {
-        let image = UIImage(systemName: "mail")?.withTintColor(.secondaryLabel)
-        add(text: email, image: image)
-    }
-
-    func add(company: String) {
-        let image = UIImage(systemName: "building.2")?.withTintColor(.secondaryLabel)
-        add(text: company, image: image)
-    }
-
-    func add(link: String) {
-        let image = UIImage(systemName: "link")?.withTintColor(.secondaryLabel)
-        add(text: link, image: image)
-    }
-
-    func add(text: String, image: UIImage?) {
-        let attachment = NSTextAttachment(image: image!)
-        let attributedStr = NSMutableAttributedString(attachment: attachment)
-        let emailStr = NSAttributedString(string: text, attributes: [.font: UIFont.boldSystemFont(ofSize: 14.0)])
-        attributedStr.append(emailStr)
-
-        let button = UIButton()
-        button.setAttributedTitle(attributedStr, for: .normal)
-        infoStackView.addArrangedSubview(button)
-        button.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-    }
-
-    func add(followers: Int, following: Int) {
-
+    private func addItem(_ text: String) {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14.0)
+        label.text = text
+        infoStackView.addArrangedSubview(label)
     }
 }

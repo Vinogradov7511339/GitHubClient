@@ -53,9 +53,7 @@ extension IssueViewModelImpl {
 
 // MARK: - Private
 private extension IssueViewModelImpl {
-    func fetch() {
-        
-    }
+    func fetch() {}
     func fetchComments() {
 //        let model = CommentsRequestModel<Issue>(item: issue, page: currentPage)
 //        useCase.fetchComments(model) { result in

@@ -33,7 +33,7 @@ class UserProfileViewController: UIViewController {
 
     private var viewModel: UserProfileViewModel!
     private lazy var adapter: UserAdapter = {
-        UserAdapterImpl()
+        UserAdapterImpl(headerDelegate: self)
     }()
 
     // MARK: - Lifecycle
@@ -64,7 +64,7 @@ private extension UserProfileViewController {
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func updateState(_ newState: UserScreenState) {
+    func updateState(_ newState: DetailsScreenState<UserProfile>) {
         switch newState {
         case .loading:
             prepareLoadingState()
@@ -93,6 +93,21 @@ private extension UserProfileViewController {
         hideError()
         adapter.update(profile)
         tableView.reloadData()
+    }
+}
+
+// MARK: - UserHeaderCellDelegate
+extension UserProfileViewController: UserHeaderCellDelegate {
+    func followersButtonTapped() {
+        viewModel.showFollowers()
+    }
+
+    func followingButtonTapped() {
+        viewModel.showFollowing()
+    }
+
+    func followButtonTapped() {
+        viewModel.follow()
     }
 }
 
