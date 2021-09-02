@@ -369,6 +369,8 @@
 		ADA7495E26CEBEA600C8D475 /* UIImage+Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */; };
 		ADA7496026CED14D00C8D475 /* SettingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7495F26CED14D00C8D475 /* SettingsObserver.swift */; };
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
+		ADAF3F7C26DFFEEE00E19C86 /* MyProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF3F7A26DFFEEE00E19C86 /* MyProfileInfoCell.swift */; };
+		ADAF3F7D26DFFEEE00E19C86 /* MyProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAF3F7B26DFFEEE00E19C86 /* MyProfileInfoCell.xib */; };
 		ADB185DA26D26D05000245A9 /* UIImageView+UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB185D926D26D05000245A9 /* UIImageView+UserProfile.swift */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
 		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
@@ -852,6 +854,8 @@
 		ADA7495D26CEBEA600C8D475 /* UIImage+Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Repository.swift"; sourceTree = "<group>"; };
 		ADA7495F26CED14D00C8D475 /* SettingsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsObserver.swift; sourceTree = "<group>"; };
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
+		ADAF3F7A26DFFEEE00E19C86 /* MyProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileInfoCell.swift; sourceTree = "<group>"; };
+		ADAF3F7B26DFFEEE00E19C86 /* MyProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileInfoCell.xib; sourceTree = "<group>"; };
 		ADB185D926D26D05000245A9 /* UIImageView+UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+UserProfile.swift"; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
 		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
@@ -984,6 +988,7 @@
 				ADA7494226CE31B100C8D475 /* ProfileAdapter.swift */,
 				ADA7494026CE306B00C8D475 /* MyProfileViewController.swift */,
 				ADA7494826CE5B9100C8D475 /* HeaderCell */,
+				ADAF3F7E26DFFEF200E19C86 /* InfoCell */,
 				ADA7494D26CE5BD300C8D475 /* ItemCell */,
 			);
 			path = Profile;
@@ -2399,6 +2404,15 @@
 			path = CodePreviewCell;
 			sourceTree = "<group>";
 		};
+		ADAF3F7E26DFFEF200E19C86 /* InfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADAF3F7A26DFFEEE00E19C86 /* MyProfileInfoCell.swift */,
+				ADAF3F7B26DFFEEE00E19C86 /* MyProfileInfoCell.xib */,
+			);
+			name = InfoCell;
+			sourceTree = "<group>";
+		};
 		ADB60D6226D2E6900024479D /* PopularCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2846,6 +2860,7 @@
 				AD20E4D726A8B313003BB5F1 /* AppIconPinkLight@2x-3.png in Resources */,
 				AD9F81A226C7A01D00C320E6 /* IssueHeaderCell.xib in Resources */,
 				ADA7495526CE9A1A00C8D475 /* CodeOptionCell.xib in Resources */,
+				ADAF3F7D26DFFEEE00E19C86 /* MyProfileInfoCell.xib in Resources */,
 				ADA68BAB26B55621004AC06C /* octocat_gray-4.png in Resources */,
 				AD20E4DF26A8B313003BB5F1 /* AppIconPinkLight@2x-4.png in Resources */,
 				ADA68BAD26B55621004AC06C /* octocat_gray@3x-1.png in Resources */,
@@ -3168,6 +3183,7 @@
 				AD20E56C26AB4090003BB5F1 /* SearchResultViewController.swift in Sources */,
 				AD93005126C960E3002D7362 /* CompositionalLayoutFactory.swift in Sources */,
 				AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */,
+				ADAF3F7C26DFFEEE00E19C86 /* MyProfileInfoCell.swift in Sources */,
 				AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */,
 				AD8722E926B83796004649A4 /* FavoritesViewController.swift in Sources */,
 				AD79550226ABEFC5004E6973 /* UIView+IBInspectable.swift in Sources */,

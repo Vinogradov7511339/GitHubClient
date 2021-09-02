@@ -10,11 +10,13 @@ import UIKit
 enum MyProfileSectionTypes: Int, CaseIterable {
     case header
     case info
+    case actions
 
     var numberOfRows: Int {
         switch self {
         case .header: return 1
-        case .info: return MyProfileRowType.allCases.count
+        case .info: return 1
+        case .actions: return MyProfileRowType.allCases.count
         }
     }
 }
@@ -26,14 +28,15 @@ enum MyProfileRowType: Int, CaseIterable {
 
 protocol ProfileAdapter: UITableViewDataSource {
     func register(_ tableView: UITableView)
-    func update(with profile: UserProfile)
+    func update(with profile: AuthenticatedUser)
 }
 
 final class ProfileAdapterImpl: NSObject {
-    private var profile: UserProfile?
+    private var profile: AuthenticatedUser?
     private let cellManages: [MyProfileSectionTypes: TableCellManager] = [
         .header: TableCellManager.create(cellType: ProfileHeaderCell.self),
-        .info: TableCellManager.create(cellType: ProfileItemCell.self)
+        .info: TableCellManager.create(cellType: MyProfileInfoCell.self),
+        .actions: TableCellManager.create(cellType: ProfileItemCell.self)
     ]
 
     weak var delegate: ProfileHeaderCellDelegate?
@@ -49,7 +52,7 @@ extension ProfileAdapterImpl: ProfileAdapter {
         cellManages.values.forEach { $0.register(tableView: tableView) }
     }
 
-    func update(with profile: UserProfile) {
+    func update(with profile: AuthenticatedUser) {
         self.profile = profile
     }
 
@@ -84,8 +87,10 @@ private extension ProfileAdapterImpl {
         let type = MyProfileSectionTypes(rawValue: indexPath.section)
         switch type {
         case .header:
-            return profile
+            return profile.userDetails
         case .info:
+            return profile
+        case .actions:
             return MyProfileRowType(rawValue: indexPath.row)
         default:
             return nil

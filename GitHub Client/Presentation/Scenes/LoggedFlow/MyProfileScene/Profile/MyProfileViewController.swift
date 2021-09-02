@@ -24,6 +24,7 @@ final class MyProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGroupedBackground
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         tableView.refreshControl = refreshControl
         tableView.dataSource = adapter
         tableView.delegate = self
@@ -103,7 +104,7 @@ private extension MyProfileViewController {
         hideLoader()
         hideError()
         refreshControl.endRefreshing()
-        adapter.update(with: profile.userDetails)
+        adapter.update(with: profile)
         tableView.reloadData()
     }
 }
@@ -116,10 +117,6 @@ extension MyProfileViewController: ProfileHeaderCellDelegate {
 
     func followingButtonTapped() {
         viewModel.showFollowing()
-    }
-
-    func editProfileButtonTapped() {
-        viewModel.showEditProfile()
     }
 }
 
