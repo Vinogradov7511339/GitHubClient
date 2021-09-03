@@ -29,9 +29,10 @@ protocol ProfileViewModelInput {
     func showEditProfile()
     func openLink()
     func sendEmail()
-    
+
     func openRepositories()
     func openStarred()
+    func openSubscriptions()
 }
 
 enum MyProfileScreenState {
@@ -88,7 +89,7 @@ extension ProfileViewModelImpl {
         guard case .loaded(let profile) = state.value else { return }
         actions.showFollowing(profile.userDetails.followingUrl)
     }
-    
+
     func showEditProfile() {}
 
     func openLink() {}
@@ -103,6 +104,10 @@ extension ProfileViewModelImpl {
     func openStarred() {
         guard case .loaded(let profile) = state.value else { return }
         actions.showStarred(profile.userDetails.starredUrl)
+    }
+
+    func openSubscriptions() {
+        actions.showSubscriptions()
     }
 }
 

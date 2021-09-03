@@ -31,9 +31,9 @@ extension ProfileItemCell: ConfigurableCell {
 //        case .organizations:
 //            itemImageView.image = .organizations
 //            itemNameLabel.text = .organizations
-//        case .subscriptions:
-//            itemImageView.image = .subscribers
-//            itemNameLabel.text = "Subscriptions"
+        case .subscriptions:
+            itemImageView.image = .subscribers
+            itemNameLabel.text = "Subscriptions"
         }
     }
 }

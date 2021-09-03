@@ -50,8 +50,8 @@ extension ProfileDIContainer: ProfileFlowCoordinatorDependencies {
         profileFactory.followingViewController(url, actions: actions)
     }
 
-    func subscriptionsViewController() -> UIViewController {
-        profileFactory.subscriptionsViewControler()
+    func subscriptionsViewController(_ actions: MySubscriptionsActions) -> UIViewController {
+        profileFactory.subscriptionsViewControler(actions)
     }
 
     func showRepositories(_ url: URL, actions: RepositoriesActions) -> UIViewController {

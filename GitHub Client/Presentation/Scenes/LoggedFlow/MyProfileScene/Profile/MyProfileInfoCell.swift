@@ -14,7 +14,10 @@ class MyProfileInfoCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var blogButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var companyButton: UIButton!
-
+    @IBOutlet weak var publicRepsButton: UIButton!
+    @IBOutlet weak var privateRepsButton: UIButton!
+    @IBOutlet weak var publicGistsButton: UIButton!
+    @IBOutlet weak var privateGistsButton: UIButton!
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
@@ -30,6 +33,11 @@ extension MyProfileInfoCell: ConfigurableCell {
         setTitle(user.userBlogUrl?.absoluteString, for: blogButton)
         setTitle(user.location, for: locationButton)
         setTitle(user.company, for: companyButton)
+        setTitle(viewModel.publicRepCount.roundedWithAbbreviations, for: publicRepsButton)
+        setTitle(viewModel.privateRepCount.roundedWithAbbreviations, for: privateRepsButton)
+        setTitle(viewModel.publicGistsCount.roundedWithAbbreviations, for: publicGistsButton)
+        setTitle(viewModel.privateGistsCount.roundedWithAbbreviations, for: privateGistsButton)
+
     }
 
     private func setTitle(_ title: String?, for button: UIButton) {

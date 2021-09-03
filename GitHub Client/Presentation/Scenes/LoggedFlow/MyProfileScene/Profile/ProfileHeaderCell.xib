@@ -30,13 +30,13 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJP-7v-dQV">
-                        <rect key="frame" x="136.5" y="88" width="47.5" height="25"/>
+                        <rect key="frame" x="136.5" y="88" width="47.5" height="37"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pUO-TK-HjS">
-                        <rect key="frame" x="84" y="117" width="152" height="32"/>
+                        <rect key="frame" x="84" y="129" width="152" height="32"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-pM-1sh">
                                 <rect key="frame" x="0.0" y="0.0" width="72" height="32"/>
@@ -171,7 +171,7 @@
                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="SJP-7v-dQV" firstAttribute="top" secondItem="Dd8-dh-cfP" secondAttribute="bottom" constant="8" symbolic="YES" id="EY6-cX-KtN"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="pUO-TK-HjS" secondAttribute="bottom" constant="12" id="bed-Ga-XzA"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="pUO-TK-HjS" secondAttribute="bottom" id="bed-Ga-XzA"/>
                     <constraint firstItem="Dd8-dh-cfP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cQE-S5-TAz"/>
                     <constraint firstItem="Dd8-dh-cfP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kiW-4X-vxy"/>
                     <constraint firstItem="SJP-7v-dQV" firstAttribute="centerX" secondItem="Dd8-dh-cfP" secondAttribute="centerX" id="osL-Rg-tsG"/>

@@ -10,12 +10,14 @@ import UIKit
 enum MyProfileSectionTypes: Int, CaseIterable {
     case header
     case info
+    case activity
     case actions
 
     var numberOfRows: Int {
         switch self {
         case .header: return 1
         case .info: return 1
+        case .activity: return 1
         case .actions: return MyProfileRowType.allCases.count
         }
     }
@@ -24,6 +26,7 @@ enum MyProfileSectionTypes: Int, CaseIterable {
 enum MyProfileRowType: Int, CaseIterable {
     case repositories
     case starred
+    case subscriptions
 }
 
 protocol ProfileAdapter: UITableViewDataSource {
@@ -36,6 +39,7 @@ final class ProfileAdapterImpl: NSObject {
     private let cellManages: [MyProfileSectionTypes: TableCellManager] = [
         .header: TableCellManager.create(cellType: ProfileHeaderCell.self),
         .info: TableCellManager.create(cellType: MyProfileInfoCell.self),
+        .activity: TableCellManager.create(cellType: MyProfileActivityCell.self),
         .actions: TableCellManager.create(cellType: ProfileItemCell.self)
     ]
 
@@ -89,6 +93,8 @@ private extension ProfileAdapterImpl {
         case .header:
             return profile.userDetails
         case .info:
+            return profile
+        case .activity:
             return profile
         case .actions:
             return MyProfileRowType(rawValue: indexPath.row)

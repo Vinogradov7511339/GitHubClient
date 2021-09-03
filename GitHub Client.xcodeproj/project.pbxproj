@@ -198,6 +198,8 @@
 		AD43613F26D63F790004F742 /* SearchFilterItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD43613E26D63F790004F742 /* SearchFilterItemViewController.swift */; };
 		AD4AA96F26CD90D4002878B6 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */; };
 		AD4AA97026CD90D4002878B6 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */; };
+		AD4EEE2326E1FFF70000BF46 /* MyProfileActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4EEE2126E1FFF70000BF46 /* MyProfileActivityItemCell.swift */; };
+		AD4EEE2426E1FFF70000BF46 /* MyProfileActivityItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4EEE2226E1FFF70000BF46 /* MyProfileActivityItemCell.xib */; };
 		AD5591F526BC6A890055C3F1 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */; };
 		AD5591F726BC6A890055C3F1 /* CollectionCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */; };
 		AD596EE026DBCF0A004A3A1C /* MDRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */; };
@@ -371,6 +373,8 @@
 		ADA7500E26AD2E9500783E71 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7500226AD2E9500783E71 /* String+extensions.swift */; };
 		ADAF3F7C26DFFEEE00E19C86 /* MyProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF3F7A26DFFEEE00E19C86 /* MyProfileInfoCell.swift */; };
 		ADAF3F7D26DFFEEE00E19C86 /* MyProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAF3F7B26DFFEEE00E19C86 /* MyProfileInfoCell.xib */; };
+		ADAF3F8126E0A70000E19C86 /* MyProfileActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF3F7F26E0A70000E19C86 /* MyProfileActivityCell.swift */; };
+		ADAF3F8226E0A70000E19C86 /* MyProfileActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADAF3F8026E0A70000E19C86 /* MyProfileActivityCell.xib */; };
 		ADB185DA26D26D05000245A9 /* UIImageView+UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB185D926D26D05000245A9 /* UIImageView+UserProfile.swift */; };
 		ADB26BA126B31CFF0043CEBB /* TextCompiler in Frameworks */ = {isa = PBXBuildFile; productRef = ADB26BA026B31CFF0043CEBB /* TextCompiler */; };
 		ADB26BA326B3DA8E0043CEBB /* MDTest.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB26BA226B3DA8E0043CEBB /* MDTest.md */; };
@@ -682,6 +686,8 @@
 		AD43613E26D63F790004F742 /* SearchFilterItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterItemViewController.swift; sourceTree = "<group>"; };
 		AD4AA96D26CD90D4002878B6 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		AD4AA96E26CD90D4002878B6 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		AD4EEE2126E1FFF70000BF46 /* MyProfileActivityItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileActivityItemCell.swift; sourceTree = "<group>"; };
+		AD4EEE2226E1FFF70000BF46 /* MyProfileActivityItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileActivityItemCell.xib; sourceTree = "<group>"; };
 		AD5591EE26BC6A880055C3F1 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		AD5591F026BC6A880055C3F1 /* CollectionCellManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellManager.swift; sourceTree = "<group>"; };
 		AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDRenderer.swift; sourceTree = "<group>"; };
@@ -856,6 +862,8 @@
 		ADA7500226AD2E9500783E71 /* String+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		ADAF3F7A26DFFEEE00E19C86 /* MyProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileInfoCell.swift; sourceTree = "<group>"; };
 		ADAF3F7B26DFFEEE00E19C86 /* MyProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileInfoCell.xib; sourceTree = "<group>"; };
+		ADAF3F7F26E0A70000E19C86 /* MyProfileActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileActivityCell.swift; sourceTree = "<group>"; };
+		ADAF3F8026E0A70000E19C86 /* MyProfileActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileActivityCell.xib; sourceTree = "<group>"; };
 		ADB185D926D26D05000245A9 /* UIImageView+UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+UserProfile.swift"; sourceTree = "<group>"; };
 		ADB26B9F26B28EA90043CEBB /* TextCompiler */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TextCompiler; path = ../TextCompiler; sourceTree = "<group>"; };
 		ADB26BA226B3DA8E0043CEBB /* MDTest.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MDTest.md; sourceTree = "<group>"; };
@@ -990,6 +998,7 @@
 				ADA7494826CE5B9100C8D475 /* HeaderCell */,
 				ADAF3F7E26DFFEF200E19C86 /* InfoCell */,
 				ADA7494D26CE5BD300C8D475 /* ItemCell */,
+				ADAF3F8326E0A70500E19C86 /* ActivityCell */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1845,6 +1854,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AD4EEE2526E200460000BF46 /* ActivityItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD4EEE2126E1FFF70000BF46 /* MyProfileActivityItemCell.swift */,
+				AD4EEE2226E1FFF70000BF46 /* MyProfileActivityItemCell.xib */,
+			);
+			name = ActivityItemCell;
+			sourceTree = "<group>";
+		};
 		AD596EEB26DC196C004A3A1C /* RepositoryInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -2413,6 +2431,16 @@
 			name = InfoCell;
 			sourceTree = "<group>";
 		};
+		ADAF3F8326E0A70500E19C86 /* ActivityCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADAF3F7F26E0A70000E19C86 /* MyProfileActivityCell.swift */,
+				ADAF3F8026E0A70000E19C86 /* MyProfileActivityCell.xib */,
+				AD4EEE2526E200460000BF46 /* ActivityItemCell */,
+			);
+			name = ActivityCell;
+			sourceTree = "<group>";
+		};
 		ADB60D6226D2E6900024479D /* PopularCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2851,6 +2879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADAF3F8226E0A70000E19C86 /* MyProfileActivityCell.xib in Resources */,
 				AD20E4D426A8B313003BB5F1 /* AppIconPinkLight@2x.png in Resources */,
 				AD43612B26D577560004F742 /* favorites_animation.json in Resources */,
 				ADB60D7326D3C6FC0024479D /* ResultUserCell.xib in Resources */,
@@ -2905,6 +2934,7 @@
 				ADA7494C26CE5BCB00C8D475 /* ProfileItemCell.xib in Resources */,
 				AD20E4DE26A8B313003BB5F1 /* AppIconPinkLight-4.png in Resources */,
 				ADA68BAF26B55621004AC06C /* octocat_gray@2x-6.png in Resources */,
+				AD4EEE2426E1FFF70000BF46 /* MyProfileActivityItemCell.xib in Resources */,
 				ADA68BA326B55621004AC06C /* octocat_gray.png in Resources */,
 				AD2E8FE126DAC151000A40D1 /* CommitInfoAuthorCell.xib in Resources */,
 				AD596EE626DBE432004A3A1C /* ReadMeCell.xib in Resources */,
@@ -3129,6 +3159,7 @@
 				ADFCF01C26D8EE18004FB341 /* PRViewController.swift in Sources */,
 				AD6B097026BFB2AF004644D2 /* UserRepositoryImpl.swift in Sources */,
 				AD9F81A126C7A01D00C320E6 /* IssueHeaderCell.swift in Sources */,
+				AD4EEE2326E1FFF70000BF46 /* MyProfileActivityItemCell.swift in Sources */,
 				AD2E261C26BC6FCB00B25772 /* UIImage+tempExtension.swift in Sources */,
 				ADF9A84C26D6AA160017D11F /* PullRequestDIContainer.swift in Sources */,
 				AD23E7B526D14BC8009FEB27 /* UserEventsRequestModel.swift in Sources */,
@@ -3241,6 +3272,7 @@
 				AD5C8E3126D2A755003E2F38 /* AccountViewModel.swift in Sources */,
 				AD8722F126B842E6004649A4 /* FavoriteRepositoryTableViewCell.swift in Sources */,
 				AD6B098C26C009DD004644D2 /* EventEndpoints.swift in Sources */,
+				ADAF3F8126E0A70000E19C86 /* MyProfileActivityCell.swift in Sources */,
 				AD5BD96226D763F000B41E6A /* String+LoadingAnimation.swift in Sources */,
 				ADC538D826CD27B5009B7A7E /* UIImage+TabBar.swift in Sources */,
 				ADA3C84D26CF9E9A009F9130 /* Int+Formatter.swift in Sources */,

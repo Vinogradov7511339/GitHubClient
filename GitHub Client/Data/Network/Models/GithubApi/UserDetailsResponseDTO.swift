@@ -97,8 +97,13 @@ struct UserDetailsResponseDTO: Codable {
     func mapToAuthotization() -> AuthenticatedUser? {
         guard let user = toDomain() else { return nil }
         return .init(userDetails: user,
+                     publicRepCount: publicRepos,
+                     privateRepCount: totalPrivateRepos ?? 0,
+                     publicGistsCount: publicGists,
+                     privateGistsCount: privateGists ?? 0,
                      totalRepCount: totalPrivateRepos ?? -1,
                      totalOwnedRepCount: ownedPrivateRepos ?? -1)
+
     }
 
     struct Plan: Codable {

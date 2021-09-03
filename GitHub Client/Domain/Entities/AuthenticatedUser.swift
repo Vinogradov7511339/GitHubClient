@@ -8,7 +8,11 @@
 import Foundation
 
 struct AuthenticatedUser {
-    let userDetails: UserProfile
+    var userDetails: UserProfile
+    let publicRepCount: Int
+    let privateRepCount: Int
+    let publicGistsCount: Int
+    let privateGistsCount: Int
     let totalRepCount: Int
     let totalOwnedRepCount: Int
 }

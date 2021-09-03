@@ -128,7 +128,7 @@ extension MyProfileViewController: UITableViewDelegate {
         switch sectionType {
         case .header:
             break
-        case .info:
+        case .actions:
             showItem(at: indexPath.row)
         default:
             break
@@ -142,6 +142,8 @@ extension MyProfileViewController: UITableViewDelegate {
             viewModel.openRepositories()
         case .starred:
             viewModel.openStarred()
+        case .subscriptions:
+            viewModel.openSubscriptions()
         default:
             break
         }

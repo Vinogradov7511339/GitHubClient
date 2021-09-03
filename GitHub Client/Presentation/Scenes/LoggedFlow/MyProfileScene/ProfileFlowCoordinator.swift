@@ -11,7 +11,7 @@ protocol ProfileFlowCoordinatorDependencies {
     func profileViewController(actions: ProfileActions) -> UIViewController
     func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
-    func subscriptionsViewController() -> UIViewController
+    func subscriptionsViewController(_ actions: MySubscriptionsActions) -> UIViewController
     func showRepositories(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func showStarred(_ url: URL, actions: RepositoriesActions) -> UIViewController
 
@@ -96,7 +96,8 @@ private extension ProfileFlowCoordinator {
     }
 
     func showSubscriptions() {
-        let viewController = dependencies.subscriptionsViewController()
+        let actions = MySubscriptionsActions()
+        let viewController = dependencies.subscriptionsViewController(actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
