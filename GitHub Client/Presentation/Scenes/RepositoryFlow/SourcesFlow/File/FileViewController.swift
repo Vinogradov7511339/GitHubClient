@@ -26,6 +26,7 @@ class FileViewController: UIViewController {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 15.0, weight: .light)
         label.numberOfLines = 0
         return label
     }()
@@ -68,7 +69,12 @@ extension FileViewController {
         viewModel.settings.forceDarkMode.observe(on: self) { [weak self] in self?.changeMode($0) }
         viewModel.settings.lineWrapping.observe(on: self) { [weak self] in self?.changeLineWraping($0) }
         viewModel.settings.showLineNumbers.observe(on: self) { [weak self] in self?.changeLineNumbers($0) }
+        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
+    }
+
+    func updateTitle(_ titles: (String, String)) {
+        navigationItem.title = titles.0
     }
 
     func updateState(_ newState: DetailsScreenState<File>) {
@@ -127,10 +133,14 @@ private extension FileViewController {
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
-        label.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        label.leadingAnchor.constraint(
+            equalTo: scrollView.leadingAnchor, constant: 12.0).isActive = true
+        label.trailingAnchor.constraint(
+            equalTo: scrollView.trailingAnchor, constant: -12.0).isActive = true
+        label.topAnchor.constraint(
+            equalTo: scrollView.topAnchor, constant: 12.0).isActive = true
+        label.bottomAnchor.constraint(
+            equalTo: scrollView.bottomAnchor, constant: -12.0).isActive = true
     }
 
     func configureNavBar() {

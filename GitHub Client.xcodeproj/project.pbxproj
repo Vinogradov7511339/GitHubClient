@@ -2523,8 +2523,8 @@
 			children = (
 				AD8722DF26B81840004649A4 /* FolderViewModel.swift */,
 				AD23E79A26D1094A009FEB27 /* FolderViewController.swift */,
-				ADC538B026CCE58D009B7A7E /* FolderCell */,
 				AD5BD95826D75F1000B41E6A /* FolderAdapter.swift */,
+				ADC538B026CCE58D009B7A7E /* FolderCell */,
 			);
 			path = Folder;
 			sourceTree = "<group>";

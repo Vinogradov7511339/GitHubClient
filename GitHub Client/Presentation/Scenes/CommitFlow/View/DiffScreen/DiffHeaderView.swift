@@ -30,6 +30,7 @@ final class DiffHeaderView: UIView {
     private lazy var fileNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14.0)
         label.lineBreakMode = .byTruncatingHead
         return label
     }()

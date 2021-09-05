@@ -4,17 +4,16 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FolderCell" customModule="GitHub_Client" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="KGk-i7-Jjw" customClass="FolderCell" customModule="GitHub_Client" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="294.5" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_item_organizations" translatesAutoresizingMaskIntoConstraints="NO" id="qiz-pG-p1L">
@@ -25,25 +24,15 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hez-iS-6Cz">
-                        <rect key="frame" x="48" y="11.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="48" y="13" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1hL-QE-S4e">
-                        <rect key="frame" x="280" y="12" width="24" height="20.5"/>
-                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="24" id="Afm-wC-cPb"/>
-                            <constraint firstAttribute="width" constant="24" id="TvL-jU-MVO"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qiz-pG-p1L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="HjP-wk-sF2"/>
-                    <constraint firstItem="1hL-QE-S4e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="K8Z-s0-dcV"/>
                     <constraint firstItem="qiz-pG-p1L" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QeS-QI-gpL"/>
-                    <constraint firstAttribute="trailing" secondItem="1hL-QE-S4e" secondAttribute="trailing" constant="16" id="S3P-cL-ydh"/>
                     <constraint firstItem="Hez-iS-6Cz" firstAttribute="leading" secondItem="qiz-pG-p1L" secondAttribute="trailing" constant="8" symbolic="YES" id="Zif-Uf-AKc"/>
                     <constraint firstItem="Hez-iS-6Cz" firstAttribute="centerY" secondItem="qiz-pG-p1L" secondAttribute="centerY" id="ekI-t3-TsD"/>
                 </constraints>
@@ -57,10 +46,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="profile_item_organizations" width="24" height="24"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="profile_item_organizations" width="32" height="32"/>
     </resources>
 </document>

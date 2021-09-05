@@ -23,6 +23,7 @@ protocol FileViewModelInput {
 }
 
 protocol FileViewModelOutput {
+    var title: Observable<(String, String)> { get }
     var state: Observable<DetailsScreenState<File>> { get }
     var settings: CodeOptions { get }
 }
@@ -33,6 +34,7 @@ final class FileViewModelImpl: FileViewModel {
 
     // MARK: - Output
 
+    var title: Observable<(String, String)> = Observable(("", ""))
     var state: Observable<DetailsScreenState<File>> = Observable(.loading)
     var settings: CodeOptions
 
@@ -82,6 +84,7 @@ private extension FileViewModelImpl {
         useCase.fetchFile(path: filePath) { result in
             switch result {
             case .success(let file):
+                self.title.value = (file.name, file.path)
                 self.state.value = .loaded(file)
             case .failure(let error):
                 self.state.value = .error(error)

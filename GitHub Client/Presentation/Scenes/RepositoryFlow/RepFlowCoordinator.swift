@@ -10,7 +10,7 @@ import UIKit
 protocol RepFlowCoordinatorDependencies {
     func repositoryViewController(actions: RepActions) -> UIViewController
     func branchesViewController() -> UIViewController
-    func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
+    func folderViewController(_ folder: FolderItem, actions: FolderActions) -> UIViewController
     func fileViewController(_ path: URL, actions: FileActions) -> UIViewController
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
@@ -62,7 +62,7 @@ private extension RepFlowCoordinator {
               showStargazers: showStargazers(_:),
               showSubscribers: showSubscribers(_:),
               showContributors: showContributors(_:),
-              showSources: showCode(_:),
+              showSources: showSources(_:),
               showCommits: showCommits(in: nav),
               showBranches: showBranches(_:),
               showIssues: showIssues(_:),
@@ -107,13 +107,18 @@ private extension RepFlowCoordinator {
         nav.pushViewController(viewController, animated: true)
     }
 
-    func showCode(_ path: URL) {
+    func showSources(_ url: URL) {
+        let folderItem = FolderItem(name: "Sources", path: "/", url: url, type: .folder)
+        showCode(folderItem)
+    }
+
+    func showCode(_ folder: FolderItem) {
         let actions = FolderActions(openFolder: showCode(_:),
                                     openFile: openFile(_:),
                                     openFolderSettings: openFoldersSettings,
                                     share: dependencies.share(url:),
                                     copy: dependencies.copy(text:))
-        let viewController = dependencies.folderViewController(path, actions: actions)
+        let viewController = dependencies.folderViewController(folder, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 

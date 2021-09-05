@@ -60,8 +60,8 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
         dependencies.showCommits(url, nav)
     }
 
-    func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController {
-        repositoryFactory.folderViewController(path, actions: actions)
+    func folderViewController(_ folder: FolderItem, actions: FolderActions) -> UIViewController {
+        repositoryFactory.folderViewController(folder, actions: actions)
     }
 
     func fileViewController(_ path: URL, actions: FileActions) -> UIViewController {

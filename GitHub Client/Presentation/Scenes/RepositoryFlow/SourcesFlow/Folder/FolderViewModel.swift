@@ -8,7 +8,7 @@
 import UIKit
 
 struct FolderActions {
-    var openFolder: (URL) -> Void
+    var openFolder: (FolderItem) -> Void
     var openFile: (URL) -> Void
     var openFolderSettings: () -> Void
     var share: (URL) -> Void
@@ -46,14 +46,15 @@ final class FolderViewModelImpl {
 
     // MARK: - Private
 
+    private let folder: FolderItem
+    private let useCase: RepUseCase
     private let actions: FolderActions
-    private let path: URL
-    private let repUseCase: RepUseCase
 
-    init(actions: FolderActions, path: URL, repUseCase: RepUseCase) {
+    init(_ folder: FolderItem, useCase: RepUseCase, actions: FolderActions) {
+        self.folder = folder
+        self.useCase = useCase
         self.actions = actions
-        self.path = path
-        self.repUseCase = repUseCase
+        self.title.value = folder.name
     }
 }
 
@@ -74,7 +75,7 @@ extension FolderViewModelImpl: FolderViewModel {
         let item = items[indexPath.row]
         switch item.type {
         case .folder:
-            actions.openFolder(item.url)
+            actions.openFolder(item)
         case .file:
             actions.openFile(item.url)
         }
@@ -85,7 +86,8 @@ extension FolderViewModelImpl: FolderViewModel {
     }
 
     func share() {
-        actions.share(path)
+        // html url
+//        actions.share(folder.url)
     }
 
     func copyFolderPath() {}
@@ -94,7 +96,7 @@ extension FolderViewModelImpl: FolderViewModel {
 // MARK: - private
 private extension FolderViewModelImpl {
     func fetch() {
-        repUseCase.fetchContent(path: path) { result in
+        useCase.fetchContent(path: folder.url) { result in
             switch result {
             case .success(let items):
                 self.state.value = .loaded(items)

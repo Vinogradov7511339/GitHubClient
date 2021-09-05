@@ -12,7 +12,7 @@ protocol RepositoryFactory {
     func branchesViewController() -> UIViewController
     func commitsViewController(_ commitsUrl: URL, actions: CommitsActions) -> UIViewController
     func commitViewController(_ commitUrl: URL, actions: CommitActions) -> UIViewController
-    func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController
+    func folderViewController(_ file: FolderItem, actions: FolderActions) -> UIViewController
     func fileViewController(_ path: URL, actions: FileActions) -> UIViewController
     func issuesViewController(_ url: URL, actions: IssuesActions) -> UIViewController
     func pullRequestsViewController(_ url: URL, actions: PRListActions) -> UIViewController
@@ -53,8 +53,8 @@ extension RepositoryFactoryImpl: RepositoryFactory {
         CommitViewController.create(with: commitViewModel(commitUrl, actions: actions))
     }
 
-    func folderViewController(_ path: URL, actions: FolderActions) -> UIViewController {
-        FolderViewController.create(with: folderViewModel(path, actions: actions))
+    func folderViewController(_ file: FolderItem, actions: FolderActions) -> UIViewController {
+        FolderViewController.create(with: folderViewModel(file, actions: actions))
     }
 
     func fileViewController(_ path: URL, actions: FileActions) -> UIViewController {
@@ -105,8 +105,8 @@ private extension RepositoryFactoryImpl {
         CommitViewModelImpl(commitUrl: commitUrl, useCase: commitsUseCase, actions: actions)
     }
 
-    func folderViewModel(_ path: URL, actions: FolderActions) -> FolderViewModel {
-        FolderViewModelImpl(actions: actions, path: path, repUseCase: repUseCase)
+    func folderViewModel(_ folder: FolderItem, actions: FolderActions) -> FolderViewModel {
+        FolderViewModelImpl(folder, useCase: repUseCase, actions: actions)
     }
 
     func fileViewModel(_ path: URL, actions: FileActions) -> FileViewModel {
