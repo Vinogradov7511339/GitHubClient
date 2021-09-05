@@ -7,11 +7,26 @@
 
 import UIKit
 
+protocol MyProfileActivityCellDelegate: AnyObject {
+    func linkTapped(_ url: URL)
+}
+
 class MyProfileActivityCell: BaseTableViewCell, NibLoadable {
 
+    // MARK: - Delegate
+
+    weak var delegate: MyProfileActivityCellDelegate?
+
+    // MARK: - Views
+
     @IBOutlet weak var activityCollectionView: UICollectionView!
+
+    // MARK: - Private
+
     private var events: [Event] = []
     private let cellManager = CollectionCellManager.create(cellType: MyProfileActivityItemCell.self)
+
+    // MARK: - Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +50,13 @@ extension MyProfileActivityCell: ConfigurableCell {
     }
 }
 
+//MARK: - MyProfileActivityItemCellDelegate
+extension MyProfileActivityCell: MyProfileActivityItemCellDelegate {
+    func linkTapped(_ url: URL) {
+        delegate?.linkTapped(url)
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 extension MyProfileActivityCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -45,6 +67,9 @@ extension MyProfileActivityCell: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = cellManager.dequeueReusableCell(collectionView: collectionView, for: indexPath)
         cell.populate(viewModel: events[indexPath.row])
+        if let profileActivityCell = cell as? MyProfileActivityItemCell {
+            profileActivityCell.delegate = self
+        }
         return cell
     }
 }

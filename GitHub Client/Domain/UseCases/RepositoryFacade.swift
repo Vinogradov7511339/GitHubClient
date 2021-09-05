@@ -27,7 +27,8 @@ final class RepositoryFacadeImpl {
 
 // MARK: - RepositoryFacade
 extension RepositoryFacadeImpl: RepositoryFacade {
-    func fetchDetails(repository: Repository, completion: @escaping (Result<RepositoryDetails, Error>) -> Void) {
+    func fetchDetails(repository: Repository,
+                      completion: @escaping (Result<RepositoryDetails, Error>) -> Void) {
         fetchReadMe(repository)
         dispatchGroup.notify(queue: .main) {
 //            if let error = self.error {

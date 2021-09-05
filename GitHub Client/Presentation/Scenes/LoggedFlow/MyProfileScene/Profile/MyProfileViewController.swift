@@ -41,7 +41,7 @@ final class MyProfileViewController: UIViewController {
 
     private var viewModel: ProfileViewModel!
     private lazy var adapter: ProfileAdapter = {
-        ProfileAdapterImpl(headerDelegate: self)
+        ProfileAdapterImpl(headerDelegate: self, activityCellDelegate: self)
     }()
 
     // MARK: - Lifecycle
@@ -117,6 +117,13 @@ extension MyProfileViewController: ProfileHeaderCellDelegate {
 
     func followingButtonTapped() {
         viewModel.showFollowing()
+    }
+}
+
+// MARK: - MyProfileActivityCellDelegate
+extension MyProfileViewController: MyProfileActivityCellDelegate {
+    func linkTapped(_ url: URL) {
+        viewModel.openLink(url)
     }
 }
 

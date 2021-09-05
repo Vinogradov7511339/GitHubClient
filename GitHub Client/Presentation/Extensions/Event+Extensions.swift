@@ -29,6 +29,17 @@ extension Event {
         }
     }
 
+    var tempTitle: String {
+        fullTitle.string
+    }
+
+    var tempLinks: [(String, URL)] {
+        let userLink = (user.login, user.url)
+        let repositoryLink = (repositoryName, repositoryURL)
+        let links = [userLink, repositoryLink]
+        return links
+    }
+
     var fullTitle: NSAttributedString {
         let userLink = (user.login, user.url)
         let repositoryLink = (repositoryName, repositoryURL)

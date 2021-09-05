@@ -17,5 +17,6 @@ struct Commit {
     let verificationReason: String
     let createdAt: Date?
     let commentCount: Int
+    let stats: CommitStatResponseDTO?
+    let files: [DiffFileResponseDTO]
 }
-

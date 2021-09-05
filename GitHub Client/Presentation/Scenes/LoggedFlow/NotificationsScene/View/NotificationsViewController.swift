@@ -9,18 +9,15 @@ import UIKit
 
 class NotificationsViewController: UIViewController {
 
+    // MARK: - Create
+
     static func create(with viewModel: NotificationsViewModel) -> NotificationsViewController {
         let viewController = NotificationsViewController()
         viewController.viewModel = viewModel
         return viewController
     }
 
-    private var viewModel: NotificationsViewModel!
-
-    private lazy var adapter: NotificationsAdapter = {
-        let adapter = NotificationsAdapterImpl()
-        return adapter
-    }()
+    // MARK: - Views
 
     private lazy var collectionView: UICollectionView = {
         let layoutFactory = CompositionalLayoutFactory()
@@ -39,6 +36,16 @@ class NotificationsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return refreshControl
     }()
+
+    // MARK: - Private variables
+
+    private var viewModel: NotificationsViewModel!
+    private lazy var adapter: NotificationsAdapter = {
+        let adapter = NotificationsAdapterImpl()
+        return adapter
+    }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +68,38 @@ class NotificationsViewController: UIViewController {
 // MARK: - Binding
 extension NotificationsViewController {
     func bind(to viewModel: NotificationsViewModel) {
-        viewModel.notifications.observe(on: self) { [weak self] in self?.update($0) }
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func update(_ notifications: [EventNotification]) {
+    func updateState(_ newState: ItemsSceneState<EventNotification>) {
+        switch newState {
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loading:
+            prepareLoadingState()
+        case .loaded(let items):
+            prepareLoadedState(items)
+        }
+    }
+
+    func prepareErrorState(with error: Error) {
+        collectionView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
+    }
+
+    func prepareLoadingState() {
+        collectionView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareLoadedState(_ events: [EventNotification]) {
+        collectionView.isHidden = false
         refreshControl.endRefreshing()
-        adapter.update(notifications)
+        hideLoader()
+        hideError()
+        adapter.update(events)
         collectionView.reloadData()
     }
 }
@@ -74,9 +107,10 @@ extension NotificationsViewController {
 // MARK: - UICollectionViewDelegate
 extension NotificationsViewController: UICollectionViewDelegate {}
 
-// MARK: - setup views
+// MARK: - Setup views
 private extension NotificationsViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(collectionView)
     }
 

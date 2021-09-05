@@ -19,6 +19,12 @@ class MyProfileInfoCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var publicGistsButton: UIButton!
     @IBOutlet weak var privateGistsButton: UIButton!
 
+    @IBOutlet weak var publicReposStackView: UIStackView!
+    @IBOutlet weak var privateReposStackView: UIStackView!
+    @IBOutlet weak var publicGistsStackView: UIStackView!
+    @IBOutlet weak var privateGistsStackView: UIStackView!
+
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)
@@ -33,11 +39,16 @@ extension MyProfileInfoCell: ConfigurableCell {
         setTitle(user.userBlogUrl?.absoluteString, for: blogButton)
         setTitle(user.location, for: locationButton)
         setTitle(user.company, for: companyButton)
+        
         setTitle(viewModel.publicRepCount.roundedWithAbbreviations, for: publicRepsButton)
         setTitle(viewModel.privateRepCount.roundedWithAbbreviations, for: privateRepsButton)
         setTitle(viewModel.publicGistsCount.roundedWithAbbreviations, for: publicGistsButton)
         setTitle(viewModel.privateGistsCount.roundedWithAbbreviations, for: privateGistsButton)
 
+        publicReposStackView.isHidden = viewModel.publicRepCount == 0
+        privateReposStackView.isHidden = viewModel.privateRepCount == 0
+        publicGistsStackView.isHidden = viewModel.publicGistsCount == 0
+        privateGistsStackView.isHidden = viewModel.privateGistsCount == 0
     }
 
     private func setTitle(_ title: String?, for button: UIButton) {

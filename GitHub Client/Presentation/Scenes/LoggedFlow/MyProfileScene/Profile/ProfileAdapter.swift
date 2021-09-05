@@ -44,9 +44,12 @@ final class ProfileAdapterImpl: NSObject {
     ]
 
     weak var delegate: ProfileHeaderCellDelegate?
+    weak var activityCellDelegate: MyProfileActivityCellDelegate?
 
-    init(headerDelegate: ProfileHeaderCellDelegate?) {
+    init(headerDelegate: ProfileHeaderCellDelegate?,
+         activityCellDelegate: MyProfileActivityCellDelegate?) {
         delegate = headerDelegate
+        self.activityCellDelegate = activityCellDelegate
     }
 }
 
@@ -80,6 +83,8 @@ extension ProfileAdapterImpl: ProfileAdapter {
         cell.populate(viewModel: viewModel)
         if let headerCell = cell as? ProfileHeaderCell {
             headerCell.delegate = delegate
+        } else if let activityCell = cell as? MyProfileActivityCell {
+            activityCell.delegate = activityCellDelegate
         }
         return cell
     }

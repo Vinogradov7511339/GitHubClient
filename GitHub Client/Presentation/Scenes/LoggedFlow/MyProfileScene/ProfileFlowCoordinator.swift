@@ -33,7 +33,8 @@ class ProfileFlowCoordinator {
 
     // MARK: - Lifecycle
 
-    init(with dependencies: ProfileFlowCoordinatorDependencies, in navigationController: UINavigationController) {
+    init(with dependencies: ProfileFlowCoordinatorDependencies,
+         in navigationController: UINavigationController) {
         self.dependencies = dependencies
         self.navigationController = navigationController
     }
@@ -69,7 +70,9 @@ private extension ProfileFlowCoordinator {
             showSubscriptions: showSubscriptions,
             sendEmail: dependencies.send,
             openLink: dependencies.open,
-            share: dependencies.share
+            share: dependencies.share,
+            showRepository: showRepository(in: nav),
+            showUser: showUser(in: nav)
         )
     }
 }
@@ -113,5 +116,13 @@ private extension ProfileFlowCoordinator {
         let actions = RepositoriesActions(showRepository: openRepository(in: nav))
         let viewController = dependencies.showStarred(url, actions: actions)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showRepository(in nav: UINavigationController) -> (URL) -> Void {
+        return { url in self.dependencies.openRepository(url, in: nav) }
+    }
+
+    func showUser(in nav: UINavigationController) -> (URL) -> Void {
+        return { url in self.dependencies.openProfile(url, in: nav) }
     }
 }

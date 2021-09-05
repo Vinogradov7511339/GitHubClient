@@ -43,7 +43,8 @@ extension NotificationsAdapterImpl {
         notifications.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = notifications[indexPath.row]
         let cell = cellManager.dequeueReusableCell(collectionView: collectionView, for: indexPath)
         cell.populate(viewModel: item)

@@ -8,18 +8,5 @@
 import Foundation
 
 struct EventNotification {
-
-    enum SubjectType: String {
-        case issue = "Issue"
-        case pullRequest = "PullRequest"
-        case discussion = "Discussion"
-        case comment = "Comment"
-    }
-
-    let title: String
-    let body: String
-    let type: SubjectType
-    let createdAt: Date
-    let repository: Repository
-
+    let notification: NotificationResponseDTO
 }

@@ -16,6 +16,8 @@ struct CommitResponseDTO: Codable {
     let author: UserResponseDTO
     let committer: UserResponseDTO
     let parents: [ParentCommitResponseDTO]
+    let stats: CommitStatResponseDTO?
+    let files: [DiffFileResponseDTO]?
 
     func toDomain() -> Commit {
         .init(url: url,
@@ -27,7 +29,9 @@ struct CommitResponseDTO: Codable {
               isVerified: commit.verification.verified,
               verificationReason: commit.verification.reason,
               createdAt: commit.committer.date.toDate(),
-              commentCount: commit.commentCount)
+              commentCount: commit.commentCount,
+              stats: stats,
+              files: files ?? [])
     }
 }
 struct CommitInfoResponseDTO: Codable {
@@ -55,4 +59,19 @@ struct CommitAuthor: Codable {
     let name: String
     let email: String
     let date: String
+}
+
+struct CommitStatResponseDTO: Codable {
+    let additions: Int
+    let deletions: Int
+    let total: Int
+}
+
+struct DiffFileResponseDTO: Codable {
+    let filename: String
+    let additions: Int
+    let deletions: Int
+    let changes: Int
+    let status: String
+    let patch: String?
 }

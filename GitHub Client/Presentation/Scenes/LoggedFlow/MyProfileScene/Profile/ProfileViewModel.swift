@@ -17,6 +17,9 @@ struct ProfileActions {
     let sendEmail: (String) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
+
+    let showRepository: (URL) -> Void
+    let showUser: (URL) -> Void
 }
 
 protocol ProfileViewModelInput {
@@ -27,7 +30,7 @@ protocol ProfileViewModelInput {
     func showFollowers()
     func showFollowing()
     func showEditProfile()
-    func openLink()
+    func openLink(_ link: URL)
     func sendEmail()
 
     func openRepositories()
@@ -92,7 +95,11 @@ extension ProfileViewModelImpl {
 
     func showEditProfile() {}
 
-    func openLink() {}
+    func openLink(_ link: URL) {
+        if link.isRepository {
+            actions.showRepository(link)
+        }
+    }
 
     func sendEmail() {}
 

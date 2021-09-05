@@ -42,7 +42,7 @@ final class CommitViewController: UIViewController {
     }()
 
     private lazy var diffViewController: UIViewController = {
-        let viewController = CommitDiffViewController.create(with: viewModel)
+        let viewController = DiffTempViewController.create(with: viewModel)
         return viewController
     }()
 

@@ -282,8 +282,12 @@
                 <outlet property="locationButton" destination="c0f-aQ-hkS" id="ctg-eT-gfK"/>
                 <outlet property="nameButton" destination="Kgu-l7-r1G" id="uRf-VD-m1x"/>
                 <outlet property="privateGistsButton" destination="uvH-zj-Ibz" id="mAx-Ek-7eO"/>
+                <outlet property="privateGistsStackView" destination="7jn-BV-4jx" id="Qnp-W5-3t6"/>
+                <outlet property="privateReposStackView" destination="RF1-J0-kpl" id="bl3-ly-jJZ"/>
                 <outlet property="privateRepsButton" destination="Jzz-JB-Q6c" id="dYy-Na-Xju"/>
                 <outlet property="publicGistsButton" destination="pHM-FJ-68A" id="ywQ-BI-Xdc"/>
+                <outlet property="publicGistsStackView" destination="T0l-NE-gWj" id="em5-X0-9FT"/>
+                <outlet property="publicReposStackView" destination="lgk-oY-PxN" id="4Xe-cY-KjM"/>
                 <outlet property="publicRepsButton" destination="1Un-cx-aHS" id="qeJ-Qm-9MF"/>
             </connections>
             <point key="canvasLocation" x="81.884057971014499" y="100.78125"/>

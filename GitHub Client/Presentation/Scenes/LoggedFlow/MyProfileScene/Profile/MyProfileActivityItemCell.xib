@@ -28,31 +28,30 @@
                                     <constraint firstAttribute="height" constant="16" id="NjP-9g-YnM"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9r-0z-HP1">
-                                <rect key="frame" x="32" y="6" width="164" height="54"/>
-                                <string key="text">Label
-Label
-Label</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-uK-8Sv">
                                 <rect key="frame" x="8" y="59" width="36" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="8B2-hk-Fdk">
+                                <rect key="frame" x="32" y="6" width="160" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xvS-oJ-ahL" firstAttribute="top" secondItem="Hcz-HK-VGg" secondAttribute="top" constant="8" id="3Xi-xV-wUS"/>
-                            <constraint firstItem="H9r-0z-HP1" firstAttribute="leading" secondItem="xvS-oJ-ahL" secondAttribute="trailing" constant="8" symbolic="YES" id="D8i-Yw-ucG"/>
-                            <constraint firstAttribute="trailing" secondItem="H9r-0z-HP1" secondAttribute="trailing" constant="4" id="Emv-Ym-gbS"/>
+                            <constraint firstItem="8B2-hk-Fdk" firstAttribute="top" secondItem="Hcz-HK-VGg" secondAttribute="top" constant="6" id="HyM-b3-bfC"/>
                             <constraint firstAttribute="bottom" secondItem="k4X-uK-8Sv" secondAttribute="bottom" constant="4" id="Rjs-iO-fxx"/>
                             <constraint firstItem="xvS-oJ-ahL" firstAttribute="leading" secondItem="Hcz-HK-VGg" secondAttribute="leading" constant="8" id="go7-DK-YpE"/>
+                            <constraint firstAttribute="trailing" secondItem="8B2-hk-Fdk" secondAttribute="trailing" constant="8" id="hcs-5W-EnO"/>
+                            <constraint firstItem="8B2-hk-Fdk" firstAttribute="leading" secondItem="xvS-oJ-ahL" secondAttribute="trailing" constant="8" symbolic="YES" id="kjc-6I-kJM"/>
                             <constraint firstItem="k4X-uK-8Sv" firstAttribute="leading" secondItem="Hcz-HK-VGg" secondAttribute="leading" constant="8" id="oLl-Vk-OgM"/>
-                            <constraint firstItem="H9r-0z-HP1" firstAttribute="top" secondItem="Hcz-HK-VGg" secondAttribute="top" constant="6" id="oos-VV-k7O"/>
+                            <constraint firstItem="k4X-uK-8Sv" firstAttribute="top" secondItem="8B2-hk-Fdk" secondAttribute="bottom" constant="3" id="p7w-hC-dcC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -72,13 +71,16 @@ Label</string>
             <connections>
                 <outlet property="createdAtLabel" destination="k4X-uK-8Sv" id="koR-9g-RhS"/>
                 <outlet property="eventImageView" destination="xvS-oJ-ahL" id="9sM-hC-nKk"/>
-                <outlet property="eventTitleLabel" destination="H9r-0z-HP1" id="wB6-Qi-Eyq"/>
+                <outlet property="titleTextView" destination="8B2-hk-Fdk" id="0cT-EV-yaO"/>
             </connections>
             <point key="canvasLocation" x="37.681159420289859" y="133.92857142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="event_comment" width="20" height="20"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

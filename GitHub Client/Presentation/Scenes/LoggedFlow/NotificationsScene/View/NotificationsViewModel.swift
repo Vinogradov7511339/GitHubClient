@@ -15,7 +15,7 @@ protocol NotificationsViewModelInput {
 }
 
 protocol NotificationsViewModelOutput: AnyObject {
-    var notifications: Observable<[EventNotification]> { get }
+    var state: Observable<ItemsSceneState<EventNotification>> { get }
 }
 
 typealias NotificationsViewModel = NotificationsViewModelInput & NotificationsViewModelOutput
@@ -24,7 +24,7 @@ final class NotificationsViewModelImpl: NotificationsViewModel {
 
     // MARK: - Output
 
-    var notifications: Observable<[EventNotification]> = Observable([])
+    var state: Observable<ItemsSceneState<EventNotification>> = Observable(.loading)
 
     // MARK: - Private
     private let useCase: NotificationsUseCase
@@ -45,19 +45,18 @@ extension NotificationsViewModelImpl {
     func refresh() {
         fetch()
     }
-
-    func handle(_ error: Error) {}
 }
 
 // MARK: - Private
 private extension NotificationsViewModelImpl {
     func fetch() {
+        self.state.value = .loading
         useCase.fetch { result in
             switch result {
             case .success(let notifications):
-                self.notifications.value = notifications
+                self.state.value = .loaded(items: notifications)
             case .failure(let error):
-                self.handle(error)
+                self.state.value = .error(error: error)
             }
         }
     }

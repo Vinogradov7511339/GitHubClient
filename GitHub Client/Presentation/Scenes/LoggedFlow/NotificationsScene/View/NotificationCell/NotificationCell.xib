@@ -45,6 +45,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TtS-d1-eIG">
+                                <rect key="frame" x="18" y="36.5" width="12" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="1vo-cd-R4e"/>
+                                    <constraint firstAttribute="height" constant="12" id="S8d-E4-qts"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -54,10 +61,12 @@
                             <constraint firstItem="cSb-Ll-aCC" firstAttribute="top" secondItem="qsd-6c-p5a" secondAttribute="top" constant="10" id="Kpk-aP-qGP"/>
                             <constraint firstItem="dV8-d5-Exq" firstAttribute="leading" secondItem="cSb-Ll-aCC" secondAttribute="leading" id="QJ4-1V-921"/>
                             <constraint firstItem="dV8-d5-Exq" firstAttribute="top" secondItem="cSb-Ll-aCC" secondAttribute="bottom" constant="3" id="ZHQ-xz-bfZ"/>
+                            <constraint firstItem="TtS-d1-eIG" firstAttribute="centerX" secondItem="o4L-gO-veX" secondAttribute="centerX" id="cjT-DN-nsU"/>
                             <constraint firstItem="0kT-Ta-QIb" firstAttribute="top" secondItem="dV8-d5-Exq" secondAttribute="bottom" constant="4" id="fgH-aD-KcP"/>
                             <constraint firstItem="o4L-gO-veX" firstAttribute="top" secondItem="qsd-6c-p5a" secondAttribute="top" constant="12" id="gJd-38-7hO"/>
                             <constraint firstItem="cSb-Ll-aCC" firstAttribute="leading" secondItem="o4L-gO-veX" secondAttribute="trailing" constant="8" symbolic="YES" id="iL4-TD-mlz"/>
                             <constraint firstAttribute="trailing" secondItem="0kT-Ta-QIb" secondAttribute="trailing" constant="8" id="lVJ-1W-bbD"/>
+                            <constraint firstItem="TtS-d1-eIG" firstAttribute="top" secondItem="o4L-gO-veX" secondAttribute="bottom" constant="8" id="p2j-VF-xcA"/>
                             <constraint firstItem="o4L-gO-veX" firstAttribute="leading" secondItem="qsd-6c-p5a" secondAttribute="leading" constant="16" id="w6O-ZL-8Vl"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -81,11 +90,13 @@
                 <outlet property="createdAtLabel" destination="dV8-d5-Exq" id="dUd-Hg-SNc"/>
                 <outlet property="itemImageView" destination="o4L-gO-veX" id="zXs-ja-eOy"/>
                 <outlet property="titleLabel" destination="cSb-Ll-aCC" id="KjO-rc-JqY"/>
+                <outlet property="unreadImageView" destination="TtS-d1-eIG" id="CZs-EX-kHY"/>
             </connections>
             <point key="canvasLocation" x="40.579710144927539" y="25.78125"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
