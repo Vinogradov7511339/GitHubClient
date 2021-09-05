@@ -23,6 +23,11 @@
                             <constraint firstAttribute="width" constant="16" id="I2x-KE-lJz"/>
                             <constraint firstAttribute="height" constant="16" id="hd2-Rr-zia"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhP-sB-cnd">
                         <rect key="frame" x="35" y="-82.5" width="43" height="205"/>

@@ -17,6 +17,7 @@ struct Issue {
     let id: Int
     let number: Int
     let url: URL
+    let repositoryUrl: URL
     let htmlUrl: URL
     let commentsURL: URL
     let state: IssueState
@@ -25,4 +26,5 @@ struct Issue {
     let user: User
     let commentsCount: Int
     let createdAt: Date?
+    let labels: [LabelResponseDTO]
 }

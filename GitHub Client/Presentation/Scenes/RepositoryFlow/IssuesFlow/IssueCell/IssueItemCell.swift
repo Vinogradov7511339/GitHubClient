@@ -9,10 +9,10 @@ import UIKit
 
 class IssueItemCell: BaseCollectionViewCell, NibLoadable {
 
-    @IBOutlet weak var issueTitleLabel: UILabel!
-    @IBOutlet weak var openedByLabel: UILabel!
-    @IBOutlet weak var openedAtLabel: UILabel!
-    @IBOutlet weak var issueStateLabel: UILabel!
+    @IBOutlet weak var issueNameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var labelsStackView: UIStackView!
+    @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsCountLabel: UILabel!
 
     override func populate(viewModel: Any) {
@@ -24,23 +24,27 @@ class IssueItemCell: BaseCollectionViewCell, NibLoadable {
 // MARK: - ConfigurableCell
 extension IssueItemCell: ConfigurableCell {
     func configure(viewModel: Issue) {
-        issueTitleLabel.text = viewModel.title
-        openedByLabel.attributedText = attributedText(issue: viewModel)
-        openedAtLabel.text = viewModel.createdAt?.timeAgoDisplay()
-        issueStateLabel.text = viewModel.state.rawValue
+        issueNameLabel.text = name(viewModel.repositoryUrl, number: viewModel.number)
+        titleLabel.text = viewModel.title
+        commentsView.isHidden = viewModel.commentsCount == 0
         commentsCountLabel.text = "\(viewModel.commentsCount)"
+        addLabels(viewModel.labels)
     }
 
-    func attributedText(issue: Issue) -> NSAttributedString {
-        let number = NSAttributedString(string: "#\(issue.number) ")
-        let openedByStr = NSLocalizedString("opened by ", comment: "")
-        let openedBy = NSAttributedString(string: openedByStr, attributes: [.foregroundColor: UIColor.secondaryLabel])
-        let author = NSAttributedString(string: issue.user.login)
+    func name(_ url: URL, number: Int) -> String {
+        let repository = url.pathComponents[url.pathComponents.count - 1]
+        let owner = url.pathComponents[url.pathComponents.count - 2]
+        return "\(owner) / \(repository) #\(number)"
+    }
 
-        let fullString = NSMutableAttributedString()
-        fullString.append(number)
-        fullString.append(openedBy)
-        fullString.append(author)
-        return fullString
+    func addLabels(_ labels: [LabelResponseDTO]) {
+        labelsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        labelsStackView.isHidden = labels.isEmpty
+        for lbl in labels {
+            let label = UILabel()
+            label.text = lbl.name
+            label.backgroundColor = UIColor(hex: lbl.color, alpha: 1.0)
+            labelsStackView.addArrangedSubview(label)
+        }
     }
 }

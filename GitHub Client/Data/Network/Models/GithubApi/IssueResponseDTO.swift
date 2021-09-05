@@ -10,7 +10,7 @@ import Foundation
 struct IssueResponseDTO: Codable {
     let id: Int
     let url: URL
-    let repositoryUrl: URL?
+    let repositoryUrl: URL
     let labelsUrl: String?
     let commentsUrl: URL
     let eventsUrl: URL?
@@ -20,7 +20,7 @@ struct IssueResponseDTO: Codable {
     let title: String
     let body: String?
     let user: UserResponseDTO
-    let labels: [LabelResponseDTO?]?
+    let labels: [LabelResponseDTO]?
     let assignee: UserResponseDTO?
     let assignees: [UserResponseDTO?]?
     let milestone: Milestone?
@@ -46,6 +46,7 @@ struct IssueResponseDTO: Codable {
             id: id,
             number: number,
             url: url,
+            repositoryUrl: repositoryUrl,
             htmlUrl: htmlUrl,
             commentsURL: commentsUrl,
             state: IssueState(rawValue: state) ?? .unknown,
@@ -53,7 +54,8 @@ struct IssueResponseDTO: Codable {
             body: body ?? "",
             user: user.toDomain(),
             commentsCount: comments,
-            createdAt: createdAt.toDate()
+            createdAt: createdAt.toDate(),
+            labels: labels ?? []
         )
     }
 }

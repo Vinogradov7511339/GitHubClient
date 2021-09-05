@@ -10,7 +10,10 @@ import UIKit
 extension UIColor {
 
     public convenience init?(hex: String, alpha: CGFloat) {
-        guard hex.hasPrefix("#") else { return nil }
+        var hex = hex
+        if !hex.hasPrefix("#") {
+            hex.insert("#", at: hex.startIndex)
+        }
 
         let start = hex.index(hex.startIndex, offsetBy: 1)
         let hexColor = String(hex[start...])
