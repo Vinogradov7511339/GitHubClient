@@ -137,6 +137,8 @@ struct RepositoryResponseDTO: Codable {
                      homePage: homepage,
                      currentBranch: defaultBranch,
                      license: license?.name,
+                     createdAt: createdAt?.toDate(),
+                     lastUpdateAt: updatedAt?.toDate(),
                      url: url,
                      htmlUrl: htmlUrl,
                      forksUrl: forksUrl,

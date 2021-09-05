@@ -21,6 +21,8 @@ struct Repository {
     let homePage: String?
     let currentBranch: String
     let license: String?
+    let createdAt: Date?
+    let lastUpdateAt: Date?
     let url: URL
     let htmlUrl: URL
     let forksUrl: URL

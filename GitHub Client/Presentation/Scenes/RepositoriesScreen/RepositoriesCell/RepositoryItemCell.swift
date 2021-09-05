@@ -11,9 +11,15 @@ class RepositoryItemCell: BaseCollectionViewCell, NibLoadable {
 
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var ownerAvatarImageView: WebImageView!
-    @IBOutlet weak var ownerLoginLabel: UILabel!
+    @IBOutlet weak var ownerLoginButton: UIButton!
     @IBOutlet weak var repositoryDescriptionLabel: UILabel!
-    @IBOutlet weak var badgesStackView: UIStackView!
+    @IBOutlet weak var languageView: UIView!
+    @IBOutlet weak var languageImageView: UIImageView!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var starsImageView: UIImageView!
+    @IBOutlet weak var starsCountLabel: UILabel!
+    @IBOutlet weak var forksView: UIView!
+    @IBOutlet weak var forksCount: UILabel!
 
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
@@ -23,35 +29,23 @@ class RepositoryItemCell: BaseCollectionViewCell, NibLoadable {
 
 extension RepositoryItemCell: ConfigurableCell {
     func configure(viewModel: Repository) {
-        badgesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         repositoryNameLabel.text = viewModel.name
         ownerAvatarImageView.set(url: viewModel.owner.avatarUrl)
-        ownerLoginLabel.text = viewModel.owner.login
+        ownerLoginButton.setTitle(viewModel.owner.login, for: .normal)
         repositoryDescriptionLabel.text = viewModel.description
 
-        if viewModel.starsCount > 0 {
-            addBadge(UIImage.RepListItem.stars, tint: .systemYellow, count: viewModel.starsCount)
+        languageView.isHidden = viewModel.language == nil
+        if let language = viewModel.language {
+            languageView.isHidden = false
+//            languageImageView.tintColor
+            languageLabel.text = language
         }
-        if viewModel.forksCount > 0 {
-            addBadge(UIImage.RepListItem.forks, tint: .systemPurple, count: viewModel.forksCount)
-        }
-        if viewModel.openIssuesCount > 0 {
-            addBadge(UIImage.RepListItem.issues, tint: .systemGreen, count: viewModel.openIssuesCount)
-        }
-        if viewModel.watchersCount > 0 {
-            addBadge(UIImage.RepListItem.watchers, tint: .systemBlue, count: viewModel.watchersCount)
-        }
-    }
 
-    func addBadge(_ image: UIImage?, tint: UIColor, count: Int) {
-        let imageView = UIImageView(image: image)
-        imageView.tintColor = tint
-        let label = UILabel()
-        label.textColor = .secondaryLabel
-        let formattedCount = count.roundedWithAbbreviations
-        label.text = "\(formattedCount)  "
-        badgesStackView.addArrangedSubview(imageView)
-        imageView.widthAnchor.constraint(equalToConstant: 16.0).isActive = true
-        badgesStackView.addArrangedSubview(label)
+        starsCountLabel.text = viewModel.starsCount.roundedWithAbbreviations
+        let starsColor: UIColor = viewModel.starsCount == 0 ? .secondaryLabel : .systemYellow
+        starsImageView.tintColor = starsColor
+
+        forksView.isHidden = viewModel.forksCount == 0
+        forksCount.text = viewModel.forksCount.roundedWithAbbreviations
     }
 }
