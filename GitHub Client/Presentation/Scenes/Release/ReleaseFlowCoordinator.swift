@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ReleaseFlowCoordinatorDependencies {
-    func releaseViewController() -> UIViewController
+    func releaseViewController(actions: ReleaseActions) -> UIViewController
 }
 
 final class ReleaseFlowCoordinator {
@@ -27,7 +27,8 @@ final class ReleaseFlowCoordinator {
     }
 
     func start() {
-        let controller = dependencies.releaseViewController()
+        let actions = ReleaseActions()
+        let controller = dependencies.releaseViewController(actions: actions)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

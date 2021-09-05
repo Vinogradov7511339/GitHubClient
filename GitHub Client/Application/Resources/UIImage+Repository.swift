@@ -12,9 +12,8 @@ extension UIImage {
 
         // MARK: - Sources
 
-        static var folderBlue: UIImage? { UIImage(named: "rep_item_folder_blue") }
-        static var file: UIImage? { UIImage(named: "rep_item_file") }
-
+        static var folderBlue: UIImage? { UIImage(named: "icon_cell_source") }
+        static var file: UIImage? { UIImage(systemName: "doc") }
 
         // MARK: - Info items
 

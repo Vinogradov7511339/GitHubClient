@@ -29,7 +29,7 @@ final class ReleaseDIContainer {
 
 // MARK: - ReleaseFlowCoordinatorDependencies
 extension ReleaseDIContainer: ReleaseFlowCoordinatorDependencies {
-    func releaseViewController() -> UIViewController {
-        releaseFactory.releaseViewController()
+    func releaseViewController(actions: ReleaseActions) -> UIViewController {
+        releaseFactory.releaseViewController(dependencies.release, actions: actions)
     }
 }

@@ -12,6 +12,10 @@
 		AD0225E626E4C65D004A8C16 /* DiffHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0225E526E4C65D004A8C16 /* DiffHeaderView.swift */; };
 		AD0225E826E4C95E004A8C16 /* DiffHunkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0225E726E4C95E004A8C16 /* DiffHunkView.swift */; };
 		AD0225EA26E4CBBD004A8C16 /* DiffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0225E926E4CBBD004A8C16 /* DiffView.swift */; };
+		AD0418EF26E525FE00F34EEB /* ReleaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0418EE26E525FE00F34EEB /* ReleaseViewController.swift */; };
+		AD0418F226E5265B00F34EEB /* ReleaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0418F126E5265B00F34EEB /* ReleaseViewModel.swift */; };
+		AD0418F626E52C6500F34EEB /* ReleaseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0418F426E52C6500F34EEB /* ReleaseHeaderCell.swift */; };
+		AD0418F726E52C6500F34EEB /* ReleaseHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0418F526E52C6500F34EEB /* ReleaseHeaderCell.xib */; };
 		AD183DF826BD930600556CC4 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183DF726BD930600556CC4 /* AppAppearance.swift */; };
 		AD20E3D9269F454E003BB5F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E3D8269F454E003BB5F1 /* Constants.swift */; };
 		AD20E40826A58A07003BB5F1 /* TableCellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E40726A58A07003BB5F1 /* TableCellManager.swift */; };
@@ -492,6 +496,10 @@
 		AD0225E526E4C65D004A8C16 /* DiffHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffHeaderView.swift; sourceTree = "<group>"; };
 		AD0225E726E4C95E004A8C16 /* DiffHunkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffHunkView.swift; sourceTree = "<group>"; };
 		AD0225E926E4CBBD004A8C16 /* DiffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffView.swift; sourceTree = "<group>"; };
+		AD0418EE26E525FE00F34EEB /* ReleaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseViewController.swift; sourceTree = "<group>"; };
+		AD0418F126E5265B00F34EEB /* ReleaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseViewModel.swift; sourceTree = "<group>"; };
+		AD0418F426E52C6500F34EEB /* ReleaseHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseHeaderCell.swift; sourceTree = "<group>"; };
+		AD0418F526E52C6500F34EEB /* ReleaseHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReleaseHeaderCell.xib; sourceTree = "<group>"; };
 		AD183DF726BD930600556CC4 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		AD20E3D8269F454E003BB5F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AD20E40726A58A07003BB5F1 /* TableCellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellManager.swift; sourceTree = "<group>"; };
@@ -981,6 +989,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD0418F026E5264700F34EEB /* ReleasesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD23E79226D1030B009FEB27 /* ReleasesViewController.swift */,
+				AD23E79526D1032E009FEB27 /* ReleasesViewModel.swift */,
+				ADFCF00F26D8CA2E004FB341 /* ReleaseCell */,
+			);
+			path = ReleasesScreen;
+			sourceTree = "<group>";
+		};
+		AD0418F326E52C1C00F34EEB /* ReleaseDetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD0418EE26E525FE00F34EEB /* ReleaseViewController.swift */,
+				AD0418F126E5265B00F34EEB /* ReleaseViewModel.swift */,
+				AD66AE3426E530BB009C3FCA /* HeaderCell */,
+			);
+			path = ReleaseDetailsScreen;
+			sourceTree = "<group>";
+		};
 		AD20E3DE269F5DE4003BB5F1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1198,9 +1226,7 @@
 		AD23E79426D10321009FEB27 /* ReleasesFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD23E79226D1030B009FEB27 /* ReleasesViewController.swift */,
-				AD23E79526D1032E009FEB27 /* ReleasesViewModel.swift */,
-				ADFCF00F26D8CA2E004FB341 /* ReleaseCell */,
+				AD0418F026E5264700F34EEB /* ReleasesScreen */,
 			);
 			path = ReleasesFlow;
 			sourceTree = "<group>";
@@ -2019,6 +2045,15 @@
 			path = HeaderCell;
 			sourceTree = "<group>";
 		};
+		AD66AE3426E530BB009C3FCA /* HeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD0418F426E52C6500F34EEB /* ReleaseHeaderCell.swift */,
+				AD0418F526E52C6500F34EEB /* ReleaseHeaderCell.xib */,
+			);
+			path = HeaderCell;
+			sourceTree = "<group>";
+		};
 		AD6B093B26BEDA16004644D2 /* NewStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2716,6 +2751,7 @@
 			children = (
 				ADFCF01126D8DB14004FB341 /* ReleaseFlowCoordinator.swift */,
 				ADFCF01326D8DBEC004FB341 /* ReleaseDIContainer.swift */,
+				AD0418F326E52C1C00F34EEB /* ReleaseDetailsScreen */,
 			);
 			path = Release;
 			sourceTree = "<group>";
@@ -2887,6 +2923,7 @@
 				ADFCF00E26D8C9FD004FB341 /* ReleaseItemCell.xib in Resources */,
 				AD20E4E026A8B313003BB5F1 /* AppIconPinkLight.png in Resources */,
 				AD20E4E326A8B313003BB5F1 /* AppIconPinkLight@3x-4.png in Resources */,
+				AD0418F726E52C6500F34EEB /* ReleaseHeaderCell.xib in Resources */,
 				ADA68BB026B55621004AC06C /* octocat_gray-1.png in Resources */,
 				AD3AC9F226DD28D700BC08FF /* UserActionCell.xib in Resources */,
 				AD20E4DA26A8B313003BB5F1 /* AppIconPinkLight-2.png in Resources */,
@@ -3209,6 +3246,7 @@
 				AD2E262C26BC77AB00B25772 /* RepositoryResponseDTO.swift in Sources */,
 				AD20E56826AB24FA003BB5F1 /* AuthorizationViewController.swift in Sources */,
 				AD20E50426A990A9003BB5F1 /* LabelResponseDTO.swift in Sources */,
+				AD0418EF26E525FE00F34EEB /* ReleaseViewController.swift in Sources */,
 				AD2E8FC826DA5B1A000A40D1 /* CommitCoordinator.swift in Sources */,
 				AD39FE2826BA6AB500F055FD /* UserProfileDIContainer.swift in Sources */,
 				ADB60D7226D3C6FC0024479D /* ResultUserCell.swift in Sources */,
@@ -3310,6 +3348,7 @@
 				ADA7495126CE989B00C8D475 /* CodeOptionsViewController.swift in Sources */,
 				AD5C8E3A26D2B546003E2F38 /* SignInDIContainer.swift in Sources */,
 				ADC8180D26B033B700469BCF /* DeveloperSettingsViewController.swift in Sources */,
+				AD0418F226E5265B00F34EEB /* ReleaseViewModel.swift in Sources */,
 				AD3ACA1226DE08C300BC08FF /* ListUseCase.swift in Sources */,
 				AD596EF326DC9F4B004A3A1C /* RepositoryOwnerCell.swift in Sources */,
 				AD2E8FCD26DA5B81000A40D1 /* CommitViewModel.swift in Sources */,
@@ -3319,6 +3358,7 @@
 				AD6B094C26BEF76D004644D2 /* Typealiases+Enums.swift in Sources */,
 				AD5C8E3626D2B317003E2F38 /* SignInFlowCoordinator.swift in Sources */,
 				AD23E7D026D19279009FEB27 /* MySubscriptionsAdapter.swift in Sources */,
+				AD0418F626E52C6500F34EEB /* ReleaseHeaderCell.swift in Sources */,
 				ADF9A84726D6A9140017D11F /* IssueDIContainer.swift in Sources */,
 				ADB60D8026D3EAA70024479D /* SearchListViewController.swift in Sources */,
 				ADFCEFF026D80F4A004FB341 /* IssueFilterStorage.swift in Sources */,

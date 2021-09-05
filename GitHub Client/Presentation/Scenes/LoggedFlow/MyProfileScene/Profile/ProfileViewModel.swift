@@ -106,8 +106,8 @@ extension ProfileViewModelImpl {
     func sendEmail() {}
 
     func openRepositories() {
-        guard case .loaded(let profile) = state.value else { return }
-        actions.showRepositories(profile.userDetails.repositoriesUrl)
+        guard let url = URL(string: "https://api.github.com/user/repos") else { return }
+        actions.showRepositories(url)
     }
 
     func openStarred() {

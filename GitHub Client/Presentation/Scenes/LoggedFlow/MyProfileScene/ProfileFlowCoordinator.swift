@@ -56,7 +56,6 @@ private extension ProfileFlowCoordinator {
     func openProfile(in nav: UINavigationController) -> (URL) -> Void {
         return { user in self.dependencies.openProfile(user, in: nav) }
     }
-
 }
 
 // MARK: - Profile Actions

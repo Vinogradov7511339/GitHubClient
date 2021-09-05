@@ -21,7 +21,7 @@ struct Reactions: Codable {
 
     enum CodingKeys: String, CodingKey {
         case url
-        case totalCount = "total_count"
+        case totalCount = "totalCount"
         case plusOne = "+1"
         case minusOne = "-1"
         case laugh
