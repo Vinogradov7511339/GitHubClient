@@ -68,6 +68,10 @@ extension MyProfileViewController {
     @objc func refresh() {
         viewModel.refresh()
     }
+
+    @objc func share() {
+        viewModel.share()
+    }
 }
 
 // MARK: - Binding
@@ -175,6 +179,9 @@ private extension MyProfileViewController {
                                        style: .plain,
                                        target: self,
                                        action: #selector(openSettings))
-        navigationItem.setRightBarButton(settings, animated: false)
+        let share = UIBarButtonItem(barButtonSystemItem: .action,
+                                    target: self,
+                                    action: #selector(share))
+        navigationItem.setRightBarButtonItems([settings, share], animated: true)
     }
 }

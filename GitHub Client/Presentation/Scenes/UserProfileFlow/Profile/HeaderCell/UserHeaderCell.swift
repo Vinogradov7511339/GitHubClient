@@ -22,6 +22,7 @@ class UserHeaderCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var popularityStackView: UIStackView!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
@@ -56,6 +57,12 @@ extension UserHeaderCell: ConfigurableCell {
             followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
         default:
             popularityStackView.isHidden = true
+        }
+        if let bio = viewModel.bio {
+            bioLabel.isHidden = false
+            bioLabel.text = bio
+        } else {
+            bioLabel.isHidden = true
         }
     }
 }

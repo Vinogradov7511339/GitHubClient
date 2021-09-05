@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol ProfileHeaderCellDelegate: AnyObject {
     func followersButtonTapped()
     func followingButtonTapped()
@@ -23,6 +22,7 @@ class ProfileHeaderCell: BaseTableViewCell, NibLoadable {
 
     @IBOutlet weak var avatarImageView: WebImageView!
     @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
 
@@ -49,6 +49,12 @@ extension ProfileHeaderCell: ConfigurableCell {
     func configure(viewModel: UserProfile) {
         avatarImageView.set(url: viewModel.user.avatarUrl)
         loginLabel.text = viewModel.user.login
+        if let bio = viewModel.bio {
+            bioLabel.isHidden = false
+            bioLabel.text = bio
+        } else {
+            bioLabel.isHidden = true
+        }
         followersCountLabel.text = viewModel.followersCount.roundedWithAbbreviations
         followingCountLabel.text = viewModel.followingCount.roundedWithAbbreviations
     }
