@@ -20,7 +20,7 @@ class ReleaseHeaderCell: BaseTableViewCell, NibLoadable {
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var rocketButton: UIButton!
     @IBOutlet weak var eyesButton: UIButton!
-    
+
     override func populate(viewModel: Any) {
         super.populate(viewModel: viewModel)
         configure(viewModel: viewModel)

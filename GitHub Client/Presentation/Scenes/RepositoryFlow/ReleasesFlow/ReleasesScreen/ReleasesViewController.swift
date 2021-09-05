@@ -44,6 +44,7 @@ final class ReleasesViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         activateConstraints()
+        title = NSLocalizedString("Releases", comment: "")
 
         adapter.register(collectionView)
 
