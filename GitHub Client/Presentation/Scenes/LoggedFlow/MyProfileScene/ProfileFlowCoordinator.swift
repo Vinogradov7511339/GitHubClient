@@ -12,6 +12,7 @@ protocol ProfileFlowCoordinatorDependencies {
     func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func subscriptionsViewController(_ actions: MySubscriptionsActions) -> UIViewController
+    func eventsViewController(events: URL, received: URL, _ actions: EventsActions) -> UIViewController
     func showRepositories(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func showStarred(_ url: URL, actions: RepositoriesActions) -> UIViewController
 
@@ -68,6 +69,7 @@ private extension ProfileFlowCoordinator {
             showRepositories: showRepositories(_:),
             showStarred: showStarred(_:),
             showSubscriptions: showSubscriptions,
+            showEvents: showEvents,
             sendEmail: dependencies.send,
             openLink: dependencies.open,
             share: dependencies.share,
@@ -115,6 +117,12 @@ private extension ProfileFlowCoordinator {
         guard let nav = navigationController else { return }
         let actions = RepositoriesActions(showRepository: openRepository(in: nav))
         let viewController = dependencies.showStarred(url, actions: actions)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showEvents(_ events: URL, _ received: URL) {
+        let actions = EventsActions()
+        let viewController = dependencies.eventsViewController(events: events, received: received, actions)
         navigationController?.pushViewController(viewController, animated: true)
     }
 

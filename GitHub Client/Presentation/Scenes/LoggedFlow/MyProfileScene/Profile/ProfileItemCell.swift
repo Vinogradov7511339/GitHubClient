@@ -34,6 +34,9 @@ extension ProfileItemCell: ConfigurableCell {
         case .subscriptions:
             itemImageView.image = .subscribers
             itemNameLabel.text = "Subscriptions"
+        case .events:
+            itemNameLabel.text = NSLocalizedString("Events", comment: "")
+            itemImageView.image = UIImage.UserProfile.events
         }
     }
 }

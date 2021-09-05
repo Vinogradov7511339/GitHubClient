@@ -126,7 +126,7 @@ private extension RepositoryFactoryImpl {
     }
 
     func forksViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+        RepositoriesViewModelImpl(.forks(url), useCase: listUseCase, actions: actions)
     }
 
     func usersViewModel(_ type: RepositoryUsersType, actions: UsersActions) -> UsersViewModel {

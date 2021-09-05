@@ -27,6 +27,7 @@ enum MyProfileRowType: Int, CaseIterable {
     case repositories
     case starred
     case subscriptions
+    case events
 }
 
 protocol ProfileAdapter: UITableViewDataSource {

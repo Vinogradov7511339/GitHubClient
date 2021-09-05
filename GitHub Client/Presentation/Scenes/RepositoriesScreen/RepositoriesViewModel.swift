@@ -11,6 +11,12 @@ struct RepositoriesActions {
     var showRepository: (URL) -> Void
 }
 
+enum RepositoriesType {
+    case repositories(URL)
+    case starred(URL)
+    case forks(URL)
+}
+
 protocol RepositoriesViewModelInput {
     func viewDidLoad()
     func refresh()
@@ -19,6 +25,7 @@ protocol RepositoriesViewModelInput {
 }
 
 protocol RepositoriesViewModelOutput {
+    var title: Observable<String> { get }
     var state: Observable<ItemsSceneState<Repository>> { get }
 }
 
@@ -28,6 +35,7 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
 
     // MARK: - Output
 
+    var title: Observable<String> = Observable("")
     var state: Observable<ItemsSceneState<Repository>> = Observable(.loading)
 
     // MARK: - Private variables
@@ -40,10 +48,20 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
 
     // MARK: - Lifecycle
 
-    init(_ url: URL, useCase: ListUseCase, actions: RepositoriesActions) {
-        self.url = url
+    init(_ type: RepositoriesType, useCase: ListUseCase, actions: RepositoriesActions) {
         self.useCase = useCase
         self.actions = actions
+        switch type {
+        case .repositories(let url):
+            self.url = url
+            self.title.value = NSLocalizedString("Repositories", comment: "")
+        case .starred(let url):
+            self.url = url
+            self.title.value = NSLocalizedString("Starred", comment: "")
+        case .forks(let url):
+            self.url = url
+            self.title.value = NSLocalizedString("Forks", comment: "")
+        }
     }
 }
 

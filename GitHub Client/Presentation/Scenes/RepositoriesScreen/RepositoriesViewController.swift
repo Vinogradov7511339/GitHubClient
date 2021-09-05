@@ -55,7 +55,12 @@ final class RepositoriesViewController: UIViewController {
 // MARK: - Binding
 private extension RepositoriesViewController {
     func bind(to viewModel: RepositoriesViewModel) {
+        viewModel.title.observe(on: self) { [weak self] in self?.updateTitle($0) }
         viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
+    }
+
+    func updateTitle(_ newTitle: String) {
+        self.title = newTitle
     }
 
     func updateState(_ newState: ItemsSceneState<Repository>) {

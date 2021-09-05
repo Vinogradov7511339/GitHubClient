@@ -155,6 +155,8 @@ extension MyProfileViewController: UITableViewDelegate {
             viewModel.openStarred()
         case .subscriptions:
             viewModel.openSubscriptions()
+        case .events:
+            viewModel.openEvents()
         default:
             break
         }

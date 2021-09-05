@@ -14,6 +14,9 @@ protocol MyProfileFactory {
     func repositoriesViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func starredViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func subscriptionsViewControler(_ actions: MySubscriptionsActions) -> UIViewController
+    func eventsViewController(_ eventsUrl: URL,
+                              _ recivedEventsUrl: URL,
+                            _ actions: EventsActions) -> UIViewController
 }
 
 final class MyProfileFactoryImpl {
@@ -52,6 +55,14 @@ extension MyProfileFactoryImpl: MyProfileFactory {
     func subscriptionsViewControler(_ actions: MySubscriptionsActions) -> UIViewController {
         MySubscriptionsViewController.create(with: subscriptionsViewModel(actions))
     }
+
+    func eventsViewController(_ eventsUrl: URL,
+                              _ recivedEventsUrl: URL,
+                              _ actions: EventsActions) -> UIViewController {
+        let events = eventsViewModel(eventsUrl, actions: actions)
+        let recivedEvents = receivedEventsViewModel(recivedEventsUrl, actions: actions)
+        return EventsViewController.create(events: events, received: recivedEvents)
+    }
 }
 
 private extension MyProfileFactoryImpl {
@@ -68,15 +79,23 @@ private extension MyProfileFactoryImpl {
     }
 
     func repositoriesViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
-       RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+        RepositoriesViewModelImpl(.repositories(url), useCase: listUseCase, actions: actions)
     }
 
     func starredViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+        RepositoriesViewModelImpl(.starred(url), useCase: listUseCase, actions: actions)
     }
 
     func subscriptionsViewModel(_ actions: MySubscriptionsActions) -> MySubscriptionsViewModel {
         MySubscriptionsViewModelImpl(useCase: profileUseCase, actions: actions)
+    }
+
+    func eventsViewModel(_ url: URL, actions: EventsActions) -> EventsViewModel {
+        EventsViewModelImpl(.events(url), usecase: listUseCase, actions: actions)
+    }
+
+    func receivedEventsViewModel(_ url: URL, actions: EventsActions) -> EventsViewModel {
+        EventsViewModelImpl(.recentEvents(url), usecase: listUseCase, actions: actions)
     }
 
     var profileUseCase: MyProfileUseCase {

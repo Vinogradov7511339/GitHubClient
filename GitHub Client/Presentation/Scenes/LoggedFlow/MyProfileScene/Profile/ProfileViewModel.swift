@@ -14,6 +14,7 @@ struct ProfileActions {
     let showRepositories: (URL) -> Void
     let showStarred: (URL) -> Void
     let showSubscriptions: () -> Void
+    let showEvents: (URL, URL) -> Void
     let sendEmail: (String) -> Void
     let openLink: (URL) -> Void
     let share: (URL) -> Void
@@ -36,6 +37,7 @@ protocol ProfileViewModelInput {
     func openRepositories()
     func openStarred()
     func openSubscriptions()
+    func openEvents()
 }
 
 enum MyProfileScreenState {
@@ -115,6 +117,11 @@ extension ProfileViewModelImpl {
 
     func openSubscriptions() {
         actions.showSubscriptions()
+    }
+
+    func openEvents() {
+        guard case .loaded(let profile) = state.value else { return }
+        actions.showEvents(profile.userDetails.eventsUrl, profile.userDetails.receivedEventsUrl)
     }
 }
 

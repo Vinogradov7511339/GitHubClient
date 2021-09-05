@@ -82,11 +82,11 @@ private extension UsersListFactoryImpl {
     }
 
     func repositoriesViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+        RepositoriesViewModelImpl(.repositories(url), useCase: listUseCase, actions: actions)
     }
 
     func starredViewModel(_ url: URL, actions: RepositoriesActions) -> RepositoriesViewModel {
-        RepositoriesViewModelImpl(url, useCase: listUseCase, actions: actions)
+        RepositoriesViewModelImpl(.starred(url), useCase: listUseCase, actions: actions)
     }
 
     func eventsViewModel(_ url: URL, actions: EventsActions) -> EventsViewModel {
