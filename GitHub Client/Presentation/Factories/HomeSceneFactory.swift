@@ -9,17 +9,20 @@ import UIKit
 
 protocol HomeSceneFactory {
     func homeViewController(_ actions: HomeActions) -> UIViewController
-    func myIssuesViewController() -> UIViewController
+    func myIssuesViewController(_ actions: MyIssuesActions) -> UIViewController
 }
 
 final class HomeSceneFactoryImpl {
     private let dataTransferService: DataTransferService
     private let profileStorage: ProfileLocalStorage
+    private let issueFilerStorage: IssueFilterStorage
 
     init(dataTransferService: DataTransferService,
-         profileStorage: ProfileLocalStorage) {
+         profileStorage: ProfileLocalStorage,
+         issueFilerStorage: IssueFilterStorage) {
         self.dataTransferService = dataTransferService
         self.profileStorage = profileStorage
+        self.issueFilerStorage = issueFilerStorage
     }
 }
 
@@ -29,8 +32,8 @@ extension HomeSceneFactoryImpl: HomeSceneFactory {
         HomeViewController.create(with: createHomeViewModel(actions: actions))
     }
 
-    func myIssuesViewController() -> UIViewController {
-        MyIssuesViewController()
+    func myIssuesViewController(_ actions: MyIssuesActions) -> UIViewController {
+        MyIssuesViewController.create(with: myIssuesViewModel(actions))
     }
 }
 
@@ -38,9 +41,13 @@ private extension HomeSceneFactoryImpl {
     func createHomeViewModel(actions: HomeActions) -> HomeViewModel {
         HomeViewModelImpl(useCase: homeUseCase, actions: actions)
     }
+
+    func myIssuesViewModel(_ actions: MyIssuesActions) -> MyIssuesViewModel {
+        MyIssuesViewModelImpl(useCase: homeUseCase, actions: actions)
+    }
     
     var homeUseCase: HomeUseCase {
-        HomeUseCaseImpl(repository: profileRepository)
+        HomeUseCaseImpl(repository: profileRepository, issuesFilterStorage: issueFilerStorage)
     }
 
     var profileRepository: MyProfileRepository {

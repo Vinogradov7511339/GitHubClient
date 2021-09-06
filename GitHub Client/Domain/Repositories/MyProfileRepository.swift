@@ -27,4 +27,8 @@ protocol MyProfileRepository {
 
     typealias WidgetsHandler = (Result<[HomeWidget], Error>) -> Void
     func fetchWidgets(completion: @escaping WidgetsHandler)
+
+    // MARK: - Issues
+    typealias IssuesHandler = (Result<ListResponseModel<Issue>, Error>) -> Void
+    func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler)
 }

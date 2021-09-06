@@ -7,11 +7,15 @@
 
 import UIKit
 
-struct HomeActions {}
+struct HomeActions {
+    let openIssues: () -> Void
+}
 
 protocol HomeViewModelInput {
     func viewDidLoad()
     func refresh()
+
+    func openWidget(_ widget: HomeWidget)
 }
 
 protocol HomeViewModelOutput {
@@ -56,6 +60,15 @@ extension HomeViewModelImpl {
         fetchFavorites()
         fetchLastEvents()
     }
+
+    func openWidget(_ widget: HomeWidget) {
+        switch widget {
+        case .issues:
+            actions.openIssues()
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - Private
@@ -88,8 +101,8 @@ private extension HomeViewModelImpl {
         lastEventsState.value = .loading
         useCase.fetchEvents { result in
             switch result {
-            case .success(let events):
-                self.lastEventsState.value = .loaded(items: events)
+            case .success(let response):
+                self.lastEventsState.value = .loaded(items: response.items)
             case .failure(let error):
                 self.lastEventsState.value = .error(error: error)
             }

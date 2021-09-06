@@ -30,6 +30,8 @@ final class HomeEventsView: UIView {
         loader.hide()
         if events.isEmpty {
             stackView.addArrangedSubview(emptyView)
+        } else {
+            fillStackView(events)
         }
     }
 
@@ -85,5 +87,19 @@ final class HomeEventsView: UIView {
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
+}
+
+// MARK: - Private
+private extension HomeEventsView {
+    func fillStackView(_ events: [Event]) {
+        stackView.erase()
+        events.forEach { add(event: $0) }
+    }
+
+    func add(event: Event) {
+        let view = HomeEventView()
+        view.configure(event)
+        stackView.addArrangedSubview(view)
     }
 }

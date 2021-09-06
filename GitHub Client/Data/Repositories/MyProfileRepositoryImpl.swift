@@ -95,3 +95,20 @@ extension MyProfileRepositoryImpl {
         completion(.success(widgets))
     }
 }
+
+extension MyProfileRepositoryImpl {
+    func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler) {
+        let endpoint = RepEndpoits.issues(request)
+        dataTransferService.request(with: endpoint) { result in
+            switch result {
+            case .success(let response):
+                let issues = response.model.map { $0.toDomain() }
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let model = ListResponseModel<Issue>(items: issues, lastPage: lastPage)
+                completion(.success(model))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}

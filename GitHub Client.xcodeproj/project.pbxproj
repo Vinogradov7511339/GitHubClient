@@ -451,6 +451,8 @@
 		ADE39C3D26E6126500795922 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3C26E6126500795922 /* WidgetView.swift */; };
 		ADE39C4126E61A2200795922 /* FavoritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C4026E61A2200795922 /* FavoritesEmptyView.swift */; };
 		ADE39C4426E6225000795922 /* HomeEventsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C4326E6225000795922 /* HomeEventsEmptyView.swift */; };
+		ADE39C4626E65E2D00795922 /* HomeEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C4526E65E2D00795922 /* HomeEventView.swift */; };
+		ADE39C4826E6708800795922 /* MyIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C4726E6708800795922 /* MyIssuesViewModel.swift */; };
 		ADF9A84526D6A8830017D11F /* IssueCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84426D6A8830017D11F /* IssueCoordinator.swift */; };
 		ADF9A84726D6A9140017D11F /* IssueDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */; };
 		ADF9A84926D6A9C80017D11F /* PullRequestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */; };
@@ -946,6 +948,8 @@
 		ADE39C3C26E6126500795922 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		ADE39C4026E61A2200795922 /* FavoritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyView.swift; sourceTree = "<group>"; };
 		ADE39C4326E6225000795922 /* HomeEventsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventsEmptyView.swift; sourceTree = "<group>"; };
+		ADE39C4526E65E2D00795922 /* HomeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventView.swift; sourceTree = "<group>"; };
+		ADE39C4726E6708800795922 /* MyIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIssuesViewModel.swift; sourceTree = "<group>"; };
 		ADF9A84426D6A8830017D11F /* IssueCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCoordinator.swift; sourceTree = "<group>"; };
 		ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDIContainer.swift; sourceTree = "<group>"; };
 		ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestCoordinator.swift; sourceTree = "<group>"; };
@@ -1694,6 +1698,7 @@
 				ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */,
 				AD20E4EB26A8C045003BB5F1 /* Home */,
 				AD23E7B826D1666B009FEB27 /* MyIssuesViewController.swift */,
+				ADE39C4726E6708800795922 /* MyIssuesViewModel.swift */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -2676,6 +2681,7 @@
 			children = (
 				ADE39C3626E608E600795922 /* HomeEventsView.swift */,
 				ADE39C4326E6225000795922 /* HomeEventsEmptyView.swift */,
+				ADE39C4526E65E2D00795922 /* HomeEventView.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -3092,6 +3098,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE39C4826E6708800795922 /* MyIssuesViewModel.swift in Sources */,
 				ADF9A84526D6A8830017D11F /* IssueCoordinator.swift in Sources */,
 				ADA7494F26CE62D800C8D475 /* UIImage+NavBar.swift in Sources */,
 				ADE39C3D26E6126500795922 /* WidgetView.swift in Sources */,
@@ -3448,6 +3455,7 @@
 				AD3AC9F626DD2C1A00BC08FF /* UserActivityCell.swift in Sources */,
 				ADFCF02626D90259004FB341 /* PullRequestDetails.swift in Sources */,
 				AD2E8FE626DAC3AF000A40D1 /* CommitInfoMessageCell.swift in Sources */,
+				ADE39C4626E65E2D00795922 /* HomeEventView.swift in Sources */,
 				ADFCEFF926D81C65004FB341 /* SearchFilterStorageImpl.swift in Sources */,
 				AD6B095C26BEFBEC004644D2 /* NetworkService.swift in Sources */,
 				AD3C43A226D9560900C4FC29 /* PRBaseResponseDTO.swift in Sources */,

@@ -149,6 +149,7 @@ private extension AppDIContainer {
               profileStorage: profileStorage,
               searchFilterStorage: searchFilterStorage,
               exploreSettingsStorage: exploreSettingsStorage,
+              issueFilterStorage: issueFilterStorage,
               logout: actions.logout,
               openSettings: actions.openSettings(in:),
               openRepository: actions.openRepository(_:in:),

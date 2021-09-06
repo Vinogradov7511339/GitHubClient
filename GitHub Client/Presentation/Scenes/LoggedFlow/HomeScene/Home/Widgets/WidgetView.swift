@@ -31,11 +31,26 @@ extension HomeWidget {
     }
 }
 
+protocol WidgetViewDelegate: AnyObject {
+    func tapped(widget: HomeWidget)
+}
+
 final class WidgetView: UIView {
 
     func configure(with widget: HomeWidget) {
+        self.widget = widget
         titleLabel.text = widget.title
         imageView.image = widget.image
+    }
+
+    weak var delegate: WidgetViewDelegate?
+
+    // MARK: - Actions
+
+    @objc func bgButtonTouched() {
+        if let widget = self.widget {
+            delegate?.tapped(widget: widget)
+        }
     }
 
     // MARK: - Views
@@ -61,12 +76,23 @@ final class WidgetView: UIView {
         return imageView
     }()
 
+    private lazy var bgButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(bgButtonTouched), for: .touchUpInside)
+        return button
+    }()
+
     private lazy var separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .opaqueSeparator
         return view
     }()
+
+    // MARK: - Private variables
+
+    private var widget: HomeWidget?
 
     // MARK: - Lifecycle
 
@@ -85,6 +111,7 @@ final class WidgetView: UIView {
         addSubview(imageView)
         addSubview(titleLabel)
         addSubview(arrowImageView)
+        addSubview(bgButton)
         addSubview(separator)
 
         imageView.widthAnchor.constraint(equalToConstant: 24.0).isActive = true
@@ -102,6 +129,11 @@ final class WidgetView: UIView {
         arrowImageView.trailingAnchor.constraint(
             equalTo: trailingAnchor, constant: -12.0).isActive = true
         arrowImageView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+
+        bgButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        bgButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        bgButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        bgButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 36.0).isActive = true

@@ -16,6 +16,7 @@ final class MainSceneDIContainer: NSObject {
         let profileStorage: ProfileLocalStorage
         let searchFilterStorage: SearchFilterStorage
         let exploreSettingsStorage: ExploreWidgetsRequestStorage
+        let issueFilterStorage: IssueFilterStorage
 
         let logout: () -> Void
         let openSettings: (UINavigationController) -> Void
@@ -89,7 +90,9 @@ extension MainSceneDIContainer: MainCoordinatorDependencies {
 private extension MainSceneDIContainer {
     func homeDependencies() -> HomeDIContainer.Dependencies {
         .init(dataTransferService: dependencies.dataTransferService,
-              profileStorage: dependencies.profileStorage)
+              profileStorage: dependencies.profileStorage,
+              issueFilterStorage: dependencies.issueFilterStorage,
+              showIssue: dependencies.openIssue)
     }
 
     func exploreDependencies() -> ExploreDIContainer.Dependencies {

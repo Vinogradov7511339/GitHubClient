@@ -9,6 +9,8 @@ import UIKit
 
 final class WidgetsView: UIView {
 
+    weak var delegate: WidgetViewDelegate?
+
     func updateState(_ newState: ItemsSceneState<HomeWidget>) {
         switch newState {
         case .loading:
@@ -92,6 +94,7 @@ private extension WidgetsView {
     func add(widget: HomeWidget) {
         let view = WidgetView()
         view.configure(with: widget)
+        view.delegate = delegate
         stackView.addArrangedSubview(view)
     }
 }

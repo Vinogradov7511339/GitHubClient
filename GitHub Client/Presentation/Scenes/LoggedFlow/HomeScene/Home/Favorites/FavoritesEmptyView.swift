@@ -57,7 +57,7 @@ final class FavoritesEmptyView: UIView {
         container.addSubview(titleLabel)
         container.addSubview(addButton)
 
-        container.topAnchor.constraint(equalTo: topAnchor, constant: 12.0).isActive = true
+        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
         container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.0).isActive = true
         container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12.0).isActive = true
         container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12.0).isActive = true

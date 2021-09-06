@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController {
 
     private lazy var widgetsView: WidgetsView = {
         let view = WidgetsView()
+        view.delegate = self
         return view
     }()
 
@@ -65,6 +66,13 @@ final class HomeViewController: UIViewController {
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
+    }
+}
+
+// MARK: - WidgetViewDelegate
+extension HomeViewController: WidgetViewDelegate {
+    func tapped(widget: HomeWidget) {
+        viewModel.openWidget(widget)
     }
 }
 
