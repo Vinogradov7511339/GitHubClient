@@ -74,9 +74,25 @@ private extension HomeViewModelImpl {
 
     func fetchFavorites() {
         favoritesState.value = .loading
+        useCase.fetchFavorites { result in
+            switch result {
+            case .success(let favorites):
+                self.favoritesState.value = .loaded(items: favorites)
+            case .failure(let error):
+                self.favoritesState.value = .error(error: error)
+            }
+        }
     }
 
     func fetchLastEvents() {
         lastEventsState.value = .loading
+        useCase.fetchEvents { result in
+            switch result {
+            case .success(let events):
+                self.lastEventsState.value = .loaded(items: events)
+            case .failure(let error):
+                self.lastEventsState.value = .error(error: error)
+            }
+        }
     }
 }

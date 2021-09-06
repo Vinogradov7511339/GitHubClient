@@ -1,5 +1,5 @@
 //
-//  HomeEventsView.swift
+//  FavoritesView.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 06.09.2021.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class HomeEventsView: UIView {
-    func updateState(_ newState: ItemsSceneState<Event>) {
+final class FavoritesView: UIView {
+
+    func updateState(_ newState: ItemsSceneState<Repository>) {
         switch newState {
         case .loading:
             prepareLoadingState()
@@ -22,11 +23,17 @@ final class HomeEventsView: UIView {
     func prepareLoadingState() {
         stackView.erase()
         stackView.addArrangedSubview(loader)
-        let title = NSLocalizedString("Loading Events", comment: "")
+        let title = NSLocalizedString("Loading favorites", comment: "")
         loader.show(title)
     }
 
-    func prepareLoadedState(_ repositories: [Event]) {}
+    func prepareLoadedState(_ repositories: [Repository]) {
+        loader.hide()
+        stackView.erase()
+        if repositories.isEmpty {
+            stackView.addArrangedSubview(emptyView)
+        }
+    }
 
     func prepareErrorState(_ error: Error) {}
 
@@ -35,7 +42,8 @@ final class HomeEventsView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = NSLocalizedString("Last events", comment: "")
+        label.text = NSLocalizedString("Favorites", comment: "")
+        label.font = .systemFont(ofSize: 19.0, weight: .medium)
         return label
     }()
 
@@ -48,6 +56,11 @@ final class HomeEventsView: UIView {
 
     private lazy var loader: LoaderView = {
         let view = LoaderView()
+        return view
+    }()
+
+    private lazy var emptyView: FavoritesEmptyView = {
+        let view = FavoritesEmptyView()
         return view
     }()
 
@@ -64,14 +77,13 @@ final class HomeEventsView: UIView {
     }
 
     private func completeInit() {
-        backgroundColor = .green
         addSubview(titleLabel)
         addSubview(stackView)
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.0).isActive = true
 
-        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12.0).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

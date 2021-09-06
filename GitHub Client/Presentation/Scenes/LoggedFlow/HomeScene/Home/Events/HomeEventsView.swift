@@ -1,5 +1,5 @@
 //
-//  WidgetsView.swift
+//  HomeEventsView.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 06.09.2021.
@@ -7,9 +7,8 @@
 
 import UIKit
 
-final class WidgetsView: UIView {
-
-    func updateState(_ newState: ItemsSceneState<HomeWidget>) {
+final class HomeEventsView: UIView {
+    func updateState(_ newState: ItemsSceneState<Event>) {
         switch newState {
         case .loading:
             prepareLoadingState()
@@ -23,13 +22,15 @@ final class WidgetsView: UIView {
     func prepareLoadingState() {
         stackView.erase()
         stackView.addArrangedSubview(loader)
-        let title = NSLocalizedString("Loading Widgets", comment: "")
+        let title = NSLocalizedString("Loading Events", comment: "")
         loader.show(title)
     }
 
-    func prepareLoadedState(_ widgets: [HomeWidget]) {
+    func prepareLoadedState(_ events: [Event]) {
         loader.hide()
-        fillStackView(widgets)
+        if events.isEmpty {
+            stackView.addArrangedSubview(emptyView)
+        }
     }
 
     func prepareErrorState(_ error: Error) {}
@@ -39,7 +40,8 @@ final class WidgetsView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = NSLocalizedString("Widgets", comment: "")
+        label.text = NSLocalizedString("Last events", comment: "")
+        label.font = .systemFont(ofSize: 19.0, weight: .medium)
         return label
     }()
 
@@ -52,6 +54,11 @@ final class WidgetsView: UIView {
 
     private lazy var loader: LoaderView = {
         let view = LoaderView()
+        return view
+    }()
+
+    private lazy var emptyView: HomeEventsEmptyView = {
+        let view = HomeEventsEmptyView()
         return view
     }()
 
@@ -68,23 +75,15 @@ final class WidgetsView: UIView {
     }
 
     private func completeInit() {
-        backgroundColor = .red
         addSubview(titleLabel)
         addSubview(stackView)
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.0).isActive = true
 
-        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12.0).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-}
-
-// MARK: - Private
-private extension WidgetsView {
-    func fillStackView(_ widgets: [HomeWidget]) {
-        stackView.erase()
     }
 }

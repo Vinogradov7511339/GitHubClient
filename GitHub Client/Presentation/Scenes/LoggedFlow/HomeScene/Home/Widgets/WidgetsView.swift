@@ -1,5 +1,5 @@
 //
-//  FavoritesView.swift
+//  WidgetsView.swift
 //  GitHub Client
 //
 //  Created by Alexander Vinogradov on 06.09.2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class FavoritesView: UIView {
+final class WidgetsView: UIView {
 
-    func updateState(_ newState: ItemsSceneState<Repository>) {
+    func updateState(_ newState: ItemsSceneState<HomeWidget>) {
         switch newState {
         case .loading:
             prepareLoadingState()
@@ -23,21 +23,24 @@ final class FavoritesView: UIView {
     func prepareLoadingState() {
         stackView.erase()
         stackView.addArrangedSubview(loader)
-        let title = NSLocalizedString("Loading favorites", comment: "")
+        let title = NSLocalizedString("Loading Widgets", comment: "")
         loader.show(title)
     }
 
-    func prepareLoadedState(_ repositories: [Repository]) {}
+    func prepareLoadedState(_ widgets: [HomeWidget]) {
+        loader.hide()
+        fillStackView(widgets)
+    }
 
     func prepareErrorState(_ error: Error) {}
-
 
     // MARK: - Views
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = NSLocalizedString("Favorites", comment: "")
+        label.text = NSLocalizedString("Widgets", comment: "")
+        label.font = .systemFont(ofSize: 19.0, weight: .medium)
         return label
     }()
 
@@ -66,16 +69,29 @@ final class FavoritesView: UIView {
     }
 
     private func completeInit() {
-        backgroundColor = .yellow
         addSubview(titleLabel)
         addSubview(stackView)
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.0).isActive = true
 
-        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
+}
+
+// MARK: - Private
+private extension WidgetsView {
+    func fillStackView(_ widgets: [HomeWidget]) {
+        stackView.erase()
+        widgets.forEach { add(widget: $0) }
+    }
+
+    func add(widget: HomeWidget) {
+        let view = WidgetView()
+        view.configure(with: widget)
+        stackView.addArrangedSubview(view)
     }
 }

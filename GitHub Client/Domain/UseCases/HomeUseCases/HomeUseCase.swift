@@ -9,6 +9,8 @@ import Foundation
 
 protocol HomeUseCase {
     func fetchWidgets(completion: @escaping(Result<[HomeWidget], Error>) -> Void)
+    func fetchFavorites(completion: @escaping(Result<[Repository], Error>) -> Void)
+    func fetchEvents(completion: @escaping(Result<[Event], Error>) -> Void)
 }
 
 final class HomeUseCaseImpl {
@@ -24,5 +26,13 @@ final class HomeUseCaseImpl {
 extension HomeUseCaseImpl: HomeUseCase {
     func fetchWidgets(completion: @escaping (Result<[HomeWidget], Error>) -> Void) {
         repository.fetchWidgets(completion: completion)
+    }
+
+    func fetchFavorites(completion: @escaping (Result<[Repository], Error>) -> Void) {
+        completion(.success([]))
+    }
+
+    func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
+        completion(.success([]))
     }
 }
