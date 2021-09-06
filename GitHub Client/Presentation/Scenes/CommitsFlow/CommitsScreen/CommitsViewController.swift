@@ -45,6 +45,7 @@ final class CommitsViewController: UIViewController {
         setupViews()
         activateConstraints()
         cellManager.register(collectionView: collectionView)
+        title = NSLocalizedString("Commits", comment: "")
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }

@@ -30,6 +30,9 @@ extension HomeWidgetCell: ConfigurableCell {
             iconImageView.image = UIImage.starred
             iconImageView.tintColor = .starred
             nameLabel.text = String.starred
+        case .repositories:
+            iconImageView.image = UIImage.repositories
+            nameLabel.text = String.repositories
         }
     }
 }

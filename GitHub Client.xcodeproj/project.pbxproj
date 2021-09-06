@@ -252,7 +252,6 @@
 		AD605C4626DD157C00467FD7 /* UserAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605C4526DD157C00467FD7 /* UserAdapter.swift */; };
 		AD605C4926DD1C1900467FD7 /* UserHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD605C4726DD1C1900467FD7 /* UserHeaderCell.swift */; };
 		AD605C4A26DD1C1900467FD7 /* UserHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD605C4826DD1C1900467FD7 /* UserHeaderCell.xib */; };
-		AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5526C96FF700432E13 /* HomeVC.swift */; };
 		AD65FA5926CA93AD00432E13 /* IssueItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65FA5726CA93AD00432E13 /* IssueItemCell.swift */; };
 		AD65FA5A26CA93AD00432E13 /* IssueItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD65FA5826CA93AD00432E13 /* IssueItemCell.xib */; };
 		AD6B093726BECB43004644D2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B093626BECB43004644D2 /* Endpoint.swift */; };
@@ -409,9 +408,7 @@
 		ADBC1AD326C3F70E000F9B88 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD226C3F70E000F9B88 /* Commit.swift */; };
 		ADBC1AD526C3F763000F9B88 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD426C3F763000F9B88 /* Release.swift */; };
 		ADBC1AD926C43582000F9B88 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC1AD826C43582000F9B88 /* FavoritesViewModel.swift */; };
-		ADC537FB26CBD738009B7A7E /* HomeFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC537FA26CBD738009B7A7E /* HomeFlowLayout.swift */; };
 		ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC537FC26CBE028009B7A7E /* WidgetsHeaderView.swift */; };
-		ADC537FF26CBE3C8009B7A7E /* HomeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC537FE26CBE3C8009B7A7E /* HomeAdapter.swift */; };
 		ADC5380226CBE484009B7A7E /* HomeWidgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5380026CBE484009B7A7E /* HomeWidgetCell.swift */; };
 		ADC5380326CBE484009B7A7E /* HomeWidgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC5380126CBE484009B7A7E /* HomeWidgetCell.xib */; };
 		ADC5380626CBF650009B7A7E /* HomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5380526CBF650009B7A7E /* HomeWidget.swift */; };
@@ -445,6 +442,12 @@
 		ADD462E626BD66CE00DD46CC /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */; };
 		ADD8D25826CD659C00F6C17B /* PermissionsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD8D25726CD659C00F6C17B /* PermissionsResponseDTO.swift */; };
 		ADDD511C26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */; };
+		ADE39C3126E6061800795922 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3026E6061800795922 /* HomeViewController.swift */; };
+		ADE39C3326E6070800795922 /* WidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3226E6070800795922 /* WidgetsView.swift */; };
+		ADE39C3526E6082800795922 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3426E6082800795922 /* FavoritesView.swift */; };
+		ADE39C3726E608E600795922 /* HomeEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3626E608E600795922 /* HomeEventsView.swift */; };
+		ADE39C3926E60D5B00795922 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3826E60D5B00795922 /* LoaderView.swift */; };
+		ADE39C3B26E6109B00795922 /* UIStackView+erase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE39C3A26E6109B00795922 /* UIStackView+erase.swift */; };
 		ADF9A84526D6A8830017D11F /* IssueCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84426D6A8830017D11F /* IssueCoordinator.swift */; };
 		ADF9A84726D6A9140017D11F /* IssueDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */; };
 		ADF9A84926D6A9C80017D11F /* PullRequestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */; };
@@ -741,7 +744,6 @@
 		AD605C4526DD157C00467FD7 /* UserAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAdapter.swift; sourceTree = "<group>"; };
 		AD605C4726DD1C1900467FD7 /* UserHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderCell.swift; sourceTree = "<group>"; };
 		AD605C4826DD1C1900467FD7 /* UserHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHeaderCell.xib; sourceTree = "<group>"; };
-		AD65FA5526C96FF700432E13 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		AD65FA5726CA93AD00432E13 /* IssueItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueItemCell.swift; sourceTree = "<group>"; };
 		AD65FA5826CA93AD00432E13 /* IssueItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueItemCell.xib; sourceTree = "<group>"; };
 		AD6B093626BECB43004644D2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -898,9 +900,7 @@
 		ADBC1AD226C3F70E000F9B88 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		ADBC1AD426C3F763000F9B88 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		ADBC1AD826C43582000F9B88 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
-		ADC537FA26CBD738009B7A7E /* HomeFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowLayout.swift; sourceTree = "<group>"; };
 		ADC537FC26CBE028009B7A7E /* WidgetsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsHeaderView.swift; sourceTree = "<group>"; };
-		ADC537FE26CBE3C8009B7A7E /* HomeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAdapter.swift; sourceTree = "<group>"; };
 		ADC5380026CBE484009B7A7E /* HomeWidgetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetCell.swift; sourceTree = "<group>"; };
 		ADC5380126CBE484009B7A7E /* HomeWidgetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWidgetCell.xib; sourceTree = "<group>"; };
 		ADC5380526CBF650009B7A7E /* HomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidget.swift; sourceTree = "<group>"; };
@@ -934,6 +934,12 @@
 		ADD462E526BD66CE00DD46CC /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
 		ADD8D25726CD659C00F6C17B /* PermissionsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsResponseDTO.swift; sourceTree = "<group>"; };
 		ADDD511B26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestReviewResponseDTO.swift; sourceTree = "<group>"; };
+		ADE39C3026E6061800795922 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ADE39C3226E6070800795922 /* WidgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsView.swift; sourceTree = "<group>"; };
+		ADE39C3426E6082800795922 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		ADE39C3626E608E600795922 /* HomeEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventsView.swift; sourceTree = "<group>"; };
+		ADE39C3826E60D5B00795922 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		ADE39C3A26E6109B00795922 /* UIStackView+erase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+erase.swift"; sourceTree = "<group>"; };
 		ADF9A84426D6A8830017D11F /* IssueCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCoordinator.swift; sourceTree = "<group>"; };
 		ADF9A84626D6A9140017D11F /* IssueDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDIContainer.swift; sourceTree = "<group>"; };
 		ADF9A84826D6A9C80017D11F /* PullRequestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestCoordinator.swift; sourceTree = "<group>"; };
@@ -1125,12 +1131,14 @@
 			isa = PBXGroup;
 			children = (
 				AD2E262E26BD17F600B25772 /* HomeViewModel.swift */,
-				ADC537FA26CBD738009B7A7E /* HomeFlowLayout.swift */,
-				AD65FA5526C96FF700432E13 /* HomeVC.swift */,
-				ADC537FE26CBE3C8009B7A7E /* HomeAdapter.swift */,
+				ADE39C3026E6061800795922 /* HomeViewController.swift */,
 				ADC537FC26CBE028009B7A7E /* WidgetsHeaderView.swift */,
 				AD8722E726B83784004649A4 /* Favorites */,
 				ADBC1ACC26C3D778000F9B88 /* Cells */,
+				ADE39C3226E6070800795922 /* WidgetsView.swift */,
+				ADE39C3426E6082800795922 /* FavoritesView.swift */,
+				ADE39C3626E608E600795922 /* HomeEventsView.swift */,
+				ADE39C3826E60D5B00795922 /* LoaderView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1306,6 +1314,7 @@
 				AD2E8FB726DA3329000A40D1 /* UILabel+NumberOfLines.swift */,
 				ADD2F58626DFA3A400B23B8C /* Event+Extensions.swift */,
 				AD4EEE2A26E27F530000BF46 /* URL+Types.swift */,
+				ADE39C3A26E6109B00795922 /* UIStackView+erase.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3066,6 +3075,7 @@
 				AD2E263826BD3C4C00B25772 /* MyProfileRepositoryImpl.swift in Sources */,
 				AD3ACA1626DE0A7900BC08FF /* ListRepositoryImpl.swift in Sources */,
 				ADA1692F26C5816A0040B635 /* UsersListViewController.swift in Sources */,
+				ADE39C3126E6061800795922 /* HomeViewController.swift in Sources */,
 				AD6B099B26C04105004644D2 /* IssueViewModel.swift in Sources */,
 				AD6B095326BEF8F5004644D2 /* RequestGenerationError.swift in Sources */,
 				AD5BD95926D75F1000B41E6A /* FolderAdapter.swift in Sources */,
@@ -3182,6 +3192,7 @@
 				AD5C8E1C26D29314003E2F38 /* SettingsViewController.swift in Sources */,
 				AD25E4DA26B6F9390003B1E0 /* FileResponseModelDTO.swift in Sources */,
 				AD20E47526A8A522003BB5F1 /* SettingsAppIconViewController.swift in Sources */,
+				ADE39C3926E60D5B00795922 /* LoaderView.swift in Sources */,
 				AD6E417C26C6590000CEF3B0 /* IssuesAdapter.swift in Sources */,
 				AD39FE6D26BB21A100F055FD /* MainCoordinator.swift in Sources */,
 				AD39FE7026BB248400F055FD /* HomeFlowCoordinator.swift in Sources */,
@@ -3257,6 +3268,7 @@
 				AD23E78B26D0FFA3009FEB27 /* ReleaseRequestModel.swift in Sources */,
 				AD20E57A26ABDAB1003BB5F1 /* CharacterSet+extensions.swift in Sources */,
 				AD39FE5426BABF0400F055FD /* UserUseCase.swift in Sources */,
+				ADE39C3326E6070800795922 /* WidgetsView.swift in Sources */,
 				AD39A58B26C67DDF00309481 /* CommitCell.swift in Sources */,
 				AD596EED26DC198B004A3A1C /* RepositoryActivityViewController.swift in Sources */,
 				AD4EEE2B26E27F530000BF46 /* URL+Types.swift in Sources */,
@@ -3268,6 +3280,7 @@
 				ADC5380226CBE484009B7A7E /* HomeWidgetCell.swift in Sources */,
 				AD6B096C26BF04DE004644D2 /* UserEndpoints.swift in Sources */,
 				AD23E77C26D0F788009FEB27 /* PRListViewController.swift in Sources */,
+				ADE39C3B26E6109B00795922 /* UIStackView+erase.swift in Sources */,
 				AD39FE7926BB24E600F055FD /* ProfileFlowCoordinator.swift in Sources */,
 				AD6B093D26BEDA2B004644D2 /* ProfileLocalStorage.swift in Sources */,
 				AD5C8E3126D2A755003E2F38 /* AccountViewModel.swift in Sources */,
@@ -3303,7 +3316,6 @@
 				AD39FE2B26BA728300F055FD /* UserFlowCoordinator.swift in Sources */,
 				ADA3C84926CF8AB8009F9130 /* UIImage+Profile.swift in Sources */,
 				AD6B096026BEFCE9004644D2 /* NetworkSessionManager.swift in Sources */,
-				ADC537FB26CBD738009B7A7E /* HomeFlowLayout.swift in Sources */,
 				AD2E261626BC6D6900B25772 /* TableViewCell.swift in Sources */,
 				AD6BD05226DFDED00049508B /* UserInfoCell.swift in Sources */,
 				ADDD511C26C7C9A200F74240 /* PullRequestReviewResponseDTO.swift in Sources */,
@@ -3320,6 +3332,7 @@
 				AD20E4F726A95DB9003BB5F1 /* FavoritesEmptyTableViewCell.swift in Sources */,
 				AD6B095026BEF877004644D2 /* Dictionary+queryString.swift in Sources */,
 				ADA1693B26C58EF20040B635 /* UserFactory.swift in Sources */,
+				ADE39C3726E608E600795922 /* HomeEventsView.swift in Sources */,
 				AD2E8FBC26DA3CE6000A40D1 /* CommitsDIContainer.swift in Sources */,
 				AD3ACA0D26DD6C9300BC08FF /* ListRequest.swift in Sources */,
 				AD6B096726BEFE0C004644D2 /* Requestable.swift in Sources */,
@@ -3340,7 +3353,6 @@
 				ADFCF01426D8DBEC004FB341 /* ReleaseDIContainer.swift in Sources */,
 				AD39FE4526BAA6DB00F055FD /* RepUseCase.swift in Sources */,
 				AD39FDA326B9437800F055FD /* User.swift in Sources */,
-				AD65FA5626C96FF700432E13 /* HomeVC.swift in Sources */,
 				AD39FDB326B94F2F00F055FD /* Cancellable.swift in Sources */,
 				AD39FE6226BAE88600F055FD /* LoginRepository.swift in Sources */,
 				ADB60D6F26D392220024479D /* SearchAdapter.swift in Sources */,
@@ -3368,6 +3380,7 @@
 				AD6B094E26BEF82F004644D2 /* Encodable+toDictionary.swift in Sources */,
 				AD5C8E4826D2C252003E2F38 /* ExploreUseCase.swift in Sources */,
 				ADC537FD26CBE028009B7A7E /* WidgetsHeaderView.swift in Sources */,
+				ADE39C3526E6082800795922 /* FavoritesView.swift in Sources */,
 				ADB60D6426D37DE10024479D /* SearchResultViewModel.swift in Sources */,
 				AD2E8FB426DA1AF8000A40D1 /* PRCommitsCell.swift in Sources */,
 				ADB60D7C26D3DDC60024479D /* ResultTotalCell.swift in Sources */,
@@ -3410,7 +3423,6 @@
 				AD6B09A526C274C6004644D2 /* Comment.swift in Sources */,
 				AD596F0C26DCACCB004A3A1C /* RepositoryActionCell.swift in Sources */,
 				AD5C8E3C26D2B657003E2F38 /* SignInFactory.swift in Sources */,
-				ADC537FF26CBE3C8009B7A7E /* HomeAdapter.swift in Sources */,
 				ADC538E826CD36B3009B7A7E /* NotificationsEndpoints.swift in Sources */,
 				AD20E50226A96774003BB5F1 /* IssueResponseDTO.swift in Sources */,
 				AD2E8FCB26DA5B73000A40D1 /* CommitDIContainer.swift in Sources */,

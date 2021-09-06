@@ -46,6 +46,7 @@ final class PRListViewController: UIViewController {
         activateConstraints()
 
         adapter.register(collectionView)
+        title = NSLocalizedString("Pull Requests", comment: "")
 
         bind(to: viewModel)
         viewModel.viewDidLoad()

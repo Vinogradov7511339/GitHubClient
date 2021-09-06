@@ -21,15 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="111"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cell_issues" translatesAutoresizingMaskIntoConstraints="NO" id="hD4-cJ-Uab">
-                                <rect key="frame" x="12" y="12" width="12" height="12"/>
+                                <rect key="frame" x="12" y="12" width="16" height="16"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="8FG-Mg-iuz"/>
-                                    <constraint firstAttribute="width" constant="12" id="jrC-aJ-Vtd"/>
+                                    <constraint firstAttribute="height" constant="16" id="8FG-Mg-iuz"/>
+                                    <constraint firstAttribute="width" constant="16" id="jrC-aJ-Vtd"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rBQ-qV-Ej7">
-                                <rect key="frame" x="32" y="12" width="256" height="87"/>
+                                <rect key="frame" x="36" y="12" width="252" height="87"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwJ-fU-JIc">
                                         <rect key="frame" x="0.0" y="0.0" width="35.5" height="17"/>
@@ -44,7 +44,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nX1-Fe-MDk">
-                                        <rect key="frame" x="0.0" y="53" width="256" height="16"/>
+                                        <rect key="frame" x="0.0" y="53" width="252" height="16"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91n-gG-RMA">
                                                 <rect key="frame" x="0.0" y="0.0" width="206" height="16"/>
@@ -65,10 +65,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1iZ-wi-atf">
-                                                <rect key="frame" x="206" y="0.0" width="50" height="16"/>
+                                                <rect key="frame" x="206" y="0.0" width="46" height="16"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBS-VU-Kdn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>

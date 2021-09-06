@@ -26,7 +26,7 @@ final class HomeSceneFactoryImpl {
 // MAK: - HomeSceneFactory
 extension HomeSceneFactoryImpl: HomeSceneFactory {
     func homeViewController(_ actions: HomeActions) -> UIViewController {
-        HomeVC.create(with: createHomeViewModel(actions: actions))
+        HomeViewController.create(with: createHomeViewModel(actions: actions))
     }
 
     func myIssuesViewController() -> UIViewController {

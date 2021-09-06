@@ -22,4 +22,9 @@ protocol MyProfileRepository {
 
     typealias SubscriptionsHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
     func fetchSubscriptions(page: Int, completion: @escaping SubscriptionsHandler)
+
+    // MARK: - Widgets
+
+    typealias WidgetsHandler = (Result<[HomeWidget], Error>) -> Void
+    func fetchWidgets(completion: @escaping WidgetsHandler)
 }

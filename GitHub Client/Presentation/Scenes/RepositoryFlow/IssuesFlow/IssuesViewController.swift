@@ -38,6 +38,7 @@ final class IssuesViewController: UIViewController {
         setupViews()
         activateConstraints()
         cellManager.register(collectionView: collectionView)
+        title = NSLocalizedString("Issues", comment: "")
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }

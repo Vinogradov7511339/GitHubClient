@@ -7,18 +7,17 @@
 
 import UIKit
 
-struct HomeActions {
-}
+struct HomeActions {}
 
 protocol HomeViewModelInput {
     func viewDidLoad()
     func refresh()
-    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol HomeViewModelOutput {
-    var favorites: Observable<[Repository]> { get }
-    var widgets: Observable<[HomeWidget]> { get }
+    var widgetsState: Observable<ItemsSceneState<HomeWidget>> { get }
+    var favoritesState: Observable<ItemsSceneState<Repository>> { get }
+    var lastEventsState: Observable<ItemsSceneState<Event>> { get }
 }
 
 typealias HomeViewModel = HomeViewModelInput & HomeViewModelOutput
@@ -27,13 +26,16 @@ final class HomeViewModelImpl: HomeViewModel {
 
     // MARK: - Output
 
-    var favorites: Observable<[Repository]> = Observable([])
-    var widgets: Observable<[HomeWidget]> = Observable([])
+    var widgetsState: Observable<ItemsSceneState<HomeWidget>> = Observable(.loading)
+    var favoritesState: Observable<ItemsSceneState<Repository>> = Observable(.loading)
+    var lastEventsState: Observable<ItemsSceneState<Event>> = Observable(.loading)
 
     // MARK: - Private
 
     private let useCase: HomeUseCase
     private let actions: HomeActions
+
+    // MARK: - Lifecycle
 
     init(useCase: HomeUseCase, actions: HomeActions) {
         self.useCase = useCase
@@ -41,36 +43,40 @@ final class HomeViewModelImpl: HomeViewModel {
     }
 }
 
+// MARK: - Input
 extension HomeViewModelImpl {
     func viewDidLoad() {
-        useCase.fetchWidgets { result in
-            switch result {
-            case .success(let widgets):
-                self.widgets.value = widgets
-            case .failure(let error):
-                self.handle(error)
-            }
-        }
+        fetchWidgets()
+        fetchFavorites()
+        fetchLastEvents()
     }
 
-    func refresh() {}
-
-    func didSelectItem(at indexPath: IndexPath) {
-        let widget = widgets.value[indexPath.row]
-        openWidget(widget)
+    func refresh() {
+        fetchWidgets()
+        fetchFavorites()
+        fetchLastEvents()
     }
 }
 
 // MARK: - Private
 private extension HomeViewModelImpl {
-    func handle(_ error: Error) {}
-
-    func openWidget(_ widget: HomeWidget) {
-        switch widget {
-        case .issues:
-            fatalError()
-        case .starredRepositories:
-            fatalError()
+    func fetchWidgets() {
+        widgetsState.value = .loading
+        useCase.fetchWidgets { result in
+            switch result {
+            case .success(let widgets):
+                self.widgetsState.value = .loaded(items: widgets)
+            case .failure(let error):
+                self.widgetsState.value = .error(error: error)
+            }
         }
+    }
+
+    func fetchFavorites() {
+        favoritesState.value = .loading
+    }
+
+    func fetchLastEvents() {
+        lastEventsState.value = .loading
     }
 }

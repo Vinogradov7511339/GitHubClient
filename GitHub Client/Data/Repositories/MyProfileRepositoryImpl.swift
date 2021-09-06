@@ -88,3 +88,10 @@ extension MyProfileRepositoryImpl {
         }
     }
 }
+
+extension MyProfileRepositoryImpl {
+    func fetchWidgets(completion: @escaping WidgetsHandler) {
+        let widgets: [HomeWidget] = [.issues, .repositories, .starredRepositories]
+        completion(.success(widgets))
+    }
+}

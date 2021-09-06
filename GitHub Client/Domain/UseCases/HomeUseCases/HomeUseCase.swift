@@ -23,6 +23,6 @@ final class HomeUseCaseImpl {
 // MARK: - HomeUseCase
 extension HomeUseCaseImpl: HomeUseCase {
     func fetchWidgets(completion: @escaping (Result<[HomeWidget], Error>) -> Void) {
-        completion(.failure(MapError()))
+        repository.fetchWidgets(completion: completion)
     }
 }
