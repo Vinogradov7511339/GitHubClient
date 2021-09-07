@@ -105,7 +105,12 @@ extension NotificationsViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension NotificationsViewController: UICollectionViewDelegate {}
+extension NotificationsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
+    }
+}
 
 // MARK: - Setup views
 private extension NotificationsViewController {

@@ -26,7 +26,7 @@ protocol AppCoordinatorDependencies {
 
     func issueCoordinator(in nav: UINavigationController,
                           actions: AppCoordinatorActions,
-                          issue: Issue) -> IssueCoordinator
+                          issue: URL) -> IssueCoordinator
 
     func pullRequestCoordinator(in nav: UINavigationController,
                                 actions: AppCoordinatorActions,
@@ -57,7 +57,7 @@ protocol AppCoordinatorActions {
     func openSettings(in nav: UINavigationController)
     func openRepository(_ repository: URL, in nav: UINavigationController)
     func openUser(_ url: URL, in nav: UINavigationController)
-    func openIssue(_ issue: Issue, in nav: UINavigationController)
+    func openIssue(_ issue: URL, in nav: UINavigationController)
     func openPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController)
     func openRelease(_ release: Release, in nav: UINavigationController)
 
@@ -151,7 +151,7 @@ extension AppCoordinator: AppCoordinatorActions {
         coordinator.start()
     }
 
-    func openIssue(_ issue: Issue, in nav: UINavigationController) {
+    func openIssue(_ issue: URL, in nav: UINavigationController) {
         let coordinator = dependencies.issueCoordinator(in: nav, actions: self, issue: issue)
         coordinator.start()
     }

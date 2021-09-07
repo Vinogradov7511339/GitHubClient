@@ -110,7 +110,7 @@ extension RepRepositoryImpl {
         }
     }
 
-    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler) {
+    func fetchIssue(_ issue: URL, completion: @escaping IssueHandler) {
         let endpoint = RepEndpoits.issue(issue)
         dataTransferService.request(with: endpoint) { result in
             switch result {

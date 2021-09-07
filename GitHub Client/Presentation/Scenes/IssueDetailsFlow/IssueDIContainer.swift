@@ -14,7 +14,7 @@ final class IssueDIContainer {
     struct Dependencies {
         let dataTransferService: DataTransferService
         let filterStorage: IssueFilterStorage
-        let issue: Issue
+        let issue: URL
     }
 
     // MARK: - Private variables

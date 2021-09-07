@@ -17,7 +17,7 @@ final class RepositoryDIContainer {
         let url: URL
 
         var showUser: (URL, UINavigationController) -> Void
-        var showIssue: (Issue, UINavigationController) -> Void
+        var showIssue: (URL, UINavigationController) -> Void
         var showPullRequest: (PullRequest, UINavigationController) -> Void
         var showRelease: (Release, UINavigationController) -> Void
         let showCommits: (URL, UINavigationController) -> Void
@@ -99,7 +99,7 @@ extension RepositoryDIContainer: RepFlowCoordinatorDependencies {
     }
 
     func showIssue(_ issue: Issue, in nav: UINavigationController) {
-        dependencies.showIssue(issue, nav)
+        dependencies.showIssue(issue.url, nav)
     }
 
     func showRepository(_ rep: URL, in nav: UINavigationController) {

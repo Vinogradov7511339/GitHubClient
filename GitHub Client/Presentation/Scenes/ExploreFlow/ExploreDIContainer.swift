@@ -17,7 +17,7 @@ final class ExploreDIContainer {
         let exploreSettingsStorage: ExploreWidgetsRequestStorage
 
         let showRepository: (URL, UINavigationController) -> Void
-        let showIssue: (Issue, UINavigationController) -> Void
+        let showIssue: (URL, UINavigationController) -> Void
         let showPullRequest: (PullRequest, UINavigationController) -> Void
         let showUser: (URL, UINavigationController) -> Void
     }
@@ -66,7 +66,7 @@ extension ExploreDIContainer: ExploreFlowCoordinatorDependencies {
     }
 
     func showIssue(_ issue: Issue, in nav: UINavigationController) {
-        dependencies.showIssue(issue, nav)
+        dependencies.showIssue(issue.url, nav)
     }
 
     func showPullRequest(_ pullRequest: PullRequest, in nav: UINavigationController) {

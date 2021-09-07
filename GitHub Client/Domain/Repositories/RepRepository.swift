@@ -34,7 +34,7 @@ protocol RepRepository {
     func fetchIssues(request: IssuesRequestModel, completion: @escaping IssuesHandler)
 
     typealias IssueHandler = (Result<Issue, Error>) -> Void
-    func fetchIssue(_ issue: Issue, completion: @escaping IssueHandler)
+    func fetchIssue(_ issue: URL, completion: @escaping IssueHandler)
 
     typealias IssueCommentsHandler = (Result<ListResponseModel<Comment>, Error>) -> Void
     func fetchIssueComments(_ request: CommentsRequestModel<Issue>,

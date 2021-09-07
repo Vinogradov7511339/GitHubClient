@@ -15,8 +15,13 @@ protocol IssueViewModelInput {
 }
 
 protocol IssueViewModelOutput {
-    var issue: Issue { get }
-    var comments: Observable<[Comment]> { get }
+    var state: Observable<IssueScreenState> { get }
+}
+
+enum IssueScreenState {
+    case loading
+    case error(Error)
+    case loaded(Issue, [Comment])
 }
 
 typealias IssueViewModel = IssueViewModelInput & IssueViewModelOutput
@@ -24,36 +29,50 @@ typealias IssueViewModel = IssueViewModelInput & IssueViewModelOutput
 final class IssueViewModelImpl: IssueViewModel {
 
     // MARK: - OUTPUT
-    let issue: Issue
-    var comments: Observable<[Comment]> = Observable([])
 
-    // MARK: - Private
+    var state: Observable<IssueScreenState> = Observable(.loading)
+
+    // MARK: - Private variables
+
+    private let url: URL
     private let useCase: IssueUseCase
     private var actions: IssueActions
     private var currentPage = 1
     private var lastPage: Int?
 
-    init(useCase: IssueUseCase, actions: IssueActions, issue: Issue) {
+    // MARK: - Lifecycle
+
+    init(_ url: URL, useCase: IssueUseCase, actions: IssueActions) {
+        self.url = url
         self.useCase = useCase
         self.actions = actions
-        self.issue = issue
     }
 }
 
 // MARK: - Input
 extension IssueViewModelImpl {
     func viewDidLoad() {
-        fetchComments()
+        fetch()
     }
 
     func refresh() {
-        fetchComments()
+        fetch()
     }
 }
 
 // MARK: - Private
 private extension IssueViewModelImpl {
-    func fetch() {}
+    func fetch() {
+        state.value = .loading
+        useCase.fetchIssue(url) { result in
+            switch result {
+            case .success(let issue):
+                self.state.value = .loaded(issue, [])
+            case .failure(let error):
+                self.state.value = .error(error)
+            }
+        }
+    }
     func fetchComments() {
 //        let model = CommentsRequestModel<Issue>(item: issue, page: currentPage)
 //        useCase.fetchComments(model) { result in
@@ -65,12 +84,4 @@ private extension IssueViewModelImpl {
 //            }
 //        }
     }
-
-    func updateComments(_ model: ListResponseModel<Comment>) {
-        self.lastPage = model.lastPage
-        self.currentPage += 1
-        self.comments.value.append(contentsOf: model.items)
-    }
-
-    func handle(_ error: Error) {}
 }

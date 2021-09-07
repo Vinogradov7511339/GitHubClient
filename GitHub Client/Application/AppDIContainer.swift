@@ -94,7 +94,7 @@ extension AppDIContainer: AppCoordinatorDependencies {
 
     func issueCoordinator(in nav: UINavigationController,
                           actions: AppCoordinatorActions,
-                          issue: Issue) -> IssueCoordinator {
+                          issue: URL) -> IssueCoordinator {
 
         let container = IssueDIContainer(issueDependencies(actions, issue: issue))
         return IssueCoordinator(with: container, in: nav)
@@ -192,7 +192,7 @@ private extension AppDIContainer {
     }
 
     func issueDependencies(_ actions: AppCoordinatorActions,
-                           issue: Issue) -> IssueDIContainer.Dependencies {
+                           issue: URL) -> IssueDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
               filterStorage: issueFilterStorage,
               issue: issue)

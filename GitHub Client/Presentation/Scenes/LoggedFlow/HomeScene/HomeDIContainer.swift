@@ -16,7 +16,7 @@ final class HomeDIContainer {
         let profileStorage: ProfileLocalStorage
         let issueFilterStorage: IssueFilterStorage
 
-        let showIssue: (Issue, UINavigationController) -> Void
+        let showIssue: (URL, UINavigationController) -> Void
     }
 
     // MARK: - Private variables
@@ -44,6 +44,6 @@ extension HomeDIContainer: HomeFlowCoordinatorDependencies {
     }
 
     func openIssue(_ issue: Issue, nav: UINavigationController) {
-        dependencies.showIssue(issue, nav)
+        dependencies.showIssue(issue.url, nav)
     }
 }

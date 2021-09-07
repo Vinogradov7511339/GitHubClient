@@ -8,11 +8,11 @@
 import UIKit
 
 class IssueDetailsViewController: UIViewController {
-    
+
     private var viewModel: IssueViewModel!
 
     private lazy var adapter: IssueTableViewAdapter = {
-        let adapter = IssueTableViewAdapterImpl(issue: viewModel.issue)
+        let adapter = IssueTableViewAdapterImpl()
         return adapter
     }()
 
@@ -48,11 +48,37 @@ class IssueDetailsViewController: UIViewController {
 // MARK: - Binding
 private extension IssueDetailsViewController {
     func bind(to viewModel: IssueViewModel) {
-        viewModel.comments.observe(on: self) { [weak self] in self?.update($0) }
+        viewModel.state.observe(on: self) { [weak self] in self?.updateState($0) }
     }
 
-    func update(_ comments: [Comment]) {
-        adapter.update(comments)
+    func updateState(_ newState: IssueScreenState) {
+        switch newState {
+        case .loading:
+            prepareLoadingState()
+        case .error(let error):
+            prepareErrorState(with: error)
+        case .loaded(let issue, let comments):
+            prepareLoadedState(issue, comments)
+        }
+    }
+
+    func prepareLoadingState() {
+        collectionView.isHidden = true
+        hideError()
+        showLoader()
+    }
+
+    func prepareErrorState(with error: Error) {
+        collectionView.isHidden = true
+        hideLoader()
+        showError(error, reloadCompletion: viewModel.refresh)
+    }
+
+    func prepareLoadedState(_ issue: Issue, _ comments: [Comment]) {
+        collectionView.isHidden = false
+        hideLoader()
+        hideError()
+        adapter.update(issue, comments: comments)
         collectionView.reloadData()
     }
 }
@@ -63,6 +89,7 @@ extension IssueDetailsViewController: UICollectionViewDelegate {}
 // MARK: - setup views
 private extension IssueDetailsViewController {
     func setupViews() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(collectionView)
     }
 

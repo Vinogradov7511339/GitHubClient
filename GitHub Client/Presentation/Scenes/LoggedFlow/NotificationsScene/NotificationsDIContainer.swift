@@ -13,6 +13,8 @@ final class NotificationsDIContainer {
 
     struct Dependencies {
         let apiDataTransferService: DataTransferService
+
+        let openIssue: (URL, UINavigationController) -> Void
     }
 
     // MARK: - Private variables
@@ -30,5 +32,9 @@ final class NotificationsDIContainer {
 extension NotificationsDIContainer: NotificationsFlowCoordinatorDelegate {
     func notificationsViewController(_ actions: NotificationsActions) -> UIViewController {
         notificationsFactory.makeNotificationsViewController(actions: actions)
+    }
+
+    func openIssue(_ url: URL, in nav: UINavigationController) {
+        dependencies.openIssue(url, nav)
     }
 }

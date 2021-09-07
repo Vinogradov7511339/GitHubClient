@@ -22,7 +22,7 @@ final class MainSceneDIContainer: NSObject {
         let openSettings: (UINavigationController) -> Void
         let openRepository: (URL, UINavigationController) -> Void
         let openUser: (URL, UINavigationController) -> Void
-        let openIssue: (Issue, UINavigationController) -> Void
+        let openIssue: (URL, UINavigationController) -> Void
         let openPullRequest: (PullRequest, UINavigationController) -> Void
 
         let sendMail: (String) -> Void
@@ -106,7 +106,8 @@ private extension MainSceneDIContainer {
     }
 
     func notificationsDependencies() -> NotificationsDIContainer.Dependencies {
-        .init(apiDataTransferService: dependencies.dataTransferService)
+        .init(apiDataTransferService: dependencies.dataTransferService,
+              openIssue: dependencies.openIssue)
     }
 
     func profileDependencies() -> ProfileDIContainer.Dependencies {

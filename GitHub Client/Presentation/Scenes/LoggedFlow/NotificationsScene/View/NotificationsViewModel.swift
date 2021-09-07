@@ -7,11 +7,15 @@
 
 import UIKit
 
-struct NotificationsActions {}
+struct NotificationsActions {
+    let openIssue: (URL) -> Void
+}
 
 protocol NotificationsViewModelInput {
     func viewDidLoad()
     func refresh()
+
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol NotificationsViewModelOutput: AnyObject {
@@ -44,6 +48,19 @@ extension NotificationsViewModelImpl {
 
     func refresh() {
         fetch()
+    }
+
+    func didSelectItem(at indexPath: IndexPath) {
+        guard case .loaded(let items) = state.value else { return }
+        let item = items[indexPath.row]
+        switch item.type {
+        case .issue:
+            if let issueUrl = item.notification.subject.url {
+                actions.openIssue(issueUrl)
+            }
+        case .unknown:
+            break
+        }
     }
 }
 

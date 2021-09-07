@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IssueFactory {
-    func issueViewController(_ issue: Issue, actions: IssueActions) -> UIViewController
+    func issueViewController(_ issue: URL, actions: IssueActions) -> UIViewController
 }
 
 final class IssueFactoryImpl {
@@ -24,15 +24,15 @@ final class IssueFactoryImpl {
 
 // MARK: - IssueFactory
 extension IssueFactoryImpl: IssueFactory {
-    func issueViewController(_ issue: Issue, actions: IssueActions) -> UIViewController {
+    func issueViewController(_ issue: URL, actions: IssueActions) -> UIViewController {
         IssueDetailsViewController.create(with: issueViewModel(issue, actions: actions))
     }
 }
 
 // MARK: - Private
 private extension IssueFactoryImpl {
-    func issueViewModel(_ issue: Issue, actions: IssueActions) -> IssueViewModel {
-        IssueViewModelImpl(useCase: issueUseCase, actions: actions, issue: issue)
+    func issueViewModel(_ issue: URL, actions: IssueActions) -> IssueViewModel {
+        IssueViewModelImpl(issue, useCase: issueUseCase, actions: actions)
     }
 
     var issueUseCase: IssueUseCase {

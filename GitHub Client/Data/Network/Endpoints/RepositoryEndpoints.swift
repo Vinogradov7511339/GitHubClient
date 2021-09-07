@@ -74,8 +74,8 @@ struct RepEndpoits {
                         queryParametersEncodable: params)
     }
 
-    static func issue(_ issue: Issue) -> Endpoint<IssueResponseDTO> {
-        return Endpoint(path: issue.url.absoluteString, isFullPath: true)
+    static func issue(_ issue: URL) -> Endpoint<IssueResponseDTO> {
+        return Endpoint(path: issue.absoluteString, isFullPath: true)
     }
 
     static func issueComments(_ model: CommentsRequestModel<Issue>) -> Endpoint<[CommentResponseDTO]> {

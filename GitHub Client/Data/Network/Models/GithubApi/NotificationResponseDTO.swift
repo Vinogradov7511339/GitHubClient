@@ -18,34 +18,11 @@ struct NotificationResponseDTO: Codable {
     let subject: NotificationsSubjectResponseDTO
     let repository: NotificationsRepositoryResponseDTO
 
-    func toDomain() -> EventNotification? {
-        .init(notification: self)
+    func toDomain() -> EventNotification {
+        .init(type: .init(rawValue: subject.type) ?? .unknown,
+              updatedAt: updatedAt.toDate(),
+              notification: self)
     }
-
-//    func toDomain() -> EventNotification? {
-//        guard let type = EventNotification.SubjectType(rawValue: subject.type) else {
-//            assert(false, "no type")
-//            return nil
-//        }
-//        guard let createdAt = updatedAt.toDate() else {
-//            assert(false, "no date")
-//            return nil
-//        }
-//        guard let repository = repository.toDomain() else {
-//            assert(false, "can not convert repository")
-//            return nil
-//        }
-//        guard let title = url.absoluteString.split(separator: "/").last else {
-//            assert(false, "not a number")
-//            return nil
-//        }
-//        let fullTitle = "\(repository.owner.login) / \(repository.name) #\(title)"
-//        return .init(title: fullTitle,
-//                     body: subject.title,
-//                     type: type,
-//                     createdAt: createdAt,
-//                     repository: repository)
-//    }
 }
 
 struct NotificationsSubjectResponseDTO: Codable {
