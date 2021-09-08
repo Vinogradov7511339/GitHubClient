@@ -78,7 +78,7 @@ private extension HomeViewModelImpl {
         useCase.fetchWidgets { result in
             switch result {
             case .success(let widgets):
-                self.widgetsState.value = .loaded(items: widgets)
+                self.widgetsState.value = .loaded(items: widgets, indexPaths: [])
             case .failure(let error):
                 self.widgetsState.value = .error(error: error)
             }
@@ -90,7 +90,7 @@ private extension HomeViewModelImpl {
         useCase.fetchFavorites { result in
             switch result {
             case .success(let favorites):
-                self.favoritesState.value = .loaded(items: favorites)
+                self.favoritesState.value = .loaded(items: favorites, indexPaths: [])
             case .failure(let error):
                 self.favoritesState.value = .error(error: error)
             }
@@ -102,7 +102,7 @@ private extension HomeViewModelImpl {
         useCase.fetchEvents { result in
             switch result {
             case .success(let response):
-                self.lastEventsState.value = .loaded(items: response.items)
+                self.lastEventsState.value = .loaded(items: response.items, indexPaths: [])
             case .failure(let error):
                 self.lastEventsState.value = .error(error: error)
             }

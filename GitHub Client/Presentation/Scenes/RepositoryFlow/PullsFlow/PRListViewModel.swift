@@ -54,7 +54,7 @@ extension PRListViewModelImpl {
 
     func didSelectItem(at indexPath: IndexPath) {
         switch state.value {
-        case .loaded(let items):
+        case .loaded(let items, _):
             let pullRequest = items[indexPath.row]
             actions.show(pullRequest)
         default:
@@ -75,7 +75,7 @@ private extension PRListViewModelImpl {
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage
-                self.state.value = .loaded(items: model.items)
+                self.state.value = .loaded(items: model.items, indexPaths: [])
             case .failure(let error):
                 self.state.value = .error(error: error)
             }

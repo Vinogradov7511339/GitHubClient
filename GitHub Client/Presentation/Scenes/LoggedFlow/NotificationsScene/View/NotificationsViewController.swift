@@ -19,10 +19,11 @@ class NotificationsViewController: UIViewController {
 
     // MARK: - Views
 
-    private lazy var collectionView: UICollectionView = {
-        let layoutFactory = CompositionalLayoutFactory()
-        let layout = layoutFactory.layout
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private lazy var collectionView: CollectionView = {
+//        let layoutFactory = CompositionalLayoutFactory()
+//        let layout = layoutFactory.layout
+//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = CollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.delegate = self
@@ -37,6 +38,8 @@ class NotificationsViewController: UIViewController {
         return refreshControl
     }()
 
+    private var nextPageLoadingSpinner: UIActivityIndicatorView?
+
     // MARK: - Private variables
 
     private var viewModel: NotificationsViewModel!
@@ -44,6 +47,7 @@ class NotificationsViewController: UIViewController {
         let adapter = NotificationsAdapterImpl()
         return adapter
     }()
+    private var items: [EventNotification] = []
 
     // MARK: - Lifecycle
 
@@ -77,8 +81,12 @@ extension NotificationsViewController {
             prepareErrorState(with: error)
         case .loading:
             prepareLoadingState()
-        case .loaded(let items):
-            prepareLoadedState(items)
+        case .loaded(let items, let paths):
+            prepareLoadedState(items, paths: paths)
+        case .loadingNext:
+            collectionView.showBottomIndicator()
+        case .refreshing:
+            refreshControl.beginRefreshing()
         }
     }
 
@@ -94,13 +102,16 @@ extension NotificationsViewController {
         showLoader()
     }
 
-    func prepareLoadedState(_ events: [EventNotification]) {
+    func prepareLoadedState(_ events: [EventNotification], paths: [IndexPath]) {
         collectionView.isHidden = false
+        self.items = events
         refreshControl.endRefreshing()
         hideLoader()
         hideError()
         adapter.update(events)
-        collectionView.reloadData()
+        collectionView.insertItems(at: paths)
+        collectionView.hideBottomIndicator()
+//        collectionView.reloadData()
     }
 }
 
@@ -109,6 +120,14 @@ extension NotificationsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if indexPath.row == items.count - 1 {
+            viewModel.loadNext()
+        }
     }
 }
 
@@ -124,5 +143,57 @@ private extension NotificationsViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+}
+
+public class CollectionFooterView: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class CollectionView: UICollectionView {
+
+     let bottomIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+
+    init() {
+        let layoutFactory = CompositionalLayoutFactory()
+        let layout = layoutFactory.layout
+        super.init(frame: .zero, collectionViewLayout: layout)
+        completeInit()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        completeInit()
+    }
+
+    private func completeInit() {
+        register(CollectionFooterView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "Footer")
+    }
+
+    func showBottomIndicator() {
+        bottomIndicator.startAnimating()
+    }
+
+    func hideBottomIndicator() {
+        bottomIndicator.stopAnimating()
+    }
+
+    func collectionView(_ kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let footer = dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: "Footer",
+                for: indexPath) as? CollectionFooterView else {
+            return CollectionFooterView()
+        }
+        footer.addSubview(bottomIndicator)
+        bottomIndicator.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 50)
+        return footer
     }
 }

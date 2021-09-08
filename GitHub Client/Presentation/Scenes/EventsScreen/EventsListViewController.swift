@@ -62,8 +62,12 @@ private extension EventsListViewController {
             prepareErrorState(with: error)
         case .loading:
             prepareLoadingState()
-        case .loaded(let items):
+        case .loaded(let items, _):
             prepareLoadedState(items)
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 

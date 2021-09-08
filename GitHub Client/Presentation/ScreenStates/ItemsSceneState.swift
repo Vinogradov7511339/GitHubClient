@@ -5,10 +5,12 @@
 //  Created by Alexander Vinogradov on 26.08.2021.
 //
 
-import Foundation
+import UIKit
 
 enum ItemsSceneState<Item> {
-    case loaded(items: [Item])
+    case loaded(items: [Item], indexPaths: [IndexPath])
     case loading
+    case loadingNext
+    case refreshing
     case error(error: Error)
 }

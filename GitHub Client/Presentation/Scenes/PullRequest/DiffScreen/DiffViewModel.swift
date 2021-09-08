@@ -70,6 +70,6 @@ private extension DiffViewModelImpl {
     func handleDiff(_ raw: String) {
         let parser = GitDiffParser(raw: raw)
         let diffs = parser.parse()
-        state.value = .loaded(items: diffs)
+        state.value = .loaded(items: diffs, indexPaths: [])
     }
 }

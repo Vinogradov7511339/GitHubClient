@@ -95,7 +95,7 @@ extension UsersViewModelImpl {
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        guard case .loaded(let users) = state.value else { return }
+        guard case .loaded(let users, _) = state.value else { return }
         actions.showUser(users[indexPath.row].url)
     }
 }
@@ -109,7 +109,7 @@ private extension UsersViewModelImpl {
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage
-                self.state.value = .loaded(items: model.items)
+                self.state.value = .loaded(items: model.items, indexPaths: [])
             case .failure(let error):
                 self.state.value = .error(error: error)
             }

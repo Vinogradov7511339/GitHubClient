@@ -61,12 +61,16 @@ private extension ReleasesViewController {
 
     func updateState(_ newState: ItemsSceneState<Release>) {
         switch newState {
-        case .loaded(let items):
+        case .loaded(let items, _):
             prepareLoadedState(with: items)
         case .error(let error):
             prepareErrorState(with: error)
         case .loading:
             prepareLoadingState()
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 

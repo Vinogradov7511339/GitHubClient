@@ -8,7 +8,11 @@
 import Foundation
 
 struct NotificationsEndpoints {
-    static func getNotifications() -> Endpoint<[NotificationResponseDTO]> {
-        return Endpoint(path: "notifications")
+    static func getNotifications(_ request: NotificationsRequestModel) -> Endpoint<[NotificationResponseDTO]> {
+        var params: QueryType = [:]
+        params["page"] = "\(request.page)"
+        params["per_page"] = "\(request.filter.perPage)"
+        return Endpoint(path: "notifications",
+                        queryParametersEncodable: params)
     }
 }

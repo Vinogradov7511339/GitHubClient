@@ -63,8 +63,12 @@ private extension DiffViewController {
             prepareLoadingState()
         case .error(let error):
             prepareErrorState(error)
-        case .loaded(let commit):
+        case .loaded(let commit, _):
             prepareLoadedState(commit)
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 

@@ -37,6 +37,7 @@ final class RepositoriesViewController: UIViewController {
     private lazy var adapter: CollectionViewAdapter = {
         CollectionViewAdapterImpl(with: cellManager)
     }()
+    private var items: [Repository] = []
 
     // MARK: - Lifecycle
 
@@ -69,8 +70,12 @@ private extension RepositoriesViewController {
             prepareLoadingState()
         case .error(let error):
             prepareErrorState(with: error)
-        case .loaded(let items):
+        case .loaded(let items, _):
             prepareLoadedState(items)
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 
@@ -88,6 +93,7 @@ private extension RepositoriesViewController {
 
     func prepareLoadedState(_ items: [Repository]) {
         collectionView.isHidden = false
+        self.items = items
         hideLoader()
         hideError()
         adapter.update(items)
@@ -100,6 +106,14 @@ extension RepositoriesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if indexPath.row == items.count - 1 {
+            print("last \(indexPath.row) : \(items.count - 1)")
+        }
     }
 }
 

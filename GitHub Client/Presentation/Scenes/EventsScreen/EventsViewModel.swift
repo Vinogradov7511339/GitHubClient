@@ -73,7 +73,7 @@ private extension EventsViewModelImpl {
         switch result {
         case .success(let responseModel):
             self.lastPage = responseModel.lastPage
-            self.state.value = .loaded(items: responseModel.items)
+            self.state.value = .loaded(items: responseModel.items, indexPaths: [])
         case .failure(let error):
             self.state.value = .error(error: error)
         }

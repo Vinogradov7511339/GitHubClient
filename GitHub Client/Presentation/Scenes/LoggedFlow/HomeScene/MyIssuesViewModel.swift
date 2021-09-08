@@ -56,7 +56,7 @@ extension MyIssuesViewModelImpl {
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        guard case .loaded(let items) = state.value else { return }
+        guard case .loaded(let items, _) = state.value else { return }
         let issue = items[indexPath.row]
         actions.showIssue(issue)
     }
@@ -70,7 +70,7 @@ private extension MyIssuesViewModelImpl {
             switch result {
             case .success(let response):
                 self.lastPage = response.lastPage
-                self.state.value = .loaded(items: response.items)
+                self.state.value = .loaded(items: response.items, indexPaths: [])
             case .failure(let error):
                 self.state.value = .error(error: error)
             }

@@ -18,13 +18,15 @@ final class NotificationsRepositoryImpl {
 
 // MARK: - NotificationsRepository
 extension NotificationsRepositoryImpl: NotificationsRepository {
-    func fetch(completion: @escaping (Result<[EventNotification], Error>) -> Void) {
-        let endpoint = NotificationsEndpoints.getNotifications()
+    func fetch(_ request: NotificationsRequestModel, completion: @escaping NotificationsHandler) {
+        let endpoint = NotificationsEndpoints.getNotifications(request)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
                 let models = response.model.compactMap { $0.toDomain() }
-                completion(.success(models))
+                let lastPage = response.httpResponse?.lastPage ?? 1
+                let model = ListResponseModel<EventNotification>(items: models, lastPage: lastPage)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }

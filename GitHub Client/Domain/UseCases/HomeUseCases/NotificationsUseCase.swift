@@ -8,7 +8,9 @@
 import Foundation
 
 protocol NotificationsUseCase {
-    func fetch(completion: @escaping(Result<[EventNotification], Error>) -> Void)
+
+    typealias NotificationsHandler = NotificationsRepository.NotificationsHandler
+    func fetch(_ page: Int, completion: @escaping NotificationsHandler)
 }
 
 final class NotificationsUseCaseImpl {
@@ -22,7 +24,9 @@ final class NotificationsUseCaseImpl {
 
 // MARK: - NotificationsUseCase
 extension NotificationsUseCaseImpl: NotificationsUseCase {
-    func fetch(completion: @escaping (Result<[EventNotification], Error>) -> Void) {
-        repository.fetch(completion: completion)
+    func fetch(_ page: Int, completion: @escaping NotificationsHandler) {
+        let filter = NotificationsFilter(perPage: 10)
+        let model = NotificationsRequestModel(page: page, filter: filter)
+        repository.fetch(model, completion: completion)
     }
 }

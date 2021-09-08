@@ -65,8 +65,12 @@ private extension MyIssuesViewController {
             prepareLoadingState()
         case .error(let error):
             prepareErrorState(with: error)
-        case .loaded(let items):
+        case .loaded(let items, _):
             prepareLoadedState(items)
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 

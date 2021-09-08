@@ -76,7 +76,7 @@ extension RepositoriesViewModelImpl {
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        guard case .loaded(let items) = state.value else { return }
+        guard case .loaded(let items, _) = state.value else { return }
         actions.showRepository(items[indexPath.row].url)
     }
 }
@@ -90,7 +90,7 @@ private extension RepositoriesViewModelImpl {
             switch result {
             case .success(let model):
                 self.lastPage = model.lastPage
-                self.state.value = .loaded(items: model.items)
+                self.state.value = .loaded(items: model.items, indexPaths: [])
             case .failure(let error):
                 self.state.value = .error(error: error)
             }

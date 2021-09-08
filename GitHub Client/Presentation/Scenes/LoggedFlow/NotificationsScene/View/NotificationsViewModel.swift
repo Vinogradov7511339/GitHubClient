@@ -13,7 +13,9 @@ struct NotificationsActions {
 
 protocol NotificationsViewModelInput {
     func viewDidLoad()
+    func reload()
     func refresh()
+    func loadNext()
 
     func didSelectItem(at indexPath: IndexPath)
 }
@@ -30,9 +32,13 @@ final class NotificationsViewModelImpl: NotificationsViewModel {
 
     var state: Observable<ItemsSceneState<EventNotification>> = Observable(.loading)
 
-    // MARK: - Private
+    // MARK: - Private variables
+
     private let useCase: NotificationsUseCase
     private let actions: NotificationsActions
+    private var currentPage = 1
+    private var lastPage: Int = 1
+    private var items: [EventNotification] = []
 
     init(useCase: NotificationsUseCase, actions: NotificationsActions) {
         self.useCase = useCase
@@ -43,15 +49,28 @@ final class NotificationsViewModelImpl: NotificationsViewModel {
 // MARK: - Input
 extension NotificationsViewModelImpl {
     func viewDidLoad() {
+        state.value = .loading
         fetch()
+    }
+
+    func reload() {
+        state.value = .loading
+        loadFirstPage()
     }
 
     func refresh() {
-        fetch()
+        state.value = .refreshing
+        loadFirstPage()
+    }
+
+    func loadNext() {
+        guard case .loaded(_ ,_) = state.value else { return }
+        guard currentPage < lastPage else { return }
+        loadNextPage()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
-        guard case .loaded(let items) = state.value else { return }
+        guard case .loaded(let items, _) = state.value else { return }
         let item = items[indexPath.row]
         switch item.type {
         case .issue:
@@ -66,15 +85,35 @@ extension NotificationsViewModelImpl {
 
 // MARK: - Private
 private extension NotificationsViewModelImpl {
+    func loadNextPage() {
+        currentPage += 1
+        state.value = .loadingNext
+        fetch()
+    }
+
+    func loadFirstPage() {
+        items.removeAll()
+        currentPage = 1
+        fetch()
+    }
+
     func fetch() {
-        self.state.value = .loading
-        useCase.fetch { result in
+        useCase.fetch(currentPage) { result in
             switch result {
-            case .success(let notifications):
-                self.state.value = .loaded(items: notifications)
+            case .success(let response):
+                self.lastPage = response.lastPage
+                self.items.append(contentsOf: response.items)
+                let paths = self.calculateIndexPaths(response.items)
+                self.state.value = .loaded(items: self.items, indexPaths: paths)
             case .failure(let error):
                 self.state.value = .error(error: error)
             }
         }
+    }
+
+    func calculateIndexPaths(_ newItems: [EventNotification]) -> [IndexPath] {
+        let startIndex = items.count - newItems.count
+        let endIndex = startIndex + newItems.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 }

@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NotificationsRepository {
-    func fetch(completion: @escaping(Result<[EventNotification], Error>) -> Void)
+    typealias NotificationsHandler = (Result<ListResponseModel<EventNotification>, Error>) -> Void
+    func fetch(_ request: NotificationsRequestModel, completion: @escaping NotificationsHandler)
 }

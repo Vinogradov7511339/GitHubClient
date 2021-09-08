@@ -12,10 +12,14 @@ final class HomeEventsView: UIView {
         switch newState {
         case .loading:
             prepareLoadingState()
-        case .loaded(let items):
+        case .loaded(let items, _):
             prepareLoadedState(items)
         case .error(let error):
             prepareErrorState(error)
+        case .loadingNext:
+            break
+        case .refreshing:
+            break
         }
     }
 
