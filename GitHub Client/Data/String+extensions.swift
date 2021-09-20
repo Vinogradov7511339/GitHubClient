@@ -23,17 +23,14 @@ extension String {
     }
 
     var lastPage: Int? {
-        let a = components(separatedBy: ",")
+        let lastPage = components(separatedBy: ",")
             .filter { $0.contains("last") }
             .first?
             .components(separatedBy: ";")
             .first?.components(separatedBy: "=")
             .last?
             .replacingOccurrences(of: ">", with: "")
-        if a != "1" {
-            print("aa")
-        }
-        return Int(a ?? "1")
+        return Int(lastPage ?? "1")
     }
 }
 

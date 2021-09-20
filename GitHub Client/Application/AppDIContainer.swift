@@ -187,6 +187,7 @@ private extension AppDIContainer {
               userUrl: userUrl,
               startRepFlow: actions.openRepository(_:in:),
               showUser: actions.openUser(_:in:),
+              showRepository: actions.openRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               sendEmail: actions.send(email:))

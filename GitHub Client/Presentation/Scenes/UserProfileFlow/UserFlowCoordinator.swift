@@ -9,8 +9,8 @@ import UIKit
 
 protocol UserFlowCoordinatorDependencies {
     func profileViewController(actions: UserProfileActions) -> UIViewController
-    func repositoriesViewController(actions: RepositoriesActions) -> UIViewController
-    func starredViewController(actions: RepositoriesActions) -> UIViewController
+    func repositoriesViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
+    func starredViewController(_ url: URL, actions: RepositoriesActions) -> UIViewController
     func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func eventsViewController(_ eventsUrl: URL,
@@ -22,6 +22,7 @@ protocol UserFlowCoordinatorDependencies {
     func share(url: URL)
 
     func showUser(_ url: URL, in nav: UINavigationController)
+    func showRepository(_ url: URL, in nav: UINavigationController)
 }
 
 final class UserFlowCoordinator {
@@ -85,12 +86,28 @@ private extension UserFlowCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func showStarred(_ url: URL) {}
     func showGists(_ url: URL) {}
     func showSubscriptions(_ url: URL) {}
-    func showRepositories(_ url: URL) {}
+
+    func showRepositories(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = RepositoriesActions(showRepository: showRepository(in: nav))
+        let viewController = dependencies.repositoriesViewController(url, actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+
+    func showStarred(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = RepositoriesActions(showRepository: showRepository(in: nav))
+        let viewController = dependencies.starredViewController(url, actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
 
     func showUser(in nav: UINavigationController) -> (URL) -> Void {
         return { url in self.dependencies.showUser(url, in: nav) }
+    }
+
+    func showRepository(in nav: UINavigationController) -> (URL) -> Void {
+        return { url in self.dependencies.showRepository(url, in: nav) }
     }
 }

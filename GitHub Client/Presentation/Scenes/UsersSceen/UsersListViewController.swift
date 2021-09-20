@@ -86,7 +86,6 @@ private extension UsersListViewController {
         self.items = users
         adapter.update(users)
         collectionView.insertItems(at: paths)
-        navigationItem.prompt = "total \(users.count)"
     }
 
     func prepareErrorState(with error: Error) {

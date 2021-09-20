@@ -117,6 +117,7 @@ extension RepositoriesViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Setup views
 private extension RepositoriesViewController {
     func setupViews() {
         view.backgroundColor = .systemGroupedBackground
