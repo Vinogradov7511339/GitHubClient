@@ -19,12 +19,10 @@ final class RepositoriesViewController: UIViewController {
 
     // MARK: - Views
 
-    private lazy var collectionView: UICollectionView = {
-        let layoutFactory = CompositionalLayoutFactory()
-        let layout = layoutFactory.layout
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemGroupedBackground
+    private lazy var collectionView: CollectionView = {
+        let collectionView = CollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemGroupedBackground
         collectionView.dataSource = adapter
         collectionView.delegate = self
         return collectionView
@@ -70,8 +68,8 @@ private extension RepositoriesViewController {
             prepareLoadingState()
         case .error(let error):
             prepareErrorState(with: error)
-        case .loaded(let items, _):
-            prepareLoadedState(items)
+        case .loaded(let items, let paths):
+            prepareLoadedState(items, paths: paths)
         case .loadingNext:
             break
         case .refreshing:
@@ -88,16 +86,17 @@ private extension RepositoriesViewController {
     func prepareErrorState(with error: Error) {
         collectionView.isHidden = true
         hideLoader()
-        showError(error, reloadCompletion: viewModel.refresh)
+        showError(error, reloadCompletion: viewModel.reload)
     }
 
-    func prepareLoadedState(_ items: [Repository]) {
+    func prepareLoadedState(_ items: [Repository], paths: [IndexPath]) {
         collectionView.isHidden = false
         self.items = items
+        collectionView.hideBottomIndicator()
         hideLoader()
         hideError()
         adapter.update(items)
-        collectionView.reloadData()
+        collectionView.insertItems(at: paths)
     }
 }
 
@@ -112,7 +111,7 @@ extension RepositoriesViewController: UICollectionViewDelegate {
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         if indexPath.row == items.count - 1 {
-            print("last \(indexPath.row) : \(items.count - 1)")
+            viewModel.loadNext()
         }
     }
 }

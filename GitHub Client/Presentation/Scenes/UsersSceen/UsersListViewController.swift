@@ -23,8 +23,8 @@ final class UsersListViewController: UIViewController {
         let collectionView = CollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
-        collectionView.delegate = self
         collectionView.dataSource = adapter
+        collectionView.delegate = self
         return collectionView
     }()
 
@@ -79,11 +79,11 @@ private extension UsersListViewController {
 
     func prepareLoadedState(_ users: [User], paths: [IndexPath]) {
         collectionView.isHidden = false
+        self.items = users
 //        refreshControl.endRefreshing()
         collectionView.hideBottomIndicator()
         hideLoader()
         hideError()
-        self.items = users
         adapter.update(users)
         collectionView.insertItems(at: paths)
     }
