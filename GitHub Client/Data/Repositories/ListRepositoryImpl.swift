@@ -17,18 +17,17 @@ final class ListRepositoryImpl {
 
 // MARK: - ListRepository
 extension ListRepositoryImpl: ListRepository {
-    func fetchUsers(_ requestModel: ListRequestModel, completion: @escaping UsersHandler) {
+    func fetchUsers(page: Int, _ url: URL, completion: @escaping UsersHandler) {
         var params: QueryType = [:]
-        params["page"] = "\(requestModel.page)"
-        let endpoint = Endpoint<[UserResponseDTO]>(path: requestModel.path.absoluteString,
+        params["page"] = "\(page)"
+        let endpoint = Endpoint<[UserResponseDTO]>(path: url.absoluteString,
                                                    isFullPath: true,
                                                    queryParametersEncodable: params)
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
                 let users = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<User>(items: users, lastPage: lastPage)
+                let model = ListResponseModel<User>(users, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -46,8 +45,7 @@ extension ListRepositoryImpl: ListRepository {
             switch result {
             case .success(let response):
                 let repositories = response.model.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Repository>(items: repositories, lastPage: lastPage)
+                let model = ListResponseModel<Repository>(repositories, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -65,8 +63,7 @@ extension ListRepositoryImpl: ListRepository {
             switch result {
             case .success(let response):
                 let branches = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Branch>(items: branches, lastPage: lastPage)
+                let model = ListResponseModel<Branch>(branches, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -84,8 +81,7 @@ extension ListRepositoryImpl: ListRepository {
             switch result {
             case .success(let response):
                 let releases = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Release>(items: releases, lastPage: lastPage)
+                let model = ListResponseModel<Release>(releases, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -103,8 +99,7 @@ extension ListRepositoryImpl: ListRepository {
             switch result {
             case .success(let response):
                 let commits = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Commit>(items: commits, lastPage: lastPage)
+                let model = ListResponseModel<Commit>(commits, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -122,8 +117,7 @@ extension ListRepositoryImpl: ListRepository {
             switch result {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: events, lastPage: lastPage)
+                let model = ListResponseModel<Event>(events, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

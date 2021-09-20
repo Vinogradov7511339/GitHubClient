@@ -13,8 +13,8 @@ struct NotificationsActions {
 
 protocol NotificationsViewModelInput {
     func viewDidLoad()
-    func reload()
     func refresh()
+    func reload()
     func loadNext()
 
     func didSelectItem(at indexPath: IndexPath)
@@ -37,7 +37,7 @@ final class NotificationsViewModelImpl: NotificationsViewModel {
     private let useCase: NotificationsUseCase
     private let actions: NotificationsActions
     private var currentPage = 1
-    private var lastPage: Int = 1
+    private var lastPage = 1
     private var items: [EventNotification] = []
 
     init(useCase: NotificationsUseCase, actions: NotificationsActions) {
@@ -65,7 +65,8 @@ extension NotificationsViewModelImpl {
 
     func loadNext() {
         guard case .loaded(_ ,_) = state.value else { return }
-        guard currentPage < lastPage else { return }
+        guard lastPage > currentPage else { return }
+        state.value = .loadingNext
         loadNextPage()
     }
 
@@ -87,7 +88,6 @@ extension NotificationsViewModelImpl {
 private extension NotificationsViewModelImpl {
     func loadNextPage() {
         currentPage += 1
-        state.value = .loadingNext
         fetch()
     }
 

@@ -9,7 +9,7 @@ import Foundation
 
 protocol ListRepository {
     typealias UsersHandler = (Result<ListResponseModel<User>, Error>) -> Void
-    func fetchUsers(_ requestModel: ListRequestModel, completion: @escaping UsersHandler)
+    func fetchUsers(page: Int, _ url: URL, completion: @escaping UsersHandler)
 
     typealias RepositoriesHandler = (Result<ListResponseModel<Repository>, Error>) -> Void
     func fetchRepositories(_ requestModel: ListRequestModel, completion: @escaping RepositoriesHandler)

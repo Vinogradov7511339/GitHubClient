@@ -43,8 +43,8 @@ final class RepositoriesViewModelImpl: RepositoriesViewModel {
     private let url: URL
     private let useCase: ListUseCase
     private let actions: RepositoriesActions
-    private var currentPage: Int = 1
-    private var lastPage: Int?
+    private var currentPage = 1
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 

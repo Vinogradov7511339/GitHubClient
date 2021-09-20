@@ -24,8 +24,7 @@ extension EventsRepositoryImpl: EventsRepository {
             switch result {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
-                let page = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: events, lastPage: page)
+                let model = ListResponseModel<Event>(events, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

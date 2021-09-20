@@ -76,8 +76,7 @@ extension UserProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let items = response.model.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: items, lastPage: lastPage)
+                let model = ListResponseModel<Event>(items, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -91,8 +90,7 @@ extension UserProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let items = response.model.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: items, lastPage: lastPage)
+                let model = ListResponseModel<Event>(items, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

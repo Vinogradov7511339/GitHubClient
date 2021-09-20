@@ -35,7 +35,7 @@ final class BranchesViewModelImpl: BranchesViewModel {
     private let useCase: ListUseCase
     private let actions: BranchesActions
     private var currentPage = 1
-    private var lastPage: Int?
+    private var lastPage = 1
 
     // MARK: - Lifcycle
 

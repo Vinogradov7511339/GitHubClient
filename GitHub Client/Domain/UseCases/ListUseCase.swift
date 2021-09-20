@@ -9,7 +9,7 @@ import Foundation
 
 protocol ListUseCase {
     typealias UsersHandler = ListRepository.UsersHandler
-    func fetchUsers(_ requestModel: ListRequestModel, completion: @escaping UsersHandler)
+    func fetchUsers(page: Int, _ url: URL, completion: @escaping UsersHandler)
 
     typealias RepositoriesHandler = ListRepository.RepositoriesHandler
     func fetchRepositories(_ requestModel: ListRequestModel, completion: @escaping RepositoriesHandler)
@@ -37,8 +37,8 @@ final class ListUseCaseImpl {
 
 // MARK: - ListUseCase
 extension ListUseCaseImpl: ListUseCase {
-    func fetchUsers(_ requestModel: ListRequestModel, completion: @escaping UsersHandler) {
-        repository.fetchUsers(requestModel, completion: completion)
+    func fetchUsers(page: Int, _ url: URL, completion: @escaping UsersHandler) {
+        repository.fetchUsers(page: page, url, completion: completion)
     }
 
     func fetchRepositories(_ requestModel: ListRequestModel, completion: @escaping RepositoriesHandler) {

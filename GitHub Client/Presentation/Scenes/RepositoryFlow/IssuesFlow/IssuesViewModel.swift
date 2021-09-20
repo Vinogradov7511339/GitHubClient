@@ -34,8 +34,8 @@ final class IssuesViewModelImpl: IssuesViewModel {
     private let url: URL
     private let issueUseCase: IssueUseCase
     private let actions: IssuesActions
-    private var lastPage: Int?
     private var currentPage = 1
+    private var lastPage = 1
 
     init(_ url: URL, issueUseCase: IssueUseCase, actions: IssuesActions) {
         self.url = url

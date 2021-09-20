@@ -34,8 +34,8 @@ final class ReleasesViewModelImpl: ReleasesViewModel {
     private let url: URL
     private let useCase: ListUseCase
     private let actions: ReleasesActions
-    private var lastPage: Int?
     private var currentPage = 1
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 

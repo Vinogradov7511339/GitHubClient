@@ -93,7 +93,7 @@ extension NotificationsViewController {
     func prepareErrorState(with error: Error) {
         collectionView.isHidden = true
         hideLoader()
-        showError(error, reloadCompletion: viewModel.refresh)
+        showError(error, reloadCompletion: viewModel.reload)
     }
 
     func prepareLoadingState() {
@@ -111,7 +111,6 @@ extension NotificationsViewController {
         adapter.update(events)
         collectionView.insertItems(at: paths)
         collectionView.hideBottomIndicator()
-//        collectionView.reloadData()
     }
 }
 

@@ -24,8 +24,7 @@ extension NotificationsRepositoryImpl: NotificationsRepository {
             switch result {
             case .success(let response):
                 let models = response.model.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<EventNotification>(items: models, lastPage: lastPage)
+                let model = ListResponseModel<EventNotification>(models, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

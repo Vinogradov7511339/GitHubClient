@@ -218,7 +218,7 @@ private extension ExploreUseCaseImpl {
                 .repositories: repModel,
                 .issues: issuesModel,
                 .pullRequests: pullRequestModel,
-                .people: usersModel,
+                .people: usersModel
             ]
             completion(.success(result))
         }

@@ -11,8 +11,8 @@ protocol UserFlowCoordinatorDependencies {
     func profileViewController(actions: UserProfileActions) -> UIViewController
     func repositoriesViewController(actions: RepositoriesActions) -> UIViewController
     func starredViewController(actions: RepositoriesActions) -> UIViewController
-    func followersViewController(actions: UsersActions) -> UIViewController
-    func followingViewController(actions: UsersActions) -> UIViewController
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController
     func eventsViewController(_ eventsUrl: URL,
                               _ recivedEventsUrl: URL,
                               actions: EventsActions) -> UIViewController
@@ -20,6 +20,8 @@ protocol UserFlowCoordinatorDependencies {
     func sendMail(email: String)
     func openLink(url: URL)
     func share(url: URL)
+
+    func showUser(_ url: URL, in nav: UINavigationController)
 }
 
 final class UserFlowCoordinator {
@@ -64,9 +66,19 @@ private extension UserFlowCoordinator {
 
 // MARK: - Routing
 private extension UserFlowCoordinator {
-    func showFollowers(_ url: URL) {}
-    func showFollowing(_ url: URL) {}
-    
+    func showFollowers(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = UsersActions(showUser: showUser(in: nav))
+        let viewController = dependencies.followersViewController(url, actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+    func showFollowing(_ url: URL) {
+        guard let nav = navigationController else { return }
+        let actions = UsersActions(showUser: showUser(in: nav))
+        let viewController = dependencies.followingViewController(url, actions: actions)
+        nav.pushViewController(viewController, animated: true)
+    }
+
     func showEvents(_ events: URL, _ recentEvents: URL) {
         let actions = EventsActions()
         let viewController = dependencies.eventsViewController(events, recentEvents, actions: actions)
@@ -77,4 +89,8 @@ private extension UserFlowCoordinator {
     func showGists(_ url: URL) {}
     func showSubscriptions(_ url: URL) {}
     func showRepositories(_ url: URL) {}
+
+    func showUser(in nav: UINavigationController) -> (URL) -> Void {
+        return { url in self.dependencies.showUser(url, in: nav) }
+    }
 }

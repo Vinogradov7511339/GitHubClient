@@ -9,6 +9,6 @@ import Foundation
 
 extension HTTPURLResponse {
     var lastPage: Int? {
-        (allHeaderFields["Link"] as? String)?.maxPageCount()
+        (allHeaderFields["Link"] as? String)?.lastPage
     }
 }

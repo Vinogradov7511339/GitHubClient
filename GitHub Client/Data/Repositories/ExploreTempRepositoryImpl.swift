@@ -24,11 +24,10 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
             switch result {
             case .success(let response):
                 let repositories = response.model.items.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
                 let total = response.model.totalCount
-                let model = SearchResponseModel(itemsType: .repository(repositories),
-                                                            lastPage: lastPage,
-                                                            total: total)
+                let model = SearchResponseModel(type: .repository(repositories),
+                                                response: response.httpResponse,
+                                                total: total)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -41,13 +40,14 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let issues = response.model.items.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let total = response.model.totalCount
-                let model = SearchResponseModel(itemsType: .issue(issues),
-                                                      lastPage: lastPage,
-                                                      total: total)
-                completion(.success(model))
+                fatalError()
+//                let issues = response.model.items.compactMap { $0.toDomain() }
+//                let lastPage = response.httpResponse?.availableNextPage
+//                let total = response.model.totalCount
+//                let model = SearchResponseModel(itemsType: .issue(issues),
+//                                                      nextPage: lastPage,
+//                                                      total: total)
+//                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -59,12 +59,11 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let pullRequests = response.model.items.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
+                let pulls = response.model.items.compactMap { $0.toDomain() }
                 let total = response.model.totalCount
-                let model = SearchResponseModel(itemsType: .pullRequest(pullRequests),
-                                                      lastPage: lastPage,
-                                                      total: total)
+                let model = SearchResponseModel(type: .pullRequest(pulls),
+                                                response: response.httpResponse,
+                                                total: total)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -77,13 +76,14 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let users = response.model.items.compactMap { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let total = response.model.totalCount
-                let model = SearchResponseModel(itemsType: .users(users),
-                                                      lastPage: lastPage,
-                                                      total: total)
-                completion(.success(model))
+                fatalError()
+//                let users = response.model.items.compactMap { $0.toDomain() }
+//                let lastPage = response.httpResponse?.lastPage
+//                let total = response.model.totalCount
+//                let model = SearchResponseModel(itemsType: .users(users),
+//                                                      nextPage: lastPage,
+//                                                      total: total)
+//                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }

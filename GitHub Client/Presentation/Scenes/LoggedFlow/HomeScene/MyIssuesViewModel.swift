@@ -35,7 +35,7 @@ final class MyIssuesViewModelImpl: MyIssuesViewModel {
     private let useCase: HomeUseCase
     private let actions: MyIssuesActions
     private var currentPage = 1
-    private var lastPage: Int?
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 

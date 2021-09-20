@@ -23,6 +23,15 @@ typealias EventsViewModel = EventsViewModelInput & EventsViewModelOutput
 enum EventsType {
     case events(URL)
     case recentEvents(URL)
+
+    var url: URL {
+        switch self {
+        case .events(let url):
+            return url
+        case .recentEvents(let url):
+            return url
+        }
+    }
 }
 
 final class EventsViewModelImpl: EventsViewModel {
@@ -36,8 +45,8 @@ final class EventsViewModelImpl: EventsViewModel {
     private let type: EventsType
     private let useCase: ListUseCase
     private let actions: EventsActions
-    private var currentPage: Int = 1
-    private var lastPage: Int?
+    private var currentPage = 1
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 

@@ -46,8 +46,7 @@ extension MyProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
-                let page = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: events, lastPage: page)
+                let model = ListResponseModel<Event>(events, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -61,8 +60,7 @@ extension MyProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let events = response.model.compactMap { $0.toDomain() }
-                let page = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Event>(items: events, lastPage: page)
+                let model = ListResponseModel<Event>(events, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -79,8 +77,7 @@ extension MyProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let repositories = response.model.compactMap { $0.toDomain() }
-                let page = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Repository>(items: repositories, lastPage: page)
+                let model = ListResponseModel<Repository>(repositories, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -103,8 +100,7 @@ extension MyProfileRepositoryImpl {
             switch result {
             case .success(let response):
                 let issues = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Issue>(items: issues, lastPage: lastPage)
+                let model = ListResponseModel<Issue>(issues, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

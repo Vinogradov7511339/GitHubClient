@@ -32,3 +32,11 @@ struct SearchResponseModel {
         }
     }
 }
+
+extension SearchResponseModel {
+    init(type: ItemType, response: HTTPURLResponse?, total: Int) {
+        self.itemsType = type
+        self.lastPage = response?.lastPage ?? 1
+        self.total = total
+    }
+}

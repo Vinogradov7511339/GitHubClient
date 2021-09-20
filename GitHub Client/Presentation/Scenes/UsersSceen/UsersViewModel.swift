@@ -49,6 +49,9 @@ enum RepositoryUsersType {
 protocol UsersViewModelInput {
     func viewDidLoad()
     func refresh()
+    func reload()
+    func loadNext()
+
     func didSelectItem(at indexPath: IndexPath)
 }
 
@@ -72,7 +75,8 @@ final class UsersViewModelImpl: UsersViewModel {
     private let useCase: ListUseCase
     private let actions: UsersActions
     private var currentPage = 1
-    private var lastPage: Int?
+    private var lastPage = 1
+    private var items: [User] = []
 
     // MARK: - Lifecycle
 
@@ -87,11 +91,25 @@ final class UsersViewModelImpl: UsersViewModel {
 // MARK: - Input
 extension UsersViewModelImpl {
     func viewDidLoad() {
-        fetch()
+        state.value = .loading
+        loadFirstPage()
     }
 
     func refresh() {
-        fetch()
+        state.value = .refreshing
+        loadFirstPage()
+    }
+
+    func reload() {
+        state.value = .loading
+        loadFirstPage()
+    }
+
+    func loadNext() {
+        guard case .loaded(_, _) = state.value else { return }
+        guard lastPage > currentPage else { return }
+        state.value = .loadingNext
+        loadNextPage()
     }
 
     func didSelectItem(at indexPath: IndexPath) {
@@ -102,17 +120,34 @@ extension UsersViewModelImpl {
 
 // MARK: - Private
 private extension UsersViewModelImpl {
+    func loadFirstPage() {
+        currentPage = 1
+        items.removeAll()
+        fetch()
+    }
+
+    func loadNextPage() {
+        currentPage += 1
+        fetch()
+    }
+
     func fetch() {
-        state.value = .loading
-        let requestModel = ListRequestModel(path: type.url, page: currentPage)
-        useCase.fetchUsers(requestModel) { result in
+        useCase.fetchUsers(page: currentPage, type.url) { result in
             switch result {
-            case .success(let model):
-                self.lastPage = model.lastPage
-                self.state.value = .loaded(items: model.items, indexPaths: [])
+            case .success(let response):
+                self.lastPage = response.lastPage
+                self.items.append(contentsOf: response.items)
+                let paths = self.calculateIndexPaths(response.items)
+                self.state.value = .loaded(items: self.items, indexPaths: paths)
             case .failure(let error):
                 self.state.value = .error(error: error)
             }
         }
+    }
+
+    func calculateIndexPaths(_ newItems: [User]) -> [IndexPath] {
+        let startIndex = items.count - newItems.count
+        let endIndex = startIndex + newItems.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 }

@@ -100,9 +100,8 @@ extension RepRepositoryImpl {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.compactMap { $0.toDomain() }
-                let model = ListResponseModel<Issue>(items: items, lastPage: lastPage)
+                let model = ListResponseModel<Issue>(items, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -145,9 +144,8 @@ extension RepRepositoryImpl {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                let lastPage = response.httpResponse?.lastPage ?? 1
                 let items = response.model.compactMap { $0.toDomain() }
-                let model = ListResponseModel<PullRequest>(items: items, lastPage: lastPage)
+                let model = ListResponseModel<PullRequest>(items, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
@@ -198,8 +196,7 @@ extension RepRepositoryImpl {
             switch result {
             case .success(let response):
                 let comments = response.model.map { $0.toDomain() }
-                let lastPage = response.httpResponse?.lastPage ?? 1
-                let model = ListResponseModel<Comment>(items: comments, lastPage: lastPage)
+                let model = ListResponseModel<Comment>(comments, response: response.httpResponse)
                 completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))

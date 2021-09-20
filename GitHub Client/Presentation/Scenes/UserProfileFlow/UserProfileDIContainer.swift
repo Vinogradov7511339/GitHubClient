@@ -16,6 +16,7 @@ final class UserProfileDIContainer {
         let userUrl: URL
 
         var startRepFlow: (URL, UINavigationController) -> Void
+        var showUser: (URL, UINavigationController) -> Void
         var openLink: (URL) -> Void
         var share: (URL) -> Void
         var sendEmail: (String) -> Void
@@ -62,17 +63,19 @@ extension UserProfileDIContainer: UserFlowCoordinatorDependencies {
 //        userFactory.starredViewController(user: dependencies.user, actions)
     }
 
-    func followersViewController(actions: UsersActions) -> UIViewController {
-        fatalError()
-//        userFactory.followersViewController(user: dependencies.user, actions)
+    func followersViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        userFactory.followersViewController(url, actions)
     }
 
-    func followingViewController(actions: UsersActions) -> UIViewController {
-        fatalError()
-//        userFactory.followingViewController(user: dependencies.user, actions)
+    func followingViewController(_ url: URL, actions: UsersActions) -> UIViewController {
+        userFactory.followingViewController(url, actions)
     }
 
     func eventsViewController(_ eventsUrl: URL, _ recivedEventsUrl: URL, actions: EventsActions) -> UIViewController {
         userFactory.eventsViewController(eventsUrl, recivedEventsUrl, actions: actions)
+    }
+
+    func showUser(_ url: URL, in nav: UINavigationController) {
+        dependencies.showUser(url, nav)
     }
 }

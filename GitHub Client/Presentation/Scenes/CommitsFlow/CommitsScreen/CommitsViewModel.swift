@@ -34,8 +34,8 @@ final class CommitsViewModelImpl: CommitsViewModel {
     private let url: URL
     private let useCase: ListUseCase
     private let actions: CommitsActions
-    private var lastPage: Int?
     private var currentPage = 1
+    private var lastPage = 1
 
     init(_ url: URL, useCase: ListUseCase, actions: CommitsActions) {
         self.url = url

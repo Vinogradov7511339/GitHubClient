@@ -19,9 +19,8 @@ final class UsersListViewController: UIViewController {
 
     // MARK: - Views
 
-    private lazy var collectionView: UICollectionView = {
-        let factory = CompositionalLayoutFactory()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: factory.layout)
+    private lazy var collectionView: CollectionView = {
+        let collectionView = CollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.delegate = self
@@ -36,6 +35,7 @@ final class UsersListViewController: UIViewController {
     private lazy var adapter: CollectionViewAdapter = {
         CollectionViewAdapterImpl(with: cellManager)
     }()
+    private var items: [User] = []
 
     // MARK: - Lifecycle
 
@@ -64,8 +64,8 @@ private extension UsersListViewController {
 
     func updateState(_ newState: ItemsSceneState<User>) {
         switch newState {
-        case .loaded(let items, _):
-            prepareLoadedState(items)
+        case .loaded(let items, let paths):
+            prepareLoadedState(items, paths: paths)
         case .error(let error):
             prepareErrorState(with: error)
         case .loading:
@@ -77,18 +77,22 @@ private extension UsersListViewController {
         }
     }
 
-    func prepareLoadedState(_ users: [User]) {
+    func prepareLoadedState(_ users: [User], paths: [IndexPath]) {
         collectionView.isHidden = false
+//        refreshControl.endRefreshing()
+        collectionView.hideBottomIndicator()
         hideLoader()
         hideError()
+        self.items = users
         adapter.update(users)
-        collectionView.reloadData()
+        collectionView.insertItems(at: paths)
+        navigationItem.prompt = "total \(users.count)"
     }
 
     func prepareErrorState(with error: Error) {
         collectionView.isHidden = true
         hideLoader()
-        showError(error, reloadCompletion: viewModel.refresh)
+        showError(error, reloadCompletion: viewModel.reload)
     }
 
     func prepareLoadingState() {
@@ -103,6 +107,14 @@ extension UsersListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         viewModel.didSelectItem(at: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if indexPath.row == items.count - 1 {
+            viewModel.loadNext()
+        }
     }
 }
 

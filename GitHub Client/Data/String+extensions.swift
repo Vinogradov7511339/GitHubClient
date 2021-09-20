@@ -22,12 +22,18 @@ extension String {
         return clearPath
     }
 
-    func maxPageCount() -> Int? {
-        guard let subString = self.split(separator: "&").last else {
-            return nil
+    var lastPage: Int? {
+        let a = components(separatedBy: ",")
+            .filter { $0.contains("last") }
+            .first?
+            .components(separatedBy: ";")
+            .first?.components(separatedBy: "=")
+            .last?
+            .replacingOccurrences(of: ">", with: "")
+        if a != "1" {
+            print("aa")
         }
-        let number = subString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        return Int(number)
+        return Int(a ?? "1")
     }
 }
 

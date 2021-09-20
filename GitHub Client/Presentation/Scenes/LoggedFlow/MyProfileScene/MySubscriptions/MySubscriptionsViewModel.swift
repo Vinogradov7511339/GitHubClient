@@ -32,7 +32,7 @@ final class MySubscriptionsViewModelImpl: MySubscriptionsViewModel {
     private let useCase: MyProfileUseCase
     private let actions: MySubscriptionsActions
     private var currentPage = 1
-    private var lastPage: Int?
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 

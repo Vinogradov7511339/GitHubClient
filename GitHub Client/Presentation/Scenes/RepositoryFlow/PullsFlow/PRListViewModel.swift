@@ -34,8 +34,8 @@ final class PRListViewModelImpl: PRListViewModel {
     private let url: URL
     private let useCase: PRUseCase
     private let actions: PRListActions
-    private var lastPage: Int?
     private var currentPage = 1
+    private var lastPage = 1
 
     // MARK: - Lifecycle
 
