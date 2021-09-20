@@ -40,14 +40,12 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                fatalError()
-//                let issues = response.model.items.compactMap { $0.toDomain() }
-//                let lastPage = response.httpResponse?.availableNextPage
-//                let total = response.model.totalCount
-//                let model = SearchResponseModel(itemsType: .issue(issues),
-//                                                      nextPage: lastPage,
-//                                                      total: total)
-//                completion(.success(model))
+                let issues = response.model.items.compactMap { $0.toDomain() }
+                let total = response.model.totalCount
+                let model = SearchResponseModel(type: .issue(issues),
+                                                response: response.httpResponse,
+                                                total: total)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -76,14 +74,12 @@ extension ExploreTempRepositoryImpl: ExploreTempRepository {
         dataTransferService.request(with: endpoint) { result in
             switch result {
             case .success(let response):
-                fatalError()
-//                let users = response.model.items.compactMap { $0.toDomain() }
-//                let lastPage = response.httpResponse?.lastPage
-//                let total = response.model.totalCount
-//                let model = SearchResponseModel(itemsType: .users(users),
-//                                                      nextPage: lastPage,
-//                                                      total: total)
-//                completion(.success(model))
+                let users = response.model.items.compactMap { $0.toDomain() }
+                let total = response.model.totalCount
+                let model = SearchResponseModel(type: .users(users),
+                                                response: response.httpResponse,
+                                                total: total)
+                completion(.success(model))
             case .failure(let error):
                 completion(.failure(error))
             }
