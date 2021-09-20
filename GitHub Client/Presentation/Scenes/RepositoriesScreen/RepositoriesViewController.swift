@@ -25,7 +25,14 @@ final class RepositoriesViewController: UIViewController {
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.dataSource = adapter
         collectionView.delegate = self
+        collectionView.refreshControl = refreshControl
         return collectionView
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
     }()
 
     // MARK: - Private variables
@@ -49,6 +56,10 @@ final class RepositoriesViewController: UIViewController {
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
+
+    @objc func refresh() {
+        viewModel.refresh()
+    }
 }
 
 // MARK: - Binding
@@ -71,9 +82,9 @@ private extension RepositoriesViewController {
         case .loaded(let items, let paths):
             prepareLoadedState(items, paths: paths)
         case .loadingNext:
-            break
+            collectionView.showBottomIndicator()
         case .refreshing:
-            break
+            refreshControl.beginRefreshing()
         }
     }
 
@@ -92,6 +103,7 @@ private extension RepositoriesViewController {
     func prepareLoadedState(_ items: [Repository], paths: [IndexPath]) {
         collectionView.isHidden = false
         self.items = items
+        refreshControl.endRefreshing()
         collectionView.hideBottomIndicator()
         hideLoader()
         hideError()
