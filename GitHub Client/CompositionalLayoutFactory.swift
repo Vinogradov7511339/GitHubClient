@@ -23,8 +23,15 @@ class CompositionalLayoutFactory {
     }()
 
     private lazy var footer: SupplementaryItem = {
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44.0))
-        return SupplementaryItem(layoutSize: size, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+        let size = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(44.0)
+        )
+        return SupplementaryItem(
+            layoutSize: size,
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
     }()
 
     private lazy var group: NSCollectionLayoutGroup = {
@@ -38,7 +45,7 @@ class CompositionalLayoutFactory {
     private lazy var size: NSCollectionLayoutSize = {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(300)
+            heightDimension: NSCollectionLayoutDimension.estimated(100)
         )
         return size
     }()
