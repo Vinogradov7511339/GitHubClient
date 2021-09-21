@@ -89,7 +89,7 @@ private extension RepositoryInfoViewController {
 extension RepositoryInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let sectionType = RepositoryInfoSectionType(rawValue: indexPath.section)
+        let sectionType = adapter.visibleSectionTypes[indexPath.section]
         switch sectionType {
         case .owner:
             viewModel.showOwner()

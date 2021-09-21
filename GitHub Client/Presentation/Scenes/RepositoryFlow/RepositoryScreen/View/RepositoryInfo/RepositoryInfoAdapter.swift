@@ -48,11 +48,14 @@ enum RepositoryInfoRowType: Int, CaseIterable {
 }
 
 protocol RepositoryInfoAdapter: UITableViewDataSource {
+    var visibleSectionTypes: [RepositoryInfoSectionType] { get }
+
     func register(_ tableView: UITableView)
     func update(_ repository: RepositoryDetails)
 }
 
 final class RepositoryInfoAdapterImpl: NSObject {
+    var visibleSectionTypes: [RepositoryInfoSectionType] = []
     private var repository: RepositoryDetails?
     private let cellManagers: [RepositoryInfoSectionType: TableCellManager] = [
         .owner: TableCellManager.create(cellType: RepositoryOwnerCell.self),
@@ -71,23 +74,22 @@ extension RepositoryInfoAdapterImpl: RepositoryInfoAdapter {
 
     func update(_ repository: RepositoryDetails) {
         self.repository = repository
+        self.visibleSectionTypes = repository.sections
     }
 }
 
 // MARK: - UITableViewDataSource
 extension RepositoryInfoAdapterImpl {
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard repository != nil else { return 0 }
-        return RepositoryInfoSectionType.allCases.count
+        visibleSectionTypes.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        RepositoryInfoSectionType(rawValue: section)?.numberOfRows ?? 0
+        visibleSectionTypes[section].numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sectionType = RepositoryInfoSectionType(rawValue: indexPath.section)
-        guard let sectionType = sectionType else { return UITableViewCell() }
+        let sectionType = visibleSectionTypes[indexPath.section]
         guard let cellManager = cellManagers[sectionType] else { return UITableViewCell() }
         guard let viewModel = viewModel(for: indexPath) else { return UITableViewCell() }
         let cell = cellManager.dequeueReusableCell(tableView: tableView, for: indexPath)
@@ -96,12 +98,11 @@ extension RepositoryInfoAdapterImpl {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        RepositoryInfoSectionType(rawValue: section)?.title
+        visibleSectionTypes[section].title
     }
 
     func viewModel(for indexPath: IndexPath) -> Any? {
-        let sectionType = RepositoryInfoSectionType(rawValue: indexPath.section)
-        guard let sectionType = sectionType else { return nil }
+        let sectionType = visibleSectionTypes[indexPath.section]
         switch sectionType {
         case .owner:
             return repository
@@ -114,5 +115,23 @@ extension RepositoryInfoAdapterImpl {
         case .readMe:
             return repository
         }
+    }
+}
+
+private extension RepositoryDetails {
+    var sections: [RepositoryInfoSectionType] {
+        var sections: [RepositoryInfoSectionType] = []
+        sections.append(.owner)
+        if repository.description != nil {
+            sections.append(.description)
+        }
+        sections.append(.popularity)
+        if repository.license != nil {
+            sections.append(.license)
+        }
+        if mdText != nil {
+            sections.append(.readMe)
+        }
+        return sections
     }
 }

@@ -47,4 +47,13 @@ extension CollectionViewAdapterImpl {
         cell.populate(viewModel: item)
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let collectionView = collectionView as? CollectionView else {
+            return CollectionFooterView()
+        }
+        return collectionView.collectionView(kind, at: indexPath)
+    }
 }
