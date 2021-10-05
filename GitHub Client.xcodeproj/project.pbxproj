@@ -1609,6 +1609,7 @@
 		AD39FE2926BA725B00F055FD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AD7150AA270C47C90085E1C6 /* UI */,
 				AD6C1FE726DE8FD4000961C4 /* ScreenStates */,
 				ADF9A84326D672990017D11F /* Scenes */,
 				AD8722D026B7D846004649A4 /* UIComponents */,
@@ -2255,17 +2256,24 @@
 			path = IssueCell;
 			sourceTree = "<group>";
 		};
+		AD7150AA270C47C90085E1C6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AD596EE126DBD4A9004A3A1C /* CodeView.swift */,
+				ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */,
+				AD93005026C960E3002D7362 /* CompositionalLayoutFactory.swift */,
+				AD2E261126BC6D4C00B25772 /* WebImageView.swift */,
+				AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		AD8722D026B7D846004649A4 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				ADFCF00226D82143004FB341 /* CellManagers */,
 				ADB60D8B26D4CAC70024479D /* ErrorAlert */,
 				ADFCF00026D81F2D004FB341 /* Adapters */,
-				ADB60D8C26D4CAE10024479D /* CustomNavTitleView.swift */,
-				AD93005026C960E3002D7362 /* CompositionalLayoutFactory.swift */,
-				AD2E261126BC6D4C00B25772 /* WebImageView.swift */,
-				AD596EDF26DBCF0A004A3A1C /* MDRenderer.swift */,
-				AD596EE126DBD4A9004A3A1C /* CodeView.swift */,
 			);
 			name = UIComponents;
 			path = ..;
