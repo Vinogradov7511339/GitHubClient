@@ -137,11 +137,11 @@ private extension AppDIContainer {
               searchFilterStorage: searchFilterStorage,
               exploreSettingsStorage: exploreSettingsStorage,
               userLoggedIn: actions.login,
-              openSettings: actions.openSettings(in:),
-              openRepository: actions.openRepository(_:in:),
-              openUser: actions.openUser(_:in:),
-              openIssue: actions.openIssue(_:in:),
-              openPullRequest: actions.openPullRequest(_:in:))
+              openSettings: actions.showSettings(in:),
+              openRepository: actions.showRepository(_:in:),
+              openUser: actions.showProfile(_:in:),
+              openIssue: actions.showIssue(_:in:),
+              openPullRequest: actions.showPull(_:in:))
     }
 
     func mainDependencies(_ actions: AppCoordinatorActions) -> MainSceneDIContainer.Dependencies {
@@ -151,11 +151,11 @@ private extension AppDIContainer {
               exploreSettingsStorage: exploreSettingsStorage,
               issueFilterStorage: issueFilterStorage,
               logout: actions.logout,
-              openSettings: actions.openSettings(in:),
-              openRepository: actions.openRepository(_:in:),
-              openUser: actions.openUser(_:in:),
-              openIssue: actions.openIssue(_:in:),
-              openPullRequest: actions.openPullRequest(_:in:),
+              openSettings: actions.showSettings(in:),
+              openRepository: actions.showRepository(_:in:),
+              openUser: actions.showProfile(_:in:),
+              openIssue: actions.showIssue(_:in:),
+              openPullRequest: actions.showPull(_:in:),
               sendMail: actions.send(email:),
               openLink: actions.open(link:),
               share: actions.share(link:))
@@ -170,12 +170,12 @@ private extension AppDIContainer {
         .init(dataTransferService: dataTransferService,
               issueFilterStorage: issueFilterStorage,
               url: repository,
-              showUser: actions.openUser(_:in:),
-              showIssue: actions.openIssue(_:in:),
-              showPullRequest: actions.openPullRequest(_:in:),
-              showRelease: actions.openRelease(_:in:),
+              showUser: actions.showProfile(_:in:),
+              showIssue: actions.showIssue(_:in:),
+              showPullRequest: actions.showPull(_:in:),
+              showRelease: actions.showRelease(_:in:),
               showCommits: actions.showCommits(_:in:),
-              showRepository: actions.openRepository(_:in:),
+              showRepository: actions.showRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               copy: actions.copy(text:))
@@ -185,9 +185,9 @@ private extension AppDIContainer {
                           userUrl: URL) -> UserProfileDIContainer.Dependencies {
         .init(dataTransferService: dataTransferService,
               userUrl: userUrl,
-              startRepFlow: actions.openRepository(_:in:),
-              showUser: actions.openUser(_:in:),
-              showRepository: actions.openRepository(_:in:),
+              startRepFlow: actions.showRepository(_:in:),
+              showUser: actions.showProfile(_:in:),
+              showRepository: actions.showRepository(_:in:),
               openLink: actions.open(link:),
               share: actions.share(link:),
               sendEmail: actions.send(email:))
