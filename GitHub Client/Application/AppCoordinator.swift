@@ -64,7 +64,7 @@ protocol AppCoordinatorDependencies {
     func commitCoordinator(
         in nav: UINavigationController,
         actions: AppCoordinatorActions,
-        commitsUrl: URL
+        commitUrl: URL
     ) -> CommitCoordinator
 }
 
@@ -78,13 +78,13 @@ protocol AppCoordinatorActions {
     func copy(text: String)
 
     func showSettings(in nav: UINavigationController)
-    func showRepository(_ repository: URL, in nav: UINavigationController)
-    func showProfile(_ url: URL, in nav: UINavigationController)
-    func showIssue(_ issue: URL, in nav: UINavigationController)
+    func showRepository(_ repositoryURL: URL, in nav: UINavigationController)
+    func showProfile(_ profileURL: URL, in nav: UINavigationController)
+    func showIssue(_ issueURL: URL, in nav: UINavigationController)
     func showPull(_ pullRequest: PullRequest, in nav: UINavigationController)
     func showRelease(_ release: Release, in nav: UINavigationController)
-    func showCommits(_ url: URL, in nav: UINavigationController)
-    func showCommit(_ url: URL, in nav: UINavigationController)
+    func showCommits(_ commitsURL: URL, in nav: UINavigationController)
+    func showCommit(_ commitURL: URL, in nav: UINavigationController)
 }
 
 final class AppCoordinator {
@@ -161,18 +161,21 @@ extension AppCoordinator: AppCoordinatorActions {
         coordinator.start()
     }
 
-    func showRepository(_ repository: URL, in nav: UINavigationController) {
-        let coordinator = dependencies.repositoryCoordinator(in: nav, actions: self, repository: repository)
+    func showRepository(_ repositoryURL: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.repositoryCoordinator(
+            in: nav, actions: self,
+            repository: repositoryURL
+        )
         coordinator.start()
     }
 
-    func showProfile(_ url: URL, in nav: UINavigationController) {
-        let coordinator = dependencies.userCoordinator(in: nav, actions: self, userUrl: url)
+    func showProfile(_ profileURL: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.userCoordinator(in: nav, actions: self, userUrl: profileURL)
         coordinator.start()
     }
 
-    func showIssue(_ issue: URL, in nav: UINavigationController) {
-        let coordinator = dependencies.issueCoordinator(in: nav, actions: self, issue: issue)
+    func showIssue(_ issueURL: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.issueCoordinator(in: nav, actions: self, issue: issueURL)
         coordinator.start()
     }
 
@@ -190,13 +193,13 @@ extension AppCoordinator: AppCoordinatorActions {
         coordinator.start()
     }
 
-    func showCommits(_ url: URL, in nav: UINavigationController) {
-        let coordinator = dependencies.commitsCoordinator(in: nav, actions: self, commitsUrl: url)
+    func showCommits(_ commitsURL: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.commitsCoordinator(in: nav, actions: self, commitsUrl: commitsURL)
         coordinator.start()
     }
 
-    func showCommit(_ url: URL, in nav: UINavigationController) {
-        let coordinator = dependencies.commitCoordinator(in: nav, actions: self, commitsUrl: url)
+    func showCommit(_ commitURL: URL, in nav: UINavigationController) {
+        let coordinator = dependencies.commitCoordinator(in: nav, actions: self, commitUrl: commitURL)
         coordinator.start()
     }
 }

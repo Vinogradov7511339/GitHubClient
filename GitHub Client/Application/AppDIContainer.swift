@@ -124,8 +124,8 @@ extension AppDIContainer: AppCoordinatorDependencies {
 
     func commitCoordinator(in nav: UINavigationController,
                            actions: AppCoordinatorActions,
-                           commitsUrl: URL) -> CommitCoordinator {
-        let container = CommitDIContainer(commitDependencies(commitsUrl))
+                           commitUrl: URL) -> CommitCoordinator {
+        let container = CommitDIContainer(commitDependencies(commitUrl))
         return CommitCoordinator(with: container, in: nav)
     }
 }
