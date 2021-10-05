@@ -8,8 +8,6 @@
 import UIKit
 
 protocol AppCoordinatorDependencies {
-    var userFactory: UserFactory { get }
-
     func notLoggedCoordinator(
         in window: UIWindow,
         actions: AppCoordinatorActions
